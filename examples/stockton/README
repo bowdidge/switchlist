@@ -1,0 +1,30 @@
+Stockton
+rbowdidge@mac.com
+
+This example switch list layout simulates the switching railroad in a
+Stockton, CA industrial development.  The railroad interchanges on the
+west with the Southern Pacific and on the east with the Western
+Pacific.  The industrial area has a western area ("West Industries"),
+eastern area ("East Industries"), and yard between the two.
+
+Two versions exist for this layout, "Stockton with Divisions" that
+uses divisions so that WP cars exit through the west yard and SP cars
+SPand foreign cars through the east, and another "Stockton Example"
+which allows cars to exit via either yard.
+
+There is one train, a daily switching run that goes from the yard to
+the west industries, then to the SP interchange, then to the east
+industries, and finally to the WP interchange before returning to the
+yard.
+
+The cargos have most of the traffic going via the SP, with a few going
+via the WP.  This is prototypical; most shippers sent occasional loads
+through the WP to encourage competition, but sent the bulk of their
+loads through the SP.
+
+Note that the foreign boxcars are associated with the East division,
+which are handled by the SP interchange.  This special division
+ensures these boxcars are used only for the produce leaving the West
+Warehouse.  The incoming cans come from the SP, so only SP boxcars
+will carry them.
+
