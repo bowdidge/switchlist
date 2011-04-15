@@ -1,0 +1,41 @@
+#!/bin/csh
+#
+# Build the SwitchList.app distribution and put everything in a single 
+# Disk Image.
+#
+# Get the version by searching the CVS log for a file for the tag names. 
+# Pick the first tag name, and grab the name portion.
+#
+# TODO(bowdidge) Redo for SVN
+#set DMG_NAME=`cvs log Info.plist | grep -a1 symbolic | tail -1 | colrm 1 8 | sed -e 's/:.*//g'`
+set DMG_NAME=SwitchList-0.7
+
+echo Disk Image name is $DMG_NAME
+rm -rf /tmp/SwitchList /tmp/$DMG_NAME.dmg
+rm -f /tmp/SwitchList.tar.gz /tmp/SwitchList.tar
+mkdir /tmp/SwitchList
+
+rm -rf /tmp/SwitchList.working
+mkdir /tmp/SwitchList.working
+cd /tmp/SwitchList.working
+
+svn checkout http://switchlist.googlecode.com/svn/trunk/ switchlist-read-only
+cd switchlist
+
+pushd src
+# Fat x86/ppc binary.
+xcodebuild -target SwitchList -configuration Release  clean
+xcodebuild -target SwitchList -configuration Release 
+popd 
+
+cp -r /XcodeCache/SharedProducts/Release/SwitchList.app /tmp/SwitchList
+
+mkdir /tmp/SwitchList/Examples
+
+cp -r examples/* /tmp/SwitchList/Examples
+
+pushd /tmp/
+hdiutil create ./$DMG_NAME.dmg -srcfolder SwitchList/ -ov
+popd
+
+echo "Copy to /Volumes/rbowdidge/Sites/railroad/ to make this live."
