@@ -1,0 +1,21 @@
+To make a distribution:
+
+1) Re-run /Developer/Applications/Utilities/Help Indexer.
+
+2) Update version number in InfoPlist.strings
+
+3) cvs tag SwitchList-version-with-dashes
+
+4) Run makeDistribution
+
+5) Copy resulting /tmp/SwitchList-version.dmg to OldVersions
+
+6) Test
+
+7) Copy /tmp/SwitchList-version.dmg to /Volumes/rbowdidge/Sites/railroad/SwitchList-version.dmg
+
+8) Copy /tmp/SwitchList-version.dmg to /Volumes/rbowdidge/Sites/railroad/SwitchList.dmg
+
+9) Update web page to show new version.
+
+10) Announce on SwitchList-discuss
