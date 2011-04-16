@@ -1,0 +1,16 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = Report; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                "_reportTextView" = NSTextView; 
+                "_reportWindow" = NSWindow; 
+                "_scrollView" = NSScrollView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}
