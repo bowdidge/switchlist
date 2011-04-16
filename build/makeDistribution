@@ -15,32 +15,37 @@ endif
 
 set DMG_NAME=$1
 
-echo Disk Image name is $DMG_NAME
+echo Disk Image name will be $DMG_NAME
 rm -rf /tmp/SwitchList /tmp/$DMG_NAME.dmg
 rm -f /tmp/SwitchList.tar.gz /tmp/SwitchList.tar
+rm -rf /tmp/switchlist-read-only
+
+# /tmp/SwitchList is where the disk image will be staged.
 mkdir /tmp/SwitchList
 
-rm -rf /tmp/switchlist-read-only
-# TODO: Get specific version.
-svn checkout http://switchlist.googlecode.com/svn/trunk/ /tmp/switchlist-read-only
+# /tmp/switchlist-read-only contains the checked-out version of the sources.
+# TODO(bowdidge) Check out the specific tag.
+svn checkout http://switchlist.googlecode.com/svn/tags/$1 /tmp/switchlist-read-only
+if $status != 0 then
+  echo "Problems checking out svn sources - non-existent tag $1?"
+  exit 1
+endif
 
 pushd /tmp/switchlist-read-only/src
 # Fat x86/ppc binary.
 xcodebuild -target SwitchList -configuration Release  clean
-xcodebuild -target SwitchList -configuration Release 
+xcodebuild -target SwitchList -configuration Release  SYMROOT=/tmp/XcodeBuildProducts OBJROOT=/tmp/XcodeBuildIntermediates
 if $status != 0 then
   echo Problems building SwitchList
   exit 1
 endif
 popd 
 
-mkdir /tmp/SwitchList
-
-cp -r /XcodeCache/SharedProducts/Release/SwitchList.app /tmp/SwitchList
+cp -r /tmp/XcodeBuildProducts/Release/SwitchList.app /tmp/SwitchList
 cp -r examples /tmp/SwitchList/Examples
 
 pushd /tmp/
 hdiutil create ./$DMG_NAME.dmg -srcfolder SwitchList/ -ov
 popd
 
-echo "/tmp/SwitchList.dmg has the final disk image."
+echo "/tmp/$DMG_NAME.dmg has the final disk image."
