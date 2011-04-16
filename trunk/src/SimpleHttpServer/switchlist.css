@@ -1,7 +1,29 @@
-.switch-list-header, .switch-list-header TH { background-color:dimgray; color:white; }
-.switch-list, .switch-list TD {font-family:\"Arial\"; tr { solid black } td {  height:40px } }
-table { border-collapse: collapse}
-td#cartype {  text-align: center }
-td { height : 40px; border: 2px solid black; padding-left:10px;padding-right:10px}
-tr {solid black}
+.switch-list-header TH {
+	 background-color:dimgray;
+	  color:white;
+}
+.switch-list TD {
+	font-family:\"Arial\";
+}
+ 
+.switch-list-title {
+	font-size: 24pt;
+	text-align:  center;
+	font-weight: bold;
+}
+.switch-list-instructions {
+  text-align: center;
+	margin-top: 1px;
+}
+table.switch-list {
+	border-collapse: collapse;
+}
+td#cartype {
+	  text-align: center
+ }
+.switch-list td { 
+	height : 40px; 
+	border: 2px solid black;
+	padding-left:10px;
+	padding-right:10px}
 

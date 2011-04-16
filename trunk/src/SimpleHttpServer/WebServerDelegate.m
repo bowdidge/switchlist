@@ -104,11 +104,11 @@ static const int HTTP_OK = 200;
 
 
 - (NSString*) switchListHeaderForTrain: (NSString*) trainName {
-	return [NSString stringWithFormat: @"<HTML><HEAD>"
-			@"<link type=\"text/css\" href=\"switchlist.css\" rel=\"stylesheet\" />"
-			@"<link media=\"only screen and (max-device-width: 480px)\" href=\"switchlist-iphone.css\" type=\"text/css\" rel=\"stylesheet\" />"
-			@"<link media=\"only screen and (max-device-width: 1024px)\" href=\"switchlist-ipad.css\" type=\"text/css\" rel=\"stylesheet\" />"
-			@"<TITLE>Switch List for %@</TITLE> </HEAD> <BODY>", trainName];
+	return [NSString stringWithFormat: @"<HTML>\n<HEAD>\n"
+			@"<link type=\"text/css\" href=\"switchlist.css\" rel=\"stylesheet\" />\n"
+			@"<link media=\"only screen and (max-device-width: 480px)\" href=\"switchlist-iphone.css\" type=\"text/css\" rel=\"stylesheet\" />\n"
+			@"<link media=\"only screen and (max-device-width: 1024px)\" href=\"switchlist-ipad.css\" type=\"text/css\" rel=\"stylesheet\" />\n"
+			@"<TITLE>Switch List for %@</TITLE>\n</HEAD>\n<BODY>\n", trainName];
 }
 
 - (NSString*) townLocationStringForLocation: (InduYard*) induYard {
@@ -120,12 +120,26 @@ static const int HTTP_OK = 200;
 	EntireLayout *layout = [document entireLayout];
 	ScheduledTrain *train = [layout trainWithName: trainName];
 	NSMutableString *message = [NSMutableString stringWithString: [self switchListHeaderForTrain: [train name]]];
-	[message appendString: @"<H2><CENTER><B>Southern Pacific Railroad</B></CENTER></h2>"];
-	[message appendString: @"<H1><CENTER><B>SWITCH LIST</B></CENTER></h1>"];
-	[message appendFormat: @"<CENTER>%@ AT %@ STATION, %@", [train name], [[train stationStopStrings] objectAtIndex: 0],
-																		   [layout currentDate]];
-	[message appendString: @"<p> <center> <TABLE BORDER=\"1\" class=\"switch-list\">"];
-	[message appendString: @"<TR class=\"switch-list-header\"><TH>Done</TH><TH>Car No.</TH><TH>Car Type</TH><TH>From</TH><TH>To</TH></TR>"];
+	[message appendFormat: @"<div class=\"switch-list-title\">\n"
+		                   @"%@\n"
+		                   @"<br>\n"
+		                   @"SWITCH LIST\n</div>\n",
+						   [[document entireLayout] layoutName]];
+	[message appendFormat: @"<div class=\"switch-list-instructions\">\n"
+	                       @"%@ AT %@ STATION, %@\n"
+		                   @"</div>",
+		                   [train name],
+						   [[train stationStopStrings] objectAtIndex: 0],
+						   [layout currentDate]];
+	[message appendString: @"<p>\n" 
+	                       @"<center>\n"
+	                       @"<TABLE BORDER=\"1\" class=\"switch-list\">\n"];
+	[message appendString: @"<TR class=\"switch-list-header\">\n"
+                           @"  <TH>Done</TH>\n" 
+	                       @"<TH>Car No.</TH>\n"
+	                       @"<TH>Car Type</TH>\n"
+                           @"<TH>From</TH>\n"
+                           @"<TH>To</TH>\n</TR>"];
 	NSSet *cars = [train freightCars];
 	for (FreightCar *car in cars) {
 		[message appendFormat: @"<TR><TD><INPUT TYPE=CHECKBOX NAME=""></TD><TD>%@</TD><TD id=\"cartype\">%@</TD><TD>%@</TD><TD>%@</TD></TR>",
@@ -133,9 +147,11 @@ static const int HTTP_OK = 200;
 		 [self townLocationStringForLocation: [car nextStop]]];
 	}
 
-	[message appendString: @"</TABLE> <p align=\"right\">"];
+	[message appendString: @"</TABLE>\n"
+	                       @"</center>\n"
+	                       @"<p align=\"right\">"];
 	[message appendFormat: @"<INPUT TYPE=BUTTON value=\"Go Back\" onclick=\"location.href='?layout=%@'\">", [layout layoutName]];
-	[message appendFormat: @"<INPUT TYPE=BUTTON value=\"Train Finished\"></p> </HTML>"];
+	[message appendString: @"<INPUT TYPE=BUTTON value=\"Train Finished\"></p> </HTML>"];
 	[server_ replyWithStatusCode: HTTP_OK
 						 message: message];
 }
