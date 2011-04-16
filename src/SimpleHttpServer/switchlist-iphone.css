@@ -1,6 +1,30 @@
-.switch-list-header, .switch-list-header TH { background-color:blue; color:white; }
-.switch-list, .switch-list TD {font-family:\"Arial\"; tr { solid black } td {  height:40px } }
-table { border-collapse: collapse}
-td#cartype {  text-align: center }
-td { height : 40px; border: 2px solid black; padding-left:10px;padding-right:10px}
-tr {solid black}
+.switch-list-header TH {
+	background-color:blue;
+	 color:white;
+}
+.switch-list TD {
+	font: 14px \"Arial\";
+}
+.switch-list-title {
+	text-align:  center;
+	font-weight: bold;
+	font 12px \"Arian\";
+}
+
+.switch-list-instructions {	
+	text-align:  center;
+	font-weight: bold;
+	font 10px \"Arian\";
+}
+table.switch-list { 
+  border-collapse: collapse
+}
+td#cartype {
+	text-align: center;
+}
+.switch-list td {
+    height : 40px;
+    border: 2px solid black;
+    padding-left:10px;
+    padding-right:10px
+}
