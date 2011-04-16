@@ -1,0 +1,6 @@
+.switch-list-header, .switch-list-header TH { background-color:blue; color:white; }
+.switch-list, .switch-list TD {font-family:\"Arial\"; tr { solid black } td {  height:40px } }
+table { border-collapse: collapse}
+td#cartype {  text-align: center }
+td { height : 40px; border: 2px solid black; padding-left:10px;padding-right:10px}
+tr {solid black}

@@ -1,0 +1,58 @@
+<html>
+<head>
+<TITLE>Detail: Yards Tab</TITLE>
+<link href="../../shrd/switchlist.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<BODY>
+<div id="headerbox"><div id="iconbox">
+<img id="iconimg" src="../../shrd/switchListNewIcon.jpg" alt="SwitchList Icon" height="32" width="32" />
+</div>
+<H1>Detail: Yards Tab</H1>
+</div>
+<div id="leftspace">
+<p>
+<A HREF="../../shrd/switchlist_yards.jpg"><img class="floatRight"
+src="../../shrd/switchlist_yards.jpg"></a> The Yards tab lets declare which
+railroad yards, staging tracks, and interchanges exist on your
+railroad.
+<p>
+To add a new Yard, press the "Add" button.  You'll need to give the
+yard a name, and specify the town it is in.  You can remove unneeded
+yards with the "Remove" button.
+<p>
+Yards are important for three reasons: first, all trains must begin and end
+in a town with a yard.  Second, yards provide a place for cars to be
+exchanged between trains if a freight car cannot be moved from source
+to destination in a single step.  Third, empty freight cars will go to
+a yard for storage.
+<p>
+The "Accepts Divisions" and "Division" fields for yards affect when cars
+can be exchanged between trains and where empty cars go.  The "Division"
+field names which railroad owns a yard; empty cars with the same division
+will try to go to that yard.  If a yard's "Division" field is blank,
+then any freight car that is empty may go there.  If the freight car's "Division" is blank, then it will go to any yard when empty.
+<p>
+The "Accepts Divisions" indicates which cars can
+temporarily be placed in that yard while switching trains.  Generally,
+a freight car with a non-blank "Division" can only be exchanged in yards
+that accept that division.  Yards with blank "Accept Divisions" fields
+will accept any car.
+<p>
+Yards in towns that are marked as staging (not on the visible layout)
+behave slightly differently; any freight car making it to a yard in
+staging are assumed to have reached their next destination.  If empty,
+the car is assumed to have reached its owning railroad.  If the car is
+loaded, then the car has reached its final destination.  If the car is
+empty but reserved for a load, then the car has reached its initial destinatio and will be loaded and sent off to the cargo's destination.
+<p>
+See also:
+<p>
+<A HREF="pg105.html">Definition: Yard</a>
+<p>
+<A HREF="pg106.html">Definition: Interchange</a>
+<p>
+<A HREF="pg51.html">Detail Divisions for cars and industries</a>
+<p>
+</div>
+</body>
+</html>

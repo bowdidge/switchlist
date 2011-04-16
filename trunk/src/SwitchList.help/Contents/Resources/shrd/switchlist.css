@@ -1,0 +1,84 @@
+/* CSS for SwitchList documentation. 
+   Ideas borrowed from Apple Help sample docs for Help Viewer to keep
+   similar look.
+*/
+h1 {
+  margin-left: 40px;
+  width: 88%;
+  padding-bottom: 20px;
+
+	font-size: 13pt;
+	line-height: 16pt;
+	font-family: "Lucida Grande", Arial, sans-serif;
+	font-weight: bold;
+	margin-top: 6px;
+	margin-bottom: 0;
+}
+
+h2 {
+	font-size: 12pt;
+	line-height: 16pt;
+	font-family: "Lucida Grande", Arial, sans-serif;
+	font-weight: bold;
+	margin-top: 6px;
+	margin-bottom: 0;
+}   
+
+/* This block should be around all of the body except the header. */
+#leftspace {
+  margin-left: 40px;
+  width: 88%;
+}
+
+/* Most images should float right in this way.*/
+img.floatRight {
+  float: right;
+  margin: 4px;
+  width: 35%;
+}
+
+/* Default type style for text. */
+p {
+	font-size: 9pt;
+	font-family: "Lucida Grande", Arial, sans-serif;
+	line-height: 12pt;
+	text-decoration: none;
+	margin-top: 0px;
+	margin-bottom: 8px;
+}
+
+li {
+	font-size: 10pt;
+	font-family: "Lucida Grande", Arial, sans-serif;
+	line-height: 16pt;
+	text-decoration: none;
+	padding-bottom: 8px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 8px;
+}
+
+ol {
+	font-size: 12pt;
+	font-family: "Lucida Grande", Arial, sans-serif;
+	line-height: 14pt;
+	text-decoration: none;
+	padding-bottom: 8px;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 8px;
+}
+   
+#headerbox {
+	margin-top: 36px;
+        padding-right: 6px
+}
+
+/* Icon on H1 at top of file. */
+#iconbox {
+  margin-bottom: -3px;
+  float: left
+}
+
+#iconimg { }
+

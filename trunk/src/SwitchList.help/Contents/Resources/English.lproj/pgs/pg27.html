@@ -1,0 +1,85 @@
+<html>
+<head>
+<TITLE>Cargos Tab</TITLE>
+<link href="../../shrd/switchlist.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<BODY>
+<div id="headerbox"><div id="iconbox">
+<img id="iconimg" src="../../shrd/switchListNewIcon.jpg" alt="SwitchList Icon" height="32" width="32" />
+</div>
+<H1>Cargos Tab</H1>
+</div>
+<div id="leftspace">
+<p>
+<A HREF="../../shrd/switchlist_cargos.jpg"><img class="floatRight" src="../../shrd/switchlist_cargos.jpg"></a>
+The Cargos tab lets you name the kind of loads that your freight cars will
+carry around the layout.
+Cargos are important to SwitchList both to help determine where freight
+cars should realistically travel to, and so that your operators can
+know what their freight cars might be carrying.
+<p>
+To add a new cargo, press the "Add" button and provide the named
+fields.  To remove an existing cargo, select it and press the "Remove"
+button. 
+<p>
+Each cargo is associated with six pieces of information: a description
+that will be diplayed in SwitchList and in the documents it produces,
+the industry that is the source of the cargo, the industry that is the 
+destination of the cargo, whether the cargo arrives at a fixed or
+random rate ("fixed rate"), what freight car type can carry the cargo,
+and the number of freight cars per week that should be generated.
+Any of these settings can be changed at any time.
+<p>
+Cargo sources and destinations can be any industry, whether
+on the visible layout, an imaginary industry in staging, or an imaginary
+layout that is offline and not represented at all on the layout.
+<p>
+Each cargo may only be carried by one type of freight car.  If you want the
+same cargo to be carried by multiple cars ("both 40' and 50' boxcars"),
+consider creating separate cargos for each car type.
+<p>
+The "cars per week" setting decides how often the cargo should appear
+on the layout. 
+Each session in SwitchList is assumed to be a single day of imaginary time,
+so on average 1/7 of the "cars per week" should be chosen as cargos for
+any particular day.
+<p>
+The "cars per week" setting is only used for probabilities; a cargo
+set for 10 cars per week might find 10 cars delivered over seven
+operating sessions, but it's also possible for 7 cars to appear over 7
+operating sessions, or 12.  That randomness ensures that no two
+operating sessions should appear the same.
+If SwitchList chooses a particular cargo but none of the freight cars
+needed are available, then the cargo is ignored.
+<p>
+The "fixed rate" setting allows you to indicate whether a cargo should always
+appear exactly as many times as you declare, or whether the cargo should appear randomly,
+but roughly at the specified rate.
+<p>
+Cargos come in two flavors.  Fixed rate cargos will be generated exactly as many
+times as you specify.  If you say that a given cargo should appear 28 times a week,
+then four cars a day (28/7) will carry that load (as long as enough empty cars exist.)
+Non-fixed-rate cargos are allowed to be more random; they'll generally appear at the
+rate you suggest, but more cars or less may appear depending on the luck of the draw.
+<p>
+Specifically, SwitchList determines the total number of non-fixed-rate cargos to generated
+by calculating the expected number of non-fixed-rate cargos that should appear per week.
+If you have three non-fixed-rate cargos that should each appear 7 times a week (1 car a day),
+then three cargos will be selected.  Next, SwitchList randomly selects that many cargos from
+the list of non-fixed-rate cargos, weighting the choices by the frequency the cargo should
+appear.  A cargo that should appear 14 times a week will be selected twice as often as a cargo
+appearing 7 times a week.  This selection is random, and cargos are not removed from the list
+as selected, so the actual number of cars getting that cargo each day might be larger or smaller
+than what you specify.
+<p>
+Once the cargos have been chosen, SwitchList attempts to find freight cars to hold each car,
+starting with the fixed-rate cargos, and then the non-fixed-rate cargos.  If no unassigned cars
+of the correct type are available, then the cargo will not be assigned.
+<p>
+See Also:
+<p>
+<a href="pg13.html">How to Design Cargos</a>
+<p>
+</div>
+</body>
+</html>

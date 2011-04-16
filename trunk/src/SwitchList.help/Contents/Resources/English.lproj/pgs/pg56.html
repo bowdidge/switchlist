@@ -1,0 +1,88 @@
+<html>
+<head>
+<title>Layout Balance and Unavailable Cars</title>
+<link href="../../shrd/switchlist.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<div id="headerbox"><div id="iconbox">
+<img id="iconimg" src="../../shrd/switchListNewIcon.jpg" alt="SwitchList Icon" height="32" width="32" />
+</div>
+<h1>Layout Balance and Unavailable Cars</h1>
+</div>
+<div id="leftspace">
+<p>
+One of the harder parts of setting up any car movement scheme - switchlists, car
+cards, colored thumbtacks, or just writing up random switchlists off the top of your
+head - is getting the right balance of cars moving to match your
+imagined scheme.
+If you want a particular industry to have lots of cars flowing in and out, and another
+to be quiet, you need to make sure that your car movement scheme generates the
+right number of movements, and that your freight car fleet has the needed cars
+available.
+<p>
+<h2>Defining the Right Cargos for Your Layout</h2>
+<p>
+With SwitchList, you adjust balance primarily by specifying the cargos that should
+be carried.  Each cargo lets you specify how many loads per week should be
+transported on average.  If you say that a cannery should receive three cars a 
+week of empty cans, then (roughly) every other session, a carload should
+arrive.  Because SwitchList chooses loads randomly from the cargos you provide,
+the car of cans might not arrive for two sessions, or two cars might arrive on the
+same day.  This randomness ensures that your operating sessions don't become
+too repetitive.
+<p>
+When adding cargos, think about how many cars per day the industry track can hold,
+the ratio of incoming raw materials to outgoing finished products, and the
+sorts of freight cars you want visiting the industry.  One quick way to look at
+the cargos visiting the industry is to switch to the <A HREF="pg27.html">Cargos tab</a>
+and click on the "Source" or "Destination" column headers to sort and group the cargos
+for that industry.  (You can also use the Search field in the tab to search for
+all cargos with a specific name to see, for example, how many cars of cans are
+sent to other industries.)
+<p>
+The <A HREF="pg5.html">Cargo Report</a> may also be useful for balancing cargos.
+The Cargo report lists the total number of incoming and outgoing car loads,
+broken down by industry and type of freight car.  If you expect Cannery A to have
+twice as much business as cannery B, then the Cargo Report
+can help you see if Cannery B truly has only half the business.
+<p>
+<H2>Unavailable Cars</H2>
+<p>
+The second way to affect layout balance is to make sure that you have the needed
+freight cars to carry all those loads.
+When you start a new operating session or generate additional loads to fill,
+the  <A HREF="pg28.html">Overview Tab</a> shows a status message at the bottom
+describing how many freight cars on the layout are reserved for or carrying a particular
+cargo, and how many loads couldn't be carried because of unavailable freight cars.
+<p>
+<pre>
+110 freight cars, 97 assigned, 8 at workbench
+Unavailable cars: (type/number): RS (3), XM (2), FM (1)
+</pre>
+<p>
+In the case above, SwitchList's status tells us that we have 110
+freight cars defined, and 97 of those either are carrying a cargo or
+are routed to pick up a cargo.  Of the 13 cars that don't have a
+cargo, eight are at the Workbench for repairs.  The remaining cars
+do not have a cargo assigned because there are no cargos for them to
+carry.  This could be random luck (no such cargos were randomly chosen
+today), the freight cars might have the wrong division (east coast boxcars for
+loads destined for the west coast), 
+there may be too many freight cars for the cargos you've
+specified, or the freight car could be a type that only infrequently
+carries cargos.
+<p>
+The second line tells us about the opposite problem - cases where a freight
+car load was randomly picked, but no cars were available.  In this case,
+there were three refrigerator car loads that couldn't be assigned today
+because no refrigerator cars were free.  Similarly, there were boxcar (XM)
+and flatcar (FM) loads that couldn't be carried because of a lack of cars.
+This may or may
+not be a problem.  If you want all your freight cars moving all the time, you
+can make the "loads per week" very high so that there's always loads to fill
+your freight cars.  If you're trying to have the cargo "loads per week" match
+real expectations about how many cars should arrive and depart, then this might
+hint that you don't have enough freight cars for the loads you want to carry.
+</div>
+</body>
+</html>

@@ -1,0 +1,1014 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 44;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E258A6C1286657A00D233DB /* CarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258A6B1286657A00D233DB /* CarType.m */; };
+		3E258A6D1286657A00D233DB /* CarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258A6B1286657A00D233DB /* CarType.m */; };
+		3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */; };
+		3E2D059E127B6022000035DC /* CarAssignerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2D059D127B6022000035DC /* CarAssignerTest.m */; };
+		3E30DBB812B447D700FF224E /* DoorAssignmentRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */; };
+		3E30DBB912B447D700FF224E /* DoorAssignmentRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */; };
+		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
+		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
+		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
+		3E60B66F1318B49C007C094D /* ReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60B66E1318B49C007C094D /* ReportTest.m */; };
+		3E62C100128E624000520752 /* YardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E62C0F9128E610E00520752 /* YardTest.m */; };
+		3E6C6EC812F007E200C7A8D1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C6EC712F007E200C7A8D1 /* Credits.html */; };
+		3E7B6EA71287C9F60069FF31 /* AddCarType.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */; };
+		3E88AD45127A9CFD003486E2 /* IndustryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD44127A9CFD003486E2 /* IndustryTest.m */; };
+		3E88AD57127A9E14003486E2 /* CargoReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD56127A9E14003486E2 /* CargoReportTest.m */; };
+		3E88AE99127B293E003486E2 /* CargoAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AE98127B293E003486E2 /* CargoAssigner.m */; };
+		3E88AE9A127B293E003486E2 /* CargoAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AE98127B293E003486E2 /* CargoAssigner.m */; };
+		3E88AED4127B2DD2003486E2 /* train.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E88AED3127B2DD2003486E2 /* train.jpg */; };
+		3E88AED5127B2DD2003486E2 /* train.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E88AED3127B2DD2003486E2 /* train.jpg */; };
+		3E90BF3812792E3F0074F2FA /* NSManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E90BF3712792E3F0074F2FA /* NSManagedObjectContext.m */; };
+		3E90BFFA127937860074F2FA /* LayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E90BFF9127937860074F2FA /* LayoutTest.m */; };
+		3E90C06D12793F510074F2FA /* TrainAssignerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E90C06C12793F510074F2FA /* TrainAssignerTest.m */; };
+		3E95843A12986D7D00A10258 /* SimpleHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843712986D7D00A10258 /* SimpleHTTPConnection.m */; };
+		3E95843B12986D7D00A10258 /* SimpleHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843912986D7D00A10258 /* SimpleHTTPServer.m */; };
+		3E95845B1298707D00A10258 /* SimpleHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843712986D7D00A10258 /* SimpleHTTPConnection.m */; };
+		3E95845D1298707D00A10258 /* SimpleHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843912986D7D00A10258 /* SimpleHTTPServer.m */; };
+		3E95846F1298713C00A10258 /* WebServerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95846E1298713C00A10258 /* WebServerDelegate.m */; };
+		3E9584701298713C00A10258 /* WebServerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95846E1298713C00A10258 /* WebServerDelegate.m */; };
+		3E95860712988BB200A10258 /* switchlist-ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E95860612988B7200A10258 /* switchlist-ipad.css */; };
+		3E95863212988FB700A10258 /* switchlist-iphone.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E95863112988FB700A10258 /* switchlist-iphone.css */; };
+		3E9586361298900C00A10258 /* switchlist.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E9586351298900C00A10258 /* switchlist.css */; };
+		3E9CE102128CFA9F0077E916 /* switchlistNewIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */; };
+		3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */; };
+		3EB0AC0C127BB95000E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
+		3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
+		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
+		3EB507BD13243F2600D85B59 /* StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB507BC13243F2600D85B59 /* StringHelpers.m */; };
+		3EB507C213243FA200D85B59 /* StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB507BC13243F2600D85B59 /* StringHelpers.m */; };
+		3EB677B8130E4B460012DE1D /* CargoAssignerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */; };
+		3EC3B0931277DF6600C00AD3 /* EntireLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */; };
+		3EC3B1441277E4E300C00AD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; };
+		3EC3B1451277E4E300C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EE3F5C50E4234C2003BA863 /* SwitchListDocument.xcdatamodeld */; };
+		3EC3B14C1277E4E300C00AD3 /* SwitchListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */; };
+		3EC3B14E1277E4E300C00AD3 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA16090951584A00654CC9 /* Report.m */; };
+		3EC3B14F1277E4E300C00AD3 /* CarReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA162309515AA200654CC9 /* CarReport.m */; };
+		3EC3B1501277E4E300C00AD3 /* IndustryReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E1F790951605600C5E038 /* IndustryReport.m */; };
+		3EC3B1511277E4E300C00AD3 /* ReservedCarReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9179810951634B004647C7 /* ReservedCarReport.m */; };
+		3EC3B1521277E4E300C00AD3 /* SwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E917A3E095166FA004647C7 /* SwitchListReport.m */; };
+		3EC3B1531277E4E300C00AD3 /* YardReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E917A710951690D004647C7 /* YardReport.m */; };
+		3EC3B1541277E4E300C00AD3 /* CargoReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEF2660952A1000092302C /* CargoReport.m */; };
+		3EC3B1551277E4E300C00AD3 /* FreightCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11C30A3963F20071D6B4 /* FreightCar.m */; };
+		3EC3B1561277E4E300C00AD3 /* Yard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D50A39652F0071D6B4 /* Yard.m */; };
+		3EC3B1571277E4E300C00AD3 /* Industry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D70A39652F0071D6B4 /* Industry.m */; };
+		3EC3B1581277E4E300C00AD3 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D90A39652F0071D6B4 /* Place.m */; };
+		3EC3B1591277E4E300C00AD3 /* ScheduledTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11DB0A39652F0071D6B4 /* ScheduledTrain.m */; };
+		3EC3B15A1277E4E300C00AD3 /* Cargo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11DD0A39652F0071D6B4 /* Cargo.m */; };
+		3EC3B15B1277E4E300C00AD3 /* SwitchRouteDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */; };
+		3EC3B15C1277E4E300C00AD3 /* CarAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49060D0F47E40092D1A3 /* CarAssigner.m */; };
+		3EC3B15D1277E4E300C00AD3 /* EntireLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */; };
+		3EC3B15E1277E4E300C00AD3 /* TrainAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49130D0F48640092D1A3 /* TrainAssigner.m */; };
+		3EC3B1601277E4E300C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
+		3EC3B1631277E4E300C00AD3 /* KaufmanSwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */; };
+		3EC3B1641277E4F900C00AD3 /* SwitchListDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* SwitchListDocument.m */; };
+		3EC3B1651277E4F900C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EE3F5C50E4234C2003BA863 /* SwitchListDocument.xcdatamodeld */; };
+		3EC3B16C1277E4F900C00AD3 /* SwitchListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */; };
+		3EC3B16E1277E4F900C00AD3 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA16090951584A00654CC9 /* Report.m */; };
+		3EC3B16F1277E4F900C00AD3 /* CarReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFA162309515AA200654CC9 /* CarReport.m */; };
+		3EC3B1701277E4F900C00AD3 /* IndustryReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9E1F790951605600C5E038 /* IndustryReport.m */; };
+		3EC3B1711277E4F900C00AD3 /* ReservedCarReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9179810951634B004647C7 /* ReservedCarReport.m */; };
+		3EC3B1721277E4F900C00AD3 /* SwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E917A3E095166FA004647C7 /* SwitchListReport.m */; };
+		3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E917A710951690D004647C7 /* YardReport.m */; };
+		3EC3B1741277E4F900C00AD3 /* CargoReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEF2660952A1000092302C /* CargoReport.m */; };
+		3EC3B1751277E4F900C00AD3 /* FreightCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11C30A3963F20071D6B4 /* FreightCar.m */; };
+		3EC3B1761277E4F900C00AD3 /* Yard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D50A39652F0071D6B4 /* Yard.m */; };
+		3EC3B1771277E4F900C00AD3 /* Industry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D70A39652F0071D6B4 /* Industry.m */; };
+		3EC3B1781277E4F900C00AD3 /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D90A39652F0071D6B4 /* Place.m */; };
+		3EC3B1791277E4F900C00AD3 /* ScheduledTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11DB0A39652F0071D6B4 /* ScheduledTrain.m */; };
+		3EC3B17A1277E4F900C00AD3 /* Cargo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11DD0A39652F0071D6B4 /* Cargo.m */; };
+		3EC3B17B1277E4F900C00AD3 /* SwitchRouteDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */; };
+		3EC3B17C1277E4F900C00AD3 /* CarAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49060D0F47E40092D1A3 /* CarAssigner.m */; };
+		3EC3B17D1277E4F900C00AD3 /* EntireLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */; };
+		3EC3B17E1277E4F900C00AD3 /* TrainAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49130D0F48640092D1A3 /* TrainAssigner.m */; };
+		3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED482330D715B3600C36741 /* SwitchListView.m */; };
+		3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
+		3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */; };
+		3EC3B1831277E4F900C00AD3 /* KaufmanSwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */; };
+		3EC83F6D127CFC1A00B9DF33 /* SwitchList icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */; };
+		3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
+		3EE380BE133D284F0069C963 /* SwitchRouteDialogControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */; };
+		3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */ = {isa = PBXBuildFile; fileRef = 3EE5ED9D131A1E03009E2C83 /* SwitchList.help */; };
+		3EE711371285D4F2006059F4 /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
+		3EE711561285D7EB006059F4 /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
+		3EE711681285D81E006059F4 /* CarTypesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711671285D81E006059F4 /* CarTypesTest.m */; };
+		3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
+		3EF294E31312F4B300D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
+		3EF295821313002A00D2C3F6 /* switchlist-carlist-header.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EF295811313002A00D2C3F6 /* switchlist-carlist-header.html */; };
+		3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
+		3EFA164509515C1500654CC9 /* Report.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFA164309515C1500654CC9 /* Report.nib */; };
+		775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
+		8D15AC2E0486D014006FF6A4 /* SwitchListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* SwitchListWindow.nib */; };
+		8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
+		8D15AC320486D014006FF6A4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3E25F51512B4CD780051EFC0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3EC3B0871277DEFE00C00AD3;
+			remoteInfo = "Unit tests";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		2A37F4ACFDCFA73011CA2CEA /* SwitchListDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListDocument.m; sourceTree = "<group>"; };
+		2A37F4AEFDCFA73011CA2CEA /* SwitchListDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListDocument.h; sourceTree = "<group>"; };
+		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2A37F4B5FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/SwitchListWindow.nib; sourceTree = "<group>"; };
+		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
+		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		3E042CA110AFD44C0002A609 /* SwitchListDocument 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 2.xcdatamodel"; sourceTree = "<group>"; };
+		3E048E5308DCAE4000383A67 /* SwitchListAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListAppDelegate.h; sourceTree = "<group>"; };
+		3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListAppDelegate.m; sourceTree = "<group>"; };
+		3E1490CD128F07AB001700D0 /* NSMigrationManagerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMigrationManagerCategory.h; sourceTree = "<group>"; };
+		3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRouteDialogController.h; sourceTree = "<group>"; };
+		3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRouteDialogController.m; sourceTree = "<group>"; };
+		3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 3.xcdatamodel"; sourceTree = "<group>"; };
+		3E258A6A1286657A00D233DB /* CarType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarType.h; sourceTree = "<group>"; };
+		3E258A6B1286657A00D233DB /* CarType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarType.m; sourceTree = "<group>"; };
+		3E258CAD12873D8000D233DB /* SetTrainCarTypesDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetTrainCarTypesDialogController.h; sourceTree = "<group>"; };
+		3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetTrainCarTypesDialogController.m; sourceTree = "<group>"; };
+		3E2D059C127B6022000035DC /* CarAssignerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarAssignerTest.h; sourceTree = "<group>"; };
+		3E2D059D127B6022000035DC /* CarAssignerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarAssignerTest.m; sourceTree = "<group>"; };
+		3E30DBB612B447D700FF224E /* DoorAssignmentRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoorAssignmentRecorder.h; sourceTree = "<group>"; };
+		3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoorAssignmentRecorder.m; sourceTree = "<group>"; };
+		3E30DBDE12B44C2900FF224E /* SwitchListReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListReportTest.h; sourceTree = "<group>"; };
+		3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListReportTest.m; sourceTree = "<group>"; };
+		3E3C11C20A3963F20071D6B4 /* FreightCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreightCar.h; sourceTree = "<group>"; };
+		3E3C11C30A3963F20071D6B4 /* FreightCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreightCar.m; sourceTree = "<group>"; };
+		3E3C11D40A39652F0071D6B4 /* Yard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yard.h; sourceTree = "<group>"; };
+		3E3C11D50A39652F0071D6B4 /* Yard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Yard.m; sourceTree = "<group>"; };
+		3E3C11D60A39652F0071D6B4 /* Industry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Industry.h; sourceTree = "<group>"; };
+		3E3C11D70A39652F0071D6B4 /* Industry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Industry.m; sourceTree = "<group>"; };
+		3E3C11D80A39652F0071D6B4 /* Place.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Place.h; sourceTree = "<group>"; };
+		3E3C11D90A39652F0071D6B4 /* Place.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Place.m; sourceTree = "<group>"; };
+		3E3C11DA0A39652F0071D6B4 /* ScheduledTrain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduledTrain.h; sourceTree = "<group>"; };
+		3E3C11DB0A39652F0071D6B4 /* ScheduledTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduledTrain.m; sourceTree = "<group>"; };
+		3E3C11DC0A39652F0071D6B4 /* Cargo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cargo.h; sourceTree = "<group>"; };
+		3E3C11DD0A39652F0071D6B4 /* Cargo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cargo.m; sourceTree = "<group>"; };
+		3E4D49050D0F47E40092D1A3 /* CarAssigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarAssigner.h; sourceTree = "<group>"; };
+		3E4D49060D0F47E40092D1A3 /* CarAssigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarAssigner.m; sourceTree = "<group>"; };
+		3E4D490D0D0F484D0092D1A3 /* EntireLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntireLayout.h; sourceTree = "<group>"; };
+		3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntireLayout.m; sourceTree = "<group>"; };
+		3E4D49120D0F48640092D1A3 /* TrainAssigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainAssigner.h; sourceTree = "<group>"; };
+		3E4D49130D0F48640092D1A3 /* TrainAssigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainAssigner.m; sourceTree = "<group>"; };
+		3E57C59112FBD95E00E51008 /* SwitchListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListBaseView.h; sourceTree = "<group>"; };
+		3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseView.m; sourceTree = "<group>"; };
+		3E57C5CB12FBDCC600E51008 /* KaufmanSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaufmanSwitchListView.h; sourceTree = "<group>"; };
+		3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaufmanSwitchListView.m; sourceTree = "<group>"; };
+		3E60B66D1318B49C007C094D /* ReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTest.h; sourceTree = "<group>"; };
+		3E60B66E1318B49C007C094D /* ReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTest.m; sourceTree = "<group>"; };
+		3E62C0F8128E610E00520752 /* YardTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YardTest.h; sourceTree = "<group>"; };
+		3E62C0F9128E610E00520752 /* YardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YardTest.m; sourceTree = "<group>"; };
+		3E6C6EC712F007E200C7A8D1 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = resources/Credits.html; sourceTree = "<group>"; };
+		3E6F69960D71E4D6000BBFF0 /* SwitchListReportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListReportWindowController.h; sourceTree = "<group>"; };
+		3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListReportWindowController.m; sourceTree = "<group>"; };
+		3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCarType.xcmappingmodel; sourceTree = "<group>"; };
+		3E88AD43127A9CFD003486E2 /* IndustryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryTest.h; sourceTree = "<group>"; };
+		3E88AD44127A9CFD003486E2 /* IndustryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryTest.m; sourceTree = "<group>"; };
+		3E88AD55127A9E14003486E2 /* CargoReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoReportTest.h; sourceTree = "<group>"; };
+		3E88AD56127A9E14003486E2 /* CargoReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CargoReportTest.m; sourceTree = "<group>"; };
+		3E88AE97127B293E003486E2 /* CargoAssigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoAssigner.h; sourceTree = "<group>"; };
+		3E88AE98127B293E003486E2 /* CargoAssigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CargoAssigner.m; sourceTree = "<group>"; };
+		3E88AED3127B2DD2003486E2 /* train.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = train.jpg; path = resources/train.jpg; sourceTree = "<group>"; };
+		3E8D889512B4A24000DB580E /* SwitchListDocumentInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListDocumentInterface.h; sourceTree = "<group>"; };
+		3E90BF3612792E3F0074F2FA /* NSManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectContext.h; sourceTree = "<group>"; };
+		3E90BF3712792E3F0074F2FA /* NSManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectContext.m; sourceTree = "<group>"; };
+		3E90BFF8127937860074F2FA /* LayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutTest.h; sourceTree = "<group>"; };
+		3E90BFF9127937860074F2FA /* LayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutTest.m; sourceTree = "<group>"; };
+		3E90C06B12793F510074F2FA /* TrainAssignerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainAssignerTest.h; sourceTree = "<group>"; };
+		3E90C06C12793F510074F2FA /* TrainAssignerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainAssignerTest.m; sourceTree = "<group>"; };
+		3E9179800951634B004647C7 /* ReservedCarReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReservedCarReport.h; sourceTree = "<group>"; };
+		3E9179810951634B004647C7 /* ReservedCarReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReservedCarReport.m; sourceTree = "<group>"; };
+		3E917A3D095166FA004647C7 /* SwitchListReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListReport.h; sourceTree = "<group>"; };
+		3E917A3E095166FA004647C7 /* SwitchListReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListReport.m; sourceTree = "<group>"; };
+		3E917A700951690D004647C7 /* YardReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YardReport.h; sourceTree = "<group>"; };
+		3E917A710951690D004647C7 /* YardReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YardReport.m; sourceTree = "<group>"; };
+		3E95843612986D7D00A10258 /* SimpleHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHTTPConnection.h; sourceTree = "<group>"; };
+		3E95843712986D7D00A10258 /* SimpleHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHTTPConnection.m; sourceTree = "<group>"; };
+		3E95843812986D7D00A10258 /* SimpleHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHTTPServer.h; sourceTree = "<group>"; };
+		3E95843912986D7D00A10258 /* SimpleHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHTTPServer.m; sourceTree = "<group>"; };
+		3E95846D1298713C00A10258 /* WebServerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServerDelegate.h; sourceTree = "<group>"; };
+		3E95846E1298713C00A10258 /* WebServerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServerDelegate.m; sourceTree = "<group>"; };
+		3E95860612988B7200A10258 /* switchlist-ipad.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "switchlist-ipad.css"; sourceTree = "<group>"; };
+		3E95863112988FB700A10258 /* switchlist-iphone.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = "switchlist-iphone.css"; sourceTree = "<group>"; };
+		3E9586351298900C00A10258 /* switchlist.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = switchlist.css; sourceTree = "<group>"; };
+		3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = switchlistNewIcon.icns; path = resources/switchlistNewIcon.icns; sourceTree = "<group>"; };
+		3E9E1F780951605600C5E038 /* IndustryReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryReport.h; sourceTree = "<group>"; };
+		3E9E1F790951605600C5E038 /* IndustryReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryReport.m; sourceTree = "<group>"; };
+		3EA1162213501BC500365DEB /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/SwitchListReportWindow.xib; sourceTree = "<group>"; };
+		3EA80AF90E426FDF009C223A /* PrintEverythingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintEverythingView.h; sourceTree = "<group>"; };
+		3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintEverythingView.m; sourceTree = "<group>"; };
+		3EB0AC0A127BB95000E27063 /* InduYard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InduYard.h; sourceTree = "<group>"; };
+		3EB0AC0B127BB95000E27063 /* InduYard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InduYard.m; sourceTree = "<group>"; };
+		3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMigrationManagerCategory.m; sourceTree = "<group>"; };
+		3EB507BB13243F2600D85B59 /* StringHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringHelpers.h; sourceTree = "<group>"; };
+		3EB507BC13243F2600D85B59 /* StringHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringHelpers.m; sourceTree = "<group>"; };
+		3EB677B6130E4B460012DE1D /* CargoAssignerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoAssignerTest.h; sourceTree = "<group>"; };
+		3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CargoAssignerTest.m; sourceTree = "<group>"; };
+		3EC3B0881277DEFE00C00AD3 /* Unit tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
+		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntireLayoutTest.h; sourceTree = "<group>"; };
+		3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntireLayoutTest.m; sourceTree = "<group>"; };
+		3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "SwitchList icon.icns"; path = "resources/SwitchList icon.icns"; sourceTree = "<group>"; };
+		3ED482320D715B3600C36741 /* SwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListView.h; sourceTree = "<group>"; };
+		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
+		3ED697D8130139C100DA9074 /* SouthernPacificSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouthernPacificSwitchListView.h; sourceTree = "<group>"; };
+		3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouthernPacificSwitchListView.m; sourceTree = "<group>"; };
+		3EE380BC133D284F0069C963 /* SwitchRouteDialogControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRouteDialogControllerTest.h; sourceTree = "<group>"; };
+		3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRouteDialogControllerTest.m; sourceTree = "<group>"; };
+		3EE5ED9D131A1E03009E2C83 /* SwitchList.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwitchList.help; sourceTree = "<group>"; };
+		3EE711351285D4F2006059F4 /* CarTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarTypes.h; sourceTree = "<group>"; };
+		3EE711361285D4F2006059F4 /* CarTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarTypes.m; sourceTree = "<group>"; };
+		3EE711661285D81E006059F4 /* CarTypesTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarTypesTest.h; sourceTree = "<group>"; };
+		3EE711671285D81E006059F4 /* CarTypesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarTypesTest.m; sourceTree = "<group>"; };
+		3EEF6A4D0E95704500A71503 /* KaufmanSwitchListReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaufmanSwitchListReport.h; sourceTree = "<group>"; };
+		3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaufmanSwitchListReport.m; sourceTree = "<group>"; };
+		3EF294D61312F40700D2C3F6 /* GlobalPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalPreferences.h; sourceTree = "<group>"; };
+		3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalPreferences.m; sourceTree = "<group>"; };
+		3EF295811313002A00D2C3F6 /* switchlist-carlist-header.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "switchlist-carlist-header.html"; sourceTree = "<group>"; };
+		3EF7D00F134C13EA00C76407 /* PICLReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PICLReport.h; sourceTree = "<group>"; };
+		3EF7D010134C13EA00C76407 /* PICLReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PICLReport.m; sourceTree = "<group>"; };
+		3EFA16080951584A00654CC9 /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
+		3EFA16090951584A00654CC9 /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
+		3EFA162209515AA200654CC9 /* CarReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarReport.h; sourceTree = "<group>"; };
+		3EFA162309515AA200654CC9 /* CarReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarReport.m; sourceTree = "<group>"; };
+		3EFA164409515C1500654CC9 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Report.nib; sourceTree = "<group>"; };
+		3EFEF2650952A1000092302C /* CargoReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoReport.h; sourceTree = "<group>"; };
+		3EFEF2660952A1000092302C /* CargoReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CargoReport.m; sourceTree = "<group>"; };
+		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		8D15AC360486D014006FF6A4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D15AC370486D014006FF6A4 /* SwitchList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitchList.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3EC3B0851277DEFE00C00AD3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D15AC330486D014006FF6A4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A8FEA54F5311CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
+				7788DA0506752A1600599AAD /* CoreData.framework */,
+				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FB0FE9D524F11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D15AC370486D014006FF6A4 /* SwitchList.app */,
+				3EC3B0881277DEFE00C00AD3 /* Unit tests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */,
+				3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */,
+				3E917A130951659A004647C7 /* Reports */,
+				3E57C5CE12FBDCF100E51008 /* Pretty Switch Lists */,
+				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
+				3E95843512986D7D00A10258 /* SimpleHttpServer */,
+				3EBAC6DB127B3853001F3FC7 /* UI */,
+				E1B74B1A0667B4A90069E3BA /* Models */,
+				3EC3B1D31277E7BB00C00AD3 /* Unit tests */,
+				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
+				2A37F4B8FDCFA73011CA2CEA /* Resources */,
+				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
+				19C28FB0FE9D524F11CA2CBB /* Products */,
+			);
+			name = SwitchList.CoreData;
+			sourceTree = "<group>";
+		};
+		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3EE5ED9D131A1E03009E2C83 /* SwitchList.help */,
+				3E88AED3127B2DD2003486E2 /* train.jpg */,
+				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
+				2A37F4B4FDCFA73011CA2CEA /* SwitchListWindow.nib */,
+				8D15AC360486D014006FF6A4 /* Info.plist */,
+				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				3EFA164309515C1500654CC9 /* Report.nib */,
+				3E6C6EC712F007E200C7A8D1 /* Credits.html */,
+				3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
+				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E57C5CE12FBDCF100E51008 /* Pretty Switch Lists */ = {
+			isa = PBXGroup;
+			children = (
+				3E57C5CB12FBDCC600E51008 /* KaufmanSwitchListView.h */,
+				3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */,
+				3EA80AF90E426FDF009C223A /* PrintEverythingView.h */,
+				3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */,
+				3E57C59112FBD95E00E51008 /* SwitchListBaseView.h */,
+				3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */,
+				3ED697D8130139C100DA9074 /* SouthernPacificSwitchListView.h */,
+				3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */,
+				3E6F69960D71E4D6000BBFF0 /* SwitchListReportWindowController.h */,
+				3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */,
+				3ED482320D715B3600C36741 /* SwitchListView.h */,
+				3ED482330D715B3600C36741 /* SwitchListView.m */,
+			);
+			name = "Pretty Switch Lists";
+			sourceTree = "<group>";
+		};
+		3E917A130951659A004647C7 /* Reports */ = {
+			isa = PBXGroup;
+			children = (
+				3EFA162209515AA200654CC9 /* CarReport.h */,
+				3EFA162309515AA200654CC9 /* CarReport.m */,
+				3EFEF2650952A1000092302C /* CargoReport.h */,
+				3EFEF2660952A1000092302C /* CargoReport.m */,
+				3E9E1F780951605600C5E038 /* IndustryReport.h */,
+				3E9E1F790951605600C5E038 /* IndustryReport.m */,
+				3EEF6A4D0E95704500A71503 /* KaufmanSwitchListReport.h */,
+				3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */,
+				3EF7D00F134C13EA00C76407 /* PICLReport.h */,
+				3EF7D010134C13EA00C76407 /* PICLReport.m */,
+				3EFA16080951584A00654CC9 /* Report.h */,
+				3EFA16090951584A00654CC9 /* Report.m */,
+				3E9179800951634B004647C7 /* ReservedCarReport.h */,
+				3E9179810951634B004647C7 /* ReservedCarReport.m */,
+				3E917A3D095166FA004647C7 /* SwitchListReport.h */,
+				3E917A3E095166FA004647C7 /* SwitchListReport.m */,
+				3E917A700951690D004647C7 /* YardReport.h */,
+				3E917A710951690D004647C7 /* YardReport.m */,
+			);
+			name = Reports;
+			sourceTree = "<group>";
+		};
+		3E95843512986D7D00A10258 /* SimpleHttpServer */ = {
+			isa = PBXGroup;
+			children = (
+				3E95843612986D7D00A10258 /* SimpleHTTPConnection.h */,
+				3E95843712986D7D00A10258 /* SimpleHTTPConnection.m */,
+				3E95843812986D7D00A10258 /* SimpleHTTPServer.h */,
+				3E95843912986D7D00A10258 /* SimpleHTTPServer.m */,
+				3E95846D1298713C00A10258 /* WebServerDelegate.h */,
+				3E95846E1298713C00A10258 /* WebServerDelegate.m */,
+				3E9586351298900C00A10258 /* switchlist.css */,
+				3E95863112988FB700A10258 /* switchlist-iphone.css */,
+				3E95860612988B7200A10258 /* switchlist-ipad.css */,
+				3EF295811313002A00D2C3F6 /* switchlist-carlist-header.html */,
+			);
+			path = SimpleHttpServer;
+			sourceTree = "<group>";
+		};
+		3EBAC6D6127B382A001F3FC7 /* Algorithm */ = {
+			isa = PBXGroup;
+			children = (
+				3E4D49050D0F47E40092D1A3 /* CarAssigner.h */,
+				3E4D49060D0F47E40092D1A3 /* CarAssigner.m */,
+				3E88AE97127B293E003486E2 /* CargoAssigner.h */,
+				3E88AE98127B293E003486E2 /* CargoAssigner.m */,
+				3E30DBB612B447D700FF224E /* DoorAssignmentRecorder.h */,
+				3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */,
+				3E4D49120D0F48640092D1A3 /* TrainAssigner.h */,
+				3E4D49130D0F48640092D1A3 /* TrainAssigner.m */,
+			);
+			name = Algorithm;
+			sourceTree = "<group>";
+		};
+		3EBAC6DB127B3853001F3FC7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3EF294D61312F40700D2C3F6 /* GlobalPreferences.h */,
+				3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */,
+				3E1490CD128F07AB001700D0 /* NSMigrationManagerCategory.h */,
+				3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */,
+				3E048E5308DCAE4000383A67 /* SwitchListAppDelegate.h */,
+				3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */,
+				2A37F4AEFDCFA73011CA2CEA /* SwitchListDocument.h */,
+				2A37F4ACFDCFA73011CA2CEA /* SwitchListDocument.m */,
+				3E8D889512B4A24000DB580E /* SwitchListDocumentInterface.h */,
+				3E258CAD12873D8000D233DB /* SetTrainCarTypesDialogController.h */,
+				3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */,
+				3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */,
+				3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		3EC3B1D31277E7BB00C00AD3 /* Unit tests */ = {
+			isa = PBXGroup;
+			children = (
+				3EE711661285D81E006059F4 /* CarTypesTest.h */,
+				3EE711671285D81E006059F4 /* CarTypesTest.m */,
+				3E88AD55127A9E14003486E2 /* CargoReportTest.h */,
+				3E88AD56127A9E14003486E2 /* CargoReportTest.m */,
+				3E2D059C127B6022000035DC /* CarAssignerTest.h */,
+				3E2D059D127B6022000035DC /* CarAssignerTest.m */,
+				3EB677B6130E4B460012DE1D /* CargoAssignerTest.h */,
+				3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */,
+				3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */,
+				3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */,
+				3E88AD43127A9CFD003486E2 /* IndustryTest.h */,
+				3E88AD44127A9CFD003486E2 /* IndustryTest.m */,
+				3E90BFF8127937860074F2FA /* LayoutTest.h */,
+				3E90BFF9127937860074F2FA /* LayoutTest.m */,
+				3E90BF3612792E3F0074F2FA /* NSManagedObjectContext.h */,
+				3E90BF3712792E3F0074F2FA /* NSManagedObjectContext.m */,
+				3E60B66D1318B49C007C094D /* ReportTest.h */,
+				3E60B66E1318B49C007C094D /* ReportTest.m */,
+				3E30DBDE12B44C2900FF224E /* SwitchListReportTest.h */,
+				3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */,
+				3EE380BC133D284F0069C963 /* SwitchRouteDialogControllerTest.h */,
+				3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */,
+				3E90C06B12793F510074F2FA /* TrainAssignerTest.h */,
+				3E90C06C12793F510074F2FA /* TrainAssignerTest.m */,
+				3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */,
+				3E62C0F8128E610E00520752 /* YardTest.h */,
+				3E62C0F9128E610E00520752 /* YardTest.m */,
+			);
+			name = "Unit tests";
+			sourceTree = "<group>";
+		};
+		E1B74B1A0667B4A90069E3BA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E258A6A1286657A00D233DB /* CarType.h */,
+				3E258A6B1286657A00D233DB /* CarType.m */,
+				3EE711351285D4F2006059F4 /* CarTypes.h */,
+				3EE711361285D4F2006059F4 /* CarTypes.m */,
+				3E3C11DC0A39652F0071D6B4 /* Cargo.h */,
+				3E3C11DD0A39652F0071D6B4 /* Cargo.m */,
+				3EB0AC0A127BB95000E27063 /* InduYard.h */,
+				3EB0AC0B127BB95000E27063 /* InduYard.m */,
+				3E4D490D0D0F484D0092D1A3 /* EntireLayout.h */,
+				3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */,
+				3E3C11C20A3963F20071D6B4 /* FreightCar.h */,
+				3E3C11C30A3963F20071D6B4 /* FreightCar.m */,
+				3E3C11D60A39652F0071D6B4 /* Industry.h */,
+				3E3C11D70A39652F0071D6B4 /* Industry.m */,
+				3E3C11D80A39652F0071D6B4 /* Place.h */,
+				3E3C11D90A39652F0071D6B4 /* Place.m */,
+				3E3C11DA0A39652F0071D6B4 /* ScheduledTrain.h */,
+				3E3C11DB0A39652F0071D6B4 /* ScheduledTrain.m */,
+				3EB507BB13243F2600D85B59 /* StringHelpers.h */,
+				3EB507BC13243F2600D85B59 /* StringHelpers.m */,
+				3E3C11D40A39652F0071D6B4 /* Yard.h */,
+				3E3C11D50A39652F0071D6B4 /* Yard.m */,
+				3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */,
+				3EE3F5C50E4234C2003BA863 /* SwitchListDocument.xcdatamodeld */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3EC3B0871277DEFE00C00AD3 /* Unit tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EC3B08E1277DEFF00C00AD3 /* Build configuration list for PBXNativeTarget "Unit tests" */;
+			buildPhases = (
+				3EC3B0831277DEFE00C00AD3 /* Resources */,
+				3EC3B0841277DEFE00C00AD3 /* Sources */,
+				3EC3B0851277DEFE00C00AD3 /* Frameworks */,
+				3EC3B0861277DEFE00C00AD3 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Unit tests";
+			productName = "Unit tests";
+			productReference = 3EC3B0881277DEFE00C00AD3 /* Unit tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+		8D15AC270486D014006FF6A4 /* SwitchList */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EA5977C08DC051800D5A852 /* Build configuration list for PBXNativeTarget "SwitchList" */;
+			buildPhases = (
+				8D15AC2B0486D014006FF6A4 /* Resources */,
+				8D15AC300486D014006FF6A4 /* Sources */,
+				8D15AC330486D014006FF6A4 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E25F51612B4CD780051EFC0 /* PBXTargetDependency */,
+			);
+			name = SwitchList;
+			productInstallPath = "$(HOME)/Applications";
+			productName = SwitchList.CoreData;
+			productReference = 8D15AC370486D014006FF6A4 /* SwitchList.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 3EA5978008DC051800D5A852 /* Build configuration list for PBXProject "SwitchList" */;
+			compatibilityVersion = "Xcode 3.0";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */;
+			projectDirPath = "";
+			projectRoot = ..;
+			targets = (
+				8D15AC270486D014006FF6A4 /* SwitchList */,
+				3EC3B0871277DEFE00C00AD3 /* Unit tests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3EC3B0831277DEFE00C00AD3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E88AED4127B2DD2003486E2 /* train.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D15AC2B0486D014006FF6A4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */,
+				3E6C6EC812F007E200C7A8D1 /* Credits.html in Resources */,
+				3E95860712988BB200A10258 /* switchlist-ipad.css in Resources */,
+				3EF295821313002A00D2C3F6 /* switchlist-carlist-header.html in Resources */,
+				3EC83F6D127CFC1A00B9DF33 /* SwitchList icon.icns in Resources */,
+				3E88AED5127B2DD2003486E2 /* train.jpg in Resources */,
+				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
+				8D15AC2E0486D014006FF6A4 /* SwitchListWindow.nib in Resources */,
+				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
+				3EFA164509515C1500654CC9 /* Report.nib in Resources */,
+				3E9CE102128CFA9F0077E916 /* switchlistNewIcon.icns in Resources */,
+				3E95863212988FB700A10258 /* switchlist-iphone.css in Resources */,
+				3E9586361298900C00A10258 /* switchlist.css in Resources */,
+				3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3EC3B0861277DEFE00C00AD3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3EC3B0841277DEFE00C00AD3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EF294E31312F4B300D2C3F6 /* GlobalPreferences.m in Sources */,
+				3E95845B1298707D00A10258 /* SimpleHTTPConnection.m in Sources */,
+				3E95845D1298707D00A10258 /* SimpleHTTPServer.m in Sources */,
+				3EC3B1441277E4E300C00AD3 /* main.m in Sources */,
+				3EC3B1451277E4E300C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */,
+				3EC3B14C1277E4E300C00AD3 /* SwitchListAppDelegate.m in Sources */,
+				3EC3B14E1277E4E300C00AD3 /* Report.m in Sources */,
+				3EC3B14F1277E4E300C00AD3 /* CarReport.m in Sources */,
+				3EC3B1501277E4E300C00AD3 /* IndustryReport.m in Sources */,
+				3EC3B1511277E4E300C00AD3 /* ReservedCarReport.m in Sources */,
+				3EC3B1521277E4E300C00AD3 /* SwitchListReport.m in Sources */,
+				3EC3B1531277E4E300C00AD3 /* YardReport.m in Sources */,
+				3EC3B1541277E4E300C00AD3 /* CargoReport.m in Sources */,
+				3EC3B1551277E4E300C00AD3 /* FreightCar.m in Sources */,
+				3EC3B1561277E4E300C00AD3 /* Yard.m in Sources */,
+				3EC3B1571277E4E300C00AD3 /* Industry.m in Sources */,
+				3EC3B1581277E4E300C00AD3 /* Place.m in Sources */,
+				3EC3B1591277E4E300C00AD3 /* ScheduledTrain.m in Sources */,
+				3EC3B15A1277E4E300C00AD3 /* Cargo.m in Sources */,
+				3EC3B15B1277E4E300C00AD3 /* SwitchRouteDialogController.m in Sources */,
+				3EC3B15C1277E4E300C00AD3 /* CarAssigner.m in Sources */,
+				3EC3B15D1277E4E300C00AD3 /* EntireLayout.m in Sources */,
+				3EC3B15E1277E4E300C00AD3 /* TrainAssigner.m in Sources */,
+				3EC3B1601277E4E300C00AD3 /* SwitchListReportWindowController.m in Sources */,
+				3EC3B1631277E4E300C00AD3 /* KaufmanSwitchListReport.m in Sources */,
+				3EC3B0931277DF6600C00AD3 /* EntireLayoutTest.m in Sources */,
+				3E90BF3812792E3F0074F2FA /* NSManagedObjectContext.m in Sources */,
+				3E90BFFA127937860074F2FA /* LayoutTest.m in Sources */,
+				3E90C06D12793F510074F2FA /* TrainAssignerTest.m in Sources */,
+				3E88AD45127A9CFD003486E2 /* IndustryTest.m in Sources */,
+				3E88AD57127A9E14003486E2 /* CargoReportTest.m in Sources */,
+				3E88AE99127B293E003486E2 /* CargoAssigner.m in Sources */,
+				3E2D059E127B6022000035DC /* CarAssignerTest.m in Sources */,
+				3EB0AC0C127BB95000E27063 /* InduYard.m in Sources */,
+				3EE711561285D7EB006059F4 /* CarTypes.m in Sources */,
+				3EE711681285D81E006059F4 /* CarTypesTest.m in Sources */,
+				3E258A6D1286657A00D233DB /* CarType.m in Sources */,
+				3E62C100128E624000520752 /* YardTest.m in Sources */,
+				3E9584701298713C00A10258 /* WebServerDelegate.m in Sources */,
+				3E30DBB912B447D700FF224E /* DoorAssignmentRecorder.m in Sources */,
+				3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */,
+				3EB677B8130E4B460012DE1D /* CargoAssignerTest.m in Sources */,
+				3E60B66F1318B49C007C094D /* ReportTest.m in Sources */,
+				3EB507C213243FA200D85B59 /* StringHelpers.m in Sources */,
+				3EE380BE133D284F0069C963 /* SwitchRouteDialogControllerTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D15AC300486D014006FF6A4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */,
+				3EE711371285D4F2006059F4 /* CarTypes.m in Sources */,
+				3EC3B1641277E4F900C00AD3 /* SwitchListDocument.m in Sources */,
+				8D15AC320486D014006FF6A4 /* main.m in Sources */,
+				3EC3B1651277E4F900C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */,
+				3EC3B16C1277E4F900C00AD3 /* SwitchListAppDelegate.m in Sources */,
+				3EC3B16E1277E4F900C00AD3 /* Report.m in Sources */,
+				3EC3B16F1277E4F900C00AD3 /* CarReport.m in Sources */,
+				3EC3B1701277E4F900C00AD3 /* IndustryReport.m in Sources */,
+				3EC3B1711277E4F900C00AD3 /* ReservedCarReport.m in Sources */,
+				3EC3B1721277E4F900C00AD3 /* SwitchListReport.m in Sources */,
+				3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */,
+				3EC3B1741277E4F900C00AD3 /* CargoReport.m in Sources */,
+				3EC3B1751277E4F900C00AD3 /* FreightCar.m in Sources */,
+				3EC3B1761277E4F900C00AD3 /* Yard.m in Sources */,
+				3EC3B1771277E4F900C00AD3 /* Industry.m in Sources */,
+				3EC3B1781277E4F900C00AD3 /* Place.m in Sources */,
+				3EC3B1791277E4F900C00AD3 /* ScheduledTrain.m in Sources */,
+				3EC3B17A1277E4F900C00AD3 /* Cargo.m in Sources */,
+				3EC3B17B1277E4F900C00AD3 /* SwitchRouteDialogController.m in Sources */,
+				3EC3B17C1277E4F900C00AD3 /* CarAssigner.m in Sources */,
+				3EC3B17D1277E4F900C00AD3 /* EntireLayout.m in Sources */,
+				3EC3B17E1277E4F900C00AD3 /* TrainAssigner.m in Sources */,
+				3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */,
+				3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */,
+				3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */,
+				3EC3B1831277E4F900C00AD3 /* KaufmanSwitchListReport.m in Sources */,
+				3E88AE9A127B293E003486E2 /* CargoAssigner.m in Sources */,
+				3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */,
+				3E258A6C1286657A00D233DB /* CarType.m in Sources */,
+				3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */,
+				3E7B6EA71287C9F60069FF31 /* AddCarType.xcmappingmodel in Sources */,
+				3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */,
+				3E95843A12986D7D00A10258 /* SimpleHTTPConnection.m in Sources */,
+				3E95843B12986D7D00A10258 /* SimpleHTTPServer.m in Sources */,
+				3E95846F1298713C00A10258 /* WebServerDelegate.m in Sources */,
+				3E30DBB812B447D700FF224E /* DoorAssignmentRecorder.m in Sources */,
+				3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */,
+				3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */,
+				3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */,
+				3EB507BD13243F2600D85B59 /* StringHelpers.m in Sources */,
+				3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3E25F51612B4CD780051EFC0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3EC3B0871277DEFE00C00AD3 /* Unit tests */;
+			targetProxy = 3E25F51512B4CD780051EFC0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1660FE840EACC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		2A37F4B4FDCFA73011CA2CEA /* SwitchListWindow.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A37F4B5FDCFA73011CA2CEA /* English */,
+			);
+			name = SwitchListWindow.nib;
+			sourceTree = "<group>";
+		};
+		2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2A37F4B7FDCFA73011CA2CEA /* English */,
+			);
+			name = MainMenu.nib;
+			sourceTree = "<group>";
+		};
+		3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EA1162213501BC500365DEB /* English */,
+			);
+			name = SwitchListReportWindow.xib;
+			sourceTree = "<group>";
+		};
+		3EFA164309515C1500654CC9 /* Report.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EFA164409515C1500654CC9 /* English */,
+			);
+			name = Report.nib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3EA5977D08DC051800D5A852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SwitchList_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PREBINDING = NO;
+				PRODUCT_NAME = SwitchList;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Debug;
+		};
+		3EA5977E08DC051800D5A852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SwitchList_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PREBINDING = NO;
+				PRODUCT_NAME = SwitchList;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		3EA5977F08DC051800D5A852 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SwitchList_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PREBINDING = NO;
+				PRODUCT_NAME = SwitchList;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Default;
+		};
+		3EA5978108DC051800D5A852 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Debug;
+		};
+		3EA5978208DC051800D5A852 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Release;
+		};
+		3EA5978308DC051800D5A852 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = Default;
+		};
+		3EC3B08A1277DEFE00C00AD3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Unit tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit tests";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3EC3B08B1277DEFE00C00AD3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Unit tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit tests";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		3EC3B08C1277DEFE00C00AD3 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Unit tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = "Unit tests";
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				VALID_ARCHS = i386;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Default;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3EA5977C08DC051800D5A852 /* Build configuration list for PBXNativeTarget "SwitchList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA5977D08DC051800D5A852 /* Debug */,
+				3EA5977E08DC051800D5A852 /* Release */,
+				3EA5977F08DC051800D5A852 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		3EA5978008DC051800D5A852 /* Build configuration list for PBXProject "SwitchList" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA5978108DC051800D5A852 /* Debug */,
+				3EA5978208DC051800D5A852 /* Release */,
+				3EA5978308DC051800D5A852 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		3EC3B08E1277DEFF00C00AD3 /* Build configuration list for PBXNativeTarget "Unit tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EC3B08A1277DEFE00C00AD3 /* Debug */,
+				3EC3B08B1277DEFE00C00AD3 /* Release */,
+				3EC3B08C1277DEFE00C00AD3 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3EE3F5C50E4234C2003BA863 /* SwitchListDocument.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3E042CA110AFD44C0002A609 /* SwitchListDocument 2.xcdatamodel */,
+				3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */,
+			);
+			currentVersion = 3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */;
+			path = SwitchListDocument.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+}

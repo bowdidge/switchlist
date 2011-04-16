@@ -1,0 +1,261 @@
+// 
+//  ScheduledTrain.m
+//  SwitchList
+//
+//  Created by Robert Bowdidge on 6/9/06.
+//
+// Copyright (c)2006 Robert Bowdidge,
+// All rights reserved.
+// 
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
+// 
+// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+
+#import "ScheduledTrain.h"
+
+#import "CarType.h"
+#import "FreightCar.h"
+#import "Industry.h"
+#import "Place.h"
+#import "Yard.h"
+
+@implementation ScheduledTrain 
+
+@dynamic freightCars;
+
+// Code run the first time an object is created. 
+// Make sure any initial values are sane.
+- (void)awakeFromInsert {
+	[super awakeFromInsert];
+	if ([self name]== nil) {
+		[self setName: @"New train"];
+		// [self setAcceptedCarTypes: @"Any"];
+	}
+}
+
+- (NSNumber *)maxLength 
+{
+    NSNumber * tmpValue;
+    
+    [self willAccessValueForKey: @"maxLength"];
+    tmpValue = [self primitiveValueForKey: @"maxLength"];
+    [self didAccessValueForKey: @"maxLength"];
+    
+    return tmpValue;
+}
+
+- (void)setMaxLength:(NSNumber *)value 
+{
+    [self willChangeValueForKey: @"maxLength"];
+    [self setPrimitiveValue: value forKey: @"maxLength"];
+    [self didChangeValueForKey: @"maxLength"];
+}
+
+- (NSString *)acceptedCarTypes 
+{
+    NSString * tmpValue;
+    
+    [self willAccessValueForKey: @"acceptedCarTypes"];
+    tmpValue = [self primitiveValueForKey: @"acceptedCarTypes"];
+    [self didAccessValueForKey: @"acceptedCarTypes"];
+    
+    return tmpValue;
+}
+
+// Returns a string containing the comma-separated types of
+// car types picked up by this train.  This is treated
+// like a valid property and marked as invalid so parts of the 
+// UI will re-query it.
+- (NSString*) acceptedCarTypesString {
+	NSArray *carTypes = [self primitiveValueForKey: @"acceptedCarTypesRel"];
+    NSMutableArray *carTypeNames = [NSMutableArray array];
+	for (CarType *ct in carTypes) {
+		[carTypeNames addObject: [ct carTypeName]];
+	}
+	[carTypeNames sortUsingSelector: @selector(compare:)];
+	
+	if ([carTypeNames count] == 0) {
+		return @"All car types";
+	}
+	
+	return [carTypeNames componentsJoinedByString: @", "];
+}
+
+- (void) setCarTypesAcceptedRel: (NSSet*) currentCarTypes {
+	[self willChangeValueForKey: @"carTypesAcceptedRel"];
+	[self willChangeValueForKey: @"acceptedCarTypesString"];
+	[self setPrimitiveValue: currentCarTypes forKey: @"carTypesAcceptedRel"];
+	[self didChangeValueForKey: @"carTypesAcceptedRel"];
+	[self didChangeValueForKey: @"acceptedCarTypesString"];
+}
+
+//- (void)setAcceptedCarTypes:(NSString *)value 
+//{
+//    [self willChangeValueForKey: @"acceptedCarTypes"];
+//    [self setPrimitiveValue: value forKey: @"acceptedCarTypes"];
+//    [self didChangeValueForKey: @"acceptedCarTypes"];
+//}
+
+- (BOOL) acceptsCarType: (CarType*) carType {
+	NSSet *acceptedCarTypes = [self valueForKey: @"acceptedCarTypesRel"];
+	// No car types = all car types.
+	if ([acceptedCarTypes count] == 0) return YES;
+	
+	// Car type nil?  That means we've got a car we don't care about the car type on.
+	// It'll come along.
+	if (carType == nil) return YES;
+	return ([acceptedCarTypes containsObject: carType]);
+}
+	
+/* Would this train accept this kind of car? */
+- (BOOL) acceptsCar: (FreightCar*) car {
+	if ([car carTypeRel] == nil) return YES;
+	if ([[self valueForKey: @"acceptedCarTypesRel"] count] == 0) return YES;
+	// Removed explicit check for "any".
+	
+	return ([[self valueForKey: @"acceptedCarTypesRel"] containsObject: [car carTypeRel]]);
+}
+
+- (BOOL) containsCar: (FreightCar*) car {
+	return [[self primitiveValueForKey: @"freightCars"] containsObject: car];
+}
+		
+
+	
+- (NSString *)name {
+    NSString *tmpValue;
+    
+    [self willAccessValueForKey: @"name"];
+    tmpValue = [self primitiveValueForKey: @"name"];
+    [self didAccessValueForKey: @"name"];
+    
+    return tmpValue;
+}
+
+- (void)setName:(NSString *)value 
+{
+    [self willChangeValueForKey: @"name"];
+    [self setPrimitiveValue: value forKey: @"name"];
+    [self didChangeValueForKey: @"name"];
+}
+
+- (NSString *)stops 
+{
+    NSString * tmpValue;
+    
+    [self willAccessValueForKey: @"stops"];
+    tmpValue = [self primitiveValueForKey: @"stops"];
+    [self didAccessValueForKey: @"stops"];
+    
+    return tmpValue;
+}
+
+- (void)setStopsString:(NSString *)value 
+{
+    [self willChangeValueForKey: @"stops"];
+    [self setPrimitiveValue: value forKey: @"stops"];
+    [self didChangeValueForKey: @"stops"];
+}
+
+- (NSArray*) stationStopStrings {
+	NSString *stops = [self stops];
+	NSArray *ret = [stops componentsSeparatedByString: @","];
+	return ret;
+}
+
+- (BOOL) beginsAndEndsAtSameStation {
+	NSArray *allStops = [self stationStopStrings];
+	if ([allStops objectAtIndex: 0] == [allStops lastObject]) {
+		return YES;
+	}
+	return NO;
+}
+
+- (NSNumber *)minCarsToRun 
+{
+    NSNumber * tmpValue;
+    
+    [self willAccessValueForKey: @"minCarsToRun"];
+    tmpValue = [self primitiveValueForKey: @"minCarsToRun"];
+    [self didAccessValueForKey: @"minCarsToRun"];
+    
+    return tmpValue;
+}
+
+- (void)setMinCarsToRun:(NSNumber *)value 
+{
+    [self willChangeValueForKey: @"minCarsToRun"];
+    [self setPrimitiveValue: value forKey: @"minCarsToRun"];
+    [self didChangeValueForKey: @"minCarsToRun"];
+}
+
+// Cars in this train current at the named station.
+- (NSArray*) carsAtStation: (Place *) station   {
+	NSMutableArray *carsAtStation  = [NSMutableArray array];
+	for (FreightCar *f in [self freightCars]) {
+		if ([[f currentLocation] location] == station) {
+			[carsAtStation addObject: f];
+		}
+	}
+	// Now, sort carsAtStation according to industry
+	return [carsAtStation sortedArrayUsingFunction: sortCarsByDestination context: NULL];
+	
+}
+
+// Cars in this train that will go to the named station.
+- (NSArray*) carsForStation: (Place *) station   {
+	NSMutableArray *carsForStation  = [NSMutableArray array];
+	for (FreightCar *f in [self freightCars]) {
+		if ([[f nextStop] location] == station)  {
+			[carsForStation addObject: f];
+		}
+	}
+	// Now, sort carsForStation according to industry
+	return [carsForStation sortedArrayUsingFunction: sortCarsByCurrentIndustry context: NULL];
+	
+}
+
+- (void)addFreightCarsObject:(FreightCar *)value 
+{    
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    
+    [self willChangeValueForKey:@"freightCars" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    
+    [[self primitiveValueForKey: @"freightCars"] addObject: value];
+    
+    [self didChangeValueForKey:@"freightCars" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
+    
+    [changedObjects release];
+}
+
+- (void)removeFreightCarsObject:(FreightCar *)value 
+{
+    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
+    
+    [self willChangeValueForKey:@"freightCars" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    
+    [[self primitiveValueForKey: @"freightCars"] removeObject: value];
+    
+    [self didChangeValueForKey:@"freightCars" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
+    
+    [changedObjects release];
+}
+
+@end

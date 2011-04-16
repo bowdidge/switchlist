@@ -1,0 +1,25 @@
+<HTML>
+<HEAD>
+<TITLE>Location of Cars on Layout</TITLE>
+<script type="text/javascript">
+function carLocationChanged(object, carName) {
+  var chosenOption = object.options[object.selectedIndex];
+  var params = "layout=";
+  // layoutName appended in separate script into HTML.
+  params += layoutName;
+  params +="&car=";
+  params += carName;
+  params += "&location=";
+  params += chosenOption.text;
+  var http = new XMLHttpRequest();
+  http.open("GET","setCarLocation" + "?" + params, true);
+  http.onreadystatechange = function() {
+    if (http.readyState == 4 && http.status == 200 && http.responseText != "OK") {
+      alert(http.responseText);
+    }
+  }
+  http.send(null);
+}
+</script>
+</HEAD>
+
