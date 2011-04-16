@@ -1,0 +1,10 @@
+#!/bin/csh
+# Version for tag in $1
+
+if $#argv != 1 then
+  echo Usage: switchlistTag SwitchList-x.y.z
+  exit 1
+endif
+
+svn copy https://switchlist.googlecode.com/svn/trunk/ \
+         https://switchlist.googlecode.com/svn/tags/$1 -m "$1"
