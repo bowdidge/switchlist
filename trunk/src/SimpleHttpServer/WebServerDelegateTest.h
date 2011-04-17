@@ -1,8 +1,8 @@
 //
-//  WebServerDelegate.h
+//  WebServerDelegateTest.h
 //  SwitchList
 //
-//  Created by bowdidge on 11/20/10.
+//  Created by bowdidge on 4/16/11.
 //
 // Copyright (c)2010 Robert Bowdidge,
 // All rights reserved.
@@ -29,24 +29,14 @@
 // SUCH DAMAGE.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "LayoutTest.h"
 
-@class EntireLayout;
-@class SwitchListAppDelegate;
-@class SimpleHTTPConnection;
-@class SimpleHTTPServer;
+@class WebServerDelegate;
+@class MockSimpleHTTPServer;
 
-@interface WebServerDelegate : NSObject {
-	SimpleHTTPServer *server_;
-	SwitchListAppDelegate *appDelegate_;
-	// Make this settable for testing.
-	NSBundle *mainBundle_;
-	
+@interface WebServerDelegateTest : LayoutTest {
+	WebServerDelegate *webServerDelegate_;
+	MockSimpleHTTPServer *server_;
 }
 
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate;
-- (void) stopResponding;
-- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn;
-// For mocking.
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate withServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle;
 @end

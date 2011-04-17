@@ -50,16 +50,26 @@
 static const int HTTP_OK = 200;
 
 @implementation WebServerDelegate
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate {
+
+// For mocking.
+- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate withServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) bundle {
 	[super init];
 	appDelegate_ = [delegate retain];
-	server_ = [[SimpleHTTPServer alloc] initWithTCPPort: 20000 delegate:self];
+	server_ = server;
+	mainBundle_ = bundle;
 	if (server_) {
 		NSLog(@"Started!");
 	} else {
 		NSLog(@"Problems starting server!");
 	}
 	return self;
+}
+
+// Preferred constructor.
+- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate {
+	return [self initWithAppDelegate: delegate
+						  withServer: [[SimpleHTTPServer alloc] initWithTCPPort: 20000 delegate:self]
+						  withBundle: [NSBundle mainBundle]];
 }
 
 - (void) dealloc {
@@ -85,19 +95,19 @@ static const int HTTP_OK = 200;
 }
 
 - (void) processRequestForSwitchlistCSS {
-	NSString *cssFile = [[NSBundle mainBundle] pathForResource: @"switchlist" ofType: @"css"];
+	NSString *cssFile = [mainBundle_ pathForResource: @"switchlist" ofType: @"css"];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
 - (void) processRequestForSwitchlistIphoneCSS {
-	NSString *cssFile = [[NSBundle mainBundle] pathForResource: @"switchlist-iphone" ofType: @"css"];
+	NSString *cssFile = [mainBundle_ pathForResource: @"switchlist-iphone" ofType: @"css"];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
 - (void) processRequestForSwitchlistIpadCSS {
-	NSString *cssFile = [[NSBundle mainBundle] pathForResource: @"switchlist-ipad" ofType: @"css"];
+	NSString *cssFile = [mainBundle_ pathForResource: @"switchlist-ipad" ofType: @"css"];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
@@ -162,7 +172,7 @@ static const int HTTP_OK = 200;
 	EntireLayout *layout = [document entireLayout];
 	NSMutableString *message = [NSMutableString string];
 
-	NSString *carListHeaderPath = [[NSBundle mainBundle] pathForResource: @"switchlist-carlist-header" ofType: @"html"];
+	NSString *carListHeaderPath = [mainBundle_ pathForResource: @"switchlist-carlist-header" ofType: @"html"];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: carListHeaderPath]];
 	NSString *contents = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
 	[message appendString: contents];
@@ -250,17 +260,43 @@ static const int HTTP_OK = 200;
 	}
 	return nil;
 }
-	
+
+// Generates a page that is a redirect to the provided URL.
+- (void) replyWithRedirectTo: (NSString*) dest {
+	NSMutableString *message = [NSMutableString string];
+	[message appendString: @"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n"
+	 @"<html><head><title>SwitchList</title>"];
+	[message appendFormat: @"<meta http-equiv=\"REFRESH\" content=\"0;url=%@\"></HEAD>", dest];
+	[message appendString: @"<BODY></body></html>\n"];
+	[server_ replyWithStatusCode: HTTP_OK message: message];
+}
+
 - (void) showAllLayouts {
 	NSDocumentController *controller = [NSDocumentController sharedDocumentController];
 	NSArray *allDocuments = [controller documents];
+	
+	if ([allDocuments count] == 0) {
+		[server_ replyWithStatusCode: HTTP_OK message: @"No layouts open in SwitchList!"];;
+		return;
+	}
+	
+	// Only one layout?  Redirect straight to there.
+	if ([allDocuments count] == 1) {
+		EntireLayout *layout = [[allDocuments lastObject] entireLayout];
+		[self replyWithRedirectTo: [NSString stringWithFormat: @"get?layout=%@", [layout layoutName]]];
+		return;
+	}
 	
 	NSMutableString *message = [NSMutableString string];
 	[message appendFormat: @"<HTML><HEAD><TITLE>SwitchList</TITLE></HEAD><BODY>The following layouts are currently open in SwitchList:"];
 	
 	for (SwitchListDocument *document in allDocuments) {
 		EntireLayout *layout = [document entireLayout];
-		[message appendFormat: @"<P><A HREF=\"get?layout=%@\">%@</A>", [layout layoutName], [layout layoutName]];
+		NSString *layoutName = [layout layoutName];
+		if ([layoutName length] == 0) {
+			layoutName = @"untitled";
+		}
+		[message appendFormat: @"<P><A HREF=\"get?layout=%@\">%@</A>", layoutName, layoutName];
 	}
 	[message appendFormat: @"</BODY></HTML>"];
 	
@@ -272,7 +308,7 @@ static const int HTTP_OK = 200;
 // http://localhost:20000/ -- show list of layouts
 // http://localhost:20000/get?layout="xxx" -- show list of trains on layout xxx.
 // http://localhost:20000/get?layout="xxx"&train="yyyy" - show details on train yyy on layout xxx.
-// http://localhost:20000/get?layout="xxx"&carList -- show list of freight cars, and allow changing locations.
+// http://localhost:20000/get?layout="xxx"&carList=1 -- show list of freight cars, and allow changing locations.
 //
 // http://localhost:20000/setCarLocation?layout="xxx"&car="xxx"&location="xxx" -- change car's location.
 
@@ -281,55 +317,60 @@ static const int HTTP_OK = 200;
 - (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn {
 	NSLog(@"Process %@", url);
 	NSLog(@"Query is %@", [url query]);
-
+    NSLog(@"Path is %@", [url path]);
 	NSString *urlClean = [[url query] stringByReplacingOccurrencesOfString: @"%20" withString: @" "];
-
+    NSLog(@"Clean is %@", urlClean);
+	
 	if ([[url path] isEqualToString: @"/switchlist.css"]) {
 		[self processRequestForSwitchlistCSS];
+		return;
 	} else if ([[url path] isEqualToString: @"/switchlist-iphone.css"]) {
 		[self processRequestForSwitchlistIphoneCSS];
+		return;
 	} else if ([[url path] isEqualToString: @"/switchlist-ipad.css"]) {
 		[self processRequestForSwitchlistIpadCSS];
-	} else {
-		NSArray *queryTerms = [urlClean componentsSeparatedByString: @"&"];
-		NSMutableDictionary *query = [NSMutableDictionary dictionary];
-		for (NSString *item in queryTerms) {
-			NSArray *queryPair = [item componentsSeparatedByString: @"="];
-			if ([queryPair count] == 2) {
-				[query setObject: [queryPair lastObject] forKey: [queryPair objectAtIndex: 0]];
-			} else if ([queryPair count] == 1) {
-				[query setObject: [NSNumber numberWithBool: true] forKey: [queryPair objectAtIndex: 0]];
-			}
-		}
-		
-		if ([[url path] hasPrefix: @"/setCarLocation"]) {
-			NSString *car = [query objectForKey: @"car"];
-			NSString *location = [query objectForKey: @"location"];
-			NSString *layout = [query objectForKey: @"layout"];
-			SwitchListDocument *document = [self layoutWithName: layout];
-			if (!document) {
-				[server_ replyWithStatusCode: HTTP_OK
-									 message: [NSString stringWithFormat: @"No layout named %@.", layout]];
-				return;
-			}
-			[self processChangeLocationForLayout: document car: car location: location];
-			return;
-		} else if ([[url path] isEqualToString: @"/get"]) {
-			NSString *layoutName = [query objectForKey: @"layout"];
-			SwitchListDocument *document = [self layoutWithName: layoutName];
-			if ([query objectForKey: @"train"] != nil) {
-				[self processRequestForLayout: document train: [query objectForKey: @"train"]];
-			} else if ([query objectForKey: @"carList"] != nil) {
-				[self processRequestForCarListForLayout: document];
-			} else {
-				// Default to showing layout.
-				[self processRequestForLayout: document];
-			}
-		} else {
-			// Default to showing all layouts.
-			[self showAllLayouts];
+		return;
+	}
+	
+	NSArray *queryTerms = [urlClean componentsSeparatedByString: @"&"];
+	NSMutableDictionary *query = [NSMutableDictionary dictionary];
+	for (NSString *item in queryTerms) {
+		NSArray *queryPair = [item componentsSeparatedByString: @"="];
+		if ([queryPair count] == 2) {
+			[query setObject: [queryPair lastObject] forKey: [queryPair objectAtIndex: 0]];
+		} else if ([queryPair count] == 1) {
+			[query setObject: [NSNumber numberWithBool: true] forKey: [queryPair objectAtIndex: 0]];
 		}
 	}
+	
+	if ([[url path] hasPrefix: @"/setCarLocation"]) {
+		NSString *car = [query objectForKey: @"car"];
+		NSString *location = [query objectForKey: @"location"];
+		NSString *layout = [query objectForKey: @"layout"];
+		SwitchListDocument *document = [self layoutWithName: layout];
+		if (!document) {
+			[server_ replyWithStatusCode: HTTP_OK
+								 message: [NSString stringWithFormat: @"No layout named %@.", layout]];
+			return;
+		}
+		[self processChangeLocationForLayout: document car: car location: location];
+		return;
+	} else if ([[url path] isEqualToString: @"/get"]) {
+		NSString *layoutName = [query objectForKey: @"layout"];
+		SwitchListDocument *document = [self layoutWithName: layoutName];
+		if ([query objectForKey: @"train"] != nil) {
+			[self processRequestForLayout: document train: [query objectForKey: @"train"]];
+		} else if ([query objectForKey: @"carList"] != nil) {
+			[self processRequestForCarListForLayout: document];
+		} else {
+			// Default to showing layout.
+			[self processRequestForLayout: document];
+		}
+	} else {
+		// Default to showing all layouts.
+		[self showAllLayouts];
+	}
 }
+
 
 @end

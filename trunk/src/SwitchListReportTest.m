@@ -33,6 +33,7 @@
 #import "Cargo.h"
 #import "DoorAssignmentRecorder.h"
 #import "EntireLayout.h";
+#import "FakeSwitchListDocument.h"
 #import "FreightCar.h"
 #import "Industry.h"
 #import "Report.h"
@@ -40,43 +41,11 @@
 #import "SwitchListDocumentInterface.h"
 #import "SwitchListReport.h"
 
-
-
-@interface MockSwitchListDocument : NSObject<SwitchListDocumentInterface> {
-	EntireLayout *layout;
-	DoorAssignmentRecorder *recorder;
-}
-- (EntireLayout*) entireLayout;
-- (DoorAssignmentRecorder*) doorAssignmentRecorder;
-@end
-
-@implementation MockSwitchListDocument 
-- (id) initWithLayout: (EntireLayout*) entireLayout {
-	[super init];
-	layout = [entireLayout retain];
-	recorder = [[DoorAssignmentRecorder alloc] init];
-	return self;
-}
-
-- (void) dealloc {
-	[layout release];
-	[recorder release];
-	[super dealloc];
-}
-
-- (EntireLayout*) entireLayout {
-	return layout;
-}
-- (DoorAssignmentRecorder*) doorAssignmentRecorder {
-	return recorder;
-}
-@end
-
 @implementation SwitchListReportTest
 	
 - (void) testSimpleReport {
 	[self makeThreeStationLayout];
-	MockSwitchListDocument *mockDocument = [[[MockSwitchListDocument alloc] initWithLayout: entireLayout_] autorelease];
+	FakeSwitchListDocument *mockDocument = [[[FakeSwitchListDocument alloc] initWithLayout: entireLayout_] autorelease];
 	[self makeThreeStationTrain];
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"]; 
 
@@ -93,7 +62,7 @@
 
 - (void) testReportShowsDoor {
 	[self makeThreeStationLayout];
-	MockSwitchListDocument *mockDocument = [[[MockSwitchListDocument alloc] initWithLayout: entireLayout_] autorelease];
+	FakeSwitchListDocument *mockDocument = [[[FakeSwitchListDocument alloc] initWithLayout: entireLayout_] autorelease];
 	[self makeThreeStationTrain];
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"]; 
 	

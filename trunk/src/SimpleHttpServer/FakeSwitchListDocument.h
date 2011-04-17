@@ -1,10 +1,10 @@
 //
-//  WebServerDelegate.h
+//  FakeSwitchListDocument.h
 //  SwitchList
 //
-//  Created by bowdidge on 11/20/10.
+//  Created by bowdidge on 4/16/11.
 //
-// Copyright (c)2010 Robert Bowdidge,
+// Copyright (c)2011 Robert Bowdidge,
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
@@ -31,22 +31,16 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "SwitchListDocumentInterface.h"
 @class EntireLayout;
-@class SwitchListAppDelegate;
-@class SimpleHTTPConnection;
-@class SimpleHTTPServer;
+@class DoorAssignmentRecorder;
 
-@interface WebServerDelegate : NSObject {
-	SimpleHTTPServer *server_;
-	SwitchListAppDelegate *appDelegate_;
-	// Make this settable for testing.
-	NSBundle *mainBundle_;
-	
+@interface FakeSwitchListDocument : NSObject<SwitchListDocumentInterface> {
+	EntireLayout *layout;
+	DoorAssignmentRecorder *recorder;
 }
-
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate;
-- (void) stopResponding;
-- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn;
-// For mocking.
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate withServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle;
+- (id) initWithLayout: (EntireLayout*) layout;
+- (EntireLayout*) entireLayout;
+- (DoorAssignmentRecorder*) doorAssignmentRecorder;
 @end
+

@@ -1,10 +1,10 @@
 //
-//  WebServerDelegate.h
+//  FakeSwitchListDocument.m
 //  SwitchList
 //
-//  Created by bowdidge on 11/20/10.
+//  Created by bowdidge on 4/16/11.
 //
-// Copyright (c)2010 Robert Bowdidge,
+// Copyright (c)2011 Robert Bowdidge,
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
@@ -29,24 +29,36 @@
 // SUCH DAMAGE.
 //
 
-#import <Cocoa/Cocoa.h>
+#import "FakeSwitchListDocument.h"
 
-@class EntireLayout;
-@class SwitchListAppDelegate;
-@class SimpleHTTPConnection;
-@class SimpleHTTPServer;
+#import "DoorAssignmentRecorder.h"
 
-@interface WebServerDelegate : NSObject {
-	SimpleHTTPServer *server_;
-	SwitchListAppDelegate *appDelegate_;
-	// Make this settable for testing.
-	NSBundle *mainBundle_;
-	
+@implementation FakeSwitchListDocument 
+- (id) initWithLayout: (EntireLayout*) entireLayout {
+	[super init];
+	layout = [entireLayout retain];
+	recorder = [[DoorAssignmentRecorder alloc] init];
+	return self;
 }
 
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate;
-- (void) stopResponding;
-- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn;
-// For mocking.
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate withServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle;
+- (void) dealloc {
+	[layout release];
+	[recorder release];
+	[super dealloc];
+}
+
+- (EntireLayout*) entireLayout {
+	return layout;
+}
+- (DoorAssignmentRecorder*) doorAssignmentRecorder {
+	return recorder;
+}
+
+- (NSURL*) fileURL {
+	return [NSURL URLWithString:@"happy"];
+}
+
+- (NSURL*) autosavedContentsFileURL {
+	return nil;
+}
 @end
