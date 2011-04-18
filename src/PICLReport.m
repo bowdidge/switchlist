@@ -62,15 +62,6 @@
 	train_ = [tr retain];
 }
 
-int SortFreightCarByCarType(FreightCar *fc1, FreightCar *fc2, void *context) {
-	// We only need to compare the car type.  We could do any sorting we want here -
-	// sort by reporting marks, sort by car type, then reporting marks if car type
-	// were the same, etc.
-	NSComparisonResult result = [[[fc1 carTypeRel] carTypeName] compare: [[fc2 carTypeRel] carTypeName]];
-	// Could check if result == NSOrderedSame, and return result if it isn't, and do a different comparison
-	// if it is.
-	return result;
-}
 
 - (NSString*) contents {
 	DoorAssignmentRecorder *recorder = [owningDocument_ doorAssignmentRecorder];
@@ -114,10 +105,10 @@ int SortFreightCarByCarType(FreightCar *fc1, FreightCar *fc2, void *context) {
 				}
 			}
 			
-			// TODO(bowdidge) This probably ought to sort by destination industry, then car type.
-			NSArray *carsAtIndustrySortedByCarType = [carsAtIndustry sortedArrayUsingFunction: SortFreightCarByCarType context: nil];
+			// TODO(mcnab) Currently sorting by Destination in Alphabetical Order.  Should sort in Station Order.
+			NSArray *carsAtIndustrySortedByDestination = [carsAtIndustry sortedArrayUsingFunction: sortCarsByDestination context: nil];
 				 
-			for (FreightCar *freightCar in carsAtIndustrySortedByCarType) {
+			for (FreightCar *freightCar in carsAtIndustrySortedByDestination) {
 				NSString* contents;
 				if ([freightCar isLoaded]) {
 					contents = [[freightCar cargoDescription] uppercaseString];
@@ -145,6 +136,9 @@ int SortFreightCarByCarType(FreightCar *fc1, FreightCar *fc2, void *context) {
 				 [[[freightCar carTypeRel] carTypeName] UTF8String],
 				 [contents UTF8String]];
 			}
+			[piclString appendFormat: @"-------------------------------------------------------------------------------\n"];
+			int carsAtLocation = [carsAtIndustry count];
+			[piclString appendFormat: @"CARS:  %d\n",carsAtLocation];
 		}
 	}
 	
