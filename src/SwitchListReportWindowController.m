@@ -45,8 +45,11 @@
 }
 
 - (void) awakeFromNib {
-	// SwitchList window will always be 720 * 540 unless user changes it.
-	[view_ setFrame: NSMakeRect(0,0,540,[view_ preferredViewHeight])];
+	// TODO(bowdidge): Ugly, but setting the frame automatically changes the bounds.
+	// TODO(bowdidge): Perhaps should be passing size of view some other way.
+	NSRect bounds = [view_ bounds];
+	[view_ setFrame: [view_ bounds]];
+	[view_ setBounds: bounds];
 	[scrollView_ setDocumentView: view_];
 }
 

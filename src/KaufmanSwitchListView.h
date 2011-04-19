@@ -36,9 +36,4 @@
 @interface KaufmanSwitchListView : SwitchListBaseView {
 }
 
-// Width of entire document when printed.
-- (float) preferredPrintWidth;
-// Height of entire document when printed.
-- (float) preferredPrintHeight;
-
 @end

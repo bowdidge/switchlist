@@ -33,6 +33,9 @@
 #import "FreightCar.h"
 #import "SwitchListDocumentInterface.h"
 
+extern float PAGE_WIDTH;
+extern float PAGE_HEIGHT;
+
 // Model for switch list, hiding details of what's in the specific
 // columns, number of rows, and how the text is generated.
 // This should have presentation-independent stuff; presentation dependent stuff
@@ -66,27 +69,13 @@
 	ScheduledTrain *train_;
 	NSArray *carsInTrain_;
 
-	// Overall height of currently drawn version of document.
-	// Width is same as pageWidth_.
-	float documentHeight_;
-	
-	
-	// Height of individual page or view for currently drawn version of document.
-	float pageHeight_;
-	float pageWidth_;
-	
 	// Height of individual rows in switchlist table drawn by -[SwitchListBaseView drawTableForCars:rect:source]
 	float rowHeight_;
-	
-	// Boundary around all edges of the printed content.
-	float documentMargin_;
-	// Lower Y coordinate for this view.  Make sure to add this to all
-	// Y measurements; it's needed so we can combine multiple switchlists
-	// into a single printed view.
-	float startY_;
 }
+
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document;
 - (void) setTrain: (ScheduledTrain*) train;
+- (ScheduledTrain*) train;
 
 // Draws the named string in a box centered at the specified location with the specified width.
 - (void) drawCenteredString: (NSString *) str centerY: (float) centerY centerX: (float) centerPos attributes: attrs;
@@ -131,21 +120,8 @@
 // Returns current layout date in an array with three elements: month/day, 2 digit year, and 2 digit century.
 - (NSArray*) getDateInStringFormat;
 
-// Initializes the various document size variables based on the current
-// drawing/printing context.
-// Call before drawRect.
-- (void) setUpDocumentBounds;	
-- (float) preferredViewWidth;
-- (float) preferredViewHeight;
+- (void) drawTableForCars: (NSArray*) carsToDisplay rect: (NSRect) rect source: (SwitchListSource*) source;
 
-// Width of entire document when printed.
-- (float) preferredPrintWidth;
-// Height of entire document when printed.
-- (float) preferredPrintHeight;
-// Height of a single page.
-- (float) printedPageHeight;
-	
-- (void) drawTableForCars: (NSArray*) carsToDisplay rect: (NSRect) rect source: (SwitchListSource*) source ;
 // Preferred font drawing attributes for this view.
 - (NSFont*) titleFontForSize: (float) sz;
 - (NSDictionary*) handwritingFontAttr;

@@ -32,68 +32,71 @@
 
 #import "EntireLayout.h"
 #import "ScheduledTrain.h"
+#import "SwitchListBaseView.h"
 #import "SwitchListDocumentInterface.h"
-#import "SwitchListView.h"
 
 // Create a view holding all switchlists of all trains, as well as the industry list and yard list.
 // This can be used to print everything in one fell swoop.
 
 @implementation PrintEverythingView
 
-// Look at the current printing objects to find the size of the paper.
-- (float) myPageHeight {
-	NSPrintOperation *printOp = [NSPrintOperation currentOperation];
-	NSPrintInfo *printInfo = [printOp printInfo];
-	float pageHeight = [printInfo paperSize].height - [printInfo topMargin] - [printInfo bottomMargin];
-	return pageHeight;
+- (BOOL) knowsPageRange: (NSRangePointer) range {
+	range->location = 1;
+	range->length = 0;
+	
+	for (SwitchListBaseView *view in [self subviews]) {
+		NSRange r;
+		[view knowsPageRange: &r];
+		range->length += r.length;
+	}
+	return YES;
 }
 
+- (NSRect)rectForPage:(int)page {
+	return NSMakeRect(0, PAGE_HEIGHT * (page-1), PAGE_WIDTH, PAGE_HEIGHT);
+}
 
-- (id) initWithFrame: (NSRect) r withDocument: (NSObject<SwitchListDocumentInterface>*) document {
+- (id) initWithFrame: (NSRect) r withDocument: (NSObject<SwitchListDocumentInterface>*) document 
+	   withViewClass: (Class) preferredClass {
 	[super initWithFrame: r];
-	NSArray *trains = [[document entireLayout] allTrains];
+	document_ = [document retain];
 	subviews = [[NSMutableArray alloc] init];
-	int page = 0;
-	pages_ = [trains count]; //[trains count];
-	float pageHeight = [self myPageHeight];
-	if (pageHeight == 0.0) {
-		pageHeight = 612;
-	}
+	int pages = 0;
 	
-	// TODO(bowdidge): Check size of pages beforehand, and make sure that multi-page switchlists
-	// will be printed.
+	NSArray *trains = [[document entireLayout] allTrains];
+
 	// TODO(bowdidge): Fix this so it works with different sized paper.
 	for (ScheduledTrain *t in trains) {
-		NSRect subDocumentRect = NSMakeRect(0.0,pageHeight*page,720.0,pageHeight);
-		SwitchListView *v = [[SwitchListView alloc] initWithFrame: subDocumentRect withDocument: document];
+		NSRect subDocumentRect = NSMakeRect(0.0, 0.0, PAGE_WIDTH, PAGE_HEIGHT);
+		SwitchListBaseView *v = [[preferredClass alloc] initWithFrame: subDocumentRect withDocument: document];
 		[v setTrain: t];
+		NSRange r;
+		[v knowsPageRange: &r];
+		int pageCount = r.length;
+		if (r.length == 0) {
+			continue;
+		}
 		[subviews addObject: v];
-		page++;
+		NSRect bounds = [v bounds];
+		[v setFrame: NSMakeRect(0, pages*PAGE_HEIGHT, bounds.size.width, bounds.size.height)];
+		// TODO(bowdidge): Why the change?
+		[v setBounds: bounds];
+		pages += pageCount;
 		[v release];
 	}
-	[self setFrame: NSMakeRect(0.0,0.0,6.5 * 72.0,pageHeight*pages_)];
+	
+	[self setFrame: NSMakeRect(0.0, 0.0, PAGE_WIDTH, PAGE_HEIGHT*pages)];
+	[self setSubviews: subviews];
+
 	return self;
 }
 
-- (void) drawRect: (NSRect) rect {
-	int page = 0;
-	float pageHeight = [self myPageHeight];
-	if (pageHeight == 0.0) {
-		pageHeight = 612;
-	}
-
-	for (SwitchListView *v in subviews) {
-		[v drawRect: NSMakeRect(0.0,pageHeight*page,720.0,pageHeight)];
-		// Do gray fill to identify page edges.
-		// [[NSColor colorWithCalibratedWhite: page * 0.1 alpha: 0.2] setFill];
-		// NSRect subDocumentRect = NSMakeRect(0.0,pageHeight*page,720.0,pageHeight);
-		// NSRectFill(subDocumentRect);
-		page++;
-	}
-}
+// No implementation of drawRect because the view does no drawing
+// of its own.
 
 - (void) dealloc {
 	[subviews release];
+	[document_ release];
 	[super dealloc];
 }
 @end

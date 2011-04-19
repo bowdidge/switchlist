@@ -99,11 +99,11 @@
 }
 @end
 
-
 @implementation SouthernPacificSwitchListView
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect withDocument: document];
 	headerHeight_ = 80;
+	[self setBounds: NSMakeRect(0, 0, PAGE_WIDTH, PAGE_HEIGHT)];
 	return self;
 }
 
@@ -135,22 +135,19 @@
 	return 14;
 }
 
-// Determines the Y size of the document so we can display it in a single image.
-// This computation is only used when drawing rather than printing.
-- (float) preferredViewHeight {
-	int carsInSwitchList = [carsInTrain_ count];
-	int rowsPerPage = (10 * 72.0 - headerHeight_) / rowHeight_;
-	if (rowsPerPage > carsInSwitchList) {
-		return 10 * 72.0;
-	} else {
-		return 10 * 72.0 * 2;
-	}
+- (void) setTrain: (ScheduledTrain*) train {
+	[super setTrain: train];
+	// TODO(bowdidge): Print multiple pages if too many cars.
+	[self setBounds: NSMakeRect(0, 0, PAGE_WIDTH, PAGE_HEIGHT)];
 }
 
-- (float) preferredPrintWidth {
-	return 400.0;
+// Return the number of pages available for printing
+// Required for printing support.
+- (BOOL)knowsPageRange:(NSRangePointer)range {
+    range->location = 1;
+    range->length = 1;
+    return YES;
 }
-
 
 // Draws the title portion of the switch list.
 // General format:
@@ -161,7 +158,7 @@
 
 - (void) drawHeader {
 	
-	float topOfHeader = startY_ + documentHeight_-8;
+	float topOfHeader = [self bounds].size.height - 8;
 	NSArray *date = [self getDateInStringFormat];
 	NSString *dateString = [date objectAtIndex: 0];
 	NSString *yearString = [date objectAtIndex: 1];
@@ -171,15 +168,15 @@
 	NSDictionary *title1Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: [self headerTextFontSize]]  forKey: NSFontAttributeName];
 	NSDictionary *title2Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: [self headerTitleFontSize]]  forKey: NSFontAttributeName];
 	
-	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: topOfHeader centerX: pageWidth_/2 attributes: title1Attrs];
-	[self drawCenteredString: @"SWITCH LIST" centerY: topOfHeader - 20 centerX: pageWidth_/2  attributes: title2Attrs];
+	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: topOfHeader centerX: PAGE_WIDTH/2 attributes: title1Attrs];
+	[self drawCenteredString: @"SWITCH LIST" centerY: topOfHeader - 20 centerX: PAGE_WIDTH/2  attributes: title2Attrs];
 	
 	NSString *line1 = [NSString stringWithFormat: @"Train _________ Left _________________ station, __________M _______________ %@____", centuryString];
 	float line1CenterY = topOfHeader - 36;
-	float line1CenterX = pageWidth_ / 2;
+	float line1CenterX = PAGE_WIDTH / 2;
 	NSString *line2 = [NSString stringWithFormat: @"Engine ________ Arrd _________________ station, __________M _______________ %@____", centuryString];
 	float line2CenterY = topOfHeader - 50;
-	float line2CenterX = pageWidth_ / 2;
+	float line2CenterX = PAGE_WIDTH / 2;
 	
 	[self drawFormLine: line1 centerX: line1CenterX centerY: line1CenterY
 			   strings: [NSArray arrayWithObjects: @"",@"", @"", @"", @"", @"", @"", dateString, @"", yearString, nil]
@@ -190,25 +187,23 @@
 		  printedAttrs: title1Attrs];
 
 	[self drawTrainName];
-	
 }
 
 // Main drawing routine, called for printing or screen redraw.
 - (void) drawRect: (NSRect) rect {
-	float preferredWidth = 400;
-	[self setUpDocumentBounds];
-
+	float documentWidth = 400;
+	float documentHeight = [self bounds].size.height;
 	[[NSColor whiteColor] setFill];
-	NSRectFill(NSMakeRect(0,0,pageWidth_, documentHeight_));
+	NSRectFill(NSMakeRect(0, 0, documentWidth, documentHeight));
 	
 	[[self canaryYellowColor] setFill];
 	// Draw whole thing in yellow - rect alone isn't enough for printing.
-	NSRectFill(NSMakeRect((pageWidth_ - preferredWidth)/2, 0, preferredWidth, documentHeight_));
+	NSRectFill(NSMakeRect((PAGE_WIDTH - documentWidth)/2, 0, documentWidth, documentHeight));
 
-	float tableWidth = preferredWidth;
-	float tableHeight =  floor((documentHeight_-headerHeight_-documentMargin_*2)/rowHeight_) * rowHeight_;
-	float tableBottom = startY_ + documentMargin_;
-	float tableLeft = (pageWidth_ - preferredWidth) / 2;
+	float tableWidth = documentWidth;
+	float tableHeight =  floor((documentHeight - headerHeight_) / rowHeight_) * rowHeight_;
+	float tableBottom = 0;
+	float tableLeft = (PAGE_WIDTH - documentWidth) / 2;
 			   
 	[self drawHeader];
 	[self drawTableForCars: carsInTrain_
