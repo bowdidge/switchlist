@@ -246,13 +246,33 @@
   return result;
 }
 
-// TODO(bowdidge): Make this work again.
-// - (IBAction)printDocument:(id)sender {
-//
-//	PrintEverythingView *pev = [[PrintEverythingView alloc] initWithFrame: NSMakeRect(0.0,0.0,100.0,100.0) withDocument: self];
-//    [[NSPrintOperation printOperationWithView:pev] runOperation];
-//	[pev autorelease];
-// }
+// Prints switchlists for all trains on the layout that have work.
+- (IBAction)printDocument:(id)sender {
+	Class viewClass = nil;
+	int defaultStyle = [[NSUserDefaults standardUserDefaults] integerForKey:@"SwitchListDefaultStyle"];
+	switch (defaultStyle) {
+	case OldSwitchListStyle:
+	case PrettySwitchListStyle:
+	case PICLReportStyle:
+		viewClass = [SwitchListView class];
+		break;
+	case PickUpDropOffSwitchListStyle:
+	case SanFranciscoBeltLineB7Style:
+		viewClass = [KaufmanSwitchListView class];
+		break;
+	case SouthernPacificSwitchListStyle:
+		viewClass = [SouthernPacificSwitchListView class];
+		break;
+	default:
+		viewClass = [SwitchListView class];
+		break;
+	}
+	
+	PrintEverythingView *pev = [[PrintEverythingView alloc] initWithFrame: NSMakeRect(0.0,0.0,100.0,100.0) withDocument: self
+															withViewClass: viewClass];
+    [[NSPrintOperation printOperationWithView:pev] runOperation];
+	[pev autorelease];
+}
 
 - (void) setupSortedArrayController: (NSArrayController *) arrayController
 				  rearrangeCallback: (SEL) selector 

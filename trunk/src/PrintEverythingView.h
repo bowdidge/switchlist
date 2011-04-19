@@ -34,10 +34,17 @@
 
 // Class for printing all needed switchlists at one time.
 
-@interface PrintEverythingView : NSView {
-	NSMutableArray *subviews;
-	int pages_;
+@class SwitchListDocument;
 
+@interface PrintEverythingView : NSView {
+	// SwitchListBaseViews for each train switch list.
+	NSMutableArray *subviews;
+	SwitchListDocument *document_;
 }
-- (id) initWithFrame: (NSRect) r withDocument: (NSObject<SwitchListDocumentInterface>*) document;
+
+// Creates a SwitchListBaseView with a default frame (only provided by convention), a pointer to the
+// document holding the layout, and the class of the SwitchListBaseView subclass that should be
+// used to generate the switchlist for each train.
+- (id) initWithFrame: (NSRect) r withDocument: (NSObject<SwitchListDocumentInterface>*) document
+	   withViewClass: (Class) preferredViewClass;
 @end

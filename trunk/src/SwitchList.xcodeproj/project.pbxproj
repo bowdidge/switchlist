@@ -72,7 +72,6 @@
 		3EC3B15C1277E4E300C00AD3 /* CarAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49060D0F47E40092D1A3 /* CarAssigner.m */; };
 		3EC3B15D1277E4E300C00AD3 /* EntireLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */; };
 		3EC3B15E1277E4E300C00AD3 /* TrainAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49130D0F48640092D1A3 /* TrainAssigner.m */; };
-		3EC3B1601277E4E300C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
 		3EC3B1631277E4E300C00AD3 /* KaufmanSwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */; };
 		3EC3B1641277E4F900C00AD3 /* SwitchListDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* SwitchListDocument.m */; };
 		3EC3B1651277E4F900C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EE3F5C50E4234C2003BA863 /* SwitchListDocument.xcdatamodeld */; };
@@ -674,7 +673,6 @@
 				3EC3B15C1277E4E300C00AD3 /* CarAssigner.m in Sources */,
 				3EC3B15D1277E4E300C00AD3 /* EntireLayout.m in Sources */,
 				3EC3B15E1277E4E300C00AD3 /* TrainAssigner.m in Sources */,
-				3EC3B1601277E4E300C00AD3 /* SwitchListReportWindowController.m in Sources */,
 				3EC3B1631277E4E300C00AD3 /* KaufmanSwitchListReport.m in Sources */,
 				3EC3B0931277DF6600C00AD3 /* EntireLayoutTest.m in Sources */,
 				3E90BF3812792E3F0074F2FA /* NSManagedObjectContext.m in Sources */,

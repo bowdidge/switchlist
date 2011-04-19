@@ -38,6 +38,9 @@
 #import "Industry.h"
 #import "Place.h"
 
+float PAGE_WIDTH = 72.0 * 6.5;
+float PAGE_HEIGHT = 72.0 * 9.5;
+
 @implementation SwitchListSource
 // Creates a new SwitchListSource that will display information on the named cars in the given
 // train.  The list of cars can be a subset of the train if not all are to be displayed in a
@@ -52,6 +55,7 @@
 	carsInTrain_ = [cars retain];
 	return self;
 }
+
 - (void) dealloc {
 	[train_ release];
 	[carsInTrain_ release];
@@ -113,17 +117,15 @@
 }
 @end
 
-
 @implementation SwitchListBaseView
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect];
-	startY_ = frameRect.origin.y;
-	[self setBounds: frameRect];
 
 	train_ = nil;
 	carsInTrain_ = [[NSArray alloc] init];
 	owningDocument_ = [document retain];
 	rowHeight_ = 22.0;
+	[self setBounds: NSMakeRect(0, 0, PAGE_WIDTH, PAGE_HEIGHT)];
 	return self;
 }
 
@@ -142,6 +144,10 @@
 	carsInTrain_ = [[[owningDocument_ entireLayout] allCarsInTrainSortedByVisitOrder: train withDoorAssignments: nil] retain];
 }
 
+- (ScheduledTrain*) train {
+	return train_;
+}
+
 // Returns a font for title displays in the header.
 - (NSFont*) titleFontForSize: (float) sz {
 	// TODO(bowdidge) Get rid of Egyptian - it's not available on others' machines.
@@ -154,7 +160,8 @@
 
 // Draw the train name in the upper left in small type.
 - (void) drawTrainName {
-	[[train_ name] drawAtPoint: NSMakePoint(10.0, startY_ + documentHeight_ - 10.0) withAttributes: [self smallTypeAttr]];
+	float documentHeight = [self bounds].size.height;
+	[[train_ name] drawAtPoint: NSMakePoint(10.0, documentHeight - 10.0) withAttributes: [self smallTypeAttr]];
 }
 
 - (void) drawCenteredString: (NSString *) str centerY: (float) centerY centerX: (float) centerPos attributes: attrs {
@@ -199,7 +206,6 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	
 	// +1 on Y is fudge factor -- easier to move text up instead of down, descenders don't collide with lines.
 	[self drawCenteredString: str centerY: centerY centerX: centerX attributes: attrs];
-	
 }
 
 // Draws a handwritten string in the named location, fitting the string to the specified column size.
@@ -222,7 +228,6 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	
 	// +1 on Y is fudge factor -- easier to move text up instead of down, descenders don't collide with lines.
 	[self drawCenteredString: str centerY: centerY centerX: centerX attributes: attrs];
-	
 }
 
 // Returns a string, split up into dash and non-dash components.
@@ -277,7 +282,6 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 					 centerY: centerY - overallSize.height / 2 + result.size.height / 2 + RAISE_ABOVE_LINE
 					 centerX: result.origin.x + result.size.width / 2.0
 				  attributes: handAttrs];
-	
 }
 
 // Draws a form line with specified handwritten strings to appear over fields.
@@ -296,7 +300,6 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	}
 }
 
-
 // Returns current layout date in an array with three elements: month/day, 2 digit year, and 2 digit century.
 // TODO(bowdidge): Use dictionary.
 - (NSArray*) getDateInStringFormat {
@@ -314,43 +317,13 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	return [NSArray arrayWithObjects: dateString, yearString, centuryString, nil];
 }
 
-// Initializes the various document size variables based on the current
-// drawing/printing context.
-- (void) setUpDocumentBounds {
-	if ([NSGraphicsContext currentContextDrawingToScreen]) {
-		documentHeight_ = [self preferredViewHeight];
-		pageWidth_ = [self preferredViewWidth];
-		pageHeight_ = 10 * 72.0;
-		// Already included.
-		documentMargin_ = 0; 
-	} else {
-		// printing
-		// use documentHeight so we print at top of page.
-		documentHeight_ = [self preferredPrintHeight];
-		pageHeight_ = [self printedPageHeight];
- 		pageWidth_ = [self preferredPrintWidth];
-		documentMargin_ = 0.5 * 72.0;
-	}
-}
-
 // Return the number of pages available for printing
 // Required for printing support.
 - (BOOL)knowsPageRange:(NSRangePointer)range {
-    float printHeight = [self printedPageHeight];
-	
     range->location = 1;
-    range->length = ceil([self preferredPrintHeight] / printHeight);
+    range->length = 1;
     return YES;
 }
-
-// Rules on Printing:
-//
-// Switchlists always are drawn on a full page.  On the screen, the page is assumed
-// to be 720 * 540 (10" x 7.5"), and the window is initially sized to that value.
-// Pages should always fill that whole area; narrower switchlists should only print
-// in the center.
-// When printing, the margins and paper size are used.
-// 
 
 // Return the drawing rectangle for a particular page number
 // Required for printing support.
@@ -358,55 +331,9 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 // of last page at (0,0), and top right at (page width, pages * page_height).
 // For the nth page, we'll start at the top and measure down n pages.
 // The top should always be at a page boundary.
+// Pages should always be PAGE_WIDTH wide and PAGE_HEIGHT high.
 - (NSRect)rectForPage:(int)page {
-    NSRect bounds = [self bounds];	
-	[[[NSPrintOperation currentOperation] printInfo] setTopMargin: 36.0];
-	[[[NSPrintOperation currentOperation] printInfo] setBottomMargin: 36.0];
-	[[[NSPrintOperation currentOperation] printInfo] setLeftMargin: 36.0];
-	[[[NSPrintOperation currentOperation] printInfo] setRightMargin: 36.0];	
-	
-	float pageWidth = [self preferredPrintWidth];
-    float pageHeight = [self printedPageHeight];
-    NSRect r = NSMakeRect( NSMinX(bounds), [self preferredPrintHeight] - page * pageHeight,
-						  pageWidth, pageHeight );
-	return r;				   
-}
-
-// Calculate the vertical size of the view that fits on a single page, minus
-// any margins.
-- (float) printedPageHeight {
-    // Obtain the print info object for the current operation
-    NSPrintInfo *pi = [[NSPrintOperation currentOperation] printInfo];
-	
-    // Calculate the page height in points
-    NSSize paperSize = [pi paperSize];
-    float pageHeight = paperSize.height - [pi topMargin] - [pi bottomMargin];
-	
-    // Convert height to the scaled view
-    float scale = [[[pi dictionary] objectForKey:NSPrintScalingFactor]
-				   floatValue];
-    return pageHeight / scale;
-}
-
-- (float) preferredPrintWidth {
-	// Obtain the print info object for the current operation
-	NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-    // Convert height to the scaled view
-    float scale = [[[printInfo dictionary] objectForKey:NSPrintScalingFactor] floatValue];
-	return ([printInfo paperSize].width  - [printInfo leftMargin] - [printInfo rightMargin]) / scale;
-}
-
-- (float) preferredPrintHeight {
-	// Assume one page.
-	return [self printedPageHeight];
-}
-
-- (float) preferredViewWidth {
-	return 540.0;
-}
-
-- (float) preferredViewHeight {
-	return 720.0;
+	return NSMakeRect(0, PAGE_HEIGHT * (page - 1), PAGE_WIDTH, PAGE_HEIGHT);
 }
 
 // Draw the main portion of the switchlist using the current

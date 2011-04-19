@@ -102,37 +102,26 @@
 	return self;
 } 
 
-// Used only for printing.
-- (float) preferredPrintHeight {
-	NSPrintInfo *printInfo = [[NSPrintOperation currentOperation] printInfo];
-	float pageWidth = [printInfo paperSize].width;
-	pageWidth_ = pageWidth;
-	float pageHeight = [printInfo paperSize].height - [printInfo topMargin] - [printInfo bottomMargin];
-	float tableMinSize = (([carsInTrain_ count] + 1) * rowHeight_);
-	// We take the ceiling because we'll fill out the last page.
-	float actualDocumentHeight = tableMinSize + headerHeight_+documentMargin_;
-	int pageCount = ceil(actualDocumentHeight /pageHeight);
-	return pageCount * pageHeight;
-}
-
 // Draws the title portion of the switch list.
 - (void) drawHeader {
 	NSArray *date = [self getDateInStringFormat];
 	NSString *dateString = [date objectAtIndex: 0];
 	NSString *yearString = [date objectAtIndex: 1];
 	NSString *centuryString = [date objectAtIndex: 2];
+	
+	float documentHeight = [self bounds].size.height;
 	// Draw stuff in title.
 	NSDictionary *title1Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 12]  forKey: NSFontAttributeName];
-	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: startY_ + documentHeight_-8 centerX: pageWidth_/2 attributes: title1Attrs];
+	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: documentHeight - 8 centerX: PAGE_WIDTH/2 attributes: title1Attrs];
 	
 	NSDictionary *title2Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 24]  forKey: NSFontAttributeName];
-	[self drawCenteredString: @"SWITCH LIST" centerY: startY_ + documentHeight_-24 centerX: pageWidth_/2  attributes: title2Attrs];
+	[self drawCenteredString: @"SWITCH LIST" centerY: documentHeight - 24 centerX: PAGE_WIDTH/2  attributes: title2Attrs];
 	
 	NSDictionary *title3Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 14]  forKey: NSFontAttributeName];
 	
 	// Next, draw the location/date string, and handwrite in the year and date.
-	float locationStringCenterY = startY_ + documentHeight_ - 50;
-	float locationStringCenterX = pageWidth_ / 2;
+	float locationStringCenterY = documentHeight - 50;
+	float locationStringCenterX = PAGE_WIDTH / 2;
 	NSString *locationDateString = [NSString stringWithFormat: @"______________ at ____________________ station, ___________________ %@____",
 									centuryString];
 	
@@ -146,18 +135,18 @@
 	[self drawTrainName];
 }
 
-
 // Main drawing routine, called for printing or screen redraw.
 - (void) drawRect: (NSRect) rect {
-	[self setUpDocumentBounds];
+	float documentHeight = [self bounds].size.height;
+	float documentWidth = [self bounds].size.width;
 	[[NSColor whiteColor] setFill];
 	// Draw whole thing in white to make sure the preview window is empty.
-	NSRectFill(NSMakeRect(0,0, pageWidth_, documentHeight_));
+	NSRectFill(NSMakeRect(0,0, documentWidth, documentHeight));
 	
-	float tableWidth = pageWidth_ - documentMargin_*2;
-	float tableHeight =  floor((documentHeight_-headerHeight_-documentMargin_*2)/rowHeight_) * rowHeight_;
-	float tableBottom = startY_ + documentMargin_;
-	float tableLeft = documentMargin_;
+	float tableWidth = PAGE_WIDTH;
+	float tableHeight =  floor((documentHeight - headerHeight_) / rowHeight_) * rowHeight_;
+	float tableBottom = 0;
+	float tableLeft = 0;
 
 	[self drawHeader];
 	[self drawTableForCars: carsInTrain_
