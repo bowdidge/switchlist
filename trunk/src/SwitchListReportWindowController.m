@@ -45,11 +45,14 @@
 }
 
 - (void) awakeFromNib {
-	// TODO(bowdidge): Ugly, but setting the frame automatically changes the bounds.
-	// TODO(bowdidge): Perhaps should be passing size of view some other way.
-	NSRect bounds = [view_ bounds];
+	NSRect bounds = [view_ documentBounds];
 	[view_ setFrame: [view_ bounds]];
-	[view_ setBounds: bounds];
+	// Set the bounds slightly larger than the document drawing area so there's some margin.
+	[view_ setBounds: NSMakeRect(-10, -10, bounds.size.width+20, bounds.size.height+20)];
+	
+	// Use a white background so resizing the window doesn't show unseemly gray bands.
+	[scrollView_ setBackgroundColor: [NSColor whiteColor]];
+	[scrollView_ setDrawsBackground: YES];
 	[scrollView_ setDocumentView: view_];
 }
 

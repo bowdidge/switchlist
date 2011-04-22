@@ -53,23 +53,28 @@
 }
 
 - (NSRect)rectForPage:(int)page {
-	return NSMakeRect(0, PAGE_HEIGHT * (page-1), PAGE_WIDTH, PAGE_HEIGHT);
+    // All the switchlists are printing in the same view, so document bounds should match.
+	NSRect documentBounds = [[[self subviews] lastObject] documentBounds];
+	return NSMakeRect(0, documentBounds.size.height * (page-1), documentBounds.size.width, documentBounds.size.height);
 }
 
 - (id) initWithFrame: (NSRect) r withDocument: (NSObject<SwitchListDocumentInterface>*) document 
 	   withViewClass: (Class) preferredClass {
 	[super initWithFrame: r];
-	document_ = [document retain];
+	document_ = [document retain];	
 	subviews = [[NSMutableArray alloc] init];
 	int pages = 0;
+
 	
 	NSArray *trains = [[document entireLayout] allTrains];
 
 	// TODO(bowdidge): Fix this so it works with different sized paper.
-	for (ScheduledTrain *t in trains) {
+	for (ScheduledTrain *t in trains) {		
 		NSRect subDocumentRect = NSMakeRect(0.0, 0.0, PAGE_WIDTH, PAGE_HEIGHT);
 		SwitchListBaseView *v = [[preferredClass alloc] initWithFrame: subDocumentRect withDocument: document];
 		[v setTrain: t];
+		// All the switchlists are printing in the same view, so document bounds should match.
+		NSRect documentBounds = [v documentBounds];
 		NSRange r;
 		[v knowsPageRange: &r];
 		int pageCount = r.length;
@@ -78,14 +83,15 @@
 		}
 		[subviews addObject: v];
 		NSRect bounds = [v bounds];
-		[v setFrame: NSMakeRect(0, pages*PAGE_HEIGHT, bounds.size.width, bounds.size.height)];
+		[v setFrame: NSMakeRect(0, pages * documentBounds.size.height, 
+								bounds.size.width, bounds.size.height)];
 		// TODO(bowdidge): Why the change?
 		[v setBounds: bounds];
 		pages += pageCount;
 		[v release];
 	}
-	
-	[self setFrame: NSMakeRect(0.0, 0.0, PAGE_WIDTH, PAGE_HEIGHT*pages)];
+	NSRect documentBounds = [[subviews lastObject] documentBounds];
+	[self setFrame: NSMakeRect(0.0, 0.0, documentBounds.size.width, documentBounds.size.height*pages)];
 	[self setSubviews: subviews];
 
 	return self;

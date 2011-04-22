@@ -125,7 +125,8 @@ float PAGE_HEIGHT = 72.0 * 9.5;
 	carsInTrain_ = [[NSArray alloc] init];
 	owningDocument_ = [document retain];
 	rowHeight_ = 22.0;
-	[self setBounds: NSMakeRect(0, 0, PAGE_WIDTH, PAGE_HEIGHT)];
+	documentBounds_ = NSMakeRect(0.0,0.0, PAGE_WIDTH, PAGE_HEIGHT);
+	[self setBounds: documentBounds_];
 	return self;
 }
 
@@ -134,6 +135,12 @@ float PAGE_HEIGHT = 72.0 * 9.5;
 	[carsInTrain_ release];
 	[owningDocument_ release];
 	[super dealloc];
+}
+
+// Returns the drawing rectangle used for each switchlist document.
+// Allows the view bounds to be resized to add whitespace around the document.
+- (NSRect) documentBounds {
+    return documentBounds_;
 }
 
 - (void) setTrain: (ScheduledTrain*) train {
@@ -160,7 +167,7 @@ float PAGE_HEIGHT = 72.0 * 9.5;
 
 // Draw the train name in the upper left in small type.
 - (void) drawTrainName {
-	float documentHeight = [self bounds].size.height;
+	float documentHeight = documentBounds_.size.height;
 	[[train_ name] drawAtPoint: NSMakePoint(10.0, documentHeight - 10.0) withAttributes: [self smallTypeAttr]];
 }
 
@@ -333,7 +340,7 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 // The top should always be at a page boundary.
 // Pages should always be PAGE_WIDTH wide and PAGE_HEIGHT high.
 - (NSRect)rectForPage:(int)page {
-	return NSMakeRect(0, PAGE_HEIGHT * (page - 1), PAGE_WIDTH, PAGE_HEIGHT);
+	return NSMakeRect(0, documentBounds_.size.height * (page - 1), documentBounds_.size.width, documentBounds_.size.height);
 }
 
 // Draw the main portion of the switchlist using the current
