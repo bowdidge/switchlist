@@ -74,10 +74,9 @@
 	[entireLayout_ setLayoutName: @"My layout"];
 	[entireLayout_ setCurrentDate: [NSDate dateWithTimeIntervalSince1970: 0]];
 	
-	report_ = [[Report alloc] init];
+	report_ = [[Report alloc] initWithDocument: mockDoc];
 	[report_ setReportTextView: [[[MockTextView alloc] init] autorelease]];
 	[report_ setTypedFont: [NSFont userFixedPitchFontOfSize: 10.0]];
-	[report_ setOwningDocument: mockDoc];
 }
 
 - (void) testLineLength {
