@@ -109,19 +109,19 @@
 	NSString *yearString = [date objectAtIndex: 1];
 	NSString *centuryString = [date objectAtIndex: 2];
 	
-	float documentHeight = [self bounds].size.height;
+	float documentHeight = documentBounds_.size.height;
 	// Draw stuff in title.
 	NSDictionary *title1Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 12]  forKey: NSFontAttributeName];
-	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: documentHeight - 8 centerX: PAGE_WIDTH/2 attributes: title1Attrs];
+	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: documentHeight - 8 centerX: documentBounds_.size.width/2 attributes: title1Attrs];
 	
 	NSDictionary *title2Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 24]  forKey: NSFontAttributeName];
-	[self drawCenteredString: @"SWITCH LIST" centerY: documentHeight - 24 centerX: PAGE_WIDTH/2  attributes: title2Attrs];
+	[self drawCenteredString: @"SWITCH LIST" centerY: documentHeight - 24 centerX: documentBounds_.size.width/2  attributes: title2Attrs];
 	
 	NSDictionary *title3Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 14]  forKey: NSFontAttributeName];
 	
 	// Next, draw the location/date string, and handwrite in the year and date.
 	float locationStringCenterY = documentHeight - 50;
-	float locationStringCenterX = PAGE_WIDTH / 2;
+	float locationStringCenterX = documentBounds_.size.width / 2;
 	NSString *locationDateString = [NSString stringWithFormat: @"______________ at ____________________ station, ___________________ %@____",
 									centuryString];
 	
@@ -137,13 +137,12 @@
 
 // Main drawing routine, called for printing or screen redraw.
 - (void) drawRect: (NSRect) rect {
-	float documentHeight = [self bounds].size.height;
-	float documentWidth = [self bounds].size.width;
+	float documentHeight = documentBounds_.size.height;
 	[[NSColor whiteColor] setFill];
 	// Draw whole thing in white to make sure the preview window is empty.
-	NSRectFill(NSMakeRect(0,0, documentWidth, documentHeight));
+	NSRectFill([self bounds]);
 	
-	float tableWidth = PAGE_WIDTH;
+	float tableWidth = documentBounds_.size.width;
 	float tableHeight =  floor((documentHeight - headerHeight_) / rowHeight_) * rowHeight_;
 	float tableBottom = 0;
 	float tableLeft = 0;

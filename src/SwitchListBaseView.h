@@ -71,11 +71,18 @@ extern float PAGE_HEIGHT;
 
 	// Height of individual rows in switchlist table drawn by -[SwitchListBaseView drawTableForCars:rect:source]
 	float rowHeight_;
+	
+	// Expected bounds of document drawing.  This may not be the same as bounds because the view might
+	// be resized to fit the frame or add margins.
+	NSRect documentBounds_;
 }
 
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document;
 - (void) setTrain: (ScheduledTrain*) train;
 - (ScheduledTrain*) train;
+
+// Document drawing size and aspect ratio.  Real document will be scaled with margins added.
+- (NSRect) documentBounds;
 
 // Draws the named string in a box centered at the specified location with the specified width.
 - (void) drawCenteredString: (NSString *) str centerY: (float) centerY centerX: (float) centerPos attributes: attrs;
