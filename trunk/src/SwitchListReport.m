@@ -43,8 +43,8 @@
 //  Generates the text report for a standard to/from switchlist.
 
 @implementation SwitchListReport
-- (id) init {
-	[super init];
+- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document {
+	[super initWithDocument: document];
 	train_ = nil;
 	return self;
 }

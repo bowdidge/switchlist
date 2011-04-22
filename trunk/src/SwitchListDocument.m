@@ -624,7 +624,6 @@
 	SwitchListReportWindowController *slwc = [[SwitchListReportWindowController alloc] initWithWindowNibName: @"SwitchListReportWindow"
 																									withView: v];
 	[v setTrain: train];
-	[slwc setOwningDocument: self];
 	[[slwc window] center];
 	[[slwc window] makeKeyAndOrderFront: self];
 	// TODO(bowdidge): How to free this?  Who owns?
@@ -646,8 +645,7 @@
 	switch (defaultStyle) {
 	case OldSwitchListStyle:
 	{
-		SwitchListReport *report = [[SwitchListReport alloc] init];
-		[report setOwningDocument: self];
+		SwitchListReport *report = [[SwitchListReport alloc] initWithDocument: self];
 		[report setObjects: carsInTrain];
 		[report setTrain: train];
 		[report generateReport];
@@ -655,8 +653,7 @@
 		break;
 	case PickUpDropOffSwitchListStyle:
 	{
-		SwitchListReport *report = [[KaufmanSwitchListReport alloc] init];
-		[report setOwningDocument: self];
+		SwitchListReport *report = [[KaufmanSwitchListReport alloc] initWithDocument: self];
 		[report setObjects: carsInTrain];
 		[report setTrain: train];
 		[report generateReport];
@@ -676,8 +673,7 @@
 			
 	case PICLReportStyle:
 	{
-		PICLReport *report = [[PICLReport alloc] init];
-		[report setOwningDocument: self];
+		PICLReport *report = [[PICLReport alloc] initWithDocument: self];
 		[report setObjects: carsInTrain];
 		[report setTrain: train];
 		[report generateReport];
