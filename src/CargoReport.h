@@ -38,7 +38,8 @@
 	// Real NSString for the "unspecified" term used for empty carTypes.
 	NSString *unspecifiedString_;
 }
-- (id) initWithIndustries: (NSArray*) industryObjects;
+- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document
+		 withIndustries: (NSArray*) industryObjects;
 - (NSString*) contents;
 - (NSString *) typeString;
 

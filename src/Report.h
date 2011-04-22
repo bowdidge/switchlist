@@ -50,7 +50,7 @@
 	NSObject<SwitchListDocumentInterface> *owningDocument_;
 	NSFont *typedFont_;
 }
-- (id) init;
+- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document;
 // do work display window
 - (void) generateReport;
 /* Note that some reports may define the objects to be something else like an NSDictionary. */
@@ -77,7 +77,6 @@
 
 - (IBAction)printDocument:(id)sender;
 
-- (void) setOwningDocument: (NSObject<SwitchListDocumentInterface>*) d;
 - (NSObject<SwitchListDocumentInterface>*) owningDocument;
 
 // Internal

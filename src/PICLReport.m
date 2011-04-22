@@ -47,8 +47,8 @@
 // Report shows standing of all cars to be handled at stations visited by selected train
 
 @implementation PICLReport
-- (id) init {
-	[super init];
+- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document {
+	[super initWithDocument: document];
 	return self;
 }
 

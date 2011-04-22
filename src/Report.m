@@ -40,14 +40,14 @@
 #import "SwitchListDocumentInterface.h"
 
 @implementation Report
-- (id) init {
+- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document {
 	[super init];
     if ([NSBundle loadNibNamed:@"Report.nib" owner: self] != YES) {
 		NSLog(@"Problems loading report nib!\n");
 	}
 	typedFont_ = [self defaultTypedFont];
 	objectsToDisplay_ = nil;
-	owningDocument_ = nil;
+	owningDocument_ = [document retain];
 	return self;
 }
 
@@ -89,11 +89,6 @@
 - (void) awakeFromNib {
 	[[NSPrintInfo sharedPrintInfo] setHorizontalPagination: NSFitPagination];
 	[[NSPrintInfo sharedPrintInfo] setVerticallyCentered: NO];
-}
-
-- (void) setOwningDocument: (NSObject<SwitchListDocumentInterface>*) d {
-	[owningDocument_ release];
-	owningDocument_ = [d retain];
 }
 
 - (NSObject<SwitchListDocumentInterface>*) owningDocument {

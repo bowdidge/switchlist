@@ -43,8 +43,9 @@
 
 @implementation CargoReport
 
-- (id) initWithIndustries: (NSArray*) industryObjects {
-	[super init];
+- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document 
+		 withIndustries: (NSArray*) industryObjects {
+	[super initWithDocument: document];
 	industryObjects_  = [industryObjects retain];
 	uniqueStrings_ = nil;
 	unspecifiedString_ = [NSString stringWithString: @"Unspecified"];
