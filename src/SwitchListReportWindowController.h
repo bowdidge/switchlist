@@ -41,12 +41,8 @@
 @interface SwitchListReportWindowController : NSWindowController<NSWindowDelegate> {
 	IBOutlet SwitchListBaseView *view_;
     IBOutlet NSScrollView *scrollView_;
-	NSObject<SwitchListDocumentInterface> *_owningDocument;
-
 }
 
 - (id) initWithWindowNibName: (NSString*) nibName withView: (NSView*) v;
 - (IBAction) printDocument: (id) sender;
-- (void) setOwningDocument: (NSObject<SwitchListDocumentInterface>*) d ;
-
 @end

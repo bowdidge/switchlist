@@ -33,6 +33,7 @@
 #import "SwitchListDocument.h"
 
 #import "CarReport.h"
+#import "CargoReport.h"
 #import "GlobalPreferences.h"
 #import "IndustryReport.h"
 #import "ReservedCarReport.h"
@@ -208,28 +209,25 @@
 }
 
 - (IBAction) makeCarReport: (id) sender {
-	CarReport *report = [[CarReport alloc] init];
-	[report setOwningDocument: [self currentDocument]];
+	CarReport *report = [[CarReport alloc] initWithDocument: [self currentDocument]];
 	[report setObjects: [[[self currentDocument] entireLayout] allFreightCarsReportingMarkOrder]];
 	[report generateReport];
 }
 - (IBAction) makeIndustryReport: (id) sender {
-	IndustryReport *report = [[IndustryReport alloc] init];
-	[report setOwningDocument: [self currentDocument]];
+	IndustryReport *report = [[IndustryReport alloc] initWithDocument: [self currentDocument]];
 	[report setObjects: [[[self currentDocument] entireLayout] allFreightCarsSortedByIndustry]];
 	[report generateReport];
 }
 
 - (IBAction) displayCargoReport: (id) sender {
-	CargoReport *report = [[CargoReport alloc] initWithIndustries: [[[self currentDocument] entireLayout] allIndustries]];
-	[report setOwningDocument: [self currentDocument]];
+	CargoReport *report = [[CargoReport alloc] initWithDocument: [self currentDocument]
+												 withIndustries: [[[self currentDocument] entireLayout] allIndustries]];
 	[report setObjects: [[[self currentDocument] entireLayout] allValidCargos]];
 	[report generateReport];
 }
 
 - (IBAction) displayReservedCarReport: (id) sender {
-	ReservedCarReport *report = [[ReservedCarReport alloc] init];
-	[report setOwningDocument: [self currentDocument]];
+	ReservedCarReport *report = [[ReservedCarReport alloc] initWithDocument: [self currentDocument]];
 	[report setObjects: [[[self currentDocument] entireLayout] allFreightCarsReportingMarkOrder]];
 	[report generateReport];
 }
@@ -237,8 +235,7 @@
 // For each yard or staging yard, print out the list of cars in each yard and the train
 // that will be taking each car.
 - (IBAction) displayYardReport: (id) sender {
-	YardReport *report = [[YardReport alloc] init];
-	[report setOwningDocument: [self currentDocument]];
+	YardReport *report = [[YardReport alloc] initWithDocument: [self currentDocument]];
 	[report setObjects: [[[self currentDocument] entireLayout] allFreightCarsInYard]];
 	[report generateReport];
 }

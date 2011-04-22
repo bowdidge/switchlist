@@ -49,10 +49,9 @@
 	[self makeThreeStationTrain];
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"]; 
 
-	SwitchListReport *report = [[[SwitchListReport alloc] init] autorelease];
+	SwitchListReport *report = [[[SwitchListReport alloc] initWithDocument: mockDocument] autorelease];
 	[report setTrain: train];
 	[report setObjects: [[train freightCars] allObjects]];
-	[report setOwningDocument:  mockDocument]; 
 	NSString *result = [report contents];
 	STAssertTrue([result rangeOfString: FREIGHT_CAR_1_NAME].length > 0, @"Car entry not found.");
 	// TODO(bowdidge): Wrong test. Looking for regexp of industry # number.
@@ -66,7 +65,7 @@
 	[self makeThreeStationTrain];
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"]; 
 	
-	SwitchListReport *report = [[[SwitchListReport alloc] init] autorelease];
+	SwitchListReport *report = [[[SwitchListReport alloc] initWithDocument: mockDocument] autorelease];
 	[report setTrain: train];
 	[report setObjects: [[train freightCars] allObjects]];
 	
@@ -77,7 +76,6 @@
 			   destinedForIndustry: [self industryAtStation: @"B"]
 							  door: 1];
 
-	[report setOwningDocument: mockDocument]; 
 	NSString *result = [report contents];
 	STAssertTrue([result rangeOfString: FREIGHT_CAR_1_NAME].length > 0, @"Car entry not found.");
 	STAssertTrue([result rangeOfString: @"B-industry #1"].length > 0, 

@@ -59,14 +59,4 @@
 - (IBAction) printDocument: (id) sender {
 	[view_ print: sender];
 }
-
-- (void) setOwningDocument: (NSObject<SwitchListDocumentInterface>*) d {
-	[_owningDocument release];
-	_owningDocument = [d retain];
-}
-
-- (id<SwitchListDocumentInterface>) owningDocument {
-	return _owningDocument;
-}
-	
 @end
