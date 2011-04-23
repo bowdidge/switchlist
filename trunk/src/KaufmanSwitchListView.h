@@ -29,7 +29,7 @@
 #import <Cocoa/Cocoa.h>
 #import "SwitchListBaseView.h"
 
-//  Pretty switchlist based on the San Francisco Belt Line's
+//  Pretty switchlist based on the San Francisco Belt Railroad's
 //  Form B-7.  See Bill Kaufman's article on his use of these
 //  forms in the July 2009 Railroad Model Craftsman magazine.
 
