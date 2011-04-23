@@ -36,8 +36,10 @@
 // article on the San Francisco Belt Railway, Railroad Model Craftsman, July 2009.
 
 @interface SouthernPacificSwitchListView : SwitchListBaseView {
-
-  float headerHeight_;
+	// Height of form header in points.
+	float headerHeight_;
+	// Number of spaces for freight cars on each page.
+	int carsPerPage_;
 }
 - (NSColor*) canaryYellowColor;
 @end
