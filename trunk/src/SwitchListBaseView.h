@@ -122,11 +122,12 @@ extern float PAGE_HEIGHT;
 		 printedAttrs: (NSDictionary*) printedAttrs;
 
 // Draws the train's name faintly in the upper right.
-- (void) drawTrainName;
+- (void) drawTrainNameAtStart: (float) start;
 
 // Returns current layout date in an array with three elements: month/day, 2 digit year, and 2 digit century.
 - (NSArray*) getDateInStringFormat;
 
+// Draws the car table with the given cars at the given location.
 - (void) drawTableForCars: (NSArray*) carsToDisplay rect: (NSRect) rect source: (SwitchListSource*) source;
 
 // Preferred font drawing attributes for this view.

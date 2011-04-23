@@ -104,6 +104,8 @@
 	[super initWithFrame: frameRect withDocument: document];
 	headerHeight_ = 80;
 	[self setBounds: documentBounds_];
+	// Off by one because header occupies one space.
+	carsPerPage_ = floor((documentBounds_.size.height - headerHeight_) / rowHeight_) - 1;
 	return self;
 }
 
@@ -137,15 +139,19 @@
 
 - (void) setTrain: (ScheduledTrain*) train {
 	[super setTrain: train];
-	// TODO(bowdidge): Print multiple pages if too many cars.
-	[self setBounds: documentBounds_];
+
+	int numberOfPages = ceil(((float)[carsInTrain_ count]) / carsPerPage_);
+	if (numberOfPages == 0) numberOfPages = 1;
+	[self setBounds: NSMakeRect(0, 0, 
+								documentBounds_.size.width, numberOfPages * documentBounds_.size.height)];
 }
 
 // Return the number of pages available for printing
 // Required for printing support.
 - (BOOL)knowsPageRange:(NSRangePointer)range {
+	int numberOfPages = ceil(((float)[carsInTrain_ count]) / carsPerPage_);
     range->location = 1;
-    range->length = 1;
+	range->length = numberOfPages;
     return YES;
 }
 
@@ -156,9 +162,9 @@
 // Train:  ____  Left _______M _______, 19__
 // Engine: ____  Arrd _______M _______, 19__
 
-- (void) drawHeader {
+- (void) drawHeaderWithStart: (float) start {
 	
-	float topOfHeader = documentBounds_.size.height - 8;
+	float topOfHeader = start + documentBounds_.size.height - 8;
 	NSArray *date = [self getDateInStringFormat];
 	NSString *dateString = [date objectAtIndex: 0];
 	NSString *yearString = [date objectAtIndex: 1];
@@ -186,31 +192,52 @@
 			   strings: [NSArray arrayWithObjects: @"",@"", @"", @"", @"", @"", @"", dateString, @"", yearString, nil]
 		  printedAttrs: title1Attrs];
 
-	[self drawTrainName];
+	[self drawTrainNameAtStart: start];
 }
 
-// Main drawing routine, called for printing or screen redraw.
-- (void) drawRect: (NSRect) rect {
+- (void) drawOneFormWithCars: (NSArray *) cars  withStart: (float) start {
+	// Draw whole thing in yellow - rect alone isn't enough for printing.
 	float documentWidth = 400;
 	float documentHeight = documentBounds_.size.height;
-	[[NSColor whiteColor] setFill];
-	NSRectFill([self bounds]);
-	
 	[[self canaryYellowColor] setFill];
-	// Draw whole thing in yellow - rect alone isn't enough for printing.
-	NSRectFill(NSMakeRect((documentBounds_.size.width - documentWidth)/2, 0, documentWidth, documentHeight));
+	NSRectFill(NSMakeRect((documentBounds_.size.width - documentWidth)/2, start, documentWidth, documentHeight));
 
 	float tableWidth = documentWidth;
-	float tableHeight =  floor((documentHeight - headerHeight_) / rowHeight_) * rowHeight_;
-	float tableBottom = 0;
-	float tableLeft = (documentBounds_.size.width - documentWidth) / 2;
+	float tableHeight =  floor((documentBounds_.size.height - headerHeight_) / rowHeight_) * rowHeight_;
+	float tableBottom = start;
+	float tableLeft = (documentBounds_.size.width - tableWidth) / 2;
 			   
-	[self drawHeader];
-	[self drawTableForCars: carsInTrain_
+	[self drawHeaderWithStart: start];
+	[self drawTableForCars: cars
 					  rect: NSMakeRect(tableLeft, tableBottom, tableWidth, tableHeight)
 					source: [[[SouthernPacificSwitchListSource alloc] initWithTrain: train_
-																		   withCars: carsInTrain_
+																		   withCars: cars
 																	 owningDocument: owningDocument_] autorelease]];
+
+}
+// Main drawing routine, called for printing or screen redraw.
+- (void) drawRect: (NSRect) rect {
+	[[NSColor whiteColor] setFill];
+	NSRectFill([self bounds]);
+
+	int totalCars = [carsInTrain_ count];
+	int firstCar = 0;
+	int start = 0;
+	if (totalCars == 0) {
+		// Draw something.
+		[self drawOneFormWithCars: [NSArray array] withStart: 0];
+		return;
+	}
+	
+	while (firstCar < totalCars) {
+		NSRange carRange = NSMakeRange(firstCar,
+									   firstCar + carsPerPage_ < totalCars ? carsPerPage_ : totalCars - firstCar);
+		NSArray *carsToShow = [carsInTrain_ subarrayWithRange: carRange];
+		[self drawOneFormWithCars: carsToShow withStart: start];
+		firstCar += carsPerPage_;
+		start += documentBounds_.size.height;
+	}
+
 }
 
 - (NSColor *) canaryYellowColor {

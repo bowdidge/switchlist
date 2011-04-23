@@ -166,9 +166,9 @@ float PAGE_HEIGHT = 72.0 * 9.5;
 }
 
 // Draw the train name in the upper left in small type.
-- (void) drawTrainName {
+- (void) drawTrainNameAtStart: (float) start {
 	float documentHeight = documentBounds_.size.height;
-	[[train_ name] drawAtPoint: NSMakePoint(10.0, documentHeight - 10.0) withAttributes: [self smallTypeAttr]];
+	[[train_ name] drawAtPoint: NSMakePoint(10.0, start + documentHeight - 10.0) withAttributes: [self smallTypeAttr]];
 }
 
 - (void) drawCenteredString: (NSString *) str centerY: (float) centerY centerX: (float) centerPos attributes: attrs {
@@ -342,7 +342,7 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 - (NSRect)rectForPage:(int)page {
 	return NSMakeRect(0, documentBounds_.size.height * (page - 1), documentBounds_.size.width, documentBounds_.size.height);
 }
-
+	
 // Draw the main portion of the switchlist using the current
 // SwitchListSource to describe the contents and headings for the rows.
 - (void) drawTableForCars: (NSArray*) carsToDisplay rect: (NSRect) rect source: (SwitchListSource*) source {

@@ -132,7 +132,7 @@
 			   strings: [NSArray arrayWithObjects: @"", @"", firstTownString, @"", dateString, @"", yearString, nil]
 		  printedAttrs: title3Attrs];
 
-	[self drawTrainName];
+	[self drawTrainNameAtStart: 0];
 }
 
 // Main drawing routine, called for printing or screen redraw.
