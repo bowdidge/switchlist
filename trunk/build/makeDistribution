@@ -9,7 +9,7 @@
 # TODO(bowdidge) Redo for SVN
 
 if $#argv != 1 then
-  echo Usage: makeDistribution SwitchList-x-y-z
+  echo Usage: makeDistribution SwitchList.x.y.z
   exit 1
 endif
 
