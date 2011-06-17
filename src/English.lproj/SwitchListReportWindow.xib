@@ -41,13 +41,13 @@
 			<object class="NSWindowTemplate" id="1005">
 				<int key="NSWindowStyleMask">15</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{446, 112}, {488, 684}}</string>
+				<string key="NSWindowRect">{{300, 160}, {660, 745}}</string>
 				<int key="NSWTFlags">544735232</int>
 				<string key="NSWindowTitle">Switch List</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
-				<string key="NSWindowContentMaxSize">{600, 900}</string>
-				<string key="NSWindowContentMinSize">{488, 684}</string>
+				<string key="NSWindowContentMaxSize">{800, 900}</string>
+				<string key="NSWindowContentMinSize">{660, 684}</string>
 				<object class="NSView" key="NSWindowView" id="1006">
 					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">274</int>
@@ -66,12 +66,12 @@
 										<object class="NSCustomView" id="1048785007">
 											<reference key="NSNextResponder" ref="352047945"/>
 											<int key="NSvFlags">319</int>
-											<string key="NSFrameSize">{468, 684}</string>
+											<string key="NSFrameSize">{639, 748}</string>
 											<reference key="NSSuperview" ref="352047945"/>
 											<string key="NSClassName">SwitchListBaseView</string>
 										</object>
 									</object>
-									<string key="NSFrame">{{1, 1}, {471, 682}}</string>
+									<string key="NSFrame">{{1, 1}, {645, 746}}</string>
 									<reference key="NSSuperview" ref="607125000"/>
 									<reference key="NSNextKeyView" ref="1048785007"/>
 									<reference key="NSDocView" ref="1048785007"/>
@@ -89,13 +89,13 @@
 								<object class="NSScroller" id="590432771">
 									<reference key="NSNextResponder" ref="607125000"/>
 									<int key="NSvFlags">256</int>
-									<string key="NSFrame">{{472, 1}, {15, 669}}</string>
+									<string key="NSFrame">{{646, 1}, {15, 730}}</string>
 									<reference key="NSSuperview" ref="607125000"/>
 									<bool key="NSEnabled">YES</bool>
 									<reference key="NSTarget" ref="607125000"/>
 									<string key="NSAction">_doScroller:</string>
 									<double key="NSCurValue">1</double>
-									<double key="NSPercent">0.99707602339181289</double>
+									<double key="NSPercent">0.99732620320855614</double>
 								</object>
 								<object class="NSScroller" id="424510180">
 									<reference key="NSNextResponder" ref="607125000"/>
@@ -108,7 +108,7 @@
 									<double key="NSPercent">0.50602412223815918</double>
 								</object>
 							</object>
-							<string key="NSFrame">{{-1, 1}, {488, 684}}</string>
+							<string key="NSFrame">{{-1, -2}, {662, 748}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSNextKeyView" ref="352047945"/>
 							<int key="NSsFlags">82</int>
@@ -117,12 +117,12 @@
 							<reference key="NSContentView" ref="352047945"/>
 						</object>
 					</object>
-					<string key="NSFrameSize">{488, 684}</string>
+					<string key="NSFrameSize">{660, 745}</string>
 					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1600, 1002}}</string>
-				<string key="NSMinSize">{488, 706}</string>
-				<string key="NSMaxSize">{600, 922}</string>
+				<string key="NSMinSize">{660, 706}</string>
+				<string key="NSMaxSize">{800, 922}</string>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -143,6 +143,14 @@
 						<reference key="destination" ref="1001"/>
 					</object>
 					<int key="connectionID">10</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">window</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1005"/>
+					</object>
+					<int key="connectionID">11</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -247,16 +255,16 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{71, 172}, {488, 684}}</string>
+					<string>{{10, 138}, {660, 745}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{71, 172}, {488, 684}}</string>
+					<string>{{10, 138}, {660, 745}}</string>
 					<integer value="1"/>
 					<string>{196, 240}</string>
 					<string>{{357, 418}, {480, 270}}</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
-					<string>{600, 900}</string>
-					<string>{488, 684}</string>
+					<string>{800, 900}</string>
+					<string>{660, 684}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
@@ -283,7 +291,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">10</int>
+			<int key="maxID">11</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

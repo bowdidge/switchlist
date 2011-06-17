@@ -47,8 +47,8 @@
 // Report shows standing of all cars to be handled at stations visited by selected train
 
 @implementation PICLReport
-- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document {
-	[super initWithDocument: document];
+- (id) initWithFrame: (NSRect) frame withDocument: (NSObject<SwitchListDocumentInterface>*) document {
+	[super initWithFrame: frame withDocument: document];
 	return self;
 }
 
@@ -56,12 +56,6 @@
 - (NSString *) typeString {
 	return [NSString stringWithFormat: @"Work Order for %@",[train_ name]];
 }
-
-- (void) setTrain: (ScheduledTrain*) tr {
-	[train_ release];
-	train_ = [tr retain];
-}
-
 
 - (NSString*) contents {
 	DoorAssignmentRecorder *recorder = [owningDocument_ doorAssignmentRecorder];
@@ -147,7 +141,6 @@
 	NSDateFormatter *outputFormatter = [[NSDateFormatter alloc] init];
 	[outputFormatter setDateFormat:@"MM/dd/yy"];
 	NSString *newDateString = [outputFormatter stringFromDate: [[owningDocument_ entireLayout] currentDate]];
-	NSLog(@"newDateString %@", newDateString);
 	[outputFormatter release];
 	
 	
@@ -155,7 +148,6 @@
 	NSDateFormatter *outputFormatter1 = [[NSDateFormatter alloc] init];
 	[outputFormatter1 setDateFormat:@"HH:mm:ss"];
 	NSString *newDateString1 = [outputFormatter1 stringFromDate:now1];
-	NSLog(@"newDateString1 %@", newDateString1);
     [outputFormatter1 release];									
 	
 	
@@ -165,36 +157,8 @@
 	return piclString;
 }
 
-- (NSFont*) defaultTypedFont {
-	// Choose deafult font.
-	NSString *userFontName = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_TYPED_FONT_NAME];
-	
-	// Make sure the font exists by pretending to request it.
-	if (userFontName) {
-		NSFont *userFont = [NSFont fontWithName: userFontName size: 14.0];
-		if (userFont) return userFont;
-	}
-	
-	NSFont *typeFont = [NSFont fontWithName: @"Courier" size: 14.0];
-	if (typeFont) return typeFont;
-	
-	return [NSFont userFixedPitchFontOfSize: 14.0];
+- (int) expectedColumns {
+	return 81;
 }
-
-
-// Set up print settings that hold for reports (and pretty much everything else we'll print in the app.
-- (void) awakeFromNib {
-	[[NSPrintInfo sharedPrintInfo] setHorizontalPagination: NSFitPagination];
-	[[NSPrintInfo sharedPrintInfo] setVerticalPagination: NSAutoPagination];
-	[[NSPrintInfo sharedPrintInfo] setVerticallyCentered: NO];
-	[[NSPrintInfo sharedPrintInfo] setHorizontallyCentered: YES];
-	[[NSPrintInfo sharedPrintInfo] setTopMargin:50.0];
-	[[NSPrintInfo sharedPrintInfo] setBottomMargin:50.0];
-	[[NSPrintInfo sharedPrintInfo] setLeftMargin:10.0];
-	[[NSPrintInfo sharedPrintInfo] setRightMargin:10.0];
-	[[NSPrintInfo sharedPrintInfo] setOrientation: NSPortraitOrientation];
-}
-
-
 
 @end

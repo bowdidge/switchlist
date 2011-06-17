@@ -139,7 +139,7 @@
 		for (CarType *ct in allCarTypes) {
 			[nameToCarTypeMap setObject: ct forKey: [ct carTypeName]];
 		}
-		
+		 
 		// If there weren't any car types, then the file still has the old ones.  Update.
 		NSArray *allFreightCars = [entireLayout_ allFreightCars];
 		for (FreightCar *fc in allFreightCars) {
@@ -619,16 +619,6 @@
 	[self updateSummaryInfo: self];
 }
 
-
-- (void) showSwitchListView: (SwitchListBaseView *) v train: (ScheduledTrain *) train  {
-	SwitchListReportWindowController *slwc = [[SwitchListReportWindowController alloc] initWithWindowNibName: @"SwitchListReportWindow"
-																									withView: v];
-	[v setTrain: train];
-	[[slwc window] center];
-	[[slwc window] makeKeyAndOrderFront: self];
-	// TODO(bowdidge): How to free this?  Who owns?
-}
-
 // Handle request to generate a switch list printout.
 - (IBAction) doGenerateSwitchList: (id) sender {
 	NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
@@ -638,55 +628,29 @@
 	int selRow = [selection firstIndex];
 	ScheduledTrain *train = [trains_ objectAtIndex: selRow];
 	
-	NSArray *carsInTrain = [entireLayout_ allCarsInTrainSortedByVisitOrder: train withDoorAssignments: doorAssignmentRecorder_];
-
 	int defaultStyle = [[NSUserDefaults standardUserDefaults] integerForKey:@"SwitchListDefaultStyle"];
 	SwitchListBaseView *switchListView;
-	switch (defaultStyle) {
-	case OldSwitchListStyle:
-	{
-		SwitchListReport *report = [[SwitchListReport alloc] initWithDocument: self];
-		[report setObjects: carsInTrain];
-		[report setTrain: train];
-		[report generateReport];
-	}
-		break;
-	case PickUpDropOffSwitchListStyle:
-	{
-		SwitchListReport *report = [[KaufmanSwitchListReport alloc] initWithDocument: self];
-		[report setObjects: carsInTrain];
-		[report setTrain: train];
-		[report generateReport];
-	}
-		break;
-	case PrettySwitchListStyle:
-		switchListView =  [[SwitchListView alloc] initWithFrame: NSMakeRect(0,0,500,500)
-															  withDocument: self];
-		[self showSwitchListView: switchListView train: train];
-		break;
-			
-	case SouthernPacificSwitchListStyle:
-		switchListView =  [[SouthernPacificSwitchListView alloc] initWithFrame: NSMakeRect(0,0,500,500)
-																  withDocument: self];
-		[self showSwitchListView: switchListView train: train];
-		break;
-			
-	case PICLReportStyle:
-	{
-		PICLReport *report = [[PICLReport alloc] initWithDocument: self];
-		[report setObjects: carsInTrain];
-		[report setTrain: train];
-		[report generateReport];
-	}
-		break;
-	case SanFranciscoBeltLineB7Style:
-		switchListView =  [[KaufmanSwitchListView alloc] initWithFrame: NSMakeRect(0,0,500,500)
-														  withDocument: self];
-		[self showSwitchListView: switchListView train: train];
-		break;
+	SwitchListAppDelegate *appDelegate = (SwitchListAppDelegate*) [[NSApplication sharedApplication] delegate];
+	Class reportClass = [[appDelegate indexToSwitchListClassMap] objectForKey: [NSNumber numberWithInt: defaultStyle]];
+									   
+	if (reportClass == nil) {
+		NSLog(@"Unknown switch list default style %d\n", defaultStyle);
+		reportClass = [SwitchListView class];
+		// TODO(bowdidge): Set as default.
 	}
 	
+	// Size is based on space in nib file.
+	switchListView = [[reportClass alloc] initWithFrame: NSMakeRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT)
+										   withDocument: self];
+	// These three not needed for non-text.
+	[switchListView setTrain: train];
+	
+	// TODO(bowdidge): How to free this?  Who owns?
+	SwitchListReportWindowController *slwc = [[SwitchListReportWindowController alloc] initWithWindowNibName: @"SwitchListReportWindow"
+																									withView: switchListView];
 	[self updateSummaryInfo: self];
+	[[slwc window] center];
+	[[slwc window] makeKeyAndOrderFront: self];
 }
 
 - (IBAction) doAnnulTrain: (id) sender {

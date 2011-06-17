@@ -57,11 +57,6 @@
 	return [NSString stringWithFormat: @"Switch List for %@",[train_ name]];
 }
 
-- (void) setTrain: (ScheduledTrain*) tr {
-	[train_ release];
-	train_ = [tr retain];
-}
-
 - (void) displayCars: (NSArray *) cars intoString: (NSMutableString *) switchListReport  {
   FreightCar *freightCar;
   NSEnumerator *e= [cars objectEnumerator];
@@ -83,7 +78,6 @@
 
 - (NSString*) contents {
 	// Now, iterate through each stop.
-	[self sortCars];
 	NSMutableString *switchListReport = [NSMutableString string];
 
 	[switchListReport appendFormat: @"\nTrain %@:\n",[train_ name]];
@@ -94,7 +88,7 @@
 
 	[switchListReport appendFormat: @"Cars to drop off\n"];
 	
-	NSArray *stationStops = [[self entireLayout] stationStopsForTrain: train_];
+	NSArray *stationStops = [[owningDocument_ entireLayout] stationStopsForTrain: train_];
 	Place *firstStation = [stationStops objectAtIndex: 0];
 	Place *lastStation = [stationStops lastObject];
 	
@@ -107,7 +101,7 @@
 	NSArray *pickUpCars = [train_ carsForStation: lastStation];
 	[self displayCars: pickUpCars intoString: switchListReport];
 	
-	NSMutableArray *remainingCars = [NSMutableArray arrayWithArray: objectsToDisplay_];
+	NSMutableArray *remainingCars = [NSMutableArray arrayWithArray: carsInTrain_];
 	[remainingCars removeObjectsInArray: pickUpCars];
 	[remainingCars removeObjectsInArray: dropOffCars];
 	

@@ -33,8 +33,14 @@
 #import "FreightCar.h"
 #import "SwitchListDocumentInterface.h"
 
+// Current page widths and height for an 8.5x11 paper with appropriate margins.
 extern float PAGE_WIDTH;
 extern float PAGE_HEIGHT;
+
+// Same, slightly scaled up for better display on the screen.
+float FRAME_WIDTH;
+float FRAME_HEIGHT;
+
 
 // Model for switch list, hiding details of what's in the specific
 // columns, number of rows, and how the text is generated.
@@ -83,6 +89,37 @@ extern float PAGE_HEIGHT;
 
 // Document drawing size and aspect ratio.  Real document will be scaled with margins added.
 - (NSRect) documentBounds;
+// Set the bounds for the document.  Subclasses must call when size of document is known.
+- (void) setDocumentBounds: (NSRect) r;
+
+// Page height in bounds coordinates.
+- (float) pageHeight;
+// Page width in bounds coordinates.
+- (float) pageWidth;
+
+// 
+// Preferred font drawing attributes for this view.
+//
+
+- (NSFont*) titleFontForSize: (float) sz;
+- (NSDictionary*) handwritingFontAttr;
+- (NSDictionary*) handwritingFontAttrForSize: (float) size;
+- (NSDictionary*) columnTitleAttr;
+
+// Font attributes available to all.
+// Small, faint type used for train name.
+- (NSDictionary*) smallTypeAttr;
+- (NSColor*) bluePenColor;
+// Can be overridden by defaults setting.
+- (NSString*) handwritingFontName;
+- (float) handwritingFontSize;
+// Gray in header?
+- (BOOL) useGrayBlock;
+
+
+//
+// Helpful drawing routines for subclasses.
+//
 
 // Draws the named string in a box centered at the specified location with the specified width.
 - (void) drawCenteredString: (NSString *) str centerY: (float) centerY centerX: (float) centerPos attributes: attrs;
@@ -130,21 +167,6 @@ extern float PAGE_HEIGHT;
 // Draws the car table with the given cars at the given location.
 - (void) drawTableForCars: (NSArray*) carsToDisplay rect: (NSRect) rect source: (SwitchListSource*) source;
 
-// Preferred font drawing attributes for this view.
-- (NSFont*) titleFontForSize: (float) sz;
-- (NSDictionary*) handwritingFontAttr;
-- (NSDictionary*) handwritingFontAttrForSize: (float) size;
-- (NSDictionary*) columnTitleAttr;
-
-// Font attributes available to all.
-// Small, faint type used for train name.
-- (NSDictionary*) smallTypeAttr;
-- (NSColor*) bluePenColor;
-// Can be overridden by defaults setting.
-- (NSString*) handwritingFontName;
-- (float) handwritingFontSize;
-// Gray in header?
-- (BOOL) useGrayBlock;
 // Returns a random name for signatures.
 - (NSString*) randomFunctionary;
 

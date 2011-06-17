@@ -103,9 +103,8 @@
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect withDocument: document];
 	headerHeight_ = 80;
-	[self setBounds: documentBounds_];
 	// Off by one because header occupies one space.
-	carsPerPage_ = floor((documentBounds_.size.height - headerHeight_) / rowHeight_) - 1;
+	carsPerPage_ = floor(([self pageHeight] - headerHeight_) / rowHeight_) - 1;
 	return self;
 }
 
@@ -142,8 +141,8 @@
 
 	int numberOfPages = ceil(((float)[carsInTrain_ count]) / carsPerPage_);
 	if (numberOfPages == 0) numberOfPages = 1;
-	[self setBounds: NSMakeRect(0, 0, 
-								documentBounds_.size.width, numberOfPages * documentBounds_.size.height)];
+	[self setDocumentBounds: NSMakeRect(0, 0, 
+										[self pageWidth], numberOfPages * [self pageHeight])];
 }
 
 // Return the number of pages available for printing
@@ -164,7 +163,7 @@
 
 - (void) drawHeaderWithStart: (float) start {
 	
-	float topOfHeader = start + documentBounds_.size.height - 8;
+	float topOfHeader = start + [self pageHeight] - 8;
 	NSArray *date = [self getDateInStringFormat];
 	NSString *dateString = [date objectAtIndex: 0];
 	NSString *yearString = [date objectAtIndex: 1];
@@ -174,15 +173,15 @@
 	NSDictionary *title1Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: [self headerTextFontSize]]  forKey: NSFontAttributeName];
 	NSDictionary *title2Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: [self headerTitleFontSize]]  forKey: NSFontAttributeName];
 	
-	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: topOfHeader centerX: documentBounds_.size.width/2 attributes: title1Attrs];
-	[self drawCenteredString: @"SWITCH LIST" centerY: topOfHeader - 20 centerX: documentBounds_.size.width/2  attributes: title2Attrs];
+	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: topOfHeader centerX: [self pageWidth]/2 attributes: title1Attrs];
+	[self drawCenteredString: @"SWITCH LIST" centerY: topOfHeader - 20 centerX: [self pageWidth]/2  attributes: title2Attrs];
 	
 	NSString *line1 = [NSString stringWithFormat: @"Train _________ Left _________________ station, __________M _______________ %@____", centuryString];
 	float line1CenterY = topOfHeader - 36;
-	float line1CenterX = documentBounds_.size.width / 2;
+	float line1CenterX = [self pageWidth] / 2;
 	NSString *line2 = [NSString stringWithFormat: @"Engine ________ Arrd _________________ station, __________M _______________ %@____", centuryString];
 	float line2CenterY = topOfHeader - 50;
-	float line2CenterX = documentBounds_.size.width / 2;
+	float line2CenterX = [self pageWidth] / 2;
 	
 	[self drawFormLine: line1 centerX: line1CenterX centerY: line1CenterY
 			   strings: [NSArray arrayWithObjects: @"",@"", @"", @"", @"", @"", @"", dateString, @"", yearString, nil]
@@ -198,14 +197,14 @@
 - (void) drawOneFormWithCars: (NSArray *) cars  withStart: (float) start {
 	// Draw whole thing in yellow - rect alone isn't enough for printing.
 	float documentWidth = 400;
-	float documentHeight = documentBounds_.size.height;
+	float documentHeight = [self pageHeight];
 	[[self canaryYellowColor] setFill];
-	NSRectFill(NSMakeRect((documentBounds_.size.width - documentWidth)/2, start, documentWidth, documentHeight));
+	NSRectFill(NSMakeRect(([self pageWidth] - documentWidth)/2, start, documentWidth, documentHeight));
 
 	float tableWidth = documentWidth;
-	float tableHeight =  floor((documentBounds_.size.height - headerHeight_) / rowHeight_) * rowHeight_;
+	float tableHeight =  floor(([self pageHeight] - headerHeight_) / rowHeight_) * rowHeight_;
 	float tableBottom = start;
-	float tableLeft = (documentBounds_.size.width - tableWidth) / 2;
+	float tableLeft = ([self pageWidth] - tableWidth) / 2;
 			   
 	[self drawHeaderWithStart: start];
 	[self drawTableForCars: cars
@@ -235,7 +234,7 @@
 		NSArray *carsToShow = [carsInTrain_ subarrayWithRange: carRange];
 		[self drawOneFormWithCars: carsToShow withStart: start];
 		firstCar += carsPerPage_;
-		start += documentBounds_.size.height;
+		start += [self pageHeight];
 	}
 
 }

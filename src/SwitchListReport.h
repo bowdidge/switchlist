@@ -29,19 +29,16 @@
 // SUCH DAMAGE.
 //
 
-#import "Report.h"
+#import "TextSwitchListView.h"
 @class ScheduledTrain;
 @class Place;
 
 // "Traditional" style report, printing all the cars to be dropped off
 // or picked up in roughly visiting order.
-@interface SwitchListReport : Report {
-	ScheduledTrain *train_;
+@interface SwitchListReport : TextSwitchListView {
 }
 // string representing contents of report -- override.
 - (NSString*) contents;
 // what kind of report?
 - (NSString *) typeString;
-- (void) setTrain: (ScheduledTrain*) tr;
-- (void) sortCars;
 @end

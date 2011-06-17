@@ -43,9 +43,8 @@
 //  Generates the text report for a standard to/from switchlist.
 
 @implementation SwitchListReport
-- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document {
-	[super initWithDocument: document];
-	train_ = nil;
+- (id) initWithFrame: (NSRect) frame withDocument: (NSObject<SwitchListDocumentInterface>*) document {
+	[super initWithFrame: (NSRect) frame withDocument: document];
 	return self;
 }
 
@@ -54,33 +53,11 @@
 	return @"Conductor's Wheel Report";
 }
 
-- (void) setTrain: (ScheduledTrain*) tr {
-	[train_ release];
-	train_ = [tr retain];
-}
-
-- (void) sortCars {
-	// To sort cars for display:
-	// take cars in the order that the train visits each station.
-	NSMutableArray *stationsVisited = [NSMutableArray array];
-	NSMutableArray *sortedList = [NSMutableArray array];
-	
-	NSArray *stationStops = [[self entireLayout] stationStopsForTrain: train_];
-	for (Place *station in stationStops) {
-		if ([stationsVisited containsObject: station]) continue;
-		[stationsVisited addObject: station];
-
-		[sortedList addObjectsFromArray: [train_ carsAtStation: station]];
-
-	}
-	[self setObjects: sortedList];
-}
 
 - (NSString*) contents {
 	FreightCar *freightCar;
 	
 	NSMutableString *switchListReport = [NSMutableString string];
-	[self sortCars];
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	[dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"yyyy/MM/dd" options:0 locale:[NSLocale currentLocale]]];
 	NSString *currentDateString = [dateFormatter stringFromDate: [[owningDocument_ entireLayout] currentDate]]; 
@@ -88,7 +65,7 @@
 	[switchListReport appendFormat: @"%-12s %4s %15s/%-15s  %15s/%15s %15s\n","Init Number","Kind","From Sta","Ind","To Sta","Ind # Door","Contents"];
 	[switchListReport appendFormat: @"%-12s %4s %15s/%-15s  %15s/%15s %15s\n","-----------","----","--------------","--------------","--------------","--------------","--------------"];
 
-	NSEnumerator *e= [objectsToDisplay_ objectEnumerator];
+	NSEnumerator *e= [carsInTrain_ objectEnumerator];
 	while ((freightCar = [e nextObject]) != nil) {
 		InduYard *source = [freightCar currentLocation];
 		NSString* contents = [freightCar cargoDescription];
@@ -105,6 +82,10 @@
     }						
 
 	return switchListReport;				
+}
+
+- (int) expectedColumns {
+	return 98;
 }
 
 @end
