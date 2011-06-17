@@ -38,8 +38,14 @@
 #import "Industry.h"
 #import "Place.h"
 
-float PAGE_WIDTH = 72.0 * 6.5;
-float PAGE_HEIGHT = 72.0 * 9.5;
+// bounds size for switchlist view, based on printing a page with 1/2 inch left and right
+// margins.
+float PAGE_WIDTH = 72.0 * 7.5;
+float PAGE_HEIGHT = 72.0 * 10;
+// Make the image on the screen a bit larger for easier viewing.
+// FRAME_WIDTH should equal size of text view in SwitchListReportWindow.xib.
+float FRAME_WIDTH = 72.0 * 7.5 * 1.2;
+float FRAME_HEIGHT = 72.0 * 10.0 * 1.2;
 
 @implementation SwitchListSource
 // Creates a new SwitchListSource that will display information on the named cars in the given
@@ -125,8 +131,7 @@ float PAGE_HEIGHT = 72.0 * 9.5;
 	carsInTrain_ = [[NSArray alloc] init];
 	owningDocument_ = [document retain];
 	rowHeight_ = 22.0;
-	documentBounds_ = NSMakeRect(0.0,0.0, PAGE_WIDTH, PAGE_HEIGHT);
-	[self setBounds: documentBounds_];
+	[self setDocumentBounds: NSMakeRect(0.0,0.0, PAGE_WIDTH, PAGE_HEIGHT)];
 	return self;
 }
 
@@ -137,10 +142,31 @@ float PAGE_HEIGHT = 72.0 * 9.5;
 	[super dealloc];
 }
 
+- (void) setDocumentBounds: (NSRect) rect {
+	documentBounds_ = rect;
+	// Assume finalRect.x,y are 0.
+	NSRect frameRect = rect;
+	// Scale the new size into frame coordinates so we continue to scale the image.
+	frameRect.size.width *= FRAME_WIDTH / PAGE_WIDTH;
+	frameRect.size.height *= FRAME_WIDTH / PAGE_WIDTH;
+	
+	[self setFrame: frameRect];
+	[self setBounds: NSInsetRect(rect, -10.0, -10.0)];
+}
+
 // Returns the drawing rectangle used for each switchlist document.
-// Allows the view bounds to be resized to add whitespace around the document.
 - (NSRect) documentBounds {
     return documentBounds_;
+}
+
+// Page height in bounds coordinates.
+- (float) pageHeight {
+	return PAGE_HEIGHT;
+}
+
+// Page width in bounds coordinates.
+- (float) pageWidth {
+	return PAGE_WIDTH;
 }
 
 - (void) setTrain: (ScheduledTrain*) train {
@@ -167,7 +193,7 @@ float PAGE_HEIGHT = 72.0 * 9.5;
 
 // Draw the train name in the upper left in small type.
 - (void) drawTrainNameAtStart: (float) start {
-	float documentHeight = documentBounds_.size.height;
+	float documentHeight = [self pageHeight];
 	[[train_ name] drawAtPoint: NSMakePoint(10.0, start + documentHeight - 10.0) withAttributes: [self smallTypeAttr]];
 }
 
@@ -340,7 +366,7 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 // The top should always be at a page boundary.
 // Pages should always be PAGE_WIDTH wide and PAGE_HEIGHT high.
 - (NSRect)rectForPage:(int)page {
-	return NSMakeRect(0, documentBounds_.size.height * (page - 1), documentBounds_.size.width, documentBounds_.size.height);
+	return NSMakeRect(0, [self pageHeight] * (page - 1), [self pageWidth], [self pageHeight]);
 }
 	
 // Draw the main portion of the switchlist using the current

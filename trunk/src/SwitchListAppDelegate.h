@@ -66,6 +66,11 @@
 	// For starting recent app
 	BOOL applicationHasStarted_;
 	BOOL shouldShowSplashScreen_;
+	
+	// Map from SwitchListStyle enum to appropriate SwitchListView class.
+	NSMutableDictionary *indexToSwitchListClassMap_;
+	// Map from SwitchListStyle enum to appropriate string.
+	NSMutableDictionary *indexToSwitchListNameMap_;
 }
 
 - (NSWindow*) reportWindow;
@@ -94,10 +99,14 @@
 // Manual approaches for testing.
 - (void) startWebServer;
 - (void) stopWebServer;
+
+- (NSDictionary*) indexToSwitchListClassMap;
+- (NSDictionary*) indexToSwitchListNameMap;
 @end
 
 // Used in preference panels, in defaults.  Stored in default  SwitchListDefaultStyle
 enum SwitchListStyle {
+	Undefined=0,
 	PrettySwitchListStyle=1,
 	OldSwitchListStyle=2,
 	PickUpDropOffSwitchListStyle=3,

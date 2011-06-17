@@ -168,8 +168,6 @@ int ROWS_PER_TABLE = 9;
 
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect withDocument: document];
-	// Placeholder bounds - correct value set when train is set.
-	[self setBounds: documentBounds_];
 	return self;
 }
 
@@ -200,7 +198,7 @@ int ROWS_PER_TABLE = 9;
 - (void) setTrain: (ScheduledTrain*) train {
 	[super setTrain: train];
 	NSSet *stopsForForm = [self stopsForForm];
-	[self setBounds: NSMakeRect(0, 0, documentBounds_.size.width, documentBounds_.size.height * [stopsForForm count])];
+	[self setDocumentBounds: NSMakeRect(0, 0, [self pageWidth], [self pageHeight] * [stopsForForm count])];
 }
 
 float HEADER_HEIGHT = 126.0;
@@ -216,17 +214,17 @@ float HEADER_HEIGHT = 126.0;
 	NSDictionary *displayAttrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 16]  forKey: NSFontAttributeName];
 	[self drawCenteredString: @"SAFETY FIRST"
 					 centerY: startHeight-20
-					 centerX: documentBounds_.size.width / 2
+					 centerX: [self pageWidth] / 2
 				  attributes: displayAttrs];
 
 	[self drawCenteredString: @"Help Prevent Accidents"
 					 centerY: startHeight-38
-					 centerX: documentBounds_.size.width * 0.75
+					 centerX: [self pageWidth] * 0.75
 				  attributes: displayAttrs];
 	
 	[self drawCenteredString: @"Maintain Clearance"
 					 centerY: startHeight-56
-					 centerX: documentBounds_.size.width * 0.75
+					 centerX: [self pageWidth] * 0.75
 				  attributes: displayAttrs];
 	
 	NSFontManager *sharedFontManager = [NSFontManager sharedFontManager];
@@ -236,25 +234,25 @@ float HEADER_HEIGHT = 126.0;
 	NSDictionary *strangeCapsAttr = [NSDictionary dictionaryWithObject: condensedSansSerif  forKey: NSFontAttributeName];
 	[self drawCenteredString: @"SAN FRANCISCO PORT AUTHORITY"
 					 centerY: startHeight-38
-					 centerX: documentBounds_.size.width / 4
+					 centerX: [self pageWidth] / 4
 				  attributes: strangeCapsAttr];
 
 	NSFont *tinyTimes = [NSFont fontWithName:@"Times Roman" size: 9.0];
 	NSDictionary *tinyTimesAttr = [NSDictionary dictionaryWithObject: tinyTimes forKey: NSFontAttributeName];
 	[self drawCenteredString: @"To the Superintendent:"
 					 centerY: startHeight-56
-					 centerX: documentBounds_.size.width / 4
+					 centerX: [self pageWidth] / 4
 				  attributes: tinyTimesAttr];
 
 	tinyTimesAttr = [NSDictionary dictionaryWithObject: tinyTimes forKey: NSFontAttributeName];
 	[self drawCenteredString: @"Please switch the following cars as indicated:"
 					 centerY: startHeight-68
-					 centerX: documentBounds_.size.width / 4
+					 centerX: [self pageWidth] / 4
 				  attributes: tinyTimesAttr];
 	
 	
 	NSString *datedLine = @"Dated  ________________________  Signed _________________________ By ____________________";
-	[self drawFormLine: datedLine centerX: documentBounds_.size.width / 2 centerY: startHeight-94
+	[self drawFormLine: datedLine centerX: [self pageWidth] / 2 centerY: startHeight-94
 			   strings: [NSArray arrayWithObjects: @"", dateString, @"", @"Del Monte Corp.", @"", [self randomFunctionary], nil]
 		  printedAttrs: tinyTimesAttr];
 }
@@ -276,7 +274,7 @@ int sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar*
 
 - (void) drawOneForm: (Place*) stationOfInterest startHeight: (float) startHeight {	
 	
-	[[train_ name] drawAtPoint: NSMakePoint(10.0, startHeight + documentBounds_.size.height - 20.0)
+	[[train_ name] drawAtPoint: NSMakePoint(10.0, startHeight + [self pageHeight] - 20.0)
 				withAttributes: [self smallTypeAttr]];
 
 	[[NSColor blueColor] setStroke];
@@ -298,7 +296,7 @@ int sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar*
 																			  owningDocument: owningDocument_] autorelease];
 	// Draw line immediately under previous to give a simulated 
 	[[NSColor blackColor] setStroke];
-	NSFrameRect(NSMakeRect(0, startHeight+10, documentBounds_.size.width, 3));
+	NSFrameRect(NSMakeRect(0, startHeight+10, [self pageWidth], 3));
 
 	int outCount = [dropOffCars count];
 	int inCount = [pickUpCars count];
@@ -311,53 +309,53 @@ int sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar*
 																 forKey: NSFontAttributeName];
 	
 	NSString *takeOutLine = @"TAKE OUT from: ______________________________";
-	[self drawFormLine: takeOutLine centerX: documentBounds_.size.width / 2 centerY: startHeight
+	[self drawFormLine: takeOutLine centerX: [self pageWidth] / 2 centerY: startHeight
 			   strings: [NSArray arrayWithObjects: @"", [stationOfInterest name], nil]
 		  printedAttrs: actionTitleAttrs];
 	
 	startHeight -= rowHeight_ * inCount + 40;
 	
 	[self drawTableForCars: pickUpCars
-					  rect: NSMakeRect(0, startHeight, documentBounds_.size.width, rowHeight_ * (inCount + 1))
+					  rect: NSMakeRect(0, startHeight, [self pageWidth], rowHeight_ * (inCount + 1))
 					source: pickUpSource];
 
 	// Draw line immediately under previous to give a simulated double line
 	[[NSColor blackColor] setStroke];
-	NSFrameRect(NSMakeRect(0, startHeight, documentBounds_.size.width, 3));
+	NSFrameRect(NSMakeRect(0, startHeight, [self pageWidth], 3));
 	
 	// Entertainment.
 	int pickUpCarsCount = [pickUpCars count];
 	if (pickUpCarsCount < 5 && pickUpCarsCount != 0) {
 		[self drawHandwrittenString: @"(Ready at 11 a.m.)"
-							centerX: documentBounds_.size.width/2
+							centerX: [self pageWidth]/2
 							centerY: startHeight + 0.2 * (rowHeight_ * outCount)
-						 columnSize: documentBounds_.size.width/2
+						 columnSize: [self pageHeight] / 2
 				   handwrittenAttrs: [self handwritingFontAttr]];
 	}
 	
 	startHeight -= 16;
 
 	NSString *spotAtLine = @"SPOT at: ______________________________";
-	[self drawFormLine: spotAtLine centerX: documentBounds_.size.width / 2 centerY: startHeight
+	[self drawFormLine: spotAtLine centerX: [self pageWidth] / 2 centerY: startHeight
 			   strings: [NSArray arrayWithObjects: @"", [stationOfInterest name], nil]
 		  printedAttrs: actionTitleAttrs];
 
 	startHeight -= rowHeight_ * outCount + 40;
 	[self drawTableForCars: dropOffCars
-					  rect: NSMakeRect(0, startHeight, documentBounds_.size.width, rowHeight_ * (outCount + 1))
+					  rect: NSMakeRect(0, startHeight, [self pageWidth], rowHeight_ * (outCount + 1))
 					source: dropOffSource];
 	
 	// Draw line immediately under previous to give a simulated 
 	[[NSColor blackColor] setStroke];
-	NSFrameRect(NSMakeRect(0, startHeight, documentBounds_.size.width, 3));
+	NSFrameRect(NSMakeRect(0, startHeight, [self pageWidth], 3));
 
 	// Entertainment.
 	int dropOffCarsCount = [dropOffCars count];
 	if (dropOffCarsCount < 5 && dropOffCarsCount != 0) {
 		[self drawHandwrittenString: @"(Spot by 1 p.m.)"
-							centerX: documentBounds_.size.width/2
+							centerX: [self pageWidth] / 2
 							centerY: startHeight + 0.2 * (rowHeight_ * outCount)
-						 columnSize: documentBounds_.size.width/2
+						 columnSize: [self pageWidth]/2
 				   handwrittenAttrs: [self handwritingFontAttr]];
 		
 	}
@@ -375,11 +373,11 @@ int sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar*
 	NSSet* stopsForForm = [self stopsForForm];
 	
 	// Drop the top by the margin boundary.
-	float top = documentBounds_.size.height * [stopsForForm count];
+	float top = [self pageHeight] * [stopsForForm count];
 	
 	for (Place *stationOfInterest in stopsForForm) {
 		[self drawOneForm: stationOfInterest startHeight: top];
-		top -= documentBounds_.size.height;
+		top -= [self pageHeight];
 	}		
 }
 

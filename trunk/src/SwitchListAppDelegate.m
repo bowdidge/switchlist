@@ -36,8 +36,13 @@
 #import "CargoReport.h"
 #import "GlobalPreferences.h"
 #import "IndustryReport.h"
+#import "KaufmanSwitchListReport.h"
+#import "KaufmanSwitchListView.h"
+#import "PICLReport.h"
 #import "ReservedCarReport.h"
-#import "CargoReport.h"
+#import "SouthernPacificSwitchListView.h"
+#import "SwitchListReport.h"
+#import "SwitchListView.h"
 #import "YardReport.h"
 
 #import "SimpleHttpServer/WebServerDelegate.h"
@@ -111,7 +116,31 @@
 @implementation SwitchListAppDelegate
 - (id) init {
 	[super init];
+	indexToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
+	[indexToSwitchListClassMap_ setObject: [SwitchListView class] forKey: [NSNumber numberWithInt: PrettySwitchListStyle]];
+	[indexToSwitchListClassMap_ setObject: [SwitchListReport class] forKey: [NSNumber numberWithInt: OldSwitchListStyle]];
+	[indexToSwitchListClassMap_ setObject: [KaufmanSwitchListReport class] forKey: [NSNumber numberWithInt: PickUpDropOffSwitchListStyle]];
+	[indexToSwitchListClassMap_ setObject: [SouthernPacificSwitchListView class] forKey: [NSNumber numberWithInt: SouthernPacificSwitchListStyle]];
+	[indexToSwitchListClassMap_ setObject: [PICLReport class] forKey: [NSNumber numberWithInt: PICLReportStyle]];
+	[indexToSwitchListClassMap_ setObject: [KaufmanSwitchListView class] forKey: [NSNumber numberWithInt: SanFranciscoBeltLineB7Style]];
+	
+	indexToSwitchListNameMap_ = [[NSMutableDictionary alloc] init];
+	[indexToSwitchListNameMap_ setObject: @"Large Type" forKey: [NSNumber numberWithInt: PrettySwitchListStyle]];
+	[indexToSwitchListNameMap_ setObject: @"Traditional From/To" forKey: [NSNumber numberWithInt: OldSwitchListStyle]];
+	[indexToSwitchListNameMap_ setObject: @"Drop-off/Pick-up" forKey: [NSNumber numberWithInt: PickUpDropOffSwitchListStyle]];
+	[indexToSwitchListNameMap_ setObject: @"Narrow Southern Pacific-style" forKey: [NSNumber numberWithInt: SouthernPacificSwitchListStyle]];
+	[indexToSwitchListNameMap_ setObject: @"PICL Report" forKey: [NSNumber numberWithInt: PICLReportStyle]];
+	[indexToSwitchListNameMap_ setObject: @"San Francisco Belt B-7" forKey: [NSNumber numberWithInt: SanFranciscoBeltLineB7Style]];
+	
 	return self;
+}
+
+- (NSDictionary*) indexToSwitchListClassMap {
+	return indexToSwitchListClassMap_;
+}
+
+- (NSDictionary*) indexToSwitchListNameMap {
+	return indexToSwitchListNameMap_;
 }
 
 // Either by user control or 
@@ -156,15 +185,24 @@
 	[problemsOutlineView_ setAllowsMultipleSelection: YES];
 
 	[switchListStyleButton_ removeAllItems];
-	[switchListStyleButton_ insertItemWithTitle: @"Large Type" atIndex: 0];
-	[switchListStyleButton_ insertItemWithTitle: @"Traditional From/To" atIndex: 1];
-	[switchListStyleButton_ insertItemWithTitle: @"Drop-off/Pick-up" atIndex: 2];
-	[switchListStyleButton_ insertItemWithTitle: @"Narrow Southern Pacific-Style" atIndex: 3];
-	[switchListStyleButton_ insertItemWithTitle: @"PICL Report" atIndex: 4];
-	[switchListStyleButton_ insertItemWithTitle: @"San Francisco Belt B-7" atIndex: 5];
+	
+	// Put the labels in the pop-up in sorted order.
+	NSMutableArray *labels = [NSMutableArray array];
+	for (NSNumber *switchListEnumValue in indexToSwitchListNameMap_) {
+		[labels addObject: [indexToSwitchListNameMap_ objectForKey: switchListEnumValue]];
+	}
+	[labels sortUsingSelector: @selector(compare:)];
+	int pos = 0;
+
+	NSEnumerator *e = [labels reverseObjectEnumerator];
+	NSString *label;
+	while ((label = [e nextObject]) != nil) {
+		[switchListStyleButton_ insertItemWithTitle: label atIndex: pos];
+	}
 	
 	int cellChoice = [[NSUserDefaults standardUserDefaults] integerForKey: @"SwitchListDefaultStyle"];
-	[switchListStyleButton_ selectItemAtIndex: cellChoice-1];
+	NSString *preferredName = [indexToSwitchListNameMap_ objectForKey: [NSNumber numberWithInt: cellChoice]];
+	[switchListStyleButton_ selectItemWithTitle: preferredName];
 	
 	webServerEnabled_ = [[NSUserDefaults standardUserDefaults] boolForKey: @"SwitchListWebServerEnabled"];
 	[webServerEnabledCheckBox_ setState: webServerEnabled_];
@@ -242,9 +280,16 @@
 
 - (IBAction) switchListFormatPreferenceChanged: (id) sender {
 	int selection = [sender indexOfSelectedItem];
-	[[NSUserDefaults standardUserDefaults] setInteger: selection+1 forKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_STYLE];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-
+	NSString *preferredReportName = [sender itemTitleAtIndex: selection];
+	for (NSNumber *switchListReportEnumValue in [indexToSwitchListNameMap_ allKeys]) {
+		if ([[indexToSwitchListNameMap_ objectForKey: switchListReportEnumValue] isEqualToString: preferredReportName]) {
+			[[NSUserDefaults standardUserDefaults] setInteger: [switchListReportEnumValue intValue] forKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_STYLE];
+			[[NSUserDefaults standardUserDefaults] synchronize];
+			NSLog(@"New switch list preference is %@ (%d)", preferredReportName, [switchListReportEnumValue intValue]);
+			return;
+		}
+	}
+	NSLog(@"Unknown switchlist format %@!", preferredReportName);
 }
 
 - (IBAction) webServerPreferenceChanged: (id) sender {
