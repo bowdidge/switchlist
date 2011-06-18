@@ -248,28 +248,12 @@
 
 // Prints switchlists for all trains on the layout that have work.
 - (IBAction)printDocument:(id)sender {
-	Class viewClass = nil;
 	int defaultStyle = [[NSUserDefaults standardUserDefaults] integerForKey:@"SwitchListDefaultStyle"];
-	switch (defaultStyle) {
-	case OldSwitchListStyle:
-	case PrettySwitchListStyle:
-	case PICLReportStyle:
-		viewClass = [SwitchListView class];
-		break;
-	case PickUpDropOffSwitchListStyle:
-	case SanFranciscoBeltLineB7Style:
-		viewClass = [KaufmanSwitchListView class];
-		break;
-	case SouthernPacificSwitchListStyle:
-		viewClass = [SouthernPacificSwitchListView class];
-		break;
-	default:
-		viewClass = [SwitchListView class];
-		break;
-	}
+	SwitchListAppDelegate *appDelegate = (SwitchListAppDelegate*) [[NSApplication sharedApplication] delegate];
+	Class reportClass = [[appDelegate indexToSwitchListClassMap] objectForKey: [NSNumber numberWithInt: defaultStyle]];
 	
 	PrintEverythingView *pev = [[PrintEverythingView alloc] initWithFrame: NSMakeRect(0.0,0.0,100.0,100.0) withDocument: self
-															withViewClass: viewClass];
+															withViewClass: reportClass];
     [[NSPrintOperation printOperationWithView:pev] runOperation];
 	[pev autorelease];
 }
@@ -628,9 +612,9 @@
 	int selRow = [selection firstIndex];
 	ScheduledTrain *train = [trains_ objectAtIndex: selRow];
 	
-	int defaultStyle = [[NSUserDefaults standardUserDefaults] integerForKey:@"SwitchListDefaultStyle"];
 	SwitchListBaseView *switchListView;
 	SwitchListAppDelegate *appDelegate = (SwitchListAppDelegate*) [[NSApplication sharedApplication] delegate];
+	int defaultStyle = [[NSUserDefaults standardUserDefaults] integerForKey:@"SwitchListDefaultStyle"];
 	Class reportClass = [[appDelegate indexToSwitchListClassMap] objectForKey: [NSNumber numberWithInt: defaultStyle]];
 									   
 	if (reportClass == nil) {

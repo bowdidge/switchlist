@@ -31,6 +31,11 @@
 #import <Cocoa/Cocoa.h>
 #import "SwitchListDocumentInterface.h"
 
+// Size of the switch list view space in the SwitchListReportWindow nib file.
+// Used for sizing views correctly when created outside this class.
+float FRAME_WIDTH;
+float FRAME_HEIGHT;
+
 @class SwitchListBaseView;
 
 //  Controller for managing pretty switchlist windows.

@@ -65,12 +65,17 @@
 	subviews = [[NSMutableArray alloc] init];
 	int pages = 0;
 
+	NSPrintInfo *myPrintInfo = [NSPrintInfo sharedPrintInfo];
+	float pageWidth = [myPrintInfo paperSize].width - [myPrintInfo leftMargin] - [myPrintInfo rightMargin];
+	float pageHeight = [myPrintInfo paperSize].height - [myPrintInfo topMargin] - [myPrintInfo bottomMargin];
+	
+
 	
 	NSArray *trains = [[document entireLayout] allTrains];
 
 	// TODO(bowdidge): Fix this so it works with different sized paper.
 	for (ScheduledTrain *t in trains) {		
-		NSRect subDocumentRect = NSMakeRect(0.0, 0.0, PAGE_WIDTH, PAGE_HEIGHT);
+		NSRect subDocumentRect = NSMakeRect(0.0, 0.0, pageWidth, pageHeight);
 		SwitchListBaseView *v = [[preferredClass alloc] initWithFrame: subDocumentRect withDocument: document];
 		[v setTrain: t];
 		// All the switchlists are printing in the same view, so document bounds should match.

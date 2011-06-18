@@ -32,6 +32,10 @@
 
 #import "SwitchListBaseView.h"
 
+// Size of window on SwitchListReportWindow.
+float FRAME_WIDTH = 640.0;
+float FRAME_HEIGHT = 748.0;
+
 @implementation SwitchListReportWindowController
 - (id) initWithWindowNibName: (NSString*) nibName withView: (SwitchListBaseView*) view {	
 	[super initWithWindowNibName: nibName];
@@ -49,9 +53,33 @@
 	[scrollView_ setBackgroundColor: [NSColor whiteColor]];
 	[scrollView_ setDrawsBackground: YES];
 	[scrollView_ setDocumentView: view_];
+	// TODO(bowdidge): Should scroll view to top here.
 }
 
 - (IBAction) printDocument: (id) sender {
-	[view_ print: sender];
+	// set printing properties
+	NSPrintInfo *myPrintInfo = [[NSPrintInfo sharedPrintInfo] copy];
+	[myPrintInfo setHorizontalPagination:NSFitPagination];
+	[myPrintInfo setHorizontallyCentered:NO];
+	[myPrintInfo setVerticallyCentered:NO];
+	[myPrintInfo setLeftMargin:36.0];
+	[myPrintInfo setRightMargin:36.0];
+	[myPrintInfo setTopMargin:36.0];
+	[myPrintInfo setBottomMargin:36.0];
+	
+	// create new view just for printing
+	float pageWidth = [myPrintInfo paperSize].width - [myPrintInfo leftMargin] - [myPrintInfo rightMargin];
+	float pageHeight = [myPrintInfo paperSize].height - [myPrintInfo topMargin] - [myPrintInfo bottomMargin];
+	SwitchListBaseView *printView = [[[view_ class] alloc] initWithFrame: NSMakeRect(0.0, 0.0, pageWidth, pageHeight)
+															withDocument: [view_ owningDocument]];
+	[printView setTrain: [view_ train]];					
+								
+	NSPrintOperation *op = [NSPrintOperation printOperationWithView: printView
+														  printInfo: myPrintInfo];
+	[op setShowsPrintPanel: YES];
+	[[[NSDocument alloc] init] runModalPrintOperation: op delegate: nil didRunSelector: NULL 
+										  contextInfo: NULL];
+
+	[printView release];
 }
 @end

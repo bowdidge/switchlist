@@ -196,7 +196,7 @@
 
 - (void) drawOneFormWithCars: (NSArray *) cars  withStart: (float) start {
 	// Draw whole thing in yellow - rect alone isn't enough for printing.
-	float documentWidth = 400;
+	float documentWidth = [self pageWidth] * 0.75;
 	float documentHeight = [self pageHeight];
 	[[self canaryYellowColor] setFill];
 	NSRectFill(NSMakeRect(([self pageWidth] - documentWidth)/2, start, documentWidth, documentHeight));
