@@ -15,22 +15,11 @@
 #import "InduYard.h"
 #import "Place.h"
 
-// Still to be done before finishing this change:
-// TODO(bowdidge): Remove drop off/pick up switch list?
-// TODO(bowdidge): Test that size and fonts are appropriate
-// TODO(bowdidge): Fix line lengths in traditional.
-// TODO(bowdidge): Test switchlist preferences.
-
-// The BaseSwitchListView and TextView should have bounds of PAGE_WIDTH and some reasonable height,
-// ensuring that whatever fits in the view prints ok.  BaseSwitchListView's bounds should be scaled in
-// slightly (10 px inset) for whitespace.
-// BaseSwitchListView's frame should be large enough to scale the image so it can be read.
-
-
+// Abstract class for teletype-style switchlists.
 @implementation TextSwitchListView
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect withDocument: document];
-	textView_ = [[NSTextView alloc] initWithFrame: [self documentBounds]];
+	textView_ = [[NSTextView alloc] initWithFrame: frameRect];
 	[self addSubview: textView_];
 	typedFont_ = nil;
 	return self;
@@ -70,13 +59,11 @@
 		finalSize = [testString sizeWithAttributes: finalFont];
 	} while (finalSize.width > [self pageWidth]);
 
-	NSLog(@"Final font size is %f\n", finalFontSize);
 	return finalFontSize;
 }
 
 
 // Returns the font to use for fixed-width reports.
-// TODO(bowdidge): Scale font size based on requested line length.
 - (NSFont*) defaultTypedFont {
 	NSString *userFontName = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_TYPED_FONT_NAME];
 	
@@ -166,23 +153,25 @@
 	return textViewSize.width / characterSize.width;
 }
 
-- (int) lineCount {
+// Number of lines per page.
+- (int) linesPerPage {
 	NSPrintInfo *myPrintInfo = [NSPrintInfo sharedPrintInfo];
 	NSRect pageSize = [myPrintInfo imageablePageBounds];
 	
 	NSDictionary *fontAttrs = [NSDictionary dictionaryWithObject: [self typedFont] forKey: NSFontAttributeName];
-	NSSize gCharacterSize = [@"g" sizeWithAttributes: fontAttrs];
+	NSSize gCharacterSize = [@"gM" sizeWithAttributes: fontAttrs];
 	return (int) (pageSize.size.height / gCharacterSize.height);
 }
 
 // Given report contents, convert to two column.
 // TODO(bowdidge): Correctly handle header.
 // TODO(bowdidge): Figure out how to not break elements in column.
+// UNUSED!!!
 - (NSString*) convertToTwoColumn: (NSString*) contents {
 	int i;
 	NSMutableString *result = [NSMutableString string];
 	NSMutableArray *rawLines = [NSMutableArray arrayWithArray: [contents componentsSeparatedByString: @"\n"]];
-	int linesPerPage = [self lineCount];
+	int linesPerPage = [self linesPerPage];
 	int columnWidth = ([self lineLength] / 2) - 1;
 	
 	// Fill out array to an even set of lines.
@@ -238,28 +227,6 @@
 	return header;
 }
 
-// For debugging only.
-- (void) printView: (NSView *) view indent: (int) indent {
-	char *indentStr = malloc(indent+1);
-	memset(indentStr, 0x20, indent);
-	indentStr[indent] = 0;
-	NSRect bounds = [view bounds];
-	NSRect frame = [view frame];
-	printf("%s + %s: bounds: (%f,%f):(%f, %f) frame: (%f,%f): (%f,%f) mask: %08x\n",
-		   indentStr,
-		   object_getClassName(view),
-		   bounds.origin.x, bounds.origin.y, bounds.size.width, bounds.size.height,
-		   frame.origin.x, frame.origin.y, frame.size.width, frame.size.height,
-		   [view autoresizingMask]);
-	if (strcmp("NSTextView", object_getClassName(view)) == 0) {
-		NSSize textContainerSize = [[view textContainer] containerSize];
-		printf("       container: (%f, %f)\n", textContainerSize.width, textContainerSize.height);
-	}
-	for (NSView *subview in [view subviews]) {
-		[self printView: subview indent: (indent+2)];
-	}
-}
-		   
 - (float) lineHeight {
 	NSMutableDictionary *typedFontAttr = [NSMutableDictionary dictionary];
 	[typedFontAttr setValue: [self typedFont] forKey: NSFontAttributeName];
@@ -269,16 +236,27 @@
 	
 // Displays the requested contents in the report window.
 - (void) generateReport {
-	[self printView: [self superview] indent: 0];
 	[self setUpTextView];
 	NSString *contents = [self contents];
-	NSString *entireReport = [NSString stringWithFormat: @"%@\n%@", [self headerString] ,contents];
+	NSMutableString *entireReport = [NSMutableString stringWithFormat: @"%@\n%@", [self headerString] ,contents];
 	float lineHeight = [self lineHeight];
 	int lineCount = [[entireReport componentsSeparatedByString: @"\n"] count];
+	
+	int linesPerPage = [self linesPerPage];
+	int linesOnLastPage =  (lineCount % linesPerPage);
+	if (linesOnLastPage != 0) {
+		int linesNeeded = linesPerPage - linesOnLastPage;
+		int i;
+		// TODO(bowdidge): This sometimes adds too many lines.
+		for (i=0; i<linesNeeded; i++) {
+			[entireReport appendString: @"\n"];
+		}
+		lineCount += linesNeeded;
+	}
 	int documentHeight = lineCount * lineHeight;
 
 	// Keep our containing frame at pixel size.
-	NSRect bounds = NSMakeRect(0, 0, PAGE_WIDTH, documentHeight);
+	NSRect bounds = NSMakeRect(0, 0, [self pageWidth], documentHeight);
 	[self setDocumentBounds: bounds];
 	// TextView is 1-1.
 	[textView_ setFrame: bounds];
@@ -293,7 +271,6 @@
 	[textView_ setAlignment:NSLeftTextAlignment range: NSMakeRange(0,[entireReport length])];
     [textView_ setFont: [self typedFont] range: NSMakeRange(0,[entireReport length])];
 	[textView_ setTextContainerInset: NSMakeSize(0.25,0.25)];
-	
 }	
 
 // Common routine for returning contents of report.
@@ -311,10 +288,6 @@
 	// Why 2?
     range->length = 2;
     return YES;
-}
-
-- (IBAction)printDocument:(id)sender {
-	[textView_ print: sender];
 }
 
 - (NSString *) nextDestinationForFreightCar: (FreightCar *) freightCar {

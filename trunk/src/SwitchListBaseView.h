@@ -33,15 +33,6 @@
 #import "FreightCar.h"
 #import "SwitchListDocumentInterface.h"
 
-// Current page widths and height for an 8.5x11 paper with appropriate margins.
-extern float PAGE_WIDTH;
-extern float PAGE_HEIGHT;
-
-// Same, slightly scaled up for better display on the screen.
-float FRAME_WIDTH;
-float FRAME_HEIGHT;
-
-
 // Model for switch list, hiding details of what's in the specific
 // columns, number of rows, and how the text is generated.
 // This should have presentation-independent stuff; presentation dependent stuff
@@ -81,6 +72,9 @@ float FRAME_HEIGHT;
 	// Expected bounds of document drawing.  This may not be the same as bounds because the view might
 	// be resized to fit the frame or add margins.
 	NSRect documentBounds_;
+	
+	float pageWidth_;
+	float pageHeight_;
 }
 
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document;
@@ -91,6 +85,8 @@ float FRAME_HEIGHT;
 - (NSRect) documentBounds;
 // Set the bounds for the document.  Subclasses must call when size of document is known.
 - (void) setDocumentBounds: (NSRect) r;
+
+- (NSObject<SwitchListDocumentInterface>*) owningDocument;
 
 // Page height in bounds coordinates.
 - (float) pageHeight;

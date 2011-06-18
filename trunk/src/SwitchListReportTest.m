@@ -49,7 +49,7 @@
 	[self makeThreeStationTrain];
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"]; 
 
-	SwitchListReport *report = [[[SwitchListReport alloc] initWithFrame: NSMakeRect(0,0,1,1) withDocument: mockDocument] autorelease];
+	SwitchListReport *report = [[[SwitchListReport alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: mockDocument] autorelease];
 	[report setTrain: train];
 	NSString *result = [report contents];
 	STAssertTrue([result rangeOfString: FREIGHT_CAR_1_NAME].length > 0, @"Car entry not found.");
@@ -64,7 +64,7 @@
 	[self makeThreeStationTrain];
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"]; 
 	
-	SwitchListReport *report = [[[SwitchListReport alloc] initWithFrame: NSMakeRect(0, 0, 1, 1) withDocument: mockDocument] autorelease];
+	SwitchListReport *report = [[[SwitchListReport alloc] initWithFrame: NSMakeRect(0, 0, 400, 400) withDocument: mockDocument] autorelease];
 	[report setTrain: train];
 	
 	Industry *industryB = [self industryAtStation: @"B"];
