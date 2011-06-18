@@ -43,10 +43,6 @@
 //  Generates the text report for a standard to/from switchlist.
 
 @implementation SwitchListReport
-- (id) initWithFrame: (NSRect) frame withDocument: (NSObject<SwitchListDocumentInterface>*) document {
-	[super initWithFrame: (NSRect) frame withDocument: document];
-	return self;
-}
 
 // what kind of report?
 - (NSString *) typeString {

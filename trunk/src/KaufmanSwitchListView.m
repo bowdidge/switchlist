@@ -166,11 +166,6 @@
 // How many table rows in the form?
 int ROWS_PER_TABLE = 9;
 
-- (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
-	[super initWithFrame: frameRect withDocument: document];
-	return self;
-}
-
 // Returns the list of stops that will require a form to be printed.
 // Only stops that aren't the beginning and end and have traffic need forms.
 - (NSSet*) stopsForForm {
