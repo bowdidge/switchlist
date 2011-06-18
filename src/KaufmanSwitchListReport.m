@@ -47,10 +47,6 @@
 // Other - cars going between other stations, picked up and dropped off as part of same train.
 
 @implementation KaufmanSwitchListReport
-- (id) init {
-	[super init];
-	return self;
-}
 
 // what kind of report?
 - (NSString *) typeString {

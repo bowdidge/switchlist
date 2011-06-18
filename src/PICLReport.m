@@ -47,10 +47,6 @@
 // Report shows standing of all cars to be handled at stations visited by selected train
 
 @implementation PICLReport
-- (id) initWithFrame: (NSRect) frame withDocument: (NSObject<SwitchListDocumentInterface>*) document {
-	[super initWithFrame: frame withDocument: document];
-	return self;
-}
 
 // what kind of report?
 - (NSString *) typeString {
