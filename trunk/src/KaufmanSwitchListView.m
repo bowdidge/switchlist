@@ -390,7 +390,6 @@ int sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar*
 
 // Returns a font for title displays in the header.
 - (NSFont*) titleFontForSize: (float) sz {
-	// TODO(bowdidge) Get rid of Egyptian - it's not available on others' machines.
 	NSFont *font = [NSFont fontWithName: @"Times Bold" size: sz];
 	return font;
 }
