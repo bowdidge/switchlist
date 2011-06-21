@@ -144,9 +144,9 @@
 
 - (void) setTrain: (ScheduledTrain*) train {
 	[super setTrain: train];
-
-	[self setDocumentBounds: NSMakeRect(0, 0, 
-										[self pageWidth], [self numberOfPages] * [self pageHeight])];
+	// Resize now that we know the overall size.
+	[self setFrame: NSMakeRect(0, 0, 
+							   [self pageWidth], [self numberOfPages] * [self pageHeight])];
 }
 
 // Return the number of pages available for printing
