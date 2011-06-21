@@ -136,21 +136,26 @@
 	return 14;
 }
 
+- (int) numberOfPages {
+	int numberOfPages = ceil(((float)[carsInTrain_ count]) / carsPerPage_);
+	if (numberOfPages == 0) numberOfPages = 1;
+	return numberOfPages;
+}
+
 - (void) setTrain: (ScheduledTrain*) train {
 	[super setTrain: train];
 
-	int numberOfPages = ceil(((float)[carsInTrain_ count]) / carsPerPage_);
-	if (numberOfPages == 0) numberOfPages = 1;
 	[self setDocumentBounds: NSMakeRect(0, 0, 
-										[self pageWidth], numberOfPages * [self pageHeight])];
+										[self pageWidth], [self numberOfPages] * [self pageHeight])];
 }
 
 // Return the number of pages available for printing
 // Required for printing support.
 - (BOOL)knowsPageRange:(NSRangePointer)range {
 	int numberOfPages = ceil(((float)[carsInTrain_ count]) / carsPerPage_);
+	if (numberOfPages == 0) numberOfPages = 1;
     range->location = 1;
-	range->length = numberOfPages;
+	range->length = [self numberOfPages];
     return YES;
 }
 
