@@ -193,6 +193,7 @@ int ROWS_PER_TABLE = 9;
 - (void) setTrain: (ScheduledTrain*) train {
 	[super setTrain: train];
 	NSSet *stopsForForm = [self stopsForForm];
+	// Update our size now that we know how large the train is.
 	[self setFrame: NSMakeRect(0, 0, [self pageWidth], [self pageHeight] * [stopsForForm count])];
 }
 
