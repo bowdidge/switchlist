@@ -115,6 +115,10 @@
 @end
 
 @implementation SwitchListBaseView
+// Create a SwitchListView.
+// The frame provided will be the space initially used for the document; if the switch
+// list needs to be multiple pages, then the view will set its frame (and bounds) to a larger size
+// which the container should be able to handle.
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect];
 
@@ -124,7 +128,6 @@
 	rowHeight_ = 22.0;
 	pageWidth_ = frameRect.size.width;
 	pageHeight_ = frameRect.size.height;
-	[self setDocumentBounds: frameRect];
 	return self;
 }
 
@@ -133,18 +136,6 @@
 	[carsInTrain_ release];
 	[owningDocument_ release];
 	[super dealloc];
-}
-
-// Set the bounds for the document.  Subclasses must call when size of document is known.
-- (void) setDocumentBounds: (NSRect) rect {
-	documentBounds_ = rect;
-	// Assume finalRect.x,y are 0.
-	[self setFrame: rect];
-}
-
-// Returns the drawing rectangle used for each switchlist document.
-- (NSRect) documentBounds {
-    return documentBounds_;
 }
 
 - (NSObject<SwitchListDocumentInterface>*) owningDocument {
@@ -357,7 +348,8 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 // For the nth page, we'll start at the top and measure down n pages.
 // The top should always be at a page boundary.
 - (NSRect)rectForPage:(int)page {
-	return NSMakeRect(0, [self pageHeight] * (page - 1), [self pageWidth], [self pageHeight]);
+	NSRect rectForPage = NSMakeRect(0, [self pageHeight] * (page - 1), [self pageWidth], [self pageHeight]);
+	return rectForPage;
 }
 	
 // Draw the main portion of the switchlist using the current

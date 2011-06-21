@@ -69,10 +69,6 @@
 	// Height of individual rows in switchlist table drawn by -[SwitchListBaseView drawTableForCars:rect:source]
 	float rowHeight_;
 	
-	// Expected bounds of document drawing.  This may not be the same as bounds because the view might
-	// be resized to fit the frame or add margins.
-	NSRect documentBounds_;
-	
 	float pageWidth_;
 	float pageHeight_;
 }
@@ -80,11 +76,6 @@
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document;
 - (void) setTrain: (ScheduledTrain*) train;
 - (ScheduledTrain*) train;
-
-// Document drawing size and aspect ratio.  Real document will be scaled with margins added.
-- (NSRect) documentBounds;
-// Set the bounds for the document.  Subclasses must call when size of document is known.
-- (void) setDocumentBounds: (NSRect) r;
 
 - (NSObject<SwitchListDocumentInterface>*) owningDocument;
 

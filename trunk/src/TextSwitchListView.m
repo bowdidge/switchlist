@@ -257,7 +257,7 @@
 
 	// Keep our containing frame at pixel size.
 	NSRect bounds = NSMakeRect(0, 0, [self pageWidth], documentHeight);
-	[self setDocumentBounds: bounds];
+	[self setFrame: bounds];
 	// TextView is 1-1.
 	[textView_ setFrame: bounds];
 	[textView_ setBounds: bounds];

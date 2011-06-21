@@ -193,7 +193,7 @@ int ROWS_PER_TABLE = 9;
 - (void) setTrain: (ScheduledTrain*) train {
 	[super setTrain: train];
 	NSSet *stopsForForm = [self stopsForForm];
-	[self setDocumentBounds: NSMakeRect(0, 0, [self pageWidth], [self pageHeight] * [stopsForForm count])];
+	[self setFrame: NSMakeRect(0, 0, [self pageWidth], [self pageHeight] * [stopsForForm count])];
 }
 
 float HEADER_HEIGHT = 126.0;

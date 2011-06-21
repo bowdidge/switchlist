@@ -53,9 +53,9 @@
 }
 
 - (NSRect)rectForPage:(int)page {
-    // All the switchlists are printing in the same view, so document bounds should match.
-	NSRect documentBounds = [[[self subviews] lastObject] documentBounds];
-	return NSMakeRect(0, documentBounds.size.height * (page-1), documentBounds.size.width, documentBounds.size.height);
+    // All the switchlists are printing in the same containing view, so document bounds should match.
+	// Note we don't call through to view's.
+	return NSMakeRect(0, pageHeight_ * (page-1), pageWidth_, pageHeight_);
 }
 
 - (id) initWithFrame: (NSRect) r withDocument: (NSObject<SwitchListDocumentInterface>*) document 
@@ -65,18 +65,27 @@
 	subviews = [[NSMutableArray alloc] init];
 	int pages = 0;
 
-	NSPrintInfo *myPrintInfo = [NSPrintInfo sharedPrintInfo];
-	float pageWidth = [myPrintInfo paperSize].width - [myPrintInfo leftMargin] - [myPrintInfo rightMargin];
-	float pageHeight = [myPrintInfo paperSize].height - [myPrintInfo topMargin] - [myPrintInfo bottomMargin];
+	// TODO(bowdidge): Move to code where the print is done.
+	NSPrintInfo *myPrintInfo = [[NSPrintInfo sharedPrintInfo] copy];
+	[myPrintInfo setHorizontalPagination:NSFitPagination];
+	[myPrintInfo setHorizontallyCentered:NO];
+	[myPrintInfo setVerticallyCentered:NO];
+	[myPrintInfo setLeftMargin:36.0];
+	[myPrintInfo setRightMargin:36.0];
+	[myPrintInfo setTopMargin:36.0];
+	[myPrintInfo setBottomMargin:36.0];
+	
+	pageWidth_ = [myPrintInfo paperSize].width - [myPrintInfo leftMargin] - [myPrintInfo rightMargin];
+	pageHeight_ = [myPrintInfo paperSize].height - [myPrintInfo topMargin] - [myPrintInfo bottomMargin];
 
 	NSArray *trains = [[document entireLayout] allTrains];
 
 	for (ScheduledTrain *t in trains) {		
-		NSRect subDocumentRect = NSMakeRect(0.0, 0.0, pageWidth, pageHeight);
+		NSRect subDocumentRect = NSMakeRect(0.0, 0.0, pageWidth_, pageHeight_);
 		SwitchListBaseView *v = [[preferredClass alloc] initWithFrame: subDocumentRect withDocument: document];
 		[v setTrain: t];
 		// All the switchlists are printing in the same view, so document bounds should match.
-		NSRect documentBounds = [v documentBounds];
+		NSRect viewFrame = [v frame];
 		NSRange r;
 		[v knowsPageRange: &r];
 		int pageCount = r.length;
@@ -84,16 +93,17 @@
 			continue;
 		}
 		[subviews addObject: v];
-		NSRect bounds = [v bounds];
-		[v setFrame: NSMakeRect(0, pages * documentBounds.size.height, 
-								bounds.size.width, bounds.size.height)];
-		// TODO(bowdidge): Why the change?
-		[v setBounds: bounds];
+		// Move frame up to the appropriate page number, but keep height and width the same.
+		[v setFrame: NSMakeRect(0, pages * pageHeight_, 
+								viewFrame.size.width, viewFrame.size.height)];
+		// Set the bounds starting at (0,0) because some code - such as the SwitchListBaseView's
+		// rectForPage - assumes it.
+		[v setBounds: NSMakeRect(0, 0, viewFrame.size.width, viewFrame .size.height)];
 		pages += pageCount;
 		[v release];
 	}
-	NSRect documentBounds = [[subviews lastObject] documentBounds];
-	[self setFrame: NSMakeRect(0.0, 0.0, documentBounds.size.width, documentBounds.size.height*pages)];
+	NSRect lastViewFrame = [[subviews lastObject] frame];
+	[self setFrame: NSMakeRect(0.0, 0.0, lastViewFrame.size.width, lastViewFrame.size.height*pages)];
 	[self setSubviews: subviews];
 
 	return self;
