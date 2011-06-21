@@ -33,28 +33,6 @@
 
 #import "NSMigrationManagerCategory.h"
 
-// transformer for Train presentation
-// TODO(bowdidge): What is this for?
-@interface TrainPathTransformer: NSValueTransformer {
-}
-@end
-
-@implementation TrainPathTransformer
-+ (Class)transformedValueClass { return [NSString self]; }
-+ (BOOL)allowsReverseTransformation { return NO; }
-- (id)transformedValue:(id)value {
-	NSArray *foo = (NSArray*) value;
-	NSMutableString *result = [NSMutableString string];
-	NSEnumerator *e = [foo objectEnumerator];
-	id place;
-	while ((place=[e nextObject]) != nil) {
-		[result appendString: [place valueForKey: @"name"]];
-	}
-	return result;
-}
-@end
-
-
 int main(int argc, char *argv[])
 {
 	struct timeval tp;
@@ -63,9 +41,6 @@ int main(int argc, char *argv[])
 	srand(tp.tv_usec);
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
-	id transformer = [[[TrainPathTransformer alloc] init] autorelease];
-	[NSValueTransformer setValueTransformer:transformer forName:@"TrainPathTransformer"]; 
-
 	// Workaround for bug in 10.5.
 	[NSMigrationManager addRelationshipMigrationMethodIfMissing];
 	
