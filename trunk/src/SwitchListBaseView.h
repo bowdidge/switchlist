@@ -157,4 +157,7 @@
 // Returns a random name for signatures.
 - (NSString*) randomFunctionary;
 
+// Testing only.
+- (NSArray*) splitStringByDashes: (NSString*) input;
+
 @end
