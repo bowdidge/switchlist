@@ -82,9 +82,9 @@
 											 
 			// Print section header.
 			[piclString appendFormat: @"\n\n===============================================================================\n"];
-			[piclString appendFormat: @"TRACK: %-21s STATION: %s\n", currentIndustryName, currentTownName];
+			[piclString appendFormat: @"TRACK: %-18s           STATION: %-21s\n", currentIndustryName, currentTownName];
 			[piclString appendFormat: @"===============================================================================\n"];
-			[piclString appendFormat: @" Car         LE Block To                                    KD Commodity\n"];
+			[piclString appendFormat: @"Seq Car         LE Block To                                    LG KD Commodity\n"];
 			[piclString appendFormat: @"-------------------------------------------------------------------------------\n"];
 			
 			// Make the list of cars here, sorted in order of car type.
@@ -97,7 +97,10 @@
 			
 			// TODO(mcnab) Currently sorting by Destination in Alphabetical Order.  Should sort in Station Order.
 			NSArray *carsAtIndustrySortedByDestination = [carsAtIndustry sortedArrayUsingFunction: sortCarsByDestination context: nil];
-				 
+			
+			int seq = 1;
+			
+			Place *currentPlace = nil;
 			for (FreightCar *freightCar in carsAtIndustrySortedByDestination) {
 				NSString* contents;
 				if ([freightCar isLoaded]) {
@@ -116,19 +119,49 @@
 				if (doorToSpot != 0) {
 					toIndustryName = [[NSString stringWithFormat: @"%@ #%d", toIndustryName, doorToSpot] uppercaseString];
 				}
-
+				
+				if (currentPlace != nil &&
+					[[freightCar nextStop] location] != currentPlace) {
+					// Draw separator only between cars going to different towns, not between
+					// car and heading.
+					[piclString appendFormat: @"-------------------------------------------------------------------------------\n"];
+				}
+				currentPlace = [[freightCar nextStop] location];
+				
 				// Print line for this freight car.
-				[piclString appendFormat: @" %-11s %-2s %-21s %-21s %-2s %-15s\n",
-				 [[freightCar reportingMarks] UTF8String],
+				[piclString appendFormat: @"%3d %-4s %6d %-2s %-21s %-21s %2d %-2s %-15s\n",
+				 seq,
+				 [[freightCar initials] UTF8String],
+				 [[freightCar number] intValue],
 				 [LE UTF8String],
 				 [toIndustryName UTF8String],
 				 [[toTown name] UTF8String],
+				 [[freightCar length] intValue],
 				 [[[freightCar carTypeRel] carTypeName] UTF8String],
-				 [contents UTF8String]];
+				 [contents UTF8String]],
+				seq++;
 			}
-			[piclString appendFormat: @"-------------------------------------------------------------------------------\n"];
+			[piclString appendFormat: @"_______________________________________________________________________________\n"];
 			int carsAtLocation = [carsAtIndustry count];
-			[piclString appendFormat: @"CARS:  %d\n",carsAtLocation];
+			
+			int carsAtLocationLoaded = 0;
+			for (FreightCar *car in carsAtIndustry) {
+				if ([car isLoaded]) {
+					carsAtLocationLoaded += 1;
+				}
+			}
+			
+			int carsAtLocationEmpty = carsAtLocation  - carsAtLocationLoaded;
+			
+			int carsAtLocationLength = 0;
+			for (FreightCar *car in carsAtIndustry) {
+				carsAtLocationLength += [[car length] intValue];
+			}
+			[piclString appendFormat: @"LOADS:%4d     EMPTY:%4d     CARS:%4d                           LENGTH: %4d\n",
+			 carsAtLocationLoaded,
+			 carsAtLocationEmpty,
+			 carsAtLocation,
+			 carsAtLocationLength];
 		}
 	}
 	
