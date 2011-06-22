@@ -152,8 +152,6 @@
 // Return the number of pages available for printing
 // Required for printing support.
 - (BOOL)knowsPageRange:(NSRangePointer)range {
-	int numberOfPages = ceil(((float)[carsInTrain_ count]) / carsPerPage_);
-	if (numberOfPages == 0) numberOfPages = 1;
     range->location = 1;
 	range->length = [self numberOfPages];
     return YES;
