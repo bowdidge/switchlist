@@ -21,6 +21,7 @@
 		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
+		3E5DABB313B2FAA5001BF43F /* switchlist-industrylist-header.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E5DABB213B2FAA5001BF43F /* switchlist-industrylist-header.html */; };
 		3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
 		3E60820413615B680054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
 		3E60820913615B940054DBA1 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
@@ -187,6 +188,7 @@
 		3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseView.m; sourceTree = "<group>"; };
 		3E57C5CB12FBDCC600E51008 /* KaufmanSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaufmanSwitchListView.h; sourceTree = "<group>"; };
 		3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaufmanSwitchListView.m; sourceTree = "<group>"; };
+		3E5DABB213B2FAA5001BF43F /* switchlist-industrylist-header.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "switchlist-industrylist-header.html"; sourceTree = "<group>"; };
 		3E60814013614EA30054DBA1 /* TextSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSwitchListView.h; sourceTree = "<group>"; };
 		3E60814113614EA30054DBA1 /* TextSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSwitchListView.m; sourceTree = "<group>"; };
 		3E60B66D1318B49C007C094D /* ReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTest.h; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 				3E95863112988FB700A10258 /* switchlist-iphone.css */,
 				3E95860612988B7200A10258 /* switchlist-ipad.css */,
 				3EF295811313002A00D2C3F6 /* switchlist-carlist-header.html */,
+				3E5DABB213B2FAA5001BF43F /* switchlist-industrylist-header.html */,
 			);
 			path = SimpleHttpServer;
 			sourceTree = "<group>";
@@ -522,14 +525,14 @@
 				3EE711361285D4F2006059F4 /* CarTypes.m */,
 				3E3C11DC0A39652F0071D6B4 /* Cargo.h */,
 				3E3C11DD0A39652F0071D6B4 /* Cargo.m */,
-				3EB0AC0A127BB95000E27063 /* InduYard.h */,
-				3EB0AC0B127BB95000E27063 /* InduYard.m */,
 				3E4D490D0D0F484D0092D1A3 /* EntireLayout.h */,
 				3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */,
 				3E3C11C20A3963F20071D6B4 /* FreightCar.h */,
 				3E3C11C30A3963F20071D6B4 /* FreightCar.m */,
 				3E3C11D60A39652F0071D6B4 /* Industry.h */,
 				3E3C11D70A39652F0071D6B4 /* Industry.m */,
+				3EB0AC0A127BB95000E27063 /* InduYard.h */,
+				3EB0AC0B127BB95000E27063 /* InduYard.m */,
 				3E3C11D80A39652F0071D6B4 /* Place.h */,
 				3E3C11D90A39652F0071D6B4 /* Place.m */,
 				3E3C11DA0A39652F0071D6B4 /* ScheduledTrain.h */,
@@ -639,6 +642,7 @@
 				3E95863212988FB700A10258 /* switchlist-iphone.css in Resources */,
 				3E9586361298900C00A10258 /* switchlist.css in Resources */,
 				3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */,
+				3E5DABB313B2FAA5001BF43F /* switchlist-industrylist-header.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
