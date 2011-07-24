@@ -145,7 +145,7 @@
 
 // Either by user control or 
 - (void) startWebServer {
-  webController_ = [[WebServerDelegate alloc] initWithAppDelegate: self];
+  webController_ = [[WebServerDelegate alloc] init];
 	if (webController_) {
 		char hostnameBuf[500];
 		// TODO(bowdidge): Check return value.
