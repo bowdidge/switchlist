@@ -52,9 +52,8 @@ static const int HTTP_OK = 200;
 @implementation WebServerDelegate
 
 // For mocking.
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate withServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) bundle {
+- (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) bundle {
 	[super init];
-	appDelegate_ = [delegate retain];
 	server_ = server;
 	mainBundle_ = bundle;
 	if (server_) {
@@ -66,15 +65,13 @@ static const int HTTP_OK = 200;
 }
 
 // Preferred constructor.
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate {
-	return [self initWithAppDelegate: delegate
-						  withServer: [[SimpleHTTPServer alloc] initWithTCPPort: 20000 delegate:self]
-						  withBundle: [NSBundle mainBundle]];
+- (id) init {
+	return [self initWithServer: [[SimpleHTTPServer alloc] initWithTCPPort: 20000 delegate:self]
+					 withBundle: [NSBundle mainBundle]];
 }
 
 - (void) dealloc {
 	[server_ stopResponding];
-	[appDelegate_ release];
 	[server_ release];
 	[super dealloc];
 }
@@ -166,30 +163,65 @@ static const int HTTP_OK = 200;
 						 message: message];
 }
 
+// Returns the contents of the named resource file.
+- (NSString*) contentsOfHtmlHeaderResource: (NSString*) resourceName {
+	NSString *carListHeaderPath = [mainBundle_ pathForResource: resourceName ofType: @"html"];
+	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: carListHeaderPath]];
+	NSString *contents = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
+	return [contents autorelease];
+}
 
+// Comparator for place and industry names.
+int compareNamesAlphabetically(id s1, id s2, void *context) {
+	return [[s1 name] compare: [s2 name]];
+}
+
+// Sorts freight car reporting marks by railroad, then number.  SP 3941 should appear before SP 10240.
+// TODO(bowdidge): Should make sure that 
+int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *context) {
+	NSArray *marksComponents1 = [[s1 reportingMarks] componentsSeparatedByString: @" "];
+	NSArray *marksComponents2 = [[s2 reportingMarks] componentsSeparatedByString: @" "];
+	if (([marksComponents1 count] != 2) || ([marksComponents2 count] != 2)) {
+		return [[s1 reportingMarks] compare: [s2 reportingMarks]];
+	}
+	int nameComp = [[marksComponents1 objectAtIndex: 0] compare: [marksComponents2 objectAtIndex: 0]];
+	if (nameComp != NSOrderedSame) {
+		return nameComp;
+	}
+	
+	NSString *carNumberString1 = [marksComponents1 objectAtIndex: 1];
+	NSString *carNumberString2 = [marksComponents2 objectAtIndex: 1];
+	int carNumber1 = [carNumberString1 intValue];
+	int carNumber2 = [carNumberString2 intValue];
+	
+	if ((carNumber1 != 0) && (carNumber2 != 0) &&
+		(carNumber1 != carNumber2)) {
+		return carNumber1 - carNumber2;
+	}
+
+	return [carNumberString1 compare: carNumberString2];
+}
+
+// Generates HTML response for the car list for the names layout.
 - (void) processRequestForCarListForLayout: (SwitchListDocument*) document {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
 	NSMutableString *message = [NSMutableString string];
 
-	NSString *carListHeaderPath = [mainBundle_ pathForResource: @"switchlist-carlist-header" ofType: @"html"];
-	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: carListHeaderPath]];
-	NSString *contents = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-	[message appendString: contents];
-	[contents release];
+	[message appendString: [self contentsOfHtmlHeaderResource: @"switchlist-carlist-header"]];
 
 	// Fill in needed variables for JavaScript.
 	[message appendFormat: @"<script type='text/javascript'>var layoutName='%@';</script>", [layout layoutName]];
 	
 	[message appendFormat: @"<BODY>Cars currently active in layout %@:", [layout layoutName]];;
 	
-	NSArray *cars = [layout allFreightCarsReportingMarkOrder];
+	NSArray *cars = [[layout allFreightCarsReportingMarkOrder] sortedArrayUsingFunction: &compareReportingMarksAlphabetically context: 0];
 	NSArray *industries = [layout allIndustries];
-	[message appendFormat: @"<TABLE>"];
+	[message appendFormat: @"<TABLE><th>Reporting Marks</th><th>Car Type</th><th>Location</th>"];
 	for (FreightCar *fc in cars) {
 		// Put each car on its own line of a table, with the name in the left cell and a SELECT pulldown
 		// in the right.  Each SELECT should have the current location selected.
-		[message appendFormat: @"<TR>\n<TD>%@</TD>\n", [fc reportingMarks]];
+		[message appendFormat: @"<TR>\n<TD>%@</td><td>%@</td>\n", [fc reportingMarks], [[fc carTypeRel] carTypeName]];
 		[message appendFormat: @"<TD><select onchange=\"javascript:carLocationChanged(this, '%@');\">", [fc reportingMarks]];
 		// TODO(bowdidge): Stop duplicating the industry list in each SELECT.
 		for (Industry *industry in industries) {
@@ -211,8 +243,65 @@ static const int HTTP_OK = 200;
 						 message: message];
 }
 
+- (void) writeIndustryListForLayout: (EntireLayout *) layout toString: (NSMutableString *) message  {
+	[message appendFormat:@"<table>"];
+	Place *place;
+	for (place in [[layout allStations] sortedArrayUsingFunction: &compareNamesAlphabetically context: 0])  {
+		if ([place isOffline]) continue;
+		BOOL firstIndustry = YES;
+		InduYard *ind;
+		for (ind in [[[place industries] allObjects] sortedArrayUsingFunction: &compareNamesAlphabetically context: 0]) {
+			if ([[ind freightCars] count] == 0) continue;
+			BOOL firstFreightCar = YES;
+			FreightCar *fc;
+			NSString *rowClass = @"";
+			NSString *industryName = @"";
+			for (fc in [[[ind freightCars] allObjects] sortedArrayUsingFunction: &compareReportingMarksAlphabetically context: 0]) {
+				if (firstIndustry) {
+					// Stations always get their own first line.
+					[message appendFormat: @"<tr class='indStationStart'><td class='indStation'>%@</td></tr>",
+					 [place name]];
+					rowClass = @"class='indIndustryStart'";
+					industryName = [ind name];
+					firstIndustry = NO;
+					firstFreightCar = NO;
+				} else if (firstFreightCar) {
+					rowClass= @"class='indIndustryStart'";
+					industryName = [ind name]; 
+					firstFreightCar = NO;
+				} else {
+					rowClass = @"";
+					industryName = @"";
+				}
+				[message appendFormat: @"<tr %@><td class='indStation'></td><td class='indIndustry'>%@</td>\n", rowClass,
+					industryName];
+				[message appendFormat: @"<td class='indMarks'>%@</td><td class='indType'>%@</td></tr>\n",
+					[fc reportingMarks], [[fc carTypeRel] carTypeName]];
+			}
+		}
+	}
+	[message appendFormat: @"</table>"];
+}
+
+// Returns HTML for industry list, showing the cars at each industry 
+- (void) processRequestForIndustryListForLayout: (SwitchListDocument*) document {
+	EntireLayout *layout = [document entireLayout];
+	NSMutableString *message = [NSMutableString string];
+
+	[message appendString: [self contentsOfHtmlHeaderResource: @"switchlist-industrylist-header"]];
+	[message appendFormat: @"<BODY>Cars at each industry on layout %@:<p>\n", [layout layoutName]];
+	[message appendFormat: @"<table>\n"];
+	[self writeIndustryListForLayout: layout toString: message];
+
+	[message appendFormat: @"</body>\n"];
+	[server_ replyWithStatusCode: HTTP_OK
+						 message: message];
+}
+
+
 // Given parameters to changeCarLocation, updates database.
 - (void) processChangeLocationForLayout: (SwitchListDocument*) document car: (NSString*) carName location: (NSString*) locationName {
+	carName = [carName stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 	EntireLayout *entireLayout = [document entireLayout];
 	FreightCar *fc = [entireLayout freightCarWithName: carName];
 	InduYard *location = [entireLayout industryOrYardWithName: locationName];
@@ -234,16 +323,20 @@ static const int HTTP_OK = 200;
 
 	
 - (void) processRequestForLayout: (SwitchListDocument*) document {
-	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
 	NSMutableString *message = [NSMutableString string];
-	[message appendFormat: @"<HTML><HEAD><TITLE>Train List</TITLE></HEAD><BODY>Trains currently active in layout %@:", [layout layoutName]];
+	[message appendFormat: @"<HTML><HEAD><TITLE>%@ Layout/TITLE></HEAD><BODY>\n", [layout layoutName]];
+
+	[message appendFormat: @"<h3>Lists of Cars</h3>\n"];
+	[message appendFormat: @"<p>Reposition <A HREF=\"?layout=%@&carList=1\">List of Freight Cars, in reporting mark order</a>", [layout layoutName]];
+	[message appendFormat: @"<p><A HREF=\"?layout=%@&industryList=1\">List of Freight Cars, in industry order</a>", [layout layoutName]];
 	
+	[message appendFormat: @"<H3>Trains</h3>\n<ul>"];
 	NSArray *trains = [layout allTrains];
 	for (ScheduledTrain *train in trains) {
-		[message appendFormat: @"<P><A HREF=\"?layout=%@&train=%@\">%@</A>", [layout layoutName], [train name], [train name]];
+		[message appendFormat: @"<li><A HREF=\"?layout=%@&train=%@\">%@</A>", [layout layoutName], [train name], [train name]];
 	}
-	[message appendFormat: @"<p>Reposition <A HREF=\"?layout=%@&carList=1\">all freight cars</a>", [layout layoutName]];
+	[message appendFormat: @"</ul>\n"];
 	[message appendFormat: @"</BODY></HTML>"];
 	
 	[server_ replyWithStatusCode: HTTP_OK
@@ -309,6 +402,7 @@ static const int HTTP_OK = 200;
 // http://localhost:20000/get?layout="xxx" -- show list of trains on layout xxx.
 // http://localhost:20000/get?layout="xxx"&train="yyyy" - show details on train yyy on layout xxx.
 // http://localhost:20000/get?layout="xxx"&carList=1 -- show list of freight cars, and allow changing locations.
+// http://localhost:20000/get?layout="xxx"&industryList=1 -- show list of freight cars, and allow changing locations.
 //
 // http://localhost:20000/setCarLocation?layout="xxx"&car="xxx"&location="xxx" -- change car's location.
 
@@ -362,6 +456,8 @@ static const int HTTP_OK = 200;
 			[self processRequestForLayout: document train: [query objectForKey: @"train"]];
 		} else if ([query objectForKey: @"carList"] != nil) {
 			[self processRequestForCarListForLayout: document];
+		} else if ([query objectForKey: @"industryList"] != nil) {
+			[self processRequestForIndustryListForLayout: document];
 		} else {
 			// Default to showing layout.
 			[self processRequestForLayout: document];

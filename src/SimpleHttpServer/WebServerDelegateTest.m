@@ -33,7 +33,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "EntireLayout.h"
 #import "FakeSwitchListDocument.h"
+#import "FreightCar.h"
+#import "Industry.h"
 #import "WebServerDelegate.h"
 
 @interface MockSimpleHTTPServer : NSObject {
@@ -109,11 +112,10 @@
 - (void) setUp {
 	[super setUp];
 	// Needed files need to be in the unit test's main bundle.
-	NSBundle *unitTestBundle = [NSBundle bundleWithIdentifier: @"com.blogspot.vasonabranch.Unit tests"];
+	unitTestBundle_ = [[NSBundle bundleWithIdentifier: @"com.blogspot.vasonabranch.Unit tests"] retain];
 	server_ = [[MockSimpleHTTPServer alloc] init];
-	webServerDelegate_ = [[WebServerDelegate alloc] initWithAppDelegate: nil
-															 withServer: (SimpleHTTPServer*) server_
-															 withBundle: unitTestBundle];
+	webServerDelegate_ = [[WebServerDelegate alloc] initWithServer: (SimpleHTTPServer*) server_
+														withBundle: unitTestBundle_];
 }
 
 - (void) tearDown {
@@ -124,6 +126,7 @@
 	}
 	[webServerDelegate_ release];
 	webServerDelegate_ = nil;
+	[unitTestBundle_ release];
 }
 	
 - (void) testSwitchlistIPhoneCss {
@@ -183,6 +186,65 @@
 				 [NSString stringWithFormat: @"Expected %@ in %@", @"get?layout=untitled", server_->lastMessage]);
 	
 }
+
+NSUInteger numberOfOccurrences(NSString *originalStr, NSString *substringToCount) {
+	// TODO(bowdidge): Rewrite correctly without even pretending to modify string.
+	NSMutableString *str = [NSMutableString stringWithString: originalStr];
+	return [str replaceOccurrencesOfString: substringToCount
+								withString: substringToCount
+								   options: 0 
+									 range: NSMakeRange(0, [str length])];
+}
+
+- (void) testIndustryListSingleIndustryTitle {
+	// Make sure only one occurrence of A-industry label, even though two cars are there.
+	[self makeThreeStationLayout];
+	[self makeThreeStationTrain];
+		
+	WebServerDelegate *myWebServer = [[WebServerDelegate alloc] initWithServer: (SimpleHTTPServer*) server_
+																	withBundle: unitTestBundle_];
+	NSMutableString *out = [NSMutableString string];
+	FreightCar *fc1 = [self freightCarWithReportingMarks: @"WP 1"];
+	FreightCar *fc2 = [self freightCarWithReportingMarks: @"UP 2"];
+	Industry *ind1 = [self industryAtStation: @"A"];
+	[fc1 setCurrentLocation: ind1];
+	[fc2 setCurrentLocation: ind1];
+	
+	[webServerDelegate_ writeIndustryListForLayout: entireLayout_ toString: out];
+	
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"A-industry"), @"");
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @">A<"), @"");
+
+	// No cars in B means the town shouldn't be printed.
+	STAssertEquals((NSUInteger) 0, numberOfOccurrences(out, @"B-industry"), @"");
+	STAssertEquals((NSUInteger) 0, numberOfOccurrences(out, @">B<"), @"");
+
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"WP 1"), @"");
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"UP 2"), @"");
+}
+
+- (void) testIndustryListTwoIndustry {
+	// Make sure only one occurrence of A-industry label, even though two cars are there.
+	[self makeThreeStationLayout];
+	[self makeThreeStationTrain];
+	
+	WebServerDelegate *myWebServer = [[WebServerDelegate alloc] initWithServer: (SimpleHTTPServer*) server_
+																	withBundle: unitTestBundle_];
+	NSMutableString *out = [NSMutableString string];
+	[webServerDelegate_ writeIndustryListForLayout: entireLayout_ toString: out];
+	
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"A-industry"), @"");
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @">A<"), @"");
+
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"B-industry"), @"");
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @">B<"), @"");
+	
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"WP 1"), @"");
+	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"UP 2"), @"");
+
+
+}
+
 
 
 	
