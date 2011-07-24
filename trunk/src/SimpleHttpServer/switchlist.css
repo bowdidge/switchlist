@@ -25,5 +25,30 @@ td#cartype {
 	height : 40px; 
 	border: 2px solid black;
 	padding-left:10px;
-	padding-right:10px}
+	padding-right:10px
+}
+
+/* Industry page style to space out reporting marks and car type */
+td.indStation {
+	width: 30%;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+td.indIndustry {
+	width: 30%;
+	font-weight: bold;
+}
+td.indMarks {
+	width: 30%;
+}
+td.indType {
+	width: 10%;
+}
+tr.indStationStart {
+	height: 40px;
+}
+tr.indIndustryStart {
+}
+
+
 

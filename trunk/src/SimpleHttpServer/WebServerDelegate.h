@@ -38,15 +38,17 @@
 
 @interface WebServerDelegate : NSObject {
 	SimpleHTTPServer *server_;
-	SwitchListAppDelegate *appDelegate_;
 	// Make this settable for testing.
 	NSBundle *mainBundle_;
 	
 }
 
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate;
+- (id) init;
 - (void) stopResponding;
 - (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn;
 // For mocking.
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) delegate withServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle;
+- (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle;
+
+// For testing.
+- (void) writeIndustryListForLayout: (EntireLayout *) layout toString: (NSMutableString *) message;
 @end

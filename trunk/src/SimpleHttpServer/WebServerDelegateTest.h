@@ -37,6 +37,7 @@
 @interface WebServerDelegateTest : LayoutTest {
 	WebServerDelegate *webServerDelegate_;
 	MockSimpleHTTPServer *server_;
+	NSBundle *unitTestBundle_;
 }
 
 @end

@@ -8,7 +8,7 @@ function carLocationChanged(object, carName) {
   // layoutName appended in separate script into HTML.
   params += layoutName;
   params +="&car=";
-  params += carName;
+  params += encodeURIComponent(carName);
   params += "&location=";
   params += chosenOption.text;
   var http = new XMLHttpRequest();
