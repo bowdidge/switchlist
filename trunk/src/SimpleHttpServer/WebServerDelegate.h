@@ -36,6 +36,9 @@
 @class SimpleHTTPConnection;
 @class SimpleHTTPServer;
 
+/* TCP port where SwitchList web server will listen. */
+extern const int DEFAULT_SWITCHLIST_PORT;
+
 @interface WebServerDelegate : NSObject {
 	SimpleHTTPServer *server_;
 	// Make this settable for testing.

@@ -42,7 +42,7 @@
 	// Preferences stuff
 	IBOutlet NSWindow *preferencesWindow_;
 	IBOutlet NSPopUpButton *switchListStyleButton_;
-	IBOutlet NSButton *webServerEnabledCheckBox_;
+	IBOutlet NSButton *webServerVisibleCheckBox_;
 
 	// Errors window
 	IBOutlet NSWindow *problemsWindow_;
@@ -59,10 +59,22 @@
 	IBOutlet NSButton *splashScreenOpenButton_;
 	IBOutlet NSTextField *splashScreenDocumentName_;
 	
+	// Web server status window.
+	IBOutlet NSPanel *webServerStatusPanel_;
+	IBOutlet NSImageView *networkIconView_;
+	IBOutlet NSButton *webAccessCheckBox_;
+	IBOutlet NSTextField *connectAtMessage_;
+	IBOutlet NSTextField *webAccessAddressMessage_;
+	// Image to be displayed in networkIconView_ when server is enabled.
+	NSImage* networkIconImage_;
+	
 	// Currently active document / last raised /etc.
 	SwitchListDocument *currentDocument_;
 	WebServerDelegate *webController_;
+	// Should web server be running?
 	bool webServerEnabled_;
+	// Should web server panel be visible?
+	bool webServerVisible_;
 	// For starting recent app
 	BOOL applicationHasStarted_;
 	BOOL shouldShowSplashScreen_;
@@ -82,6 +94,8 @@
 - (IBAction) displayYardReport: (id) sender;
 - (IBAction) switchListFormatPreferenceChanged: (id) sender;
 - (IBAction) webServerPreferenceChanged: (id) sender;
+
+- (IBAction) webServerRunStatusChanged: (id) sender;
 
 // Set the current set of problem strings.
 - (void) setProblems: (NSArray*) problemStrings;

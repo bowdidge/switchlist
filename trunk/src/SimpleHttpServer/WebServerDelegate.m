@@ -49,6 +49,8 @@
 
 static const int HTTP_OK = 200;
 
+const int DEFAULT_SWITCHLIST_PORT = 20000;
+
 @implementation WebServerDelegate
 
 // For mocking.
@@ -66,7 +68,7 @@ static const int HTTP_OK = 200;
 
 // Preferred constructor.
 - (id) init {
-	return [self initWithServer: [[SimpleHTTPServer alloc] initWithTCPPort: 20000 delegate:self]
+	return [self initWithServer: [[SimpleHTTPServer alloc] initWithTCPPort: DEFAULT_SWITCHLIST_PORT delegate:self]
 					 withBundle: [NSBundle mainBundle]];
 }
 
@@ -325,7 +327,7 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 - (void) processRequestForLayout: (SwitchListDocument*) document {
 	EntireLayout *layout = [document entireLayout];
 	NSMutableString *message = [NSMutableString string];
-	[message appendFormat: @"<HTML><HEAD><TITLE>%@ Layout/TITLE></HEAD><BODY>\n", [layout layoutName]];
+	[message appendFormat: @"<HTML><HEAD><TITLE>%@ Layout</TITLE></HEAD><BODY>\n", [layout layoutName]];
 
 	[message appendFormat: @"<h3>Lists of Cars</h3>\n"];
 	[message appendFormat: @"<p>Reposition <A HREF=\"?layout=%@&carList=1\">List of Freight Cars, in reporting mark order</a>", [layout layoutName]];

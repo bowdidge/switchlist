@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E0E27AB13F63AD500488E4D /* network_wireless.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E0E27AA13F63AD500488E4D /* network_wireless.jpg */; };
 		3E20386B135A5359007B0EE3 /* WebServerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E203864135A4FEC007B0EE3 /* WebServerDelegateTest.m */; };
 		3E2038E7135A6FAC007B0EE3 /* switchlist.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E9586351298900C00A10258 /* switchlist.css */; };
 		3E203931135A7448007B0EE3 /* switchlist-ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E95860612988B7200A10258 /* switchlist-ipad.css */; };
@@ -148,6 +149,7 @@
 		3E042CA110AFD44C0002A609 /* SwitchListDocument 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 2.xcdatamodel"; sourceTree = "<group>"; };
 		3E048E5308DCAE4000383A67 /* SwitchListAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListAppDelegate.h; sourceTree = "<group>"; };
 		3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListAppDelegate.m; sourceTree = "<group>"; };
+		3E0E27AA13F63AD500488E4D /* network_wireless.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = network_wireless.jpg; sourceTree = "<group>"; };
 		3E1490CD128F07AB001700D0 /* NSMigrationManagerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMigrationManagerCategory.h; sourceTree = "<group>"; };
 		3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRouteDialogController.h; sourceTree = "<group>"; };
 		3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRouteDialogController.m; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3E0E27AA13F63AD500488E4D /* network_wireless.jpg */,
 				3EE5ED9D131A1E03009E2C83 /* SwitchList.help */,
 				3E88AED3127B2DD2003486E2 /* train.jpg */,
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
@@ -643,6 +646,7 @@
 				3E9586361298900C00A10258 /* switchlist.css in Resources */,
 				3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */,
 				3E5DABB313B2FAA5001BF43F /* switchlist-industrylist-header.html in Resources */,
+				3E0E27AB13F63AD500488E4D /* network_wireless.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

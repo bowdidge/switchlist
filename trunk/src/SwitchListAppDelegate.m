@@ -135,6 +135,11 @@
 	return self;
 }
 
+- (void) dealloc {
+	[networkIconImage_ release];
+	[super dealloc];
+}
+
 - (NSDictionary*) indexToSwitchListClassMap {
 	return indexToSwitchListClassMap_;
 }
@@ -145,22 +150,12 @@
 
 // Either by user control or 
 - (void) startWebServer {
-  webController_ = [[WebServerDelegate alloc] init];
-	if (webController_) {
-		char hostnameBuf[500];
-		// TODO(bowdidge): Check return value.
-		gethostname(hostnameBuf, 500);
-		NSString *hostname = [NSString stringWithUTF8String: hostnameBuf];
-		
-		NSAlert *alert = [NSAlert alertWithMessageText: @"Server will run on port 20000"
-									 defaultButton: @"OK" alternateButton: nil otherButton: nil
-							 informativeTextWithFormat: @"Connect at http://%@:20000 to see", hostname];
-		// returns 1 for OK, 0 for cancel.
-		[alert runModal];
-	}
+	NSLog(@"Starting web server.");
+	webController_ = [[WebServerDelegate alloc] init];
 }
 
 - (void) stopWebServer {
+	NSLog(@"Shutting down web server.");
 	[webController_ stopResponding];
 	[webController_ release];
 	webController_ = nil;
@@ -171,6 +166,31 @@
 	return YES;
 }
 
+// Changes the web server's state and UI to match status.
+- (IBAction) setWebServerRunStatus: (bool) status {
+	if (status) {
+		[networkIconView_ setImage: networkIconImage_];
+		[webAccessCheckBox_ setState: status];
+		[connectAtMessage_ setTextColor: [NSColor blackColor]];
+		[webAccessAddressMessage_ setTextColor: [NSColor blackColor]];
+		[self startWebServer];
+	} else {
+		[networkIconView_ setImage: nil];
+		[webAccessCheckBox_ setState: status];
+		[connectAtMessage_ setTextColor: [NSColor grayColor]];
+		[webAccessAddressMessage_ setTextColor: [NSColor grayColor]];
+		[self stopWebServer];
+	}
+}
+
+// Return current hostname - probably bonjour name.
+NSString *CurrentHostname() {
+	char hostnameBuf[500];
+	// TODO(bowdidge): Check return value.
+	gethostname(hostnameBuf, 500);
+	NSString *hostname = [NSString stringWithUTF8String: hostnameBuf];
+	return hostname;
+}
 
 - (void) awakeFromNib {
 	problems_ = [[NSMutableArray alloc] init];
@@ -204,11 +224,31 @@
 	NSString *preferredName = [indexToSwitchListNameMap_ objectForKey: [NSNumber numberWithInt: cellChoice]];
 	[switchListStyleButton_ selectItemWithTitle: preferredName];
 	
-	webServerEnabled_ = [[NSUserDefaults standardUserDefaults] boolForKey: @"SwitchListWebServerEnabled"];
-	[webServerEnabledCheckBox_ setState: webServerEnabled_];
+	webServerVisible_ = [[NSUserDefaults standardUserDefaults] boolForKey: GLOBAL_PREFS_DISPLAY_WEB_SERVER];
+	webServerEnabled_ = [[NSUserDefaults standardUserDefaults] boolForKey: GLOBAL_PREFS_ENABLE_WEB_SERVER];
+	[webServerVisibleCheckBox_ setState: webServerVisible_];
+	
+	NSString *networkImageFile = [[NSBundle mainBundle] pathForResource: @"network_wireless" ofType: @"jpg"];
+	networkIconImage_ = [[NSImage alloc] initWithContentsOfFile: networkImageFile];
+	
+
+	NSString *webServerName = [NSString stringWithFormat: @"http://%@:%d", CurrentHostname(), DEFAULT_SWITCHLIST_PORT];
+	NSMutableAttributedString *webServerAttrString = [[NSMutableAttributedString alloc] initWithString: webServerName];
+	NSDictionary *webServerAddressAttrs = [NSDictionary dictionaryWithObject: webServerName
+																	  forKey: NSLinkAttributeName];
+	[webServerAttrString addAttributes: webServerAddressAttrs
+								 range: NSMakeRange(0, [webServerName length])];
+	[webAccessAddressMessage_ setAttributedStringValue: webServerAttrString];
+	[webServerAttrString autorelease];
+	
 	webController_ = nil;
-	if (webServerEnabled_) {
-		[self startWebServer];
+	if (webServerVisible_) {
+		[webServerStatusPanel_ orderFront: self];
+		// Only run web server if panel visible.
+		[self setWebServerRunStatus: webServerEnabled_];
+	} else {
+		[webServerStatusPanel_ orderOut: self];
+		[self setWebServerRunStatus: NO];
 	}
 }
 
@@ -294,16 +334,32 @@
 
 - (IBAction) webServerPreferenceChanged: (id) sender {
 	bool newValue = [sender state];
-	[[NSUserDefaults standardUserDefaults] setBool: newValue forKey: GLOBAL_PREFS_ENABLE_WEB_SERVER];
-	webServerEnabled_ = newValue;
-	[webServerEnabledCheckBox_ setState: newValue];
+	[[NSUserDefaults standardUserDefaults] setBool: newValue forKey: GLOBAL_PREFS_DISPLAY_WEB_SERVER];
+	webServerVisible_ = newValue;
 	if (newValue) {
-		[self startWebServer];
+		// Display server, and turn on if that's default.
+		[webServerStatusPanel_ orderFront: self];
+		webServerEnabled_ = [[NSUserDefaults standardUserDefaults] boolForKey: GLOBAL_PREFS_ENABLE_WEB_SERVER];
+		[self setWebServerRunStatus: webServerEnabled_];
 	} else {
-		[self stopWebServer];
+		// Hide server, and turn off server regardless.
+		[webServerStatusPanel_ orderOut: self];
+		[self setWebServerRunStatus: NO];
 	}
 }
 
+// Responds to click on the "web server enabled" checkbox in
+// the web server panel.
+- (IBAction) webServerRunStatusChanged: (id) sender {
+	if (webServerEnabled_) {
+		[self setWebServerRunStatus: NO];
+		webServerEnabled_ = NO;
+	} else {
+		[self setWebServerRunStatus: YES];
+		webServerEnabled_ = YES;
+	}
+	[[NSUserDefaults standardUserDefaults] setBool: webServerEnabled_ forKey: GLOBAL_PREFS_ENABLE_WEB_SERVER];
+}
 
 // Outline view methods for displaying the list of problems encountered
 // when trying to assign cars.
@@ -372,10 +428,17 @@
 	}
 }
 
-// Brings up the Help page for switch list styles.  Triggered by Help icon in preferences dialog.
+// Brings up the Help page for something in the prefences dialog. 
+// Triggered by Help icon in preferences dialog.
+// TODO(bowdidge): Rename to match generic use.
 - (IBAction) switchListStyleHelpPressed: (id) sender {
 	NSString *locBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
-	[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListStyles" inBook: locBookName];
+	if ([sender tag] == 1) {
+		// Show help on web server.
+		[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListWebServer" inBook: locBookName];
+	} else {
+		// 0 - show help on switchlist styles.
+		[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListStyles" inBook: locBookName];
+	}
 }
-
 @end

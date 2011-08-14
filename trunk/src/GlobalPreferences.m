@@ -32,6 +32,7 @@
 #import "GlobalPreferences.h"
 
 NSString *GLOBAL_PREFS_SWITCH_LIST_DEFAULT_STYLE = @"SwitchListDefaultStyle";
+NSString *GLOBAL_PREFS_DISPLAY_WEB_SERVER = @"SwitchListWebServerVisible";
 NSString *GLOBAL_PREFS_ENABLE_WEB_SERVER = @"SwitchListWebServerEnabled";
 NSString* GLOBAL_PREFS_HANDWRITING_FONT_NAME = @"SwitchListHandwritingFontName";
 NSString* GLOBAL_PREFS_TYPED_FONT_NAME = @"SwitchListTypedFontName";
