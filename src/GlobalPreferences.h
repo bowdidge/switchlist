@@ -36,6 +36,9 @@
 // Preferred switch list style.  Value is enum value from SwitchListStyle enum.
 extern NSString *GLOBAL_PREFS_SWITCH_LIST_DEFAULT_STYLE;
 
+// Indicates whether the web server control panel should be visible.  Boolean.
+extern NSString *GLOBAL_PREFS_DISPLAY_WEB_SERVER;
+
 // Indicates whether the web server should be running.  Boolean.
 extern NSString *GLOBAL_PREFS_ENABLE_WEB_SERVER;
 

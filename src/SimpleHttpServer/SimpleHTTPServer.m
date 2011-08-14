@@ -77,7 +77,9 @@
 
 - (void) stopResponding {
 	// TODO(bowdidge): Not thread safe.
-	[[NSNotificationCenter defaultCenter] removeObserver: self];
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:NSFileHandleConnectionAcceptedNotification object:fileHandle];
+	[connections release];
+	connections = [[NSMutableArray alloc] init];
 	[fileHandle release];
 	fileHandle = nil;
 }
@@ -101,6 +103,10 @@
 
 - (void)newConnection:(NSNotification *)notification
 {
+	if (!fileHandle) {
+		// Shut down.  Do not respond.
+		return;
+	}
     NSDictionary *userInfo = [notification userInfo];
     NSFileHandle *remoteFileHandle = [userInfo objectForKey:
                                             NSFileHandleNotificationFileHandleItem];
