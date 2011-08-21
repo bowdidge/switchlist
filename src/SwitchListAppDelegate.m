@@ -173,6 +173,23 @@
 		[webAccessCheckBox_ setState: status];
 		[connectAtMessage_ setTextColor: [NSColor blackColor]];
 		[webAccessAddressMessage_ setTextColor: [NSColor blackColor]];
+		
+		NSString *currentHostname = CurrentHostname();
+		if ([currentHostname isEqualToString: @"127.0.0.1"]) {
+			currentHostname = @"localhost";
+			[webAccessStatusMessage_ setStringValue: @"can't find network connection"];
+		} else {
+			[webAccessStatusMessage_ setStringValue: @""];
+		}
+		NSString *webServerName = [NSString stringWithFormat: @"http://%@:%d", currentHostname, DEFAULT_SWITCHLIST_PORT];
+		NSMutableAttributedString *webServerAttrString = [[[NSMutableAttributedString alloc] initWithString: webServerName] autorelease];
+		NSDictionary *webServerAddressAttrs = [NSDictionary dictionaryWithObject: webServerName
+																		  forKey: NSLinkAttributeName];
+		[webServerAttrString addAttributes: webServerAddressAttrs
+									 range: NSMakeRange(0, [webServerName length])];
+		[webAccessAddressMessage_ setAttributedStringValue: webServerAttrString];
+		
+		
 		[self startWebServer];
 	} else {
 		[networkIconView_ setImage: nil];
@@ -184,14 +201,6 @@
 }
 
 // Return current hostname - probably bonjour name.
-NSString *CurrentHostname() {
-	char hostnameBuf[500];
-	// TODO(bowdidge): Check return value.
-	gethostname(hostnameBuf, 500);
-	NSString *hostname = [NSString stringWithUTF8String: hostnameBuf];
-	return hostname;
-}
-
 - (void) awakeFromNib {
 	problems_ = [[NSMutableArray alloc] init];
 	[problems_ addObject: @"No errors"];
@@ -230,16 +239,6 @@ NSString *CurrentHostname() {
 	
 	NSString *networkImageFile = [[NSBundle mainBundle] pathForResource: @"network_wireless" ofType: @"jpg"];
 	networkIconImage_ = [[NSImage alloc] initWithContentsOfFile: networkImageFile];
-	
-
-	NSString *webServerName = [NSString stringWithFormat: @"http://%@:%d", CurrentHostname(), DEFAULT_SWITCHLIST_PORT];
-	NSMutableAttributedString *webServerAttrString = [[NSMutableAttributedString alloc] initWithString: webServerName];
-	NSDictionary *webServerAddressAttrs = [NSDictionary dictionaryWithObject: webServerName
-																	  forKey: NSLinkAttributeName];
-	[webServerAttrString addAttributes: webServerAddressAttrs
-								 range: NSMakeRange(0, [webServerName length])];
-	[webAccessAddressMessage_ setAttributedStringValue: webServerAttrString];
-	[webServerAttrString autorelease];
 	
 	webController_ = nil;
 	if (webServerVisible_) {

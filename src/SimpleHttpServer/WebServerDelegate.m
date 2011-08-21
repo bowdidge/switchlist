@@ -46,10 +46,48 @@
 #import "SimpleHTTPServer.h"
 #import "SimpleHTTPConnection.h"
 
+#include <regex.h>
 
 static const int HTTP_OK = 200;
 
 const int DEFAULT_SWITCHLIST_PORT = 20000;
+
+BOOL IsValidIPAddress(NSString *potentialAddress) {
+	regex_t patternCompiled;
+	BOOL isValidPattern = NO;
+	int ret;
+	ret = regcomp(&patternCompiled, "^[0-9]+.[0-9]+.[0-9]+.[0-9]+$", REG_EXTENDED);
+	if (ret != 0) {
+		NSLog(@"Regex pattern for detecting appropriate IP address for server returned %d\n", ret);
+		exit(1);
+	}
+	
+	ret = regexec(&patternCompiled, [potentialAddress UTF8String], 0, NULL, 0);
+	if (!ret) {
+		isValidPattern = YES;
+	} else if (ret == REG_NOMATCH) {
+		isValidPattern = NO;
+	} else {
+		char message[100];
+		regerror(ret, &patternCompiled, message, sizeof(message));
+		printf("Regex match failed: %s\n", message);
+		isValidPattern = NO;
+	}
+	regfree(&patternCompiled);
+	return isValidPattern;
+}
+
+
+NSString *CurrentHostname() {
+	NSArray *ipAddresses = [[NSHost currentHost] addresses];
+	for (NSString *address in ipAddresses) {
+		if (IsValidIPAddress(address)) {
+			return address;
+		}
+	}
+	// TODO(bowdidge): Find better way to warn when no addresses are valid.
+	return @"127.0.0.1";	
+}
 
 @implementation WebServerDelegate
 
