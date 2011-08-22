@@ -64,7 +64,7 @@
 	IBOutlet NSImageView *networkIconView_;
 	IBOutlet NSButton *webAccessCheckBox_;
 	IBOutlet NSTextField *connectAtMessage_;
-	IBOutlet NSTextField *webAccessAddressMessage_;w
+	IBOutlet NSTextField *webAccessAddressMessage_;
 	IBOutlet NSTextField *webAccessStatusMessage_;
 	// Image to be displayed in networkIconView_ when server is enabled.
 	NSImage* networkIconImage_;

@@ -434,7 +434,7 @@
 	NSString *locBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
 	if ([sender tag] == 1) {
 		// Show help on web server.
-		[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListWebServer" inBook: locBookName];
+		[[NSHelpManager sharedHelpManager] openHelpAnchor: @"WebServer" inBook: locBookName];
 	} else {
 		// 0 - show help on switchlist styles.
 		[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListStyles" inBook: locBookName];

@@ -14,6 +14,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="408"/>
 			<integer value="412"/>
+			<integer value="369"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -920,7 +921,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="962065835">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1055,27 +1056,6 @@
 												<int key="NSPeriodicInterval">25</int>
 											</object>
 										</object>
-										<object class="NSButton" id="170305232">
-											<reference key="NSNextResponder" ref="519539448"/>
-											<int key="NSvFlags">268</int>
-											<string key="NSFrame">{{358, 32}, {25, 25}}</string>
-											<reference key="NSSuperview" ref="519539448"/>
-											<int key="NSTag">1</int>
-											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="20331404">
-												<int key="NSCellFlags">67239424</int>
-												<int key="NSCellFlags2">134217728</int>
-												<string key="NSContents"/>
-												<reference key="NSSupport" ref="192541012"/>
-												<reference key="NSControlView" ref="170305232"/>
-												<int key="NSButtonFlags">-2038415105</int>
-												<int key="NSButtonFlags2">161</int>
-												<string key="NSAlternateContents"/>
-												<string key="NSKeyEquivalent"/>
-												<int key="NSPeriodicDelay">200</int>
-												<int key="NSPeriodicInterval">25</int>
-											</object>
-										</object>
 									</object>
 									<string key="NSFrame">{{1, 1}, {408, 161}}</string>
 									<reference key="NSSuperview" ref="577302875"/>
@@ -1112,6 +1092,7 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{444, 213}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1600, 1002}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -2209,14 +2190,6 @@
 					<int key="connectionID">447</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">switchListStyleHelpPressed:</string>
-						<reference key="source" ref="894572073"/>
-						<reference key="destination" ref="170305232"/>
-					</object>
-					<int key="connectionID">464</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">networkIconView_</string>
 						<reference key="source" ref="894572073"/>
@@ -2972,7 +2945,6 @@
 							<reference ref="58328363"/>
 							<reference ref="200614197"/>
 							<reference ref="1019943632"/>
-							<reference ref="170305232"/>
 						</object>
 						<reference key="parent" ref="962065835"/>
 					</object>
@@ -3225,20 +3197,6 @@
 						<int key="objectID">426</int>
 						<reference key="object" ref="36174863"/>
 						<reference key="parent" ref="203672377"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">462</int>
-						<reference key="object" ref="170305232"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="20331404"/>
-						</object>
-						<reference key="parent" ref="577302875"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">463</int>
-						<reference key="object" ref="20331404"/>
-						<reference key="parent" ref="170305232"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">467</int>
@@ -3498,9 +3456,6 @@
 					<string>425.IBPluginDependency</string>
 					<string>425.IBViewBoundsToFrameTransform</string>
 					<string>426.IBPluginDependency</string>
-					<string>462.IBPluginDependency</string>
-					<string>462.IBViewBoundsToFrameTransform</string>
-					<string>463.IBPluginDependency</string>
 					<string>467.IBPluginDependency</string>
 					<string>467.IBViewBoundsToFrameTransform</string>
 					<string>468.IBPluginDependency</string>
@@ -3803,11 +3758,6 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">AUJcAABDAAAAA</bytes>
-					</object>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDtYAAwsYAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4190,6 +4140,7 @@
 							<string>switchListStyleButton_</string>
 							<string>webAccessAddressMessage_</string>
 							<string>webAccessCheckBox_</string>
+							<string>webAccessStatusMessage_</string>
 							<string>webServerStatusPanel_</string>
 							<string>webServerVisibleCheckBox_</string>
 						</object>
@@ -4212,6 +4163,7 @@
 							<string>NSPopUpButton</string>
 							<string>NSTextField</string>
 							<string>NSButton</string>
+							<string>NSTextField</string>
 							<string>NSPanel</string>
 							<string>NSButton</string>
 						</object>
@@ -4237,6 +4189,7 @@
 							<string>switchListStyleButton_</string>
 							<string>webAccessAddressMessage_</string>
 							<string>webAccessCheckBox_</string>
+							<string>webAccessStatusMessage_</string>
 							<string>webServerStatusPanel_</string>
 							<string>webServerVisibleCheckBox_</string>
 						</object>
@@ -4309,6 +4262,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">webAccessCheckBox_</string>
 								<string key="candidateClassName">NSButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">webAccessStatusMessage_</string>
+								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">webServerStatusPanel_</string>
