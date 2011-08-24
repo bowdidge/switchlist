@@ -8,6 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		3E0E27AB13F63AD500488E4D /* network_wireless.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E0E27AA13F63AD500488E4D /* network_wireless.jpg */; };
+		3E108BC014049E7900B77CFE /* MGTemplateEngine README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108B9F14049E7900B77CFE /* MGTemplateEngine README.txt */; };
+		3E108BC114049E7900B77CFE /* MGTemplateEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BA114049E7900B77CFE /* MGTemplateEngine.m */; };
+		3E108BC214049E7900B77CFE /* MGTemplateStandardFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BA914049E7900B77CFE /* MGTemplateStandardFilters.m */; };
+		3E108BC314049E7900B77CFE /* MGTemplateStandardMarkers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BAB14049E7900B77CFE /* MGTemplateStandardMarkers.m */; };
+		3E108BC414049E7900B77CFE /* NSArray_DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BAD14049E7900B77CFE /* NSArray_DeepMutableCopy.m */; };
+		3E108BC514049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BAF14049E7900B77CFE /* NSDictionary_DeepMutableCopy.m */; };
+		3E108BC614049E7900B77CFE /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BB114049E7900B77CFE /* RegexKitLite.m */; };
+		3E108BCA14049E7900B77CFE /* Source Code License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB614049E7900B77CFE /* Source Code License.rtf */; };
+		3E108BCB14049E7900B77CFE /* Writing Filters.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB714049E7900B77CFE /* Writing Filters.txt */; };
+		3E108BCC14049E7900B77CFE /* Writing Markers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB814049E7900B77CFE /* Writing Markers.txt */; };
+		3E108BCD14049E7900B77CFE /* Writing Matchers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB914049E7900B77CFE /* Writing Matchers.txt */; };
+		3E108BD414049E7900B77CFE /* MGTemplateEngine README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108B9F14049E7900B77CFE /* MGTemplateEngine README.txt */; };
+		3E108BD514049E7900B77CFE /* MGTemplateEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BA114049E7900B77CFE /* MGTemplateEngine.m */; };
+		3E108BD614049E7900B77CFE /* MGTemplateStandardFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BA914049E7900B77CFE /* MGTemplateStandardFilters.m */; };
+		3E108BD714049E7900B77CFE /* MGTemplateStandardMarkers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BAB14049E7900B77CFE /* MGTemplateStandardMarkers.m */; };
+		3E108BD814049E7900B77CFE /* NSArray_DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BAD14049E7900B77CFE /* NSArray_DeepMutableCopy.m */; };
+		3E108BD914049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BAF14049E7900B77CFE /* NSDictionary_DeepMutableCopy.m */; };
+		3E108BDA14049E7900B77CFE /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BB114049E7900B77CFE /* RegexKitLite.m */; };
+		3E108BDE14049E7900B77CFE /* Source Code License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB614049E7900B77CFE /* Source Code License.rtf */; };
+		3E108BDF14049E7900B77CFE /* Writing Filters.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB714049E7900B77CFE /* Writing Filters.txt */; };
+		3E108BE014049E7900B77CFE /* Writing Markers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB814049E7900B77CFE /* Writing Markers.txt */; };
+		3E108BE114049E7900B77CFE /* Writing Matchers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB914049E7900B77CFE /* Writing Matchers.txt */; };
+		3E108C1714049FDA00B77CFE /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E108C1614049FD900B77CFE /* libicucore.A.dylib */; };
+		3E108C1814049FDA00B77CFE /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E108C1614049FD900B77CFE /* libicucore.A.dylib */; };
+		3E108C621404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
+		3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
+		3E108DCB1404C1B600B77CFE /* switchlist-layout.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E108DCA1404C1B600B77CFE /* switchlist-layout.html */; };
+		3E108DFE1404C6AE00B77CFE /* switchlist-home.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E108DFD1404C6AE00B77CFE /* switchlist-home.html */; };
+		3E108E451404CC9800B77CFE /* switchlist-home.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E108DFD1404C6AE00B77CFE /* switchlist-home.html */; };
 		3E20386B135A5359007B0EE3 /* WebServerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E203864135A4FEC007B0EE3 /* WebServerDelegateTest.m */; };
 		3E2038E7135A6FAC007B0EE3 /* switchlist.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E9586351298900C00A10258 /* switchlist.css */; };
 		3E203931135A7448007B0EE3 /* switchlist-ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E95860612988B7200A10258 /* switchlist-ipad.css */; };
@@ -103,6 +132,7 @@
 		3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
 		3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */; };
 		3EC3B1831277E4F900C00AD3 /* KaufmanSwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */; };
+		3EC6BDC6140394C600C657CD /* switchlist-header.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EC6BDC5140394C600C657CD /* switchlist-header.html */; };
 		3EC83F6D127CFC1A00B9DF33 /* SwitchList icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */; };
 		3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3ED58A6F13A727F500F6E26E /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
@@ -150,6 +180,31 @@
 		3E048E5308DCAE4000383A67 /* SwitchListAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListAppDelegate.h; sourceTree = "<group>"; };
 		3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListAppDelegate.m; sourceTree = "<group>"; };
 		3E0E27AA13F63AD500488E4D /* network_wireless.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = network_wireless.jpg; sourceTree = "<group>"; };
+		3E108B9614049E7900B77CFE /* DeepMutableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeepMutableCopy.h; sourceTree = "<group>"; };
+		3E108B9F14049E7900B77CFE /* MGTemplateEngine README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MGTemplateEngine README.txt"; sourceTree = "<group>"; };
+		3E108BA014049E7900B77CFE /* MGTemplateEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateEngine.h; sourceTree = "<group>"; };
+		3E108BA114049E7900B77CFE /* MGTemplateEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTemplateEngine.m; sourceTree = "<group>"; };
+		3E108BA614049E7900B77CFE /* MGTemplateFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateFilter.h; sourceTree = "<group>"; };
+		3E108BA714049E7900B77CFE /* MGTemplateMarker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateMarker.h; sourceTree = "<group>"; };
+		3E108BA814049E7900B77CFE /* MGTemplateStandardFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateStandardFilters.h; sourceTree = "<group>"; };
+		3E108BA914049E7900B77CFE /* MGTemplateStandardFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTemplateStandardFilters.m; sourceTree = "<group>"; };
+		3E108BAA14049E7900B77CFE /* MGTemplateStandardMarkers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MGTemplateStandardMarkers.h; sourceTree = "<group>"; };
+		3E108BAB14049E7900B77CFE /* MGTemplateStandardMarkers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MGTemplateStandardMarkers.m; sourceTree = "<group>"; };
+		3E108BAC14049E7900B77CFE /* NSArray_DeepMutableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSArray_DeepMutableCopy.h; sourceTree = "<group>"; };
+		3E108BAD14049E7900B77CFE /* NSArray_DeepMutableCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSArray_DeepMutableCopy.m; sourceTree = "<group>"; };
+		3E108BAE14049E7900B77CFE /* NSDictionary_DeepMutableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSDictionary_DeepMutableCopy.h; sourceTree = "<group>"; };
+		3E108BAF14049E7900B77CFE /* NSDictionary_DeepMutableCopy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSDictionary_DeepMutableCopy.m; sourceTree = "<group>"; };
+		3E108BB014049E7900B77CFE /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
+		3E108BB114049E7900B77CFE /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
+		3E108BB614049E7900B77CFE /* Source Code License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "Source Code License.rtf"; sourceTree = "<group>"; };
+		3E108BB714049E7900B77CFE /* Writing Filters.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Writing Filters.txt"; sourceTree = "<group>"; };
+		3E108BB814049E7900B77CFE /* Writing Markers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Writing Markers.txt"; sourceTree = "<group>"; };
+		3E108BB914049E7900B77CFE /* Writing Matchers.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Writing Matchers.txt"; sourceTree = "<group>"; };
+		3E108C1614049FD900B77CFE /* libicucore.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.A.dylib; path = /usr/lib/libicucore.A.dylib; sourceTree = "<absolute>"; };
+		3E108C601404A31E00B77CFE /* ICUTemplateMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICUTemplateMatcher.h; sourceTree = "<group>"; };
+		3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICUTemplateMatcher.m; sourceTree = "<group>"; };
+		3E108DCA1404C1B600B77CFE /* switchlist-layout.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "switchlist-layout.html"; sourceTree = "<group>"; };
+		3E108DFD1404C6AE00B77CFE /* switchlist-home.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "switchlist-home.html"; sourceTree = "<group>"; };
 		3E1490CD128F07AB001700D0 /* NSMigrationManagerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMigrationManagerCategory.h; sourceTree = "<group>"; };
 		3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRouteDialogController.h; sourceTree = "<group>"; };
 		3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRouteDialogController.m; sourceTree = "<group>"; };
@@ -249,6 +304,7 @@
 		3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
 		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntireLayoutTest.h; sourceTree = "<group>"; };
 		3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntireLayoutTest.m; sourceTree = "<group>"; };
+		3EC6BDC5140394C600C657CD /* switchlist-header.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "switchlist-header.html"; sourceTree = "<group>"; };
 		3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "SwitchList icon.icns"; path = "resources/SwitchList icon.icns"; sourceTree = "<group>"; };
 		3ED482320D715B3600C36741 /* SwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListView.h; sourceTree = "<group>"; };
 		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
@@ -285,6 +341,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E108C1714049FDA00B77CFE /* libicucore.A.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */,
+				3E108C1814049FDA00B77CFE /* libicucore.A.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +393,7 @@
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
 				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
 				3E95843512986D7D00A10258 /* SimpleHttpServer */,
+				3E108B9314049E7900B77CFE /* MGTemplateEngine */,
 				3EBAC6DB127B3853001F3FC7 /* UI */,
 				E1B74B1A0667B4A90069E3BA /* Models */,
 				3EC3B1D31277E7BB00C00AD3 /* Unit tests */,
@@ -374,10 +433,40 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E108C1614049FD900B77CFE /* libicucore.A.dylib */,
 				1058C7A6FEA54F5311CA2CBB /* Linked Frameworks */,
 				1058C7A8FEA54F5311CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E108B9314049E7900B77CFE /* MGTemplateEngine */ = {
+			isa = PBXGroup;
+			children = (
+				3E108C601404A31E00B77CFE /* ICUTemplateMatcher.h */,
+				3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */,
+				3E108B9614049E7900B77CFE /* DeepMutableCopy.h */,
+				3E108B9F14049E7900B77CFE /* MGTemplateEngine README.txt */,
+				3E108BA014049E7900B77CFE /* MGTemplateEngine.h */,
+				3E108BA114049E7900B77CFE /* MGTemplateEngine.m */,
+				3E108BA614049E7900B77CFE /* MGTemplateFilter.h */,
+				3E108BA714049E7900B77CFE /* MGTemplateMarker.h */,
+				3E108BA814049E7900B77CFE /* MGTemplateStandardFilters.h */,
+				3E108BA914049E7900B77CFE /* MGTemplateStandardFilters.m */,
+				3E108BAA14049E7900B77CFE /* MGTemplateStandardMarkers.h */,
+				3E108BAB14049E7900B77CFE /* MGTemplateStandardMarkers.m */,
+				3E108BAC14049E7900B77CFE /* NSArray_DeepMutableCopy.h */,
+				3E108BAD14049E7900B77CFE /* NSArray_DeepMutableCopy.m */,
+				3E108BAE14049E7900B77CFE /* NSDictionary_DeepMutableCopy.h */,
+				3E108BAF14049E7900B77CFE /* NSDictionary_DeepMutableCopy.m */,
+				3E108BB014049E7900B77CFE /* RegexKitLite.h */,
+				3E108BB114049E7900B77CFE /* RegexKitLite.m */,
+				3E108BB614049E7900B77CFE /* Source Code License.rtf */,
+				3E108BB714049E7900B77CFE /* Writing Filters.txt */,
+				3E108BB814049E7900B77CFE /* Writing Markers.txt */,
+				3E108BB914049E7900B77CFE /* Writing Matchers.txt */,
+			);
+			path = MGTemplateEngine;
 			sourceTree = "<group>";
 		};
 		3E57C5CE12FBDCF100E51008 /* Switchlist styles */ = {
@@ -437,8 +526,11 @@
 				3E203864135A4FEC007B0EE3 /* WebServerDelegateTest.m */,
 				3E9586351298900C00A10258 /* switchlist.css */,
 				3E95863112988FB700A10258 /* switchlist-iphone.css */,
+				3EC6BDC5140394C600C657CD /* switchlist-header.html */,
 				3E95860612988B7200A10258 /* switchlist-ipad.css */,
+				3E108DFD1404C6AE00B77CFE /* switchlist-home.html */,
 				3EF295811313002A00D2C3F6 /* switchlist-carlist-header.html */,
+				3E108DCA1404C1B600B77CFE /* switchlist-layout.html */,
 				3E5DABB213B2FAA5001BF43F /* switchlist-industrylist-header.html */,
 			);
 			path = SimpleHttpServer;
@@ -624,6 +716,12 @@
 				3E2038E7135A6FAC007B0EE3 /* switchlist.css in Resources */,
 				3E203931135A7448007B0EE3 /* switchlist-ipad.css in Resources */,
 				3E88AED4127B2DD2003486E2 /* train.jpg in Resources */,
+				3E108BC014049E7900B77CFE /* MGTemplateEngine README.txt in Resources */,
+				3E108BCA14049E7900B77CFE /* Source Code License.rtf in Resources */,
+				3E108BCB14049E7900B77CFE /* Writing Filters.txt in Resources */,
+				3E108BCC14049E7900B77CFE /* Writing Markers.txt in Resources */,
+				3E108BCD14049E7900B77CFE /* Writing Matchers.txt in Resources */,
+				3E108E451404CC9800B77CFE /* switchlist-home.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +745,14 @@
 				3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */,
 				3E5DABB313B2FAA5001BF43F /* switchlist-industrylist-header.html in Resources */,
 				3E0E27AB13F63AD500488E4D /* network_wireless.jpg in Resources */,
+				3EC6BDC6140394C600C657CD /* switchlist-header.html in Resources */,
+				3E108BD414049E7900B77CFE /* MGTemplateEngine README.txt in Resources */,
+				3E108BDE14049E7900B77CFE /* Source Code License.rtf in Resources */,
+				3E108BDF14049E7900B77CFE /* Writing Filters.txt in Resources */,
+				3E108BE014049E7900B77CFE /* Writing Markers.txt in Resources */,
+				3E108BE114049E7900B77CFE /* Writing Matchers.txt in Resources */,
+				3E108DCB1404C1B600B77CFE /* switchlist-layout.html in Resources */,
+				3E108DFE1404C6AE00B77CFE /* switchlist-home.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,6 +832,13 @@
 				3EE380BE133D284F0069C963 /* SwitchRouteDialogControllerTest.m in Sources */,
 				3E203967135A77F8007B0EE3 /* FakeSwitchListDocument.m in Sources */,
 				3E60820913615B940054DBA1 /* SwitchListBaseView.m in Sources */,
+				3E108BC114049E7900B77CFE /* MGTemplateEngine.m in Sources */,
+				3E108BC214049E7900B77CFE /* MGTemplateStandardFilters.m in Sources */,
+				3E108BC314049E7900B77CFE /* MGTemplateStandardMarkers.m in Sources */,
+				3E108BC414049E7900B77CFE /* NSArray_DeepMutableCopy.m in Sources */,
+				3E108BC514049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */,
+				3E108BC614049E7900B77CFE /* RegexKitLite.m in Sources */,
+				3E108C621404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +889,13 @@
 				3EB507BD13243F2600D85B59 /* StringHelpers.m in Sources */,
 				3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */,
 				3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */,
+				3E108BD514049E7900B77CFE /* MGTemplateEngine.m in Sources */,
+				3E108BD614049E7900B77CFE /* MGTemplateStandardFilters.m in Sources */,
+				3E108BD714049E7900B77CFE /* MGTemplateStandardMarkers.m in Sources */,
+				3E108BD814049E7900B77CFE /* NSArray_DeepMutableCopy.m in Sources */,
+				3E108BD914049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */,
+				3E108BDA14049E7900B77CFE /* RegexKitLite.m in Sources */,
+				3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

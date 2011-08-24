@@ -32,6 +32,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "../MGTemplateEngine/MGTemplateEngine.h"
+#import "../MGTemplateEngine/ICUTemplateMatcher.h"
+
 #import "WebServerDelegate.h"
 
 #import "../CarType.h"
@@ -96,6 +99,9 @@ NSString *CurrentHostname() {
 	[super init];
 	server_ = server;
 	mainBundle_ = bundle;
+	engine_ = [[MGTemplateEngine alloc] init];
+	[engine_ setMatcher: [ICUTemplateMatcher matcherWithTemplateEngine: engine_]];
+
 	if (server_) {
 		NSLog(@"Started!");
 	} else {
@@ -113,6 +119,7 @@ NSString *CurrentHostname() {
 - (void) dealloc {
 	[server_ stopResponding];
 	[server_ release];
+	[engine_ release];
 	[super dealloc];
 }
 
@@ -149,15 +156,6 @@ NSString *CurrentHostname() {
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
-
-- (NSString*) switchListHeaderForTrain: (NSString*) trainName {
-	return [NSString stringWithFormat: @"<HTML>\n<HEAD>\n"
-			@"<link type=\"text/css\" href=\"switchlist.css\" rel=\"stylesheet\" />\n"
-			@"<link media=\"only screen and (max-device-width: 480px)\" href=\"switchlist-iphone.css\" type=\"text/css\" rel=\"stylesheet\" />\n"
-			@"<link media=\"only screen and (max-device-width: 1024px)\" href=\"switchlist-ipad.css\" type=\"text/css\" rel=\"stylesheet\" />\n"
-			@"<TITLE>Switch List for %@</TITLE>\n</HEAD>\n<BODY>\n", trainName];
-}
-
 - (NSString*) townLocationStringForLocation: (InduYard*) induYard {
 	return [NSString stringWithFormat: @"%@/%@", [[induYard location] name], [induYard name]];
 }
@@ -166,39 +164,15 @@ NSString *CurrentHostname() {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
 	ScheduledTrain *train = [layout trainWithName: trainName];
-	NSMutableString *message = [NSMutableString stringWithString: [self switchListHeaderForTrain: [train name]]];
-	[message appendFormat: @"<div class=\"switch-list-title\">\n"
-		                   @"%@\n"
-		                   @"<br>\n"
-		                   @"SWITCH LIST\n</div>\n",
-						   [[document entireLayout] layoutName]];
-	[message appendFormat: @"<div class=\"switch-list-instructions\">\n"
-	                       @"%@ AT %@ STATION, %@\n"
-		                   @"</div>",
-		                   [train name],
-						   [[train stationStopStrings] objectAtIndex: 0],
-						   [layout currentDate]];
-	[message appendString: @"<p>\n" 
-	                       @"<center>\n"
-	                       @"<TABLE BORDER=\"1\" class=\"switch-list\">\n"];
-	[message appendString: @"<TR class=\"switch-list-header\">\n"
-                           @"  <TH>Done</TH>\n" 
-	                       @"<TH>Car No.</TH>\n"
-	                       @"<TH>Car Type</TH>\n"
-                           @"<TH>From</TH>\n"
-                           @"<TH>To</TH>\n</TR>"];
-	NSSet *cars = [train freightCars];
-	for (FreightCar *car in cars) {
-		[message appendFormat: @"<TR><TD><INPUT TYPE=CHECKBOX NAME=""></TD><TD>%@</TD><TD id=\"cartype\">%@</TD><TD>%@</TD><TD>%@</TD></TR>",
-		 [car reportingMarks], [[car carTypeRel] carTypeName], [self townLocationStringForLocation: [car currentLocation]],
-		 [self townLocationStringForLocation: [car nextStop]]];
-	}
-
-	[message appendString: @"</TABLE>\n"
-	                       @"</center>\n"
-	                       @"<p align=\"right\">"];
-	[message appendFormat: @"<INPUT TYPE=BUTTON value=\"Go Back\" onclick=\"location.href='?layout=%@'\">", [layout layoutName]];
-	[message appendString: @"<INPUT TYPE=BUTTON value=\"Train Finished\"></p> </HTML>"];
+	
+	NSDictionary *templateDict = [NSDictionary dictionaryWithObjectsAndKeys:
+								  trainName, @"trainName", 
+								  [[train stationStopStrings] objectAtIndex: 0],@"firstStation", 
+								  [train freightCars], @"freightCars",
+								  layout, @"layout",
+								  nil];
+	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-header" ofType: @"html"]
+											   withVariables: templateDict];
 	[server_ replyWithStatusCode: HTTP_OK
 						 message: message];
 }
@@ -246,41 +220,20 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 - (void) processRequestForCarListForLayout: (SwitchListDocument*) document {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
-	NSMutableString *message = [NSMutableString string];
 
-	[message appendString: [self contentsOfHtmlHeaderResource: @"switchlist-carlist-header"]];
-
-	// Fill in needed variables for JavaScript.
-	[message appendFormat: @"<script type='text/javascript'>var layoutName='%@';</script>", [layout layoutName]];
-	
-	[message appendFormat: @"<BODY>Cars currently active in layout %@:", [layout layoutName]];;
-	
-	NSArray *cars = [[layout allFreightCarsReportingMarkOrder] sortedArrayUsingFunction: &compareReportingMarksAlphabetically context: 0];
-	NSArray *industries = [layout allIndustries];
-	[message appendFormat: @"<TABLE><th>Reporting Marks</th><th>Car Type</th><th>Location</th>"];
-	for (FreightCar *fc in cars) {
-		// Put each car on its own line of a table, with the name in the left cell and a SELECT pulldown
-		// in the right.  Each SELECT should have the current location selected.
-		[message appendFormat: @"<TR>\n<TD>%@</td><td>%@</td>\n", [fc reportingMarks], [[fc carTypeRel] carTypeName]];
-		[message appendFormat: @"<TD><select onchange=\"javascript:carLocationChanged(this, '%@');\">", [fc reportingMarks]];
-		// TODO(bowdidge): Stop duplicating the industry list in each SELECT.
-		for (Industry *industry in industries) {
-			[message appendFormat: @"<option %@value=\"%@\">%@</option>", 
-				(([fc currentLocation] == industry) ? @"selected=\"selected\" " : @""),
-				[industry name], [industry name]];
-		}
-		for (Yard *yard in [layout allYards]) {
-			[message appendFormat: @"<option %@value=\"%@\">%@</option>", (([fc currentLocation] == yard) ? @"selected=\"selected\" " : @""),
-			 
-			 [yard name], [yard name]];
-		}
-		[message appendString: @"</select></TD>\n</TR>\n"];
+	NSMutableString *carLocations = [NSMutableString string];
+	NSArray *allFreightCars = [[layout allFreightCarsReportingMarkOrder] sortedArrayUsingFunction: &compareReportingMarksAlphabetically context: 0];
+	for (FreightCar *freightCar in allFreightCars) {
+		[carLocations appendFormat: @"'%@':'%@',", [freightCar reportingMarks], [[freightCar currentLocation] name]];
 	}
-	[message appendString: @"</table>"];
-	[message appendFormat: @"</BODY></HTML>"];
-	
-	[server_ replyWithStatusCode: HTTP_OK
-						 message: message];
+	NSDictionary *templateDict = [NSDictionary dictionaryWithObjectsAndKeys:
+								  allFreightCars, @"freightCars",
+								  layout, @"layout",
+								  carLocations, @"carLocations",
+								  nil];
+	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-carlist-header" ofType: @"html"]
+											   withVariables: templateDict];
+	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
 - (void) writeIndustryListForLayout: (EntireLayout *) layout toString: (NSMutableString *) message  {
@@ -363,22 +316,9 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 
 	
 - (void) processRequestForLayout: (SwitchListDocument*) document {
-	EntireLayout *layout = [document entireLayout];
-	NSMutableString *message = [NSMutableString string];
-	[message appendFormat: @"<HTML><HEAD><TITLE>%@ Layout</TITLE></HEAD><BODY>\n", [layout layoutName]];
-
-	[message appendFormat: @"<h3>Lists of Cars</h3>\n"];
-	[message appendFormat: @"<p>Reposition <A HREF=\"?layout=%@&carList=1\">List of Freight Cars, in reporting mark order</a>", [layout layoutName]];
-	[message appendFormat: @"<p><A HREF=\"?layout=%@&industryList=1\">List of Freight Cars, in industry order</a>", [layout layoutName]];
-	
-	[message appendFormat: @"<H3>Trains</h3>\n<ul>"];
-	NSArray *trains = [layout allTrains];
-	for (ScheduledTrain *train in trains) {
-		[message appendFormat: @"<li><A HREF=\"?layout=%@&train=%@\">%@</A>", [layout layoutName], [train name], [train name]];
-	}
-	[message appendFormat: @"</ul>\n"];
-	[message appendFormat: @"</BODY></HTML>"];
-	
+	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: [document entireLayout] forKey: @"layout"];
+	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-layout" ofType: @"html"]
+											   withVariables: templateDict];
 	[server_ replyWithStatusCode: HTTP_OK
 						message: message];
 }
@@ -420,19 +360,19 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 		return;
 	}
 	
-	NSMutableString *message = [NSMutableString string];
-	[message appendFormat: @"<HTML><HEAD><TITLE>SwitchList</TITLE></HEAD><BODY>The following layouts are currently open in SwitchList:"];
-	
+	NSMutableArray *layoutNames = [NSMutableArray array];
 	for (SwitchListDocument *document in allDocuments) {
-		EntireLayout *layout = [document entireLayout];
-		NSString *layoutName = [layout layoutName];
-		if ([layoutName length] == 0) {
-			layoutName = @"untitled";
+		NSString *layoutName = [[document entireLayout] layoutName];
+		if (!layoutName || [layoutName isEqualToString: @""]) {
+			[layoutNames addObject: @"untitled"];
+		} else {
+			[layoutNames addObject: layoutName];
 		}
-		[message appendFormat: @"<P><A HREF=\"get?layout=%@\">%@</A>", layoutName, layoutName];
 	}
-	[message appendFormat: @"</BODY></HTML>"];
-	
+	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: layoutNames forKey:  @"layoutNames"];
+	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-home" ofType: @"html"]
+											   withVariables: templateDict];
+	NSLog(@"Message was %@", message);
 	[server_ replyWithStatusCode: HTTP_OK
 						 message: message];
 }	
