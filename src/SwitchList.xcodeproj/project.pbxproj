@@ -19,17 +19,12 @@
 		3E108BCB14049E7900B77CFE /* Writing Filters.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB714049E7900B77CFE /* Writing Filters.txt */; };
 		3E108BCC14049E7900B77CFE /* Writing Markers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB814049E7900B77CFE /* Writing Markers.txt */; };
 		3E108BCD14049E7900B77CFE /* Writing Matchers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB914049E7900B77CFE /* Writing Matchers.txt */; };
-		3E108BD414049E7900B77CFE /* MGTemplateEngine README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108B9F14049E7900B77CFE /* MGTemplateEngine README.txt */; };
 		3E108BD514049E7900B77CFE /* MGTemplateEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BA114049E7900B77CFE /* MGTemplateEngine.m */; };
 		3E108BD614049E7900B77CFE /* MGTemplateStandardFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BA914049E7900B77CFE /* MGTemplateStandardFilters.m */; };
 		3E108BD714049E7900B77CFE /* MGTemplateStandardMarkers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BAB14049E7900B77CFE /* MGTemplateStandardMarkers.m */; };
 		3E108BD814049E7900B77CFE /* NSArray_DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BAD14049E7900B77CFE /* NSArray_DeepMutableCopy.m */; };
 		3E108BD914049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BAF14049E7900B77CFE /* NSDictionary_DeepMutableCopy.m */; };
 		3E108BDA14049E7900B77CFE /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BB114049E7900B77CFE /* RegexKitLite.m */; };
-		3E108BDE14049E7900B77CFE /* Source Code License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB614049E7900B77CFE /* Source Code License.rtf */; };
-		3E108BDF14049E7900B77CFE /* Writing Filters.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB714049E7900B77CFE /* Writing Filters.txt */; };
-		3E108BE014049E7900B77CFE /* Writing Markers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB814049E7900B77CFE /* Writing Markers.txt */; };
-		3E108BE114049E7900B77CFE /* Writing Matchers.txt in Resources */ = {isa = PBXBuildFile; fileRef = 3E108BB914049E7900B77CFE /* Writing Matchers.txt */; };
 		3E108C1714049FDA00B77CFE /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E108C1614049FD900B77CFE /* libicucore.A.dylib */; };
 		3E108C1814049FDA00B77CFE /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E108C1614049FD900B77CFE /* libicucore.A.dylib */; };
 		3E108C621404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
@@ -746,11 +741,6 @@
 				3E5DABB313B2FAA5001BF43F /* switchlist-industrylist-header.html in Resources */,
 				3E0E27AB13F63AD500488E4D /* network_wireless.jpg in Resources */,
 				3EC6BDC6140394C600C657CD /* switchlist-header.html in Resources */,
-				3E108BD414049E7900B77CFE /* MGTemplateEngine README.txt in Resources */,
-				3E108BDE14049E7900B77CFE /* Source Code License.rtf in Resources */,
-				3E108BDF14049E7900B77CFE /* Writing Filters.txt in Resources */,
-				3E108BE014049E7900B77CFE /* Writing Markers.txt in Resources */,
-				3E108BE114049E7900B77CFE /* Writing Matchers.txt in Resources */,
 				3E108DCB1404C1B600B77CFE /* switchlist-layout.html in Resources */,
 				3E108DFE1404C6AE00B77CFE /* switchlist-home.html in Resources */,
 			);
