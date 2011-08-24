@@ -1,0 +1,19 @@
+<HTML>
+<HEAD>
+<TITLE>{{layout.layoutName}} Layout</TITLE>
+</HEAD>
+<BODY>
+<h3>Lists of Cars</h3>
+<p>
+Reposition
+<A HREF="?layout={{layout.layoutName}}&carList=1">List of Freight Cars, in reporting mark order</a>
+<p>
+<A HREF="?layout={{layout.layoutName}}&industryList=1">List of Freight Cars, in industry order</a>
+<H3>Trains</h3>
+<ul>
+{% for train in layout.allTrains %}
+<li><A HREF="?layout={{layout.layoutName}}&train={{train.name}}">{{train.name}}</A>
+{% /for %}
+</ul>
+</body>
+</html>

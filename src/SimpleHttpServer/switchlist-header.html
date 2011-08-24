@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<link type="text/css" href="switchlist.css" rel="stylesheet" />
+<link media="only screen and (max-device-width: 1024px)" href="switchlist-ipad.css" type="text/css" rel="stylesheet" />
+<link media="only screen and (max-device-width: 480px)" href="switchlist-iphone.css" type="text/css" rel="stylesheet" />
+<TITLE>Switch List for {{ trainName }}</TITLE>
+</HEAD>
+<BODY>
+<div class="switch-list-title">
+{{ layoutName }}
+<br>
+SWITCH LIST
+</div>
+<div class="switch-list-instructions">
+{{ trainName }} AT {{ firstStation }} STATION, {{ layout.currentDate.description }}
+</div>
+<p>
+<center>
+<TABLE BORDER="1" class="switch-list">
+  <TR class="switch-list-header">
+    <TH>Done</TH>
+    <TH>Car No.</TH>
+    <TH>Car Type</TH>
+    <TH>From</TH>
+    <TH>To</TH>
+  </TR>
+  {% for car in freightCars %}
+  <TR>
+    <TD><INPUT TYPE=CHECKBOX NAME=""></TD>
+	<TD>{{car.reportingMarks}}</TD>
+	<TD id="cartype">{{car.carTypeRel.carTypeName}}</TD>
+	<TD>{{car.currentLocation.location.name}}/{{car.currentLocation.name}}</TD>
+	<TD>{{car.nextStop.location.name}}/{{car.nextStop.name}}</td>
+  </tr>
+  {% /for %}
+</TABLE>
+</center>
+<p align="right">
+<INPUT TYPE=BUTTON value="Go Back" onclick="location.href='?layout=%{{layout.layoutName}}'">
+<INPUT TYPE=BUTTON value="Train Finished">
+</p>
+</HTML>
+	

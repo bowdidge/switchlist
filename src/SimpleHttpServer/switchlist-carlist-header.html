@@ -20,6 +20,42 @@ function carLocationChanged(object, carName) {
   }
   http.send(null);
 }
+
+function setCarLocations(carDictionary) {
+  var carKey;
+  for (carKey in carDictionary) {
+    var carLoc = carDictionary[carKey];
+	var carIndustryId = carKey + "-" + carLoc;
+	var optionForCar = document.getElementById(carIndustryId);
+	if (optionForCar) {
+      optionForCar.selected = true;
+	} else {
+	  // Ignore.
+    }
+  }
+}
 </script>
 </HEAD>
-
+<script type='text/javascript'>
+var layoutName='{{ layout.layoutName }}';
+var carDictionary={ {{carLocations}} };
+</script>
+<BODY onload="setCarLocations(carDictionary);">
+Cars currently active in layout {{ layout.layoutName }}:
+<TABLE id="foo">
+  <th>Reporting Marks</th>
+  <th>Car Type</th>
+  <th>Location</th>
+{% for car in freightCars %}
+  <tr>
+    <td>{{ car.reportingMarks }}</td>
+	<td>{{ car.carTypeRel.carTypeName }}</td>
+	<TD><select id="{{car.reportingMarks}}" onchange="javascript:carLocationChanged(this, '{{car.reportingMarks}}');">
+    {% for industry in layout.allIndustries %}  <option value="{{ industry.name }}" id='{{car.reportingMarks}}-{{industry.name}}'>{{ industry.name }} </option>    {% /for %}
+	{% for yard in layout.allYards %} <option value="{{ yard.name }}" id='{{car.reportingMarks}}-{{yard.name}}'>{{ yard.name }}</option> {% /for %}
+	  <option value="Workbench" id='{{car.reportingMarks}}-Workbench'>Workbench</option>
+    </select></td>
+  </tr>
+  {% /for %}
+</table>
+</BODY></HTML>

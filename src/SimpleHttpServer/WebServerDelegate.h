@@ -31,6 +31,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "../MGTemplateEngine/MGTemplateEngine.h"
+
 @class EntireLayout;
 @class SwitchListAppDelegate;
 @class SimpleHTTPConnection;
@@ -45,7 +47,7 @@ extern NSString *CurrentHostname();
 	SimpleHTTPServer *server_;
 	// Make this settable for testing.
 	NSBundle *mainBundle_;
-	
+	MGTemplateEngine *engine_;
 }
 
 - (id) init;

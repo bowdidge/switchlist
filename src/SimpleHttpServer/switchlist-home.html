@@ -1,0 +1,13 @@
+<HTML>
+<HEAD>
+<TITLE>SwitchList</TITLE>
+</HEAD>
+<BODY>
+The following layouts are currently open in SwitchList:
+<ul>
+{% for layoutName in layoutNames %}
+  <li> <A HREF="get?layout={{layoutName}}">{{layoutName}}</A>
+{% /for %}
+</ul>
+</BODY>
+</HTML>
