@@ -1,10 +1,13 @@
 //
-//  WebServerDelegate.h
+//
+//  SwitchListFiltersTest.h
 //  SwitchList
 //
-//  Created by bowdidge on 11/20/10.
+// Unit tests for the template filters specific to SwitchList.
 //
-// Copyright (c)2010 Robert Bowdidge,
+//  Created by bowdidge on 8/26/2011
+//
+// Copyright (c)2011 Robert Bowdidge,
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
@@ -29,33 +32,20 @@
 // SUCH DAMAGE.
 //
 
+#import <SenTestingKit/SenTestingKit.h>
+
 #import <Cocoa/Cocoa.h>
 
-#import "../MGTemplateEngine/MGTemplateEngine.h"
+#import "SwitchListFilters.h"
 
-@class EntireLayout;
-@class SwitchListAppDelegate;
-@class SimpleHTTPConnection;
-@class SimpleHTTPServer;
-
-/* TCP port where SwitchList web server will listen. */
-extern const int DEFAULT_SWITCHLIST_PORT;
-// Returns an IP address for current host.
-extern NSString *CurrentHostname();
-
-@interface WebServerDelegate : NSObject {
-	SimpleHTTPServer *server_;
-	// Make this settable for testing.
-	NSBundle *mainBundle_;
-	MGTemplateEngine *engine_;
+@interface SwitchListFilterReplaceRandom : SwitchListFilters {
+	int *randomValues_;
+	int currentRandom_;
+	BOOL consumedTooManyValues_;
 }
+@end
 
-- (id) init;
-- (void) stopResponding;
-- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn userAgent: (NSString*) userAgent;
-// For mocking.
-- (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle;
-
-// For testing.
-- (void) writeIndustryListForLayout: (EntireLayout *) layout toString: (NSMutableString *) message;
+@interface SwitchListFiltersTest : SenTestCase {
+	SwitchListFilterReplaceRandom *switchListFilter_;
+}
 @end

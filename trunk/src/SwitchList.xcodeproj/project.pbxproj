@@ -38,8 +38,6 @@
 		3E108C1814049FDA00B77CFE /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E108C1614049FD900B77CFE /* libicucore.A.dylib */; };
 		3E108C621404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
 		3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
-		3E20386B135A5359007B0EE3 /* WebServerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E203864135A4FEC007B0EE3 /* WebServerDelegateTest.m */; };
-		3E203967135A77F8007B0EE3 /* FakeSwitchListDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E203966135A77F8007B0EE3 /* FakeSwitchListDocument.m */; };
 		3E258A6C1286657A00D233DB /* CarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258A6B1286657A00D233DB /* CarType.m */; };
 		3E258A6D1286657A00D233DB /* CarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258A6B1286657A00D233DB /* CarType.m */; };
 		3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */; };
@@ -70,8 +68,6 @@
 		3E95843B12986D7D00A10258 /* SimpleHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843912986D7D00A10258 /* SimpleHTTPServer.m */; };
 		3E95845B1298707D00A10258 /* SimpleHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843712986D7D00A10258 /* SimpleHTTPConnection.m */; };
 		3E95845D1298707D00A10258 /* SimpleHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843912986D7D00A10258 /* SimpleHTTPServer.m */; };
-		3E95846F1298713C00A10258 /* WebServerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95846E1298713C00A10258 /* WebServerDelegate.m */; };
-		3E9584701298713C00A10258 /* WebServerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95846E1298713C00A10258 /* WebServerDelegate.m */; };
 		3E9CE102128CFA9F0077E916 /* switchlistNewIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */; };
 		3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */; };
 		3EB0AC0C127BB95000E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
@@ -141,11 +137,15 @@
 		3EF294E31312F4B300D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
 		3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
 		3EFA164509515C1500654CC9 /* Report.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFA164309515C1500654CC9 /* Report.nib */; };
-		3EFEC2A61408151A00F9CF15 /* SwitchListFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC2A51408151A00F9CF15 /* SwitchListFilters.m */; };
-		3EFEC2A71408151A00F9CF15 /* SwitchListFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC2A51408151A00F9CF15 /* SwitchListFilters.m */; };
-		3EFEC2B7140819C700F9CF15 /* SwitchListFiltersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC2B5140819C700F9CF15 /* SwitchListFiltersTest.m */; };
 		3EFEC44214083D6400F9CF15 /* default-switchlist-iphone.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEC44114083D6400F9CF15 /* default-switchlist-iphone.html */; };
 		3EFEC44314083D6400F9CF15 /* default-switchlist-iphone.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEC44114083D6400F9CF15 /* default-switchlist-iphone.html */; };
+		3EFEC5231408515500F9CF15 /* WebServerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC5201408515500F9CF15 /* WebServerDelegate.m */; };
+		3EFEC5251408515500F9CF15 /* WebServerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC5201408515500F9CF15 /* WebServerDelegate.m */; };
+		3EFEC5261408515500F9CF15 /* WebServerDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC5221408515500F9CF15 /* WebServerDelegateTest.m */; };
+		3EFEC532140851A200F9CF15 /* SwitchListFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC531140851A200F9CF15 /* SwitchListFilters.m */; };
+		3EFEC533140851A200F9CF15 /* SwitchListFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC531140851A200F9CF15 /* SwitchListFilters.m */; };
+		3EFEC5581408533700F9CF15 /* SwitchListFiltersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC5561408533700F9CF15 /* SwitchListFiltersTest.m */; };
+		3EFEC55E1408535600F9CF15 /* FakeSwitchListDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC55C1408535600F9CF15 /* FakeSwitchListDocument.m */; };
 		775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2E0486D014006FF6A4 /* SwitchListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* SwitchListWindow.nib */; };
@@ -211,10 +211,6 @@
 		3E1490CD128F07AB001700D0 /* NSMigrationManagerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMigrationManagerCategory.h; sourceTree = "<group>"; };
 		3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRouteDialogController.h; sourceTree = "<group>"; };
 		3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRouteDialogController.m; sourceTree = "<group>"; };
-		3E203863135A4FEC007B0EE3 /* WebServerDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServerDelegateTest.h; sourceTree = "<group>"; };
-		3E203864135A4FEC007B0EE3 /* WebServerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServerDelegateTest.m; sourceTree = "<group>"; };
-		3E203965135A77F8007B0EE3 /* FakeSwitchListDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FakeSwitchListDocument.h; path = SimpleHttpServer/FakeSwitchListDocument.h; sourceTree = "<group>"; };
-		3E203966135A77F8007B0EE3 /* FakeSwitchListDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FakeSwitchListDocument.m; path = SimpleHttpServer/FakeSwitchListDocument.m; sourceTree = "<group>"; };
 		3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 3.xcdatamodel"; sourceTree = "<group>"; };
 		3E258A6A1286657A00D233DB /* CarType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarType.h; sourceTree = "<group>"; };
 		3E258A6B1286657A00D233DB /* CarType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarType.m; sourceTree = "<group>"; };
@@ -284,8 +280,6 @@
 		3E95843712986D7D00A10258 /* SimpleHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHTTPConnection.m; sourceTree = "<group>"; };
 		3E95843812986D7D00A10258 /* SimpleHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHTTPServer.h; sourceTree = "<group>"; };
 		3E95843912986D7D00A10258 /* SimpleHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHTTPServer.m; sourceTree = "<group>"; };
-		3E95846D1298713C00A10258 /* WebServerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServerDelegate.h; sourceTree = "<group>"; };
-		3E95846E1298713C00A10258 /* WebServerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServerDelegate.m; sourceTree = "<group>"; };
 		3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = switchlistNewIcon.icns; path = resources/switchlistNewIcon.icns; sourceTree = "<group>"; };
 		3E9E1F780951605600C5E038 /* IndustryReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryReport.h; sourceTree = "<group>"; };
 		3E9E1F790951605600C5E038 /* IndustryReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryReport.m; sourceTree = "<group>"; };
@@ -326,11 +320,17 @@
 		3EFA162209515AA200654CC9 /* CarReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarReport.h; sourceTree = "<group>"; };
 		3EFA162309515AA200654CC9 /* CarReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarReport.m; sourceTree = "<group>"; };
 		3EFA164409515C1500654CC9 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Report.nib; sourceTree = "<group>"; };
-		3EFEC2A41408151A00F9CF15 /* SwitchListFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListFilters.h; sourceTree = "<group>"; };
-		3EFEC2A51408151A00F9CF15 /* SwitchListFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListFilters.m; sourceTree = "<group>"; };
-		3EFEC2B4140819C700F9CF15 /* SwitchListFiltersTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListFiltersTest.h; sourceTree = "<group>"; };
-		3EFEC2B5140819C700F9CF15 /* SwitchListFiltersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListFiltersTest.m; sourceTree = "<group>"; };
 		3EFEC44114083D6400F9CF15 /* default-switchlist-iphone.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "default-switchlist-iphone.html"; path = "templates/default-switchlist-iphone.html"; sourceTree = "<group>"; };
+		3EFEC51F1408515500F9CF15 /* WebServerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServerDelegate.h; sourceTree = "<group>"; };
+		3EFEC5201408515500F9CF15 /* WebServerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServerDelegate.m; sourceTree = "<group>"; };
+		3EFEC5211408515500F9CF15 /* WebServerDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServerDelegateTest.h; sourceTree = "<group>"; };
+		3EFEC5221408515500F9CF15 /* WebServerDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServerDelegateTest.m; sourceTree = "<group>"; };
+		3EFEC530140851A200F9CF15 /* SwitchListFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListFilters.h; sourceTree = "<group>"; };
+		3EFEC531140851A200F9CF15 /* SwitchListFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListFilters.m; sourceTree = "<group>"; };
+		3EFEC5551408533700F9CF15 /* SwitchListFiltersTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListFiltersTest.h; sourceTree = "<group>"; };
+		3EFEC5561408533700F9CF15 /* SwitchListFiltersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListFiltersTest.m; sourceTree = "<group>"; };
+		3EFEC55B1408535600F9CF15 /* FakeSwitchListDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeSwitchListDocument.h; sourceTree = "<group>"; };
+		3EFEC55C1408535600F9CF15 /* FakeSwitchListDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeSwitchListDocument.m; sourceTree = "<group>"; };
 		3EFEF2650952A1000092302C /* CargoReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoReport.h; sourceTree = "<group>"; };
 		3EFEF2660952A1000092302C /* CargoReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CargoReport.m; sourceTree = "<group>"; };
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -395,6 +395,7 @@
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
 				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
 				3E95843512986D7D00A10258 /* SimpleHttpServer */,
+				3EFEC5291408515E00F9CF15 /* Web Interface */,
 				3E01BE98140768CA008954B1 /* Templates */,
 				3E108B9314049E7900B77CFE /* MGTemplateEngine */,
 				3EBAC6DB127B3853001F3FC7 /* UI */,
@@ -539,14 +540,6 @@
 				3E95843712986D7D00A10258 /* SimpleHTTPConnection.m */,
 				3E95843812986D7D00A10258 /* SimpleHTTPServer.h */,
 				3E95843912986D7D00A10258 /* SimpleHTTPServer.m */,
-				3E95846D1298713C00A10258 /* WebServerDelegate.h */,
-				3EFEC2A41408151A00F9CF15 /* SwitchListFilters.h */,
-				3EFEC2A51408151A00F9CF15 /* SwitchListFilters.m */,
-				3EFEC2B4140819C700F9CF15 /* SwitchListFiltersTest.h */,
-				3EFEC2B5140819C700F9CF15 /* SwitchListFiltersTest.m */,
-				3E95846E1298713C00A10258 /* WebServerDelegate.m */,
-				3E203863135A4FEC007B0EE3 /* WebServerDelegateTest.h */,
-				3E203864135A4FEC007B0EE3 /* WebServerDelegateTest.m */,
 			);
 			path = SimpleHttpServer;
 			sourceTree = "<group>";
@@ -601,8 +594,8 @@
 				3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */,
 				3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */,
 				3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */,
-				3E203965135A77F8007B0EE3 /* FakeSwitchListDocument.h */,
-				3E203966135A77F8007B0EE3 /* FakeSwitchListDocument.m */,
+				3EFEC55B1408535600F9CF15 /* FakeSwitchListDocument.h */,
+				3EFEC55C1408535600F9CF15 /* FakeSwitchListDocument.m */,
 				3E88AD43127A9CFD003486E2 /* IndustryTest.h */,
 				3E88AD44127A9CFD003486E2 /* IndustryTest.m */,
 				3E90BFF8127937860074F2FA /* LayoutTest.h */,
@@ -624,6 +617,21 @@
 				3E62C0F9128E610E00520752 /* YardTest.m */,
 			);
 			name = "Unit tests";
+			sourceTree = "<group>";
+		};
+		3EFEC5291408515E00F9CF15 /* Web Interface */ = {
+			isa = PBXGroup;
+			children = (
+				3EFEC530140851A200F9CF15 /* SwitchListFilters.h */,
+				3EFEC5551408533700F9CF15 /* SwitchListFiltersTest.h */,
+				3EFEC5561408533700F9CF15 /* SwitchListFiltersTest.m */,
+				3EFEC531140851A200F9CF15 /* SwitchListFilters.m */,
+				3EFEC51F1408515500F9CF15 /* WebServerDelegate.h */,
+				3EFEC5201408515500F9CF15 /* WebServerDelegate.m */,
+				3EFEC5211408515500F9CF15 /* WebServerDelegateTest.h */,
+				3EFEC5221408515500F9CF15 /* WebServerDelegateTest.m */,
+			);
+			name = "Web Interface";
 			sourceTree = "<group>";
 		};
 		E1B74B1A0667B4A90069E3BA /* Models */ = {
@@ -795,7 +803,6 @@
 				3E60820413615B680054DBA1 /* TextSwitchListView.m in Sources */,
 				3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */,
 				3ED58A6F13A727F500F6E26E /* SouthernPacificSwitchListView.m in Sources */,
-				3E20386B135A5359007B0EE3 /* WebServerDelegateTest.m in Sources */,
 				3EF294E31312F4B300D2C3F6 /* GlobalPreferences.m in Sources */,
 				3E95845B1298707D00A10258 /* SimpleHTTPConnection.m in Sources */,
 				3E95845D1298707D00A10258 /* SimpleHTTPServer.m in Sources */,
@@ -832,14 +839,12 @@
 				3EE711681285D81E006059F4 /* CarTypesTest.m in Sources */,
 				3E258A6D1286657A00D233DB /* CarType.m in Sources */,
 				3E62C100128E624000520752 /* YardTest.m in Sources */,
-				3E9584701298713C00A10258 /* WebServerDelegate.m in Sources */,
 				3E30DBB912B447D700FF224E /* DoorAssignmentRecorder.m in Sources */,
 				3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */,
 				3EB677B8130E4B460012DE1D /* CargoAssignerTest.m in Sources */,
 				3E60B66F1318B49C007C094D /* ReportTest.m in Sources */,
 				3EB507C213243FA200D85B59 /* StringHelpers.m in Sources */,
 				3EE380BE133D284F0069C963 /* SwitchRouteDialogControllerTest.m in Sources */,
-				3E203967135A77F8007B0EE3 /* FakeSwitchListDocument.m in Sources */,
 				3E60820913615B940054DBA1 /* SwitchListBaseView.m in Sources */,
 				3E108BC114049E7900B77CFE /* MGTemplateEngine.m in Sources */,
 				3E108BC214049E7900B77CFE /* MGTemplateStandardFilters.m in Sources */,
@@ -848,8 +853,11 @@
 				3E108BC514049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */,
 				3E108BC614049E7900B77CFE /* RegexKitLite.m in Sources */,
 				3E108C621404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
-				3EFEC2A71408151A00F9CF15 /* SwitchListFilters.m in Sources */,
-				3EFEC2B7140819C700F9CF15 /* SwitchListFiltersTest.m in Sources */,
+				3EFEC5251408515500F9CF15 /* WebServerDelegate.m in Sources */,
+				3EFEC5261408515500F9CF15 /* WebServerDelegateTest.m in Sources */,
+				3EFEC533140851A200F9CF15 /* SwitchListFilters.m in Sources */,
+				3EFEC5581408533700F9CF15 /* SwitchListFiltersTest.m in Sources */,
+				3EFEC55E1408535600F9CF15 /* FakeSwitchListDocument.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,7 +900,6 @@
 				3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */,
 				3E95843A12986D7D00A10258 /* SimpleHTTPConnection.m in Sources */,
 				3E95843B12986D7D00A10258 /* SimpleHTTPServer.m in Sources */,
-				3E95846F1298713C00A10258 /* WebServerDelegate.m in Sources */,
 				3E30DBB812B447D700FF224E /* DoorAssignmentRecorder.m in Sources */,
 				3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */,
 				3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */,
@@ -907,7 +914,8 @@
 				3E108BD914049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */,
 				3E108BDA14049E7900B77CFE /* RegexKitLite.m in Sources */,
 				3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
-				3EFEC2A61408151A00F9CF15 /* SwitchListFilters.m in Sources */,
+				3EFEC5231408515500F9CF15 /* WebServerDelegate.m in Sources */,
+				3EFEC532140851A200F9CF15 /* SwitchListFilters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

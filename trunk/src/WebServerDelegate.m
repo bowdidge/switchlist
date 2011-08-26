@@ -32,24 +32,22 @@
 
 #import <Foundation/Foundation.h>
 
-#import "../MGTemplateEngine/MGTemplateEngine.h"
-#import "../MGTemplateEngine/ICUTemplateMatcher.h"
-
 #import "WebServerDelegate.h"
 
-#import "../CarType.h"
-#import "../EntireLayout.h";
-#import "../InduYard.h"
-#import "../Industry.h"
-#import "../Yard.h"
-#import "../Place.h"
-#import "../FreightCar.h"
-#import "../SwitchListDocument.h"
-#import "../SwitchListAppDelegate.h";
-#import "SimpleHTTPServer.h"
-#import "SimpleHTTPConnection.h"
-
+#import "CarType.h"
+#import "EntireLayout.h";
+#import "FreightCar.h"
+#import "InduYard.h"
+#import "Industry.h"
+#import "MGTemplateEngine/MGTemplateEngine.h"
+#import "MGTemplateEngine/ICUTemplateMatcher.h"
+#import "Place.h"
+#import "SwitchListAppDelegate.h";
+#import "SwitchListDocument.h"
 #import "SwitchListFilters.h"
+#import "SimpleHTTPServer/SimpleHTTPServer.h"
+#import "SimpleHTTPServer/SimpleHTTPConnection.h"
+#import "Yard.h"
 
 #include <regex.h> // For pattern matching on IP address.
 
