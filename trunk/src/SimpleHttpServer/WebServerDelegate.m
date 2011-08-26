@@ -49,7 +49,9 @@
 #import "SimpleHTTPServer.h"
 #import "SimpleHTTPConnection.h"
 
-#include <regex.h>
+#import "SwitchListFilters.h"
+
+#include <regex.h> // For pattern matching on IP address.
 
 static const int HTTP_OK = 200;
 
@@ -101,6 +103,7 @@ NSString *CurrentHostname() {
 	mainBundle_ = bundle;
 	engine_ = [[MGTemplateEngine alloc] init];
 	[engine_ setMatcher: [ICUTemplateMatcher matcherWithTemplateEngine: engine_]];
+	[engine_ loadFilter: [[[SwitchListFilters alloc] init] autorelease]];
 
 	if (server_) {
 		NSLog(@"Started!");
@@ -140,6 +143,9 @@ NSString *CurrentHostname() {
 
 - (void) processRequestForSwitchlistCSS {
 	// TODO(bowdidge): Allow users to specify a different directory of CSS and HTML for switchlists.
+	// The default-switchlist is just the name of the preferred switchlist.css file.  A better
+	// scheme would be to stash the default versions in a directory, but XCode doesn't copy directories
+	// into the resources directory well.
 	NSString *cssFile = [mainBundle_ pathForResource: @"default-switchlist" ofType: @"css"];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
@@ -161,7 +167,7 @@ NSString *CurrentHostname() {
 	return [NSString stringWithFormat: @"%@/%@", [[induYard location] name], [induYard name]];
 }
 	
-- (void) processRequestForLayout: (SwitchListDocument*) document train: (NSString*) trainName {
+- (void) processRequestForLayout: (SwitchListDocument*) document train: (NSString*) trainName forIPhone: (BOOL) isIPhone {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
 	ScheduledTrain *train = [layout trainWithName: trainName];
@@ -172,7 +178,9 @@ NSString *CurrentHostname() {
 								  [train freightCars], @"freightCars",
 								  layout, @"layout",
 								  nil];
-	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"default-switchlist" ofType: @"html"]
+	
+	NSString *switchlistTemplate = (isIPhone ? @"default-switchlist-iphone" : @"default-switchlist");
+	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: switchlistTemplate ofType: @"html"]
 											   withVariables: templateDict];
 	[server_ replyWithStatusCode: HTTP_OK
 						 message: message];
@@ -238,6 +246,8 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 }
 
 - (void) writeIndustryListForLayout: (EntireLayout *) layout toString: (NSMutableString *) message  {
+	// TODO(bowdidge): Replace with code that builds up an array of information suitable
+	// for easily generating this report in the template.
 	[message appendFormat:@"<table>"];
 	Place *place;
 	for (place in [[layout allStations] sortedArrayUsingFunction: &compareNamesAlphabetically context: 0])  {
@@ -388,12 +398,16 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 
 // TODO(bowdidge): Perhaps switch layout/train query to being part of the path, then use queries to set'
 // values?  That would also make it easier to do a car detail view.
-- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn {
+- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn userAgent: (NSString*) userAgent {
 	NSLog(@"Process %@", url);
 	NSLog(@"Query is %@", [url query]);
+   	NSLog(@"User agent is %@", userAgent);
     NSLog(@"Path is %@", [url path]);
 	NSString *urlClean = [[url query] stringByReplacingOccurrencesOfString: @"%20" withString: @" "];
     NSLog(@"Clean is %@", urlClean);
+	
+	// If connecting from an iPhone, the UserAgent should contain '(iPhone;' somewhere.
+	BOOL isIPhone = [userAgent rangeOfString: @"iPhone"].location != NSNotFound;
 	
 	if ([[url path] isEqualToString: @"/switchlist.css"]) {
 		[self processRequestForSwitchlistCSS];
@@ -417,6 +431,11 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 		}
 	}
 	
+	// For debugging: allow specifying "iphone=1" in URL to get iPhone UI.
+	if ([query objectForKey: @"iphone"]) {
+		isIPhone = YES;
+	}
+	
 	if ([[url path] hasPrefix: @"/setCarLocation"]) {
 		NSString *car = [query objectForKey: @"car"];
 		NSString *location = [query objectForKey: @"location"];
@@ -433,7 +452,7 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 		NSString *layoutName = [query objectForKey: @"layout"];
 		SwitchListDocument *document = [self layoutWithName: layoutName];
 		if ([query objectForKey: @"train"] != nil) {
-			[self processRequestForLayout: document train: [query objectForKey: @"train"]];
+			[self processRequestForLayout: document train: [query objectForKey: @"train"] forIPhone: isIPhone];
 		} else if ([query objectForKey: @"carList"] != nil) {
 			[self processRequestForCarListForLayout: document];
 		} else if ([query objectForKey: @"industryList"] != nil) {

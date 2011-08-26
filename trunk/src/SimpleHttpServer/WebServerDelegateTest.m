@@ -132,28 +132,28 @@
 - (void) testSwitchlistIPhoneCss {
 	// TODO(bowdidge): Fails.
 	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist-iphone.css"];
-	[webServerDelegate_ processURL: url connection: nil];
+	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-iphone.css (should be > 200");
 }
 				  
 - (void) testSwitchlistCss {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist.css"];
-	[webServerDelegate_ processURL: url connection: nil];
+	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 		  
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist.css (should be > 200");
 }
 
 - (void) testSwitchlistIpadCss {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist-ipad.css"];
-	[webServerDelegate_ processURL: url connection: nil];
+	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-ipad.css (should be > 200");
 }
 
 - (void) testRoot {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
-	[webServerDelegate_ processURL: url connection: nil];
+	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertTrue([server_->lastMessage rangeOfString: @"No layouts"].length != 0,
 				 [NSString stringWithFormat: @"Expected %@ in %@", @"No layouts", server_->lastMessage]);
@@ -162,7 +162,7 @@
 - (void) testRedirect {
 	[[NSDocumentController sharedDocumentController] addDocument: [[FakeSwitchListDocument alloc] init]];
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
-	[webServerDelegate_ processURL: url connection: nil];
+	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	NSLog(@"Code: %d, Body: %@, Headers: %@, LastMessage: %@", 
 		  server_->lastCode, server_->lastBody, server_->lastHeaders, server_->lastMessage);
@@ -176,7 +176,7 @@
 	[sharedDocumentController addDocument: [[FakeSwitchListDocument alloc] init]];
 	[sharedDocumentController addDocument: [[FakeSwitchListDocument alloc] init]];
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
-	[webServerDelegate_ processURL: url connection: nil];
+	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	NSLog(@"Code: %d, Body: %@, Headers: %@, LastMessage: %@", 
 		  server_->lastCode, server_->lastBody, server_->lastHeaders, server_->lastMessage);

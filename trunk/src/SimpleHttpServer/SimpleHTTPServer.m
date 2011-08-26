@@ -31,8 +31,8 @@
         [self setCurrentRequest:nil];
         
         NSAssert(delegate != nil, @"Please specify a delegate");
-        NSAssert([delegate respondsToSelector:@selector(processURL:connection:)],
-                  @"Delegate needs to implement 'processURL:connection:'");
+        NSAssert([delegate respondsToSelector:@selector(processURL:connection:userAgent:)],
+                  @"Delegate needs to implement 'processURL:connection:userAgent:'");
         NSAssert([delegate respondsToSelector:@selector(stopProcessing)],
                  @"Delegate needs to implement 'stopProcessing'");
 
@@ -173,13 +173,14 @@
 
 - (NSArray *)requests { return requests; }
 
-- (void)newRequestWithURL:(NSURL *)url connection:(SimpleHTTPConnection *)connection
+- (void)newRequestWithURL:(NSURL *)url connection:(SimpleHTTPConnection *)connection userAgent: (NSString*) userAgent
 {
     //NSLog(@"requestWithURL:connection:");
     if( url == nil ) return;
     
     NSDictionary *request = [NSDictionary dictionaryWithObjectsAndKeys:
         url, @"url",
+        userAgent, @"userAgent",
         connection, @"connection",
         [NSCalendarDate date], @"date", nil];
     
@@ -198,7 +199,8 @@
     if( [self currentRequest] == nil && [requests count] > 0 ) {
         [self setCurrentRequest:[requests objectAtIndex:0]];
         [delegate processURL:[currentRequest objectForKey:@"url"]
-                  connection:[currentRequest objectForKey:@"connection"]];
+                  connection:[currentRequest objectForKey:@"connection"]
+				   userAgent: [currentRequest objectForKey: @"userAgent"]];
     }
 }
 

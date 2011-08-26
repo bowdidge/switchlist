@@ -14,7 +14,7 @@
 
 @protocol SimpleHTTPServerDelegate 
 - (void) stopProcessing;
-- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn;
+- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn userAgent: (NSString*) userAgent;
 @end
 
 @interface SimpleHTTPServer : NSObject {
@@ -35,7 +35,7 @@
 - (NSArray *)requests;
 
 - (void)closeConnection:(SimpleHTTPConnection *)connection;
-- (void)newRequestWithURL:(NSURL *)url connection:(SimpleHTTPConnection *)connection;
+- (void)newRequestWithURL:(NSURL *)url connection:(SimpleHTTPConnection *)connection userAgent: (NSString*) userAgent;
 
 // Request currently being processed
 // Note: this need not be the most recently received request
