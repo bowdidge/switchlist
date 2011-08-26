@@ -141,6 +141,11 @@
 		3EF294E31312F4B300D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
 		3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
 		3EFA164509515C1500654CC9 /* Report.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFA164309515C1500654CC9 /* Report.nib */; };
+		3EFEC2A61408151A00F9CF15 /* SwitchListFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC2A51408151A00F9CF15 /* SwitchListFilters.m */; };
+		3EFEC2A71408151A00F9CF15 /* SwitchListFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC2A51408151A00F9CF15 /* SwitchListFilters.m */; };
+		3EFEC2B7140819C700F9CF15 /* SwitchListFiltersTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC2B5140819C700F9CF15 /* SwitchListFiltersTest.m */; };
+		3EFEC44214083D6400F9CF15 /* default-switchlist-iphone.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEC44114083D6400F9CF15 /* default-switchlist-iphone.html */; };
+		3EFEC44314083D6400F9CF15 /* default-switchlist-iphone.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEC44114083D6400F9CF15 /* default-switchlist-iphone.html */; };
 		775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		8D15AC2E0486D014006FF6A4 /* SwitchListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* SwitchListWindow.nib */; };
@@ -321,6 +326,11 @@
 		3EFA162209515AA200654CC9 /* CarReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarReport.h; sourceTree = "<group>"; };
 		3EFA162309515AA200654CC9 /* CarReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarReport.m; sourceTree = "<group>"; };
 		3EFA164409515C1500654CC9 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Report.nib; sourceTree = "<group>"; };
+		3EFEC2A41408151A00F9CF15 /* SwitchListFilters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListFilters.h; sourceTree = "<group>"; };
+		3EFEC2A51408151A00F9CF15 /* SwitchListFilters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListFilters.m; sourceTree = "<group>"; };
+		3EFEC2B4140819C700F9CF15 /* SwitchListFiltersTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListFiltersTest.h; sourceTree = "<group>"; };
+		3EFEC2B5140819C700F9CF15 /* SwitchListFiltersTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListFiltersTest.m; sourceTree = "<group>"; };
+		3EFEC44114083D6400F9CF15 /* default-switchlist-iphone.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "default-switchlist-iphone.html"; path = "templates/default-switchlist-iphone.html"; sourceTree = "<group>"; };
 		3EFEF2650952A1000092302C /* CargoReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoReport.h; sourceTree = "<group>"; };
 		3EFEF2660952A1000092302C /* CargoReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CargoReport.m; sourceTree = "<group>"; };
 		7788DA0506752A1600599AAD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -439,6 +449,7 @@
 				3E01BF0614076E81008954B1 /* default-switchlist-ipad.css */,
 				3E01BF0714076E81008954B1 /* default-switchlist-iphone.css */,
 				3E01BF0814076E81008954B1 /* default-switchlist.css */,
+				3EFEC44114083D6400F9CF15 /* default-switchlist-iphone.html */,
 				3E01BF0914076E81008954B1 /* default-switchlist.html */,
 				3E01BEA1140768ED008954B1 /* switchlist-carlist.html */,
 				3E01BEA2140768ED008954B1 /* switchlist-home.html */,
@@ -529,6 +540,10 @@
 				3E95843812986D7D00A10258 /* SimpleHTTPServer.h */,
 				3E95843912986D7D00A10258 /* SimpleHTTPServer.m */,
 				3E95846D1298713C00A10258 /* WebServerDelegate.h */,
+				3EFEC2A41408151A00F9CF15 /* SwitchListFilters.h */,
+				3EFEC2A51408151A00F9CF15 /* SwitchListFilters.m */,
+				3EFEC2B4140819C700F9CF15 /* SwitchListFiltersTest.h */,
+				3EFEC2B5140819C700F9CF15 /* SwitchListFiltersTest.m */,
 				3E95846E1298713C00A10258 /* WebServerDelegate.m */,
 				3E203863135A4FEC007B0EE3 /* WebServerDelegateTest.h */,
 				3E203864135A4FEC007B0EE3 /* WebServerDelegateTest.m */,
@@ -719,6 +734,7 @@
 				3E01BF0F14076E81008954B1 /* default-switchlist-iphone.css in Resources */,
 				3E01BF1014076E81008954B1 /* default-switchlist.css in Resources */,
 				3E01BF1114076E81008954B1 /* default-switchlist.html in Resources */,
+				3EFEC44314083D6400F9CF15 /* default-switchlist-iphone.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,6 +761,7 @@
 				3E01BF0B14076E81008954B1 /* default-switchlist-iphone.css in Resources */,
 				3E01BF0C14076E81008954B1 /* default-switchlist.css in Resources */,
 				3E01BF0D14076E81008954B1 /* default-switchlist.html in Resources */,
+				3EFEC44214083D6400F9CF15 /* default-switchlist-iphone.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,6 +848,8 @@
 				3E108BC514049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */,
 				3E108BC614049E7900B77CFE /* RegexKitLite.m in Sources */,
 				3E108C621404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
+				3EFEC2A71408151A00F9CF15 /* SwitchListFilters.m in Sources */,
+				3EFEC2B7140819C700F9CF15 /* SwitchListFiltersTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -888,6 +907,7 @@
 				3E108BD914049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */,
 				3E108BDA14049E7900B77CFE /* RegexKitLite.m in Sources */,
 				3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
+				3EFEC2A61408151A00F9CF15 /* SwitchListFilters.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

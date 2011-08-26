@@ -1,30 +1,54 @@
-.switch-list-header TH {
-	background-color:blue;
-	 color:white;
-}
-.switch-list TD {
-	font: 14px \"Arial\";
-}
-.switch-list-title {
-	text-align:  center;
-	font-weight: bold;
-	font 12px \"Arian\";
+div.switchlist {
+  width: 320px;
 }
 
-.switch-list-instructions {	
-	text-align:  center;
-	font-weight: bold;
-	font 10px \"Arian\";
+div.switchlist-car {
+  width:100%;
+  height:  50px;
+  border-bottom-style: solid;
+  border-bottom-width: thin;
 }
-table.switch-list { 
-  border-collapse: collapse
+
+.car-reporting {
+  float: left;
+  width:32%;
+  font: 22px sans-serif;
 }
-td#cartype {
-	text-align: center;
+
+.car-rows {
+  float: right;
+  width:68%;
 }
-.switch-list td {
-    height : 40px;
-    border: 2px solid black;
-    padding-left:10px;
-    padding-right:10px
+
+.car-upperRow {
+  text-align: center;
 }
+
+.car-lowerRow {
+  text-align: center;
+}
+
+/* Industry page style to space out reporting marks and car type */
+.indStation td {
+  width: 30%;
+  font-weight: bold;
+  font-variant: small-caps;
+}
+.indIndustry td {
+  width: 30%;
+  font-weight: bold;
+}
+.indMarks td {
+  width: 30%;
+}
+.indType td {
+  width: 10%;
+}
+.indStationStart td {
+  height: 40px;
+}
+.indIndustryStart td {
+}
+
+
+

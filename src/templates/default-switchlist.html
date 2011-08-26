@@ -1,23 +1,36 @@
 <HTML>
 <HEAD>
-<link type="text/css" href="switchlist.css" rel="stylesheet" />
-<link media="only screen and (max-device-width: 1024px)" href="switchlist-ipad.css" type="text/css" rel="stylesheet" />
-<link media="only screen and (max-device-width: 480px)" href="switchlist-iphone.css" type="text/css" rel="stylesheet" />
+<!-- Sans-serif font for titles. -->
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<!-- Handwritten block letters font -->
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+<link href='switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
+<link href='switchlist.css' rel='stylesheet' type='text/css' media='all and (min-device-width: 1025px)'>
 <TITLE>Switch List for {{ trainName }}</TITLE>
 </HEAD>
 <BODY>
-<div class="switch-list-title">
-{{ layout.layoutName }}
-<br>
-SWITCH LIST
-</div>
+<div class="switch-list">
+<div class="train-name">{{trainName}}</div>
+<div class="switch-list-layout-title">{{ layout.layoutName }}</div>
+<div class="switch-list-title">SWITCH LIST</div>
 <div class="switch-list-instructions">
-{{ trainName }} AT {{ firstStation }} STATION, {{ layout.currentDate.description }}
+<span class="switch-list-instructions-filled-in">
+<u>{{ trainName }}</u>
+</span>
+AT
+<span class="switch-list-instructions-filled-in">
+<u>{{ firstStation }}</u>
+</span>
+STATION,
+<span class="switch-list-instructions-filled-in">
+<u>{{ layout.currentDate | date_format: "MMM dd"}}</u></span>
+19<span class="switch-list-instructions-filled-in"><u>{{ layout.currentDate | date_format: "YY"}}</u>
+</span>
 </div>
 <p>
 <center>
-<TABLE BORDER="1" class="switch-list">
-  <TR class="switch-list-header">
+<TABLE class="switch-list">
+  <TR>
     <TH>Done</TH>
     <TH>Car No.</TH>
     <TH>Car Type</TH>
@@ -25,12 +38,13 @@ SWITCH LIST
     <TH>To</TH>
   </TR>
   {% for car in freightCars %}
-  <TR>
+  <TR class="switch-list-line">
     <TD><INPUT TYPE=CHECKBOX NAME=""></TD>
-	<TD>{{car.reportingMarks}}</TD>
-	<TD id="cartype">{{car.carTypeRel.carTypeName}}</TD>
-	<TD>{{car.currentLocation.location.name}}/{{car.currentLocation.name}}</TD>
-	<TD>{{car.nextStop.location.name}}/{{car.nextStop.name}}</td>
+	<TD>{{car.reportingMarks | jitter}}</TD>
+	<TD>{{car.carTypeRel.carTypeName | jitter}}</TD>
+	<TD>{{car.currentLocation.location.name | 
+	 }} / {{car.currentLocation.name | jitter}}</TD>
+	<TD>{{car.nextStop.location.name | jitter }} / {{car.nextStop.name | jitter}}</td>
   </tr>
   {% /for %}
 </TABLE>
@@ -39,5 +53,6 @@ SWITCH LIST
 <INPUT TYPE=BUTTON value="Go Back" onclick="location.href='?layout={{layout.layoutName}}'">
 <INPUT TYPE=BUTTON value="Train Finished">
 </p>
+</div>
 </HTML>
 	

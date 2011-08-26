@@ -90,7 +90,8 @@
             if( CFHTTPMessageIsHeaderComplete(message) ) {
                 isMessageComplete = YES;
                 CFURLRef url = CFHTTPMessageCopyRequestURL(message);
-                [delegate newRequestWithURL:(NSURL *)url connection:self];
+				CFStringRef userAgent = CFHTTPMessageCopyHeaderFieldValue(message, CFSTR("User-Agent"));
+                [delegate newRequestWithURL:(NSURL *)url connection:self userAgent: (NSString*) userAgent];
                 CFRelease(url);
                 CFRelease(message);
                 message = NULL;

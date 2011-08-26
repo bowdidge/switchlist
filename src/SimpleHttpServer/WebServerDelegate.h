@@ -52,7 +52,7 @@ extern NSString *CurrentHostname();
 
 - (id) init;
 - (void) stopResponding;
-- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn;
+- (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn userAgent: (NSString*) userAgent;
 // For mocking.
 - (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle;
 
