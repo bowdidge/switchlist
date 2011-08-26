@@ -49,7 +49,6 @@
 	
 	int choices = 2;
 	NSRange spaceRange = [value rangeOfString:@" "];
-	NSLog(@"Space range %d %d", spaceRange.location, spaceRange.length);
 	if (spaceRange.location != NSNotFound) choices = 3;
 
 	switch ([self getRandomValue: choices]) {
@@ -62,7 +61,6 @@
 			return [NSString stringWithFormat: @"%@%@", value, spaces[spaceChoice]];
 			break;
 		case 2:
-			NSLog(@"B");
 			// Add whitespace at one of the spaces.
 			return [value stringByReplacingCharactersInRange: spaceRange
 												  withString: [NSString stringWithFormat: @"%@ ",spaces[spaceChoice]]];
