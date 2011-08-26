@@ -139,19 +139,20 @@ NSString *CurrentHostname() {
 }
 
 - (void) processRequestForSwitchlistCSS {
-	NSString *cssFile = [mainBundle_ pathForResource: @"switchlist" ofType: @"css"];
+	// TODO(bowdidge): Allow users to specify a different directory of CSS and HTML for switchlists.
+	NSString *cssFile = [mainBundle_ pathForResource: @"default-switchlist" ofType: @"css"];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
 - (void) processRequestForSwitchlistIphoneCSS {
-	NSString *cssFile = [mainBundle_ pathForResource: @"switchlist-iphone" ofType: @"css"];
+	NSString *cssFile = [mainBundle_ pathForResource: @"default-switchlist-iphone" ofType: @"css"];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
 - (void) processRequestForSwitchlistIpadCSS {
-	NSString *cssFile = [mainBundle_ pathForResource: @"switchlist-ipad" ofType: @"css"];
+	NSString *cssFile = [mainBundle_ pathForResource: @"default-switchlist-ipad" ofType: @"css"];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
@@ -171,7 +172,7 @@ NSString *CurrentHostname() {
 								  [train freightCars], @"freightCars",
 								  layout, @"layout",
 								  nil];
-	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-header" ofType: @"html"]
+	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"default-switchlist" ofType: @"html"]
 											   withVariables: templateDict];
 	[server_ replyWithStatusCode: HTTP_OK
 						 message: message];
@@ -231,7 +232,7 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 								  layout, @"layout",
 								  carLocations, @"carLocations",
 								  nil];
-	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-carlist-header" ofType: @"html"]
+	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-carlist" ofType: @"html"]
 											   withVariables: templateDict];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
@@ -281,7 +282,7 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 	EntireLayout *layout = [document entireLayout];
 	NSMutableString *message = [NSMutableString string];
 
-	[message appendString: [self contentsOfHtmlHeaderResource: @"switchlist-industrylist-header"]];
+	[message appendString: [self contentsOfHtmlHeaderResource: @"switchlist-industrylist"]];
 	[message appendFormat: @"<BODY>Cars at each industry on layout %@:<p>\n", [layout layoutName]];
 	[message appendFormat: @"<table>\n"];
 	[self writeIndustryListForLayout: layout toString: message];
@@ -347,7 +348,6 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 - (void) showAllLayouts {
 	NSDocumentController *controller = [NSDocumentController sharedDocumentController];
 	NSArray *allDocuments = [controller documents];
-	
 	if ([allDocuments count] == 0) {
 		[server_ replyWithStatusCode: HTTP_OK message: @"No layouts open in SwitchList!"];;
 		return;

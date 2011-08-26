@@ -180,7 +180,8 @@
 	
 	NSLog(@"Code: %d, Body: %@, Headers: %@, LastMessage: %@", 
 		  server_->lastCode, server_->lastBody, server_->lastHeaders, server_->lastMessage);
-
+	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
+	STAssertNotNil(server_->lastMessage, @"No message received - switchlist-home.html not loaded.");
 	// Make sure we have the links to at least one layout.
 	STAssertTrue([server_->lastMessage rangeOfString: @"get?layout=untitled"].length != 0,
 				 [NSString stringWithFormat: @"Expected %@ in %@", @"get?layout=untitled", server_->lastMessage]);
