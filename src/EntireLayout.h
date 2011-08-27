@@ -93,6 +93,7 @@ NSString *NormalizeDivisionString(NSString *inString);
 
 - (NSArray*) allYards;
 - (NSArray*) allStations;
+// Returns an array of all stations ordered by station name.
 - (NSArray*) allStationsSortedOrder;
 - (NSArray*) allStationsInStaging;
 - (NSArray*) allStationNamesInStaging;
