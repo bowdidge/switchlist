@@ -31,6 +31,7 @@
 #import "InduYard.h"
 
 #import "EntireLayout.h"
+#import "FreightCar.h"
 #import "StringHelpers.h"
 
 
@@ -71,6 +72,15 @@
 
 - (BOOL) isYard {
 	return false;
+}
+
+// Sorts freight car reporting marks by railroad, then number.  SP 3941 should appear before SP 10240.
+- (NSArray*) allFreightCarsSortedOrder {
+	return [[[self freightCars] allObjects] sortedArrayUsingFunction: compareReportingMarksAlphabetically context: nil];
+}
+
+- (NSComparisonResult) compareNames: (Industry*) i {
+	return [[self name] compare: [i name]];
 }
 
 @end

@@ -118,6 +118,12 @@
 	return [self primitiveValueForKey: @"industries"];
 }
 
+// Returns the list of industries and yards in this place sorted by name.
+// Used in templates for repeatable ordering.
+- (NSArray*) allIndustriesSortedOrder {
+	return [[[self industries] allObjects] sortedArrayUsingSelector: @selector(compareNames:)];
+}
+
 - (NSSet*) yards {
 	NSSet *industries = [self industries];
 	NSMutableSet *result = [NSMutableSet set];
@@ -183,5 +189,8 @@
 - (NSString*) description {
 	return [NSString stringWithFormat: @"<Place: %@>", [self name]];
 }
-	
+
+- (NSComparisonResult) compareNames: (Place*) p {
+	return [[self name] compare: [p name]];
+}
 @end

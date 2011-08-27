@@ -51,25 +51,55 @@ table.switch-list {
 }
 
 /* Industry page style to space out reporting marks and car type */
-.indStation td {
-	width: 30%;
-	font-weight: bold;
-	font-variant: small-caps;
+.industry-title {
+	font-family: Oswald;
+	font-size: 14pt;
+	text-align:  center;
+	margin-bottom: 10px;
 }
-.indIndustry td {
-	width: 30%;
-	font-weight: bold;
+.industry-station  {
+	width:  100%;
+	display: inline-block;
+	margin-bottom: 10px;
+	background-color:  #f8f8f8;
 }
-.indMarks td {
-	width: 30%;
+
+.industry-station-name {
+	float: left;
+	width: 20%;
+	color: DarkBlue;
+  font-family: "Rock Salt";
+  font-size: 16px;
 }
-.indType td {
-	width: 10%;
+
+.industry-station-industries {
+	float: right;
+	width: 80%;
 }
-.indStationStart td {
-	height: 40px;
+
+.industry-station-industry {
+	width:  100%;
+	display:  inline-block;
+	background-color: #eee;
+	margin-top:  5px;
+	margin-bottom:  5px
 }
-.indIndustryStart td {
+
+.industry-industry-name {
+	float:  left;
+	width:  30%;
+	color: DarkBlue;
+  font-family: "Rock Salt";
+  font-size: 14px;
+}
+
+.industry-industry-cars {
+	width:  70%;
+	display:  inline-block;
+	margin-bottom: 10px;
+  font-family: "Rock Salt";
+  color: DarkBlue;
+  font-size: 12px;
 }
 
 

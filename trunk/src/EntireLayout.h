@@ -93,6 +93,7 @@ NSString *NormalizeDivisionString(NSString *inString);
 
 - (NSArray*) allYards;
 - (NSArray*) allStations;
+- (NSArray*) allStationsSortedOrder;
 - (NSArray*) allStationsInStaging;
 - (NSArray*) allStationNamesInStaging;
 // Returns a list of potential Places with staging yards that can accept a car going to an offline

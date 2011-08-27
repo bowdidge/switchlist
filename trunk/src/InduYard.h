@@ -46,4 +46,9 @@
 // Returns whether this is a valid industry for receiving cargo.  Yards and Workbench don't count.
 - (BOOL) canReceiveCargo;
 - (BOOL) isYard;
+
+- (NSArray*) allFreightCarsSortedOrder;
+
+- (NSComparisonResult) compareNames: (InduYard*) i;
+
 @end
