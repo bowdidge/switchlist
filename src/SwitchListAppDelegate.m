@@ -43,9 +43,9 @@
 #import "SouthernPacificSwitchListView.h"
 #import "SwitchListReport.h"
 #import "SwitchListView.h"
+#import "WebServerDelegate.h"
 #import "YardReport.h"
 
-#import "SimpleHttpServer/WebServerDelegate.h"
 
 // MyOutlineViewController handles the major document-like actions for the Problems window -
 // copy and paste, printing, etc.
