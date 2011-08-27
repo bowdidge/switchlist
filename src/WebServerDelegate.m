@@ -217,11 +217,11 @@ NSString *CurrentHostname() {
 	// for easily generating this report in the template.
 	[message appendFormat:@"<table>"];
 	Place *place;
-	for (place in [[layout allStations] sortedArrayUsingFunction: &compareNamesAlphabetically context: 0])  {
+	for (place in [[layout allStations] sortedArrayUsingSelector: @selector(compareNames:)])  {
 		if ([place isOffline]) continue;
 		BOOL firstIndustry = YES;
 		InduYard *ind;
-		for (ind in [[[place industries] allObjects] sortedArrayUsingFunction: &compareNamesAlphabetically context: 0]) {
+		for (ind in [[[place industries] allObjects] sortedArrayUsingSelector: @selector(compareNames:)]) {
 			if ([[ind freightCars] count] == 0) continue;
 			BOOL firstFreightCar = YES;
 			FreightCar *fc;

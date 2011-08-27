@@ -79,7 +79,7 @@
 	return [[[self freightCars] allObjects] sortedArrayUsingFunction: compareReportingMarksAlphabetically context: nil];
 }
 
-- (NSComparisonResult) compareNames: (Industry*) i {
+- (NSComparisonResult) compareNames: (InduYard*) i {
 	return [[self name] compare: [i name]];
 }
 
