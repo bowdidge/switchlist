@@ -32,10 +32,13 @@
 
 @class Cargo;
 @class CarType;
+@class FreightCar;
 @class Place;
 @class Industry;
 @class InduYard;;
 @class ScheduledTrain;
+
+int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *context);
 
 @interface FreightCar :  NSManagedObject  
 {

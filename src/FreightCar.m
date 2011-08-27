@@ -36,6 +36,29 @@
 
 #import <Foundation/Foundation.h>
 
+int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *context) {
+	NSArray *marksComponents1 = [[s1 reportingMarks] componentsSeparatedByString: @" "];
+	NSArray *marksComponents2 = [[s2 reportingMarks] componentsSeparatedByString: @" "];
+	if (([marksComponents1 count] != 2) || ([marksComponents2 count] != 2)) {
+		return [[s1 reportingMarks] compare: [s2 reportingMarks]];
+	}
+	int nameComp = [[marksComponents1 objectAtIndex: 0] compare: [marksComponents2 objectAtIndex: 0]];
+	if (nameComp != NSOrderedSame) {
+		return nameComp;
+	}
+	
+	NSString *carNumberString1 = [marksComponents1 objectAtIndex: 1];
+	NSString *carNumberString2 = [marksComponents2 objectAtIndex: 1];
+	int carNumber1 = [carNumberString1 intValue];
+	int carNumber2 = [carNumberString2 intValue];
+	
+	if ((carNumber1 != 0) && (carNumber2 != 0) &&
+		(carNumber1 != carNumber2)) {
+		return carNumber1 - carNumber2;
+	}
+	
+	return [carNumberString1 compare: carNumberString2];
+}
 
 @implementation FreightCar 
 

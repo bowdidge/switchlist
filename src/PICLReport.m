@@ -75,7 +75,7 @@
 			[industriesWithCars addObject: [car currentLocation]];
 		}
 		// Make the list of industries in town with cars, sorted in alphabetical industry name order.
-		NSArray *industriesInNameOrder = [[industriesWithCars allObjects] sortedArrayUsingSelector: @selector(name)];
+		NSArray *industriesInNameOrder = [[industriesWithCars allObjects] sortedArrayUsingSelector: @selector(compareNames:)];
 		for (InduYard *currentIndustry in industriesInNameOrder) {
 			const char *currentIndustryName = (currentIndustry  ? [[currentIndustry name] UTF8String]: "unknown");
 			const char *currentTownName = (currentTown ? [[currentTown name] UTF8String] : "unknown");

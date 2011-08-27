@@ -192,44 +192,13 @@ NSString *CurrentHostname() {
 	return [contents autorelease];
 }
 
-// Comparator for place and industry names.
-int compareNamesAlphabetically(id s1, id s2, void *context) {
-	return [[s1 name] compare: [s2 name]];
-}
-
-// Sorts freight car reporting marks by railroad, then number.  SP 3941 should appear before SP 10240.
-// TODO(bowdidge): Should make sure that 
-int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *context) {
-	NSArray *marksComponents1 = [[s1 reportingMarks] componentsSeparatedByString: @" "];
-	NSArray *marksComponents2 = [[s2 reportingMarks] componentsSeparatedByString: @" "];
-	if (([marksComponents1 count] != 2) || ([marksComponents2 count] != 2)) {
-		return [[s1 reportingMarks] compare: [s2 reportingMarks]];
-	}
-	int nameComp = [[marksComponents1 objectAtIndex: 0] compare: [marksComponents2 objectAtIndex: 0]];
-	if (nameComp != NSOrderedSame) {
-		return nameComp;
-	}
-	
-	NSString *carNumberString1 = [marksComponents1 objectAtIndex: 1];
-	NSString *carNumberString2 = [marksComponents2 objectAtIndex: 1];
-	int carNumber1 = [carNumberString1 intValue];
-	int carNumber2 = [carNumberString2 intValue];
-	
-	if ((carNumber1 != 0) && (carNumber2 != 0) &&
-		(carNumber1 != carNumber2)) {
-		return carNumber1 - carNumber2;
-	}
-
-	return [carNumberString1 compare: carNumberString2];
-}
-
 // Generates HTML response for the car list for the names layout.
 - (void) processRequestForCarListForLayout: (SwitchListDocument*) document {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
 
 	NSMutableString *carLocations = [NSMutableString string];
-	NSArray *allFreightCars = [[layout allFreightCarsReportingMarkOrder] sortedArrayUsingFunction: &compareReportingMarksAlphabetically context: 0];
+	NSArray *allFreightCars = [[layout allFreightCarsReportingMarkOrder] sortedArrayUsingSelector: @selector(compareNames:)];
 	for (FreightCar *freightCar in allFreightCars) {
 		[carLocations appendFormat: @"'%@':'%@',", [freightCar reportingMarks], [[freightCar currentLocation] name]];
 	}
@@ -288,14 +257,10 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 // Returns HTML for industry list, showing the cars at each industry 
 - (void) processRequestForIndustryListForLayout: (SwitchListDocument*) document {
 	EntireLayout *layout = [document entireLayout];
-	NSMutableString *message = [NSMutableString string];
-
-	[message appendString: [self contentsOfHtmlHeaderResource: @"switchlist-industrylist"]];
-	[message appendFormat: @"<BODY>Cars at each industry on layout %@:<p>\n", [layout layoutName]];
-	[message appendFormat: @"<table>\n"];
-	[self writeIndustryListForLayout: layout toString: message];
-
-	[message appendFormat: @"</body>\n"];
+	
+	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: layout forKey:  @"layout"];
+	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-industrylist" ofType: @"html"]
+											   withVariables: templateDict];
 	[server_ replyWithStatusCode: HTTP_OK
 						 message: message];
 }

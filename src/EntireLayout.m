@@ -442,6 +442,13 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }
 
+// Helper routine for displaying lists of stations in templates.
+- (NSArray*) allStationsSortedOrder {
+	NSArray *stations = [self allStations];
+	NSArray* all = [stations sortedArrayUsingSelector: @selector(compareNames:)];
+	return all;
+}
+
 - (NSArray*) allStationsInStaging {
 	NSArray *allStations = [self allStations];
 	NSMutableArray *allStaging = [NSMutableArray array];
@@ -516,19 +523,6 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	[sortDescs addObject: ind2];
 	[req2 setSortDescriptors: sortDescs];
 	[req2 setPredicate: [NSPredicate predicateWithFormat: @"cargo != nil"]];
-	NSError *error;
-	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
-}
-
-- (NSArray*) allCarsInTrainSortedByIndustry: (NSString*) trainName {
-	NSEntityDescription *ent = [NSEntityDescription entityForName: @"FreightCar" inManagedObjectContext: [self managedObjectContext]];
-	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
-	[req2 setEntity: ent];
-	[req2 setPredicate: [NSPredicate predicateWithFormat: [NSString stringWithFormat: @"currentTrain.name LIKE '%@'", [trainName sqlSanitizedString]]]];
-	NSSortDescriptor *ind1 = [[[NSSortDescriptor alloc] initWithKey: @"currentLocation.location.name" ascending: YES] autorelease];
-	NSSortDescriptor *ind2 = [[[NSSortDescriptor alloc] initWithKey: @"currentLocation.name" ascending: YES] autorelease];
-	NSMutableArray *sortDescs = [NSMutableArray arrayWithObjects: ind1, ind2,nil];
-	[req2 setSortDescriptors: sortDescs];
 	NSError *error;
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }
@@ -648,6 +642,7 @@ NSInteger sortCarsByDestination(FreightCar *a, FreightCar *b, void *context) {
 // Returns a list of all freight cars in the train, sorted by the order
 // the train will pick up the cars.  If dar is non-null, train will be sorted
 // by increasing order of door assignment for industries with doors.
+// TODO(bowdidge): Move to ScheduledTrain, but we'll lose the door assignment recorder.
 - (NSArray* ) allCarsInTrainSortedByVisitOrder: (ScheduledTrain*) train withDoorAssignments: (DoorAssignmentRecorder*) dar {
 	// To sort cars for display:
 	// take cars in the order that the train visits each station.

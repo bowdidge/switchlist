@@ -49,6 +49,7 @@
 - (void)setIsStaging:(BOOL) value;
 
 - (NSSet*) industries;
+- (NSArray*) allIndustriesSortedOrder;
 - (NSSet*) yards;
 
 - (NSSet*) freightCarsAtStation;
