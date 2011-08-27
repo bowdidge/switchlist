@@ -29,10 +29,7 @@
 // SUCH DAMAGE.
 
 #import "SwitchListDocument.h"
-#import "SwitchListAppDelegate.h"
 
-
-#import "BaseSwitchListView.h"
 #import "CarAssigner.h"
 #import "Cargo.h"
 #import "CargoAssigner.h"
@@ -48,6 +45,7 @@
 #import "PrintEverythingView.h"
 #import "ScheduledTrain.h"
 #import "SouthernPacificSwitchListView.h"
+#import "SwitchListAppDelegate.h"
 #import "SwitchListReport.h"
 #import "SwitchListView.h"
 #import "SwitchListReportWindowController.h"
