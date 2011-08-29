@@ -171,9 +171,8 @@ NSString *CurrentHostname() {
 	ScheduledTrain *train = [layout trainWithName: trainName];
 	
 	NSDictionary *templateDict = [NSDictionary dictionaryWithObjectsAndKeys:
-								  trainName, @"trainName", 
+								  train, @"train", 
 								  [[train stationStopStrings] objectAtIndex: 0],@"firstStation", 
-								  [train freightCars], @"freightCars",
 								  layout, @"layout",
 								  nil];
 	

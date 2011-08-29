@@ -79,6 +79,8 @@
 - (NSArray*) carsAtStation:(Place *)station;
 - (NSArray*) carsForStation:(Place *)station;
 
+- (NSArray* ) allFreightCarsInVisitOrder;
+
 // Access to-many relationship via -[NSObject mutableSetValueForKey:]
 - (void)addFreightCarsObject:(FreightCar *)value;
 - (void)removeFreightCarsObject:(FreightCar *)value;

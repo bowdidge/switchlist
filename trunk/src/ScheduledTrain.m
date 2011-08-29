@@ -34,6 +34,7 @@
 #import "FreightCar.h"
 #import "Industry.h"
 #import "Place.h"
+#import "StringHelpers.h"
 #import "Yard.h"
 
 @implementation ScheduledTrain 
@@ -231,6 +232,63 @@
 	return [carsForStation sortedArrayUsingFunction: sortCarsByCurrentIndustry context: NULL];
 	
 }
+
+- (Place*) stationWithName: (NSString *)stationName {
+	NSError *error;
+	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [self managedObjectContext]];
+	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
+	[req2 setEntity: ent];
+	[req2 setPredicate: [NSPredicate predicateWithFormat: @"name LIKE %@",[stationName sqlSanitizedString]]];
+	NSArray *result = [[self managedObjectContext] executeFetchRequest: req2 error:&error];
+	
+	if ([result count] == 0) {
+		NSLog(@"No such station named %@", stationName);
+		return nil;
+	}
+	
+	if ([result count] > 1) {
+		NSLog(@"Too many stations named %@", stationName);
+		// TODO(bowdidge): Correct response?
+	}
+	return [result objectAtIndex: 0];
+}
+
+- (NSArray*) sortedCarsInSet: (NSSet*) cars atStation: (Place *) station {
+	NSMutableArray *carsAtStation  = [NSMutableArray array];
+	for (FreightCar *f in cars ) {
+		if ([[f currentLocation] location] == station) {
+			[carsAtStation addObject: f];
+		}
+	}
+	// Now, sort carsAtStation according to industry
+	return [carsAtStation sortedArrayUsingFunction: sortCarsByDestination context: nil];
+	
+}
+
+
+// Returns a list of all freight cars in the train, sorted by the order
+// the train will pick up the cars. 
+- (NSArray* ) allFreightCarsInVisitOrder {
+	// To sort cars for display:
+	// take cars in the order that the train visits each station.
+	NSMutableArray *stationsVisited = [NSMutableArray array];
+	NSMutableArray *sortedList = [NSMutableArray array];
+	
+	NSSet *cars = [self freightCars];
+	
+	NSArray *stationStops = [self stationStopStrings];
+	for (NSString *stationName in stationStops) {
+		Place *station = [self stationWithName: stationName];
+		if ([stationsVisited containsObject: station]) continue;
+		[stationsVisited addObject: station];
+		
+		[sortedList addObjectsFromArray: [self sortedCarsInSet: cars atStation: station]];
+		
+	}
+	NSLog(@"Cars are %@", sortedList);
+	return sortedList;
+}
+
 
 - (void)addFreightCarsObject:(FreightCar *)value 
 {    

@@ -294,58 +294,12 @@
 	[self makeThreeStationTrain];
 	
 	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
-	NSArray *allCars = [entireLayout_ allCarsInTrainSortedByVisitOrder: myTrain1 withDoorAssignments: nil];
+	NSArray *allCars = [myTrain1 allFreightCarsInVisitOrder];
 	STAssertEquals([allCars count], (NSUInteger) 2, @"Not enough cars in train.");
 	// First A->B car
 	STAssertEqualObjects([[[allCars objectAtIndex: 0] cargo] cargoDescription], @"a to b", @"Cars out of order");
     // Then B->C Car									
 	STAssertEqualObjects([[[allCars objectAtIndex: 1] cargo] cargoDescription], @"b to c", @"Cars out of order.");
-}
-
-// TODO(bowdidge): Make sure works for industries without doors, etc.
-- (void) testAllCarsInTrainSortedInVisitOrderWithDoors {
-	[self makeThreeStationLayout];
-
-	ScheduledTrain *myTrain = [self makeTrainWithName: @"MyTrain"];
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_1_NAME];
-	[fc1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_2_NAME];
-	[fc2 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	
-	[myTrain setStopsString: @"A,B,C"];
-	[self setTrain: myTrain acceptsCarTypes: @"XM"];
-
-	Cargo *c1 = [self makeCargo: @"a to b"];
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
-	[fc1 setCargo: c1];
-	[fc2 setCargo: c1];
-	[fc1 setIsLoaded: YES];
-	[fc2 setIsLoaded: YES];
-	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
-	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
-	
-	Industry *bIndustry = [self industryAtStation: @"B"];
-	[bIndustry setHasDoors: YES];
-	[bIndustry setNumberOfDoors: [NSNumber numberWithInt: 2]];
-	
-	DoorAssignmentRecorder *doorAssignments = [[[DoorAssignmentRecorder alloc] init] autorelease];
-	[doorAssignments setCar: fc1 destinedForIndustry: bIndustry door:2];
-	[doorAssignments setCar: fc2 destinedForIndustry: bIndustry door:1];
-	
-	[myTrain addFreightCarsObject: fc1];
-	[myTrain addFreightCarsObject: fc2];
-	STAssertEquals([[[entireLayout_ trainWithName: @"MyTrain"] freightCars] count], (NSUInteger) 2, @"Not enough cars in train.");
-
-	// Now to the test
-	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
-	NSArray *allCars = [entireLayout_ allCarsInTrainSortedByVisitOrder: myTrain1 withDoorAssignments: doorAssignments];
-	NSLog(@"%@", allCars);
-	STAssertEquals([allCars count], (NSUInteger) 2, @"Not enough cars in train.");
-	// First car for door 1.
-	STAssertEquals(fc2, [allCars objectAtIndex: 0], @"Cars out of order");
-    // Then car for door 2.
-	STAssertEquals(fc1, [allCars objectAtIndex: 1], @"Cars out of order.");
 }
 
 - (void) testStationStops {

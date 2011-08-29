@@ -37,7 +37,7 @@ STATION,
     <TH>From</TH>
     <TH>To</TH>
   </TR>
-  {% for car in freightCars %}
+  {% for car in train.allFreightCarsInVisitOrder %}
   <TR class="switch-list-line">
     <TD><INPUT TYPE=CHECKBOX NAME=""></TD>
 	<TD>{{car.reportingMarks | jitter}}</TD>

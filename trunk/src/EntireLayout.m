@@ -606,6 +606,7 @@ NSInteger sortCarsByCurrentIndustry(FreightCar *a, FreightCar *b, void *context)
 }
 
 NSInteger sortCarsByDestination(FreightCar *a, FreightCar *b, void *context) {
+	// TODO(bowdidge): Don't sort by name, sort by town (in train order) then industry.
 	InduYard *destA = [a nextStop];
 	InduYard *destB = [b nextStop];
 	if ((destA == nil) || (destB == nil)) return 0;
@@ -616,51 +617,8 @@ NSInteger sortCarsByDestination(FreightCar *a, FreightCar *b, void *context) {
 	if ([destA isKindOfClass: [Industry class]] == NO) {
 		return NSOrderedSame;
 	}
-	Industry *ind = (Industry*) destA;
-	if ([ind hasDoors] == NO) {
-		return 0;
-	}
-	DoorAssignmentRecorder *doorAssignments = (DoorAssignmentRecorder*) context;
-	if (doorAssignments == nil) {
-		return 0;
-	}
-	return [doorAssignments doorForCar: a] - [doorAssignments doorForCar: b];
-}
-
-- (NSArray*) sortedCarsInSet: (NSSet*) cars atStation: (Place *) station withDoorAssignmentRecorder: (DoorAssignmentRecorder*) dar {
-	NSMutableArray *carsAtStation  = [NSMutableArray array];
-	for (FreightCar *f in cars ) {
-		if ([[f currentLocation] location] == station) {
-			[carsAtStation addObject: f];
-		}
-	}
-	// Now, sort carsAtStation according to industry
-	return [carsAtStation sortedArrayUsingFunction: sortCarsByDestination context: dar];
-
-}
-
-// Returns a list of all freight cars in the train, sorted by the order
-// the train will pick up the cars.  If dar is non-null, train will be sorted
-// by increasing order of door assignment for industries with doors.
-// TODO(bowdidge): Move to ScheduledTrain, but we'll lose the door assignment recorder.
-- (NSArray* ) allCarsInTrainSortedByVisitOrder: (ScheduledTrain*) train withDoorAssignments: (DoorAssignmentRecorder*) dar {
-	// To sort cars for display:
-	// take cars in the order that the train visits each station.
-	NSMutableArray *stationsVisited = [NSMutableArray array];
-	NSMutableArray *sortedList = [NSMutableArray array];
 	
-	NSSet *cars = [train freightCars];
-	
-	NSArray *stationStops = [train stationStopStrings];
-	for (NSString *stationName in stationStops) {
-		Place *station = [self stationWithName: stationName];
-		if ([stationsVisited containsObject: station]) continue;
-		[stationsVisited addObject: station];
-
-		[sortedList addObjectsFromArray: [self sortedCarsInSet: cars atStation: station withDoorAssignmentRecorder: dar]];
-
-	}
-	return sortedList;
+	return 0;
 }
 
 - (id) getLayoutInfo {

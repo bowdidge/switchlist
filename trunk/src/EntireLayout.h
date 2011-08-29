@@ -44,8 +44,11 @@
 // Helper for dealing with division strings.  Return a whitespace-removed version of the name,
 // or return nil if the name was all whitespace.
 NSString *NormalizeDivisionString(NSString *inString);
-	
+
+// Object encapsulating all of the layout, and providing several query functions over the entire database.
+// Note that EntireLayout isn't a managed object; it's never stored on disk.
 @interface EntireLayout : NSObject {
+	// Hook to database so EntireLayout can do its queries.
 	NSManagedObjectContext *moc_;
 	// Cached from LayoutInfo object.
 	NSDate *currentDate_;
@@ -115,9 +118,6 @@ NSString *NormalizeDivisionString(NSString *inString);
 - (NSArray*) stationStopsForTrain: (ScheduledTrain*) train;
 
 - (NSArray*) allTrains;
-// Returns the cars, sorted in the order that the train would pick up or drop off the cars.
-// If doorAssignments is provided, sort by increasing door order as well.
-- (NSArray* ) allCarsInTrainSortedByVisitOrder: (ScheduledTrain*) train withDoorAssignments: (DoorAssignmentRecorder*) doorAssignments;
 
 // Remember the date of the current operating session.
 - (NSDate*) currentDate;
