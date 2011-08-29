@@ -37,6 +37,7 @@
 #import "GlobalPreferences.h"
 #import "Industry.h"
 #import "Place.h"
+#import "ScheduledTrain.h"
 
 @implementation SwitchListSource
 // Creates a new SwitchListSource that will display information on the named cars in the given
@@ -157,7 +158,7 @@
 	[carsInTrain_ release];
 	train_ = [train retain];
 	// TODO(bowdidge): Stop duplicating the sort here and in the SwitchListView.
-	carsInTrain_ = [[[owningDocument_ entireLayout] allCarsInTrainSortedByVisitOrder: train withDoorAssignments: nil] retain];
+	carsInTrain_ = [[train allFreightCarsInVisitOrder] retain];
 }
 
 - (ScheduledTrain*) train {
