@@ -81,6 +81,13 @@
 
 - (NSArray* ) allFreightCarsInVisitOrder;
 
+// Returns an array of stations with work for this train, where each
+// dictionary entry includes a name for the station and a list of industries at the station
+// with cars for the current train, and each industry is a dictionary with name and list
+// of cars.
+// Needed for implementing PICL switchlist and other by-station switchlists in the web interface.
+- (NSArray*) stationsWithWork;
+
 // Access to-many relationship via -[NSObject mutableSetValueForKey:]
 - (void)addFreightCarsObject:(FreightCar *)value;
 - (void)removeFreightCarsObject:(FreightCar *)value;
