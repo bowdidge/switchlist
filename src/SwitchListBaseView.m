@@ -157,7 +157,6 @@
 	[train_ release];
 	[carsInTrain_ release];
 	train_ = [train retain];
-	// TODO(bowdidge): Stop duplicating the sort here and in the SwitchListView.
 	carsInTrain_ = [[train allFreightCarsInVisitOrder] retain];
 }
 

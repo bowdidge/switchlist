@@ -265,7 +265,6 @@
 	
 }
 
-
 // Returns a list of all freight cars in the train, sorted by the order
 // the train will pick up the cars. 
 - (NSArray* ) allFreightCarsInVisitOrder {
@@ -285,11 +284,83 @@
 		[sortedList addObjectsFromArray: [self sortedCarsInSet: cars atStation: station]];
 		
 	}
-	NSLog(@"Cars are %@", sortedList);
 	return sortedList;
 }
 
+// Returns an array of stations with work for this train, where each
+// dictionary entry includes a name for the station and a list of industries at the station
+// with cars for the current train, and each industry is a dictionary with name and list
+// of cars.
+// Needed for implementing PICL switchlist and other by-station switchlists in the web interface.
+- (NSArray*) stationsWithWork {
+	NSArray *freightCars = [self allFreightCarsInVisitOrder];
+	NSMutableArray *result = [NSMutableArray array];
+	
+	// Create temp objects for all stations, remove at end.
+	NSArray *stationStops = [self stationStopStrings];
+	// Contains station name if already created.
+	NSMutableDictionary *stationMap = [NSMutableDictionary dictionary];
+	for (NSString *stationName in stationStops) {
+		if ([stationMap objectForKey: stationName] == nil) {
+			NSMutableDictionary *stationDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+												stationName, @"name",
+												[NSMutableDictionary dictionary], @"industries",
+												nil];
+			[result addObject: stationDict];
+			[stationMap setObject: stationDict forKey: stationName];
+		}
+	}
 
+	// Run through all freight cars being handled, and insert them in the dictionary.
+	for (FreightCar *fc in freightCars) {
+		InduYard *start = [fc currentLocation];
+		Place *startPlace = [start location];
+		InduYard *end = [fc nextStop];
+		Place *endPlace = [end location];
+		
+		NSMutableDictionary *startStationDict = [[stationMap objectForKey: [startPlace name]] objectForKey: @"industries"];	
+		NSMutableDictionary *endStationDict = [[stationMap objectForKey: [endPlace name]] objectForKey: @"industries"];;
+
+		// Make place for start.
+		NSMutableDictionary *startIndustryDict = [startStationDict objectForKey: [start name]];
+		if (startIndustryDict == nil) {
+			startIndustryDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+								 [start name], @"name",
+								 [NSMutableArray array], @"carsToPickUp",
+								 [NSMutableArray array], @"carsToDropOff",
+								 nil];
+			[startStationDict setObject: startIndustryDict forKey: [start name]];
+		}
+		[[startIndustryDict objectForKey: @"carsToPickUp"] addObject: fc];		
+		
+		// Same for end.
+		NSMutableDictionary *endIndustryDict = [endStationDict objectForKey: [end name]];
+		if (endIndustryDict == nil) {
+			endIndustryDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+								 [end name], @"name",
+								 [NSMutableArray array], @"carsToPickUp",
+							     [NSMutableArray array], @"carsToDropOff",
+							   nil];
+			[endStationDict setObject: endIndustryDict forKey: [end name]];
+		}
+		[[endIndustryDict objectForKey: @"carsToDropOff"] addObject: fc];
+	}
+
+	// Run through the list of stations and remove any stations that had no work.
+	NSMutableArray *stationsToRemove = [NSMutableArray array];
+	for (NSMutableDictionary *station in result) {
+		if ([[station objectForKey: @"industries"] count] == 0) {
+			[stationsToRemove addObject: station];
+		}
+	}
+
+	for (NSMutableDictionary *station in stationsToRemove) {
+		[result removeObject: station];
+	}
+	
+	return result;
+}
+		
 - (void)addFreightCarsObject:(FreightCar *)value 
 {    
     NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];

@@ -289,6 +289,7 @@
 	STAssertTrue([[entireLayout allNonFixedRateCargos] containsObject: c1], @"cargo isn't in list.");
 }
 
+// TODO(bowdidge): Move to ScheduledTrainTests?
 - (void) testAllCarsInTrainSortedInVisitOrder {
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
@@ -302,6 +303,90 @@
 	STAssertEqualObjects([[[allCars objectAtIndex: 1] cargo] cargoDescription], @"b to c", @"Cars out of order.");
 }
 
+- (void) testStationsWithWork {
+	[self makeThreeStationLayout];
+	[self makeThreeStationTrain];
+	FreightCar *fc1 = [self freightCarWithReportingMarks: FREIGHT_CAR_1_NAME];
+	FreightCar *fc2 = [self freightCarWithReportingMarks: FREIGHT_CAR_2_NAME];
+	[fc1 setCurrentLocation: [self industryAtStation: @"B"]];
+	[fc1 setIsLoaded: YES];
+	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc2 setIsLoaded: YES];
+
+	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
+	NSArray *allStations = [myTrain1 stationsWithWork];
+	
+	// Should see fc1 going B to C, and fc2 going A to B.
+    NSLog(@"Stations with work: %@", allStations);
+	STAssertEquals([allStations count], (NSUInteger) 3, @"Not enough stops.");
+	
+	NSDictionary *stationAData = [allStations objectAtIndex: 0];
+	NSDictionary *stationBData = [allStations objectAtIndex: 1];
+	NSDictionary *stationCData = [allStations objectAtIndex: 2];
+	
+	STAssertEqualObjects(@"A", [stationAData objectForKey: @"name"], @"Station A missing");
+ 	STAssertEqualObjects(@"B", [stationBData objectForKey: @"name"], @"Station B missing");
+	STAssertEqualObjects(@"C", [stationCData objectForKey: @"name"], @"Station C missing");
+	
+	STAssertTrue(1 == [[stationAData objectForKey: @"industries"] count], @"");
+	NSDictionary *industryAData = [[stationAData objectForKey: @"industries"] objectForKey: @"A-industry"];
+
+	STAssertTrue(1 == [[stationBData objectForKey: @"industries"] count], @"");
+	NSDictionary *industryBData = [[stationBData objectForKey: @"industries"] objectForKey: @"B-industry"];
+
+	STAssertTrue(1 == [[stationCData objectForKey: @"industries"] count], @"");
+	NSDictionary *industryCData = [[stationCData objectForKey: @"industries"] objectForKey: @"C-industry"];
+	
+	STAssertTrue(0 == [[industryAData objectForKey: @"carsToDropOff"] count],
+				@"No cars expected to drop off at station A, found %d", [[stationAData objectForKey: @"carsToDropOff"] count]);
+	STAssertTrue(1 == [[industryAData objectForKey: @"carsToPickUp"] count],
+				 @"Expected one car to pick up at station A, found %d.", [[stationAData objectForKey: @"carsToPickUp"] count]);
+
+	STAssertTrue(1 == [[industryBData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station B.");
+	STAssertTrue(1 == [[industryBData objectForKey: @"carsToPickUp"] count], @"Expected one car to pick up at station B.");
+
+	STAssertTrue(1 == [[industryCData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station C.");
+	STAssertTrue(0 == [[industryCData objectForKey: @"carsToPickUp"] count], @"Expected no cars to pick up at station C.");
+}
+
+- (void) testStationsWithWorkMultipleCars {
+	[self makeThreeStationLayout];
+	[self makeThreeStationTrain];
+	FreightCar *fc1 = [self freightCarWithReportingMarks: FREIGHT_CAR_1_NAME];
+	FreightCar *fc2 = [self freightCarWithReportingMarks: FREIGHT_CAR_2_NAME];
+	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc1 setIsLoaded: NO];
+	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc2 setIsLoaded: YES];
+	
+	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
+	NSArray *allStations = [myTrain1 stationsWithWork];
+	
+	// Should see fc1 going B to C, and fc2 going A to B.
+    NSLog(@"Stations with work: %@", allStations);
+	STAssertEquals([allStations count], (NSUInteger) 2, @"Wrong number of stops, expected 2, found %d", [allStations count]);
+	
+	NSDictionary *stationAData = [allStations objectAtIndex: 0];
+	NSDictionary *stationBData = [allStations objectAtIndex: 1];
+
+	STAssertEqualObjects(@"A", [stationAData objectForKey: @"name"], @"Station A missing");
+ 	STAssertEqualObjects(@"B", [stationBData objectForKey: @"name"], @"Station B missing");
+	
+	STAssertTrue(1 == [[stationAData objectForKey: @"industries"] count], @"");
+	NSDictionary *industryAData = [[stationAData objectForKey: @"industries"] objectForKey: @"A-industry"];
+	
+	STAssertTrue(1 == [[stationBData objectForKey: @"industries"] count], @"");
+	NSDictionary *industryBData = [[stationBData objectForKey: @"industries"] objectForKey: @"B-industry"];
+	
+	STAssertTrue(0 == [[industryAData objectForKey: @"carsToDropOff"] count],
+				 @"No cars expected to drop off at station A, found %d", [[stationAData objectForKey: @"carsToDropOff"] count]);
+	STAssertTrue(2 == [[industryAData objectForKey: @"carsToPickUp"] count],
+				 @"Expected one car to pick up at station A, found %d.", [[stationAData objectForKey: @"carsToPickUp"] count]);
+
+	STAssertTrue(2 == [[industryBData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station B.");
+	STAssertTrue(0 == [[industryBData objectForKey: @"carsToPickUp"] count], @"Expected one car to pick up at station B.");
+}
+
 - (void) testStationStops {
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
@@ -311,7 +396,7 @@
 	
 	STAssertTrue(3 ==[stops count], @"Incorrect number of stops for train");
 	STAssertEqualObjects([entireLayout_ stationWithName: @"A"],
-						  [stops objectAtIndex: 0], @"A not first station.");
+						 [stops objectAtIndex: 0], @"A not first station.");
 	STAssertEqualObjects([entireLayout_ stationWithName: @"B"],
 						 [stops objectAtIndex: 1], @"B not second station.");
 	STAssertEqualObjects([entireLayout_ stationWithName: @"C"],
