@@ -65,7 +65,7 @@
 }
 
 - (void)setIsYard:(NSNumber *)value {
-	NSLog(@"Can't set isYard!");
+	NSLog(@"Can't set isYard in an industry!");
 }
 
 - (BOOL)hasDoors 
