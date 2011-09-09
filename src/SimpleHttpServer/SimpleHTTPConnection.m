@@ -99,7 +99,7 @@
                 isMessageComplete = NO;
             }
         } else {
-            NSLog(@"Incomming message not a HTTP header, ignored.");
+            NSLog(@"Incoming message not a HTTP header, ignored.");
             [delegate closeConnection:self];
         }
     }
