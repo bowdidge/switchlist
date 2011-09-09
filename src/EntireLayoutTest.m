@@ -317,7 +317,7 @@
 	NSArray *allStations = [myTrain1 stationsWithWork];
 	
 	// Should see fc1 going B to C, and fc2 going A to B.
-    NSLog(@"Stations with work: %@", allStations);
+
 	STAssertEquals([allStations count], (NSUInteger) 3, @"Not enough stops.");
 	
 	NSDictionary *stationAData = [allStations objectAtIndex: 0];
@@ -363,7 +363,7 @@
 	NSArray *allStations = [myTrain1 stationsWithWork];
 	
 	// Should see fc1 going B to C, and fc2 going A to B.
-    NSLog(@"Stations with work: %@", allStations);
+
 	STAssertEquals([allStations count], (NSUInteger) 2, @"Wrong number of stops, expected 2, found %d", [allStations count]);
 	
 	NSDictionary *stationAData = [allStations objectAtIndex: 0];
