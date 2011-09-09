@@ -40,8 +40,7 @@
 	[self makeThreeStationLayout];
 	Place *a = [entireLayout_ stationWithName: @"A"];
 	Place *b = [entireLayout_ stationWithName: @"B"];
-	NSLog(@"%@",[a yards]);
-		NSLog(@"%@",[b yards]);
+
 	STAssertFalse([a hasYard], @"Should not have yard.");
 	STAssertTrue([b hasYard], @"Should have yard.");
 }
