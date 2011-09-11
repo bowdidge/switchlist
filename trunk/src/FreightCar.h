@@ -61,6 +61,8 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 
 - (NSString*) initials;
 - (NSString*) number;
+// Car type abbreviation for freight car.
+- (NSString*) carType;
 
 - (NSNumber *)doorToSpot;
 - (void)setDoorToSpot:(NSNumber *)value;
