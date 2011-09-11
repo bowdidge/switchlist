@@ -1,0 +1,105 @@
+.train-name {
+  color: #ddd;
+	font: 10px Oswald;
+}
+
+.switch-list-title div {
+	text-align:  center;
+	font: 28px Georgia, "Times New Roman", Times, serif;
+}
+
+.switch-list-title-1 div {
+  text-align: center;
+}
+div.switch-list-title-2l {
+	width:  50%;
+	float: left;
+	font-size:  18px;
+	padding-bottom:  10px;
+}
+
+div.switch-list-title-2r {
+	width:  50%;
+	float:  left;
+	font-size: 18px;
+	padding-bottom:  10px;
+}
+
+div.switch-list-title-3 {
+	height:  160px;
+}
+
+div.switch-list-title-3l {
+  width:  60%;
+  font-size: 12px;
+  float: left;
+}
+
+div.switch-list-title-3l2{
+	width:  30%;
+	font-size: 12px;
+	text-align: left;
+	float:  left;
+	font-variant: small-caps;
+	padding-left:  20%;
+}
+
+div.switch-list-title-number {
+	width: 30%;
+	color: Gray;
+	float:  left;
+	padding-top: 20px;
+}
+
+div.switch-list-title-4 {
+	font-size: 14px;
+}
+
+u.switch-list-title u {   font-size:  10px;
+  font-family: 'Rock Salt';	
+}
+
+.switch-list-footer {
+  padding-top: 10px;
+} 
+.switch-list-section {
+}
+
+.switch-list-section-title {
+	border-top-style: double;
+	border-bottom-style: solid;
+	border-bottom-width: medium;
+}
+
+.switch-list-page {
+	background-color:  #fcffc5;
+	margin-top: 2em;
+	page-break-before:  always;
+}
+
+tr.switch-list-header {
+	font: 10px "Lucida Grande", Lucida, Verdana, sans-serif;
+	text-align: center;
+}
+
+.handwritten {
+	padding-left:  10px;
+	font:  12px "Rock Salt";
+	color:  DarkBlue;
+}
+.switch-list-body { 
+  font:  12px "Rock Salt";
+  border: 2px solid #aaa;
+	text-align: center;
+	color:  DarkBlue;
+}
+
+.switch-list-table {
+}
+
+table.switch-list-table {
+  border-collapse: collapse;
+        border-style: solid;
+        border-width: thin;
+        width: 100%;
+}
