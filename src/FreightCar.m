@@ -139,6 +139,11 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 	return [NSString stringWithUTF8String: firstNonSpace];
 }
 
+// Helper to make template language more consistent.
+- (NSString*) carType {
+	return [[self carTypeRel] carTypeName];
+}
+
 - (void)setReportingMarks:(NSString *)value 
 {
     [self willChangeValueForKey: @"reportingMarks"];
