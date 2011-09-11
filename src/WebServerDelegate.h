@@ -37,6 +37,7 @@
 @class SwitchListAppDelegate;
 @class SimpleHTTPConnection;
 @class SimpleHTTPServer;
+@class HTMLSwitchlistRenderer;
 
 /* TCP port where SwitchList web server will listen. */
 extern const int DEFAULT_SWITCHLIST_PORT;
@@ -45,17 +46,14 @@ extern NSString *CurrentHostname();
 
 @interface WebServerDelegate : NSObject {
 	SimpleHTTPServer *server_;
-	// Make this settable for testing.
-	NSBundle *mainBundle_;
-	MGTemplateEngine *engine_;
+	HTMLSwitchlistRenderer *htmlRenderer_;
 }
 
 - (id) init;
 - (void) stopResponding;
 - (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn userAgent: (NSString*) userAgent;
 // For mocking.
-- (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle;
-
+- (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle withRenderer: (HTMLSwitchlistRenderer*) renderer;
+- (void) setTemplate: (NSString*) templateName;	
 // For testing.
-- (void) writeIndustryListForLayout: (EntireLayout *) layout toString: (NSMutableString *) message;
 @end

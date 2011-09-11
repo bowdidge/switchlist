@@ -1,0 +1,57 @@
+<HTML>
+<HEAD>
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+<link href='switchlist-iphone.css' rel='stylesheet' type='text/css' media='only screen and (max-device-width: 480px)'/>
+<link href='switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
+<link href='switchlist.css' rel='stylesheet' type='text/css' media='all and (min-device-width: 1025px)'>
+<TITLE>Switch List for {{ train.name }}</TITLE>
+</HEAD>
+<BODY>
+<div class="switch-list">
+<div class="train-name">{{train.name}}</div>
+<div class="switch-list-layout-title">{{ layout.layoutName }}</div>
+<div class="switch-list-title">SWITCH LIST</div>
+<div class="switch-list-instructions">
+<span class="switch-list-instructions-filled-in">
+<u>{{ trainName }}</u>
+</span>
+AT
+<span class="switch-list-instructions-filled-in">
+<u>{{ firstStation }}</u>
+</span>
+STATION,
+<span class="switch-list-instructions-filled-in">
+<u>{{ layout.currentDate | date_format: "MMM dd"}}</u></span>
+19<span class="switch-list-instructions-filled-in"><u>{{ layout.currentDate | date_format: "YY"}}</u>
+</span>
+</div>
+<p>
+<center>
+<TABLE class="switch-list">
+  <TR class="switch-list-header">
+    <TH>Done</TH>
+    <TH>Car No.</TH>
+    <TH>Car Type</TH>
+    <TH>From</TH>
+    <TH>To</TH>
+  </TR>
+  {% for car in train.allFreightCarsInVisitOrder %}
+  <TR>
+    <TD><INPUT TYPE=CHECKBOX NAME=""></TD>
+	<TD>{{car.reportingMarks}}</TD>
+	<TD class="cartype">{{car.carTypeRel.carTypeName}}</TD>
+	<TD>{{car.currentLocation.location.name}}/{{car.currentLocation.name}}</TD>
+	<TD>{{car.nextStop.location.name}}/{{car.nextStop.name}}</td>
+  </tr>
+  {% /for %}
+</TABLE>
+</center>
+<p align="right">
+<INPUT TYPE=BUTTON value="Go Back" onclick="location.href='?layout={{layout.layoutName}}'">
+<INPUT TYPE=BUTTON value="Train Finished">
+</p>
+</div>
+</HTML>
+	
+

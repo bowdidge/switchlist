@@ -1,8 +1,8 @@
 //
-//  GlobalPreferences.h
+//  HTMLSwitchListWindowControllerTest.h
 //  SwitchList
 //
-//  Created by bowdidge on 2/21/11.
+//  Created by Robert Bowdidge on 9/9/11.
 //
 // Copyright (c)2011 Robert Bowdidge,
 // All rights reserved.
@@ -27,30 +27,25 @@
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
-//
 
-#import <Cocoa/Cocoa.h>
 
-// Settings for global app preferences dictionary.
+#import <SenTestingKit/SenTestingKit.h>
 
-// DEPRECATED: Preferred switch list style.  Value is enum value from SwitchListStyle enum.
-extern NSString *GLOBAL_PREFS_SWITCH_LIST_DEFAULT_STYLE;
+@class HTMLSwitchListWindowController;
 
-// Preferred switch list style.  Value is string name.  If named template does not exist,
-// then the default template should be used.
-extern NSString *GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE;
+// Mock file manager that always returns a preferred answer.
+// TODO(bowdidge): Switch to OCMock.
+@interface MyFileManager : NSObject {
+    BOOL preferredResponse_;
+}
+- (void) setPreferredResponse: (BOOL) preferredResponse;
+@end
 
-// Indicates whether the web server control panel should be visible.  Boolean.
-extern NSString *GLOBAL_PREFS_DISPLAY_WEB_SERVER;
+@interface HTMLSwitchListWindowControllerTest : SenTestCase {
+	// WindowController to test.
+	HTMLSwitchListWindowController *windowController_;
+	// Mock file manager instance.
+	MyFileManager *myFileManager_;
+}
 
-// Indicates whether the web server should be running.  Boolean.
-extern NSString *GLOBAL_PREFS_ENABLE_WEB_SERVER;
-
-// Font name for handwriting fonts.
-extern NSString* GLOBAL_PREFS_HANDWRITING_FONT_NAME;
-extern NSString* GLOBAL_PREFS_TYPED_FONT_NAME;
-
-// Constants handy for defaults.
-// Name for the default template as displayed in the switchlist
-// preference pop up.
-extern NSString *DEFAULT_SWITCHLIST_TEMPLATE;
+@end

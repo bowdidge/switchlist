@@ -1,0 +1,43 @@
+<HTML>
+<HEAD>
+<title>Switchlist for {{train.name}}</title>
+<link href='switchlist.css' rel='stylesheet' type='text/css' media='all'>
+</HEAD>
+<BODY>
+<div class="switch-list">
+<div class="switch-list-layout-title">
+{{layout.layoutName}}
+<br>
+WORK ORDER FOR {{train.name}}
+</div>
+{% for station in train.stationsWithWork %}
+  {% for industry in station.industries %}
+    <div class="industry-header">
+      TRACK: {{industry.name}}  STATION: {{station.name}}
+    </div>
+    <table class="industry-table">
+    <th>Seq</th><th>Car</th><th>LE</th><th>Block to</th><th></th>
+    {% for car in industry.carsToPickUp %}
+      <tr>
+     <td></td>
+     <td>{{car.reportingMarks }}</td>
+     <td>{% if car.isLoaded == 1 %} L {% else %} E {% /if %}</td>
+     <td> {{car.nextStop.name}} </td>
+     <td> {{car.nextStop.location.name}} </td>
+     </tr>
+    {% /for %}
+    </table>
+    <div class="industry-footer">
+    Loads: {{cars.count}} Empty: 0 Cars: {{cars.count}} Length: 0a
+    </div>
+    <br>
+  {% /for %}
+{% /for %}
+<div class="footer">
+PRINTED {{layout.currentDate | date_format: "MM/DD/YY - HH:mm:SS" }}
+<br>
+** END OF REPORT **
+</div>
+</div>
+</BODY>
+</HTML>
