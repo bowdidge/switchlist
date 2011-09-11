@@ -51,7 +51,7 @@ popd
 # Make sure it's a fat binary.
 file /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList | grep "ppc"
 if $status != 1 then
-  echo Missing PowerPC binary!"
+  echo "Missing PowerPC binary!"
   exit 1
 endif
 
