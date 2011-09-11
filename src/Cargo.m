@@ -68,6 +68,11 @@
 	return ([[self valueForKeyPath: @"destination"] isOffline]);
 }
 
+// Only for consistency in template language.
+- (NSString*) name {
+	return [self cargoDescription];
+}
+
 - (NSString*) description {
 	NSString *carTypeLabel = [NSString stringWithFormat: @"%@ (%@)",
 							  [[self carTypeRel] carTypeName], [[self carTypeRel] carTypeDescription]];
