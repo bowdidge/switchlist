@@ -1,0 +1,60 @@
+<html>
+<head>
+<style>
+<!--
+/* Make all text larger. */
+p,li {
+  font-family: Comic Sans MS;
+  font-size: 12pt;
+}
+
+h1 {
+  font-family: Comic Sans MS;
+  font-size: 30pt;
+}
+
+/* Color any tags with class "reportingMarks" red. */
+.reportingMarks {
+  color: red;
+}
+-->
+</style>
+<title>Simple Switchlist for Train {{train.name}}</title>
+<!-- Include link to CSS file here if you wanted formatting in a separate file.
+      -->
+</head>
+<body>
+<img src="http://www.tuxpaint.org/stamps/stamps/vehicles/locomotive/cartoon/toy_train.png" style="width:20%;float:right;pos"></img>
+<h1>Switching Work To Do</h1>
+</div>
+<p>
+  Mikey the Mogul Engine has lots of switching work to do! Blow the whistle,
+  ring the bell, and start helping Mikey with his work!
+</p>
+<p>
+  Switch the following cars in the {{train.name}} train:
+<ol>
+</p>
+{% for car in train.allFreightCarsInVisitOrder %}
+  <p>
+  <li>Move the {{car.carTypeRel.carTypeDescription}}
+  <span class="reportingMarks">{{car.reportingMarks}}</span>
+  from
+  <b>{{car.currentLocation.name}}</b>
+  in {{car.currentLocation.location.name}} to
+  <b>{{car.nextStop.name}}</b> in {{car.nextStop.location.name}}.
+  (The car
+  {% if car.isLoaded %}
+    is loaded with {{car.cargoDescription}}.)
+  {% else %}
+    is empty.)
+  {% /if %}
+  </p>
+{% /for %}
+</ol>
+<p>
+<img src="http://www.clipartpal.com/_thumbs/pd/education/gold_star.png" style="height:40px;"></img>
+Good job!  That wasn't so hard, was it?
+</p>
+</body>
+</html>

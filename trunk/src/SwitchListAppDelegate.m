@@ -38,6 +38,7 @@
 #import "IndustryReport.h"
 #import "KaufmanSwitchListReport.h"
 #import "KaufmanSwitchListView.h"
+#import "NSFileManager+DirectoryLocations.h"
 #import "PICLReport.h"
 #import "ReservedCarReport.h"
 #import "SouthernPacificSwitchListView.h"
@@ -116,36 +117,26 @@
 @implementation SwitchListAppDelegate
 - (id) init {
 	[super init];
-	indexToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
-	[indexToSwitchListClassMap_ setObject: [SwitchListView class] forKey: [NSNumber numberWithInt: PrettySwitchListStyle]];
-	[indexToSwitchListClassMap_ setObject: [SwitchListReport class] forKey: [NSNumber numberWithInt: OldSwitchListStyle]];
-	[indexToSwitchListClassMap_ setObject: [KaufmanSwitchListReport class] forKey: [NSNumber numberWithInt: PickUpDropOffSwitchListStyle]];
-	[indexToSwitchListClassMap_ setObject: [SouthernPacificSwitchListView class] forKey: [NSNumber numberWithInt: SouthernPacificSwitchListStyle]];
-	[indexToSwitchListClassMap_ setObject: [PICLReport class] forKey: [NSNumber numberWithInt: PICLReportStyle]];
-	[indexToSwitchListClassMap_ setObject: [KaufmanSwitchListView class] forKey: [NSNumber numberWithInt: SanFranciscoBeltLineB7Style]];
-	
-	indexToSwitchListNameMap_ = [[NSMutableDictionary alloc] init];
-	[indexToSwitchListNameMap_ setObject: @"Large Type" forKey: [NSNumber numberWithInt: PrettySwitchListStyle]];
-	[indexToSwitchListNameMap_ setObject: @"Traditional From/To" forKey: [NSNumber numberWithInt: OldSwitchListStyle]];
-	[indexToSwitchListNameMap_ setObject: @"Drop-off/Pick-up" forKey: [NSNumber numberWithInt: PickUpDropOffSwitchListStyle]];
-	[indexToSwitchListNameMap_ setObject: @"Narrow Southern Pacific-style" forKey: [NSNumber numberWithInt: SouthernPacificSwitchListStyle]];
-	[indexToSwitchListNameMap_ setObject: @"PICL Report" forKey: [NSNumber numberWithInt: PICLReportStyle]];
-	[indexToSwitchListNameMap_ setObject: @"San Francisco Belt B-7" forKey: [NSNumber numberWithInt: SanFranciscoBeltLineB7Style]];
-	
+	// Gather the names of the switchlist templates with native support.
+	nameToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
+	[nameToSwitchListClassMap_ setObject: [SwitchListView class] forKey: DEFAULT_SWITCHLIST_TEMPLATE];
+	[nameToSwitchListClassMap_ setObject: [SwitchListReport class] forKey: @"Line Printer"];
+	[nameToSwitchListClassMap_ setObject: [KaufmanSwitchListView class] forKey: @"San Francisco Belt Line B-7"];
+	[nameToSwitchListClassMap_ setObject: [SouthernPacificSwitchListView class] forKey: @"Southern Pacific Narrow"];
+	[nameToSwitchListClassMap_ setObject: [PICLReport class] forKey: @"PICL Report"];
+
+	defaultFileManager_ = [[NSFileManager defaultManager] retain];
 	return self;
 }
 
 - (void) dealloc {
 	[networkIconImage_ release];
+	[defaultFileManager_ release];
 	[super dealloc];
 }
 
-- (NSDictionary*) indexToSwitchListClassMap {
-	return indexToSwitchListClassMap_;
-}
-
-- (NSDictionary*) indexToSwitchListNameMap {
-	return indexToSwitchListNameMap_;
+- (NSDictionary*) nameToSwitchListClassMap {
+	return nameToSwitchListClassMap_;
 }
 
 // Either by user control or 
@@ -200,7 +191,49 @@
 	}
 }
 
-// Return current hostname - probably bonjour name.
+// Creates a new template name default if one isn't found in the user's defaults.
+// Uses the enum-based default style to choose a value.
+// Only needed to give SwitchList users before 0.7.4 a better experience.
+- (void) convertSwitchListStylePreferenceIfNeeded {
+	// Change default.
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSNumber *defaultStyleNumber = [defaults objectForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_STYLE];
+	NSString *defaultTemplate = [defaults objectForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	if (defaultStyleNumber != nil && defaultTemplate == nil) {
+		// Upgrade to using template name.
+		int preference = [defaultStyleNumber integerValue];
+		NSString *templateName = nil;
+		switch (preference) {
+			case 1:
+				// Classic handwritten switchlist.
+				templateName = DEFAULT_SWITCHLIST_TEMPLATE; // Handwritten
+				break;
+			case 2:
+				// Original computer-generated switchlist.
+				templateName = @"LinePrinter";
+				break;
+			case 3:
+			case 6:
+				// B7 and pick up / drop off switchlist.
+				templateName = @"San Francisco Belt Line B-7";
+				break;
+			case 4:
+				templateName = @"Southern Pacific Narrow";
+				break;
+			case 5:
+				templateName = @"PICL Report";
+				break;
+		}
+		if (templateName) {
+			[defaults setObject: templateName forKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+			// Don't erase old preference.
+		}
+	} else if (defaultTemplate == nil) {
+		// Set some value in template just to make sure a value exists.
+		[defaults setObject: DEFAULT_SWITCHLIST_TEMPLATE forKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	}
+}
+
 - (void) awakeFromNib {
 	problems_ = [[NSMutableArray alloc] init];
 	[problems_ addObject: @"No errors"];
@@ -214,24 +247,17 @@
 	[problemsOutlineView_ setAllowsMultipleSelection: YES];
 
 	[switchListStyleButton_ removeAllItems];
-	
-	// Put the labels in the pop-up in sorted order.
-	NSMutableArray *labels = [NSMutableArray array];
-	for (NSNumber *switchListEnumValue in indexToSwitchListNameMap_) {
-		[labels addObject: [indexToSwitchListNameMap_ objectForKey: switchListEnumValue]];
-	}
-	[labels sortUsingSelector: @selector(compare:)];
-	int pos = 0;
 
-	NSEnumerator *e = [labels reverseObjectEnumerator];
-	NSString *label;
-	while ((label = [e nextObject]) != nil) {
-		[switchListStyleButton_ insertItemWithTitle: label atIndex: pos];
+	[self convertSwitchListStylePreferenceIfNeeded];
+	
+	// Put the switchlist template names in the pop-up in sorted order.
+	int pos = 0;
+	for (NSString *templateName in [self validTemplateNames]) {
+		[switchListStyleButton_ insertItemWithTitle: templateName atIndex: pos++];
 	}
 	
-	int cellChoice = [[NSUserDefaults standardUserDefaults] integerForKey: @"SwitchListDefaultStyle"];
-	NSString *preferredName = [indexToSwitchListNameMap_ objectForKey: [NSNumber numberWithInt: cellChoice]];
-	[switchListStyleButton_ selectItemWithTitle: preferredName];
+	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	[switchListStyleButton_ selectItemWithTitle: preferredSwitchlistStyle];
 	
 	webServerVisible_ = [[NSUserDefaults standardUserDefaults] boolForKey: GLOBAL_PREFS_DISPLAY_WEB_SERVER];
 	webServerEnabled_ = [[NSUserDefaults standardUserDefaults] boolForKey: GLOBAL_PREFS_ENABLE_WEB_SERVER];
@@ -249,6 +275,7 @@
 		[webServerStatusPanel_ orderOut: self];
 		[self setWebServerRunStatus: NO];
 	}
+	[webController_ setTemplate: preferredSwitchlistStyle]; 
 }
 
 - (NSWindow*) reportWindow {
@@ -320,15 +347,8 @@
 - (IBAction) switchListFormatPreferenceChanged: (id) sender {
 	int selection = [sender indexOfSelectedItem];
 	NSString *preferredReportName = [sender itemTitleAtIndex: selection];
-	for (NSNumber *switchListReportEnumValue in [indexToSwitchListNameMap_ allKeys]) {
-		if ([[indexToSwitchListNameMap_ objectForKey: switchListReportEnumValue] isEqualToString: preferredReportName]) {
-			[[NSUserDefaults standardUserDefaults] setInteger: [switchListReportEnumValue intValue] forKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_STYLE];
-			[[NSUserDefaults standardUserDefaults] synchronize];
-			NSLog(@"New switch list preference is %@ (%d)", preferredReportName, [switchListReportEnumValue intValue]);
-			return;
-		}
-	}
-	NSLog(@"Unknown switchlist format %@!", preferredReportName);
+	[[NSUserDefaults standardUserDefaults] setObject: preferredReportName forKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	[webController_ setTemplate: preferredReportName]; 
 }
 
 - (IBAction) webServerPreferenceChanged: (id) sender {
@@ -440,4 +460,51 @@
 		[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListStyles" inBook: locBookName];
 	}
 }
+
+// Returns true if a directory named "name" exists in the specified directory,
+// and if "name" contains a switchlist.html file suggesting it's a real template.
+- (BOOL) isSwitchlistTemplate: (NSString*) name inDirectory: (NSString*) directory {
+	BOOL isDirectory = NO;
+	if (![defaultFileManager_ fileExistsAtPath: [directory stringByAppendingPathComponent: name]
+								   isDirectory: &isDirectory] || isDirectory == NO) {
+		return NO;
+	}
+	// Does a switchlist.html directory exist there?
+	if ([defaultFileManager_ fileExistsAtPath: [[directory stringByAppendingPathComponent: name] 
+												stringByAppendingPathComponent: @"switchlist.html"]]) {
+		return YES;
+	}
+	return NO;
+}
+
+// Return the list of 
+- (NSArray*) validTemplateNames {
+	// Handwritten is always valid - uses defaults.
+	NSMutableArray *result = [NSMutableArray arrayWithObject: DEFAULT_SWITCHLIST_TEMPLATE];
+
+	NSError *error;
+	// First find templates in application support directory.
+	NSString *applicationSupportDirectory = [defaultFileManager_ applicationSupportDirectory];
+	NSArray *filesInApplicationSupportDirectory = [defaultFileManager_ contentsOfDirectoryAtPath: applicationSupportDirectory
+																						   error: &error];
+	for (NSString *file in filesInApplicationSupportDirectory) {
+		if ([self isSwitchlistTemplate: file inDirectory: applicationSupportDirectory]) {
+			[result addObject: file];
+		}
+	}
+	
+	// Next, find templates in the bundle directory.  User templates with the same name win.
+	NSString *resourcesDirectory = [[NSBundle mainBundle] resourcePath];
+	NSArray *filesInResourcesDirectory = [defaultFileManager_ contentsOfDirectoryAtPath: resourcesDirectory
+																				  error: &error];
+	for (NSString *file in filesInResourcesDirectory) {
+		if ([self isSwitchlistTemplate: file inDirectory: resourcesDirectory]) {
+			if ([result containsObject: file] == NO) {
+				[result addObject: file];
+			}
+		}
+	}
+	return [result sortedArrayUsingSelector: @selector(compare:)];
+}
+	
 @end

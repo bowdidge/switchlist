@@ -1,0 +1,25 @@
+.switch-list td,div,th  {
+	font: 12px "Courier New", Courier, mono;
+	width: 650px
+}
+
+.switch-list-layout-title {
+	font-weight: bold;
+	text-align: center;
+}
+
+.industry-header {
+	padding-top: 15px;
+}
+
+.industry-table th {
+	font-weight: bold;
+}
+
+.industry-footer {
+	
+}
+
+.footer {
+	font-weight: bold;
+}

@@ -37,10 +37,13 @@
 #import "CarType.h"
 #import "EntireLayout.h";
 #import "FreightCar.h"
+#import "GlobalPreferences.h"
+#import "HTMLSwitchlistRenderer.h"
 #import "InduYard.h"
 #import "Industry.h"
 #import "MGTemplateEngine/MGTemplateEngine.h"
 #import "MGTemplateEngine/ICUTemplateMatcher.h"
+#import "NSFileManager+DirectoryLocations.h"
 #import "Place.h"
 #import "SwitchListAppDelegate.h";
 #import "SwitchListDocument.h"
@@ -95,14 +98,11 @@ NSString *CurrentHostname() {
 @implementation WebServerDelegate
 
 // For mocking.
-- (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) bundle {
+- (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) bundle withRenderer: (HTMLSwitchlistRenderer*) renderer {
 	[super init];
 	server_ = server;
-	mainBundle_ = bundle;
-	engine_ = [[MGTemplateEngine alloc] init];
-	[engine_ setMatcher: [ICUTemplateMatcher matcherWithTemplateEngine: engine_]];
-	[engine_ loadFilter: [[[SwitchListFilters alloc] init] autorelease]];
-
+    htmlRenderer_ = [renderer retain];
+	[htmlRenderer_ setTemplate: DEFAULT_SWITCHLIST_TEMPLATE];
 	if (server_) {
 		NSLog(@"Started!");
 	} else {
@@ -113,14 +113,18 @@ NSString *CurrentHostname() {
 
 // Preferred constructor.
 - (id) init {
+	HTMLSwitchlistRenderer *htmlRenderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+	[htmlRenderer autorelease];
+	
 	return [self initWithServer: [[SimpleHTTPServer alloc] initWithTCPPort: DEFAULT_SWITCHLIST_PORT delegate:self]
-					 withBundle: [NSBundle mainBundle]];
+					 withBundle: [NSBundle mainBundle]
+				   withRenderer: htmlRenderer];
 }
 
 - (void) dealloc {
 	[server_ stopResponding];
 	[server_ release];
-	[engine_ release];
+	[htmlRenderer_ release];
 	[super dealloc];
 }
 
@@ -134,134 +138,59 @@ NSString *CurrentHostname() {
 	[server_ stopResponding];
 }
 
+// Change the default switchlist template to the named one.
+// If templateName is Handwritten or is nil, then use the default template.
+- (void) setTemplate: (NSString*) templateName {
+	[htmlRenderer_ setTemplate: templateName];
+}
+
 - (void) processError: (NSURL *) badURL {
 	[server_ replyWithStatusCode: 403
 						message: [NSString stringWithFormat: @"Unknown URL %@", [badURL path]]];
 }
 
 - (void) processRequestForSwitchlistCSS {
-	// TODO(bowdidge): Allow users to specify a different directory of CSS and HTML for switchlists.
-	// The default-switchlist is just the name of the preferred switchlist.css file.  A better
-	// scheme would be to stash the default versions in a directory, but XCode doesn't copy directories
-	// into the resources directory well.
-	NSString *cssFile = [mainBundle_ pathForResource: @"default-switchlist" ofType: @"css"];
+	NSString *cssFile = [htmlRenderer_ filePathForSwitchlistCSS];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
-- (void) processRequestForSwitchlistIphoneCSS {
-	NSString *cssFile = [mainBundle_ pathForResource: @"default-switchlist-iphone" ofType: @"css"];
+- (void) processRequestForSwitchlistIPhoneCSS {
+	NSString *cssFile = [htmlRenderer_ filePathForSwitchlistIPhoneCSS];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
-- (void) processRequestForSwitchlistIpadCSS {
-	NSString *cssFile = [mainBundle_ pathForResource: @"default-switchlist-ipad" ofType: @"css"];
+- (void) processRequestForSwitchlistIPadCSS {
+	NSString *cssFile = [htmlRenderer_ filePathForSwitchlistIPadCSS];
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
-- (NSString*) townLocationStringForLocation: (InduYard*) induYard {
-	return [NSString stringWithFormat: @"%@/%@", [[induYard location] name], [induYard name]];
-}
-	
+
 - (void) processRequestForLayout: (SwitchListDocument*) document train: (NSString*) trainName forIPhone: (BOOL) isIPhone {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
 	ScheduledTrain *train = [layout trainWithName: trainName];
-	
-	NSDictionary *templateDict = [NSDictionary dictionaryWithObjectsAndKeys:
-								  train, @"train", 
-								  [[train stationStopStrings] objectAtIndex: 0],@"firstStation", 
-								  layout, @"layout",
-								  nil];
-	
-	NSString *switchlistTemplate = (isIPhone ? @"default-switchlist-iphone" : @"default-switchlist");
-	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: switchlistTemplate ofType: @"html"]
-											   withVariables: templateDict];
 	[server_ replyWithStatusCode: HTTP_OK
-						 message: message];
+						 message: [htmlRenderer_ renderSwitchlistForTrain: train layout: layout iPhone: isIPhone]];
 }
 
-// Returns the contents of the named resource file.
-- (NSString*) contentsOfHtmlHeaderResource: (NSString*) resourceName {
-	NSString *carListHeaderPath = [mainBundle_ pathForResource: resourceName ofType: @"html"];
-	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: carListHeaderPath]];
-	NSString *contents = [[NSString alloc] initWithData: data encoding: NSUTF8StringEncoding];
-	return [contents autorelease];
-}
 
 // Generates HTML response for the car list for the names layout.
 - (void) processRequestForCarListForLayout: (SwitchListDocument*) document {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
 
-	NSMutableString *carLocations = [NSMutableString string];
-	NSArray *allFreightCars = [[layout allFreightCarsReportingMarkOrder] sortedArrayUsingSelector: @selector(compareNames:)];
-	for (FreightCar *freightCar in allFreightCars) {
-		[carLocations appendFormat: @"'%@':'%@',", [freightCar reportingMarks], [[freightCar currentLocation] name]];
-	}
-	NSDictionary *templateDict = [NSDictionary dictionaryWithObjectsAndKeys:
-								  allFreightCars, @"freightCars",
-								  layout, @"layout",
-								  carLocations, @"carLocations",
-								  nil];
-	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-carlist" ofType: @"html"]
-											   withVariables: templateDict];
+	NSString *message = [htmlRenderer_ renderCarlistForLayout: layout];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
-}
-
-- (void) writeIndustryListForLayout: (EntireLayout *) layout toString: (NSMutableString *) message  {
-	// TODO(bowdidge): Replace with code that builds up an array of information suitable
-	// for easily generating this report in the template.
-	[message appendFormat:@"<table>"];
-	Place *place;
-	for (place in [[layout allStations] sortedArrayUsingSelector: @selector(compareNames:)])  {
-		if ([place isOffline]) continue;
-		BOOL firstIndustry = YES;
-		InduYard *ind;
-		for (ind in [[[place industries] allObjects] sortedArrayUsingSelector: @selector(compareNames:)]) {
-			if ([[ind freightCars] count] == 0) continue;
-			BOOL firstFreightCar = YES;
-			FreightCar *fc;
-			NSString *rowClass = @"";
-			NSString *industryName = @"";
-			for (fc in [[[ind freightCars] allObjects] sortedArrayUsingFunction: &compareReportingMarksAlphabetically context: 0]) {
-				if (firstIndustry) {
-					// Stations always get their own first line.
-					[message appendFormat: @"<tr class='indStationStart'><td class='indStation'>%@</td></tr>",
-					 [place name]];
-					rowClass = @"class='indIndustryStart'";
-					industryName = [ind name];
-					firstIndustry = NO;
-					firstFreightCar = NO;
-				} else if (firstFreightCar) {
-					rowClass= @"class='indIndustryStart'";
-					industryName = [ind name]; 
-					firstFreightCar = NO;
-				} else {
-					rowClass = @"";
-					industryName = @"";
-				}
-				[message appendFormat: @"<tr %@><td class='indStation'></td><td class='indIndustry'>%@</td>\n", rowClass,
-					industryName];
-				[message appendFormat: @"<td class='indMarks'>%@</td><td class='indType'>%@</td></tr>\n",
-					[fc reportingMarks], [[fc carTypeRel] carTypeName]];
-			}
-		}
-	}
-	[message appendFormat: @"</table>"];
 }
 
 // Returns HTML for industry list, showing the cars at each industry 
 - (void) processRequestForIndustryListForLayout: (SwitchListDocument*) document {
 	EntireLayout *layout = [document entireLayout];
-	
-	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: layout forKey:  @"layout"];
-	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-industrylist" ofType: @"html"]
-											   withVariables: templateDict];
-	[server_ replyWithStatusCode: HTTP_OK
-						 message: message];
+	NSString *message = [htmlRenderer_ renderIndustryListForLayout: layout];
+	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
 
@@ -289,11 +218,8 @@ NSString *CurrentHostname() {
 
 	
 - (void) processRequestForLayout: (SwitchListDocument*) document {
-	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: [document entireLayout] forKey: @"layout"];
-	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-layout" ofType: @"html"]
-											   withVariables: templateDict];
-	[server_ replyWithStatusCode: HTTP_OK
-						message: message];
+	NSString *message = [htmlRenderer_ renderLayoutPageForLayout: [document entireLayout]];
+	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
 - (SwitchListDocument*) layoutWithName: (NSString*) layout {
@@ -318,36 +244,8 @@ NSString *CurrentHostname() {
 }
 
 - (void) showAllLayouts {
-	NSDocumentController *controller = [NSDocumentController sharedDocumentController];
-	NSArray *allDocuments = [controller documents];
-	if ([allDocuments count] == 0) {
-		[server_ replyWithStatusCode: HTTP_OK message: @"No layouts open in SwitchList!"];;
-		return;
-	}
-	
-	// Only one layout?  Redirect straight to there.
-	if ([allDocuments count] == 1) {
-		EntireLayout *layout = [[allDocuments lastObject] entireLayout];
-		[self replyWithRedirectTo: [NSString stringWithFormat: @"get?layout=%@", [layout layoutName]]];
-		return;
-	}
-	
-	NSMutableArray *layoutNames = [NSMutableArray array];
-	for (SwitchListDocument *document in allDocuments) {
-		NSString *layoutName = [[document entireLayout] layoutName];
-		if (!layoutName || [layoutName isEqualToString: @""]) {
-			[layoutNames addObject: @"untitled"];
-		} else {
-			[layoutNames addObject: layoutName];
-		}
-	}
-	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: layoutNames forKey:  @"layoutNames"];
-	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-home" ofType: @"html"]
-											   withVariables: templateDict];
-	NSLog(@"Message was %@", message);
-	[server_ replyWithStatusCode: HTTP_OK
-						 message: message];
-}	
+	[server_ replyWithStatusCode: HTTP_OK message: [htmlRenderer_ renderLayoutsPage]];
+	}	
 
 // URLs should be of form:
 // http://localhost:20000/ -- show list of layouts
@@ -362,11 +260,7 @@ NSString *CurrentHostname() {
 // values?  That would also make it easier to do a car detail view.
 - (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn userAgent: (NSString*) userAgent {
 	NSLog(@"Process %@", url);
-	NSLog(@"Query is %@", [url query]);
-   	NSLog(@"User agent is %@", userAgent);
-    NSLog(@"Path is %@", [url path]);
 	NSString *urlClean = [[url query] stringByReplacingOccurrencesOfString: @"%20" withString: @" "];
-    NSLog(@"Clean is %@", urlClean);
 	
 	// If connecting from an iPhone, the UserAgent should contain '(iPhone;' somewhere.
 	BOOL isIPhone = [userAgent rangeOfString: @"iPhone"].location != NSNotFound;
@@ -375,10 +269,10 @@ NSString *CurrentHostname() {
 		[self processRequestForSwitchlistCSS];
 		return;
 	} else if ([[url path] isEqualToString: @"/switchlist-iphone.css"]) {
-		[self processRequestForSwitchlistIphoneCSS];
+		[self processRequestForSwitchlistIPhoneCSS];
 		return;
 	} else if ([[url path] isEqualToString: @"/switchlist-ipad.css"]) {
-		[self processRequestForSwitchlistIpadCSS];
+		[self processRequestForSwitchlistIPadCSS];
 		return;
 	}
 	

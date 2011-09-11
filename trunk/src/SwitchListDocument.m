@@ -37,6 +37,9 @@
 #import "CarTypes.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
+#import "GlobalPreferences.h"
+#import "HTMLSwitchListWindowController.h"
+#import "HTMLSwitchlistRenderer.h"
 #import "Industry.h"
 #import "KaufmanSwitchListReport.h"
 #import "KaufmanSwitchListView.h"
@@ -246,9 +249,15 @@
 
 // Prints switchlists for all trains on the layout that have work.
 - (IBAction)printDocument:(id)sender {
-	int defaultStyle = [[NSUserDefaults standardUserDefaults] integerForKey:@"SwitchListDefaultStyle"];
+	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	
 	SwitchListAppDelegate *appDelegate = (SwitchListAppDelegate*) [[NSApplication sharedApplication] delegate];
-	Class reportClass = [[appDelegate indexToSwitchListClassMap] objectForKey: [NSNumber numberWithInt: defaultStyle]];
+	Class reportClass = [[appDelegate nameToSwitchListClassMap] objectForKey: preferredSwitchlistStyle];
+	if (reportClass == nil) {
+		// For now, default to handwritten.
+		// TODO(bowdidge): Add "print all" feature for HTML templates.
+		reportClass = [SwitchListView class];
+	}
 	
 	PrintEverythingView *pev = [[PrintEverythingView alloc] initWithFrame: NSMakeRect(0.0,0.0,100.0,100.0) withDocument: self
 															withViewClass: reportClass];
@@ -612,13 +621,19 @@
 	
 	SwitchListBaseView *switchListView;
 	SwitchListAppDelegate *appDelegate = (SwitchListAppDelegate*) [[NSApplication sharedApplication] delegate];
-	int defaultStyle = [[NSUserDefaults standardUserDefaults] integerForKey:@"SwitchListDefaultStyle"];
-	Class reportClass = [[appDelegate indexToSwitchListClassMap] objectForKey: [NSNumber numberWithInt: defaultStyle]];
+	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	Class reportClass = [[appDelegate nameToSwitchListClassMap] objectForKey: preferredSwitchlistStyle];
 									   
 	if (reportClass == nil) {
-		NSLog(@"Unknown switch list default style %d\n", defaultStyle);
-		reportClass = [SwitchListView class];
-		// TODO(bowdidge): Set as default.
+		// There's no native way of drawing this, so fall back on the HTML version.
+		HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+		[renderer setTemplate: preferredSwitchlistStyle];
+		NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO];
+		
+		HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
+		[[view window] makeKeyAndOrderFront: self];
+		[view drawHTML: message templateDirectory: [renderer templateDirectory]];
+		return;
 	}
 	
 	// Size is based on space in nib file.

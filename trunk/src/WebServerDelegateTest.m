@@ -35,6 +35,7 @@
 
 #import "EntireLayout.h"
 #import "FakeSwitchListDocument.h"
+#import "HTMLSwitchlistRenderer.h"
 #import "FreightCar.h"
 #import "Industry.h"
 #import "WebServerDelegate.h"
@@ -115,7 +116,8 @@
 	unitTestBundle_ = [[NSBundle bundleWithIdentifier: @"com.blogspot.vasonabranch.Unit tests"] retain];
 	server_ = [[MockSimpleHTTPServer alloc] init];
 	webServerDelegate_ = [[WebServerDelegate alloc] initWithServer: (SimpleHTTPServer*) server_
-														withBundle: unitTestBundle_];
+														withBundle: unitTestBundle_
+													  withRenderer: [[[HTMLSwitchlistRenderer alloc] initWithBundle: unitTestBundle_] autorelease]];
 }
 
 - (void) tearDown {
@@ -159,18 +161,6 @@
 				 [NSString stringWithFormat: @"Expected %@ in %@", @"No layouts", server_->lastMessage]);
 }
 
-- (void) testRedirect {
-	[[NSDocumentController sharedDocumentController] addDocument: [[FakeSwitchListDocument alloc] init]];
-	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
-	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
-	
-	NSLog(@"Code: %d, Body: %@, Headers: %@, LastMessage: %@", 
-		  server_->lastCode, server_->lastBody, server_->lastHeaders, server_->lastMessage);
-	
-	STAssertTrue([server_->lastMessage rangeOfString: @"REFRESH"].length != 0,
-				 [NSString stringWithFormat: @"Expected %@ in %@", @"REFRESH", server_->lastMessage]);
-	
-}
 - (void) testTwoLayouts {
 	NSDocumentController *sharedDocumentController = [NSDocumentController sharedDocumentController];
 	[sharedDocumentController addDocument: [[FakeSwitchListDocument alloc] init]];
@@ -178,8 +168,6 @@
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	NSLog(@"Code: %d, Body: %@, Headers: %@, LastMessage: %@", 
-		  server_->lastCode, server_->lastBody, server_->lastHeaders, server_->lastMessage);
 	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
 	STAssertNotNil(server_->lastMessage, @"No message received - switchlist-home.html not loaded.");
 	// Make sure we have the links to at least one layout.
@@ -187,66 +175,4 @@
 				 [NSString stringWithFormat: @"Expected %@ in %@", @"get?layout=untitled", server_->lastMessage]);
 	
 }
-
-NSUInteger numberOfOccurrences(NSString *originalStr, NSString *substringToCount) {
-	// TODO(bowdidge): Rewrite correctly without even pretending to modify string.
-	NSMutableString *str = [NSMutableString stringWithString: originalStr];
-	return [str replaceOccurrencesOfString: substringToCount
-								withString: substringToCount
-								   options: 0 
-									 range: NSMakeRange(0, [str length])];
-}
-
-- (void) testIndustryListSingleIndustryTitle {
-	// Make sure only one occurrence of A-industry label, even though two cars are there.
-	[self makeThreeStationLayout];
-	[self makeThreeStationTrain];
-		
-	WebServerDelegate *myWebServer = [[WebServerDelegate alloc] initWithServer: (SimpleHTTPServer*) server_
-																	withBundle: unitTestBundle_];
-	NSMutableString *out = [NSMutableString string];
-	FreightCar *fc1 = [self freightCarWithReportingMarks: @"WP 1"];
-	FreightCar *fc2 = [self freightCarWithReportingMarks: @"UP 2"];
-	Industry *ind1 = [self industryAtStation: @"A"];
-	[fc1 setCurrentLocation: ind1];
-	[fc2 setCurrentLocation: ind1];
-	
-	[webServerDelegate_ writeIndustryListForLayout: entireLayout_ toString: out];
-	
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"A-industry"), @"");
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @">A<"), @"");
-
-	// No cars in B means the town shouldn't be printed.
-	STAssertEquals((NSUInteger) 0, numberOfOccurrences(out, @"B-industry"), @"");
-	STAssertEquals((NSUInteger) 0, numberOfOccurrences(out, @">B<"), @"");
-
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"WP 1"), @"");
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"UP 2"), @"");
-}
-
-- (void) testIndustryListTwoIndustry {
-	// Make sure only one occurrence of A-industry label, even though two cars are there.
-	[self makeThreeStationLayout];
-	[self makeThreeStationTrain];
-	
-	WebServerDelegate *myWebServer = [[WebServerDelegate alloc] initWithServer: (SimpleHTTPServer*) server_
-																	withBundle: unitTestBundle_];
-	NSMutableString *out = [NSMutableString string];
-	[webServerDelegate_ writeIndustryListForLayout: entireLayout_ toString: out];
-	
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"A-industry"), @"");
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @">A<"), @"");
-
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"B-industry"), @"");
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @">B<"), @"");
-	
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"WP 1"), @"");
-	STAssertEquals((NSUInteger) 1, numberOfOccurrences(out, @"UP 2"), @"");
-
-
-}
-
-
-
-	
 @end
