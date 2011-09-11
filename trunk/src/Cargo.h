@@ -49,6 +49,9 @@
 - (NSNumber *)carsPerWeek;
 - (void)setCarsPerWeek:(NSNumber *)value;
 
+// Only for consistency in template language.
+- (NSString*) name;
+
 - (BOOL) isSourceOffline;
 - (BOOL) isDestinationOffline;
 
