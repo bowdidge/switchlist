@@ -43,6 +43,7 @@ popd
 
 cp -r /tmp/XcodeBuildProducts/Release/SwitchList.app /tmp/SwitchList
 cp -r examples /tmp/SwitchList/Examples
+cp -r template_examples /tmp/SwitchList/Custom\ Switchlist\ Examples
 
 pushd /tmp/
 hdiutil create ./$DMG_NAME.dmg -srcfolder SwitchList/ -ov
@@ -50,7 +51,7 @@ popd
 
 # Make sure it's a fat binary.
 file /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList | grep "ppc"
-if $status != 1 then
+if $status != 0 then
   echo "Missing PowerPC binary!"
   exit 1
 endif
