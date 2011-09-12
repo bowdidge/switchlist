@@ -5,15 +5,15 @@
 <link href='switchlist-iphone.css' rel='stylesheet' type='text/css' media='only screen and (max-device-width: 480px)'/>
 <link href='switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
 <link href='switchlist.css' rel='stylesheet' type='text/css' media='all and (min-device-width: 1025px)'>
-<TITLE>Switch List for {{ trainName }}</TITLE>
+<TITLE>Switch List for {{ train.name }}</TITLE>
 </HEAD>
 <BODY>
-<div class="train-name">{{trainName}}</div>
+<div class="train-name">{{train.name}}</div>
 <div class="switch-list-layout-title">{{ layout.layoutName }}</div>
 <div class="switch-list-title">SWITCH LIST</div>
 <div class="switch-list-instructions">
 <span class="switch-list-instructions-filled-in">
-<u>{{ trainName }}</u>
+<u>{{ train.name }}</u>
 </span>
 AT
 <span class="switch-list-instructions-filled-in">
@@ -35,7 +35,7 @@ STATION,
     <TH>From</TH>
     <TH>To</TH>
   </TR>
-  {% for car in freightCars %}
+  {% for car in train.allFreightCarsInVisitOrder %}
   <TR>
     <TD><INPUT TYPE=CHECKBOX NAME=""></TD>
 	<TD>{{car.reportingMarks}}</TD>
