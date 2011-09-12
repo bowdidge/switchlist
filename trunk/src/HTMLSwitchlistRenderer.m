@@ -110,6 +110,8 @@
 			return cssFilePath;
 		}
 	}
+	
+	// TODO(bowdidge): Is this correct, or should we just not return anything?
 	return [mainBundle_ pathForResource: @"switchlist-iphone" ofType: @"css"];
 }
 
@@ -146,9 +148,12 @@
 			return htmlFilePath;
 		}
 	}
-	
+	// Default to stock version.
 	return [mainBundle_ pathForResource: @"switchlist" ofType: @"html"];
 }
+
+// Returns the path to the iPhone-specific HTML file for the current template.
+// If the template didn't define an iPhone-specific version, default to the non-iPhone
 
 - (NSString*) filePathForSwitchlistIPhoneHTML {
 	NSString *htmlFilePath;
@@ -157,8 +162,15 @@
 		if ([[NSFileManager defaultManager] fileExistsAtPath: htmlFilePath]) {
 			return htmlFilePath;
 		}
-	}
 	
+		// If there isn't an iPhone specific HTML file in the template directory, use the regular HTML file.
+		htmlFilePath = [templateDirectory_ stringByAppendingPathComponent: @"switchlist.html"];
+		if ([[NSFileManager defaultManager] fileExistsAtPath: htmlFilePath]) {
+			return htmlFilePath;
+		}
+	}
+
+	// Final fallback: use stock SwitchList iPhone HTML file.
 	return [mainBundle_ pathForResource: @"switchlist-iphone" ofType: @"html"];
 }
 
