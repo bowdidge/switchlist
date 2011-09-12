@@ -1,11 +1,11 @@
 <HTML>
 <HEAD>
 <link href='switchlist-iphone.css' rel='stylesheet' type='text/css' media='screen'/>
-<TITLE>{{ trainName }}</TITLE>
+<TITLE>{{ train.name }}</TITLE>
 </HEAD>
 <BODY>
 <div class="switchlist">
-{% for car in freightCars %}
+{% for car in train.freightCars %}
   <div class="switchlist-car">
     <div class="car-reporting">{{ car.reportingMarks }}</div>
     <div class="car-rows">
