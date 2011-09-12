@@ -1,0 +1,17 @@
+This is a simple template that only includes a single HTML file for
+showing switchlists.  If there was an iPhone-specific version, you would
+have seen a separate switchlist-iphone.html file in this directory.
+
+The top of the Thomas switchlist style includes CSS (Cascading Style Sheet)
+information for setting the default font typeface and size.  Everything in
+the body is simple HTML used to draw the switchlist.
+
+Note how template variables (like {{train.name}}) is used to print specific
+values for the switchlist being drawn.  Also see how
+
+  {% for ca in train.allFreightCarsInVisitOrder %}
+ 
+is used to draw each freight car's line in order.  This switchlist uses
+an ordered list (with the <OL>) tag to give us the numbered entries; most
+switchlists will instead want to use an HTML table (either with or without
+borders) to show columns for each particular kind of information.

@@ -1,0 +1,14 @@
+This directory contains examples of custom switchlists you can add to
+SwitchList, and shows how you could create your own switchlist style and
+have SwitchList find it.  To install the Thomas example or any custom
+switchlist style:
+
+* If necessary, create a SwitchList directory in your Library/Application 
+  Support directory.  In the Finder, choose "Home" from the "Go" menu to open
+  a window showing your current "home directory" where all your files live.
+  Open the Library folder, then the Application Support folder.  If there
+  is no SwitchList folder inside your Application Support folder, create one.
+
+* Copy the Thomas directory into the SwitchList folder in Application Support.
+
+* Run SwitchList.  "Thomas" should now be one choice for a switchlist style.
