@@ -55,6 +55,8 @@
 #include <regex.h> // For pattern matching on IP address.
 
 static const int HTTP_OK = 200;
+static const int HTTP_FORBIDDEN = 403;
+static const int HTTP_NOT_FOUND = 404;
 
 const int DEFAULT_SWITCHLIST_PORT = 20000;
 
@@ -145,7 +147,7 @@ NSString *CurrentHostname() {
 }
 
 - (void) processError: (NSURL *) badURL {
-	[server_ replyWithStatusCode: 403
+	[server_ replyWithStatusCode: HTTP_NOT_FOUND
 						message: [NSString stringWithFormat: @"Unknown URL %@", [badURL path]]];
 }
 
@@ -192,7 +194,6 @@ NSString *CurrentHostname() {
 	NSString *message = [htmlRenderer_ renderIndustryListForLayout: layout];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
-
 
 // Given parameters to changeCarLocation, updates database.
 - (void) processChangeLocationForLayout: (SwitchListDocument*) document car: (NSString*) carName location: (NSString*) locationName {
@@ -307,6 +308,13 @@ NSString *CurrentHostname() {
 	} else if ([[url path] isEqualToString: @"/get"]) {
 		NSString *layoutName = [query objectForKey: @"layout"];
 		SwitchListDocument *document = [self layoutWithName: layoutName];
+		
+		if (document == nil) {
+			[server_ replyWithStatusCode: HTTP_NOT_FOUND
+								 message: [NSString stringWithFormat: @"No such layout: '%@'.", layoutName]];
+			return;
+		}
+		
 		if ([query objectForKey: @"train"] != nil) {
 			[self processRequestForLayout: document train: [query objectForKey: @"train"] forIPhone: isIPhone];
 		} else if ([query objectForKey: @"carList"] != nil) {
@@ -317,9 +325,11 @@ NSString *CurrentHostname() {
 			// Default to showing layout.
 			[self processRequestForLayout: document];
 		}
-	} else {
-		// Default to showing all layouts.
+	} else if ([[url path] isEqualToString: @"/"]) {
 		[self showAllLayouts];
+	} else {
+		[server_ replyWithStatusCode: HTTP_NOT_FOUND
+							 message: [NSString stringWithFormat: @"Unknown path: '%@'.", [url path]]];
 	}
 }
 

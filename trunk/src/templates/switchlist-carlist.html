@@ -52,7 +52,7 @@ Cars currently active in layout {{ layout.layoutName }}:
 {% for car in freightCars %}
   <tr>
     <td>{{ car.reportingMarks }}</td>
-	<td>{{ car.carTypeRel.carTypeName }}</td>
+	<td>{{ car.carType }}</td>
 	<TD><select id="{{car.reportingMarks}}" onchange="javascript:carLocationChanged(this, '{{car.reportingMarks}}');">
     {% for industry in layout.allIndustries %}  <option value="{{ industry.name }}" id='{{car.reportingMarks}}-{{industry.name}}'>{{ industry.name }} </option>    {% /for %}
 	{% for yard in layout.allYards %} <option value="{{ yard.name }}" id='{{car.reportingMarks}}-{{yard.name}}'>{{ yard.name }}</option> {% /for %}

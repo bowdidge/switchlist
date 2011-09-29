@@ -47,7 +47,7 @@
 		
 		[reportString appendFormat: @"  %-16s %-4s  %-24s %s\n",
 			[[car reportingMarks] UTF8String],
-			[[[car carTypeRel] carTypeName] UTF8String],
+			[[car carType] UTF8String],
 			(currentLocation ? [currentLocation UTF8String] : "unknown"),
 			[contents UTF8String]];
 	}

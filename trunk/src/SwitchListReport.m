@@ -69,7 +69,7 @@
 		
 		[switchListReport appendFormat: @"%-12s %4s %15s/%-15s  %31s %15s\n",
 					                    [[freightCar reportingMarks] UTF8String],
-										[[[freightCar carTypeRel] carTypeName] UTF8String],
+										[[freightCar carType] UTF8String],
 										[[[source location] name] UTF8String],
 										[[source name] UTF8String],
 										[[self nextDestinationForFreightCar: freightCar] UTF8String],

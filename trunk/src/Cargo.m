@@ -73,11 +73,16 @@
 	return [self cargoDescription];
 }
 
+// Returns the string name of the car type for the cargo.
+- (NSString*) carType {
+	return [[self carTypeRel] carTypeName];
+}
+
 - (NSString*) description {
 	NSString *carTypeLabel = [NSString stringWithFormat: @"%@ (%@)",
-							  [[self carTypeRel] carTypeName], [[self carTypeRel] carTypeDescription]];
+							  [self carType], [[self carTypeRel] carTypeDescription]];
 	if (!carTypeLabel || [carTypeLabel length] == 0) {
-		carTypeLabel = [[self carTypeRel] carTypeName];
+		carTypeLabel = [self carType];
 	}
 	return [NSString stringWithFormat: @"%@, sent from %@ to %@, %d %@ cars per week",
 			[self cargoDescription],[[self source] name],[[self destination] name],

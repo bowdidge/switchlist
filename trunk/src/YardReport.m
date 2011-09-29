@@ -58,7 +58,7 @@
 		
 		[reportString appendFormat: @"  %-16s %-4s  %-24s %31s   %s\n",
 			[[car reportingMarks] UTF8String],
-			[[[car carTypeRel] carTypeName] UTF8String],
+			[[car carType] UTF8String],
 			(currentTrain ? [currentTrain UTF8String] : "------------"),
 			[[self nextDestinationForFreightCar: car] UTF8String],
 			[contents UTF8String]];

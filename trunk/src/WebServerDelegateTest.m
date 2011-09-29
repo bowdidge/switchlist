@@ -38,6 +38,7 @@
 #import "HTMLSwitchlistRenderer.h"
 #import "FreightCar.h"
 #import "Industry.h"
+#import "SwitchListDocument.h"
 #import "WebServerDelegate.h"
 
 @interface MockSimpleHTTPServer : NSObject {
@@ -153,12 +154,44 @@
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-ipad.css (should be > 200");
 }
 
+- (void) testInvalidFile {
+	NSURL *url = [NSURL URLWithString: @"http://localhost/foo.h"];
+	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
+	
+	STAssertEquals(404, server_->lastCode,
+				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
+	STAssertTrue([server_->lastMessage rangeOfString: @"Unknown path: '/foo.h'"].length != 0,
+				 [NSString stringWithFormat: @"Expected string 'Unknown path: /foo.h', found %@",
+				  server_->lastMessage]);
+}
+
+- (void) testInvalidFileLayoutsOpen {
+	NSDocumentController *sharedDocumentController = [NSDocumentController sharedDocumentController];
+	[sharedDocumentController addDocument: [[FakeSwitchListDocument alloc] init]];
+	NSURL *url = [NSURL URLWithString: @"http://localhost/foo.h"];
+	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
+	
+	STAssertEquals(404, server_->lastCode,
+				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
+	STAssertTrue([server_->lastMessage rangeOfString: @"Unknown path: '/foo.h'"].length != 0,
+				 [NSString stringWithFormat: @"Expected string 'Unknown path: /foo.h', found %@",
+				  server_->lastMessage]);
+}
+
 - (void) testRoot {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertTrue([server_->lastMessage rangeOfString: @"No layouts"].length != 0,
 				 [NSString stringWithFormat: @"Expected %@ in %@", @"No layouts", server_->lastMessage]);
+}
+
+- (void) testNoSuchLayout {
+	NSURL *url = [NSURL URLWithString: @"http://localhost/get?layout=Nonexistent"];
+	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
+	
+	STAssertEquals(404, server_->lastCode,
+				   [NSString stringWithFormat: @"Expected 404, got %d", server_->lastCode]);
 }
 
 - (void) testTwoLayouts {
@@ -174,5 +207,17 @@
 	STAssertTrue([server_->lastMessage rangeOfString: @"get?layout=untitled"].length != 0,
 				 [NSString stringWithFormat: @"Expected %@ in %@", @"get?layout=untitled", server_->lastMessage]);
 	
+}
+
+// TODO(bowdidge): Get this test working.
+- (void) BrokenTestCarlist {
+	NSDocumentController *sharedDocumentController = [NSDocumentController sharedDocumentController];
+	SwitchListDocument *doc = [[FakeSwitchListDocument alloc] init];
+	[self makeThreeStationLayout];
+	[self makeThreeStationTrain];
+	[webServerDelegate_ processRequestForCarListForLayout: doc];
+	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
+	STAssertTrue([server_->lastMessage rangeOfString: @"foo"].length != 0,
+				 [NSString stringWithFormat: @"Unexpected output %@", server_->lastMessage]);
 }
 @end
