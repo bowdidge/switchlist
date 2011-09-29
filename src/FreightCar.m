@@ -514,6 +514,10 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 - (NSComparisonResult) compareNextStop: (FreightCar *) other {
 	return [[[self nextStop] name] compare: [[other nextStop] name]];
 }
-	
+
+// Sort by reporting marks.
+- (NSComparisonResult) compareNames: (FreightCar*) other {
+	return [[self reportingMarks] isEqualToString: [other reportingMarks]];
+}
 
 @end

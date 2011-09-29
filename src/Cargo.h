@@ -51,6 +51,8 @@
 
 // Only for consistency in template language.
 - (NSString*) name;
+// Returns the string name of the car type for this cargo.
+- (NSString*) carType;
 
 - (BOOL) isSourceOffline;
 - (BOOL) isDestinationOffline;

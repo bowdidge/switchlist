@@ -78,7 +78,7 @@
 		case 0:
 			return [fc reportingMarks];
 		case 1:
-			return [[fc carTypeRel] carTypeName];
+			return [fc carType];
 		case 2:
 			return [fc sourceString];
 		case 3:

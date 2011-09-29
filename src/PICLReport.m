@@ -137,7 +137,7 @@
 				 [toIndustryName UTF8String],
 				 [[toTown name] UTF8String],
 				 [[freightCar length] intValue],
-				 [[[freightCar carTypeRel] carTypeName] UTF8String],
+				 [[freightCar carType] UTF8String],
 				 [contents UTF8String]],
 				seq++;
 			}

@@ -94,7 +94,7 @@
 	Cargo *cargo;
 	while ((cargo = [e nextObject]) != nil) {
 		NSString *source = [cargo valueForKeyPath: @"destination.name"];
-		NSString *carTypeName = [[cargo carTypeRel] carTypeName];
+		NSString *carTypeName = [cargo carType];
 		if (carTypeName == nil) carTypeName = unspecifiedString_;
 		NSNumber *carsPerWeek = [cargo valueForKey: @"carsPerWeek"];
 		NSString *uniqueCarType = [self uniqueCarType: carTypeName];
@@ -117,7 +117,7 @@
 	e = [objectsToDisplay_ objectEnumerator];
 	while ((cargo = [e nextObject]) != nil) {
 		NSString *dest = [cargo valueForKeyPath: @"source.name"];
-		NSString *carTypeName = [[cargo carTypeRel] carTypeName];
+		NSString *carTypeName = [cargo carType];
 		if (carTypeName == nil) carTypeName = unspecifiedString_;
 		NSNumber *carsPerWeek = [cargo valueForKey: @"carsPerWeek"];
 		NSString *uniqueCarType = [self uniqueCarType: carTypeName];

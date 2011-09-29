@@ -34,10 +34,11 @@
 #import "MGTemplateEngine/MGTemplateEngine.h"
 
 @class EntireLayout;
-@class SwitchListAppDelegate;
+@class HTMLSwitchlistRenderer;
 @class SimpleHTTPConnection;
 @class SimpleHTTPServer;
-@class HTMLSwitchlistRenderer;
+@class SwitchListAppDelegate;
+@class SwitchListDocument;
 
 /* TCP port where SwitchList web server will listen. */
 extern const int DEFAULT_SWITCHLIST_PORT;
@@ -55,5 +56,8 @@ extern NSString *CurrentHostname();
 // For mocking.
 - (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle withRenderer: (HTMLSwitchlistRenderer*) renderer;
 - (void) setTemplate: (NSString*) templateName;	
+
 // For testing.
+- (void) processRequestForCarListForLayout: (SwitchListDocument*) document;
+
 @end

@@ -429,7 +429,7 @@ NSString *NameOrNoValue(NSString* string) {
 
 	if (tr == nil) {
 		NSString *err = [NSString stringWithFormat: @"Cannot find train going from %@ to %@ that can take car type %@\n",
-						 [here name], [there name], [[car carTypeRel] carTypeName]];
+						 [here name], [there name], [car carType]];
 		[self addError: err];
 		return NO;
 	}

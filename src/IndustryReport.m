@@ -67,7 +67,7 @@
 		
 		[reportString appendFormat: @"  %-16s %-4s %s\n",
 			[[car reportingMarks]  UTF8String],
-			[[[car carTypeRel] carTypeName] UTF8String],
+			[[car carType] UTF8String],
 			[contents UTF8String]];
 	}
 	return reportString;
