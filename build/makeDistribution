@@ -42,7 +42,7 @@ endif
 popd 
 
 cp -r /tmp/XcodeBuildProducts/Release/SwitchList.app /tmp/SwitchList
-cp -r examples /tmp/SwitchList/Examples
+cp -r examples /tmp/SwitchList/Example\ Layouts
 cp -r template_examples /tmp/SwitchList/Custom\ Switchlist\ Examples
 
 pushd /tmp/
