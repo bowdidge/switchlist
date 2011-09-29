@@ -207,7 +207,7 @@
     [self didChangeValueForKey: @"minCarsToRun"];
 }
 
-// Cars in this train current at the named station.
+// Cars in this train currently at the named station.
 - (NSArray*) carsAtStation: (Place *) station   {
 	NSMutableArray *carsAtStation  = [NSMutableArray array];
 	for (FreightCar *f in [self freightCars]) {
