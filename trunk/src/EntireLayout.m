@@ -236,7 +236,7 @@ NSString *NormalizeDivisionString(NSString *inString) {
 - (int) loadsPerDay {
 	int curSum=0;
 	id thisCargo;
-	NSArray *allCargos = [self allValidCargos];
+	NSArray *allCargos = [self allNonFixedRateCargos];
 	NSEnumerator *e = [allCargos objectEnumerator];
 	while ((thisCargo = [e nextObject]) != nil) {
 		int thisCargoCarsPerWeek = [[thisCargo valueForKey: @"carsPerWeek"] intValue];
