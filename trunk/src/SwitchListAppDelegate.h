@@ -32,9 +32,22 @@
 #import <Cocoa/Cocoa.h>
 @class SwitchListDocument;
 @class WebServerDelegate;
+@class SwitchListAppDelegate;
+
+// MyOutlineViewController handles the major document-like actions for the Problems window -
+// copy and paste, printing, etc.
+@interface MyOutlineDelegate : NSViewController<NSOutlineViewDelegate, NSOutlineViewDataSource> {
+	SwitchListAppDelegate *appDelegate_;
+	NSOutlineView *problemsOutlineView_;
+}
+
+- (id) initWithAppDelegate: (SwitchListAppDelegate*) appDelegate withOutlineView: (NSOutlineView*) view;
+// Returns the currently selected problems, or nil if none are selected.
+- (NSString*) selectedProblemText;
+
+@end
 
 // Hides details on app-level actions -- mostly menus.
-
 @interface SwitchListAppDelegate : NSObject<NSOutlineViewDataSource, NSOutlineViewDelegate>  {
 	IBOutlet NSWindow *reportWindow_;
 	IBOutlet NSTextView *reportTextView_;
@@ -85,6 +98,8 @@
 	
 	// Keep central file manager for easier stubbing.
 	NSFileManager *defaultFileManager_;
+	
+	MyOutlineDelegate *outlineDelegate_;
 }
 
 - (NSWindow*) reportWindow;
@@ -101,11 +116,8 @@
 
 // Set the current set of problem strings.
 - (void) setProblems: (NSArray*) problemStrings;
-
-// Current selection in problems, used for copy.
-- (NSString*) selectedProblemText;
-// All text in problems.
-- (NSString*) allProblemText;
+// List of strings in problems.
+- (NSArray*) problems;
 
 // Brings up the Help page for switch list styles.  Triggered by Help icon in preferences dialog.
 - (IBAction) switchListStyleHelpPressed: (id) sender;

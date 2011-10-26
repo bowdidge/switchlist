@@ -47,28 +47,28 @@
 #import "WebServerDelegate.h"
 #import "YardReport.h"
 
-
-// MyOutlineViewController handles the major document-like actions for the Problems window -
-// copy and paste, printing, etc.
-@interface MyOutlineViewController : NSViewController {
-	SwitchListAppDelegate *appDelegate_;
-}
-
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) appDelegate;
-@end
-
-@implementation MyOutlineViewController
+@implementation MyOutlineDelegate
 // Creates a new MyOutlineViewController, using the pointer to the
 // appDelegate to retrieve information about current selections.
-- (id) initWithAppDelegate: (SwitchListAppDelegate*) appDelegate {
+- (id) initWithAppDelegate: (SwitchListAppDelegate*) appDelegate withOutlineView: (NSOutlineView*) view {
 	[super init];
-	appDelegate_ = [appDelegate retain];
+	// We're retained by appDelegate.
+	appDelegate_ = appDelegate;
+	problemsOutlineView_ = [view retain];
 	return self;
 }
 
 - (void) dealloc {
-	[appDelegate_ release];
+	[problemsOutlineView_ release];
 	[super dealloc];
+}
+
+- (NSString*) allProblemText {
+	NSMutableString *fullString = [NSMutableString string];
+	for (NSString *problem in [appDelegate_ problems]) {
+		[fullString appendFormat: @"%@\n", problem];
+    }
+	return fullString;
 }
 
 // Copies the selected problems to the clipboard as strings, or all problems if
@@ -77,9 +77,9 @@
 	NSPasteboard *pboard = [NSPasteboard generalPasteboard];
 	[pboard clearContents];
 	NSPasteboardItem *pasteboardItem = [[[NSPasteboardItem alloc] init] autorelease];
-	NSString *selectedString = [appDelegate_ selectedProblemText];
+	NSString *selectedString = [self selectedProblemText];
 	if (selectedString == nil) {
-		selectedString = [appDelegate_ allProblemText];
+		selectedString = [self allProblemText];
 	}
 	[pasteboardItem setString: selectedString forType: NSPasteboardTypeString];
 	[pboard writeObjects: [NSArray arrayWithObject: pasteboardItem]];
@@ -103,14 +103,59 @@
 	NSPrintOperation *op;
 		
 	// copy the textview into the printview
-	[printView insertText: [appDelegate_ allProblemText]];
+	[printView insertText: [self allProblemText]];
 	op = [NSPrintOperation printOperationWithView: printView printInfo: 
 		  myPrintInfo];
 	[op setShowsPrintPanel: YES];
 	[[[NSDocument alloc] init] runModalPrintOperation: op delegate: nil didRunSelector: NULL 
-					 contextInfo: NULL];
-		
+										  contextInfo: NULL];
+	
 	[printView release];
+}
+
+// Outline view methods for displaying the list of problems encountered
+// when trying to assign cars.
+// Just present each known problem as its own item.
+- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
+	if (item == nil) {
+		// root
+		id obj = [[appDelegate_ problems] objectAtIndex: index];
+		return obj;
+	}
+	return nil;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
+	return NO;
+}
+
+- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
+	if (item == nil) {
+		return [[appDelegate_ problems] count];
+	}
+	return 0;
+}
+- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {
+	return item;
+}
+
+// Returns the currently selected problems, or nil if none are selected.
+- (NSString*) selectedProblemText {
+	NSIndexSet *selectedRowIndexes = [problemsOutlineView_ selectedRowIndexes];
+	
+	if ([selectedRowIndexes count] == 0) {
+		return nil;
+	}
+	
+	NSMutableString *fullString = [NSMutableString string];
+    NSUInteger currentIndex = [selectedRowIndexes firstIndex];
+    while (currentIndex != NSNotFound) {	
+		// TODO(bowdidge): Handle case where column gets reordered?
+		NSString *currentProblem = [[appDelegate_ problems] objectAtIndex: currentIndex];
+		[fullString appendFormat: @"%@\n", currentProblem];
+        currentIndex = [selectedRowIndexes indexGreaterThanIndex:currentIndex];
+    }
+	return fullString;
 }
 @end
 
@@ -126,13 +171,17 @@
 	[nameToSwitchListClassMap_ setObject: [PICLReport class] forKey: @"PICL Report"];
 
 	defaultFileManager_ = [[NSFileManager defaultManager] retain];
+	problems_ = [[NSMutableArray alloc] init];
+	outlineDelegate_ = nil;
 	return self;
 }
 
 - (void) dealloc {
 	[networkIconImage_ release];
 	[defaultFileManager_ release];
-	[super dealloc];
+	[problems_ release];
+	[outlineDelegate_ release];
+ 	[super dealloc];
 }
 
 - (NSDictionary*) nameToSwitchListClassMap {
@@ -235,15 +284,12 @@
 }
 
 - (void) awakeFromNib {
-	problems_ = [[NSMutableArray alloc] init];
-	[problems_ addObject: @"No errors"];
-	[problemsOutlineView_ setDataSource: self];
-	[problemsOutlineView_ setDelegate: self];
-	
-	MyOutlineViewController *viewController = [[[MyOutlineViewController alloc] initWithAppDelegate: self] autorelease];
-	// Chain viewController into the responder chain so it can handle print and copy.
-	[viewController setNextResponder: [problemsOutlineView_ nextResponder]];
-	[problemsOutlineView_ setNextResponder: viewController];
+	[problems_ addObject: @"No problems."];
+	MyOutlineDelegate *myOutlineDelegate = [[[MyOutlineDelegate alloc] initWithAppDelegate: self
+																		   withOutlineView: problemsOutlineView_] autorelease];
+	outlineDelegate_ = [myOutlineDelegate retain];
+	[problemsOutlineView_ setDataSource: myOutlineDelegate];
+	[problemsOutlineView_ setDelegate: myOutlineDelegate];
 	[problemsOutlineView_ setAllowsMultipleSelection: YES];
 
 	[switchListStyleButton_ removeAllItems];
@@ -380,58 +426,10 @@
 	[[NSUserDefaults standardUserDefaults] setBool: webServerEnabled_ forKey: GLOBAL_PREFS_ENABLE_WEB_SERVER];
 }
 
-// Outline view methods for displaying the list of problems encountered
-// when trying to assign cars.
-// Just present each known problem as its own item.
-- (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id)item {
-	if (item == nil) {
-		// root
-		id obj = [problems_ objectAtIndex: index];
-		return obj;
-	}
-	return nil;
-}
-
-- (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id)item {
-	return NO;
-}
-
-- (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id)item {
-	if (item == nil) {
-		return [problems_ count];
-	}
-	return 0;
-}
-- (id)outlineView:(NSOutlineView *)outlineView objectValueForTableColumn:(NSTableColumn *)tableColumn byItem:(id)item {
-	return item;
-}
-
-// Returns the currently selected problems, or nil if none are selected.
-- (NSString*) selectedProblemText {
-	NSIndexSet *selectedRowIndexes = [problemsOutlineView_ selectedRowIndexes];
-
-	if ([selectedRowIndexes count] == 0) {
-		return nil;
-	}
-
-	NSMutableString *fullString = [NSMutableString string];
-    NSUInteger currentIndex = [selectedRowIndexes firstIndex];
-    while (currentIndex != NSNotFound) {	
-		// TODO(bowdidge): Handle case where column gets reordered?
-		NSString *currentProblem = [problems_ objectAtIndex: currentIndex];
-		[fullString appendFormat: @"%@\n", currentProblem];
-        currentIndex = [selectedRowIndexes indexGreaterThanIndex:currentIndex];
-    }
-	return fullString;
-}
 	
 // Returns all the problem text.
-- (NSString*) allProblemText {
-	NSMutableString *fullString = [NSMutableString string];
-	for (NSString *problem in problems_) {
-		[fullString appendFormat: @"%@\n", problem];
-    }
-	return fullString;
+- (NSArray*) problems {
+	return problems_;
 }
 
 // Sets the list of problem strings to display in the Problems window.
