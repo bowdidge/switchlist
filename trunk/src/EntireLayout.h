@@ -1,5 +1,5 @@
 //
-//  NameToObjectMapper.h
+//  EntireLayout.h
 //  SwitchList
 //
 //  Created by Robert Bowdidge on 1/31/07.
