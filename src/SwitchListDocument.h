@@ -190,7 +190,8 @@
 
 // Enable/disable door spotting ui.
 - (void) setDoorsButtonState: (BOOL) shouldBeOn;
-
+// Hides or exposes siding length UI as needed.
+- (void) setSidingLengthButtonState: (BOOL) enable;
 @end 
 
 // Settings for the preferences dictionary.
