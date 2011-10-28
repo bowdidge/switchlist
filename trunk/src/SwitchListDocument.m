@@ -195,15 +195,9 @@
 	// Disable the car length controls if the layout preference isn't set.
 	NSNumber *useCarLengths = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI];
 	if (!useCarLengths || [useCarLengths boolValue] == NO) {
-		[lengthField_ setHidden: YES];
-		[lengthLabel_ setHidden: YES];
-		[minCarsToRunField_ setHidden: YES];
-		[minCarsToRunLabel_ setHidden: YES];
-		[maxLengthField_ setHidden: YES];
-		[maxLengthLabel_ setHidden: YES];
-		[sidingLengthLabel_ setHidden: YES];
-		[sidingFeetLabel_ setHidden: YES];
-		[sidingLengthField_ setHidden: YES];
+		[self setSidingLengthButtonState: NO];
+	} else {
+		[self setSidingLengthButtonState: YES];
 	}
 
 	[overviewTrainTable_ setDoubleAction: @selector(doGenerateSwitchList:)];
@@ -775,6 +769,7 @@
 
 - (IBAction) doChangeRespectSidingLengthsState: (id) sender {
 	BOOL buttonState = [sender state];
+	[self setSidingLengthButtonState: buttonState];
 	[self setDoorsButtonState: buttonState];
 	// Also must change setting.
 	NSMutableDictionary *layoutPrefs = [entireLayout_ getPreferencesDictionary];
@@ -962,6 +957,20 @@
 	}
 	[doorCountLabel_ setTextColor: labelColor];
 }
+
+// Hides or exposes siding length UI as needed.
+- (void) setSidingLengthButtonState: (BOOL) enable {
+	[lengthField_ setHidden: !enable];
+	[lengthLabel_ setHidden: !enable];
+	[minCarsToRunField_ setHidden: !enable];
+	[minCarsToRunLabel_ setHidden: !enable];
+	[maxLengthField_ setHidden: !enable];
+	[maxLengthLabel_ setHidden: !enable];
+	[sidingLengthLabel_ setHidden: !enable];
+	[sidingFeetLabel_ setHidden: !enable];
+	[sidingLengthField_ setHidden: !enable];
+}
+	
 
 
 @end
