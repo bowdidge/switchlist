@@ -30,7 +30,7 @@
 
 #import "Industry.h"
 
-#import "EntireLayout.h"   // For NormalizeDivisioString().
+#import "EntireLayout.h"   // For NormalizeDivisionString().
 #import "FreightCar.h"
 #import "InduYard.h"
 
@@ -90,5 +90,22 @@
 	return [NSString stringWithFormat: @"%@ at %@", [self name], [[self location] name]];
 }
 
+- (NSNumber*) sidingLength 
+{
+    NSNumber * tmpValue;
+    
+    [self willAccessValueForKey: @"sidingLength"];
+    tmpValue = [self primitiveValueForKey: @"sidingLength"];
+    [self didAccessValueForKey: @"sidingLength"];
+    
+    return tmpValue;
+}
+
+- (void)setSidingLength:(NSNumber*)value 
+{
+    [self willChangeValueForKey: @"sidingLength"];
+    [self setPrimitiveValue: value forKey: @"sidingLength"];
+    [self didChangeValueForKey: @"sidingLength"];
+}
 
 @end

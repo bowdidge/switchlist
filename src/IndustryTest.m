@@ -79,4 +79,22 @@
 	STAssertEqualObjects(@" ",[industry division], @"Check setting home division to spaces works.");
 }
 
+- (void) testIndustrySidingLength {
+	[self makeThreeStationLayout];
+	Industry *industry = [self industryAtStation: @"A"];
+	[industry setSidingLength: [NSNumber numberWithInt: 40]];
+	STAssertTrue(40 == [[industry sidingLength] intValue], @"Siding length not saved correctly.");
+
+	Industry *industryB = [self industryAtStation: @"B"];
+	STAssertTrue(0 == [[industryB sidingLength] intValue], @"Unset siding length should be nil, not %@.", [industryB sidingLength]);
+}
+
+- (void) testYardSidingLength {
+	[self makeThreeStationLayout];
+	[self makeYardAtStation: @"A"];
+	Yard *yard = [self yardAtStation: @"A"];
+	STAssertTrue(0 == [[yard sidingLength] intValue], @"Yard siding length should be nil, not %@.", [yard sidingLength]);
+}
+
+
 @end

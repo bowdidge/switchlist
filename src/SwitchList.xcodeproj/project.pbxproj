@@ -65,6 +65,7 @@
 		3E6C6EC812F007E200C7A8D1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C6EC712F007E200C7A8D1 /* Credits.html */; };
 		3E71871913B1B30B00ED3840 /* SwitchListBaseViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */; };
 		3E7B6EA71287C9F60069FF31 /* AddCarType.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */; };
+		3E8328C514553A6400A6A662 /* AddSidingLength.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */; };
 		3E88AD45127A9CFD003486E2 /* IndustryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD44127A9CFD003486E2 /* IndustryTest.m */; };
 		3E88AD57127A9E14003486E2 /* CargoReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD56127A9E14003486E2 /* CargoReportTest.m */; };
 		3E88AE99127B293E003486E2 /* CargoAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AE98127B293E003486E2 /* CargoAssigner.m */; };
@@ -278,6 +279,8 @@
 		3E71870C13B1B17000ED3840 /* SwitchListBaseViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListBaseViewTest.h; sourceTree = "<group>"; };
 		3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseViewTest.m; sourceTree = "<group>"; };
 		3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCarType.xcmappingmodel; sourceTree = "<group>"; };
+		3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 4.xcdatamodel"; sourceTree = "<group>"; };
+		3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddSidingLength.xcmappingmodel; sourceTree = "<group>"; };
 		3E88AD43127A9CFD003486E2 /* IndustryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryTest.h; sourceTree = "<group>"; };
 		3E88AD44127A9CFD003486E2 /* IndustryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryTest.m; sourceTree = "<group>"; };
 		3E88AD55127A9E14003486E2 /* CargoReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoReportTest.h; sourceTree = "<group>"; };
@@ -419,6 +422,7 @@
 				3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */,
 				3E917A130951659A004647C7 /* Reports */,
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
+				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
 				3E95843512986D7D00A10258 /* SimpleHttpServer */,
 				3EFEC5291408515E00F9CF15 /* Web Interface */,
 				3E01BE98140768CA008954B1 /* Default Templates */,
@@ -542,7 +546,6 @@
 				3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */,
 				3EE333E5141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.h */,
 				3EE333E6141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m */,
-				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
 			);
 			name = "Switchlist styles";
 			sourceTree = "<group>";
@@ -684,8 +687,8 @@
 				3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */,
 				3E3C11C20A3963F20071D6B4 /* FreightCar.h */,
 				3E3C11C30A3963F20071D6B4 /* FreightCar.m */,
-				3E3C11D60A39652F0071D6B4 /* Industry.h */,
 				3E3C11D70A39652F0071D6B4 /* Industry.m */,
+				3E3C11D60A39652F0071D6B4 /* Industry.h */,
 				3EB0AC0A127BB95000E27063 /* InduYard.h */,
 				3EB0AC0B127BB95000E27063 /* InduYard.m */,
 				3E3C11D80A39652F0071D6B4 /* Place.h */,
@@ -978,6 +981,7 @@
 				3E6B58A6140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m in Sources */,
 				3E3B3A34140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */,
 				3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */,
+				3E8328C514553A6400A6A662 /* AddSidingLength.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1262,8 +1266,10 @@
 			children = (
 				3E042CA110AFD44C0002A609 /* SwitchListDocument 2.xcdatamodel */,
 				3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */,
+				3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */,
+				3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */,
 			);
-			currentVersion = 3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */;
+			currentVersion = 3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */;
 			path = SwitchListDocument.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
