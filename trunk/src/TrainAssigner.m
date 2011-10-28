@@ -57,14 +57,20 @@ BOOL DEBUG_CAR_ASSN = NO;
 
 @implementation TrainAssigner
 
-- (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors {
+- (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths {
 	[super init];
 	entireLayout_ = [mapper retain];
 	stationReachabilityGraph_ = [[NSMutableDictionary alloc] init];
 	errors_ = [[NSMutableArray alloc] init];
 	assignDoors_ = useDoors;
+	respectSidingLengths_ = respectSidingLengths;
 	doorAssignmentRecorder_ = nil;
+	arrivingCars_ = [[NSMutableDictionary alloc] init];
 	return self;
+}
+
+- (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors {
+	return [self initWithLayout: mapper useDoors: useDoors respectSidingLengths: NO];
 }
 
 - (void) dealloc {
@@ -72,6 +78,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 	[stationReachabilityGraph_ release];
 	[errors_ release];
 	[doorAssignmentRecorder_ release];
+	[arrivingCars_ release];
 	[super dealloc];
 }
 
@@ -353,7 +360,7 @@ NSString *NameOrNoValue(NSString* string) {
 
 // Given a car, find the proper train to carry it on its way.  Add the car to the train,
 // and if multiple steps are required, set intermediate destination to go there.
-- (BOOL) assignCarToTrain: (FreightCar *) car  {
+- (CarAssignmentResult) assignCarToTrain: (FreightCar *) car  {
 	NSArray *route;
 	[car setIntermediateDestination: nil];
 	
@@ -364,18 +371,18 @@ NSString *NameOrNoValue(NSString* string) {
 	if ([[car currentLocation] isOffline]) {
 		[self addError: [NSString stringWithFormat: @"Cannot move car %@ because it is at %@, an offline location.",
 						 [car reportingMarks], [[car currentLocation] name]]];
-		return NO;
+		return CarAssignmentRoutingProblem;
 	}
 	if ([car cargo] && [[car cargo] source] == nil) {
 		[self addError: [NSString stringWithFormat: @"Cannot place car %@ because source location for cargo %@ is unset.",
 						 [car reportingMarks], [[car cargo] cargoDescription]]];
-		return NO;
+		return CarAssignmentRoutingProblem;
 	}
 	
 	if ([car cargo] && [[car cargo] destination] == nil) {
 		[self addError: [NSString stringWithFormat: @"Cannot place car %@ because destination location for cargo %@ is unset.",
 						 [car reportingMarks], [[car cargo] cargoDescription]]];
-		return NO;
+		return CarAssignmentRoutingProblem;
 	}
 	route = [self routeToNextStopForCar: car];
 	
@@ -395,7 +402,7 @@ NSString *NameOrNoValue(NSString* string) {
 			[self addError: err];
 		}
 		// In all cases, leave this car where it is, and move on to the next car.
-		return NO;
+		return CarAssignmentRoutingProblem;
 	}
 	
 	// Which train are we going to put this on?
@@ -405,7 +412,7 @@ NSString *NameOrNoValue(NSString* string) {
 
 	if ([route count] == 0) {
 		// No movement needed at all.  Ignore this car.
-		return NO;
+		return CarAssignmentNoMoveNeeded;
 	} else if ([route count] == 1) {
 		// Staying in same town - just transfer.
 		tr = [self trainServingStation: [[car currentLocation] location]  acceptingCar: car];
@@ -419,7 +426,8 @@ NSString *NameOrNoValue(NSString* string) {
 			NSLog(@"Need to find a train going from %@ to %@\n", [here name], [there name]);
 		}
 		// TODO(bowdidge): Replace with [route objectAtIndex: 0]
-		tr = [self trainBetweenStation:[[car currentLocation] location] andStation:[route objectAtIndex: 1] acceptingCar: car];
+		// TODO(bowdidge): Allow trying multiple cars.
+		tr = [self trainBetweenStation: here andStation: there acceptingCar: car];
 		if (DEBUG_CAR_ASSN) {
 			NSLog(@"Car %@ route: %@.  Train from %@ to %@ is %@",
 				  [car reportingMarks], [route componentsJoinedByString: @","], [here name], [there name], [tr name]);
@@ -431,12 +439,11 @@ NSString *NameOrNoValue(NSString* string) {
 		NSString *err = [NSString stringWithFormat: @"Cannot find train going from %@ to %@ that can take car type %@\n",
 						 [here name], [there name], [car carType]];
 		[self addError: err];
-		return NO;
+		return CarAssignmentRoutingProblem;
 	}
 
 	// We found a train.
-	[car setCurrentTrain: tr];
-	
+
 	// We didn't already identify an alternate place to go to next.
 	// Set the intermediate destination if the final destination is either 
 	// offline or if the car has a chain of stops.
@@ -457,8 +464,9 @@ NSString *NameOrNoValue(NSString* string) {
 		// industries (and yards) in the town.
 		[car setIntermediateDestination: [[[route objectAtIndex: 1] yards] anyObject]];
 	} 
-
-	return YES;
+	
+	[car setCurrentTrain: tr];
+	return CarAssignmentSuccess;
 }
 
 // Inner loop for choosing the door a car should be placed at when arriving at an
@@ -543,6 +551,70 @@ NSString *NameOrNoValue(NSString* string) {
 	return nil;
 }
 
+- (BOOL) canChangeSidingDict: (NSMutableDictionary*) dict forSiding: (InduYard*) siding byLength: (int) length {
+	if ([siding sidingLength] == nil || [[siding sidingLength] intValue] == 0) {
+		// Length not being checked.
+		return YES;
+	}
+	NSNumber *sidingLengthObj = [dict objectForKey: [siding objectID]];
+	int currentSidingContentsLength = 0;
+	if (sidingLengthObj != nil) {
+		currentSidingContentsLength = [sidingLengthObj intValue] + length;
+	} else {
+		currentSidingContentsLength = length;
+	}
+	
+	if ([siding sidingLength] != nil &&
+		currentSidingContentsLength > [[siding sidingLength] intValue]) {
+		return NO;
+	}
+	[dict setObject: [NSNumber numberWithInt: currentSidingContentsLength] forKey: [siding objectID]];
+	return YES;
+}
+
+// Check all the cars in all trains, and make sure the overall number of cars entering and leaving
+// stays below the siding capacity (at least for the operating session).  
+- (void) leaveBehindOverflowingCars {
+	// Maps industry to contents of siding at end.
+	NSMutableDictionary *carChangeDictionary = [NSMutableDictionary dictionary];
+	
+	for (FreightCar *car in [entireLayout_ allFreightCars]) {
+		if ([car currentLocation] == nil) continue;
+	    if ([car nextStop] == nil || [car nextStop] == [car currentLocation]) {
+			// All cars already there stay there, even if overflowing.
+			[self canChangeSidingDict: carChangeDictionary
+							forSiding: [car currentLocation]
+							 byLength: [[car length] intValue]];
+		}
+	}
+	
+	for (FreightCar *car in [entireLayout_ allFreightCars]) {
+		InduYard *currentLocation = [car currentLocation];
+		InduYard *nextLocation = [car nextStop];
+
+		if (currentLocation == nil) continue;
+		if (currentLocation == [entireLayout_ workbenchIndustry]) continue;
+			 
+        if (nextLocation && ([car currentLocation] != nextLocation)) {
+			if ([self canChangeSidingDict: carChangeDictionary
+								forSiding: nextLocation
+								 byLength: [[car length] intValue]] == NO) {
+				[errors_ addObject: 
+				 [NSString stringWithFormat: @"No room for %@ at %@!  Not moving car.", [car reportingMarks], [nextLocation name]]];
+				[[car currentTrain] removeFreightCarsObject: car];
+			}
+		}
+	}
+	
+	for (InduYard *industry in [entireLayout_ allIndustries]) {
+		int lengthAtSiding = [[carChangeDictionary objectForKey: [industry objectID]] intValue];
+		if ([industry sidingLength] != nil &&
+			[[industry sidingLength] intValue] < lengthAtSiding) {
+			[errors_ addObject: [NSString stringWithFormat: @"Siding for %@ was already overflowing.", [industry name]]];
+		}
+	}
+}
+
 // Basics of the car assigning problem.  we used to do clever things here trying to figure out
 // for a given train and car whether this was the best train for a car.  That doesn't work because
 // there may be another train that's a better choice.  Now, we find a route, then choose a car.
@@ -551,9 +623,13 @@ NSString *NameOrNoValue(NSString* string) {
 	NSMutableArray *carsMoved = [NSMutableArray array];
 	
 	for (FreightCar *car in allCars) {
-		if ([self assignCarToTrain: car]) {
+		if ([self assignCarToTrain: car] == CarAssignmentSuccess) {
 			[carsMoved addObject: car];
 		}
+	}
+	
+	if (respectSidingLengths_) {
+		[self leaveBehindOverflowingCars];
 	}
 	
 	if (assignDoors_) {

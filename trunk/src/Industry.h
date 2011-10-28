@@ -47,4 +47,7 @@
 - (BOOL) hasDoors;
 - (void)setHasDoors:(BOOL)value;
 
+- (NSNumber*) sidingLength;
+- (void) setSidingLength: (NSNumber*) length;
+
 @end

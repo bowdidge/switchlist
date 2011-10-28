@@ -81,7 +81,10 @@
 	IBOutlet NSButton *hasDoorsButton_;
 	IBOutlet NSTextField *doorCountField_;
 	IBOutlet NSTextField *doorCountLabel_;
-	
+
+	IBOutlet NSTextField *sidingLengthLabel_;	
+	IBOutlet NSTextField *sidingFeetLabel_;	
+	IBOutlet NSTextField *sidingLengthField_;
 	// Access to the various controllers of popups so we can sort their contents (and make it
 	// easier to find particular items.
 	IBOutlet NSPopUpButton *freightCarLocationPopup_;
@@ -165,8 +168,10 @@
 - (IBAction) doChangeDate: (id) sender;
 - (IBAction) doChangeLayoutName: (id) sender;
 - (IBAction) doChangeDoorsState: (id) sender;
+- (IBAction) doChangeRespectSidingLengthsState: (id) sender;
 
 - (IBAction) doImportCars: (id) sender;
+
 
 // Car type table - providing data.
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
@@ -191,3 +196,4 @@
 // Settings for the preferences dictionary.
 extern NSString *LAYOUT_PREFS_SHOW_DOORS_UI;
 extern NSString *LAYOUT_PREFS_DEFAULT_NUM_LOADS;
+extern NSString *LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI;

@@ -74,6 +74,11 @@
 	return false;
 }
 
+// If sidingLength isn't defined, say it's zero.
+- (NSNumber*) sidingLength {
+	return nil;
+}
+
 // Sorts freight car reporting marks by railroad, then number.  SP 3941 should appear before SP 10240.
 - (NSArray*) allFreightCarsSortedOrder {
 	return [[[self freightCars] allObjects] sortedArrayUsingFunction: compareReportingMarksAlphabetically context: nil];

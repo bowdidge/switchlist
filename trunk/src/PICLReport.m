@@ -143,20 +143,17 @@
 			}
 			[piclString appendFormat: @"_______________________________________________________________________________\n"];
 			int carsAtLocation = [carsAtIndustry count];
-			
+			int carsAtLocationLength = 0;
 			int carsAtLocationLoaded = 0;
 			for (FreightCar *car in carsAtIndustry) {
+				carsAtLocationLength += [[car length] intValue];
 				if ([car isLoaded]) {
 					carsAtLocationLoaded += 1;
 				}
 			}
 			
 			int carsAtLocationEmpty = carsAtLocation  - carsAtLocationLoaded;
-			
-			int carsAtLocationLength = 0;
-			for (FreightCar *car in carsAtIndustry) {
-				carsAtLocationLength += [[car length] intValue];
-			}
+			[piclString appendFormat: @"-------------------------------------------------------------------------------\n"];
 			[piclString appendFormat: @"LOADS:%4d     EMPTY:%4d     CARS:%4d                           LENGTH: %4d\n",
 			 carsAtLocationLoaded,
 			 carsAtLocationEmpty,

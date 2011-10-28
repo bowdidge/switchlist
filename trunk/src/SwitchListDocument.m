@@ -191,9 +191,9 @@
 		[self setDoorsButtonState: YES];
 		[enableDoorsButton_ setState: YES];
 	}
-
+	
 	// Disable the car length controls if the layout preference isn't set.
-	NSNumber *useCarLengths = [layoutPrefs objectForKey: @"UseCarLengths"];
+	NSNumber *useCarLengths = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI];
 	if (!useCarLengths || [useCarLengths boolValue] == NO) {
 		[lengthField_ setHidden: YES];
 		[lengthLabel_ setHidden: YES];
@@ -201,6 +201,9 @@
 		[minCarsToRunLabel_ setHidden: YES];
 		[maxLengthField_ setHidden: YES];
 		[maxLengthLabel_ setHidden: YES];
+		[sidingLengthLabel_ setHidden: YES];
+		[sidingFeetLabel_ setHidden: YES];
+		[sidingLengthField_ setHidden: YES];
 	}
 
 	[overviewTrainTable_ setDoubleAction: @selector(doGenerateSwitchList:)];
@@ -487,8 +490,14 @@
 	if (useDoorsPref && [useDoorsPref boolValue]) {
 		useDoors = YES;
 	}
+
+	NSNumber *respectSidingLengthsPref = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI];
+	BOOL respectSidingLengths = NO;
+	if (respectSidingLengthsPref && [respectSidingLengthsPref boolValue]) {
+		respectSidingLengths = YES;
+	}
 	
-	TrainAssigner *ta = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: useDoors];
+	TrainAssigner *ta = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: useDoors respectSidingLengths: respectSidingLengths];
 
 	[ta assignCarsToTrains: allTrains];
 	[doorAssignmentRecorder_ release];
@@ -764,6 +773,15 @@
 	[entireLayout_ writePreferencesDictionary];
 }
 
+- (IBAction) doChangeRespectSidingLengthsState: (id) sender {
+	BOOL buttonState = [sender state];
+	[self setDoorsButtonState: buttonState];
+	// Also must change setting.
+	NSMutableDictionary *layoutPrefs = [entireLayout_ getPreferencesDictionary];
+	[layoutPrefs setValue: [NSNumber numberWithInt: buttonState] forKey: LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI];
+	[entireLayout_ writePreferencesDictionary];
+}
+
 // Requests the user name a text file containing car names,
 // and creates car objects for the car names in the file.
 - (IBAction) doImportCars: (id) sender {
@@ -950,3 +968,4 @@
 
 NSString *LAYOUT_PREFS_SHOW_DOORS_UI = @"SpotToDoorsAtIndustries";
 NSString *LAYOUT_PREFS_DEFAULT_NUM_LOADS = @"DefaultNumberOfLoads";
+NSString *LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI = @"ShowSidingLength";

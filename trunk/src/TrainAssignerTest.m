@@ -49,17 +49,23 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 - (void) setUp {
 	[super setUp];
 	[self makeThreeStationLayout];
-	freightCar1_ = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_1];
-	[freightCar1_ setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	xmMovingBToC_ = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_1];
+	[xmMovingBToC_ setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	[xmMovingBToC_ setLength: [NSNumber numberWithInt: 40]];
 	
-	freightCar2_ = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_2];
-	[freightCar2_ setCarTypeRel: [entireLayout_ carTypeForName: @"XA"]];
+	xaMovingAToB_ = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_2];
+	[xaMovingAToB_ setCarTypeRel: [entireLayout_ carTypeForName: @"XA"]];
+	[xaMovingAToB_ setLength: [NSNumber numberWithInt: 50]];
+
+	xmMovingAToB_ = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_2];
+	[xmMovingAToB_ setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	[xmMovingAToB_ setLength: [NSNumber numberWithInt: 40]];
 }
 
 	
 // Creates a sample short train moving only from A to B, and
 // defines two cargos, one going from B to C, and the other from A to B.
-- (void) makeShortTrain {
+- (ScheduledTrain*) makeShortTrain {
 	ScheduledTrain *myTrain = [self makeTrainWithName: @"MyTrain"];
 	[myTrain setStopsString: @"A,B"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
@@ -73,28 +79,36 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[c1 setSource: [self industryAtStation: @"B"]];
 	[c1 setDestination: [self industryAtStation: @"C"]];
 	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	[freightCar1_ setCargo: c1];
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"B"]];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"B"]];
 
 	Cargo *c2 = [self makeCargo: @"a to b"];
 	[c2 setSource: [self industryAtStation: @"A"]];
 	[c2 setDestination: [self industryAtStation: @"B"]];
 	[c2 setCarTypeRel: [entireLayout_ carTypeForName: @"XA"]];
-	[freightCar2_ setCargo: c2];
-	[freightCar2_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xaMovingAToB_ setCargo: c2];
+	[xaMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
+
+	Cargo *c3 = [self makeCargo: @"a to b"];
+	[c3 setSource: [self industryAtStation: @"A"]];
+	[c3 setDestination: [self industryAtStation: @"B"]];
+	[c3 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	[xmMovingAToB_ setCargo: c3];
+	[xmMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
+	return myTrain;
 }
 
 - (void) testTrainServingStationName {
 	[self makeShortTrain];
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_  useDoors: NO];
-	STAssertEqualObjects([[assigner trainServingStation: [entireLayout_ stationWithName: @"A"] acceptingCar: freightCar1_] name],
+	STAssertEqualObjects([[assigner trainServingStation: [entireLayout_ stationWithName: @"A"] acceptingCar: xmMovingBToC_] name],
 						 @"MyTrain",
 						 @"Should pick up fc1 at A");
-	STAssertNil([assigner trainServingStation: [entireLayout_ stationWithName: @"A"] acceptingCar: freightCar2_], @"FC2 wrong car type");
+	STAssertNil([assigner trainServingStation: [entireLayout_ stationWithName: @"A"] acceptingCar: xaMovingAToB_], @"FC2 wrong car type");
 
-	STAssertNil([assigner trainServingStation: [entireLayout_ stationWithName: @"C"] acceptingCar: freightCar1_], @"No train serves C");
-	STAssertNil([assigner trainServingStation: [entireLayout_ stationWithName: @"C"] acceptingCar: freightCar2_], @"No train serves C");
+	STAssertNil([assigner trainServingStation: [entireLayout_ stationWithName: @"C"] acceptingCar: xmMovingBToC_], @"No train serves C");
+	STAssertNil([assigner trainServingStation: [entireLayout_ stationWithName: @"C"] acceptingCar: xaMovingAToB_], @"No train serves C");
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner!");
 	[assigner release];
 }
@@ -103,19 +117,19 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[self makeShortTrain];
 
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
-	STAssertEqualObjects([[assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"B"] acceptingCar: freightCar1_] name],
+	STAssertEqualObjects([[assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"B"] acceptingCar: xmMovingBToC_] name],
 						 @"MyTrain", @"fc1 is right car type");
-	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"B"] acceptingCar: freightCar2_],
+	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"B"] acceptingCar: xaMovingAToB_],
 				@"fc2 not accepted on train");
 
-	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"A"] acceptingCar: freightCar1_],
+	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"A"] acceptingCar: xmMovingBToC_],
 				@"train doesn't go there.");
-	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"A"] acceptingCar: freightCar2_],
+	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"A"] acceptingCar: xaMovingAToB_],
 				@"train doesn't go there.");
 		
-	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"A"] acceptingCar: freightCar1_],
+	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"A"] acceptingCar: xmMovingBToC_],
 				@"train doesn't go there.");
-	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"C"] acceptingCar: freightCar2_],
+	STAssertNil([assigner trainBetweenStation: [entireLayout_ stationWithName: @"A"] andStation: [entireLayout_ stationWithName: @"C"] acceptingCar: xaMovingAToB_],
 				@"train doesn't go there.");
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner!");
 	[assigner release];
@@ -130,30 +144,30 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain2 setStopsString: @"A,B,C"];
 	[self setTrain: myTrain2 acceptsCarTypes: @"XA"];
 	
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"A"]];
-	[freightCar2_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xaMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
 
 	
 	Cargo *c1 = [self makeCargo: @"a to b"];
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	[freightCar1_ setCargo: c1];
+	[xmMovingBToC_ setCargo: c1];
 	
 	Cargo *c2 = [self makeCargo: @"a to c"];
 	[c2 setSource: [self industryAtStation: @"A"]];
 	[c2 setDestination: [self industryAtStation: @"C"]];
 	[c2 setCarTypeRel: [entireLayout_ carTypeForName: @"XA"]];
-	[freightCar2_ setCargo: c2];
+	[xaMovingAToB_ setCargo: c2];
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
-	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"A"] acceptingCar: freightCar1_], myTrain1, @"fc1 should go to A");
-	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"B"] acceptingCar: freightCar1_], myTrain1, @"fc1 should go to B");
-	STAssertNil([assigner trainServingStation: [entireLayout_ stationWithName: @"C"] acceptingCar: freightCar1_], @"fc1 can't get to C");
+	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"A"] acceptingCar: xmMovingBToC_], myTrain1, @"fc1 should go to A");
+	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"B"] acceptingCar: xmMovingBToC_], myTrain1, @"fc1 should go to B");
+	STAssertNil([assigner trainServingStation: [entireLayout_ stationWithName: @"C"] acceptingCar: xmMovingBToC_], @"fc1 can't get to C");
 	
-	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"A"] acceptingCar: freightCar2_], myTrain2, @"fc2 can go to A");
-	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"B"] acceptingCar: freightCar2_], myTrain2, @"fc2 can go to B");
-	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"C"] acceptingCar: freightCar2_], myTrain2, @"fc2 can go to C");	
+	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"A"] acceptingCar: xaMovingAToB_], myTrain2, @"fc2 can go to A");
+	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"B"] acceptingCar: xaMovingAToB_], myTrain2, @"fc2 can go to B");
+	STAssertEqualObjects([assigner trainServingStation: [entireLayout_ stationWithName: @"C"] acceptingCar: xaMovingAToB_], myTrain2, @"fc2 can go to C");	
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner!");
 	[assigner release];
 }
@@ -169,29 +183,29 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain2 setStopsString: @"A,B,C"];
 	[self setTrain: myTrain2 acceptsCarTypes: @"XA"];
 	
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"A"]];
-	[freightCar2_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xaMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
 	
 	Cargo *c1 = [self makeCargo: @"a to b"];
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	STAssertNotNil([c1 source], @"cargo source is nil");
 	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	[freightCar1_ setCargo: c1];
-	[freightCar1_ setIsLoaded: YES];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setIsLoaded: YES];
 	
 	Cargo *c2 = [self makeCargo: @"a to c"];
 	[c2 setSource: [self industryAtStation: @"A"]];
 	[c2 setDestination: [self industryAtStation: @"C"]];
 	[c2 setCarTypeRel: [entireLayout_ carTypeForName: @"XA"]];
-	[freightCar2_ setCargo: c2];
-	[freightCar2_ setIsLoaded: YES];
+	[xaMovingAToB_ setCargo: c2];
+	[xaMovingAToB_ setIsLoaded: YES];
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, myTrain2, nil]];
 	
-	STAssertEqualObjects([freightCar1_ currentTrain], myTrain1, @"fc1 not assigned");
-	STAssertEqualObjects([freightCar2_ currentTrain], myTrain2, @"fc2 not assigned");
+	STAssertTrue(myTrain1 == [xmMovingBToC_ currentTrain], @"fc1 not assigned");
+	STAssertTrue(myTrain2 == [xaMovingAToB_ currentTrain], @"fc2 not assigned");
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner!");
 	[assigner release];
 }
@@ -206,31 +220,31 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain2 setStopsString: @"B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
 	
 	Cargo *c1 = [self makeCargo: @"a to c"];
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"C"]];
 	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	[freightCar1_ setCargo: c1];
-	[freightCar1_ setIsLoaded: YES];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setIsLoaded: YES];
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, myTrain2, nil]];
-	STAssertEqualObjects([freightCar1_ currentTrain], myTrain1, @"fc1 not assigned");
+	STAssertEqualObjects([xmMovingBToC_ currentTrain], myTrain1, @"fc1 not assigned");
 	
 	// Ok, run that train.
-	[freightCar1_ moveOneStep];
-	STAssertEqualObjects([[freightCar1_ currentLocation] name], @"B-yard", @"Car didn't make first step.");
+	[xmMovingBToC_ moveOneStep];
+	STAssertEqualObjects([[xmMovingBToC_ currentLocation] name], @"B-yard", @"Car didn't make first step.");
 	
 	assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, myTrain2, nil]];
 	
-	STAssertEqualObjects([[freightCar1_ nextStop] name], @"C-industry", @"Wrong nextStop");
-	STAssertEqualObjects([[freightCar1_ nextIndustry] name], @"C-industry", @"Wrong nextIndustry");
+	STAssertEqualObjects([[xmMovingBToC_ nextStop] name], @"C-industry", @"Wrong nextStop");
+	STAssertEqualObjects([[xmMovingBToC_ nextIndustry] name], @"C-industry", @"Wrong nextIndustry");
 	
-	[freightCar1_ moveOneStep];
-	STAssertEqualObjects([[freightCar1_ currentLocation] name], @"C-industry", @"Car didn't make second step.");
+	[xmMovingBToC_ moveOneStep];
+	STAssertEqualObjects([[xmMovingBToC_ currentLocation] name], @"C-industry", @"Car didn't make second step.");
 	
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner!");
 	[assigner release];
@@ -248,15 +262,15 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[self setTrain: myTrain2 acceptsCarTypes: @"XM"];
 
 	
-	[freightCar1_ setHomeDivision: @"B"];
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingBToC_ setHomeDivision: @"B"];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
 
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, myTrain2, nil]];
 
-	STAssertEqualObjects([freightCar1_ currentTrain], myTrain1, @"fc1 not assigned");
-	STAssertEqualObjects([[freightCar1_ nextStop] name], @"B-yard", @"fc1 not assigned");
+	STAssertEqualObjects([xmMovingBToC_ currentTrain], myTrain1, @"fc1 not assigned");
+	STAssertEqualObjects([[xmMovingBToC_ nextStop] name], @"B-yard", @"fc1 not assigned");
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner!");
 	[assigner release];
 }
@@ -267,19 +281,19 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain1 setStopsString: @"A,B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @""];
 	
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
 
 	Cargo *c1 = [self makeCargo: @"a to b"];
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	[c1 setCarTypeRel: nil];
-	[freightCar1_ setCargo: c1];
-	[freightCar1_ setIsLoaded: YES];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setIsLoaded: YES];
 
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, nil]];
-	STAssertTrue([freightCar1_ currentTrain] == myTrain1, @"Freight car 1 not on train1.");
+	STAssertTrue([xmMovingBToC_ currentTrain] == myTrain1, @"Freight car 1 not on train1.");
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner!");
 	[assigner release];
 
@@ -291,24 +305,24 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain1 setStopsString: @"A,B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
 	
 	Cargo *c1 = [self makeCargo: @"a to b"];
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	[c1 setCarTypeRel: nil];
-	[freightCar1_ setCargo: c1];
-	[freightCar1_ setIsLoaded: NO];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setIsLoaded: NO];
 	
-	[freightCar2_ setCargo: c1];
-	[freightCar2_ setIsLoaded: YES];
-	[freightCar2_ setCurrentLocation: [self industryAtStation: @"B"]];
+	[xaMovingAToB_ setCargo: c1];
+	[xaMovingAToB_ setIsLoaded: YES];
+	[xaMovingAToB_ setCurrentLocation: [self industryAtStation: @"B"]];
 	
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, nil]];
-	STAssertNil([freightCar1_ currentTrain], @"Freight car 1 should not be on train1.");
-	STAssertNil([freightCar2_ currentTrain], @"Freight car 2 should not be on train1.");
+	STAssertNil([xmMovingBToC_ currentTrain], @"Freight car 1 should not be on train1.");
+	STAssertNil([xaMovingAToB_ currentTrain], @"Freight car 2 should not be on train1.");
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner: %@", [assigner errors]);
 	[assigner release];
 	
@@ -320,19 +334,19 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain1 setStopsString: @"A,B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
 	
 	Cargo *c1 = [self makeCargo: @"a to b"];
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	[c1 setCarTypeRel: nil];
-	[freightCar1_ setCargo: c1];
-	[freightCar1_ setIsLoaded: YES];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setIsLoaded: YES];
 	
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, nil]];
-	STAssertTrue([freightCar1_ currentTrain] == myTrain1, @"Freight car 1 not on train1.");
+	STAssertTrue([xmMovingBToC_ currentTrain] == myTrain1, @"Freight car 1 not on train1.");
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner: %@", [assigner errors]);
 	[assigner release];
 }
@@ -343,19 +357,19 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain1 setStopsString: @"A,B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @""];
 	
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
 	
 	Cargo *c1 = [self makeCargo: @"a to b"];
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	[freightCar1_ setCargo: c1];
-	[freightCar1_ setIsLoaded: YES];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setIsLoaded: YES];
 	
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, nil]];
-	STAssertTrue([freightCar1_ currentTrain] == myTrain1, @"Freight car 1 not on train1.");
+	STAssertTrue([xmMovingBToC_ currentTrain] == myTrain1, @"Freight car 1 not on train1.");
 	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner: %@", [assigner errors]);
 	[assigner release];
 }
@@ -366,22 +380,22 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain1 setStopsString: @"A,B,C,A"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"C"]];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"C"]];
 	
 	Cargo *c1 = [self makeCargo: @"C to B"];
 	[c1 setSource: [self industryAtStation: @"C"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	[freightCar1_ setCargo: c1];
-	[freightCar1_ setIsLoaded: YES];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setIsLoaded: YES];
 	
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, nil]];
 	// Make sure we don't assign it to this train - from C, we can only go to A in one step.
 	// We need to go to B to deliver.
-	STAssertNil([freightCar1_ currentTrain], @"Make sure car not assigned to train going other direction.");
-	STAssertEqualObjects([[freightCar1_ nextStop] name], @"B-industry", @"fc1 not assigned");
+	STAssertNil([xmMovingBToC_ currentTrain], @"Make sure car not assigned to train going other direction.");
+	STAssertEqualObjects([[xmMovingBToC_ nextStop] name], @"B-industry", @"fc1 not assigned");
 	
 	// Expect one error - WP 1 has no route from C to B.
 	STAssertTrue(1 == [[assigner errors] count], @"Unexpected errors from TrainAssigner: %@", [assigner errors]);
@@ -394,22 +408,22 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain1 setStopsString: @"A,B,C,A"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
-	[freightCar1_ setCurrentLocation: [self industryAtStation: @"C"]];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"C"]];
 	
 	Cargo *c1 = [self makeCargo: @"B to A"];
 	[c1 setSource: [self industryAtStation: @"B"]];
 	[c1 setDestination: [self industryAtStation: @"A"]];
 	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	[freightCar1_ setCargo: c1];
-	[freightCar1_ setIsLoaded: NO];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setIsLoaded: NO];
 	
 	
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner assignCarsToTrains: [NSArray arrayWithObjects: myTrain1, nil]];
 	// Make sure we don't assign it to this train - from C, we can only go to A in one step.
 	// We need to go back to B to load.
-	STAssertNil([freightCar1_ currentTrain], @"Make sure car not assigned to train going other direction.");
-	STAssertEqualObjects([[freightCar1_ nextStop] name], @"B-industry", @"fc1 not assigned");
+	STAssertNil([xmMovingBToC_ currentTrain], @"Make sure car not assigned to train going other direction.");
+	STAssertEqualObjects([[xmMovingBToC_ nextStop] name], @"B-industry", @"fc1 not assigned");
 
 	// Expect one error - WP 1 has no route from C to B.
 	STAssertTrue(1 == [[assigner errors] count], @"Unexpected errors from TrainAssigner: %@", [assigner errors]);
@@ -839,7 +853,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
 	[assigner autorelease];
 	// Should fail because of missing source.
-	STAssertFalse([assigner assignCarToTrain: fc], @"Incorrectly assigns car with missing source for cargo.");
+	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc], @"Incorrectly assigns car with missing source for cargo.");
 	STAssertTrue(1 ==[[assigner errors] count], @"Expected one error from train assigner, found %d", [[assigner errors] count]);
 	STAssertTrue([[[assigner errors] objectAtIndex: 0] rangeOfString: @"source location for cargo"].location != NSNotFound,
 				 @"Wrong error for missing source", [[assigner errors] count]);
@@ -858,7 +872,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	
 	TrainAssigner *assigner = [[[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO] autorelease];
 	// Should fail because of missing destination.
-	STAssertFalse([assigner assignCarToTrain: fc2], @"Incorrectly assigns car with missing destination for cargo.");
+	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc2], @"Incorrectly assigns car with missing destination for cargo.");
 	STAssertTrue(1 ==[[assigner errors] count], @"Expected one error from train assigner, found %d", [[assigner errors] count]);
 	STAssertTrue([[[assigner errors] objectAtIndex: 0] rangeOfString: @"destination location for cargo"].location != NSNotFound,
 				 @"Wrong error for missing source: found %@", [[assigner errors] objectAtIndex: 0]);
@@ -878,7 +892,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	
 	TrainAssigner *assigner = [[[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO] autorelease];
 	// Should fail because of missing destination.
-	STAssertFalse([assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
+	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
 	
 	STAssertTrue(2 == [[assigner errors] count], @"Expected two errors from train assigner, found %d", [[assigner errors] count]);
 	STAssertTrue([[[assigner errors] objectAtIndex: 0] rangeOfString: @"does not have its town set"].location != NSNotFound,
@@ -906,7 +920,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	
 	TrainAssigner *assigner = [[[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO] autorelease];
 	// Should fail because of missing destination.
-	STAssertFalse([assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
+	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
 	STAssertTrue(2 == [[assigner errors] count], @"Expected two errors from train assigner, found %d", [[assigner errors] count]);
 	STAssertTrue([[[assigner errors] objectAtIndex: 0] rangeOfString: @"does not have its town set"].location != NSNotFound,
 				 @"Wrong error for missing source, found %@", [[assigner errors] objectAtIndex: 0]);
@@ -933,7 +947,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	
 	TrainAssigner *assigner = [[[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO] autorelease];
 	// Should fail because of missing destination.
-	STAssertFalse([assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
+	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
 	
 	STAssertTrue(2 == [[assigner errors] count], @"Expected two errors from train assigner, found %d", [[assigner errors] count]);
 
@@ -951,8 +965,6 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	Industry* newIndustry;
 }
 @end
-
-
 
 @implementation TestDoorAssignment
 - (void) setUp {
@@ -1159,6 +1171,167 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 							   industryArrivingCarMap: doorAssignments];
 	STAssertNil(door, [NSString stringWithFormat: @"Door expected to be nil, but was %@", door]);
 }
+@end
+
+@interface TestTrainAssignmentRespectingSidingLength : LayoutTest {
+	FreightCar *xmMovingBToC_;
+	FreightCar *xmMovingAToB_;
+	FreightCar *xaMovingAToB_;
+	
+	ScheduledTrain *myTrain_;
+}
+@end
+
+@implementation TestTrainAssignmentRespectingSidingLength
+- (void) setUp {
+	[super setUp];
+	[self makeThreeStationLayout];
+
+	[[self industryAtStation: @"A"] setSidingLength: [NSNumber numberWithInt: 40]];
+	// Siding B can handle everything.
+	[[self industryAtStation: @"B"] setSidingLength: [NSNumber numberWithInt: 40]];
+	[[self industryAtStation: @"C"] setSidingLength: [NSNumber numberWithInt: 80]];
+	
+	xmMovingBToC_ = [self makeFreightCarWithReportingMarks: @"B2C 1"];
+	[xmMovingBToC_ setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	[xmMovingBToC_ setLength: [NSNumber numberWithInt: 40]];
+	
+	xaMovingAToB_ = [self makeFreightCarWithReportingMarks: @"A2B 2"];
+	[xaMovingAToB_ setCarTypeRel: [entireLayout_ carTypeForName: @"XA"]];
+	[xaMovingAToB_ setLength: [NSNumber numberWithInt: 50]];
+	
+	xmMovingAToB_ = [self makeFreightCarWithReportingMarks: @"A2B 3"];
+	[xmMovingAToB_ setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	[xmMovingAToB_ setLength: [NSNumber numberWithInt: 40]];
+}
 
 
+// Creates a sample short train moving only from A to B, and
+// defines two cargos, one going from B to C, and the other from A to B.
+- (ScheduledTrain*) makeShortTrain {
+	myTrain_ = [self makeTrainWithName: @"MyTrain"];
+	[myTrain_ setStopsString: @"A,B,C"];
+	[self setTrain: myTrain_ acceptsCarTypes: @"XM"];
+	
+	STAssertEquals([[myTrain_ stationStopStrings] count], (NSUInteger) 3, @"Wrong number of station stops");
+	STAssertTrue([[myTrain_ stationStopStrings] containsObject: @"A"], @"A missing");
+	STAssertTrue([[myTrain_ stationStopStrings] containsObject: @"B"], @"B missing");
+	STAssertTrue([[myTrain_ stationStopStrings] containsObject: @"C"], @"C missing");
+	
+	Cargo *c1 = [self makeCargo: @"b to c"];
+	[c1 setSource: [self industryAtStation: @"B"]];
+	[c1 setDestination: [self industryAtStation: @"C"]];
+	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	[xmMovingBToC_ setCargo: c1];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"B"]];
+	
+	Cargo *c2 = [self makeCargo: @"a to b"];
+	[c2 setSource: [self industryAtStation: @"A"]];
+	[c2 setDestination: [self industryAtStation: @"B"]];
+	[c2 setCarTypeRel: [entireLayout_ carTypeForName: @"XA"]];
+	[xaMovingAToB_ setCargo: c2];
+	[xaMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
+
+	[xmMovingAToB_ setCargo: c2];
+	[xmMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
+	return myTrain_;
+}
+
+/* Test that space occupied by cars on the same train can cause a later
+ car not to be added.
+ */
+- (void) testMultipleCarsFit {
+	[self makeShortTrain];
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	// Freight car 1 goes to B, freight car 2 goes to A.
+	[xmMovingBToC_ setIsLoaded: NO];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingAToB_ setIsLoaded: YES];
+	[xmMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[[self industryAtStation: @"B"] setSidingLength: [NSNumber numberWithInt: 80]];
+	
+	[assigner assignCarsToTrains: [NSArray arrayWithObjects: xmMovingBToC_, xmMovingAToB_, nil]];
+	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors '%@' from TrainAssigner!", [assigner errors]);
+	[assigner release];
+}
+
+// Test that other incoming cars are remembered when doing math for capacity.
+- (void) testMultipleCarsTooLongDoNotFit {
+	[self makeShortTrain];
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	// Freight car 1 goes to B, freight car 2 goes to A.
+	[xmMovingBToC_ setIsLoaded: NO];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingAToB_ setIsLoaded: YES];
+	[xmMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[[self industryAtStation: @"B"] setSidingLength: [NSNumber numberWithInt: 79]];
+	
+	[assigner assignCarsToTrains: [NSArray arrayWithObject: myTrain_]];
+	
+	STAssertTrue([xmMovingBToC_ currentTrain] == nil ^ [xmMovingAToB_ currentTrain] == nil,
+				   @"Only one of the cars should have moved.");
+	STAssertTrue(1 == [[assigner errors] count], @"Unexpected errors '%@' from TrainAssigner!", [assigner errors]);
+	[assigner release];
+}
+
+/* Tests that if a car already occupies the siding, a new car isn't put on
+   the same full siding.
+ */
+- (void) testSidingAlreadyOccupied {
+	[self makeShortTrain];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"B"]];
+	[xmMovingBToC_ setIsLoaded: NO];
+
+	[xmMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingAToB_ setIsLoaded: YES];
+
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	[assigner assignCarsToTrains: [NSArray arrayWithObject: myTrain_]];
+	
+	STAssertNil([xmMovingAToB_ currentTrain], @"AtoB shouldn't be moving!");
+	STAssertTrue(1 == [[assigner errors] count], @"Unexpected errors from TrainAssigner: %@", [assigner errors]);
+	[assigner release];
+}
+
+/* Test that space occupied by cars on the same train can cause a later
+ car not to be added.
+ */
+- (void) testLeavingCarNotCounted {
+	[self makeShortTrain];
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	// Freight car 1 goes to B, freight car 2 goes to A.
+	[xmMovingBToC_ setIsLoaded: YES];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"B"]];
+	[xmMovingAToB_ setIsLoaded: YES];
+	[xmMovingAToB_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[[self industryAtStation: @"B"] setSidingLength: [NSNumber numberWithInt: 40]];
+	
+	STAssertEquals(CarAssignmentSuccess, [assigner assignCarToTrain: xmMovingBToC_],
+				   @"xmMovingBToC should have been moved to C.");
+	STAssertEquals(CarAssignmentSuccess, [assigner assignCarToTrain: xmMovingAToB_],
+				   @"xmMovingAToB_ should have fit.");
+	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors '%@' from TrainAssigner!", [assigner errors]);
+	[assigner release];
+}
+
+/* Tests that if a car already occupies the siding, a new car isn't put on
+ the same full siding.
+ */
+- (void) testZeroLengthSidingAlwaysAccepts {
+	[self makeShortTrain];
+	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
+	[xmMovingBToC_ setIsLoaded: NO];
+	
+	FreightCar *fcNotMoving = [self makeFreightCarWithReportingMarks: @"STUCK 1"];
+	[fcNotMoving setLength: [NSNumber numberWithInt: 0]];
+	[fcNotMoving setCurrentLocation: [self industryAtStation: @"B"]];
+	
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	STAssertEquals(CarAssignmentSuccess, [assigner assignCarToTrain: xmMovingBToC_],
+				   @"xmMovingBToC should have fit.");
+	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors from TrainAssigner!");
+	[assigner release];
+}
+
+// TODO(bowdidge): Test yards don't have capacity, and intermediate dest doesn't count.
 @end

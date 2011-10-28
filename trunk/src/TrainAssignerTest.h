@@ -32,8 +32,9 @@
 
 
 @interface TrainAssignerTest : LayoutTest {
-	FreightCar *freightCar1_;
-	FreightCar *freightCar2_;
+	FreightCar *xmMovingBToC_;
+	FreightCar *xmMovingAToB_;
+	FreightCar *xaMovingAToB_;
 }
 
 @end

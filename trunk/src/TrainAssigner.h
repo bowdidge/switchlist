@@ -44,9 +44,16 @@
 	// List of assignment problems to display to the user.
 	NSMutableArray *errors_;
 	BOOL assignDoors_;
+	BOOL respectSidingLengths_;
+	// Dictionary mapping industry object IDs to an array of cars being directed at that industry during
+	// the next session.
+	NSMutableDictionary *arrivingCars_;
+	NSMutableDictionary *leavingCars_;
+	
 	DoorAssignmentRecorder* doorAssignmentRecorder_;
 }
 
+- (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths;
 - (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors;
 
 - (void) assignCarsToTrains: (NSArray *) trains;
@@ -65,9 +72,19 @@
 - (ScheduledTrain*) trainServingStation: (Place*) start acceptingCar: (FreightCar*) car;
 - (NSMutableDictionary *) createStationReachabilityGraphForCarType: (CarType *) carType;
 
+enum CarAssignmentResult {
+	CarAssignmentSuccess=0,
+	CarAssignmentRoutingProblem=1,
+	CarAssignmentNoMoveNeeded=2,
+	CarAssignmentNoRoomAtDestination=3
+};
+
+typedef enum CarAssignmentResult CarAssignmentResult;
+
+// For Testing Only.
 // Given a car, find the proper train to carry it on its way.  Add the car to the train,
 // and if multiple steps are required, set intermediate destination to go there.
-- (BOOL) assignCarToTrain: (FreightCar *) car;
+- (CarAssignmentResult) assignCarToTrain: (FreightCar *) car;
 	
 	
 // Exposed in interface for unit testing only.
@@ -77,7 +94,6 @@
 							 inTrain: (ScheduledTrain*) train
 					 goingToIndustry:(Industry*) industry 
 			  industryArrivingCarMap: (DoorAssignmentRecorder*) doorAssignments;
-
 
 @end
 
