@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.SystemVersion">10J869</string>
 		<string key="IBDocument.InterfaceBuilderVersion">851</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
+		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -12,9 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="369"/>
-			<integer value="411"/>
-			<integer value="408"/>
+			<integer value="221"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -921,7 +919,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="962065835">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1092,7 +1090,6 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{444, 213}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1600, 1002}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -1540,7 +1537,7 @@
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="684920210">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1644,7 +1641,6 @@
 						</object>
 					</object>
 					<string key="NSFrameSize">{247, 273}</string>
-					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -1926,52 +1922,12 @@
 					<int key="connectionID">213</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">makeCarReport:</string>
-						<reference key="source" ref="894572073"/>
-						<reference key="destination" ref="450781106"/>
-					</object>
-					<int key="connectionID">223</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="257081983"/>
 						<reference key="destination" ref="810249945"/>
 					</object>
 					<int key="connectionID">224</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">makeIndustryReport:</string>
-						<reference key="source" ref="894572073"/>
-						<reference key="destination" ref="420181539"/>
-					</object>
-					<int key="connectionID">229</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">displayReservedCarReport:</string>
-						<reference key="source" ref="894572073"/>
-						<reference key="destination" ref="300529919"/>
-					</object>
-					<int key="connectionID">231</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">displayYardReport:</string>
-						<reference key="source" ref="894572073"/>
-						<reference key="destination" ref="145769344"/>
-					</object>
-					<int key="connectionID">244</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">displayCargoReport:</string>
-						<reference key="source" ref="894572073"/>
-						<reference key="destination" ref="910995425"/>
-					</object>
-					<int key="connectionID">246</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -2212,6 +2168,46 @@
 						<reference key="destination" ref="413718113"/>
 					</object>
 					<int key="connectionID">469</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">doCarReport:</string>
+						<reference key="source" ref="975852609"/>
+						<reference key="destination" ref="450781106"/>
+					</object>
+					<int key="connectionID">470</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">doReservedCarReport:</string>
+						<reference key="source" ref="975852609"/>
+						<reference key="destination" ref="300529919"/>
+					</object>
+					<int key="connectionID">471</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">doIndustryReport:</string>
+						<reference key="source" ref="975852609"/>
+						<reference key="destination" ref="420181539"/>
+					</object>
+					<int key="connectionID">472</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">doYardReport:</string>
+						<reference key="source" ref="975852609"/>
+						<reference key="destination" ref="145769344"/>
+					</object>
+					<int key="connectionID">473</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">doCargoReport:</string>
+						<reference key="source" ref="975852609"/>
+						<reference key="destination" ref="910995425"/>
+					</object>
+					<int key="connectionID">474</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3598,7 +3594,7 @@
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{190, 711}, {199, 103}}</string>
+					<string>{{223, 733}, {199, 103}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3652,7 +3648,7 @@
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{13, 730}, {393, 20}}</string>
+					<string>{{33, 836}, {393, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3817,7 +3813,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">469</int>
+			<int key="maxID">474</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3829,11 +3825,21 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>doCarReport:</string>
+							<string>doCargoReport:</string>
 							<string>doClearAllLoads:</string>
 							<string>doImportCars:</string>
+							<string>doIndustryReport:</string>
+							<string>doReservedCarReport:</string>
+							<string>doYardReport:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -3842,17 +3848,42 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>doCarReport:</string>
+							<string>doCargoReport:</string>
 							<string>doClearAllLoads:</string>
 							<string>doImportCars:</string>
+							<string>doIndustryReport:</string>
+							<string>doReservedCarReport:</string>
+							<string>doYardReport:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">doCarReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doCargoReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">doClearAllLoads:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">doImportCars:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doIndustryReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doReservedCarReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doYardReport:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>
@@ -4042,11 +4073,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>displayCargoReport:</string>
-							<string>displayReservedCarReport:</string>
-							<string>displayYardReport:</string>
-							<string>makeCarReport:</string>
-							<string>makeIndustryReport:</string>
 							<string>switchListFormatPreferenceChanged:</string>
 							<string>switchListStyleHelpPressed:</string>
 							<string>webServerPreferenceChanged:</string>
@@ -4054,11 +4080,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
-							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4069,11 +4090,6 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>displayCargoReport:</string>
-							<string>displayReservedCarReport:</string>
-							<string>displayYardReport:</string>
-							<string>makeCarReport:</string>
-							<string>makeIndustryReport:</string>
 							<string>switchListFormatPreferenceChanged:</string>
 							<string>switchListStyleHelpPressed:</string>
 							<string>webServerPreferenceChanged:</string>
@@ -4081,26 +4097,6 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">displayCargoReport:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">displayReservedCarReport:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">displayYardReport:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">makeCarReport:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">makeIndustryReport:</string>
-								<string key="candidateClassName">id</string>
-							</object>
 							<object class="IBActionInfo">
 								<string key="name">switchListFormatPreferenceChanged:</string>
 								<string key="candidateClassName">id</string>
@@ -4305,6 +4301,9 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>displayCargoReport:</string>
+							<string>displayReservedCarReport:</string>
+							<string>displayYardReport:</string>
 							<string>doAddMoreCars:</string>
 							<string>doAdvanceLoads:</string>
 							<string>doAnnulTrain:</string>
@@ -4312,16 +4311,25 @@
 							<string>doChangeDate:</string>
 							<string>doChangeDoorsState:</string>
 							<string>doChangeLayoutName:</string>
+							<string>doChangeRespectSidingLengthsState:</string>
 							<string>doClearAllLoads:</string>
 							<string>doCompleteTrain:</string>
 							<string>doGenerateSwitchList:</string>
 							<string>doImportCars:</string>
 							<string>doSetCarTypes:</string>
 							<string>doSetRoute:</string>
+							<string>makeCarReport:</string>
+							<string>makeIndustryReport:</string>
 							<string>updateSummaryInfo:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4342,6 +4350,9 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>displayCargoReport:</string>
+							<string>displayReservedCarReport:</string>
+							<string>displayYardReport:</string>
 							<string>doAddMoreCars:</string>
 							<string>doAdvanceLoads:</string>
 							<string>doAnnulTrain:</string>
@@ -4349,16 +4360,31 @@
 							<string>doChangeDate:</string>
 							<string>doChangeDoorsState:</string>
 							<string>doChangeLayoutName:</string>
+							<string>doChangeRespectSidingLengthsState:</string>
 							<string>doClearAllLoads:</string>
 							<string>doCompleteTrain:</string>
 							<string>doGenerateSwitchList:</string>
 							<string>doImportCars:</string>
 							<string>doSetCarTypes:</string>
 							<string>doSetRoute:</string>
+							<string>makeCarReport:</string>
+							<string>makeIndustryReport:</string>
 							<string>updateSummaryInfo:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">displayCargoReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">displayReservedCarReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">displayYardReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">doAddMoreCars:</string>
 								<string key="candidateClassName">id</string>
@@ -4388,6 +4414,10 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">doChangeRespectSidingLengthsState:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">doClearAllLoads:</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -4409,6 +4439,14 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">doSetRoute:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">makeCarReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">makeIndustryReport:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -4467,6 +4505,9 @@
 							<string>setCarTypesSheet_</string>
 							<string>setRouteButton_</string>
 							<string>setRouteSheet_</string>
+							<string>sidingFeetLabel_</string>
+							<string>sidingLengthField_</string>
+							<string>sidingLengthLabel_</string>
 							<string>summaryWarningsField_</string>
 							<string>switchListWindow_</string>
 							<string>switchRouteController_</string>
@@ -4528,6 +4569,9 @@
 							<string>NSWindow</string>
 							<string>NSButton</string>
 							<string>NSWindow</string>
+							<string>NSTextField</string>
+							<string>NSTextField</string>
+							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSWindow</string>
 							<string>SwitchRouteDialogController</string>
@@ -4592,6 +4636,9 @@
 							<string>setCarTypesSheet_</string>
 							<string>setRouteButton_</string>
 							<string>setRouteSheet_</string>
+							<string>sidingFeetLabel_</string>
+							<string>sidingLengthField_</string>
+							<string>sidingLengthLabel_</string>
 							<string>summaryWarningsField_</string>
 							<string>switchListWindow_</string>
 							<string>switchRouteController_</string>
@@ -4790,6 +4837,18 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">setRouteSheet_</string>
 								<string key="candidateClassName">NSWindow</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">sidingFeetLabel_</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">sidingLengthField_</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">sidingLengthLabel_</string>
+								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">summaryWarningsField_</string>

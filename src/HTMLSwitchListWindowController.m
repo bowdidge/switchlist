@@ -117,7 +117,6 @@
 			return nil;
 		}
 	}
-	NSLog(@"Requesting resource %@", request);
 	return request;
 }
 @end

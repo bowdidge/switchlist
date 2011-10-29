@@ -172,6 +172,11 @@
 
 - (IBAction) doImportCars: (id) sender;
 
+- (IBAction) doCarReport: (id) sender;
+- (IBAction) doIndustryReport: (id) sender;
+- (IBAction) doCargoReport: (id) sender;
+- (IBAction) doReservedCarReport: (id) sender;
+- (IBAction) doYardReport: (id) sender;
 
 // Car type table - providing data.
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
