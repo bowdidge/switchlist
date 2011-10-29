@@ -35,6 +35,8 @@
 #import "CarReport.h"
 #import "CargoReport.h"
 #import "GlobalPreferences.h"
+#import "HTMLSwitchListWindowController.h"
+#import "HTMLSwitchlistRenderer.h"
 #import "IndustryReport.h"
 #import "KaufmanSwitchListReport.h"
 #import "KaufmanSwitchListView.h"
@@ -357,39 +359,6 @@
 	SwitchListDocument *currentDocument = [winc document];
 	return currentDocument;
 }
-
-- (IBAction) makeCarReport: (id) sender {
-	CarReport *report = [[CarReport alloc] initWithDocument: [self currentDocument]];
-	[report setObjects: [[[self currentDocument] entireLayout] allFreightCarsReportingMarkOrder]];
-	[report generateReport];
-}
-- (IBAction) makeIndustryReport: (id) sender {
-	IndustryReport *report = [[IndustryReport alloc] initWithDocument: [self currentDocument]];
-	[report setObjects: [[[self currentDocument] entireLayout] allFreightCarsSortedByIndustry]];
-	[report generateReport];
-}
-
-- (IBAction) displayCargoReport: (id) sender {
-	CargoReport *report = [[CargoReport alloc] initWithDocument: [self currentDocument]
-												 withIndustries: [[[self currentDocument] entireLayout] allIndustries]];
-	[report setObjects: [[[self currentDocument] entireLayout] allValidCargos]];
-	[report generateReport];
-}
-
-- (IBAction) displayReservedCarReport: (id) sender {
-	ReservedCarReport *report = [[ReservedCarReport alloc] initWithDocument: [self currentDocument]];
-	[report setObjects: [[[self currentDocument] entireLayout] allFreightCarsReportingMarkOrder]];
-	[report generateReport];
-}
-
-// For each yard or staging yard, print out the list of cars in each yard and the train
-// that will be taking each car.
-- (IBAction) displayYardReport: (id) sender {
-	YardReport *report = [[YardReport alloc] initWithDocument: [self currentDocument]];
-	[report setObjects: [[[self currentDocument] entireLayout] allFreightCarsInYard]];
-	[report generateReport];
-}
-
 - (IBAction) switchListFormatPreferenceChanged: (id) sender {
 	int selection = [sender indexOfSelectedItem];
 	NSString *preferredReportName = [sender itemTitleAtIndex: selection];

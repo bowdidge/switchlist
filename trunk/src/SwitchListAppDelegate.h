@@ -104,11 +104,6 @@
 
 - (NSWindow*) reportWindow;
 - (NSTextView*) reportTextView;
-- (IBAction) makeCarReport: (id) sender;
-- (IBAction) makeIndustryReport: (id) sender;
-- (IBAction) displayCargoReport: (id) sender;
-- (IBAction) displayReservedCarReport: (id) sender;
-- (IBAction) displayYardReport: (id) sender;
 - (IBAction) switchListFormatPreferenceChanged: (id) sender;
 - (IBAction) webServerPreferenceChanged: (id) sender;
 

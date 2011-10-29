@@ -33,6 +33,8 @@
 #import "CarAssigner.h"
 #import "Cargo.h"
 #import "CargoAssigner.h"
+#import "CargoReport.h"
+#import "CarReport.h"
 #import "CarType.h"
 #import "CarTypes.h"
 #import "EntireLayout.h"
@@ -46,6 +48,7 @@
 #import "Place.h"
 #import "PICLReport.h"
 #import "PrintEverythingView.h"
+#import "ReservedCarReport.h"
 #import "ScheduledTrain.h"
 #import "SouthernPacificSwitchListView.h"
 #import "SwitchListAppDelegate.h"
@@ -827,7 +830,46 @@
 	[alert runModal];
 }
 	
+- (IBAction) doCarReport: (id) sender {
+	CarReport *report = [[CarReport alloc] initWithDocument: self];
+	[report setObjects: [[self entireLayout] allFreightCarsReportingMarkOrder]];
+	[report generateReport];
+}
+- (IBAction) doIndustryReport: (id) sender {
+	// IndustryReport *report = [[IndustryReport alloc] initWithDocument: self];
+	// [report setObjects: [[[self currentDocument] entireLayout] allFreightCarsSortedByIndustry]];
+	// [report generateReport];
+	
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+	[renderer setTemplate: @"builtin-industrylist"];
+	NSString *message = [renderer renderIndustryListForLayout:[self entireLayout]];
+	
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
+	[[view window] makeKeyAndOrderFront: self];
+	[view drawHTML: message templateDirectory: [renderer templateDirectory]];
+	
+}
 
+- (IBAction) doCargoReport: (id) sender {
+	CargoReport *report = [[CargoReport alloc] initWithDocument: self
+												 withIndustries: [[self entireLayout] allIndustries]];
+	[report setObjects: [[self entireLayout] allValidCargos]];
+	[report generateReport];
+}
+
+- (IBAction) doReservedCarReport: (id) sender {
+	ReservedCarReport *report = [[ReservedCarReport alloc] initWithDocument: self];
+	[report setObjects: [[self entireLayout] allFreightCarsReportingMarkOrder]];
+	[report generateReport];
+}
+
+// For each yard or staging yard, print out the list of cars in each yard and the train
+// that will be taking each car.
+- (IBAction) doYardReport: (id) sender {
+	YardReport *report = [[YardReport alloc] initWithDocument: self];
+	[report setObjects: [[self entireLayout] allFreightCarsInYard]];
+	[report generateReport];
+}
 
 - (void)windowDidResignKey:(NSNotification *)notification {
 	// Assume it's the panel.
@@ -970,8 +1012,6 @@
 	[sidingFeetLabel_ setHidden: !enable];
 	[sidingLengthField_ setHidden: !enable];
 }
-	
-
 
 @end
 
