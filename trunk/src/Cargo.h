@@ -57,4 +57,7 @@
 - (BOOL) isSourceOffline;
 - (BOOL) isDestinationOffline;
 
+// Returns the text that should appear when hovering over the cargo in a menu.
+- (NSString*) tooltip;
+
 @end

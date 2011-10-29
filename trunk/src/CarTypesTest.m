@@ -30,6 +30,7 @@
 
 #import "CarTypesTest.h"
 
+#import "CarType.h"
 #import "CarTypes.h"
 #import "Cargo.h"
 #import "EntireLayout.h"
@@ -108,6 +109,82 @@
 	STAssertTrue([CarTypes isValidCarType: @"ACargo"], @"MyType not considered valid type");
 	STAssertNotNil([carTypes objectForKey: @"ACargo"], @"New car type not found");
 	STAssertEquals([[stockCars allKeys] count] + 1, [carTypes count], @"Car type count not correct");
+}
+
+- (void) testCargoTextNoCarType {
+	[self makeThreeStationLayout];
+	Cargo *c1 = [self makeCargo: @"cans"];
+	[c1 setSource: [self industryAtStation: @"B"]];
+	[c1 setDestination: [self industryAtStation: @"C"]];
+//	[c1 setPrimitiveValue: @"ACargo" forKey: @"carType"];
+	
+	STAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 cars per week", [c1 tooltip], @"");
+}
+
+- (void) testCargoTextNoCarLabelType {
+	CarType *ct = [self makeCarType: @"X"];
+	// No value.
+	[ct setCarTypeDescription: nil];
+	
+	[self makeThreeStationLayout];
+	Cargo *c1 = [self makeCargo: @"cans"];
+	[c1 setSource: [self industryAtStation: @"B"]];
+	[c1 setDestination: [self industryAtStation: @"C"]];
+	[c1 setCarTypeRel: ct];
+	
+	STAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 'X' cars per week", [c1 tooltip], @"");
+}
+
+- (void) testCargoTextWithCarLabelType {
+	CarType *ct = [self makeCarType: @"X"];
+	[ct setCarTypeDescription: @"extra-big"];
+	
+	[self makeThreeStationLayout];
+	Cargo *c1 = [self makeCargo: @"cans"];
+	[c1 setSource: [self industryAtStation: @"B"]];
+	[c1 setDestination: [self industryAtStation: @"C"]];
+	[c1 setCarTypeRel: ct];
+	
+	STAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 'X' (extra-big) cars per week", [c1 tooltip], @"");
+}
+
+- (void) testCargoTextWithBlankCarLabelType {
+	CarType *ct = [self makeCarType: @"X"];
+	[ct setCarTypeDescription: @""];
+	
+	[self makeThreeStationLayout];
+	Cargo *c1 = [self makeCargo: @"cans"];
+	[c1 setSource: [self industryAtStation: @"B"]];
+	[c1 setDestination: [self industryAtStation: @"C"]];
+	[c1 setCarTypeRel: ct];
+	
+	STAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 'X' cars per week", [c1 tooltip], @"");
+}
+
+- (void) testCargoTextWithEmptyDestination {
+	CarType *ct = [self makeCarType: @"X"];
+	[ct setCarTypeDescription: @""];
+	
+	[self makeThreeStationLayout];
+	Cargo *c1 = [self makeCargo: @"cans"];
+	[c1 setSource: [self industryAtStation: @"B"]];
+	[c1 setDestination: nil];
+	[c1 setCarTypeRel: ct];
+	
+	STAssertEqualObjects(@"cans, sent from B-industry to No Value, 7 'X' cars per week", [c1 tooltip], @"");
+}
+
+- (void) testCargoTextWithEmptySource {
+	CarType *ct = [self makeCarType: @"X"];
+	[ct setCarTypeDescription: @""];
+	
+	[self makeThreeStationLayout];
+	Cargo *c1 = [self makeCargo: @"cans"];
+	[c1 setSource: nil];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	[c1 setCarTypeRel: ct];
+	
+	STAssertEqualObjects(@"cans, sent from No Value to B-industry, 7 'X' cars per week", [c1 tooltip], @"");
 }
 
 @end

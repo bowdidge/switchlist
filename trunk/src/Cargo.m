@@ -78,14 +78,60 @@
 	return [[self carTypeRel] carTypeName];
 }
 
+// Returns the text that should appear when hovering over the cargo in a menu.
+- (NSString*) tooltip {
+	NSString *carTypeLabel = @"undefined";
+	if (![self carTypeRel]) {
+		carTypeLabel = @"";
+	} else if (![[self carTypeRel] carTypeDescription] ||
+			   [[[self carTypeRel] carTypeDescription] length] == 0) {
+		carTypeLabel = [NSString stringWithFormat: @"'%@' ", [self carType]];
+	}else {
+		carTypeLabel= [NSString stringWithFormat: @"'%@' (%@) ",
+					      [self carType], [[self carTypeRel] carTypeDescription]];
+	}
+
+	NSString *destinationString;
+	if ([self destination]) {
+		destinationString = [[self destination] name];
+	} else {
+		destinationString = @"No Value";
+	}
+	
+	NSString *sourceString;
+	if ([self source]) {
+		sourceString = [[self source] name];
+	} else {
+		sourceString = @"No Value";
+	}
+	
+	return [NSString stringWithFormat: @"%@, sent from %@ to %@, %d %@cars per week",
+			[self cargoDescription], sourceString, destinationString,
+			[[self carsPerWeek] intValue], carTypeLabel];
+}
+
 - (NSString*) description {
 	NSString *carTypeLabel = [NSString stringWithFormat: @"%@ (%@)",
 							  [self carType], [[self carTypeRel] carTypeDescription]];
 	if (!carTypeLabel || [carTypeLabel length] == 0) {
 		carTypeLabel = [self carType];
 	}
+	NSString *destinationString;
+	if ([self destination]) {
+		destinationString = [[self destination] name];
+	} else {
+		destinationString = @"No Value";
+	}
+	
+	NSString *sourceString;
+	if ([self source]) {
+		sourceString = [[self source] name];
+	} else {
+		sourceString = @"No Value";
+	}
+
 	return [NSString stringWithFormat: @"%@, sent from %@ to %@, %d %@ cars per week",
-			[self cargoDescription],[[self source] name],[[self destination] name],
+			[self cargoDescription],sourceString, destinationString,
 			[[self carsPerWeek] intValue], carTypeLabel];
 }
 

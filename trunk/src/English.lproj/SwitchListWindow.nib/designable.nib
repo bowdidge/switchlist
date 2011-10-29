@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4989"/>
+			<integer value="256"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -489,7 +489,7 @@
 								<object class="NSTabViewItem" id="420853657">
 									<string key="NSIdentifier">1</string>
 									<object class="NSView" key="NSView" id="462654402">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="293883163"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1247,6 +1247,7 @@
 												<reference key="NSHScroller" ref="706978213"/>
 												<reference key="NSContentView" ref="976928203"/>
 												<reference key="NSHeaderClipView" ref="841764218"/>
+												<reference key="NSCornerView" ref="439586394"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSSearchField" id="340474954">
@@ -1385,6 +1386,7 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {654, 465}}</string>
+										<reference key="NSSuperview" ref="293883163"/>
 										<reference key="NSNextKeyView" ref="340474954"/>
 									</object>
 									<string key="NSLabel">Freight Cars</string>
@@ -2295,7 +2297,6 @@
 												<reference key="NSHScroller" ref="856542455"/>
 												<reference key="NSContentView" ref="194134746"/>
 												<reference key="NSHeaderClipView" ref="126794487"/>
-												<reference key="NSCornerView" ref="795118854"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSSearchField" id="849441209">
@@ -4377,7 +4378,7 @@
 								<object class="NSTabViewItem" id="60309906">
 									<string key="NSIdentifier">Item 7</string>
 									<object class="NSView" key="NSView" id="970644811">
-										<reference key="NSNextResponder" ref="293883163"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4795,21 +4796,20 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {654, 465}}</string>
-										<reference key="NSSuperview" ref="293883163"/>
 									</object>
 									<string key="NSLabel">Layout</string>
 									<reference key="NSColor" ref="501741954"/>
 									<reference key="NSTabView" ref="293883163"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="60309906"/>
+							<reference key="NSSelectedTabViewItem" ref="420853657"/>
 							<reference key="NSFont" ref="347224745"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="970644811"/>
+								<reference ref="462654402"/>
 							</object>
 						</object>
 					</object>
@@ -4901,6 +4901,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>cargo.description</string>
 					<string>location.description</string>
 					<string>currentLocation.description</string>
+					<string>cargo.tooltip</string>
 				</object>
 				<bool key="NSEditable">YES</bool>
 				<bool key="NSAutomaticallyPreparesContent">YES</bool>
@@ -8735,22 +8736,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">toolTip: selection.cargo.description</string>
-						<reference key="source" ref="484120837"/>
-						<reference key="destination" ref="303395851"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="484120837"/>
-							<reference key="NSDestination" ref="303395851"/>
-							<string key="NSLabel">toolTip: selection.cargo.description</string>
-							<string key="NSBinding">toolTip</string>
-							<string key="NSKeyPath">selection.cargo.description</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">5028</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">toolTip: selection.source.description</string>
 						<reference key="source" ref="264239233"/>
 						<reference key="destination" ref="304678707"/>
@@ -10249,6 +10234,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="destination" ref="1342700"/>
 					</object>
 					<int key="connectionID">5229</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">toolTip: selection.cargo.tooltip</string>
+						<reference key="source" ref="484120837"/>
+						<reference key="destination" ref="303395851"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="484120837"/>
+							<reference key="NSDestination" ref="303395851"/>
+							<string key="NSLabel">toolTip: selection.cargo.tooltip</string>
+							<string key="NSBinding">toolTip</string>
+							<string key="NSKeyPath">selection.cargo.tooltip</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">5230</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -14991,7 +14992,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">5229</int>
+			<int key="maxID">5230</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
