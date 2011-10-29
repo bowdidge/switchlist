@@ -63,7 +63,6 @@
 - (void) drawHTML: (NSString*) html templateDirectory: (NSString*) directory {
 	if (directory == nil) {
 		directory = [mainBundle_ resourcePath];
-		NSLog(@"Resource path is %@", directory);
 	}
 	[currentTemplateDirectory_ release];
 	currentTemplateDirectory_ = [directory retain];
