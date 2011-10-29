@@ -67,7 +67,11 @@
 - (NSString *) filePathForSwitchlistCSS;
 - (NSString *) filePathForSwitchlistHTML;
 - (NSString *) filePathForSwitchlistIPhoneHTML;
-	
+
+// Returns path to default css file for standard switchlists or switchlists that don't define
+// their own copy of a particular report.
+- (NSString*) filePathForDefaultCSS: (NSString*) filePrefix;
+
 - (NSString *) renderSwitchlistForTrain: (ScheduledTrain*) train layout: (EntireLayout*)layout iPhone: (BOOL) isIPhone;
 - (NSString*) renderCarlistForLayout: (EntireLayout*) layout;
 - (NSString*) renderIndustryListForLayout: (EntireLayout*) layout;

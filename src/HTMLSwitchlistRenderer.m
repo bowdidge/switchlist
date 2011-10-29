@@ -102,6 +102,12 @@
 	return;
 }
 
+// Returns path to default css file for standard switchlists or switchlists that don't define
+// their own copy of a particular report.
+- (NSString*) filePathForDefaultCSS: (NSString*) filePrefix {
+	return [mainBundle_ pathForResource: filePrefix ofType: @"css"];
+}
+	
 - (NSString*) filePathForSwitchlistIPhoneCSS {
 	NSString *cssFilePath;
 	if (templateDirectory_) {
@@ -111,8 +117,8 @@
 		}
 	}
 	
-	// TODO(bowdidge): Is this correct, or should we just not return anything?
-	return [mainBundle_ pathForResource: @"switchlist-iphone" ofType: @"css"];
+	// Not defined? Error.
+	return nil;
 }
 
 
@@ -125,7 +131,7 @@
 		}
 	}
 	
-	return [mainBundle_ pathForResource: @"switchlist-ipad" ofType: @"css"];
+	return nil;
 }
 
 - (NSString *) filePathForSwitchlistCSS {
@@ -137,7 +143,7 @@
 		}
 	}
 	
-	return [mainBundle_ pathForResource: @"switchlist" ofType: @"css"];
+	return nil;
 }
 
 - (NSString*) filePathForSwitchlistHTML {
