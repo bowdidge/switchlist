@@ -134,21 +134,21 @@
 	
 - (void) testSwitchlistIPhoneCss {
 	// TODO(bowdidge): Fails.
-	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist-iphone.css"];
+	NSURL *url = [NSURL URLWithString: @"http://localhost/builtin-switchlist-iphone.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-iphone.css (should be > 200");
 }
 				  
 - (void) testSwitchlistCss {
-	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist.css"];
+	NSURL *url = [NSURL URLWithString: @"http://localhost/builtin-switchlist.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 		  
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist.css (should be > 200");
 }
 
 - (void) testSwitchlistIpadCss {
-	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist-ipad.css"];
+	NSURL *url = [NSURL URLWithString: @"http://localhost/builtin-switchlist-ipad.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-ipad.css (should be > 200");

@@ -153,22 +153,48 @@ NSString *CurrentHostname() {
 
 - (void) processRequestForSwitchlistCSS {
 	NSString *cssFile = [htmlRenderer_ filePathForSwitchlistCSS];
+	if (!cssFile) {
+		[server_ replyWithStatusCode: HTTP_NOT_FOUND
+							 message: [NSString stringWithFormat: @"Unknown URL switchlist.css"]];
+		return;
+	}
+
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
 - (void) processRequestForSwitchlistIPhoneCSS {
 	NSString *cssFile = [htmlRenderer_ filePathForSwitchlistIPhoneCSS];
+	if (!cssFile) {
+		[server_ replyWithStatusCode: HTTP_NOT_FOUND
+							 message: [NSString stringWithFormat: @"Unknown URL switchlist.css"]];
+		return;
+	}
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
 - (void) processRequestForSwitchlistIPadCSS {
 	NSString *cssFile = [htmlRenderer_ filePathForSwitchlistIPadCSS];
+	if (!cssFile) {
+		[server_ replyWithStatusCode: HTTP_NOT_FOUND
+							 message: [NSString stringWithFormat: @"Unknown URL switchlist.css"]];
+		return;
+	}
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
 	[server_ replyWithData:data MIMEType: @"text/css"];
 }
 
+- (void) processRequestForDefaultCSS: (NSString*) filePrefix {
+	NSString *cssFile = [htmlRenderer_ filePathForDefaultCSS: filePrefix];
+	if (!cssFile) {
+		[server_ replyWithStatusCode: HTTP_NOT_FOUND
+							 message: [NSString stringWithFormat: @"Unknown URL %@.css", filePrefix]];
+		return;
+	}
+	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
+	[server_ replyWithData:data MIMEType: @"text/css"];
+}
 
 - (void) processRequestForLayout: (SwitchListDocument*) document train: (NSString*) trainName forIPhone: (BOOL) isIPhone {
 	// TODO(bowdidge): Current document is nil whenever not active.
@@ -274,6 +300,18 @@ NSString *CurrentHostname() {
 		return;
 	} else if ([[url path] isEqualToString: @"/switchlist-ipad.css"]) {
 		[self processRequestForSwitchlistIPadCSS];
+		return;
+	}
+
+	if ([[url path] isEqualToString: @"/builtin-switchlist.css"]) {
+		NSLog(@"In builtin-switchlist.css");
+		[self processRequestForDefaultCSS: @"builtin-switchlist"];
+		return;
+	} else if ([[url path] isEqualToString: @"/builtin-switchlist-iphone.css"]) {
+		[self processRequestForDefaultCSS: @"builtin-switchlist-iphone"];
+		return;
+	} else if ([[url path] isEqualToString: @"/builtin-switchlist-ipad.css"]) {
+		[self processRequestForDefaultCSS: @"builtin-switchlist-ipad"];
 		return;
 	}
 	

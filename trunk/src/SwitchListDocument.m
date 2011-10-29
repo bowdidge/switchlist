@@ -43,6 +43,7 @@
 #import "HTMLSwitchListWindowController.h"
 #import "HTMLSwitchlistRenderer.h"
 #import "Industry.h"
+#import "IndustryReport.h"
 #import "KaufmanSwitchListReport.h"
 #import "KaufmanSwitchListView.h"
 #import "Place.h"
@@ -836,18 +837,9 @@
 	[report generateReport];
 }
 - (IBAction) doIndustryReport: (id) sender {
-	// IndustryReport *report = [[IndustryReport alloc] initWithDocument: self];
-	// [report setObjects: [[[self currentDocument] entireLayout] allFreightCarsSortedByIndustry]];
-	// [report generateReport];
-	
-	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
-	[renderer setTemplate: @"builtin-industrylist"];
-	NSString *message = [renderer renderIndustryListForLayout:[self entireLayout]];
-	
-	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
-	[[view window] makeKeyAndOrderFront: self];
-	[view drawHTML: message templateDirectory: [renderer templateDirectory]];
-	
+	IndustryReport *report = [[IndustryReport alloc] initWithDocument: self];
+	[report setObjects: [[self entireLayout] allFreightCarsSortedByIndustry]];
+	[report generateReport];
 }
 
 - (IBAction) doCargoReport: (id) sender {
