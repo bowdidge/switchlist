@@ -80,7 +80,7 @@
 }
 
 - (IBAction)printDocument:(id)sender {
-	[htmlView_ print: sender];
+	[[[[htmlView_ mainFrame] frameView] documentView] print: sender];
 }
 
 
