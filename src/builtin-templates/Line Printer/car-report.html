@@ -1,0 +1,45 @@
+<HTML>
+<HEAD>
+<style type="text/css">
+.switch-list {
+	font-family: "Courier New";
+	font-size: 10px;
+}
+
+table {
+  align: center;
+  border-collapse: collapse; 
+}
+
+td { 
+  border: 1px solid aaa;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: "Courier New";
+  font-size: 10px;
+}
+
+</style>
+<TITLE>Switch List for {{ train.name }}</TITLE>
+</HEAD>
+<BODY>
+<div class="switch-list">
+<center>
+  {{ layout.layoutName }}
+  <Br>
+  CAR REPORT
+  <br>
+  {{ layout.currentDate | date_format: "MMM dd YYYY"}}
+</center>
+<table border="0" align="center">
+<th>Reporting marks</th><th>Type</th><th>Location</th><th>Contents</th>
+{% for car in layout.allFreightCarsReportingMarkOrder %}
+<tr>
+<td>{{car.reportingMarks}}</td>
+<td>{{car.carType}}</td>
+<td>{{ car.currentLocation.name }} / {{car.currentLocation.location.name }}</td>
+<td>{{car.cargo.name}}</td>
+</tr>
+{% /for %}
+</body>
+</html>

@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+<style type="text/css">
+.switch-list {
+  font-family: "Courier New";
+  font-size: 10px;
+}
+
+.switch-list-layout-title {
+	font-family: Oswald;
+	font-size: 14pt;
+	text-align:  center;
+}
+table {
+  align: center;
+  border-collapse: collapse; 
+}
+
+td { 
+  border: 1px solid aaa;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: "Courier New";
+  font-size: 12px;
+}
+
+</style>
+<TITLE>Yard Report</TITLE>
+</HEAD>
+<BODY>
+<div class="switch-list">
+{% for station in layout.allStationsSortedOrder %}
+  {% for industry in station.allIndustriesSortedOrder %}
+    {% if industry.isYard %}
+	  {% if industry.allFreightCarsSortedOrder %}
+        <div class="switch-list-layout-title">{{ layout.layoutName }}</div>
+        <div class="switch-list-title">YARD REPORT</div>
+        <center>{{ layout.currentDate | date_format: "MMM dd YYYY"}}</center>
+        <div class="switch-list-layout-title">Cars At {{industry.name}}:</div>
+        <br>
+        <table align="center">
+		  <tr>
+          <th>Reporting marks</th>
+          <th>Type</th>
+          <th>Train</th>
+          <th>Destination</th>
+          <th>Contents</th>
+		  </tr>
+          {% for car in industry.allFreightCarsSortedOrder %}
+            <tr>
+			  <td>{{car.reportingMarks}}</td>
+              <td>{{car.carType}}</td>
+              <td>{{car.currentTrain.name}}</td>
+              <td>{{car.nextIndustry.name}}</td>
+              <td>
+			    {% if car.isLoaded %}
+				  {{car.cargo.name}}
+			    {% else %}
+				   empty
+			     {% /if %} 
+			  </td>
+            </tr>
+          {% /for %}
+        </table>
+		<p style="page-break-after: always"></p>
+      {% /if %}
+	{% /if %}
+  {% /for %}
+{% /for %}
+</body>
+</html>

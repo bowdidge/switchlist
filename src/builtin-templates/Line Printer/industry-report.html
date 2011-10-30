@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<TITLE>Current Car Locations</TITLE>
+<LINK REL=StyleSheet HREF="switchlist.css" TYPE="text/css" MEDIA=screen>
+<style type="text/css">
+/* Industry page style to space out reporting marks and car type */
+.industry-title {
+  font-family: "Courier New";
+  font-size: 10px;
+  text-align:  center;
+  margin-bottom: 10px;
+}
+.industry-station  {
+	width:  100%;
+	display: inline-block;
+	margin-bottom: 10px;
+}
+
+.industry-station-name {
+	float: left;
+	width: 20%;
+  font-family: "Courier New";
+  font-size: 10px;
+}
+
+.industry-station-industries {
+	float: right;
+	width: 80%;
+}
+
+.industry-station-industry {
+	width:  100%;
+	display:  inline-block;
+	margin-top:  5px;
+	margin-bottom:  5px
+}
+
+.industry-industry-name {
+	float:  left;
+	width:  30%;
+  font-family: "Courier New";
+  font-size: 10px;
+}
+
+.industry-industry-cars {
+	width:  70%;
+	display:  inline-block;
+	margin-bottom: 10px;
+  font-family: "Courier New";
+  font-size: 10px;
+}
+</style>
+</HEAD>
+<BODY>
+<div class="industry-title">
+{{ layout.layoutName }}
+<br>
+CAR LOCATIONS WORKSHEET
+</div>
+<div class="industry-list">
+{% for station in layout.allStationsSortedOrder %}
+  <div class="industry-station">
+    <div class="industry-station-name">
+	  {{station.name}}:
+	  <br>
+	  {% if station.isStaging %} staging {% /if %}{% if station.isOffline %} offline {% /if %}
+	</div>
+    <div class="industry-station-industries">
+      {% for industry in station.allIndustriesSortedOrder %}
+        <div class="industry-station-industry">
+          <div class="industry-industry-name">
+           {{ industry.name }}:
+          </div>
+          <div class="industry-industry-cars">
+          {% for car in industry.allFreightCarsSortedOrder %}
+              {{ car.reportingMarks }} ({{car.carType}})<br>
+		  {% /for %}
+		  </div>
+        </div>
+      {% /for %}
+     </div>
+  </div>
+{% /for %}
+</div>
+</body>
+</html>
