@@ -14,6 +14,10 @@
   width:  500px;
 }
 
+.report {
+  background-color: #fcffc5;
+}
+
 .switch-list-layout-title {
 	font-family: Oswald;
 	font-size: 11pt;

@@ -1,0 +1,54 @@
+<HTML>
+<HEAD>
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+<style type="text/css">
+.switch-list-title {
+	font-family: Oswald;
+	font-size: 20px;
+	text-align:  center;
+}
+
+.switch-list-layout-title {
+	font-family: Oswald;
+	font-size: 14pt;
+	text-align:  center;
+}
+table {
+  align: center;
+  border-collapse: collapse; 
+}
+
+td { 
+  border: 1px solid aaa;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: "Courier New";
+  font-size: 12px;
+}
+
+</style>
+<TITLE>Switch List for {{ train.name }}</TITLE>
+</HEAD>
+<BODY>
+<div class="switch-list">
+<div class="switch-list-layout-title">{{ layout.layoutName }}</div>
+<div class="switch-list-title">RESERVED CAR REPORT</div>
+<center>{{ layout.currentDate | date_format: "MMM dd YYYY"}}</center>
+<br>
+<table align="center">
+<th>Reporting marks</th><th>Type</th>
+<th>Location</th><th>Contents</th>
+<th>Origin</th><th>destination</th>
+{% for car in layout.allFreightCarsReportingMarkOrder %}
+<tr>
+<td>{{car.reportingMarks}}</td>
+<td>{{car.carType}}</td>
+<td>{{ car.currentLocation.name }} / {{car.currentLocation.location.name }}</td>
+<td>{{car.cargo.name}}</td>
+<td>{{car.cargo.source.name}}</td>
+<td>{{car.cargo.destination.name}}</td>
+</tr>
+{% /for %}
+</body>
+</html>
