@@ -146,16 +146,23 @@
 	return nil;
 }
 
-- (NSString*) filePathForSwitchlistHTML {
+// Returns the path to the template with the given name, as found in one of the switchlist template
+// directories.  If none can be found, it uses the copy in the main bundle.
+- (NSString*) filePathForTemplateFile: (NSString*) template {
 	NSString *htmlFilePath;
 	if (templateDirectory_) {
-		htmlFilePath = [templateDirectory_ stringByAppendingPathComponent: @"switchlist.html"];
+		htmlFilePath = [templateDirectory_ stringByAppendingPathComponent: [NSString stringWithFormat: @"%@.html",  template]];
 		if ([[NSFileManager defaultManager] fileExistsAtPath: htmlFilePath]) {
 			return htmlFilePath;
 		}
 	}
 	// Default to stock version.
-	return [mainBundle_ pathForResource: @"switchlist" ofType: @"html"];
+	return [mainBundle_ pathForResource: template ofType: @"html"];
+}
+
+
+- (NSString*) filePathForSwitchlistHTML {
+	return [self filePathForTemplateFile: @"switchlist"];
 }
 
 // Returns the path to the iPhone-specific HTML file for the current template.
@@ -202,15 +209,21 @@
 								  layout, @"layout",
 								  carLocations, @"carLocations",
 								  nil];
-	return [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-carlist" ofType: @"html"]
-								  withVariables: templateDict];
+	// Note that switchlist-carlist is the interactive version.
+	return [self renderReport: @"switchlist-carlist" withDict: templateDict];
+}
+
+// Renders a generic report, but allows the caller to specify a template dictionary with
+// more than just the layout name.
+- (NSString*) renderReport: (NSString*) reportName withDict: (NSDictionary*) dict {
+	NSString *industryHtml = [self filePathForTemplateFile: reportName];
+	return [engine_ processTemplateInFileAtPath: industryHtml
+								  withVariables: dict];
 }
 
 - (NSString*) renderIndustryListForLayout: (EntireLayout*) layout {
-	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: layout forKey:  @"layout"];
-	NSString *industryHtml = [mainBundle_ pathForResource: @"switchlist-industrylist" ofType: @"html"];
-	return [engine_ processTemplateInFileAtPath: industryHtml
-								  withVariables: templateDict];
+	return [self renderReport: @"industry-report" withDict: [NSDictionary dictionaryWithObject: layout
+																								forKey: @"layout"]];
 }
 
 - (NSString*) renderLayoutPageForLayout: (EntireLayout*) layout {

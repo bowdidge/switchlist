@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E01BEA9140768ED008954B1 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BEA1140768ED008954B1 /* switchlist-carlist.html */; };
 		3E01BEAA140768ED008954B1 /* switchlist-home.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BEA2140768ED008954B1 /* switchlist-home.html */; };
-		3E01BEAB140768ED008954B1 /* switchlist-industrylist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BEA3140768ED008954B1 /* switchlist-industrylist.html */; };
 		3E01BEAC140768ED008954B1 /* switchlist-layout.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BEA4140768ED008954B1 /* switchlist-layout.html */; };
 		3E01BF0A14076E81008954B1 /* builtin-switchlist-ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BF0614076E81008954B1 /* builtin-switchlist-ipad.css */; };
 		3E01BF0B14076E81008954B1 /* builtin-switchlist-iphone.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BF0714076E81008954B1 /* builtin-switchlist-iphone.css */; };
@@ -47,7 +45,6 @@
 		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
 		3E3B3A34140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3A33140DDEF900F4F56C /* HTMLSwitchlistRenderer.m */; };
 		3E3B3A35140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3A33140DDEF900F4F56C /* HTMLSwitchlistRenderer.m */; };
-		3E3B3AF4140DF93800F4F56C /* switchlist-industrylist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BEA3140768ED008954B1 /* switchlist-industrylist.html */; };
 		3E3B3BA5140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BBF140E0B4B00F4F56C /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
@@ -140,6 +137,10 @@
 		3ED58A7013A727FF00F6E26E /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
 		3ED58A7113A7280D00F6E26E /* SwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED482330D715B3600C36741 /* SwitchListView.m */; };
 		3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
+		3EE19374145C924000CB614D /* car-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE19373145C924000CB614D /* car-report.html */; };
+		3EE19379145C925200CB614D /* industry-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE19377145C925200CB614D /* industry-report.html */; };
+		3EE1937A145C925200CB614D /* reserved-car-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE19378145C925200CB614D /* reserved-car-report.html */; };
+		3EE1943C145CCD6500CB614D /* yard-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE1943B145CCD6500CB614D /* yard-report.html */; };
 		3EE333E7141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE333E6141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m */; };
 		3EE33419141B2D890050A5A9 /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
 		3EE380BE133D284F0069C963 /* SwitchRouteDialogControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */; };
@@ -188,9 +189,7 @@
 		2A37F4B7FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		3E01BEA1140768ED008954B1 /* switchlist-carlist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-carlist.html"; path = "templates/switchlist-carlist.html"; sourceTree = "<group>"; };
 		3E01BEA2140768ED008954B1 /* switchlist-home.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-home.html"; path = "templates/switchlist-home.html"; sourceTree = "<group>"; };
-		3E01BEA3140768ED008954B1 /* switchlist-industrylist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-industrylist.html"; path = "templates/switchlist-industrylist.html"; sourceTree = "<group>"; };
 		3E01BEA4140768ED008954B1 /* switchlist-layout.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-layout.html"; path = "templates/switchlist-layout.html"; sourceTree = "<group>"; };
 		3E01BF0614076E81008954B1 /* builtin-switchlist-ipad.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "builtin-switchlist-ipad.css"; path = "templates/builtin-switchlist-ipad.css"; sourceTree = "<group>"; };
 		3E01BF0714076E81008954B1 /* builtin-switchlist-iphone.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "builtin-switchlist-iphone.css"; path = "templates/builtin-switchlist-iphone.css"; sourceTree = "<group>"; };
@@ -329,6 +328,10 @@
 		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
 		3ED697D8130139C100DA9074 /* SouthernPacificSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouthernPacificSwitchListView.h; sourceTree = "<group>"; };
 		3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouthernPacificSwitchListView.m; sourceTree = "<group>"; };
+		3EE19373145C924000CB614D /* car-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "car-report.html"; path = "templates/car-report.html"; sourceTree = "<group>"; };
+		3EE19377145C925200CB614D /* industry-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "industry-report.html"; path = "templates/industry-report.html"; sourceTree = "<group>"; };
+		3EE19378145C925200CB614D /* reserved-car-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "reserved-car-report.html"; path = "templates/reserved-car-report.html"; sourceTree = "<group>"; };
+		3EE1943B145CCD6500CB614D /* yard-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "yard-report.html"; path = "templates/yard-report.html"; sourceTree = "<group>"; };
 		3EE333E5141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSwitchListWindowControllerTest.h; sourceTree = "<group>"; };
 		3EE333E6141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLSwitchListWindowControllerTest.m; sourceTree = "<group>"; };
 		3EE380BC133D284F0069C963 /* SwitchRouteDialogControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRouteDialogControllerTest.h; sourceTree = "<group>"; };
@@ -481,15 +484,17 @@
 		3E01BE98140768CA008954B1 /* Default Templates */ = {
 			isa = PBXGroup;
 			children = (
+				3EE19373145C924000CB614D /* car-report.html */,
 				3E01BF0614076E81008954B1 /* builtin-switchlist-ipad.css */,
 				3E01BF0714076E81008954B1 /* builtin-switchlist-iphone.css */,
 				3E01BF0814076E81008954B1 /* builtin-switchlist.css */,
+				3EE19377145C925200CB614D /* industry-report.html */,
+				3EE19378145C925200CB614D /* reserved-car-report.html */,
 				3EFEC44114083D6400F9CF15 /* switchlist-iphone.html */,
 				3E01BF0914076E81008954B1 /* switchlist.html */,
-				3E01BEA1140768ED008954B1 /* switchlist-carlist.html */,
 				3E01BEA2140768ED008954B1 /* switchlist-home.html */,
-				3E01BEA3140768ED008954B1 /* switchlist-industrylist.html */,
 				3E01BEA4140768ED008954B1 /* switchlist-layout.html */,
+				3EE1943B145CCD6500CB614D /* yard-report.html */,
 			);
 			name = "Default Templates";
 			sourceTree = "<group>";
@@ -778,7 +783,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E3B3AF4140DF93800F4F56C /* switchlist-industrylist.html in Resources */,
 				3E01BF391407722E008954B1 /* switchlist-layout.html in Resources */,
 				3E01BF3A1407722E008954B1 /* switchlist-home.html in Resources */,
 				3E88AED4127B2DD2003486E2 /* train.jpg in Resources */,
@@ -795,8 +799,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E01BEA9140768ED008954B1 /* switchlist-carlist.html in Resources */,
-				3E01BEAB140768ED008954B1 /* switchlist-industrylist.html in Resources */,
 				3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */,
 				3E6C6EC812F007E200C7A8D1 /* Credits.html in Resources */,
 				3EC83F6D127CFC1A00B9DF33 /* SwitchList icon.icns in Resources */,
@@ -817,6 +819,10 @@
 				3E01BF0D14076E81008954B1 /* switchlist.html in Resources */,
 				3EFEC44214083D6400F9CF15 /* switchlist-iphone.html in Resources */,
 				3E6B59D0140CB1CD006FFDD3 /* builtin-templates in Resources */,
+				3EE19374145C924000CB614D /* car-report.html in Resources */,
+				3EE19379145C925200CB614D /* industry-report.html in Resources */,
+				3EE1937A145C925200CB614D /* reserved-car-report.html in Resources */,
+				3EE1943C145CCD6500CB614D /* yard-report.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

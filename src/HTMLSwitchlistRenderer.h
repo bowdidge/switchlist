@@ -77,5 +77,6 @@
 - (NSString*) renderIndustryListForLayout: (EntireLayout*) layout;
 - (NSString*) renderLayoutPageForLayout: (EntireLayout*) layout;
 - (NSString*) renderLayoutsPage;
-
+// Renders a generic report (in reportName.html) using the provided template dictionary.
+- (NSString*) renderReport: (NSString*) reportName withDict: (NSDictionary*) templateDict;
 @end

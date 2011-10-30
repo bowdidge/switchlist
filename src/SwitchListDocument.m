@@ -832,14 +832,31 @@
 }
 	
 - (IBAction) doCarReport: (id) sender {
-	CarReport *report = [[CarReport alloc] initWithDocument: self];
-	[report setObjects: [[self entireLayout] allFreightCarsReportingMarkOrder]];
-	[report generateReport];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	[renderer setTemplate: preferredSwitchlistStyle];
+	NSString *message = [renderer renderReport: @"car-report"
+									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
+																			forKey: @"layout"]];
+	
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
+	[[view window] setTitle: @"Car Report"];
+	[[view window] makeKeyAndOrderFront: self];
+	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
 }
+
 - (IBAction) doIndustryReport: (id) sender {
-	IndustryReport *report = [[IndustryReport alloc] initWithDocument: self];
-	[report setObjects: [[self entireLayout] allFreightCarsSortedByIndustry]];
-	[report generateReport];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	[renderer setTemplate: preferredSwitchlistStyle];
+	NSString *message = [renderer renderReport: @"industry-report"
+									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
+																			forKey: @"layout"]];
+	
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
+	[[view window] setTitle: @"Industry Report"];
+	 [[view window] makeKeyAndOrderFront: self];
+	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
 }
 
 - (IBAction) doCargoReport: (id) sender {
@@ -850,17 +867,33 @@
 }
 
 - (IBAction) doReservedCarReport: (id) sender {
-	ReservedCarReport *report = [[ReservedCarReport alloc] initWithDocument: self];
-	[report setObjects: [[self entireLayout] allFreightCarsReportingMarkOrder]];
-	[report generateReport];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	[renderer setTemplate: preferredSwitchlistStyle];
+	NSString *message = [renderer renderReport: @"reserved-car-report"
+									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
+																			forKey: @"layout"]];
+	
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
+	[[view window] setTitle: @"Reserved Car Report"];
+	 [[view window] makeKeyAndOrderFront: self];
+	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
 }
 
 // For each yard or staging yard, print out the list of cars in each yard and the train
 // that will be taking each car.
 - (IBAction) doYardReport: (id) sender {
-	YardReport *report = [[YardReport alloc] initWithDocument: self];
-	[report setObjects: [[self entireLayout] allFreightCarsInYard]];
-	[report generateReport];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	[renderer setTemplate: preferredSwitchlistStyle];
+	NSString *message = [renderer renderReport: @"yard-report"
+									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
+																			forKey: @"layout"]];
+	
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
+	[[view window] setTitle: @"Reserved Car Report"];
+	[[view window] makeKeyAndOrderFront: self];
+	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
 }
 
 - (void)windowDidResignKey:(NSNotification *)notification {
