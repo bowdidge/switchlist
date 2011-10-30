@@ -430,7 +430,7 @@
 				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
 				3E95843512986D7D00A10258 /* SimpleHttpServer */,
 				3EFEC5291408515E00F9CF15 /* Web Interface */,
-				3E01BE98140768CA008954B1 /* Default Templates */,
+				3E01BE98140768CA008954B1 /* Default Template and Web interface */,
 				3E108B9314049E7900B77CFE /* MGTemplateEngine */,
 				3EBAC6DB127B3853001F3FC7 /* UI */,
 				E1B74B1A0667B4A90069E3BA /* Models */,
@@ -481,7 +481,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3E01BE98140768CA008954B1 /* Default Templates */ = {
+		3E01BE98140768CA008954B1 /* Default Template and Web interface */ = {
 			isa = PBXGroup;
 			children = (
 				3EE19373145C924000CB614D /* car-report.html */,
@@ -496,7 +496,7 @@
 				3E01BEA4140768ED008954B1 /* switchlist-layout.html */,
 				3EE1943B145CCD6500CB614D /* yard-report.html */,
 			);
-			name = "Default Templates";
+			name = "Default Template and Web interface";
 			sourceTree = "<group>";
 		};
 		3E108B9314049E7900B77CFE /* MGTemplateEngine */ = {
