@@ -2,44 +2,27 @@
   color: DarkBlue;
   font-family: "Rock Salt";
 }
-.report-title {
-  font-family: Helvetica;
-  font-size: 20px;
-  text-align:  center;
-  font-variant: small-caps;
-}
 
+/* Common formatting for all reports.  Use the same typography as the
+ * Handwritten switchlists - sans-serif fonts, handwritten tables, etc.
+ */
+
+/* Layout name, always visible at top of report. */
 .report-layout-title {
-  font-family: Helvetica;
+  font-family: Oswald;
   font-size: 14pt;
   text-align:  center;
   font-variant: small-caps;
 }
 
-table.report {
-  align: center;
-  border: 1;
-  border-collapse: collapse; 
-  border: 2px solid #999;
-}
-
-.report td { 
-  border: 2px solid #999;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-family: "Rock Salt";
-  color: DarkBlue;
-  font-size: 10px;
-}
-
-.report th {
-  border: 2px solid #999;
-  font-family: Helvetica;
-  font-size: 12px;
+/* Report name */
+.report-title {
+  font-family: Oswald;
+  font-size: 20px;
+  text-align:  center;
   font-variant: small-caps;
-  text-align: center;
-  background: #bbb;
 }
+
 /* Faint upper-left description of train on switchlists. */
 .train-name {
   color: ddd;
@@ -47,18 +30,26 @@ table.report {
   font-family: Oswald;
   font-size: 10px;
 }
-.switch-list-title {
-	font-family: Oswald;
-	font-size: 36px;
-	text-align:  center;
+
+/* Basic web UI controls. */
+h1 {
+  font-family: Oswald;
+  font-size: 20px;
+  text-align: center;
+  font-variant: small-caps;
+  border: 2px solid #999;
+  background: #bbb;
+
 }
 
-.switch-list-layout-title {
-	font-family: Oswald;
-	font-size: 14pt;
-	text-align:  center;
+ul {
+  font-family: Oswald;
+  font-size: 16px;
 }
 
+/* Formatting for text.  Instructions are the portions of text
+ * from the simulated form, filled-in is for handwritten portions.
+ */ 
 .switch-list-instructions {
   font-family: Oswald;
   text-align: center;
@@ -70,46 +61,53 @@ table.report {
   font-size: 10px;
 }
 
-.switch-list-header TH {
-  background-color:bbb;
-  border: 2px solid aaa;
-  color: black;
-  font-family: Oswald;
-}
-.switch-list TD {
-  color: DarkBlue;
-  font-family: "Rock Salt";
-  font-size: 10px;
-}
- 
-table.switch-list {
+/* Switchlist table settings. These only apply
+ * to the web interface, as the Handwritten switchlist
+ * style is done in Cocoa.
+ */
+
+/* Standard format for tables in all reports. */
+table {
+  align: center;
   border: 1;
   border-collapse: collapse; 
+  border: 2px solid #999;
 }
 
-.switch-list td { 
-  border: 2px solid aaa;
+td { 
+  border: 2px solid #999;
   padding-left: 10px;
   padding-right: 10px;
+  font-family: "Rock Salt";
+  color: DarkBlue;
+  font-size: 10px;
 }
 
-/* Industry page style to space out reporting marks and car type */
-.industry-title {
-	font-family: Oswald;
-	font-size: 14pt;
-	text-align:  center;
-	margin-bottom: 10px;
+th {
+  border: 2px solid #999;
+  font-family: Oswald;
+  font-size: 12px;
+  font-variant: small-caps;
+  text-align: center;
+  background: #bbb;
 }
+ 
+/* Industry report-specific page style.  Again, the default style
+ * always uses a handwritten font.  We avoid a table here because this seems
+ * like more of a clerk's cheat-sheet, and instead use lines to help group and
+ * distinguish items.
+ */
+
 .industry-station  {
 	width:  100%;
 	display: inline-block;
 	margin-bottom: 10px;
-        border-top: 2px solid aaa;
+        border-top: 2px solid #aaa;
 }
 
 .industry-station-name {
 	float: left;
-	width: 20%;
+	width: 30%;
 	color: DarkBlue;
   font-family: "Rock Salt";
   font-size: 10px;
@@ -117,27 +115,28 @@ table.switch-list {
 
 .industry-station-industries {
 	float: right;
-	width: 80%;
+	width: 70%;
 }
 
 .industry-station-industry {
 	width:  100%;
 	display:  inline-block;
-        border-bottom: 2px solid aaa;
+    border-bottom: 2px solid #aaa;
 	margin-top:  5px;
-	margin-bottom:  5px
+	margin-bottom:  5px;
+	margin-left: 5px;
 }
 
 .industry-industry-name {
 	float:  left;
-	width:  30%;
+	width:  50%;
 	color: DarkBlue;
   font-family: "Rock Salt";
   font-size: 10px;
 }
 
 .industry-industry-cars {
-	width:  70%;
+	width:  50%;
 	display:  inline-block;
 	margin-bottom: 10px;
   font-family: "Rock Salt";

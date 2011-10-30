@@ -2,13 +2,24 @@
 <HTML>
 <HEAD>
 <TITLE>SwitchList</TITLE>
+<!-- Sans-serif font for titles. -->
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<!-- Handwritten block letters font -->
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+
+<!-- Use iPad specific settings to increase font sizes. -->
+<link href='builtin-switchlist.css' rel='stylesheet' type='text/css'>
+<link href='builtin-switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
+<link href='builtin-switchlist-iphone.css' rel='stylesheet' type='text/css' media='only screen and (max-device-width: 480px)'/>
 </HEAD>
 <BODY>
-The following layouts are currently open in SwitchList:
+<div class="report-title">SwitchList Home</div>
+
+<h1>Layouts</h1>
 <ul>
 {% for layoutName in layoutNames %}
   <li> <A HREF="get?layout={{layoutName}}">{{layoutName}}</A>
-{% /for %}
+{% /for %}
 </ul>
 </BODY>
 </HTML>

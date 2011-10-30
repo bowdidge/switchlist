@@ -28,27 +28,42 @@ div.switchlist-car {
   text-align: center;
 }
 
-/* Industry page style to space out reporting marks and car type */
-.indStation td {
-  width: 30%;
-  font-weight: bold;
+/* No iPhone support for industry report. */
+
+/* Common formatting for all reports.  Use the same typography as the
+ * Handwritten switchlists - sans-serif fonts, handwritten tables, etc.
+ */
+
+/* Layout name, always visible at top of report. */
+.report-layout-title {
+  font-family: Oswald;
+  font-size: 40pt;
+  text-align:  center;
   font-variant: small-caps;
 }
-.indIndustry td {
-  width: 30%;
-  font-weight: bold;
-}
-.indMarks td {
-  width: 30%;
-}
-.indType td {
-  width: 10%;
-}
-.indStationStart td {
-  height: 40px;
-}
-.indIndustryStart td {
+
+/* Report name */
+.report-title {
+  font-family: Oswald;
+  font-size: 40px;
+  text-align:  center;
+  font-variant: small-caps;
 }
 
+/* Basic web UI controls. */
+h1 {
+  font-family: Oswald;
+  font-size: 40px;
+  text-align: center;
+  font-variant: small-caps;
+  border: 2px solid #999;
+  background: #bbb;
+
+}
+
+ul {
+  font-family: Oswald;
+  font-size: 40px;
+}
 
 

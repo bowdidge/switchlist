@@ -1,24 +1,42 @@
+/* iPad specific formatting.  Mostly the same; differences are in font
+ * size and declaring tables to be width=100%.
+ */
+ 
+/* Layout name, always visible at top of switchlist. */
 .train-name {
   color: ddd;
   display:float; 
   font-family: Oswald;
   font-size: 10px;
 }
-.switch-list-title {
-	font-family: Oswald;
-	font-size: 36px;
-	text-align:  center;
+
+/* Common formatting for all reports.  Use the same typography as the
+ * Handwritten switchlists - sans-serif fonts, handwritten tables, etc.
+ */
+
+.report-layout-title {
+  font-family: Oswald;
+  font-size: 24pt;
+  text-align:  center;
+  font-variant: small-caps;
 }
 
-.switch-list-layout-title {
-	font-family: Oswald;
-	font-size: 14pt;
-	text-align:  center;
+/* Report name */
+.report-title {
+  font-family: Oswald;
+  font-size: 36px;
+  text-align:  center;
+  font-variant: small-caps;
 }
 
+
+/* Formatting for text.  Instructions are the portions of text
+ * from the simulated form, filled-in is for handwritten portions.
+ */ 
 .switch-list-instructions {
   font-family: Oswald;
   text-align: center;
+  font-size: 14px;
 }
 
 .switch-list-instructions-filled-in {
@@ -27,50 +45,90 @@
   font-size: 14px;
 }
 
-.switch-list-header TH {
-  background-color:bbb;
-  border: 2px solid aaa;
-  color: black;
-  font-family: Oswald;
+/* Switchlist table settings. These only apply
+ * to the web interface, as the Handwritten switchlist
+ * style is done in Cocoa.
+ */
+
+/* Standard format for tables in all reports. */
+table {
+  align: center;
+  border: 1;
+  border-collapse: collapse; 
+  border: 2px solid #999;
+  /* iPad-specific! */
+  width: 100%;
+  
 }
-.switch-list TD {
-  color: DarkBlue;
+
+td { 
+  border: 2px solid #999;
+  padding-left: 10px;
+  padding-right: 10px;
   font-family: "Rock Salt";
+  color: DarkBlue;
   font-size: 14px;
 }
- 
-table.switch-list {
-  border-collapse: collapse; 
-  padding-top: 0px;
-  width: 100%;
+
+th {
+  border: 2px solid #999;
+  font-family: Oswald;
+  font-size: 14px;
+  font-variant: small-caps;
+  text-align: center;
+  background: #bbb;
 }
 
-.switch-list td { 
-  border: 2px solid aaa;
-  padding-left:10px;
-  padding-right:10px
+/* Industry report-specific page style.  Again, the default style
+ * always uses a handwritten font.  We avoid a table here because this seems
+ * like more of a clerk's cheat-sheet, and instead use lines to help group and
+ * distinguish items.
+ */
+
+.industry-station  {
+	width:  100%;
+	display: inline-block;
+	margin-bottom: 10px;
+        border-top: 2px solid #aaa;
 }
 
-/* Industry page style to space out reporting marks and car type */
-.indStation td {
+.industry-station-name {
+	float: left;
 	width: 30%;
-	font-weight: bold;
-	font-variant: small-caps;
+	color: DarkBlue;
+  font-family: "Rock Salt";
+  font-size: 20px;
 }
-.indIndustry td {
-	width: 30%;
-	font-weight: bold;
+
+.industry-station-industries {
+	float: right;
+	width: 70%;
 }
-.indMarks td {
-	width: 30%;
+
+.industry-station-industry {
+	width:  100%;
+	display:  inline-block;
+    border-bottom: 2px solid #aaa;
+	margin-top:  5px;
+	margin-bottom:  5px;
+	margin-left: 5px;
 }
-.indType td {
-	width: 10%;
+
+.industry-industry-name {
+	float:  left;
+	width:  50%;
+	color: DarkBlue;
+  font-family: "Rock Salt";
+  font-size: 20px;
 }
-.indStationStart td {
-	height: 40px;
-}
-.indIndustryStart td {
+
+.industry-industry-cars {
+	width:  50%;
+	display:  inline-block;
+	margin-bottom: 10px;
+  font-family: "Rock Salt";
+  color: DarkBlue;
+  font-size: 20px;
 }
 
 
