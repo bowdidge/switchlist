@@ -46,6 +46,9 @@
 // Returns whether this is a valid industry for receiving cargo.  Yards and Workbench don't count.
 - (BOOL) canReceiveCargo;
 - (BOOL) isYard;
+// Is industry, not yard, not in staging or offline.
+- (BOOL) isRegularIndustry;
+
 
 // Returns sidingLength of current object, or 0 if not set or if current object is
 // not an industry with a defined siding length.

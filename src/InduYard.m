@@ -74,6 +74,13 @@
 	return false;
 }
 
+// Is industry, not yard, not in staging or offline.
+- (BOOL) isRegularIndustry {
+	return ([self isYard] == NO &&
+			[self isOffline] == NO &&
+			[self isStaging] == NO);
+}
+
 // If sidingLength isn't defined, say it's zero.
 - (NSNumber*) sidingLength {
 	return nil;
