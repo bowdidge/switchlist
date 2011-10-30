@@ -1,14 +1,13 @@
 <HTML>
 <HEAD>
 <TITLE>Current Car Locations</TITLE>
-<LINK REL=StyleSheet HREF="switchlist.css" TYPE="text/css" MEDIA=screen>
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+<LINK REL=StyleSheet HREF="builtin-switchlist.css" TYPE="text/css">
 </HEAD>
 <BODY>
-<div class="industry-title">
-{{ layout.layoutName }}
-<br>
-CAR LOCATIONS WORKSHEET
-</div>
+<div class="report">
+<div class="report-layout-title">{{ layout.layoutName }}</div>
+<div class="report-title">CAR LOCATIONS WORKSHEET</div>
 <div class="industry-list">
 {% for station in layout.allStationsSortedOrder %}
   <div class="industry-station">
@@ -33,6 +32,7 @@ CAR LOCATIONS WORKSHEET
      </div>
   </div>
 {% /for %}
+</div>
 </div>
 </body>
 </html>

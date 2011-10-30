@@ -1,3 +1,46 @@
+.handwritten {
+  color: DarkBlue;
+  font-family: "Rock Salt";
+}
+.report-title {
+  font-family: Helvetica;
+  font-size: 20px;
+  text-align:  center;
+  font-variant: small-caps;
+}
+
+.report-layout-title {
+  font-family: Helvetica;
+  font-size: 14pt;
+  text-align:  center;
+  font-variant: small-caps;
+}
+
+table.report {
+  align: center;
+  border: 1;
+  border-collapse: collapse; 
+  border: 2px solid #999;
+}
+
+.report td { 
+  border: 2px solid #999;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: "Rock Salt";
+  color: DarkBlue;
+  font-size: 10px;
+}
+
+.report th {
+  border: 2px solid #999;
+  font-family: Helvetica;
+  font-size: 12px;
+  font-variant: small-caps;
+  text-align: center;
+  background: #bbb;
+}
+/* Faint upper-left description of train on switchlists. */
 .train-name {
   color: ddd;
   display:float; 
@@ -61,7 +104,7 @@ table.switch-list {
 	width:  100%;
 	display: inline-block;
 	margin-bottom: 10px;
-	background-color:  #f8f8f8;
+        border-top: 2px solid aaa;
 }
 
 .industry-station-name {
@@ -69,7 +112,7 @@ table.switch-list {
 	width: 20%;
 	color: DarkBlue;
   font-family: "Rock Salt";
-  font-size: 16px;
+  font-size: 10px;
 }
 
 .industry-station-industries {
@@ -80,7 +123,7 @@ table.switch-list {
 .industry-station-industry {
 	width:  100%;
 	display:  inline-block;
-	background-color: #eee;
+        border-bottom: 2px solid aaa;
 	margin-top:  5px;
 	margin-bottom:  5px
 }
@@ -90,7 +133,7 @@ table.switch-list {
 	width:  30%;
 	color: DarkBlue;
   font-family: "Rock Salt";
-  font-size: 14px;
+  font-size: 10px;
 }
 
 .industry-industry-cars {
@@ -99,7 +142,7 @@ table.switch-list {
 	margin-bottom: 10px;
   font-family: "Rock Salt";
   color: DarkBlue;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 
