@@ -51,7 +51,6 @@
 
 // For testing - allow injection of an NSBundle and NSFileManager.
 - (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager;
-
 // Main routine for naming the HTML to display.
 //   html: raw HTML to display
 //   templateDirectory: path to html file, used to find related files (css, etc).
