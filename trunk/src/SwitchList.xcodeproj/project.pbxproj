@@ -132,6 +132,7 @@
 		3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */; };
 		3EC3B1831277E4F900C00AD3 /* KaufmanSwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */; };
 		3EC83F6D127CFC1A00B9DF33 /* SwitchList icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */; };
+		3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
 		3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3ED58A6F13A727F500F6E26E /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
 		3ED58A7013A727FF00F6E26E /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
@@ -324,6 +325,7 @@
 		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntireLayoutTest.h; sourceTree = "<group>"; };
 		3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntireLayoutTest.m; sourceTree = "<group>"; };
 		3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "SwitchList icon.icns"; path = "resources/SwitchList icon.icns"; sourceTree = "<group>"; };
+		3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-carlist.html"; path = "templates/switchlist-carlist.html"; sourceTree = "<group>"; };
 		3ED482320D715B3600C36741 /* SwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListView.h; sourceTree = "<group>"; };
 		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
 		3ED697D8130139C100DA9074 /* SouthernPacificSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouthernPacificSwitchListView.h; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 				3EE19378145C925200CB614D /* reserved-car-report.html */,
 				3EFEC44114083D6400F9CF15 /* switchlist-iphone.html */,
 				3E01BF0914076E81008954B1 /* switchlist.html */,
+				3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */,
 				3E01BEA2140768ED008954B1 /* switchlist-home.html */,
 				3E01BEA4140768ED008954B1 /* switchlist-layout.html */,
 				3EE1943B145CCD6500CB614D /* yard-report.html */,
@@ -823,6 +826,7 @@
 				3EE19379145C925200CB614D /* industry-report.html in Resources */,
 				3EE1937A145C925200CB614D /* reserved-car-report.html in Resources */,
 				3EE1943C145CCD6500CB614D /* yard-report.html in Resources */,
+				3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

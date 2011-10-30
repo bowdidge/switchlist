@@ -1,24 +1,31 @@
 <!-- Full template for the main SwitchList page for a particular layout. -->
 <HTML>
 <HEAD>
-<style type="text/css">
-h1 {font-size:18pt;}
-</style>
+<!-- Sans-serif font for titles. -->
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<!-- Handwritten block letters font -->
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+
+<!-- Use iPad specific settings to increase font sizes. -->
+<link href='builtin-switchlist.css' rel='stylesheet' type='text/css'>
+<link href='builtin-switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
+<link href='builtin-switchlist-iphone.css' rel='stylesheet' type='text/css' media='only screen and (max-device-width: 480px)'/>
 <TITLE>{{layout.layoutName}} Layout</TITLE>
 </HEAD>
 <BODY>
-<H1>{{layout.layoutName}} Layout</h1>
-<h3>Lists of Cars</h3>
-<p>
-Reposition
-<A HREF="?layout={{layout.layoutName}}&carList=1">List of Freight Cars, in reporting mark order</a>
-<p>
-<A HREF="?layout={{layout.layoutName}}&industryList=1">List of Freight Cars, in industry order</a>
-<H3>Trains</h3>
+<div class="report-layout-title">{{ layout.layoutName }}</div>
+<div class="report-title">Main Page</div>
+<H1>Trains and Switchlists</h1>
 <ul>
 {% for train in layout.allTrains %}
 <li><A HREF="?layout={{layout.layoutName}}&train={{train.name}}">{{train.name}}</A>
 {% /for %}
+</ul>
+
+<h1>Reports</h1>
+<ul>
+<li><A HREF="?layout={{layout.layoutName}}&carList=1">Reposition Freight Cars</a>
+<li><A HREF="?layout={{layout.layoutName}}&industryList=1">Industry Car Report</a>
 </ul>
 </body>
 </html>

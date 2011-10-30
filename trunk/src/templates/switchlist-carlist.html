@@ -4,6 +4,14 @@
 <HTML>
 <HEAD>
 <TITLE>Location of Cars on Layout</TITLE>
+<!-- Sans-serif font for titles. -->
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<!-- Handwritten block letters font -->
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+
+<!-- Use iPad specific settings to increase font sizes. -->
+<link href='builtin-switchlist.css' rel='stylesheet' type='text/css'>
+<link href='builtin-switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
 <script type="text/javascript">
 function carLocationChanged(object, carName) {
   var chosenOption = object.options[object.selectedIndex];
@@ -44,20 +52,33 @@ var layoutName='{{ layout.layoutName }}';
 var carDictionary={ {{carLocations}} };
 </script>
 <BODY onload="setCarLocations(carDictionary);">
-Cars currently active in layout {{ layout.layoutName }}:
-<TABLE id="foo">
+<div class="report-layout-title">{{layout.layoutName}}</div>
+<div class="report-title">CAR LOCATION REPORT</div>
+<TABLE class="report">
   <th>Reporting Marks</th>
   <th>Car Type</th>
   <th>Location</th>
-{% for car in freightCars %}
+  {% for car in freightCars %}
   <tr>
     <td>{{ car.reportingMarks }}</td>
-	<td>{{ car.carType }}</td>
-	<TD><select id="{{car.reportingMarks}}" onchange="javascript:carLocationChanged(this, '{{car.reportingMarks}}');">
-    {% for industry in layout.allIndustries %}  <option value="{{ industry.name }}" id='{{car.reportingMarks}}-{{industry.name}}'>{{ industry.name }} </option>    {% /for %}
-	{% for yard in layout.allYards %} <option value="{{ yard.name }}" id='{{car.reportingMarks}}-{{yard.name}}'>{{ yard.name }}</option> {% /for %}
-	  <option value="Workbench" id='{{car.reportingMarks}}-Workbench'>Workbench</option>
-    </select></td>
+    <td>{{ car.carType }}</td>
+    <TD>
+      <select style="font-size: 100%;" id="{{car.reportingMarks}}" onchange="javascript:carLocationChanged(this, '{{car.reportingMarks}}');">
+      {% for industry in layout.allIndustries %}
+        <option value="{{ industry.name }}" id='{{car.reportingMarks}}-{{industry.name}}'>
+          {{ industry.name }}
+        </option> 
+      {% /for %}
+      {% for yard in layout.allYards %}
+        <option value="{{ yard.name }}" id='{{car.reportingMarks}}-{{yard.name}}'>
+          {{ yard.name }}
+        </option>
+      {% /for %}
+       <option value="Workbench" id='{{car.reportingMarks}}-Workbench'>
+         Workbench
+       </option>
+       </select>
+    </td>
   </tr>
   {% /for %}
 </table>
