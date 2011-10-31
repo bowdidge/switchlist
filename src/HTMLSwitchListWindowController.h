@@ -44,13 +44,14 @@
 	NSBundle *mainBundle_;
 	// Shared file manager - for mocking.
 	NSFileManager *fileManager_;
+	NSString *title_;
 }
 
 // Default constructor.
-- (id) init;
+- (id) initWithTitle: (NSString*) windowTitle;
 
 // For testing - allow injection of an NSBundle and NSFileManager.
-- (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager;
+- (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager title: (NSString*) title;
 // Main routine for naming the HTML to display.
 //   html: raw HTML to display
 //   templateDirectory: path to html file, used to find related files (css, etc).

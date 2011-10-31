@@ -67,7 +67,8 @@
 	MockBundle *myBundle = [[[MockBundle alloc] init] autorelease];
 	myFileManager_ = [[MyFileManager alloc] init];
 	windowController_ = [[HTMLSwitchListWindowController alloc] initWithBundle: (NSBundle*) myBundle
-																   fileManager: (NSFileManager*) myFileManager_];
+																   fileManager: (NSFileManager*) myFileManager_
+																		 title:	@"Don't Care"];
 }
 
 - (void) tearDown {
