@@ -35,14 +35,16 @@
 - (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager title: (NSString*) title {
 	// TODO(bowdidge): Why doesn't initWithWindowNibName work?
 	[super init];
-    if ([NSBundle loadNibNamed:@"HTMLSwitchListView.nib" owner: mainBundle] != YES) {
-		NSLog(@"Problems loading HTMLSwitchListView !\n");
-	}
-	[htmlView_ setResourceLoadDelegate: self];
 	currentTemplateDirectory_ = nil;
 	mainBundle_ = [mainBundle retain];
 	fileManager_ = [fileManager retain];
 	title_ = [title retain];
+	// TODO(bowdidge): Moved because of problems with the unit tests.  Move this back to the 
+	// top and figure out why it fails in unit tests.
+    if ([NSBundle loadNibNamed:@"HTMLSwitchListView.nib" owner: self] != YES) {
+		NSLog(@"Problems loading HTMLSwitchListView !\n");
+	}
+	[htmlView_ setResourceLoadDelegate: self];
 	return self;
 }
 
