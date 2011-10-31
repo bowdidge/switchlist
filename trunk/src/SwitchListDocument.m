@@ -633,11 +633,13 @@
 									   
 	if (reportClass == nil) {
 		// There's no native way of drawing this, so fall back on the HTML version.
-		HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+		NSString *title = [NSString stringWithFormat: @"Switch list for %@", [train name]];
+		HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] init];
+												
 		[renderer setTemplate: preferredSwitchlistStyle];
 		NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO];
 		
-		HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
+		HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: title];
 		[[view window] makeKeyAndOrderFront: self];
 		[view drawHTML: message templateDirectory: [renderer templateDirectory]];
 		return;
@@ -839,8 +841,7 @@
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
 	
-	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
-	[[view window] setTitle: @"Car Report"];
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Car Report"];
 	[[view window] makeKeyAndOrderFront: self];
 	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
 }
@@ -853,9 +854,8 @@
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
 	
-	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
-	[[view window] setTitle: @"Industry Report"];
-	 [[view window] makeKeyAndOrderFront: self];
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Industry Report"];
+    [[view window] makeKeyAndOrderFront: self];
 	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
 }
 
@@ -874,9 +874,8 @@
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
 	
-	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
-	[[view window] setTitle: @"Reserved Car Report"];
-	 [[view window] makeKeyAndOrderFront: self];
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Reserved Car Report"];
+    [[view window] makeKeyAndOrderFront: self];
 	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
 }
 
@@ -890,8 +889,7 @@
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
 	
-	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] init];
-	[[view window] setTitle: @"Reserved Car Report"];
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Reserved Car Report"];
 	[[view window] makeKeyAndOrderFront: self];
 	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
 }

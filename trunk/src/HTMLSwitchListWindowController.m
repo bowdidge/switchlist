@@ -32,28 +32,29 @@
 
 @implementation HTMLSwitchListWindowController
 // For testing - allow injection of an NSBundle and NSFileManager.
-- (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager {
+- (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager title: (NSString*) title {
 	// TODO(bowdidge): Why doesn't initWithWindowNibName work?
 	[super init];
-    if ([NSBundle loadNibNamed:@"HTMLSwitchListView.nib" owner: self] != YES) {
+    if ([NSBundle loadNibNamed:@"HTMLSwitchListView.nib" owner: mainBundle] != YES) {
 		NSLog(@"Problems loading HTMLSwitchListView !\n");
 	}
 	[htmlView_ setResourceLoadDelegate: self];
 	currentTemplateDirectory_ = nil;
 	mainBundle_ = [mainBundle retain];
 	fileManager_ = [fileManager retain];
-	
+	title_ = [title retain];
 	return self;
 }
 
-- (id) init {
-	return [self initWithBundle: [NSBundle mainBundle] fileManager: [NSFileManager defaultManager]];
+- (id) initWithTitle: (NSString*) title {
+	return [self initWithBundle: [NSBundle mainBundle] fileManager: [NSFileManager defaultManager] title: title];
 }
 
 - (void) dealloc {
 	[currentTemplateDirectory_ release];
 	[mainBundle_ release];
 	[fileManager_ release];
+	[title_ release];
 	[super dealloc];
 }
 
@@ -75,6 +76,7 @@
 - (void) awakeFromNib {
 	// Put the controller in the nextResponder chain so printing is supported.
 	[self setNextResponder: [htmlView_ nextResponder]];
+	[window_ setTitle: title_];
 	[htmlView_ setNextResponder: self];
 	[self drawHTML: @"" templateDirectory: @""];
 }
