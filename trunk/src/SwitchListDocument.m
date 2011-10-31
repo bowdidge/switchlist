@@ -634,7 +634,7 @@
 	if (reportClass == nil) {
 		// There's no native way of drawing this, so fall back on the HTML version.
 		NSString *title = [NSString stringWithFormat: @"Switch list for %@", [train name]];
-		HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] init];
+		HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
 												
 		[renderer setTemplate: preferredSwitchlistStyle];
 		NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO];
