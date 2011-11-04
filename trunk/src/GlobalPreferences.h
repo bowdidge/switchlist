@@ -46,10 +46,6 @@ extern NSString *GLOBAL_PREFS_DISPLAY_WEB_SERVER;
 // Indicates whether the web server should be running.  Boolean.
 extern NSString *GLOBAL_PREFS_ENABLE_WEB_SERVER;
 
-// Font name for handwriting fonts.
-extern NSString* GLOBAL_PREFS_HANDWRITING_FONT_NAME;
-extern NSString* GLOBAL_PREFS_TYPED_FONT_NAME;
-
 // Constants handy for defaults.
 // Name for the default template as displayed in the switchlist
 // preference pop up.

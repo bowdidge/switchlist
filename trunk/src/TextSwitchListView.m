@@ -65,22 +65,6 @@
 
 // Returns the font to use for fixed-width reports.
 - (NSFont*) defaultTypedFont {
-	NSString *userFontName = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_TYPED_FONT_NAME];
-	
-	// Make sure the font exists by pretending to request it.
-	if (userFontName && [NSFont fontWithName: userFontName size: 9] == nil) {
-		// Won't work.
-		userFontName = nil;
-	}
-	
-	if (!userFontName) {
-		userFontName = @"Courier";
-	}
-	
-	if (userFontName) {
-		return [NSFont fontWithName: userFontName size: [self fontSizeToFitFont: userFontName]];
-	}
-	
 	return [NSFont userFixedPitchFontOfSize: 9];
 }
 

@@ -444,21 +444,14 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 }
 
 - (NSString*) handwritingFontName {
-	NSString *name = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_HANDWRITING_FONT_NAME];
-	// Make sure the font exists by pretending to request it..
-	if (name && [NSFont fontWithName: name size: 12.0]) {
-		return name;
-    }
-	
-	// Fallback to Dakota
+	// Dakota's really nice, but only available if you installed a special version of iLife.
 	NSString *defaultFont =  @"Handwriting - Dakota";
 	if ([NSFont fontWithName: defaultFont size: 12.0]) {
 		return defaultFont;
 	}
 	
 	// Still not there?  Choose chalkboard.
-	// TODO(bowdidge): Which fonts are guaranteed?  I'd put in the Chalkboard special case at some point,
-	// but don't know if I had proof that Dakota was not always available.
+	// Chalkboard is a standard font.
 	return @"Chalkboard";
 }
 
