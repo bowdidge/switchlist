@@ -12,6 +12,12 @@
 <!-- Use iPad specific settings to increase font sizes. -->
 <link href='builtin-switchlist.css' rel='stylesheet' type='text/css'>
 <link href='builtin-switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
+<script type='text/javascript'>
+var layoutName='{{ layout.layoutName }}';
+var carDictionary={ {{carLocations}} };
+var industries = [{% for industry in allIndustries%} '{{industry.name}}', {% /for %}];
+var yards = [{% for yard in allYards %} '{{yard}}', {% /for %}];
+</script>
 <script type="text/javascript">
 function carLocationChanged(object, carName) {
   var chosenOption = object.options[object.selectedIndex];
@@ -45,38 +51,64 @@ function setCarLocations(carDictionary) {
     }
   }
 }
+
+// Adds an option tag to the select button, adding a new industry
+// or yard to the list of places the car may go.
+// The option's text should be the provided text -- the industry.  The
+// option's id should be the button's id (car) concatenated
+// with the industry, and the option's value should be the
+// industry.
+function makeOption(button, text) {
+  var newOpt = document.createElement('option');
+  newOpt.innerText = text;
+  newOpt.id = button.id + '-' + text;
+  newOpt.value = text;
+  button.options[button.options.length] = newOpt;
+}
+
+// Use the list of industries and yards to fill in the choices of where
+// cars may be placed.
+function initializePulldownButtons() {
+  var buttons = document.getElementsByClassName('industryButton');
+  var buttonCount = buttons.length;
+  for (var i = 0; i < buttonCount; i++) {
+	var selectButton = buttons[i];
+	var industryCount = industries.length;
+    for (var j = 0; j < industryCount; j++) {
+	  makeOption(selectButton, industries[j]);
+    }
+
+	var yardCount = yards.length;
+  	for (var j = 0; j < yardCount; j++) {
+	  makeOption(selectButton, yards[j]);
+	}
+	makeOption(selectButton, 'Workbench');
+  }
+}
+
+// Do any page setup here.
+function loadPage() {
+  initializePulldownButtons();
+  setCarLocations(carDictionary);
+}
 </script>
 </HEAD>
-<script type='text/javascript'>
-var layoutName='{{ layout.layoutName }}';
-var carDictionary={ {{carLocations}} };
-</script>
-<BODY onload="setCarLocations(carDictionary);">
+<BODY onload="loadPage();">
 <div class="report-layout-title">{{layout.layoutName}}</div>
 <div class="report-title">CAR LOCATION REPORT</div>
 <TABLE class="report">
+  <tr>
   <th>Reporting Marks</th>
   <th>Car Type</th>
   <th>Location</th>
+  </tr>
   {% for car in freightCars %}
   <tr>
     <td>{{ car.reportingMarks }}</td>
     <td>{{ car.carType }}</td>
     <TD>
-      <select style="font-size: 100%;" id="{{car.reportingMarks}}" onchange="javascript:carLocationChanged(this, '{{car.reportingMarks}}');">
-      {% for industry in layout.allIndustries %}
-        <option value="{{ industry.name }}" id='{{car.reportingMarks}}-{{industry.name}}'>
-          {{ industry.name }}
-        </option> 
-      {% /for %}
-      {% for yard in layout.allYards %}
-        <option value="{{ yard.name }}" id='{{car.reportingMarks}}-{{yard.name}}'>
-          {{ yard.name }}
-        </option>
-      {% /for %}
-       <option value="Workbench" id='{{car.reportingMarks}}-Workbench'>
-         Workbench
-       </option>
+      <select class="industryButton" 
+	          style="font-size: 100%;" id="{{car.reportingMarks}}" onchange="javascript:carLocationChanged(this, '{{car.reportingMarks}}');">
        </select>
     </td>
   </tr>
