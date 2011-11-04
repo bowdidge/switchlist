@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>Moving Cars Only If Space At Industry</title>
+<link href="../../shrd/switchlist.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+<div id="headerbox"><div id="iconbox">
+<img id="iconimg" src="../../shrd/switchListNewIcon.jpg" alt="SwitchList Icon" height="32" width="32" />
+</div>
+<h1>Moving Cars Only If Space At Industry</h1>
+</div>
+<div id="leftspace">
+<p>
+On smaller model railroad layouts, model railroad operations is usually busy, and sidings are often close to overflowing.
+If too many freight cars get directed at an overflowing siding, operators will get frustrated trying to figure out where
+to place cars, and the realism of operations may suffer.
+<p>
+SwitchList has an optional feature where you can specify the length of each siding, then request that cars only be sent to a
+siding if space exists for the incoming car.  If the siding would overflow, SwitchList holds the car at the previous yard or siding
+until the nextoperating session.    SwitchList's algorithm only ensures that the siding will not be overflowing at the
+end of the operating session, and so does not require trains to switch towns in a specific order.
+<p>
+You do not need to specify siding lengths at first, nor are you ever required to do.
+SwitchList's algorithm only limits cars going to sidings with lengths specified; sidings
+with a length of zero will accept all cars.  You can slowly set siding lengths, and adjust your cargos to make sure
+no siding is requesting more cars than it can hold.  You also can leave the option off completely and not worry about
+recording the siding lengths and car lengths required for this option.
+<h2>Teaching SwitchList About Siding Lengths</h2>
+<p>
+Having SwitchList avoid overflowing sidings requires three steps:
+<ul>
+<li>Turn on the siding length option in the <A HREF="pg23.html">Layout Tab</a>.
+<LI>Tell SwitchList about the lengths of each freight car.  Rough measurements are probably fine - '40' for a forty foot car.
+You shouldn't need to include coupler lengths.
+<LI>Measure each siding, and tell SwitchList its length.  You can do this slowly over time, measuring each siding with a scale
+ruler or estimating based on the number of cars that can fit on the siding.  A siding that hold three 40 foot boxcars can
+be assumed to be 120 feet long.
+<li>Simulate operating sessions for your layout, and check the <A HREF="pg31.html">Problems Window</a> for
+warnings about cars that can't be moved.  Check your list of cargos for the full siding; often, a three car siding
+might actually be scheduled for 35 cars per week or 5 cars per day.  Adjust the arriving and departing cargos for
+these overflowing sidings.
+</ul>
+<p>
+Once you've completed this setup, normal operations should never have overflowing sidings.
+There are cases where the order of trains might matter; SwitchList only keeps track of the number of cars that would be at the
+siding at the end of the operating session.  If one train is picking up cars and one dropping off, a siding may temporarily
+overflow if the dropping-off train arrives first.  In these cases, do what the real railroad does, and "off-spot" the car at a
+nearby location temporarily.
+<p>
+See Also:
+<p>
+<A HREF="pg23.html">User Interface: Layout Tab</a> to see where the "Move Cars Only If Space At Industry" checkbox is located.
+<p>
+<A HREF="pg24.html">User Interface: Industry Tab</a> where the siding length field is located.
+<p>
+<A HREF="pg21.html">User Interface: Freight Car Tab</a> where the car length field is located.
+</div>
+</body>
+</html>
