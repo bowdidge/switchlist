@@ -12,44 +12,14 @@
 <div id="leftspace">
 <p>
 Some folks might not
-like the default font choices for switchlists.  If you have access to
-a font that looks like a dirty teletype printer's output, you might
-prefer that to the standard Courier font used in the typewritten
-switchlists.
+like the default font choices for switchlists, either because of size of typeface.
+The easiest way to change font sizes (or switchlist styles) is to design your own
+switchlist format.  The <A HREF="http://code.google.com/p/switchlist">SwitchList development site</a>
+has details on how to create your own switchlists and other reports, and customize them
+to match your needs.
 <p>
-You can change the font choices
-from the Mac's command line.  Launch the terminal program, then type a
-command like this all on one line to change the default typewriter
-font.  Substitute "Courier" with the name of your preferred font in
-quotes.  The font needs to be installed on your Mac; to test, start up
-TextEdit, type some text, and try to change the font to your preferred
-font.  The double quotes around the name are needed if the font name
-has spaces in it.
-<pre>defaults write
-com.blogspot.vasonabranch.SwitchListApp SwitchListTypedFontName
-"Courier"</pre>
-Here's the same command for changing the handwritten font choice.
-<pre>
-defaults write com.blogspot.vasonabranch.SwitchListApp 
-SwitchListHandwritingFontName "Comic Sans"</pre>
-<p>
-If the font named isn't found, SwitchList will default to the standard
-fonts - Courier for typewritten switchlists, and "Handwriting -
-Dakota" for handwritten switchlists.
-<p>
-To see what fonts are available on your computer, run any text editor
-(such as TextEdit.app, found in the Applications folder), and try changing
-the font of text.  If the text editor sees the font, SwitchList ought to.
-<p>
-You can also install other fonts.  For that 1950's teletype feeling,
-try Vic Fieger's
-<A HREF="http://www.dafont.com/carbontype.font">CarbonType</a> font.
-To use this (or any other downloaded font),
-download the file, and uncompress the download to find the file
-with a ttf or other font extension.  Open to your home directory, open your
-Library folder and the Fonts folder inside it, and drop the font file in.
-You'll need to restart any running programs (such as SwitchList) before
-they can see the new font.
+The  <A HREF="http://www.vasonabranch.com/railroad/Thomas.html">Thomas the Tank Engine switchlist example</a>
+shows what can be done with a small bit of work.
 </div>
 </body>
 </html>
