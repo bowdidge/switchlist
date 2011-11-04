@@ -208,6 +208,8 @@
 								  allFreightCars, @"freightCars",
 								  layout, @"layout",
 								  carLocations, @"carLocations",
+								  [layout allIndustries], @"allIndustries",
+								  [layout allYards], @"allYards",
 								  nil];
 	// Note that switchlist-carlist is the interactive version.
 	return [self renderReport: @"switchlist-carlist" withDict: templateDict];
