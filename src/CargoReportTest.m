@@ -55,8 +55,7 @@
 	STAssertNotNil([entireLayout_ allValidCargos], @"");
 	[cargoReport setObjects: [entireLayout_ allValidCargos]];
 	STAssertNotNil([cargoReport contents], @"contents should not be empty");
-	STAssertTrue(([[cargoReport contents] rangeOfString: @"A-industry"].length != 0),
-				 @"Make sure A-industry appears in report");
+	STAssertContains(@"A-industry", [cargoReport contents], @"Make sure A-industry appears in report");
 }
 
 // Make sure we don't fall over with missing car types.
@@ -73,7 +72,7 @@
 	[cargoReport setObjects: [entireLayout_ allValidCargos]];
 	NSString *contents = [cargoReport contents];
 	STAssertNotNil(contents, @"Contents should not be empty.");
-	STAssertTrue([contents rangeOfString: @"7/  0"].length > 0, @"");
+	STAssertContains(@"7/  0", contents, @"");
 }
 
 
