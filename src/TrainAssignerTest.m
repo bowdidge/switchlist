@@ -855,8 +855,8 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	// Should fail because of missing source.
 	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc], @"Incorrectly assigns car with missing source for cargo.");
 	STAssertTrue(1 ==[[assigner errors] count], @"Expected one error from train assigner, found %d", [[assigner errors] count]);
-	STAssertTrue([[[assigner errors] objectAtIndex: 0] rangeOfString: @"source location for cargo"].location != NSNotFound,
-				 @"Wrong error for missing source", [[assigner errors] count]);
+	STAssertContains(@"source location for cargo", [[assigner errors] objectAtIndex: 0],
+					 @"Wrong error for missing source", [[assigner errors] count]);
 }
    
 - (void) testNoCrashWithMissingCargoDestination {
@@ -874,8 +874,8 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	// Should fail because of missing destination.
 	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc2], @"Incorrectly assigns car with missing destination for cargo.");
 	STAssertTrue(1 ==[[assigner errors] count], @"Expected one error from train assigner, found %d", [[assigner errors] count]);
-	STAssertTrue([[[assigner errors] objectAtIndex: 0] rangeOfString: @"destination location for cargo"].location != NSNotFound,
-				 @"Wrong error for missing source: found %@", [[assigner errors] objectAtIndex: 0]);
+	STAssertContains(@"destination location for cargo", [[assigner errors] objectAtIndex: 0],
+					 @"Wrong error for missing source: found %@", [[assigner errors] objectAtIndex: 0]);
 	
 }
 	
@@ -895,10 +895,10 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
 	
 	STAssertTrue(2 == [[assigner errors] count], @"Expected two errors from train assigner, found %d", [[assigner errors] count]);
-	STAssertTrue([[[assigner errors] objectAtIndex: 0] rangeOfString: @"does not have its town set"].location != NSNotFound,
-				 @"Wrong error for missing source", [[assigner errors] count]);
-	STAssertTrue([[[assigner errors] objectAtIndex: 1] rangeOfString: @"Cannot find route for car SP 1 from A to a yard"].location != NSNotFound,
-				 @"Wrong error for missing source", [[assigner errors] count]);
+	STAssertContains(@"does not have its town set", [[assigner errors] objectAtIndex: 0],
+					 @"Wrong error for missing source", [[assigner errors] count]);
+	STAssertContains(@"Cannot find route for car SP 1 from A to a yard", [[assigner errors] objectAtIndex: 1],
+					 @"Wrong error for missing source", [[assigner errors] count]);
 	
 }
 
@@ -922,10 +922,10 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	// Should fail because of missing destination.
 	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
 	STAssertTrue(2 == [[assigner errors] count], @"Expected two errors from train assigner, found %d", [[assigner errors] count]);
-	STAssertTrue([[[assigner errors] objectAtIndex: 0] rangeOfString: @"does not have its town set"].location != NSNotFound,
-				 @"Wrong error for missing source, found %@", [[assigner errors] objectAtIndex: 0]);
-	STAssertTrue([[[assigner errors] objectAtIndex: 1] rangeOfString: @"Cannot find route to get car SP 1 from A to 'No Value'"].location != NSNotFound,
-				 @"Wrong error for missing source, found %@", [[assigner errors] objectAtIndex: 0]);
+	STAssertContains(@"does not have its town set", [[assigner errors] objectAtIndex: 0],
+					 @"Wrong error for missing source, found %@", [[assigner errors] objectAtIndex: 0]);
+	STAssertContains(@"Cannot find route to get car SP 1 from A to 'No Value'", [[assigner errors] objectAtIndex: 1],
+					 @"Wrong error for missing source, found %@", [[assigner errors] objectAtIndex: 0]);
 	
 }
 
@@ -951,10 +951,10 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	
 	STAssertTrue(2 == [[assigner errors] count], @"Expected two errors from train assigner, found %d", [[assigner errors] count]);
 
-	STAssertTrue([[[assigner errors] objectAtIndex: 0] rangeOfString: @"does not have its town set"].location != NSNotFound,
-				 @"Wrong error for missing source: %@", [[assigner errors] objectAtIndex: 0]);
-	STAssertTrue([[[assigner errors] objectAtIndex: 1] rangeOfString: @"Cannot find route to get car SP 1 from 'No Value' to A"].location != NSNotFound,
-				 @"Wrong error for missing source: %@", [[assigner errors] objectAtIndex: 1]);
+	STAssertContains(@"does not have its town set", [[assigner errors] objectAtIndex: 0],
+					 @"Wrong error for missing source: %@", [[assigner errors] objectAtIndex: 0]);
+	STAssertContains(@"Cannot find route to get car SP 1 from 'No Value' to A", [[assigner errors] objectAtIndex: 1],
+					 @"Wrong error for missing source: %@", [[assigner errors] objectAtIndex: 1]);
 	
 }
 
