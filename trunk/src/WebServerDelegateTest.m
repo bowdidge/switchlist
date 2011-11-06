@@ -160,9 +160,9 @@
 	
 	STAssertEquals(404, server_->lastCode,
 				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
-	STAssertTrue([server_->lastMessage rangeOfString: @"Unknown path: '/foo.h'"].length != 0,
-				 [NSString stringWithFormat: @"Expected string 'Unknown path: /foo.h', found %@",
-				  server_->lastMessage]);
+	STAssertContains(@"Unknown path: '/foo.h'", server_->lastMessage,
+					 [NSString stringWithFormat: @"Expected string 'Unknown path: /foo.h', found %@",
+					  server_->lastMessage]);
 }
 
 - (void) testInvalidFileLayoutsOpen {
@@ -173,17 +173,17 @@
 	
 	STAssertEquals(404, server_->lastCode,
 				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
-	STAssertTrue([server_->lastMessage rangeOfString: @"Unknown path: '/foo.h'"].length != 0,
-				 [NSString stringWithFormat: @"Expected string 'Unknown path: /foo.h', found %@",
-				  server_->lastMessage]);
+	STAssertContains(@"Unknown path: '/foo.h'", server_->lastMessage,
+					 [NSString stringWithFormat: @"Expected string 'Unknown path: /foo.h', found %@",
+					  server_->lastMessage]);
 }
 
 - (void) testRoot {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	STAssertTrue([server_->lastMessage rangeOfString: @"No layouts"].length != 0,
-				 [NSString stringWithFormat: @"Expected %@ in %@", @"No layouts", server_->lastMessage]);
+	STAssertContains(@"No layouts", server_->lastMessage,
+					 [NSString stringWithFormat: @"Expected %@ in %@", @"No layouts", server_->lastMessage]);
 }
 
 - (void) testNoSuchLayout {
@@ -204,8 +204,8 @@
 	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
 	STAssertNotNil(server_->lastMessage, @"No message received - switchlist-home.html not loaded.");
 	// Make sure we have the links to at least one layout.
-	STAssertTrue([server_->lastMessage rangeOfString: @"get?layout=untitled"].length != 0,
-				 [NSString stringWithFormat: @"Expected %@ in %@", @"get?layout=untitled", server_->lastMessage]);
+	STAssertContains(@"get?layout=untitled", server_->lastMessage,
+					 [NSString stringWithFormat: @"Expected %@ in %@", @"get?layout=untitled", server_->lastMessage]);
 	
 }
 
@@ -217,7 +217,7 @@
 	[self makeThreeStationTrain];
 	[webServerDelegate_ processRequestForCarListForLayout: doc];
 	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
-	STAssertTrue([server_->lastMessage rangeOfString: @"foo"].length != 0,
-				 [NSString stringWithFormat: @"Unexpected output %@", server_->lastMessage]);
+	STAssertContains(@"foo", server_->lastMessage,
+					 [NSString stringWithFormat: @"Unexpected output %@", server_->lastMessage]);
 }
 @end
