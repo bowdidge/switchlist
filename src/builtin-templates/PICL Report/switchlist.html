@@ -28,11 +28,9 @@ WORK ORDER FOR {{train.name}}
     {% /for %}
     </table>
     <div class="industry-footer">
-    Loads: {{industry.carsToPickUp.count}}
-    <!-- TODO(bowdidge): Need way to get count of empty and loaded cars leaving. -->
-    Empty: 0
-    Cars: {{industry.carsToPickUp.count}}
-    Length: 0
+    <div style="display: inline-block; width: 25%">Loads: {{industry.loadsCount}}</div>
+    <div style="display: inline-block; width: 25%">Empty: {{industry.emptyCount}}</div>
+    <div style="display: inline-block; width: 45%">Length: {{industry.carsToPickUp | sum_of_lengths}}</div>
     </div>
     <br>
   {% /for %}
