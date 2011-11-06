@@ -3,7 +3,7 @@
 //  SwitchList
 //
 //  Created by bowdidge on 11/5/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Robert Bowdidge. All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
