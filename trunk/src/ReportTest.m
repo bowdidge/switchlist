@@ -102,8 +102,7 @@
 
 - (void) testHeader {
 	NSString *header = [report_ headerString];
-	STAssertTrue([header rangeOfString: @"MY LAYOUT"].location != -1, @"");
-	STAssertTrue([header rangeOfString: @"12/31/69"].location != -1, @"");
+	STAssertContains(@"MY LAYOUT", header, @"");
 }
 
 - (NSString*) nLines: (int) count {

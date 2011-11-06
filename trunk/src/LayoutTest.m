@@ -58,6 +58,10 @@
 	[entireLayout_ release];
 }
 
+- (EntireLayout*) entireLayout {
+	return entireLayout_;
+}
+
 - (FreightCar*) freightCarWithReportingMarks: (NSString*) reportingMarks {
 	NSArray *allCars = [entireLayout_ allFreightCars];
 	for (FreightCar *fc in allCars) {
@@ -263,7 +267,6 @@
 					 @"Expected %@ in route but found %@", [nthPlace name], expectedNthStation);
 	}
 }
-
 
 NSString *FREIGHT_CAR_1_NAME = @"WP 1";
 NSString *FREIGHT_CAR_2_NAME = @"UP 2";
