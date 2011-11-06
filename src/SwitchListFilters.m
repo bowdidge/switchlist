@@ -32,13 +32,14 @@
 
 #import "SwitchListFilters.h"
 
+#import "FreightCar.h"
+
 #define JITTER		@"jitter"
+#define SUM_OF_LENGTHS @"sum_of_lengths"
 
 @implementation SwitchListFilters
 // Adds whitespace - nbsp, emsp, ensp - randomly at the beginning and end of strings,
 // and at existing white space - to simulate handwriting.
-// TODO(bowdidge): Consider putting random at jitterString: method, and having a separate
-// method with enums that explicitly state the kind of conversion.
 - (int) getRandomValue: (int) max {
 	return random() % max;
 }
@@ -70,17 +71,32 @@
 	return value;
 }
 
-- (NSArray *)filters
-{
-	return [NSArray arrayWithObjects: JITTER, nil];
+- (NSString*) sumOfLengths: (NSArray*) value {
+	int sum = 0;
+
+	if (![value isKindOfClass: [NSArray class]]) {
+		return @"[sum_of_lengths only works on arrays.]";
+	}
+
+	for (FreightCar *car in value) {
+		if ([car isKindOfClass: [FreightCar class]]) {
+			sum += [[car length] intValue];
+		}
+	}
+	return [NSString stringWithFormat: @"%d", sum];
 }
 
-- (NSObject *)filterInvoked:(NSString *)filter withArguments:(NSArray *)args onValue:(NSObject *)value
+- (NSArray *)filters
 {
+	return [NSArray arrayWithObjects: JITTER, SUM_OF_LENGTHS, nil];
+}
+
+- (NSObject *)filterInvoked:(NSString *)filter withArguments:(NSArray *)args onValue:(NSObject *)value {
 	if ([filter isEqualToString:JITTER]) {
 		return [self jitterString: (NSString*) value];
+	} else if ([filter isEqualToString: SUM_OF_LENGTHS]) {
+		return [self sumOfLengths: (NSArray*) value];
 	}
 	return value;
 }		
-		
 @end

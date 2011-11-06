@@ -31,6 +31,10 @@
 //
 #import "SwitchListFiltersTest.h"
 
+#import "FreightCar.h"
+#import "SwitchListFilters.h"
+#import "SwitchList_OCUnit.h"
+
 @implementation SwitchListFilterReplaceRandom 
 - (id) setRandomValues: (int*) randomValues {
 	currentRandom_ = 0;
@@ -55,11 +59,13 @@
 
 @implementation SwitchListFiltersTest
 - (void) setUp {
+	[super setUp];
 	switchListFilter_ = [[SwitchListFilterReplaceRandom alloc] init];
 }
 
 - (void) tearDown {
 	[switchListFilter_ release];
+	[super tearDown];
 }
 
 - (void) testAppendEmsp {
@@ -133,6 +139,68 @@
 	STAssertEqualObjects(@"&nbsp; ABC ", [switchListFilter_ jitterString: @" ABC "], @"Failed to append emsp");
 	STAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
 }
+
+// Make sure a non-array generates a message.
+- (void) testSumOfLengthsBogus {
+	STAssertContains(@"sum_of_lengths only", [switchListFilter_ sumOfLengths: [NSString string]],
+					@"Did not ignore bogus input.");
+}
+
+- (void) testSumOfLengthsEmpty {
+	STAssertEqualObjects(@"0", [switchListFilter_ sumOfLengths: [NSArray array]], 
+						 @"Length ot correct.");
+}
+
+- (void) testSumOfLengthsSimple {
+	FreightCar *fc = [self makeFreightCarWithReportingMarks: @""];
+	[fc setLength: [NSNumber numberWithInt: 40]];
+	
+	STAssertEqualObjects(@"40", [switchListFilter_ sumOfLengths: [NSArray arrayWithObject: fc]],
+						 @"Failed on single car..");
+}
+
+- (void) testSumOfLengthsMultipleCars {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @""];
+	[fc1 setLength: [NSNumber numberWithInt: 40]];
+
+	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: @""];
+	[fc2 setLength: [NSNumber numberWithInt: 50]];
+
+	FreightCar *fc3 = [self makeFreightCarWithReportingMarks: @""];
+	[fc3 setLength: [NSNumber numberWithInt: 35]];
+
+	NSArray *a = [NSArray arrayWithObjects: fc1, fc2, fc3, nil];
+	STAssertEqualObjects(@"125",
+						 [switchListFilter_ sumOfLengths: a],
+						 @"Sum not handled correctly.");
+}
+
+- (void) testSumOfLengthsMixedArray {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @""];
+	[fc1 setLength: [NSNumber numberWithInt: 40]];
+
+	NSArray *a = [NSArray arrayWithObjects: fc1, @"", nil];
+	STAssertEqualObjects(@"40", [switchListFilter_ sumOfLengths: a],
+						 @"Mixed array not handled correctly.");
+}
+
+- (void) testSumOfLengthsMultipleCarsWithZeroLengths {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @""];
+	[fc1 setLength: [NSNumber numberWithInt: 40]];
+	
+	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: @""];
+	[fc2 setLength: [NSNumber numberWithInt: 0]];
+	
+	FreightCar *fc3 = [self makeFreightCarWithReportingMarks: @""];
+	[fc3 setLength: [NSNumber numberWithInt: 35]];
+	
+	NSArray *a = [NSArray arrayWithObjects: fc1, fc2, fc3, nil];
+	
+	STAssertEqualObjects(@"75", [switchListFilter_ sumOfLengths: a],
+						 @"Wrong length.");
+}
+
+
 
 
 @end
