@@ -328,10 +328,20 @@
 								 [start name], @"name",
 								 [NSMutableArray array], @"carsToPickUp",
 								 [NSMutableArray array], @"carsToDropOff",
+								 [NSNumber numberWithInt: 0], @"emptyCount",
+								 [NSNumber numberWithInt: 0], @"loadsCount",
 								 nil];
 			[startStationDict setObject: startIndustryDict forKey: [start name]];
 		}
 		[[startIndustryDict objectForKey: @"carsToPickUp"] addObject: fc];		
+		if ([fc isLoaded]) {
+			[startIndustryDict setObject: [NSNumber numberWithInt: [[startIndustryDict objectForKey: @"loadsCount"] intValue] + 1]
+								  forKey: @"loadsCount"];
+		} else {
+			[startIndustryDict setObject: [NSNumber numberWithInt: [[startIndustryDict objectForKey: @"emptyCount"] intValue] + 1]
+								  forKey: @"emptyCount"];
+			
+		}
 		
 		// Same for end.
 		NSMutableDictionary *endIndustryDict = [endStationDict objectForKey: [end name]];
@@ -340,6 +350,8 @@
 								 [end name], @"name",
 								 [NSMutableArray array], @"carsToPickUp",
 							     [NSMutableArray array], @"carsToDropOff",
+								 [NSNumber numberWithInt: 0], @"emptyCount",
+								 [NSNumber numberWithInt: 0], @"loadsCount",
 							   nil];
 			[endStationDict setObject: endIndustryDict forKey: [end name]];
 		}
