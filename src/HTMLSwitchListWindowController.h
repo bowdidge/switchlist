@@ -37,9 +37,6 @@
 	IBOutlet WebView *htmlView_;
 	// Owning window.
 	IBOutlet NSWindow *window_;
-	// Path to preferred directory for templates.  Used to communicate between
-	// drawHTML:file: and the callback.
-	NSString* currentTemplateDirectory_;
 	// Shared bundle - for mocking.
 	NSBundle *mainBundle_;
 	// Shared file manager - for mocking.
@@ -54,8 +51,8 @@
 - (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager title: (NSString*) title;
 // Main routine for naming the HTML to display.
 //   html: raw HTML to display
-//   templateDirectory: path to html file, used to find related files (css, etc).
-- (void) drawHTML: (NSString*) html templateDirectory: (NSString*) directory;
+//   template: path to html file, used to find related files (css, etc).
+- (void) drawHTML: (NSString*) html template: (NSString*) templateFilePath;
 
 // Allows manipulation of the window containing the HTML.
 - (NSWindow*) window;

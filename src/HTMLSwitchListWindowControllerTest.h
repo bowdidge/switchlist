@@ -33,19 +33,9 @@
 
 @class HTMLSwitchListWindowController;
 
-// Mock file manager that always returns a preferred answer.
-// TODO(bowdidge): Switch to OCMock.
-@interface MyFileManager : NSObject {
-    BOOL preferredResponse_;
-}
-- (void) setPreferredResponse: (BOOL) preferredResponse;
-@end
-
 @interface HTMLSwitchListWindowControllerTest : SenTestCase {
 	// WindowController to test.
 	HTMLSwitchListWindowController *windowController_;
-	// Mock file manager instance.
-	MyFileManager *myFileManager_;
 }
 
 @end

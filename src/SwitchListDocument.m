@@ -635,13 +635,15 @@
 		// There's no native way of drawing this, so fall back on the HTML version.
 		NSString *title = [NSString stringWithFormat: @"Switch list for %@", [train name]];
 		HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
-												
 		[renderer setTemplate: preferredSwitchlistStyle];
+		NSString *switchlistHtmlFile = [renderer filePathForTemplateFile: @"switchlist"];
+
 		NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO];
 		
 		HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: title];
 		[[view window] makeKeyAndOrderFront: self];
-		[view drawHTML: message templateDirectory: [renderer templateDirectory]];
+		[view drawHTML: message
+			  template: switchlistHtmlFile];
 		return;
 	}
 	
@@ -837,26 +839,29 @@
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
+	NSString *carReport = [renderer filePathForTemplateFile: @"car-report"];
 	NSString *message = [renderer renderReport: @"car-report"
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
 	
 	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Car Report"];
 	[[view window] makeKeyAndOrderFront: self];
-	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
+	
+	[view drawHTML: message template: carReport];	
 }
 
 - (IBAction) doIndustryReport: (id) sender {
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
+	NSString *industryHtml = [renderer filePathForTemplateFile: @"industry-report"];
 	NSString *message = [renderer renderReport: @"industry-report"
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
 	
 	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Industry Report"];
     [[view window] makeKeyAndOrderFront: self];
-	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
+	[view drawHTML: message template: industryHtml];	
 }
 
 - (IBAction) doCargoReport: (id) sender {
@@ -870,13 +875,14 @@
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
+	NSString *reservedCarReport = [renderer filePathForTemplateFile: @"reserved-car-report"];
 	NSString *message = [renderer renderReport: @"reserved-car-report"
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
 	
 	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Reserved Car Report"];
     [[view window] makeKeyAndOrderFront: self];
-	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
+	[view drawHTML: message template: reservedCarReport];	
 }
 
 // For each yard or staging yard, print out the list of cars in each yard and the train
@@ -885,13 +891,14 @@
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
+	NSString *yardHtml = [renderer filePathForTemplateFile: @"yard-report"];
 	NSString *message = [renderer renderReport: @"yard-report"
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
 	
 	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Reserved Car Report"];
 	[[view window] makeKeyAndOrderFront: self];
-	[view drawHTML: message templateDirectory: [renderer templateDirectory]];	
+	[view drawHTML: message template: yardHtml];
 }
 
 - (void)windowDidResignKey:(NSNotification *)notification {

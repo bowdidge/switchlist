@@ -72,6 +72,10 @@
 // their own copy of a particular report.
 - (NSString*) filePathForDefaultCSS: (NSString*) filePrefix;
 
+// Returns the path to the template with the given name, as found in one of the switchlist template
+// directories.  If none can be found, it uses the copy in the main bundle.
+- (NSString*) filePathForTemplateFile: (NSString*) template;
+	
 - (NSString *) renderSwitchlistForTrain: (ScheduledTrain*) train layout: (EntireLayout*)layout iPhone: (BOOL) isIPhone;
 - (NSString*) renderCarlistForLayout: (EntireLayout*) layout;
 - (NSString*) renderIndustryListForLayout: (EntireLayout*) layout;
