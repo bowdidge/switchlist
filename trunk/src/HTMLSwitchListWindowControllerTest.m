@@ -48,112 +48,71 @@
 }
 @end
 
-@implementation MyFileManager
-- (id) init {
-	preferredResponse_ = NO;
-}
-
-- (void) setPreferredResponse: (BOOL) preferredResponse {
-	preferredResponse_ = preferredResponse;
-}
-
-- (BOOL) fileExistsAtPath: (NSString*) path {
-	return preferredResponse_;
-}
-@end
-
 @implementation HTMLSwitchListWindowControllerTest
 - (void) setUp {
 	MockBundle *myBundle = [[[MockBundle alloc] init] autorelease];
-	myFileManager_ = [[MyFileManager alloc] init];
 	windowController_ = [[HTMLSwitchListWindowController alloc] initWithBundle: (NSBundle*) myBundle
-																   fileManager: (NSFileManager*) myFileManager_
+																   fileManager: [NSFileManager defaultManager]
 																		 title:	@"Don't Care"];
 }
 
 - (void) tearDown {
-	[myFileManager_ release];
 	[windowController_ release];
 }
 
-// Requests for a file in the same directory as the template should always be allowed.
-// TODO(bowdidge): Should be more like web interface and only allow specific files to be
-// retrieved.
-- (void) testSimpleRequestInSameDirectory {
-	[myFileManager_ setPreferredResponse: YES];
-	[windowController_ drawHTML: @"<html><body>Hello World!</body></html>"
-			 templateDirectory: @"/foo.app/Contents/MacOS/SwitchListStyle"];
-	NSURLRequest *req = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"file://foo.app/Contents/MacOS/SwitchListStyle/foo.css"]];
+// Returns the filename that should be retrieved when requesting fileToRequest
+// from within the page templateFile.
+- (NSURLRequest *) getRequestedFileNameForFile: (NSString *) fileToRequest withinTemplate: (NSString *) templateFile  {
+  [windowController_ drawHTML: @"<html><body>Hello World!</body></html>"
+			  template: templateFile];
+	NSURLRequest *initialRequest = [[NSURLRequest alloc] initWithURL: [NSURL fileURLWithPath: templateFile]];
+	WebDataSource *dataSource = [[WebDataSource alloc] initWithRequest: initialRequest];
+
+	NSURLRequest *req = [[NSURLRequest alloc] initWithURL: [NSURL fileURLWithPath: fileToRequest]];
 	
 	NSURLRequest *actualRequest = [windowController_ webView: nil 
 													resource: nil
 											 willSendRequest: req
 											redirectResponse: nil
-											  fromDataSource: nil];
-	
-	STAssertEquals(req, actualRequest, @"Request should have been passed through unmolested.");
+											  fromDataSource: dataSource];
+  return actualRequest;
+}
+
+
+// Requests for a file in the same directory as the template should always be allowed.
+- (void) testSimpleRequestInSameDirectory {
+	NSString *templateFile = @"/foo.app/Contents/MacOS/SwitchListStyle/foo.html";
+	NSString *fileToRequest = @"/foo.app/Contents/MacOS/SwitchListStyle/foo.css";
+
+	NSURLRequest *actualRequest = [self getRequestedFileNameForFile: fileToRequest withinTemplate: templateFile];
+	STAssertEqualObjects(fileToRequest, [[actualRequest URL] path],
+						@"Request should have been passed through unmolested.");
 }
 
 // Requests for a file in a different directory shouldn't be allowed.
 - (void) testRequestFileOutsideDirectory {
-	[myFileManager_ setPreferredResponse: YES];
-	[windowController_ drawHTML: @"<html><body>Hello World!</body></html>"
-			  templateDirectory: @"/foo.app/Contents/MacOS/SwitchListStyle"];
-	NSURLRequest *req = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"file://My/BankDetails.txt"]];
+	NSString *templateFile = @"/foo.app/Contents/MacOS/SwitchListStyle/foo.html";
+	NSString *fileToRequest = @"/etc/passwd";
 	
-	NSURLRequest *actualRequest = [windowController_ webView: nil 
-													resource: nil
-											 willSendRequest: req
-											redirectResponse: nil
-											  fromDataSource: nil];
+	// Double-check fileToRequest exists so test fails because of access, not existence.
+	STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath: fileToRequest], @"Test requires /etc/password to exist.");
 	
-	STAssertNil(actualRequest, @"Request should have been refused.");
-}
-
-// If the directory does not exist, the request shouldn't be allowed.
-- (void) testRequestFileFromNonexistentDirectory {
-	[myFileManager_ setPreferredResponse: NO];
-	[windowController_ drawHTML: @"<html><body>Hello World!</body></html>"
-			  templateDirectory: @"/foo.app/Contents/MacOS/SwitchListStyle"];
-	NSURLRequest *req = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"file://foo.app/Contents/MacOS/SwitchListStyle/foo.css"]];
-	
-	NSURLRequest *actualRequest = [windowController_ webView: nil 
-													resource: nil
-											 willSendRequest: req
-											redirectResponse: nil
-											  fromDataSource: nil];
-	
+	NSURLRequest *actualRequest = [self getRequestedFileNameForFile: templateFile withinTemplate: fileToRequest];
 	STAssertNil(actualRequest, @"Request should have been refused.");
 }
 
 - (void) testRequestFileWithNoTemplateDirectory {
-	[myFileManager_ setPreferredResponse: NO];
-	[windowController_ drawHTML: @"<html><body>Hello World!</body></html>"
-			  templateDirectory: nil];
-	NSURLRequest *req = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"file://foo.app/Contents/MacOS/SwitchListStyle/foo.css"]];
-	
-	NSURLRequest *actualRequest = [windowController_ webView: nil 
-													resource: nil
-											 willSendRequest: req
-											redirectResponse: nil
-											  fromDataSource: nil];
-	
+	NSString *cssFile = @"/foo.app/Contents/MacOS/SwitchListStyle/foo.css";
+	NSURLRequest *actualRequest = [self getRequestedFileNameForFile: cssFile withinTemplate: @""];
 	STAssertNil(actualRequest, @"Request should have been refused.");
 }
 
-- (void) testRequestDefaultFileWithNoTemplateDirectory {
-	[myFileManager_ setPreferredResponse: NO];
-	[windowController_ drawHTML: @"<html><body>Hello World!</body></html>"
-			  templateDirectory: nil];
-	NSURLRequest *req = [[NSURLRequest alloc] initWithURL: [NSURL URLWithString: @"file://foo.app/Contents/MacOS/foo.css"]];
-	
-	NSURLRequest *actualRequest = [windowController_ webView: nil 
-													resource: nil
-											 willSendRequest: req
-											redirectResponse: nil
-											  fromDataSource: nil];
-	
-	STAssertEquals(req, actualRequest, @"Should have allowed access to default directory.");
+- (void) testRequestFileInSubdirectory {
+	NSString *templateName = @"/MyTemplates/Foo/switchlist.html";
+	NSString *cssFile = @"/MyTemplates/Bar/foo.css";
+	NSURLRequest *actualRequest = [self getRequestedFileNameForFile: cssFile withinTemplate: templateName];
+	STAssertNil(actualRequest, @"Request should have been refused.");
 }
+
 @end
 

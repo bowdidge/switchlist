@@ -35,7 +35,6 @@
 - (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager title: (NSString*) title {
 	// TODO(bowdidge): Why doesn't initWithWindowNibName work?
 	[super init];
-	currentTemplateDirectory_ = nil;
 	mainBundle_ = [mainBundle retain];
 	fileManager_ = [fileManager retain];
 	title_ = [title retain];
@@ -53,7 +52,6 @@
 }
 
 - (void) dealloc {
-	[currentTemplateDirectory_ release];
 	[mainBundle_ release];
 	[fileManager_ release];
 	[title_ release];
@@ -62,17 +60,9 @@
 
 // Main routine for naming the HTML to display.
 //   html: raw HTML to display
-//   templateDirectory: path to html file, used to find related files (css, etc).
-- (void) drawHTML: (NSString*) html templateDirectory: (NSString*) directory {
-	if (directory == nil) {
-		directory = [mainBundle_ resourcePath];
-	}
-	[currentTemplateDirectory_ release];
-	currentTemplateDirectory_ = [directory retain];
-	// Create a fake name for the file so the WebView knows how to find
-	// referenced files.
-	NSString *fileContainingHTML = [NSString stringWithFormat: @"/%@/switchlist.html", directory];
-	[[htmlView_ mainFrame] loadHTMLString: html baseURL: [NSURL fileURLWithPath:fileContainingHTML]];
+//   template: path to html file, used to find related files (css, etc).
+- (void) drawHTML: (NSString*) html template: (NSString*) templateFilePath {
+	[[htmlView_ mainFrame] loadHTMLString: html baseURL: [NSURL fileURLWithPath: templateFilePath]];
 }
 
 - (void) awakeFromNib {
@@ -80,7 +70,7 @@
 	[self setNextResponder: [htmlView_ nextResponder]];
 	[window_ setTitle: title_];
 	[htmlView_ setNextResponder: self];
-	[self drawHTML: @"" templateDirectory: @""];
+	[self drawHTML: @"" template: @""];
 }
 
 - (IBAction)printDocument:(id)sender {
@@ -107,16 +97,14 @@
 		 redirectResponse:(NSURLResponse *)redirectResponse
 		   fromDataSource:(WebDataSource *)dataSource {
 	NSURL *requestURL = [request URL];
-	if ([[requestURL scheme] isEqualToString: @"file"]) {
-		NSString *requestedDirectory = [[[[requestURL resourceSpecifier] 
-										 stringByStandardizingPath] stringByDeletingLastPathComponent] 
-										stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
-		NSString *templateDirectory = [currentTemplateDirectory_ stringByStandardizingPath];
-		if ([fileManager_ fileExistsAtPath: templateDirectory] == NO) {
-			// Use the default directory.
-			templateDirectory = [mainBundle_ resourcePath];
-		}
-		if (![requestedDirectory isEqualToString: templateDirectory]) {
+	if ([requestURL isFileURL]) {
+		// Note there's no fallback here - a template can only look for dependent files
+		// in the same directory, not in the resources directory or elsewhere.
+		NSString *requestedFile = [requestURL path];
+		// Make sure this is a valid place for the template to look.
+		NSString *templateDir = [[[[dataSource initialRequest] URL] path] stringByDeletingLastPathComponent];
+		NSString *requestDir = [requestedFile stringByDeletingLastPathComponent];
+		if (![templateDir isEqualToString: requestDir]) {
 			// Don't allow the switchlist html to read files other than in its own directory.
 			return nil;
 		}
