@@ -44,6 +44,14 @@
 // Example:
 //   {{ car.location.name | jitter }} 
 // draws the freight car's name with slight changes on each line.
+//
+// sum_of_lengths:
+//
+// Takes an array of freight cars, and returns the sum of lengths of cars.
+//
+// Example:
+//   {{ all_incoming_cars | sum_of_lengths }}
+// draws the number for the sum of lengths.
 
 #import <Cocoa/Cocoa.h>
 
@@ -54,6 +62,7 @@
 - (NSObject *)filterInvoked:(NSString *)filter withArguments:(NSArray *)args onValue:(NSObject *)value;
 
 - (NSString*) jitterString: (NSString*) value;
+- (NSString*) sumOfLengths: (NSArray*) value;
 
 // For predictably testing which way a jittered string will change.
 - (int) getRandomValue: (int) max;

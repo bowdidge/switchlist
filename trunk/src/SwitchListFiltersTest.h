@@ -32,9 +32,7 @@
 // SUCH DAMAGE.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
-
-#import <Cocoa/Cocoa.h>
+#import "LayoutTest.h"
 
 #import "SwitchListFilters.h"
 
@@ -45,7 +43,7 @@
 }
 @end
 
-@interface SwitchListFiltersTest : SenTestCase {
+@interface SwitchListFiltersTest : LayoutTest {
 	SwitchListFilterReplaceRandom *switchListFilter_;
 }
 @end
