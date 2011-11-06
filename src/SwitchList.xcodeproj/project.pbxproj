@@ -60,6 +60,7 @@
 		3E6B58A7140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B58A5140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m */; };
 		3E6B59D0140CB1CD006FFDD3 /* builtin-templates in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B59B4140CB1CD006FFDD3 /* builtin-templates */; };
 		3E6C6EC812F007E200C7A8D1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C6EC712F007E200C7A8D1 /* Credits.html */; };
+		3E6E2F5314660B210069D022 /* HTMLSwitchlistRendererTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6E2F5214660B210069D022 /* HTMLSwitchlistRendererTest.m */; };
 		3E71871913B1B30B00ED3840 /* SwitchListBaseViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */; };
 		3E7B6EA71287C9F60069FF31 /* AddCarType.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */; };
 		3E8328C514553A6400A6A662 /* AddSidingLength.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */; };
@@ -275,6 +276,9 @@
 		3E6B58A5140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		3E6B59B4140CB1CD006FFDD3 /* builtin-templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "builtin-templates"; sourceTree = "<group>"; };
 		3E6C6EC712F007E200C7A8D1 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = resources/Credits.html; sourceTree = "<group>"; };
+		3E6E2F5114660B210069D022 /* HTMLSwitchlistRendererTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSwitchlistRendererTest.h; sourceTree = "<group>"; };
+		3E6E2F5214660B210069D022 /* HTMLSwitchlistRendererTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLSwitchlistRendererTest.m; sourceTree = "<group>"; };
+		3E6E30A0146636040069D022 /* SwitchList_OCUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchList_OCUnit.h; sourceTree = "<group>"; };
 		3E6F69960D71E4D6000BBFF0 /* SwitchListReportWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListReportWindowController.h; sourceTree = "<group>"; };
 		3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListReportWindowController.m; sourceTree = "<group>"; };
 		3E71870C13B1B17000ED3840 /* SwitchListBaseViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListBaseViewTest.h; sourceTree = "<group>"; };
@@ -642,6 +646,8 @@
 				3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */,
 				3EFEC55B1408535600F9CF15 /* FakeSwitchListDocument.h */,
 				3EFEC55C1408535600F9CF15 /* FakeSwitchListDocument.m */,
+				3E6E2F5114660B210069D022 /* HTMLSwitchlistRendererTest.h */,
+				3E6E2F5214660B210069D022 /* HTMLSwitchlistRendererTest.m */,
 				3E88AD43127A9CFD003486E2 /* IndustryTest.h */,
 				3E88AD44127A9CFD003486E2 /* IndustryTest.m */,
 				3E90BFF8127937860074F2FA /* LayoutTest.h */,
@@ -652,6 +658,7 @@
 				3E60B66E1318B49C007C094D /* ReportTest.m */,
 				3E71870C13B1B17000ED3840 /* SwitchListBaseViewTest.h */,
 				3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */,
+				3E6E30A0146636040069D022 /* SwitchList_OCUnit.h */,
 				3E30DBDE12B44C2900FF224E /* SwitchListReportTest.h */,
 				3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */,
 				3EE380BC133D284F0069C963 /* SwitchRouteDialogControllerTest.h */,
@@ -932,6 +939,7 @@
 				3E3B3A35140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */,
 				3E3B3BA5140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */,
 				3EE333E7141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m in Sources */,
+				3E6E2F5314660B210069D022 /* HTMLSwitchlistRendererTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
