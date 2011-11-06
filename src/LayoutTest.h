@@ -31,7 +31,9 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <CoreData/CoreData.h>
+
 #import "NSManagedObjectContext.h"
+#import "SwitchList_OCUnit.h"
 
 @class Cargo;
 @class CarType;
@@ -101,64 +103,3 @@ extern NSString *FREIGHT_CAR_2_NAME;
 
 @end
 
-/*" Generates a failure when contains does not appear in container. This test is for
- Objective C strings.
- _{contains    The string to find.}
- _{container    The string to search.}
- _{description A format string as in the printf() function. Can be nil or
- an empty string but must be present.}
- _{... A variable number of arguments to the format string. Can be absent.}
- "*/
-#define STAssertContains(contains, container, description, ...) \
-do { \
-  @try {\
-    NSString *containsvalue = [NSString stringWithString: (contains)]; \
-    NSString *containervalue = [NSString stringWithString: (container)]; \
-    if ([containervalue rangeOfString: containsvalue].location == NSNotFound ) { \
-      [self failWithException:([NSException failureInCondition: [NSString stringWithFormat: @"%@ in %@", containsvalue, containervalue] \
-					   isTrue: false \
-					   inFile:[NSString stringWithUTF8String:__FILE__] \
-                       atLine:__LINE__ \
-              withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
-    } \
-  } \
-  @catch (id anException) {\
-    [self failWithException:([NSException \
-             failureInRaise:[NSString stringWithFormat:@"(%s) in (%s)", #contains, #container] \
-                  exception:anException \
-					 inFile:[NSString stringWithUTF8String:__FILE__] \
-                     atLine:__LINE__ \
-            withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
-  }\
-} while(0)
-
-/*" Generates a failure when contains does not appear in container. This test is for
- Objective C strings.
- _{contains    The string to find.}
- _{container    The string to search.}
- _{description A format string as in the printf() function. Can be nil or
- an empty string but must be present.}
- _{... A variable number of arguments to the format string. Can be absent.}
- "*/
-#define STAssertNotContains(contains, container, description, ...) \
-do { \
-@try {\
-NSString *containsvalue = [NSString stringWithString: (contains)]; \
-NSString *containervalue = [NSString stringWithString: (container)]; \
-if ([containervalue rangeOfString: containsvalue].location != NSNotFound ) { \
-[self failWithException:([NSException failureInCondition: [NSString stringWithFormat: @"%@ not in %@", containsvalue, containervalue] \
-isTrue: false \
-inFile:[NSString stringWithUTF8String:__FILE__] \
-atLine:__LINE__ \
-withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
-} \
-} \
-@catch (id anException) {\
-[self failWithException:([NSException \
-failureInRaise:[NSString stringWithFormat:@"(%s) in (%s)", #contains, #container] \
-exception:anException \
-inFile:[NSString stringWithUTF8String:__FILE__] \
-atLine:__LINE__ \
-withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
-}\
-} while(0)
