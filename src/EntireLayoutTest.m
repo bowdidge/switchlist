@@ -144,6 +144,45 @@
 	STAssertEqualObjects(@"Foo", [fc1 cargoDescription], @"");
 }
 
+
+// Make sure the reportingMarks, initials, and number fields work with strange values.
+- (void) testFreightCarNumbers {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"F&C 123"];
+	STAssertEqualObjects(@"F&C 123", [fc1 reportingMarks], @"Reporting marks don't match.");
+	STAssertEqualObjects(@"F&C", [fc1 initials], @"Initials don't match.");
+	STAssertEqualObjects(@"123", [fc1 number], @"Number doesn't match.");
+	
+	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: @" F&C 123"];
+	STAssertEqualObjects(@" F&C 123", [fc2 reportingMarks], @"Reporting marks don't match.");
+	STAssertEqualObjects(@"F&C", [fc2 initials], @"Initials don't match.");
+	STAssertEqualObjects(@"123", [fc2 number], @"Number doesn't match.");
+	
+	FreightCar *fc3 = [self makeFreightCarWithReportingMarks: @"F 1"];
+	STAssertEqualObjects(@"F 1", [fc3 reportingMarks], @"Reporting marks don't match.");
+	STAssertEqualObjects(@"F", [fc3 initials], @"Initials don't match.");
+	STAssertEqualObjects(@"1", [fc3 number], @"Number doesn't match.");
+	
+	FreightCar *fc4 = [self makeFreightCarWithReportingMarks: @"F A 1"];
+	STAssertEqualObjects(@"F A 1", [fc4 reportingMarks], @"Reporting marks don't match.");
+	STAssertEqualObjects(@"F", [fc4 initials], @"Initials don't match.");
+	STAssertEqualObjects(@"A 1", [fc4 number], @"Number doesn't match.");
+	
+	FreightCar *fc5 = [self makeFreightCarWithReportingMarks: @""];
+	STAssertEqualObjects(@"", [fc5 reportingMarks], @"Reporting marks don't match.");
+	STAssertEqualObjects(@"", [fc5 initials], @"Initials don't match.");
+	STAssertEqualObjects(@"", [fc5 number], @"Number doesn't match.");
+	
+	FreightCar *fc6 = [self makeFreightCarWithReportingMarks: @"FOO"];
+	STAssertEqualObjects(@"FOO", [fc6 reportingMarks], @"Reporting marks don't match.");
+	STAssertEqualObjects(@"FOO", [fc6 initials], @"Initials don't match.");
+	STAssertEqualObjects(@"", [fc6 number], @"Number doesn't match.");
+	
+	FreightCar *fc7 = [self makeFreightCarWithReportingMarks: @"F&C123"];
+	STAssertEqualObjects(@"F&C123", [fc7 reportingMarks], @"Reporting marks don't match.");
+	STAssertEqualObjects(@"F&C123", [fc7 initials], @"Initials don't match.");
+	STAssertEqualObjects(@"", [fc7 number], @"Number doesn't match.");
+}
+
 - (void) testAllFreightCarsAtDestination {
 	[self makeThreeStationLayout];
 	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"SP1"];
@@ -522,5 +561,6 @@
 	NSSet *cars = [myIndustry freightCars];
 	STAssertNotNil(cars, @"freightCars failed.");
 }
+
 @end
 
