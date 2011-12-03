@@ -124,7 +124,7 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 }
 
 - (NSString*) initials {
-	NSString *myReportingMarks = [self reportingMarks];
+	NSString *myReportingMarks = [[self reportingMarks] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	NSArray *components = [myReportingMarks componentsSeparatedByString: @" "];
 	return [components objectAtIndex: 0];
 }
@@ -132,9 +132,13 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 // Returns the number portion of the reporting marks, or the portion after the first sequence of spaces
 // found in the reporting marks.
 - (NSString*) number {
-	NSString *myReportingMarks = [self reportingMarks];
+	NSString *myReportingMarks = [[self reportingMarks] stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
 	const char *reportingMarksStr = [myReportingMarks UTF8String];
 	char *firstNonSpace = strstr(reportingMarksStr, " ");
+	
+	// No space?  No number.
+	if (firstNonSpace == NULL) return @"";
+	
 	while (*firstNonSpace == ' ') firstNonSpace++;
 	return [NSString stringWithUTF8String: firstNonSpace];
 }
