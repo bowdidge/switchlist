@@ -14,17 +14,20 @@
 On smaller model railroad layouts, model railroad operations is usually busy, and sidings are often close to overflowing.
 If too many freight cars get directed at an overflowing siding, operators will get frustrated trying to figure out where
 to place cars, and the realism of operations may suffer.
+</p>
 <p>
 SwitchList has an optional feature where you can specify the length of each siding, then request that cars only be sent to a
 siding if space exists for the incoming car.  If the siding would overflow, SwitchList holds the car at the previous yard or siding
-until the nextoperating session.    SwitchList's algorithm only ensures that the siding will not be overflowing at the
+until the next operating session.    SwitchList's algorithm only ensures that the siding will not be overflowing at the
 end of the operating session, and so does not require trains to switch towns in a specific order.
+</p>
 <p>
 You do not need to specify siding lengths at first, nor are you ever required to do.
 SwitchList's algorithm only limits cars going to sidings with lengths specified; sidings
 with a length of zero will accept all cars.  You can slowly set siding lengths, and adjust your cargos to make sure
 no siding is requesting more cars than it can hold.  You also can leave the option off completely and not worry about
 recording the siding lengths and car lengths required for this option.
+</p>
 <h2>Teaching SwitchList About Siding Lengths</h2>
 <p>
 Having SwitchList avoid overflowing sidings requires three steps:
@@ -46,6 +49,7 @@ There are cases where the order of trains might matter; SwitchList only keeps tr
 siding at the end of the operating session.  If one train is picking up cars and one dropping off, a siding may temporarily
 overflow if the dropping-off train arrives first.  In these cases, do what the real railroad does, and "off-spot" the car at a
 nearby location temporarily.
+</p>
 <p>
 See Also:
 <p>
