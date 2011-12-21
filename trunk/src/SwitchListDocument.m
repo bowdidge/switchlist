@@ -1014,6 +1014,30 @@
 	[self updateSummaryInfo: self];
 }
 
+// Displays tool tips in any cells in tables in SwitchList.
+// Long strings will appear in their full form.
+// In other cases where the name alone is insufficient, add a special case to give the full description.
+//
+// Note table must have this class as delegate in order to use toolTip method.
+- (NSString *)tableView:(NSTableView *)tv toolTipForCell:(NSCell *)cell rect:(NSRectPointer)rect tableColumn:(NSTableColumn *)tc row:(int)row mouseLocation:(NSPoint)mouseLocation {
+	if ([cell isKindOfClass:[NSTextFieldCell class]]) {
+		if ([[cell attributedStringValue] size].width > rect->size.width) {
+			return [cell stringValue];
+		}
+    }
+
+	// TODO(bowdidge): Support more tool tips.
+	if (tv == freightCarTable_) {
+		if (tc == freightCarCargoColumn_) {
+			id cargoObject = [cell representedObject];
+			if (cargoObject && [cargoObject isKindOfClass: [Cargo class]]) {
+				return [[cell representedObject] tooltip];
+			}
+		}
+	}
+    return nil;
+}
+
 - (BOOL) selectionShouldChangeInTableView: (id) a {
 	return YES;
 }

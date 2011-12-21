@@ -73,6 +73,8 @@
 	IBOutlet NSTextField *minCarsToRunLabel_;
 	
 	// Freight car tab
+	IBOutlet NSTableView *freightCarTable_;
+	IBOutlet NSTableColumn *freightCarCargoColumn_;
 	IBOutlet NSTextField *lengthField_;
 	IBOutlet NSTextField *lengthLabel_;
 	
