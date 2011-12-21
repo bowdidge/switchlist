@@ -1,0 +1,68 @@
+<html>
+<head>
+<TITLE>Definition: Interchange</TITLE>
+<link href="../../shrd/switchlist.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<BODY>
+<div id="headerbox"><div id="iconbox">
+<img id="iconimg" src="../../shrd/switchListNewIcon.jpg" alt="SwitchList Icon" height="32" width="32" />
+</div>
+<H1>Definition: Interchange</H1>
+</div>
+<div id="leftspace">
+<p>
+Interchanges in U.S. railroad terminology refer to tracks joining two
+railroads that were an official hand-off point for trading cars
+destined for the other railroad.  Cars at an interchange track between
+railroads A and B could be empties heading home (which were usually
+handed off from railroad A to railroad B as soon as possible so
+railroad B paid to move it), or loaded freight cars going to an
+industry on the other railroad or a railroad further in that direction
+(which were usually handed off by railroad A to railroad B as close to
+the destination as possible so that railroad A would get paid for a
+larger fraction of the total freight fee).  Interchanges could be
+several tracks in a yard-like configuration near a well-maintained
+railroad crossing, or could have been as simple as a weedy spur joined
+by short track to both railroads.
+</p>
+<p>
+Interchanges in SwitchList are just yards that are explicitly set up
+to only serve either empty freight cars from another railroad or
+handle full railroad cars intended for a (real or imagined) industry
+whose on that railroad.  You indicate the owning railroad by setting
+the "division" for a freight car, industry, or yard.  (Whenever you
+see "division", think "owning railroad"; I just used the term
+"division" when I first wrote SwitchList because another program I was
+using used that term.)
+</p>
+<p>
+For example, on my Vasona Branch layout in the download, the WP
+Interchange yard handles a real interchange track between the Southern
+Pacific and Western Pacific.  This track is a suitable exit for empty
+WP boxcars returning home, and it's also a suitable place for any
+boxcar carrying cargo intended for a WP customer to exit the layout.
+I indicate WP Interchange's special status by setting its division to
+"WP", and stating that the yard "accepts divisions" (will accept cars
+going to) the "WP" division.  All the WP freight cars have their
+division set to WP.  I could also have specific imaginary industries
+in staging in the WP division, though the Vasona Branch example only
+directs cars to the WP Interchange as if it were just another
+industry.  With this setup, empty WP boxcars go to the WP interchange
+(unless they get to the San Jose Yard first, which is assumed to have
+other ways to get WP boxcars home).  There's also some cargos intended
+for the WP interchange explicitly that will go there as a potential
+destination.
+</p>
+<p>
+See also:
+<p>
+<A HREF="pg51.html">Divisions for Cars and Industries</a> to learn about
+using divisions to set the destination for empty cars.
+<p>
+<A HREF="pg22.html">Detail: Yards</a> to learn how to specify a yard.
+<p>
+<A HREF="pg105.html">Definition: Yard</a>.
+<p>
+</div>
+</body>
+</html>
