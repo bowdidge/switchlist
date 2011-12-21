@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">851</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="256"/>
+			<integer value="1317"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -10251,6 +10251,30 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					</object>
 					<int key="connectionID">5230</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">freightCarTable_</string>
+						<reference key="source" ref="344813097"/>
+						<reference key="destination" ref="926512260"/>
+					</object>
+					<int key="connectionID">5231</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">freightCarCargoColumn_</string>
+						<reference key="source" ref="344813097"/>
+						<reference key="destination" ref="47430505"/>
+					</object>
+					<int key="connectionID">5232</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="926512260"/>
+						<reference key="destination" ref="344813097"/>
+					</object>
+					<int key="connectionID">5233</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -13968,6 +13992,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>4687.IBShouldRemoveOnLegacySave</string>
 					<string>4688.IBShouldRemoveOnLegacySave</string>
 					<string>4689.IBShouldRemoveOnLegacySave</string>
+					<string>4690.IBEditorWindowLastContentRect</string>
 					<string>4691.IBEditorWindowLastContentRect</string>
 					<string>4695.IBEditorWindowLastContentRect</string>
 					<string>4696.IBShouldRemoveOnLegacySave</string>
@@ -14784,6 +14809,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
+					<string>{{370, 764}, {603, 6}}</string>
 					<string>{{60, 854}, {543, 6}}</string>
 					<string>{{306, 513}, {484, 6}}</string>
 					<boolean value="YES"/>
@@ -14916,9 +14942,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<bytes key="NSTransformStruct">P4AAAL+AAABC8gAAw1wAAA</bytes>
 					</object>
 					<boolean value="YES"/>
-					<string>{{370, 329}, {700, 527}}</string>
+					<string>{{340, 329}, {700, 527}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{370, 329}, {700, 527}}</string>
+					<string>{{340, 329}, {700, 527}}</string>
 					<boolean value="YES"/>
 					<boolean value="YES"/>
 					<string>{700, 527}</string>
@@ -14992,7 +15018,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">5230</int>
+			<int key="maxID">5233</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -15131,6 +15157,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>doAdvanceLoads:</string>
 							<string>doAnnulTrain:</string>
 							<string>doAssignCars:</string>
+							<string>doCarReport:</string>
+							<string>doCargoReport:</string>
 							<string>doChangeDate:</string>
 							<string>doChangeDoorsState:</string>
 							<string>doChangeLayoutName:</string>
@@ -15139,12 +15167,20 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>doCompleteTrain:</string>
 							<string>doGenerateSwitchList:</string>
 							<string>doImportCars:</string>
+							<string>doIndustryReport:</string>
+							<string>doReservedCarReport:</string>
 							<string>doSetCarTypes:</string>
 							<string>doSetRoute:</string>
+							<string>doYardReport:</string>
 							<string>updateSummaryInfo:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -15170,6 +15206,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>doAdvanceLoads:</string>
 							<string>doAnnulTrain:</string>
 							<string>doAssignCars:</string>
+							<string>doCarReport:</string>
+							<string>doCargoReport:</string>
 							<string>doChangeDate:</string>
 							<string>doChangeDoorsState:</string>
 							<string>doChangeLayoutName:</string>
@@ -15178,8 +15216,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>doCompleteTrain:</string>
 							<string>doGenerateSwitchList:</string>
 							<string>doImportCars:</string>
+							<string>doIndustryReport:</string>
+							<string>doReservedCarReport:</string>
 							<string>doSetCarTypes:</string>
 							<string>doSetRoute:</string>
+							<string>doYardReport:</string>
 							<string>updateSummaryInfo:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -15198,6 +15239,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">doAssignCars:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doCarReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doCargoReport:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -15233,11 +15282,23 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">doIndustryReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doReservedCarReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">doSetCarTypes:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">doSetRoute:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doYardReport:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -15270,11 +15331,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>freightCarArrayController_</string>
 							<string>freightCarCarTypePopup_</string>
 							<string>freightCarCargoArrayController_</string>
+							<string>freightCarCargoColumn_</string>
 							<string>freightCarCargoPopup_</string>
 							<string>freightCarController_</string>
 							<string>freightCarCountField_</string>
 							<string>freightCarLocationArrayController_</string>
 							<string>freightCarLocationPopup_</string>
+							<string>freightCarTable_</string>
 							<string>generateMoreButton_</string>
 							<string>generateTodayLoadsButton_</string>
 							<string>hasDoorsButton_</string>
@@ -15334,11 +15397,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>NSArrayController</string>
 							<string>NSPopUpButton</string>
 							<string>NSArrayController</string>
+							<string>NSTableColumn</string>
 							<string>NSPopUpButton</string>
 							<string>NSArrayController</string>
 							<string>NSTextField</string>
 							<string>NSArrayController</string>
 							<string>NSPopUpButton</string>
+							<string>NSTableView</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
@@ -15401,11 +15466,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>freightCarArrayController_</string>
 							<string>freightCarCarTypePopup_</string>
 							<string>freightCarCargoArrayController_</string>
+							<string>freightCarCargoColumn_</string>
 							<string>freightCarCargoPopup_</string>
 							<string>freightCarController_</string>
 							<string>freightCarCountField_</string>
 							<string>freightCarLocationArrayController_</string>
 							<string>freightCarLocationPopup_</string>
+							<string>freightCarTable_</string>
 							<string>generateMoreButton_</string>
 							<string>generateTodayLoadsButton_</string>
 							<string>hasDoorsButton_</string>
@@ -15526,6 +15593,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 								<string key="candidateClassName">NSArrayController</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">freightCarCargoColumn_</string>
+								<string key="candidateClassName">NSTableColumn</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">freightCarCargoPopup_</string>
 								<string key="candidateClassName">NSPopUpButton</string>
 							</object>
@@ -15544,6 +15615,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<object class="IBToOneOutletInfo">
 								<string key="name">freightCarLocationPopup_</string>
 								<string key="candidateClassName">NSPopUpButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">freightCarTable_</string>
+								<string key="candidateClassName">NSTableView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">generateMoreButton_</string>
