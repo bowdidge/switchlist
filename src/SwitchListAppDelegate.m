@@ -38,7 +38,6 @@
 #import "HTMLSwitchListWindowController.h"
 #import "HTMLSwitchlistRenderer.h"
 #import "IndustryReport.h"
-#import "KaufmanSwitchListReport.h"
 #import "KaufmanSwitchListView.h"
 #import "NSFileManager+DirectoryLocations.h"
 #import "PICLReport.h"

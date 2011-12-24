@@ -44,7 +44,6 @@
 #import "HTMLSwitchlistRenderer.h"
 #import "Industry.h"
 #import "IndustryReport.h"
-#import "KaufmanSwitchListReport.h"
 #import "KaufmanSwitchListView.h"
 #import "Place.h"
 #import "PICLReport.h"
