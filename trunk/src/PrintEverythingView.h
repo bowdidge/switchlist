@@ -47,6 +47,6 @@
 // Creates a SwitchListBaseView with a default frame (only provided by convention), a pointer to the
 // document holding the layout, and the class of the SwitchListBaseView subclass that should be
 // used to generate the switchlist for each train.
-- (id) initWithFrame: (NSRect) r withDocument: (NSObject<SwitchListDocumentInterface>*) document
+- (id) initWithFrame: (NSRect) r withDocument: (NSDocument<SwitchListDocumentInterface>*) document
 	   withViewClass: (Class) preferredViewClass;
 @end

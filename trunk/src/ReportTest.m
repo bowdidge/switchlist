@@ -49,7 +49,7 @@
 @end
 
 // Fake the document to make sure layoutName is correctly accessed.
-@interface MockDocument : NSObject<SwitchListDocumentInterface> {
+@interface MockDocument : NSDocument<SwitchListDocumentInterface> {
 @public
 	EntireLayout *entireLayout_;
 }

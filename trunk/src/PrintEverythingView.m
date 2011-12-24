@@ -58,7 +58,7 @@
 	return NSMakeRect(0, pageHeight_ * (page-1), pageWidth_, pageHeight_);
 }
 
-- (id) initWithFrame: (NSRect) r withDocument: (NSObject<SwitchListDocumentInterface>*) document 
+- (id) initWithFrame: (NSRect) r withDocument: (NSDocument<SwitchListDocumentInterface>*) document 
 	   withViewClass: (Class) preferredClass {
 	[super initWithFrame: r];
 	document_ = [document retain];	
