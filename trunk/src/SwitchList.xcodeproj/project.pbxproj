@@ -107,7 +107,6 @@
 		3EC3B15C1277E4E300C00AD3 /* CarAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49060D0F47E40092D1A3 /* CarAssigner.m */; };
 		3EC3B15D1277E4E300C00AD3 /* EntireLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */; };
 		3EC3B15E1277E4E300C00AD3 /* TrainAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49130D0F48640092D1A3 /* TrainAssigner.m */; };
-		3EC3B1631277E4E300C00AD3 /* KaufmanSwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */; };
 		3EC3B1641277E4F900C00AD3 /* SwitchListDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* SwitchListDocument.m */; };
 		3EC3B1651277E4F900C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EE3F5C50E4234C2003BA863 /* SwitchListDocument.xcdatamodeld */; };
 		3EC3B16C1277E4F900C00AD3 /* SwitchListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */; };
@@ -131,7 +130,6 @@
 		3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED482330D715B3600C36741 /* SwitchListView.m */; };
 		3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
 		3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */; };
-		3EC3B1831277E4F900C00AD3 /* KaufmanSwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */; };
 		3EC83F6D127CFC1A00B9DF33 /* SwitchList icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */; };
 		3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
 		3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
@@ -347,8 +345,6 @@
 		3EE711361285D4F2006059F4 /* CarTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarTypes.m; sourceTree = "<group>"; };
 		3EE711661285D81E006059F4 /* CarTypesTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarTypesTest.h; sourceTree = "<group>"; };
 		3EE711671285D81E006059F4 /* CarTypesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarTypesTest.m; sourceTree = "<group>"; };
-		3EEF6A4D0E95704500A71503 /* KaufmanSwitchListReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaufmanSwitchListReport.h; sourceTree = "<group>"; };
-		3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaufmanSwitchListReport.m; sourceTree = "<group>"; };
 		3EF294D61312F40700D2C3F6 /* GlobalPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalPreferences.h; sourceTree = "<group>"; };
 		3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalPreferences.m; sourceTree = "<group>"; };
 		3EF7D00F134C13EA00C76407 /* PICLReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PICLReport.h; sourceTree = "<group>"; };
@@ -538,8 +534,6 @@
 		3E57C5CE12FBDCF100E51008 /* Switchlist styles */ = {
 			isa = PBXGroup;
 			children = (
-				3EEF6A4D0E95704500A71503 /* KaufmanSwitchListReport.h */,
-				3EEF6A4E0E95704500A71503 /* KaufmanSwitchListReport.m */,
 				3E57C5CB12FBDCC600E51008 /* KaufmanSwitchListView.h */,
 				3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */,
 				3EF7D00F134C13EA00C76407 /* PICLReport.h */,
@@ -875,7 +869,6 @@
 			files = (
 				3E71871913B1B30B00ED3840 /* SwitchListBaseViewTest.m in Sources */,
 				3ED58A7113A7280D00F6E26E /* SwitchListView.m in Sources */,
-				3EC3B1631277E4E300C00AD3 /* KaufmanSwitchListReport.m in Sources */,
 				3ED58A7013A727FF00F6E26E /* PICLReport.m in Sources */,
 				3E60820413615B680054DBA1 /* TextSwitchListView.m in Sources */,
 				3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */,
@@ -973,7 +966,6 @@
 				3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */,
 				3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */,
 				3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */,
-				3EC3B1831277E4F900C00AD3 /* KaufmanSwitchListReport.m in Sources */,
 				3E88AE9A127B293E003486E2 /* CargoAssigner.m in Sources */,
 				3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */,
 				3E258A6C1286657A00D233DB /* CarType.m in Sources */,
