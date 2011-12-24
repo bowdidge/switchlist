@@ -96,7 +96,7 @@
 
 
 @implementation SwitchListView
-- (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
+- (id) initWithFrame: (NSRect) frameRect withDocument: (NSDocument<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect withDocument: document];
 	headerHeight_ = 80;
 	return self;

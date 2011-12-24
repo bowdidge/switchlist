@@ -45,7 +45,7 @@
 // specific switchlist table.
 - (id) initWithTrain: (ScheduledTrain*) train
 			withCars: (NSArray*) cars
-	  owningDocument: (NSObject<SwitchListDocumentInterface>*) doc {
+	  owningDocument: (NSDocument<SwitchListDocumentInterface>*) doc {
 	[super init];
 	
 	train_ = [train retain];
@@ -120,7 +120,7 @@
 // The frame provided will be the space initially used for the document; if the switch
 // list needs to be multiple pages, then the view will set its frame (and bounds) to a larger size
 // which the container should be able to handle.
-- (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
+- (id) initWithFrame: (NSRect) frameRect withDocument: (NSDocument<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect];
 
 	train_ = nil;
@@ -139,7 +139,7 @@
 	[super dealloc];
 }
 
-- (NSObject<SwitchListDocumentInterface>*) owningDocument {
+- (NSDocument<SwitchListDocumentInterface>*) owningDocument {
 	return owningDocument_;
 }
 

@@ -47,10 +47,10 @@
 	IBOutlet NSTextView *reportTextView_;
 	IBOutlet NSScrollView *scrollView_;
 	NSArray *objectsToDisplay_;
-	NSObject<SwitchListDocumentInterface> *owningDocument_;
+	NSDocument<SwitchListDocumentInterface> *owningDocument_;
 	NSFont *typedFont_;
 }
-- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document;
+- (id) initWithDocument: (NSDocument<SwitchListDocumentInterface>*) document;
 // do work display window
 - (void) generateReport;
 /* Note that some reports may define the objects to be something else like an NSDictionary. */
@@ -77,7 +77,7 @@
 
 - (IBAction)printDocument:(id)sender;
 
-- (NSObject<SwitchListDocumentInterface>*) owningDocument;
+- (NSDocument<SwitchListDocumentInterface>*) owningDocument;
 
 // Internal
 // Returns the current fixed width font to use for all reports.

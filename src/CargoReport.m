@@ -43,7 +43,7 @@
 
 @implementation CargoReport
 
-- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document 
+- (id) initWithDocument: (NSDocument<SwitchListDocumentInterface>*) document 
 		 withIndustries: (NSArray*) industryObjects {
 	[super initWithDocument: document];
 	industryObjects_  = [industryObjects retain];

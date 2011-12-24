@@ -348,7 +348,7 @@
 }
 
 
-- (NSObject<SwitchListDocumentInterface>*) currentDocument {
+- (NSDocument<SwitchListDocumentInterface>*) currentDocument {
 	NSWindow *win = [[NSApplication sharedApplication] mainWindow];
 	NSWindowController *winc = [win windowController];
 	if (winc == nil) {

@@ -35,7 +35,7 @@
 @class EntireLayout;
 @class DoorAssignmentRecorder;
 
-@interface FakeSwitchListDocument : NSObject<SwitchListDocumentInterface> {
+@interface FakeSwitchListDocument : NSDocument<SwitchListDocumentInterface> {
 	EntireLayout *layout;
 	DoorAssignmentRecorder *recorder;
 }

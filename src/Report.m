@@ -40,7 +40,7 @@
 #import "SwitchListDocumentInterface.h"
 
 @implementation Report
-- (id) initWithDocument: (NSObject<SwitchListDocumentInterface>*) document {
+- (id) initWithDocument: (NSDocument<SwitchListDocumentInterface>*) document {
 	[super init];
     if ([NSBundle loadNibNamed:@"Report.nib" owner: self] != YES) {
 		NSLog(@"Problems loading report nib!\n");
@@ -79,7 +79,7 @@
 	[[NSPrintInfo sharedPrintInfo] setVerticallyCentered: NO];
 }
 
-- (NSObject<SwitchListDocumentInterface>*) owningDocument {
+- (NSDocument<SwitchListDocumentInterface>*) owningDocument {
 	return owningDocument_;
 }
 

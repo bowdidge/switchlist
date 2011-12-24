@@ -100,7 +100,7 @@
 @end
 
 @implementation SouthernPacificSwitchListView
-- (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
+- (id) initWithFrame: (NSRect) frameRect withDocument: (NSDocument<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect withDocument: document];
 	headerHeight_ = 80;
 	// Off by one because header occupies one space.

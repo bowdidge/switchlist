@@ -17,7 +17,7 @@
 
 // Abstract class for teletype-style switchlists.
 @implementation TextSwitchListView
-- (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document {
+- (id) initWithFrame: (NSRect) frameRect withDocument: (NSDocument<SwitchListDocumentInterface>*) document {
 	[super initWithFrame: frameRect withDocument: document];
 	textView_ = [[NSTextView alloc] initWithFrame: frameRect];
 	[self addSubview: textView_];
@@ -103,7 +103,7 @@
     [textView_ setEditable: NO];
 }
 
-- (NSObject<SwitchListDocumentInterface>*) owningDocument {
+- (NSDocument<SwitchListDocumentInterface>*) owningDocument {
 	return owningDocument_;
 }
 

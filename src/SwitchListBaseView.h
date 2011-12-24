@@ -40,12 +40,12 @@
 @interface SwitchListSource : NSObject {
 	NSArray *carsInTrain_;
 	ScheduledTrain *train_;
-	NSObject<SwitchListDocumentInterface> *owningDocument_;
+	NSDocument<SwitchListDocumentInterface> *owningDocument_;
 }
 // Initializes a new source.  The cars list must be a subset of the cars on the train.
 - (id) initWithTrain: (ScheduledTrain*) train 
 			withCars: (NSArray*) cars
-	  owningDocument: (NSObject<SwitchListDocumentInterface>*) doc;
+	  owningDocument: (NSDocument<SwitchListDocumentInterface>*) doc;
 // How many columns are in this kind of switch list?
 - (int) columnCount;
 // How many pixels wide should the nth column be?
@@ -62,7 +62,7 @@
 // Class representing a pretty switchlist view.  This handles all the presentation issues
 // including printing.
 @interface SwitchListBaseView : NSView {
-	NSObject<SwitchListDocumentInterface> *owningDocument_;
+	NSDocument<SwitchListDocumentInterface> *owningDocument_;
 	ScheduledTrain *train_;
 	NSArray *carsInTrain_;
 
@@ -73,11 +73,11 @@
 	float pageHeight_;
 }
 
-- (id) initWithFrame: (NSRect) frameRect withDocument: (NSObject<SwitchListDocumentInterface>*) document;
+- (id) initWithFrame: (NSRect) frameRect withDocument: (NSDocument<SwitchListDocumentInterface>*) document;
 - (void) setTrain: (ScheduledTrain*) train;
 - (ScheduledTrain*) train;
 
-- (NSObject<SwitchListDocumentInterface>*) owningDocument;
+- (NSDocument<SwitchListDocumentInterface>*) owningDocument;
 
 // Page height in bounds coordinates.
 - (float) pageHeight;
