@@ -16,7 +16,7 @@
 var layoutName='{{ layout.layoutName }}';
 var carDictionary={ {{carLocations}} };
 var industries = [{% for industry in allIndustries%} '{{industry.name}}', {% /for %}];
-var yards = [{% for yard in allYards %} '{{yard}}', {% /for %}];
+var yards = [{% for yard in allYards %} '{{yard.name}}', {% /for %}];
 </script>
 <script type="text/javascript">
 function carLocationChanged(object, carName) {
