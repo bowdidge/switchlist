@@ -187,7 +187,7 @@
 }
 
 - (int) expectedColumns {
-	return 81;
+	return 85;
 }
 
 @end

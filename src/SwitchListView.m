@@ -36,7 +36,6 @@
 #import "FreightCar.h"
 #import "SwitchListDocumentInterface.h"
 
-
 @interface LargePrintSwitchListSource : SwitchListSource {
 }
 
@@ -102,57 +101,94 @@
 	return self;
 } 
 
+- (void) recalculateFrame {
+	// Frame should be multiple of imageableWidth.
+	// For Handwritten switchlist, print enough pages to show all cars.
+	NSRect currentFrame = [self frame];
+	float documentHeight = headerHeight_ + ([carsInTrain_ count] + 1) * rowHeight_;
+	float fullDocumentHeight = ceil(documentHeight / [self imageableHeight]) * [self imageableHeight];
+	[self setFrame: NSMakeRect(currentFrame.origin.x, currentFrame.origin.y,
+							   currentFrame.size.width, fullDocumentHeight)];
+}
+
 // Draws the title portion of the switch list.
-- (void) drawHeader {
+- (void) drawHeaderWithOffset: (float) offsetY {
 	NSArray *date = [self getDateInStringFormat];
 	NSString *dateString = [date objectAtIndex: 0];
 	NSString *yearString = [date objectAtIndex: 1];
 	NSString *centuryString = [date objectAtIndex: 2];
 	
-	float documentHeight = [self pageHeight];
+	float documentHeight = [self imageableHeight];
 	// Draw stuff in title.
 	NSDictionary *title1Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 12]  forKey: NSFontAttributeName];
-	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: documentHeight - 8 centerX: [self pageWidth]/2 attributes: title1Attrs];
+	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName]
+					 centerY: offsetY + documentHeight - 8 
+					 centerX: [self imageableWidth]/2
+				  attributes: title1Attrs];
 	
 	NSDictionary *title2Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 24]  forKey: NSFontAttributeName];
-	[self drawCenteredString: @"SWITCH LIST" centerY: documentHeight - 24 centerX: [self pageWidth]/2  attributes: title2Attrs];
+	[self drawCenteredString: @"SWITCH LIST"
+					 centerY: offsetY + documentHeight - 24
+					 centerX: [self imageableWidth]/2 
+				  attributes: title2Attrs];
 	
 	NSDictionary *title3Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 14]  forKey: NSFontAttributeName];
 	
 	// Next, draw the location/date string, and handwrite in the year and date.
-	float locationStringCenterY = documentHeight - 50;
-	float locationStringCenterX = [self pageWidth] / 2;
+	float locationStringCenterY = [self imageableHeight] - 50;
+	float locationStringCenterX = [self imageableWidth] / 2;
 	NSString *locationDateString = [NSString stringWithFormat: @"______________ at ____________________ station, ___________________ %@____",
 									centuryString];
 	
 	// TODO(bowdidge): Change this to size to the field. 
 	NSString *firstTownString = @"";
 	// NSString *firstTownString = [[train_ stationStopStrings] objectAtIndex: 0];
-	[self drawFormLine: locationDateString centerX: locationStringCenterX centerY: locationStringCenterY
+	[self drawFormLine: locationDateString centerX: locationStringCenterX centerY: offsetY + locationStringCenterY
 			   strings: [NSArray arrayWithObjects: @"", @"", firstTownString, @"", dateString, @"", yearString, nil]
 		  printedAttrs: title3Attrs];
 
-	[self drawTrainNameAtStart: 0];
+	[self drawTrainNameWithOffset: offsetY];
 }
 
 // Main drawing routine, called for printing or screen redraw.
 - (void) drawRect: (NSRect) rect {
-	float documentHeight = [self pageHeight];
 	[[NSColor whiteColor] setFill];
 	// Draw whole thing in white to make sure the preview window is empty.
 	NSRectFill([self bounds]);
 	
-	float tableWidth = [self pageWidth];
-	float tableHeight =  floor((documentHeight - headerHeight_) / rowHeight_) * rowHeight_;
+	// TODO(bowdidge) Handle multi-page.
+	float tableWidth = [self imageableWidth];
+	float tableHeight =  floor(([self imageableHeight] - headerHeight_) / rowHeight_) * rowHeight_;
 	float tableBottom = 0;
 	float tableLeft = 0;
 
-	[self drawHeader];
-	[self drawTableForCars: carsInTrain_
-					  rect: NSMakeRect(tableLeft, tableBottom, tableWidth, tableHeight)
-					source: [[[LargePrintSwitchListSource alloc] initWithTrain: train_
-																	  withCars: carsInTrain_ 
-																owningDocument: owningDocument_] autorelease]];
+	[self drawHeaderWithOffset: 0];
+	if ([carsInTrain_ count] == 0) {
+		// Show something.
+		[self drawTableForCars: [NSArray array]
+						  rect: NSMakeRect(tableLeft, tableBottom, tableWidth, tableHeight)
+						source: [[[LargePrintSwitchListSource alloc] initWithTrain: train_
+																		  withCars: [NSArray array] 
+																	owningDocument: owningDocument_] autorelease]];
+		return;
+	}
+		
+		
+	int firstCarToShow = 0;
+	int rowsPerPage = ([self  imageableHeight] - headerHeight_ - rowHeight_) / rowHeight_;
+	while (firstCarToShow < [carsInTrain_ count]) {
+
+		[self drawHeaderWithOffset: tableBottom];
+		NSArray *carsToShow = [carsInTrain_ subarrayWithRange: NSMakeRange(firstCarToShow, MIN(rowsPerPage,
+																							   [carsInTrain_ count] - firstCarToShow))];
+		[self drawTableForCars: carsToShow
+						  rect: NSMakeRect(tableLeft, tableBottom, tableWidth, tableHeight)
+						source: [[[LargePrintSwitchListSource alloc] initWithTrain: train_
+																		  withCars: carsToShow 
+																	owningDocument: owningDocument_] autorelease]];
+		tableBottom += [self imageableHeight];
+		firstCarToShow += rowsPerPage;
+	}
 }
 
 - (NSDictionary*) columnTitleAttr {

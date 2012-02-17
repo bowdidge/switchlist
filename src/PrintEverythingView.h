@@ -40,8 +40,8 @@
 	// SwitchListBaseViews for each train switch list.
 	NSMutableArray *subviews;
 	SwitchListDocument *document_;
-	float pageWidth_;
-	float pageHeight_;
+	float imageableWidth_;
+	float imageableHeight_;
 }
 
 // Creates a SwitchListBaseView with a default frame (only provided by convention), a pointer to the

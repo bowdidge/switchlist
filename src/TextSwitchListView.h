@@ -16,6 +16,7 @@
 @interface TextSwitchListView : SwitchListBaseView {
 	NSTextView *textView_;
 	NSFont *typedFont_;
+	NSString *cachedContents_;
 }
 
 - (NSFont*) typedFont;
@@ -38,5 +39,8 @@
 // Generates the header / first few lines of the report.
 // Subclass should override for customization.
 - (NSString*) headerString;
+
+// Internal only.  Avoid calling contents over and over.
+- (NSString*) cachedContents;
 	
 @end

@@ -31,20 +31,24 @@
 #import "SwitchListReportWindowController.h"
 
 #import "SwitchListBaseView.h"
-
-// Size of window on SwitchListReportWindow.
-float FRAME_WIDTH = 640.0;
-float FRAME_HEIGHT = 748.0;
+#import "SwitchListDocument.h"
 
 @implementation SwitchListReportWindowController
-- (id) initWithWindowNibName: (NSString*) nibName withView: (SwitchListBaseView*) view {	
+- (id) initWithWindowNibName: (NSString*) nibName withView: (SwitchListBaseView*) view withDocument: (SwitchListDocument*) owningDocument {	
 	[super initWithWindowNibName: nibName];
 	view_ = [view retain];
+	float margin = 10.0;
+	// TODO(bowdidge): Fix.  The view gets sized larger than the view in the window, and so always is partially obscured.
+	marginView_ = [[NSView alloc] initWithFrame: NSMakeRect(0,0, [view frame].size.width + 2 * margin, [view frame].size.height + 2 * margin)];
+	[marginView_ addSubview: view_];
+	
+	owningDocument_ = [owningDocument retain];
 	return self;
 }
 
 - (void) dealloc {
 	[view_ release];
+	[owningDocument_ release];
 	[super dealloc];
 }
 
@@ -52,34 +56,37 @@ float FRAME_HEIGHT = 748.0;
 	// Use a white background so resizing the window doesn't show unseemly gray bands.
 	[scrollView_ setBackgroundColor: [NSColor whiteColor]];
 	[scrollView_ setDrawsBackground: YES];
-	[scrollView_ setDocumentView: view_];
-	// TODO(bowdidge): Should scroll view to top here.
+	[scrollView_ setDocumentView: marginView_];
+	[[scrollView_ contentView] setCopiesOnScroll:NO];
 }
 
+- (IBAction)runPageLayout:(id)sender {
+	[owningDocument_ runPageLayout: sender];
+}						
+
 - (IBAction) printDocument: (id) sender {
-	// set printing properties
-	NSPrintInfo *myPrintInfo = [[NSPrintInfo sharedPrintInfo] copy];
-	[myPrintInfo setHorizontalPagination:NSFitPagination];
-	[myPrintInfo setHorizontallyCentered:NO];
-	[myPrintInfo setVerticallyCentered:NO];
-	[myPrintInfo setLeftMargin:36.0];
-	[myPrintInfo setRightMargin:36.0];
-	[myPrintInfo setTopMargin:36.0];
-	[myPrintInfo setBottomMargin:36.0];
+	// set default printing properties for switchlists.
+	NSPrintInfo *printInfo = [[owningDocument_ printInfo] copy];
+	[printInfo setLeftMargin: 0.75 * 72];
+	[printInfo setRightMargin: 0.75 * 72];
+	[printInfo setTopMargin: 0.75 * 72];
+	[printInfo setBottomMargin: 0.75 * 72];
 	
-	// create new view just for printing
-	float pageWidth = [myPrintInfo paperSize].width - [myPrintInfo leftMargin] - [myPrintInfo rightMargin];
-	float pageHeight = [myPrintInfo paperSize].height - [myPrintInfo topMargin] - [myPrintInfo bottomMargin];
-	SwitchListBaseView *printView = [[[view_ class] alloc] initWithFrame: NSMakeRect(0.0, 0.0, pageWidth, pageHeight)
+	NSSize paperSize = [printInfo paperSize];
+	
+	// Assumes margins shrink things beyond imageable bounds.
+	NSRect drawingBounds = NSMakeRect([printInfo leftMargin], [printInfo bottomMargin], 
+									  paperSize.width - [printInfo leftMargin] - [printInfo rightMargin],
+									  paperSize.height - [printInfo topMargin] - [printInfo bottomMargin]);
+	SwitchListBaseView *printView = [[[view_ class] alloc] initWithFrame: drawingBounds
 															withDocument: [view_ owningDocument]];
 	[printView setTrain: [view_ train]];					
-								
+	
 	NSPrintOperation *op = [NSPrintOperation printOperationWithView: printView
-														  printInfo: myPrintInfo];
+														  printInfo: printInfo];
 	[op setShowsPrintPanel: YES];
 	[[[NSDocument alloc] init] runModalPrintOperation: op delegate: nil didRunSelector: NULL 
 										  contextInfo: NULL];
-
 	[printView release];
 }
 @end
