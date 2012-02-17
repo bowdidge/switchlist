@@ -108,6 +108,9 @@
 				} else { 
 					contents = @"**EMPTY**";
 				}
+				if ([contents length] > 14) {
+					contents = [contents substringWithRange: NSMakeRange(0, 14)];
+				}
 		
 				BOOL loaded = [freightCar isLoaded];
 				NSString *LE = (loaded ? @"L" : @"E");
@@ -138,7 +141,7 @@
 				 [[toTown name] UTF8String],
 				 [[freightCar length] intValue],
 				 [[freightCar carType] UTF8String],
-				 [contents UTF8String]],
+				 [contents UTF8String]];
 				seq++;
 			}
 			[piclString appendFormat: @"_______________________________________________________________________________\n"];
