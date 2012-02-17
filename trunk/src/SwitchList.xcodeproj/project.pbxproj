@@ -552,8 +552,6 @@
 				3E60814113614EA30054DBA1 /* TextSwitchListView.m */,
 				3E3B3BA3140E09D700F4F56C /* HTMLSwitchListWindowController.h */,
 				3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */,
-				3EE333E5141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.h */,
-				3EE333E6141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m */,
 			);
 			name = "Switchlist styles";
 			sourceTree = "<group>";
@@ -642,6 +640,8 @@
 				3EFEC55C1408535600F9CF15 /* FakeSwitchListDocument.m */,
 				3E6E2F5114660B210069D022 /* HTMLSwitchlistRendererTest.h */,
 				3E6E2F5214660B210069D022 /* HTMLSwitchlistRendererTest.m */,
+				3EE333E5141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.h */,
+				3EE333E6141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m */,
 				3E88AD43127A9CFD003486E2 /* IndustryTest.h */,
 				3E88AD44127A9CFD003486E2 /* IndustryTest.m */,
 				3E90BFF8127937860074F2FA /* LayoutTest.h */,

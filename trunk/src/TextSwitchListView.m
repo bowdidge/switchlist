@@ -22,17 +22,20 @@
 	textView_ = [[NSTextView alloc] initWithFrame: frameRect];
 	[self addSubview: textView_];
 	typedFont_ = nil;
+	cachedContents_ = nil;
 	return self;
 }
 
 - (void) dealloc {
 	[textView_ release];
 	[typedFont_ release];
+	[cachedContents_ release];
 	[super dealloc];
 }
 
 // Calculate the correct font size for the named font so that each
 // line fits on the page.
+// TODO(bowdidge): Unused.
 - (float) fontSizeToFitFont: (NSString*) fontName {
 	char *testCString = malloc([self expectedColumns] + 1);
 	int i;
@@ -47,7 +50,7 @@
 	NSSize lineSize = [testString sizeWithAttributes: fontForSizing];
 	
 	// pageWidth / lineWidth = finalFontSize / testFontSize
-	float finalFontSize = ceil([self pageWidth] * testSize / lineSize.width);
+	float finalFontSize = ceil([self imageableWidth] * testSize / lineSize.width);
 
 	// Now, assume the finalFontSize is a bit too large, and drop it a point at a time until the
 	// line is smaller than the page width.  Smaller fonts always draw in point sizes probably because
@@ -57,7 +60,7 @@
 		finalFontSize--;
 		NSDictionary *finalFont = [NSDictionary dictionaryWithObject: [NSFont fontWithName: fontName size: finalFontSize] forKey: NSFontAttributeName];
 		finalSize = [testString sizeWithAttributes: finalFont];
-	} while (finalSize.width > [self pageWidth]);
+	} while (finalSize.width > [self imageableWidth]);
 
 	return finalFontSize;
 }
@@ -65,6 +68,7 @@
 
 // Returns the font to use for fixed-width reports.
 - (NSFont*) defaultTypedFont {
+	// TODO(bowdidge): This makes line a bit too long.
 	return [NSFont userFixedPitchFontOfSize: 9];
 }
 
@@ -139,57 +143,22 @@
 
 // Number of lines per page.
 - (int) linesPerPage {
-	NSPrintInfo *myPrintInfo = [NSPrintInfo sharedPrintInfo];
-	NSRect pageSize = [myPrintInfo imageablePageBounds];
-	
 	NSDictionary *fontAttrs = [NSDictionary dictionaryWithObject: [self typedFont] forKey: NSFontAttributeName];
 	NSSize gCharacterSize = [@"gM" sizeWithAttributes: fontAttrs];
-	return (int) (pageSize.size.height / gCharacterSize.height);
+	return (int) ([self imageableHeight] / gCharacterSize.height);
 }
 
-// Given report contents, convert to two column.
-// TODO(bowdidge): Correctly handle header.
-// TODO(bowdidge): Figure out how to not break elements in column.
-// UNUSED!!!
-- (NSString*) convertToTwoColumn: (NSString*) contents {
-	int i;
-	NSMutableString *result = [NSMutableString string];
-	NSMutableArray *rawLines = [NSMutableArray arrayWithArray: [contents componentsSeparatedByString: @"\n"]];
-	int linesPerPage = [self linesPerPage];
-	int columnWidth = ([self lineLength] / 2) - 1;
-	
-	// Fill out array to an even set of lines.
-	int linesToPrint;
-	int extraLines = [rawLines count] % (linesPerPage * 2);
-	int linesToAdd = linesPerPage * 2 - extraLines;
-	
-	if (linesToAdd != 0) {
-		for (i = 0 ; i < linesToAdd; i++) {
-			[rawLines addObject: @""];
-		}
-	}
-	
-	linesToPrint = [rawLines count];
-	int startLine = 0;
-	
-	while (linesToPrint >= startLine + (2 * linesPerPage)) {
-		NSArray *column1 = [rawLines subarrayWithRange: NSMakeRange(startLine, linesPerPage)];
-		NSArray *column2 = [rawLines subarrayWithRange: NSMakeRange(startLine + linesPerPage, linesPerPage)];
-		int i;
-		for (i=0; i<linesPerPage; i++) {
-			NSString *leftLine = [column1 objectAtIndex: i];
-			NSString *rightLine = [column2 objectAtIndex: i];
-			
-			NSString *leftLinePadded = [(NSString*) leftLine stringByPaddingToLength: columnWidth - 1
-																		  withString: @" "
-																	 startingAtIndex: 0];
-			[result appendString: [NSString stringWithFormat: @"%@ %@\n", leftLinePadded, rightLine]];
-		}
-		startLine += 2 * linesPerPage;
-	}
-	return result;
+- (void) recalculateFrame {
+	// Frame should be multiple of imageableHeight.
+	NSString *contents = [self cachedContents];
+	int lineCount = [[contents componentsSeparatedByString: @"\n"] count];
+	int pages = ceil((float) lineCount / [self linesPerPage]);
+	NSRect currentFrame = [self frame];
+	float fullDocumentHeight = pages * [self imageableHeight];
+	[self setFrame: NSMakeRect(currentFrame.origin.x, currentFrame.origin.y,
+							   currentFrame.size.width, fullDocumentHeight)];
+	[textView_ setFrame: NSMakeRect(0, 0, currentFrame.size.width, fullDocumentHeight)];
 }
-
 
 // Returns a string with the provided string, padded with leading spaces to be centered in the current window.
 - (NSString*) centeredString: (NSString*) str {
@@ -221,7 +190,7 @@
 // Displays the requested contents in the report window.
 - (void) generateReport {
 	[self setUpTextView];
-	NSString *contents = [self contents];
+	NSString *contents = [self cachedContents];
 	NSMutableString *entireReport = [NSMutableString stringWithFormat: @"%@\n%@", [self headerString] ,contents];
 	float lineHeight = [self lineHeight];
 	int lineCount = [[entireReport componentsSeparatedByString: @"\n"] count];
@@ -240,7 +209,7 @@
 	int documentHeight = lineCount * lineHeight;
 
 	// Keep our containing frame at pixel size.
-	NSRect bounds = NSMakeRect(0, 0, [self pageWidth], documentHeight);
+	NSRect bounds = NSMakeRect(0, 0, [self imageableWidth], documentHeight);
 	[self setFrame: bounds];
 	// TextView is 1-1.
 	[textView_ setFrame: bounds];
@@ -257,21 +226,19 @@
 	[textView_ setTextContainerInset: NSMakeSize(0.25,0.25)];
 }	
 
+// Avoid calling contents more than once.
+- (NSString*) cachedContents {
+	if (!cachedContents_) {
+		cachedContents_ = [[self contents] retain];
+	}
+	return cachedContents_;
+}
+	
 // Common routine for returning contents of report.
 // Subclasses must override.
 - (NSString*) contents {
 	// do whatever's necessary to make text here.
 	return @"contents here";
-}
-
-// Return the number of pages available for printing
-// Required for printing support.
-- (BOOL)knowsPageRange:(NSRangePointer)range {
-	// TODO(bowdidge): Better location?
-    range->location = 1;
-	// Why 2?
-    range->length = 2;
-    return YES;
 }
 
 - (NSString *) nextDestinationForFreightCar: (FreightCar *) freightCar {

@@ -114,7 +114,7 @@
 }
 
 - (int) lineCount {
-	NSPrintInfo *myPrintInfo = [NSPrintInfo sharedPrintInfo];
+	NSPrintInfo *myPrintInfo = [owningDocument_ printInfo];
 	NSRect pageSize = [myPrintInfo imageablePageBounds];
 
 	NSDictionary *fontAttrs = [NSDictionary dictionaryWithObject: [self typedFont] forKey: NSFontAttributeName];

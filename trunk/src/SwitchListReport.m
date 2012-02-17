@@ -58,8 +58,8 @@
 	[dateFormatter setDateFormat:[NSDateFormatter dateFormatFromTemplate:@"yyyy/MM/dd" options:0 locale:[NSLocale currentLocale]]];
 	NSString *currentDateString = [dateFormatter stringFromDate: [[owningDocument_ entireLayout] currentDate]]; 
 	[switchListReport appendFormat: @"\nTrain: %@               Date: %@        Conductor:\n",[[train_ name] uppercaseString], currentDateString];
-	[switchListReport appendFormat: @"%-12s %4s %15s/%-15s  %15s/%15s %15s\n","Init Number","Kind","From Sta","Ind","To Sta","Ind # Door","Contents"];
-	[switchListReport appendFormat: @"%-12s %4s %15s/%-15s  %15s/%15s %15s\n","-----------","----","--------------","--------------","--------------","--------------","--------------"];
+	[switchListReport appendFormat: @"%-12s %4s %12s/%-12s  %12s/%12s %12s\n","Init Number","Kind","From Sta","Ind","To Sta","Ind # Door","Contents"];
+	[switchListReport appendFormat: @"%-12s %4s %12s/%-12s  %12s/%12s %12s\n","-----------","----","--------------","--------------","--------------","--------------","--------------"];
 
 	NSEnumerator *e= [carsInTrain_ objectEnumerator];
 	while ((freightCar = [e nextObject]) != nil) {
@@ -67,7 +67,7 @@
 		NSString* contents = [freightCar cargoDescription];
 		if (contents == nil) contents = @"empty";
 		
-		[switchListReport appendFormat: @"%-12s %4s %15s/%-15s  %31s %15s\n",
+		[switchListReport appendFormat: @"%-12s %4s %12s/%-12s  %25s %12s\n",
 					                    [[freightCar reportingMarks] UTF8String],
 										[[freightCar carType] UTF8String],
 										[[[source location] name] UTF8String],
@@ -81,7 +81,7 @@
 }
 
 - (int) expectedColumns {
-	return 98;
+	return 80;
 }
 
 @end

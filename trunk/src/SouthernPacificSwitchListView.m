@@ -104,7 +104,7 @@
 	[super initWithFrame: frameRect withDocument: document];
 	headerHeight_ = 80;
 	// Off by one because header occupies one space.
-	carsPerPage_ = floor(([self pageHeight] - headerHeight_) / rowHeight_) - 1;
+	carsPerPage_ = floor(([self imageableHeight] - headerHeight_) / rowHeight_) - 1;
 	return self;
 }
 
@@ -136,26 +136,16 @@
 	return 14;
 }
 
-- (int) numberOfPages {
+- (void) recalculateFrame {
+	// Frame should be multiple of imageableHeight.
 	int numberOfPages = ceil(((float)[carsInTrain_ count]) / carsPerPage_);
 	if (numberOfPages == 0) numberOfPages = 1;
-	return numberOfPages;
+
+	NSRect currentFrame = [self frame];
+	[self setFrame: NSMakeRect(currentFrame.origin.x, currentFrame.origin.y,
+							   currentFrame.size.width, numberOfPages * [self imageableHeight])];
 }
 
-- (void) setTrain: (ScheduledTrain*) train {
-	[super setTrain: train];
-	// Resize now that we know the overall size.
-	[self setFrame: NSMakeRect(0, 0, 
-							   [self pageWidth], [self numberOfPages] * [self pageHeight])];
-}
-
-// Return the number of pages available for printing
-// Required for printing support.
-- (BOOL)knowsPageRange:(NSRangePointer)range {
-    range->location = 1;
-	range->length = [self numberOfPages];
-    return YES;
-}
 
 // Draws the title portion of the switch list.
 // General format:
@@ -164,9 +154,8 @@
 // Train:  ____  Left _______M _______, 19__
 // Engine: ____  Arrd _______M _______, 19__
 
-- (void) drawHeaderWithStart: (float) start {
-	
-	float topOfHeader = start + [self pageHeight] - 8;
+- (void) drawHeaderWithOffset: (float) start {
+	float topOfHeader = start + [self imageableHeight] - 8;
 	NSArray *date = [self getDateInStringFormat];
 	NSString *dateString = [date objectAtIndex: 0];
 	NSString *yearString = [date objectAtIndex: 1];
@@ -176,15 +165,15 @@
 	NSDictionary *title1Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: [self headerTextFontSize]]  forKey: NSFontAttributeName];
 	NSDictionary *title2Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: [self headerTitleFontSize]]  forKey: NSFontAttributeName];
 	
-	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: topOfHeader centerX: [self pageWidth]/2 attributes: title1Attrs];
-	[self drawCenteredString: @"SWITCH LIST" centerY: topOfHeader - 20 centerX: [self pageWidth]/2  attributes: title2Attrs];
+	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: topOfHeader centerX: [self imageableWidth]/2 attributes: title1Attrs];
+	[self drawCenteredString: @"SWITCH LIST" centerY: topOfHeader - 20 centerX: [self imageableWidth]/2  attributes: title2Attrs];
 	
 	NSString *line1 = [NSString stringWithFormat: @"Train _________ Left _________________ station, __________M _______________ %@____", centuryString];
 	float line1CenterY = topOfHeader - 36;
-	float line1CenterX = [self pageWidth] / 2;
+	float line1CenterX = [self imageableWidth] / 2;
 	NSString *line2 = [NSString stringWithFormat: @"Engine ________ Arrd _________________ station, __________M _______________ %@____", centuryString];
 	float line2CenterY = topOfHeader - 50;
-	float line2CenterX = [self pageWidth] / 2;
+	float line2CenterX = [self imageableWidth] / 2;
 	
 	[self drawFormLine: line1 centerX: line1CenterX centerY: line1CenterY
 			   strings: [NSArray arrayWithObjects: @"",@"", @"", @"", @"", @"", @"", dateString, @"", yearString, nil]
@@ -194,22 +183,22 @@
 			   strings: [NSArray arrayWithObjects: @"",@"", @"", @"", @"", @"", @"", dateString, @"", yearString, nil]
 		  printedAttrs: title1Attrs];
 
-	[self drawTrainNameAtStart: start];
+	[self drawTrainNameWithOffset: start];
 }
 
 - (void) drawOneFormWithCars: (NSArray *) cars  withStart: (float) start {
 	// Draw whole thing in yellow - rect alone isn't enough for printing.
-	float documentWidth = [self pageWidth] * 0.75;
-	float documentHeight = [self pageHeight];
+	float documentWidth = [self imageableWidth] * 0.75;
+	float documentHeight = [self imageableHeight];
 	[[self canaryYellowColor] setFill];
-	NSRectFill(NSMakeRect(([self pageWidth] - documentWidth)/2, start, documentWidth, documentHeight));
+	NSRectFill(NSMakeRect(([self imageableWidth] - documentWidth)/2, start, documentWidth, documentHeight));
 
 	float tableWidth = documentWidth;
-	float tableHeight =  floor(([self pageHeight] - headerHeight_) / rowHeight_) * rowHeight_;
+	float tableHeight =  floor(([self imageableHeight] - headerHeight_) / rowHeight_) * rowHeight_;
 	float tableBottom = start;
-	float tableLeft = ([self pageWidth] - tableWidth) / 2;
+	float tableLeft = ([self imageableWidth] - tableWidth) / 2;
 			   
-	[self drawHeaderWithStart: start];
+	[self drawHeaderWithOffset: start];
 	[self drawTableForCars: cars
 					  rect: NSMakeRect(tableLeft, tableBottom, tableWidth, tableHeight)
 					source: [[[SouthernPacificSwitchListSource alloc] initWithTrain: train_
@@ -237,7 +226,7 @@
 		NSArray *carsToShow = [carsInTrain_ subarrayWithRange: carRange];
 		[self drawOneFormWithCars: carsToShow withStart: start];
 		firstCar += carsPerPage_;
-		start += [self pageHeight];
+		start += [self imageableHeight];
 	}
 
 }

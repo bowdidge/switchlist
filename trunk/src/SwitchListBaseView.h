@@ -69,10 +69,13 @@
 	// Height of individual rows in switchlist table drawn by -[SwitchListBaseView drawTableForCars:rect:source]
 	float rowHeight_;
 	
-	float pageWidth_;
-	float pageHeight_;
+	// Size of a single page with the current print settings.  This is the source of truth for
+	// all drawing decisions, and represents the size of the paper inside the default margins.
+	float imageableWidth_;
+	float imageableHeight_;
 }
 
+// Initial frame size indicates the initial page size.
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSDocument<SwitchListDocumentInterface>*) document;
 - (void) setTrain: (ScheduledTrain*) train;
 - (ScheduledTrain*) train;
@@ -80,9 +83,13 @@
 - (NSDocument<SwitchListDocumentInterface>*) owningDocument;
 
 // Page height in bounds coordinates.
-- (float) pageHeight;
+- (float) imageableHeight;
 // Page width in bounds coordinates.
-- (float) pageWidth;
+- (float) imageableWidth;
+
+// Recalculates the appropriate switch list report size whenever either the contents (the train) or the
+// size of the paper changes.  To be overridden by subclass.
+- (void) recalculateFrame;
 
 // 
 // Preferred font drawing attributes for this view.
@@ -146,7 +153,7 @@
 		 printedAttrs: (NSDictionary*) printedAttrs;
 
 // Draws the train's name faintly in the upper right.
-- (void) drawTrainNameAtStart: (float) start;
+- (void) drawTrainNameWithOffset: (float) offsetY;
 
 // Returns current layout date in an array with three elements: month/day, 2 digit year, and 2 digit century.
 - (NSArray*) getDateInStringFormat;

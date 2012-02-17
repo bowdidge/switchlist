@@ -638,7 +638,7 @@
 		NSString *switchlistHtmlFile = [renderer filePathForTemplateFile: @"switchlist"];
 
 		NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO];
-		
+		// TODO(bowdidge): Switch this to match/inherit from the SwitchListBaseView so print all works.
 		HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: title];
 		[[view window] makeKeyAndOrderFront: self];
 		[view drawHTML: message
@@ -646,15 +646,17 @@
 		return;
 	}
 	
-	// Size is based on space in nib file.
-	switchListView = [[reportClass alloc] initWithFrame: NSMakeRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT)
+	NSPrintInfo *printInfo = [self printInfo];
+	NSRect reportRect = [printInfo imageablePageBounds];
+	switchListView = [[reportClass alloc] initWithFrame: NSMakeRect(20.0, 20.0, reportRect.size.width, reportRect.size.height)
 										   withDocument: self];
 	// These three not needed for non-text.
 	[switchListView setTrain: train];
 	
 	// TODO(bowdidge): How to free this?  Who owns?
 	SwitchListReportWindowController *slwc = [[SwitchListReportWindowController alloc] initWithWindowNibName: @"SwitchListReportWindow"
-																									withView: switchListView];
+																									withView: switchListView
+																								withDocument: self];
 	[self updateSummaryInfo: self];
 	[[slwc window] center];
 	[[slwc window] makeKeyAndOrderFront: self];

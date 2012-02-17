@@ -31,12 +31,8 @@
 #import <Cocoa/Cocoa.h>
 #import "SwitchListDocumentInterface.h"
 
-// Size of the switch list view space in the SwitchListReportWindow nib file.
-// Used for sizing views correctly when created outside this class.
-float FRAME_WIDTH;
-float FRAME_HEIGHT;
-
 @class SwitchListBaseView;
+@class SwitchListDocument;
 
 //  Controller for managing pretty switchlist windows.
 //  This controller is responsible for the creation of the
@@ -44,10 +40,15 @@ float FRAME_HEIGHT;
 //  such as the print request.
 
 @interface SwitchListReportWindowController : NSWindowController<NSWindowDelegate> {
+	// View wrapping SwitchList so we can add margins to it for screen display.
+	// Unneeded when printing.
+	NSView *marginView_;
+	// Actual view.
 	IBOutlet SwitchListBaseView *view_;
     IBOutlet NSScrollView *scrollView_;
+	SwitchListDocument *owningDocument_;
 }
 
-- (id) initWithWindowNibName: (NSString*) nibName withView: (NSView*) v;
+- (id) initWithWindowNibName: (NSString*) nibName withView: (NSView*) v withDocument: (SwitchListDocument*) owningDocument;
 - (IBAction) printDocument: (id) sender;
 @end

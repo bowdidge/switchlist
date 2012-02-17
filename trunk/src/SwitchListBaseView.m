@@ -127,8 +127,11 @@
 	carsInTrain_ = [[NSArray alloc] init];
 	owningDocument_ = [document retain];
 	rowHeight_ = 22.0;
-	pageWidth_ = frameRect.size.width;
-	pageHeight_ = frameRect.size.height;
+
+	// TODO(bowdidge): Get rid of size being passed in here; use document instead.  Requires lots of other changes.
+	imageableWidth_ = frameRect.size.width;
+	imageableHeight_ = frameRect.size.height;
+	
 	return self;
 }
 
@@ -144,13 +147,18 @@
 }
 
 // Page height in bounds coordinates.
-- (float) pageHeight {
-	return pageHeight_;
+- (float) imageableHeight {
+	return imageableHeight_;
 }
 
 // Page width in bounds coordinates.
-- (float) pageWidth {
-	return pageWidth_;
+- (float) imageableWidth {
+	return imageableWidth_;
+}
+
+- (void) recalculateFrame {
+	// Frame should be multiple of imageableWidth.
+	// For SwitchListBaseView, it's always one page.  Do nothing.
 }
 
 - (void) setTrain: (ScheduledTrain*) train {
@@ -158,6 +166,7 @@
 	[carsInTrain_ release];
 	train_ = [train retain];
 	carsInTrain_ = [[train allFreightCarsInVisitOrder] retain];
+	[self recalculateFrame];
 }
 
 - (ScheduledTrain*) train {
@@ -175,9 +184,9 @@
 }
 
 // Draw the train name in the upper left in small type.
-- (void) drawTrainNameAtStart: (float) start {
-	float documentHeight = [self pageHeight];
-	[[train_ name] drawAtPoint: NSMakePoint(10.0, start + documentHeight - 10.0) withAttributes: [self smallTypeAttr]];
+- (void) drawTrainNameWithOffset: (float) offsetY {
+	float documentHeight = [self imageableHeight];
+	[[train_ name] drawAtPoint: NSMakePoint(10.0, offsetY + documentHeight - 10.0) withAttributes: [self smallTypeAttr]];
 }
 
 - (void) drawCenteredString: (NSString *) str centerY: (float) centerY centerX: (float) centerPos attributes: attrs {
@@ -337,7 +346,8 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 // Required for printing support.
 - (BOOL)knowsPageRange:(NSRangePointer)range {
     range->location = 1;
-    range->length = 1;
+	int pageCount = ceil([self frame].size.height / [self imageableHeight]);
+    range->length = pageCount;
     return YES;
 }
 
@@ -348,7 +358,8 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 // For the nth page, we'll start at the top and measure down n pages.
 // The top should always be at a page boundary.
 - (NSRect)rectForPage:(int)page {
-	NSRect rectForPage = NSMakeRect(0, [self pageHeight] * (page - 1), [self pageWidth], [self pageHeight]);
+	// TODO(bowdidge): Reverse.
+	NSRect rectForPage = NSMakeRect(0, [self imageableHeight] * (page - 1), [self imageableWidth], [self imageableHeight]);
 	return rectForPage;
 }
 	
