@@ -160,6 +160,19 @@
 	return [mainBundle_ pathForResource: template ofType: @"html"];
 }
 
+// Returns the path to the template with the given name, found either in the main bundle or in the Application Support directory.
+// Used for pages that are not part of a particular template - home page, list of layouts, etc.
+- (NSString *) filePathForPrimaryFile: (NSString*) filenamePrefix {
+	NSString *primaryFile = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent: [NSString stringWithFormat: @"%@.html", filenamePrefix]];
+	
+	if ([[NSFileManager defaultManager] fileExistsAtPath: primaryFile]) {
+		return primaryFile;
+	}
+	
+	// Otherwise, default to stock version.
+	return [mainBundle_ pathForResource: filenamePrefix ofType: @"html"];
+	
+}
 
 - (NSString*) filePathForSwitchlistHTML {
 	return [self filePathForTemplateFile: @"switchlist"];
@@ -230,7 +243,7 @@
 
 - (NSString*) renderLayoutPageForLayout: (EntireLayout*) layout {
 	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: layout forKey: @"layout"];
-	return [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-layout" ofType: @"html"]
+	return [engine_ processTemplateInFileAtPath: [self filePathForPrimaryFile: @"switchlist-layout"]
 								  withVariables: templateDict];
 }
 
@@ -252,7 +265,7 @@
 	}
 	
 	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: layoutNames forKey:  @"layoutNames"];
-	NSString *message = [engine_ processTemplateInFileAtPath: [mainBundle_ pathForResource: @"switchlist-home" ofType: @"html"]
+	NSString *message = [engine_ processTemplateInFileAtPath: [self filePathForPrimaryFile: @"switchlist-home"]
 											   withVariables: templateDict];
 	return message;
 }
