@@ -81,6 +81,9 @@
 
 - (NSArray* ) allFreightCarsInVisitOrder;
 
+// Returns an array of NSNumbers indicating the change in train length at each station.
+- (NSArray*) changeInTrainLengthArray;
+
 // Returns an array of stations with work for this train, where each
 // dictionary entry includes a name for the station and a list of industries at the station
 // with cars for the current train, and each industry is a dictionary with name and list
