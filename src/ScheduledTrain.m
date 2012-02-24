@@ -211,7 +211,7 @@
 - (NSArray*) carsAtStation: (Place *) station   {
 	NSMutableArray *carsAtStation  = [NSMutableArray array];
 	for (FreightCar *f in [self freightCars]) {
-		if ([[f currentLocation] location] == station) {
+		if ([f currentTown] == station) {
 			[carsAtStation addObject: f];
 		}
 	}
@@ -256,7 +256,7 @@
 - (NSArray*) sortedCarsInSet: (NSSet*) cars atStation: (Place *) station {
 	NSMutableArray *carsAtStation  = [NSMutableArray array];
 	for (FreightCar *f in cars ) {
-		if ([[f currentLocation] location] == station) {
+		if ([f currentTown] == station) {
 			[carsAtStation addObject: f];
 		}
 	}

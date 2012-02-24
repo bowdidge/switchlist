@@ -76,6 +76,10 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 
 - (InduYard *)currentLocation;
 - (void)setCurrentLocation:(InduYard *)value;
+
+// Returns the town holding the current industry for the car.
+- (Place *) currentTown;
+
 /* Is this car at its next destination? */
 - (BOOL) atDestinationIndustry;
 - (BOOL) atDestinationTown;

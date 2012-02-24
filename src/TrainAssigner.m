@@ -304,7 +304,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 			return [NSArray array];
 		}
 		
-		if ([[[car currentLocation] location] isStaging] == YES) {
+		if ([car inStaging] == YES) {
 			// It's in staging.  Leave it here for the same reason.
 			// TODO(bowdidge): Needed?
 			return [NSArray array];
@@ -391,13 +391,13 @@ NSString *NameOrNoValue(NSString* string) {
 		if ([car cargo] == nil) {
 			NSString *err = [NSString stringWithFormat: @"Cannot find route for car %@ from %@ to a yard accepting cars of division %@",
 							 [car reportingMarks],
-							 NameOrNoValue([[[car currentLocation] location] name]),
+							 NameOrNoValue([[car currentTown] name]),
 							 [car homeDivision]];
 			[self addError: err];
 		} else {
 			NSString *err = [NSString stringWithFormat: @"Cannot find route to get car %@ from %@ to %@",
 							 [car reportingMarks],
-							 NameOrNoValue([[[car currentLocation] location] name]),
+							 NameOrNoValue([[car currentTown] name]),
 							 NameOrNoValue([[[ car nextIndustry] location] name])];
 			[self addError: err];
 		}
@@ -407,7 +407,7 @@ NSString *NameOrNoValue(NSString* string) {
 	
 	// Which train are we going to put this on?
 	ScheduledTrain *tr=nil;
-	Place *here = [[car currentLocation] location];
+	Place *here = [car currentTown];
 	Place *there;
 
 	if ([route count] == 0) {
@@ -415,7 +415,7 @@ NSString *NameOrNoValue(NSString* string) {
 		return CarAssignmentNoMoveNeeded;
 	} else if ([route count] == 1) {
 		// Staying in same town - just transfer.
-		tr = [self trainServingStation: [[car currentLocation] location]  acceptingCar: car];
+		tr = [self trainServingStation: [car currentTown]  acceptingCar: car];
 		there = [route objectAtIndex: 0];
 	} else {
 		// We have one or more steps to go.  Find a train for the next step.

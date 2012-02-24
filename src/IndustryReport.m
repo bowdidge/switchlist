@@ -52,7 +52,7 @@
 	BOOL firstLine = YES;
 	while ((car=[e nextObject]) != nil) {
 		NSString* currentLocation = [[car currentLocation] name];
-		NSString* currentTown = [[[car currentLocation] location] name];
+		NSString* currentTown = [[car currentTown] name];
 
 		// print section header.
 		if (((currentIndustry == nil) && (firstLine == YES)) || 
