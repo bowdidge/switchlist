@@ -70,7 +70,7 @@
 	Industry *industryB = [self industryAtStation: @"B"];
 	[industryB setHasDoors: YES];
 	[industryB setNumberOfDoors: [NSNumber numberWithInt: 1]];
-	[[mockDocument doorAssignmentRecorder] setCar: [self freightCarWithReportingMarks: FREIGHT_CAR_1_NAME]
+	[[mockDocument doorAssignmentRecorder] setCar: [self freightCarWithReportingMarks: FREIGHT_CAR_2_NAME]
 			   destinedForIndustry: [self industryAtStation: @"B"]
 							  door: 1];
 

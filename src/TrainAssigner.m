@@ -34,9 +34,10 @@
 #import "CarType.h"
 #import "Cargo.h"
 #import "DoorAssignmentRecorder.h"
-#import "Place.h" 
-#import "Industry.h"
 #import "FreightCar.h"
+#import "Industry.h"
+#import "Place.h" 
+#import "ScheduledTrain.h"
 #import "Yard.h"
 
 
@@ -588,20 +589,23 @@ NSString *NameOrNoValue(NSString* string) {
 		}
 	}
 	
-	for (FreightCar *car in [entireLayout_ allFreightCars]) {
-		InduYard *currentLocation = [car currentLocation];
-		InduYard *nextLocation = [car nextStop];
+	for (ScheduledTrain *train in [entireLayout_ allTrains]) {
+		NSSet *allCarsInTrain = [train freightCars];
+		for (FreightCar *car in allCarsInTrain) {
+			InduYard *currentLocation = [car currentLocation];
+			InduYard *nextLocation = [car nextStop];
 
-		if (currentLocation == nil) continue;
-		if (currentLocation == [entireLayout_ workbenchIndustry]) continue;
+			if (currentLocation == nil) continue;
+			if (currentLocation == [entireLayout_ workbenchIndustry]) continue;
 			 
-        if (nextLocation && ([car currentLocation] != nextLocation)) {
-			if ([self canChangeSidingDict: carChangeDictionary
-								forSiding: nextLocation
-								 byLength: [[car length] intValue]] == NO) {
-				[errors_ addObject: 
-				 [NSString stringWithFormat: @"No room for %@ at %@!  Not moving car.", [car reportingMarks], [nextLocation name]]];
-				[[car currentTrain] removeFreightCarsObject: car];
+			if (nextLocation && ([car currentLocation] != nextLocation)) {
+				if ([self canChangeSidingDict: carChangeDictionary
+									forSiding: nextLocation
+									 byLength: [[car length] intValue]] == NO) {
+					[errors_ addObject: 
+					 [NSString stringWithFormat: @"No room for %@ at %@!  Not moving car.", [car reportingMarks], [nextLocation name]]];
+					[[car currentTrain] removeFreightCarsObject: car];
+				}
 			}
 		}
 	}

@@ -94,3 +94,7 @@ atLine:__LINE__ \
 withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
 }\
 } while(0)
+
+// Wrapper to avoid type mismatches.
+#define STAssertEqualsInt(val, expr, ...) STAssertEquals(((NSInteger)val), ((NSInteger)expr), ##__VA_ARGS__)
+
