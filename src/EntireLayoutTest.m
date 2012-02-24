@@ -337,9 +337,9 @@
 	NSArray *allCars = [myTrain1 allFreightCarsInVisitOrder];
 	STAssertEqualsInt(2, [allCars count], @"Not enough cars in train.");
 	// First A->B car
-	STAssertEqualObjects([[[allCars objectAtIndex: 0] cargo] cargoDescription], @"a to b", @"Cars out of order");
+	STAssertEqualObjects([[[allCars objectAtIndex: 0] cargo] cargoDescription], @"A to B", @"Cars out of order");
     // Then B->C Car									
-	STAssertEqualObjects([[[allCars objectAtIndex: 1] cargo] cargoDescription], @"b to c", @"Cars out of order.");
+	STAssertEqualObjects([[[allCars objectAtIndex: 1] cargo] cargoDescription], @"B to C", @"Cars out of order.");
 }
 
 - (void) testStationsWithWork {

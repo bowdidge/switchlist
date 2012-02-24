@@ -199,15 +199,30 @@
 	[self makeThreeStationLayoutWithDivisions: YES];
 }
 
+// Create a freight car with an expected movement.
+// Name the car's current location, and where the town was loaded and unloaded,
+// along with whether it's loaded.  Location is the name of a town; location would be the
+// name of the industry in that town.
+- (FreightCar *) makeFreightCarNamed: (NSString*) name
+								  at: (NSString *) currentLocation
+						  movingFrom: (NSString *) source
+								  to: (NSString *) destination
+							  loaded: (int) loaded  {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: name];
+	[fc1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	Cargo *c1 = [self makeCargo: [NSString stringWithFormat: @"%@ to %@", source ,destination]];
+	[c1 setSource: [self industryAtStation: source]];
+	[c1 setDestination: [self industryAtStation: destination]];
+	[fc1 setCargo: c1];
+	[fc1 setCurrentLocation: [self industryAtStation: currentLocation]];
+	[fc1 setIsLoaded: loaded];
+	return fc1;
+}
 // Make three stations, A, B, and C.
 // Each has an industry; B has a yard.
 
 - (void) makeThreeStationTrain {
 	ScheduledTrain *myTrain = [self makeTrainWithName: @"MyTrain"];
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_1_NAME];
-	[fc1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_2_NAME];
-	[fc2 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
 	
 	[myTrain setStopsString: @"A,B,C"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
@@ -217,20 +232,9 @@
 	STAssertTrue([[myTrain stationStopStrings] containsObject: @"B"], @"B missing");
 	STAssertTrue([[myTrain stationStopStrings] containsObject: @"C"], @"C missing");
 	
-	Cargo *c1 = [self makeCargo: @"b to c"];
-	[c1 setSource: [self industryAtStation: @"B"]];
-	[c1 setDestination: [self industryAtStation: @"C"]];
-	[fc1 setCargo: c1];
-	[fc1 setCurrentLocation: [self industryAtStation: @"B"]];
-	[fc1 setIsLoaded: YES];
-	
-	Cargo *c2 = [self makeCargo: @"a to b"];
-	[c2 setSource: [self industryAtStation: @"A"]];
-	[c2 setDestination: [self industryAtStation: @"B"]];
-	[fc2 setCargo: c2];
-	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
-	[fc2 setIsLoaded: YES];
-	
+	FreightCar *fc1 = [self makeFreightCarNamed: FREIGHT_CAR_1_NAME at: @"B" movingFrom: @"B" to: @"C" loaded: YES];
+	FreightCar *fc2 = [self makeFreightCarNamed: FREIGHT_CAR_2_NAME at: @"A" movingFrom: @"A" to: @"B" loaded: YES];
+
 	[myTrain addFreightCarsObject: fc1];
 	[myTrain addFreightCarsObject: fc2];
 	STAssertEqualsInt(2, [[[entireLayout_ trainWithName: @"MyTrain"] freightCars] count], @"Not enough cars in train.");
