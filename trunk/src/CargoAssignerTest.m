@@ -67,7 +67,7 @@
 		STAssertEquals(c1, [cargos objectAtIndex: i], @"%d of 5 cargos not priority", i);
 	}
 	int cargoCount = [cargos count];
-	STAssertTrue(15 == [cargos count], @"Not enough cargos chosen.");
+	STAssertEqualsInt(15, [cargos count], @"Not enough cargos chosen.");
 	
 	int numberOfC2=0;
 	for (i=0;i<15;i++) {

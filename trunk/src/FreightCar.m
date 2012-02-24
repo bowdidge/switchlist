@@ -246,6 +246,7 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 	return [[self currentLocation] location];
 }
 
+// Returns nil if no cargo defined.
 - (InduYard*) nextIndustry {
 	// Is this car whereit's supposed to be?
 	// There's three definitions for "arrived". 
