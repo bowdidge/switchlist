@@ -242,6 +242,10 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
     [self didChangeValueForKey: @"currentLocation"];
 }
 
+- (Place *) currentTown {
+	return [[self currentLocation] location];
+}
+
 - (InduYard*) nextIndustry {
 	// Is this car whereit's supposed to be?
 	// There's three definitions for "arrived". 
@@ -296,7 +300,7 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 
 - (BOOL) atDestinationTown {
 	Place* destTown = [self nextTown];
-	Place *carIndustryLocation = [[self currentLocation] location];
+	Place *carIndustryLocation = [self currentTown];
 	
 	if ((destTown == nil) || (carIndustryLocation == nil)) return NO;
 	
@@ -384,7 +388,7 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
 	NSString *nextIndString=NULL;
 	InduYard* nextInd=NULL;
 	NSString *contents=NULL;
-	NSString *currentStation = [[[self currentLocation] location] name];
+	NSString *currentStation = [[self currentTown] name];
 					
 	if ([self cargo] == nil) {
 		nextIndString = @"";
