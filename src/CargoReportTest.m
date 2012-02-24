@@ -49,7 +49,7 @@
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
 	NSArray *allIndustries = [entireLayout_ allIndustries];
-	STAssertEquals([allIndustries count], (NSUInteger) 3, @"Not enough industries for test");
+	STAssertEqualsInt(3, [allIndustries count],  @"Not enough industries for test");
 	CargoReport *cargoReport = [[CargoReport alloc] initWithDocument: nil
 													  withIndustries: [entireLayout_ allIndustries]];
 	STAssertNotNil([entireLayout_ allValidCargos], @"");
@@ -63,7 +63,7 @@
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
 	NSArray *allIndustries = [entireLayout_ allIndustries];
-	STAssertEquals([allIndustries count], (NSUInteger) 3, @"Not enough industries for test");
+	STAssertEqualsInt(3, [allIndustries count], @"Not enough industries for test");
 	CargoReport *cargoReport = [[CargoReport alloc] initWithDocument: nil
 													  withIndustries: [entireLayout_ allIndustries]];
 	NSArray *cargos = [entireLayout_ allValidCargos];

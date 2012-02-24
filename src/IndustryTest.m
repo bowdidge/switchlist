@@ -49,11 +49,11 @@
 	STAssertEqualObjects([workbenchIndustry name], @"Workbench", @"Name of workbench is not workbench.");
 	STAssertFalse([workbenchIndustry canReceiveCargo], @"Workbench should not receive cargo.");
 	// Workbench doesn't count as an industry - only stuff receiving cargo.
-    STAssertEquals([[entireLayout allIndustries] count], (NSUInteger) 0, @"Wrong industry count");
+    STAssertEqualsInt(0, [[entireLayout allIndustries] count], @"Wrong industry count");
 
 	// Workbench industry must be requested to populate both industry and place.
 	Place *workbench = [entireLayout workbench];
-	STAssertEquals([[workbench industries] count], (NSUInteger) 1, @"Workbench does not have an industry.");
+	STAssertEqualsInt(1, [[workbench industries] count], @"Workbench does not have an industry.");
 	STAssertEqualObjects([[workbench industries] anyObject],
 						 [entireLayout workbenchIndustry], @"Workbench does not have workbench industry.");
 }
@@ -83,17 +83,17 @@
 	[self makeThreeStationLayout];
 	Industry *industry = [self industryAtStation: @"A"];
 	[industry setSidingLength: [NSNumber numberWithInt: 40]];
-	STAssertTrue(40 == [[industry sidingLength] intValue], @"Siding length not saved correctly.");
+	STAssertEqualsInt(40, [[industry sidingLength] intValue], @"Siding length not saved correctly.");
 
 	Industry *industryB = [self industryAtStation: @"B"];
-	STAssertTrue(0 == [[industryB sidingLength] intValue], @"Unset siding length should be nil, not %@.", [industryB sidingLength]);
+	STAssertEqualsInt(0, [[industryB sidingLength] intValue], @"Unset siding length should be nil, not %@.", [industryB sidingLength]);
 }
 
 - (void) testYardSidingLength {
 	[self makeThreeStationLayout];
 	[self makeYardAtStation: @"A"];
 	Yard *yard = [self yardAtStation: @"A"];
-	STAssertTrue(0 == [[yard sidingLength] intValue], @"Yard siding length should be nil, not %@.", [yard sidingLength]);
+	STAssertEqualsInt(0, [[yard sidingLength] intValue], @"Yard siding length should be nil, not %@.", [yard sidingLength]);
 }
 
 

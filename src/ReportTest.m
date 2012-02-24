@@ -80,7 +80,7 @@
 }
 
 - (void) testLineLength {
-	STAssertTrue(10 == [report_ lineLength], @"Line length was %d, not 100", [report_ lineLength]);
+	STAssertEqualsInt(10, [report_ lineLength], @"Line length was %d, not 100", [report_ lineLength]);
 }
 
 - (void) testCenteredString {

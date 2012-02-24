@@ -212,7 +212,7 @@
 	[myTrain setStopsString: @"A,B,C"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
 	
-	STAssertEquals([[myTrain stationStopStrings] count], (NSUInteger) 3, @"Wrong number of station stops");
+	STAssertEqualsInt(3, [[myTrain stationStopStrings] count], @"Wrong number of station stops");
 	STAssertTrue([[myTrain stationStopStrings] containsObject: @"A"], @"A missing");
 	STAssertTrue([[myTrain stationStopStrings] containsObject: @"B"], @"B missing");
 	STAssertTrue([[myTrain stationStopStrings] containsObject: @"C"], @"C missing");
@@ -222,16 +222,18 @@
 	[c1 setDestination: [self industryAtStation: @"C"]];
 	[fc1 setCargo: c1];
 	[fc1 setCurrentLocation: [self industryAtStation: @"B"]];
+	[fc1 setIsLoaded: YES];
 	
 	Cargo *c2 = [self makeCargo: @"a to b"];
 	[c2 setSource: [self industryAtStation: @"A"]];
 	[c2 setDestination: [self industryAtStation: @"B"]];
 	[fc2 setCargo: c2];
 	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc2 setIsLoaded: YES];
 	
 	[myTrain addFreightCarsObject: fc1];
 	[myTrain addFreightCarsObject: fc2];
-	STAssertEquals([[[entireLayout_ trainWithName: @"MyTrain"] freightCars] count], (NSUInteger) 2, @"Not enough cars in train.");
+	STAssertEqualsInt(2, [[[entireLayout_ trainWithName: @"MyTrain"] freightCars] count], @"Not enough cars in train.");
 }
 
 - (Yard*) yardAtStation: (NSString*) stationName {
@@ -258,7 +260,7 @@
 
 - (void) checkRoute: (NSArray*) routeOfPlaces equals: (NSString*) stringOfStops {
 	NSArray *stopNames = [stringOfStops componentsSeparatedByString: @","];
-	STAssertTrue([routeOfPlaces count] == [stopNames count], @"Wrong number of stops in route.");
+	STAssertEqualsInt([routeOfPlaces count], [stopNames count], @"Wrong number of stops in route.");
 	int i;
 	for (i=0;i<[stopNames count];i++) {
 		Place *nthPlace = [routeOfPlaces objectAtIndex: i];
