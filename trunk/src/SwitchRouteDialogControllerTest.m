@@ -119,7 +119,7 @@
 	[controller_ update: entireLayout_];
 	
 	int rowsInStopsTable = [controller_ numberOfRowsInTableView: mockStopsTableView_];
-	STAssertTrue(3 == rowsInStopsTable,
+	STAssertEqualsInt(3, rowsInStopsTable,
 				 @"Wrong number of towns displayed, found %d.", rowsInStopsTable);
 	[self checkStopsTableRow: 0 townName: @"A"];
 	[self checkStopsTableRow: 1 townName: @"B"];

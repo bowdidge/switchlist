@@ -31,13 +31,14 @@
 #import "SwitchListBaseViewTest.h"
 
 #import "SwitchListBaseView.h"
+#import "SwitchList_OCUnit.h"
 
 @implementation SwitchListBaseViewTest
 
 - (void) testSplitStringByDashes {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"AAA ___ AAA"];
-	STAssertTrue(3 == [a count], @"Count should have been 3 but was %d", [a count]);
+	STAssertEqualsInt(3, [a count], @"Count should have been 3 but was %d", [a count]);
 	STAssertEqualObjects(@"AAA ", [a objectAtIndex: 0], @"");
 	STAssertEqualObjects(@"___", [a objectAtIndex: 1], @"");
 	STAssertEqualObjects(@" AAA", [a objectAtIndex: 2], @"");
@@ -47,7 +48,7 @@
 - (void) brokenTestAdjoiningDashes {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"___ ___ "];
-	STAssertTrue(3 == [a count], @"Count should have been 3 but was %d for %@", [a count], a);
+	STAssertEqualsInt(3, [a count], @"Count should have been 3 but was %d for %@", [a count], a);
 	STAssertEqualObjects(@"___", [a objectAtIndex: 0], @"");
 	STAssertEqualObjects(@" ", [a objectAtIndex: 1], @"");
 	STAssertEqualObjects(@"___", [a objectAtIndex: 2], @"");
@@ -56,14 +57,14 @@
 - (void) testNoDashes {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"Foo Bar Baz"];
-	STAssertTrue(1 == [a count], @"Count should have been 1 but was %d for %@", [a count], a);
+	STAssertEqualsInt(1, [a count], @"Count should have been 1 but was %d for %@", [a count], a);
 	STAssertEqualObjects(@"Foo Bar Baz", [a objectAtIndex: 0], @"");
 }
 
 - (void) testDashesAtStart {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"____Name"];
-	STAssertTrue(2 == [a count], @"Count should have been 2 but was %d for %@", [a count], a);
+	STAssertEqualsInt(2, [a count], @"Count should have been 2 but was %d for %@", [a count], a);
 	STAssertEqualObjects(@"____", [a objectAtIndex: 0], @"");
 	STAssertEqualObjects(@"Name", [a objectAtIndex: 1], @"");
 }
@@ -71,7 +72,7 @@
 - (void) testDashesAtEnd {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"Name:_______"];
-	STAssertTrue(2 == [a count], @"Count should have been 2 but was %d for %@", [a count], a);
+	STAssertEqualsInt(2, [a count], @"Count should have been 2 but was %d for %@", [a count], a);
 	STAssertEqualObjects(@"Name:", [a objectAtIndex: 0], @"");
 	STAssertEqualObjects(@"_______", [a objectAtIndex: 1], @"");
 }
