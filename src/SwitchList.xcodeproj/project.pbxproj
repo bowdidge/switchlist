@@ -78,6 +78,7 @@
 		3E95845B1298707D00A10258 /* SimpleHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843712986D7D00A10258 /* SimpleHTTPConnection.m */; };
 		3E95845D1298707D00A10258 /* SimpleHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843912986D7D00A10258 /* SimpleHTTPServer.m */; };
 		3E983484145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */; };
+		3E9AF07D14F7505400580148 /* ScheduledTrainTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF07C14F7505400580148 /* ScheduledTrainTest.m */; };
 		3E9CE102128CFA9F0077E916 /* switchlistNewIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */; };
 		3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */; };
 		3EB0AC0C127BB95000E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
@@ -309,6 +310,8 @@
 		3E95843812986D7D00A10258 /* SimpleHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHTTPServer.h; sourceTree = "<group>"; };
 		3E95843912986D7D00A10258 /* SimpleHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHTTPServer.m; sourceTree = "<group>"; };
 		3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddSidingLength.xcmappingmodel; sourceTree = "<group>"; };
+		3E9AF07B14F7505400580148 /* ScheduledTrainTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScheduledTrainTest.h; sourceTree = "<group>"; };
+		3E9AF07C14F7505400580148 /* ScheduledTrainTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduledTrainTest.m; sourceTree = "<group>"; };
 		3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = switchlistNewIcon.icns; path = resources/switchlistNewIcon.icns; sourceTree = "<group>"; };
 		3E9E1F780951605600C5E038 /* IndustryReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryReport.h; sourceTree = "<group>"; };
 		3E9E1F790951605600C5E038 /* IndustryReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryReport.m; sourceTree = "<group>"; };
@@ -650,6 +653,8 @@
 				3E90BF3712792E3F0074F2FA /* NSManagedObjectContext.m */,
 				3E60B66D1318B49C007C094D /* ReportTest.h */,
 				3E60B66E1318B49C007C094D /* ReportTest.m */,
+				3E9AF07B14F7505400580148 /* ScheduledTrainTest.h */,
+				3E9AF07C14F7505400580148 /* ScheduledTrainTest.m */,
 				3E71870C13B1B17000ED3840 /* SwitchListBaseViewTest.h */,
 				3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */,
 				3E6E30A0146636040069D022 /* SwitchList_OCUnit.h */,
@@ -933,6 +938,7 @@
 				3E3B3BA5140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */,
 				3EE333E7141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m in Sources */,
 				3E6E2F5314660B210069D022 /* HTMLSwitchlistRendererTest.m in Sources */,
+				3E9AF07D14F7505400580148 /* ScheduledTrainTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
