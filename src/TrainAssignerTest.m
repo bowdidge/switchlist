@@ -1335,3 +1335,51 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 
 // TODO(bowdidge): Test yards don't have capacity, and intermediate dest doesn't count.
 @end
+
+@interface InfiniteLoopInRouteTest : LayoutTest {
+};
+@end
+
+@implementation InfiniteLoopInRouteTest 
+- (void) testExcessiveTimeToCalculateRouteFrom {
+	// RouteFrom should be fast, even in this case with several different yards available for the car to
+	// switch trains at.  Check that the execution time is less than 0.1 sec.
+	[self makeSimpleLayout];
+
+	int i;
+	for (i=1;i<8;i++) {
+		NSString *townName = [NSString stringWithFormat: @"town-%d", i];
+		Place *p = [self makePlaceWithName: townName];
+		NSLog(@"%@", p);
+		[self makeYardAtStation: townName];
+	}
+	Place *p = [self makePlaceWithName: @"town-branch"];
+				
+	ScheduledTrain *mainTrain  =[self makeTrainWithName: @"stops everywhere"];
+	[mainTrain setStopsString: @"town-1,town-2,town-3,town-4,town-5,town-6,town-7"];
+	
+	ScheduledTrain *mainTrain3  =[self makeTrainWithName: @"stops everywhere"];
+	[mainTrain3 setStopsString: @"town-7,town-6,town-5,town-4,town-3,town-2,town-1"];
+	
+	// Note no way *to* branch.
+	ScheduledTrain *branchTrain  =[self makeTrainWithName: @"branchTrain"];
+	[branchTrain setStopsString: @"town-branch,town-3"];
+
+	Cargo *c = [self makeCargo: @"cargo"];
+	[c setSource: [self industryAtStation: @"town-1"]];
+	[c setDestination: [self industryAtStation: @"town-branch"]];
+	[c setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+
+	FreightCar *fc1 =[self makeFreightCarWithReportingMarks: @"AA 1"];
+	[fc1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	
+	NSDate *start = [NSDate date];
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout:[self entireLayout]  useDoors: NO];
+	STAssertNil([assigner routeFrom: [self industryAtStation: @"town-1"] to: [self industryAtStation: @"town-branch"] forCar: fc1],
+				@"No route expected because branch is unreachable.");
+	NSDate *end = [NSDate date];
+	STAssertTrue([end timeIntervalSinceDate: start] < 0.100, @"routeFrom:to:forCar: should have completed in 0.01 sec or so, not %f sec.", [end timeIntervalSinceDate: start]);
+	
+}	
+
+@end
