@@ -245,7 +245,9 @@ BOOL DEBUG_CAR_ASSN = NO;
 	NSDictionary *stationReachabilityGraph = [self stationReachabilityGraphForCarType: [c carTypeRel]];
 	NSMutableArray *potentialRoutes = [NSMutableArray array];
 	[potentialRoutes addObject: [NSMutableArray arrayWithObject: startPlace]];
-
+	// Keep a list of stations that we've already reached in one route; once we've found the shortest
+	// path to one intermediate station, there's no point to examine others.
+	NSMutableArray *stationsAlreadyVisited = [NSMutableArray arrayWithObject: startPlace];
 	while ([potentialRoutes count] != 0) {
 		NSMutableArray *firstRoute= [potentialRoutes objectAtIndex: 0];
 		[potentialRoutes removeObjectAtIndex: 0];
@@ -266,9 +268,11 @@ BOOL DEBUG_CAR_ASSN = NO;
 				// If reachableSta is a yard, then it's potentially an intermediate point.  Otherwise,
 				// we can ignore following any routes from the non-yard place.
 
-				if ([reachableSta hasYard]) {
+				if ([stationsAlreadyVisited containsObject: reachableSta] == NO && 
+					[reachableSta hasYard]) {
 					[newRoute addObject: reachableSta];
 					[potentialRoutes addObject: newRoute];
+					[stationsAlreadyVisited addObject: reachableSta];
 				}
 			}
 		}
@@ -590,7 +594,7 @@ NSString *NameOrNoValue(NSString* string) {
 	}
 	
 	for (ScheduledTrain *train in [entireLayout_ allTrains]) {
-		NSSet *allCarsInTrain = [train freightCars];
+		NSSet *allCarsInTrain = [[train freightCars] copy];
 		for (FreightCar *car in allCarsInTrain) {
 			InduYard *currentLocation = [car currentLocation];
 			InduYard *nextLocation = [car nextStop];
