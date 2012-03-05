@@ -175,6 +175,9 @@ NSString *DragTownsType = @"DragTownsType";
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
 	NSString *townName;
 	if (tableView == townTableView_) {
+		if ([townList_ count] <= row) {
+			return @"???"; // out of bounds
+		}
 		townName = [townList_ objectAtIndex: row];
 	} else if (tableView == routeTableView_) {
 		townName = [routeList_ objectAtIndex: row];
