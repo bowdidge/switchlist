@@ -31,6 +31,7 @@
 #import <Cocoa/Cocoa.h>
 #import <AppKit/NSPersistentDocument.h>
 #import "EntireLayout.h"
+#import "LayoutController.h"
 #import "SwitchListDocumentInterface.h"
 #import "SwitchRouteDialogController.h"
 #import "SetTrainCarTypesDialogController.h"
@@ -124,7 +125,7 @@
 	IBOutlet NSArrayController *carTypeArrayController_;
 	
 	EntireLayout *entireLayout_;
-	DoorAssignmentRecorder *doorAssignmentRecorder_;
+	LayoutController *layoutController_;
 	
 	// Layout info 
 	IBOutlet NSDatePicker *datePicker_;
