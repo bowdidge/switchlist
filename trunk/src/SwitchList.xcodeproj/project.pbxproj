@@ -49,6 +49,30 @@
 		3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BBF140E0B4B00F4F56C /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
 		3E3B3BF5140E0DE100F4F56C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3B3BF4140E0DE100F4F56C /* WebKit.framework */; };
+		3E43B3A615073D1F00AAA92B /* LayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B3A515073D1F00AAA92B /* LayoutController.m */; };
+		3E43B3A715073D1F00AAA92B /* LayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B3A515073D1F00AAA92B /* LayoutController.m */; };
+		3E43B4C21507419800AAA92B /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
+		3E43B4C31507419800AAA92B /* FreightCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11C30A3963F20071D6B4 /* FreightCar.m */; };
+		3E43B4C41507419800AAA92B /* Yard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D50A39652F0071D6B4 /* Yard.m */; };
+		3E43B4C51507419800AAA92B /* Industry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D70A39652F0071D6B4 /* Industry.m */; };
+		3E43B4C61507419800AAA92B /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D90A39652F0071D6B4 /* Place.m */; };
+		3E43B4C71507419800AAA92B /* ScheduledTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11DB0A39652F0071D6B4 /* ScheduledTrain.m */; };
+		3E43B4C81507419800AAA92B /* Cargo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11DD0A39652F0071D6B4 /* Cargo.m */; };
+		3E43B4C91507419800AAA92B /* CarAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49060D0F47E40092D1A3 /* CarAssigner.m */; };
+		3E43B4CA1507419800AAA92B /* EntireLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */; };
+		3E43B4CB1507419800AAA92B /* TrainAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49130D0F48640092D1A3 /* TrainAssigner.m */; };
+		3E43B4CC1507419800AAA92B /* CargoAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AE98127B293E003486E2 /* CargoAssigner.m */; };
+		3E43B4CD1507419800AAA92B /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
+		3E43B4CE1507419800AAA92B /* CarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258A6B1286657A00D233DB /* CarType.m */; };
+		3E43B4CF1507419800AAA92B /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
+		3E43B4D01507419800AAA92B /* DoorAssignmentRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */; };
+		3E43B4D11507419800AAA92B /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
+		3E43B4D21507419800AAA92B /* StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB507BC13243F2600D85B59 /* StringHelpers.m */; };
+		3E43B4D41507419800AAA92B /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B58A5140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m */; };
+		3E43B4D51507419800AAA92B /* AddSidingLength.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */; };
+		3E43B4D61507419800AAA92B /* LayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B3A515073D1F00AAA92B /* LayoutController.m */; };
+		3E43B4DC150741B400AAA92B /* testAdvanceLayoutsMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */; };
+		3E43B4E3150741E200AAA92B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E43B4E2150741E200AAA92B /* Cocoa.framework */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
@@ -255,6 +279,11 @@
 		3E3C11DB0A39652F0071D6B4 /* ScheduledTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScheduledTrain.m; sourceTree = "<group>"; };
 		3E3C11DC0A39652F0071D6B4 /* Cargo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cargo.h; sourceTree = "<group>"; };
 		3E3C11DD0A39652F0071D6B4 /* Cargo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cargo.m; sourceTree = "<group>"; };
+		3E43B3A515073D1F00AAA92B /* LayoutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutController.m; sourceTree = "<group>"; };
+		3E43B49F15073F2300AAA92B /* LayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutController.h; sourceTree = "<group>"; };
+		3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testAdvanceLayouts; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testAdvanceLayoutsMain.m; sourceTree = "<group>"; };
+		3E43B4E2150741E200AAA92B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3E4D49050D0F47E40092D1A3 /* CarAssigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarAssigner.h; sourceTree = "<group>"; };
 		3E4D49060D0F47E40092D1A3 /* CarAssigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarAssigner.m; sourceTree = "<group>"; };
 		3E4D490D0D0F484D0092D1A3 /* EntireLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntireLayout.h; sourceTree = "<group>"; };
@@ -376,6 +405,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3E43B4BB1507411A00AAA92B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E43B4E3150741E200AAA92B /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EC3B0851277DEFE00C00AD3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -421,6 +458,7 @@
 			children = (
 				8D15AC370486D014006FF6A4 /* SwitchList.app */,
 				3EC3B0881277DEFE00C00AD3 /* Unit tests.octest */,
+				3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -444,6 +482,7 @@
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				3E43B4E2150741E200AAA92B /* Cocoa.framework */,
 			);
 			name = SwitchList.CoreData;
 			sourceTree = "<group>";
@@ -598,6 +637,8 @@
 				3E88AE98127B293E003486E2 /* CargoAssigner.m */,
 				3E30DBB612B447D700FF224E /* DoorAssignmentRecorder.h */,
 				3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */,
+				3E43B49F15073F2300AAA92B /* LayoutController.h */,
+				3E43B3A515073D1F00AAA92B /* LayoutController.m */,
 				3E4D49120D0F48640092D1A3 /* TrainAssigner.h */,
 				3E4D49130D0F48640092D1A3 /* TrainAssigner.m */,
 			);
@@ -662,6 +703,7 @@
 				3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */,
 				3EE380BC133D284F0069C963 /* SwitchRouteDialogControllerTest.h */,
 				3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */,
+				3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */,
 				3E90C06B12793F510074F2FA /* TrainAssignerTest.h */,
 				3E90C06C12793F510074F2FA /* TrainAssignerTest.m */,
 				3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */,
@@ -724,6 +766,22 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3E43B4BC1507411A00AAA92B /* testAdvanceLayouts */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E43B4DD150741B400AAA92B /* Build configuration list for PBXNativeTarget "testAdvanceLayouts" */;
+			buildPhases = (
+				3E43B4BA1507411A00AAA92B /* Sources */,
+				3E43B4BB1507411A00AAA92B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = testAdvanceLayouts;
+			productName = testAdvanceLayoutsMain;
+			productReference = 3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */;
+			productType = "com.apple.product-type.tool";
+		};
 		3EC3B0871277DEFE00C00AD3 /* Unit tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EC3B08E1277DEFF00C00AD3 /* Build configuration list for PBXNativeTarget "Unit tests" */;
@@ -783,6 +841,7 @@
 			targets = (
 				8D15AC270486D014006FF6A4 /* SwitchList */,
 				3EC3B0871277DEFE00C00AD3 /* Unit tests */,
+				3E43B4BC1507411A00AAA92B /* testAdvanceLayouts */,
 			);
 		};
 /* End PBXProject section */
@@ -868,6 +927,34 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3E43B4BA1507411A00AAA92B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E43B4C21507419800AAA92B /* CarTypes.m in Sources */,
+				3E43B4C31507419800AAA92B /* FreightCar.m in Sources */,
+				3E43B4C41507419800AAA92B /* Yard.m in Sources */,
+				3E43B4C51507419800AAA92B /* Industry.m in Sources */,
+				3E43B4C61507419800AAA92B /* Place.m in Sources */,
+				3E43B4C71507419800AAA92B /* ScheduledTrain.m in Sources */,
+				3E43B4C81507419800AAA92B /* Cargo.m in Sources */,
+				3E43B4C91507419800AAA92B /* CarAssigner.m in Sources */,
+				3E43B4CA1507419800AAA92B /* EntireLayout.m in Sources */,
+				3E43B4CB1507419800AAA92B /* TrainAssigner.m in Sources */,
+				3E43B4CC1507419800AAA92B /* CargoAssigner.m in Sources */,
+				3E43B4CD1507419800AAA92B /* InduYard.m in Sources */,
+				3E43B4CE1507419800AAA92B /* CarType.m in Sources */,
+				3E43B4CF1507419800AAA92B /* NSMigrationManagerCategory.m in Sources */,
+				3E43B4D01507419800AAA92B /* DoorAssignmentRecorder.m in Sources */,
+				3E43B4D11507419800AAA92B /* GlobalPreferences.m in Sources */,
+				3E43B4D21507419800AAA92B /* StringHelpers.m in Sources */,
+				3E43B4D41507419800AAA92B /* NSFileManager+DirectoryLocations.m in Sources */,
+				3E43B4D51507419800AAA92B /* AddSidingLength.xcmappingmodel in Sources */,
+				3E43B4D61507419800AAA92B /* LayoutController.m in Sources */,
+				3E43B4DC150741B400AAA92B /* testAdvanceLayoutsMain.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EC3B0841277DEFE00C00AD3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -939,6 +1026,7 @@
 				3EE333E7141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m in Sources */,
 				3E6E2F5314660B210069D022 /* HTMLSwitchlistRendererTest.m in Sources */,
 				3E9AF07D14F7505400580148 /* ScheduledTrainTest.m in Sources */,
+				3E43B3A715073D1F00AAA92B /* LayoutController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -947,60 +1035,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */,
-				3EE711371285D4F2006059F4 /* CarTypes.m in Sources */,
 				3EC3B1641277E4F900C00AD3 /* SwitchListDocument.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				3EC3B1651277E4F900C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */,
 				3EC3B16C1277E4F900C00AD3 /* SwitchListAppDelegate.m in Sources */,
 				3EC3B16E1277E4F900C00AD3 /* Report.m in Sources */,
-				3EC3B16F1277E4F900C00AD3 /* CarReport.m in Sources */,
 				3EC3B1701277E4F900C00AD3 /* IndustryReport.m in Sources */,
 				3EC3B1711277E4F900C00AD3 /* ReservedCarReport.m in Sources */,
 				3EC3B1721277E4F900C00AD3 /* SwitchListReport.m in Sources */,
-				3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */,
-				3EC3B1741277E4F900C00AD3 /* CargoReport.m in Sources */,
-				3EC3B1751277E4F900C00AD3 /* FreightCar.m in Sources */,
-				3EC3B1761277E4F900C00AD3 /* Yard.m in Sources */,
-				3EC3B1771277E4F900C00AD3 /* Industry.m in Sources */,
-				3EC3B1781277E4F900C00AD3 /* Place.m in Sources */,
-				3EC3B1791277E4F900C00AD3 /* ScheduledTrain.m in Sources */,
-				3EC3B17A1277E4F900C00AD3 /* Cargo.m in Sources */,
+				3EC3B16F1277E4F900C00AD3 /* CarReport.m in Sources */,
 				3EC3B17B1277E4F900C00AD3 /* SwitchRouteDialogController.m in Sources */,
-				3EC3B17C1277E4F900C00AD3 /* CarAssigner.m in Sources */,
-				3EC3B17D1277E4F900C00AD3 /* EntireLayout.m in Sources */,
-				3EC3B17E1277E4F900C00AD3 /* TrainAssigner.m in Sources */,
+				3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */,
 				3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */,
 				3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */,
-				3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */,
-				3E88AE9A127B293E003486E2 /* CargoAssigner.m in Sources */,
-				3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */,
-				3E258A6C1286657A00D233DB /* CarType.m in Sources */,
 				3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */,
 				3E7B6EA71287C9F60069FF31 /* AddCarType.xcmappingmodel in Sources */,
-				3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */,
-				3E95843A12986D7D00A10258 /* SimpleHTTPConnection.m in Sources */,
-				3E95843B12986D7D00A10258 /* SimpleHTTPServer.m in Sources */,
-				3E30DBB812B447D700FF224E /* DoorAssignmentRecorder.m in Sources */,
 				3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */,
 				3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */,
-				3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */,
-				3EB507BD13243F2600D85B59 /* StringHelpers.m in Sources */,
-				3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */,
+				3E95843A12986D7D00A10258 /* SimpleHTTPConnection.m in Sources */,
+				3E95843B12986D7D00A10258 /* SimpleHTTPServer.m in Sources */,
 				3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */,
 				3E108BD514049E7900B77CFE /* MGTemplateEngine.m in Sources */,
 				3E108BD614049E7900B77CFE /* MGTemplateStandardFilters.m in Sources */,
 				3E108BD714049E7900B77CFE /* MGTemplateStandardMarkers.m in Sources */,
 				3E108BD814049E7900B77CFE /* NSArray_DeepMutableCopy.m in Sources */,
 				3E108BD914049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */,
+				3E3B3A34140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */,
+				3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */,
+				3E8328C514553A6400A6A662 /* AddSidingLength.xcmappingmodel in Sources */,
 				3E108BDA14049E7900B77CFE /* RegexKitLite.m in Sources */,
 				3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
 				3EFEC5231408515500F9CF15 /* WebServerDelegate.m in Sources */,
 				3EFEC532140851A200F9CF15 /* SwitchListFilters.m in Sources */,
+				3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */,
+				3EC3B1741277E4F900C00AD3 /* CargoReport.m in Sources */,
+				3EE711371285D4F2006059F4 /* CarTypes.m in Sources */,
+				3EC3B1751277E4F900C00AD3 /* FreightCar.m in Sources */,
+				3EC3B1761277E4F900C00AD3 /* Yard.m in Sources */,
+				3EC3B1771277E4F900C00AD3 /* Industry.m in Sources */,
+				3EC3B1781277E4F900C00AD3 /* Place.m in Sources */,
+				3EC3B1791277E4F900C00AD3 /* ScheduledTrain.m in Sources */,
+				3EC3B17A1277E4F900C00AD3 /* Cargo.m in Sources */,
+				3EC3B17C1277E4F900C00AD3 /* CarAssigner.m in Sources */,
+				3EC3B17D1277E4F900C00AD3 /* EntireLayout.m in Sources */,
+				3EC3B17E1277E4F900C00AD3 /* TrainAssigner.m in Sources */,
+				3E88AE9A127B293E003486E2 /* CargoAssigner.m in Sources */,
+				3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */,
+				3E258A6C1286657A00D233DB /* CarType.m in Sources */,
+				3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */,
+				3E30DBB812B447D700FF224E /* DoorAssignmentRecorder.m in Sources */,
+				3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */,
+				3EB507BD13243F2600D85B59 /* StringHelpers.m in Sources */,
+				3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */,
 				3E6B58A6140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m in Sources */,
-				3E3B3A34140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */,
-				3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */,
-				3E8328C514553A6400A6A662 /* AddSidingLength.xcmappingmodel in Sources */,
 				3E983484145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel in Sources */,
+				3E43B3A615073D1F00AAA92B /* LayoutController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,6 +1155,72 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3E43B4BF1507411B00AAA92B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = testAdvanceLayouts;
+			};
+			name = Debug;
+		};
+		3E43B4C01507411B00AAA92B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = testAdvanceLayouts;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		3E43B4C11507411B00AAA92B /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = testAdvanceLayouts;
+			};
+			name = Default;
+		};
 		3EA5977D08DC051800D5A852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1247,6 +1402,16 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3E43B4DD150741B400AAA92B /* Build configuration list for PBXNativeTarget "testAdvanceLayouts" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E43B4BF1507411B00AAA92B /* Debug */,
+				3E43B4C01507411B00AAA92B /* Release */,
+				3E43B4C11507411B00AAA92B /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
 		3EA5977C08DC051800D5A852 /* Build configuration list for PBXNativeTarget "SwitchList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

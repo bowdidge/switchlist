@@ -37,6 +37,7 @@
 #import "CarReport.h"
 #import "CarType.h"
 #import "CarTypes.h"
+#import "DoorAssignmentRecorder.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "GlobalPreferences.h"
@@ -106,10 +107,10 @@
 {
     [super init];
 	entireLayout_ = nil;
+	layoutController_ = nil;
 	locationIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.location.isOffline == 0 OR self.location.name LIKE \"Workbench\""] retain];
 	placeIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.isOffline == 0"] retain];
 	trains_ = nil;
-	doorAssignmentRecorder_ = nil;
     return self;
 }
 
@@ -117,8 +118,8 @@
 	[placeIsNotOfflineFilter_ release];
 	[locationIsNotOfflineFilter_ release];
 	[entireLayout_ release];
+	[layoutController_ release];
 	[trains_ release];
-	[doorAssignmentRecorder_ release];
 	[super dealloc];
 }
 
@@ -174,6 +175,7 @@
 
 - (void) awakeFromNib {
 	entireLayout_ = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
+	layoutController_ = [[LayoutController alloc] initWithEntireLayout: entireLayout_];
 	
 	NSMutableDictionary *layoutPrefs = [entireLayout_ getPreferencesDictionary];
 	NSNumber *defaultLoadsNumber = [layoutPrefs objectForKey: LAYOUT_PREFS_DEFAULT_NUM_LOADS];
@@ -294,7 +296,6 @@
 	[summaryWarningsField_ setStringValue: @""];
 	
     // Set the sortDescriptors for the managers array controller
-	
 	[self setupSortedArrayController: freightCarLocationArrayController_ 
 				   rearrangeCallback: @selector(rearrangeIndustriesArrayController:)
 							   popup: freightCarLocationPopup_
@@ -330,7 +331,7 @@
 			popup: yardLocationPopup_
 			sortField: @"name"];
 	
-// This *should* be sorting the main tables in each view, but it isn't.
+	// TODO(bowdidge): This *should* be sorting the main tables in each view, but it isn't.
 	// Now, set up main tables in each view to sort alphabetically by default.
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc]
 			initWithKey: @"name" ascending: YES
@@ -346,7 +347,6 @@
 
 // Callbacks to trigger the reordering of all the popup buttons listing places and other things
 // that deserve sorting alphabetically.
-
 - (void)rearrangeIndustriesArrayController:(NSNotification *)note
 {
     [freightCarLocationArrayController_ rearrangeObjects];
@@ -421,7 +421,7 @@
 	return newError;
 }
 	
-// Override so we can do some cleanup of inappropriate old choices.	
+// Override file loading so we can do some cleanup of inappropriate old choices.	
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)error {
 	BOOL ret;
 	@try {
@@ -439,23 +439,19 @@
 }
 
 - (DoorAssignmentRecorder*) doorAssignmentRecorder {
-	return doorAssignmentRecorder_;
+	return [layoutController_ doorAssignmentRecorder];
 }
 
 // finish loads/unloads and reassign.
 - (IBAction) doAdvanceLoads: (id) sender {
-	NSArray *freightCarsToAdvance = [entireLayout_ allFreightCarsAtDestination];
-	NSEnumerator *e = [freightCarsToAdvance objectEnumerator];
-	id car;
-	while ((car = [e nextObject]) != nil) {
-		if ([car isLoaded] == NO) {
-			[car setIsLoaded: YES];
-			// cargo stays the same
-		} else {
-			[car setIsLoaded: NO];
-			[car setValue: nil forKey: @"cargo"];
-		}
-	}
+	int numberOfCargos = [entireLayout_ loadsPerDay];
+	[layoutController_ advanceLoads];
+
+	// Generate loads for today.
+	[self createAndAssignNewCargos: numberOfCargos];
+	[self doAssignCars: self];
+	
+	[self updateSummaryInfo:self];
 	
 	// Finally, advance the day.
 	NSDate *currentDate = [entireLayout_ currentDate];
@@ -463,91 +459,35 @@
 	currentDate = [currentDate addTimeInterval: (60 * 60 * 24)];
 	[datePicker_ setDateValue: currentDate];
 	[entireLayout_ setCurrentDate: currentDate];
-	
-	// Generate loads for today.
-	int numberOfCargos = [entireLayout_ loadsPerDay];
-	[self createAndAssignNewCargos: numberOfCargos];
-	[self doAssignCars: self];
-	[self updateSummaryInfo:self];
 }
 
 - (void) assignCarsToTrains: (NSArray*) allTrains {
-	// Start from scratch (all cars, not just available) to make sure the placement is right.
-	NSArray *allFreightCars = [entireLayout_ allFreightCars];
-
-	NSEnumerator *e = [allFreightCars objectEnumerator];
-	FreightCar *car;
-	while ((car = [e nextObject]) != nil) {
-		[car setCurrentTrain: nil];
-	}
-
 	NSMutableDictionary *layoutPrefs = [entireLayout_ getPreferencesDictionary];
 	BOOL useDoors = NO;
 	NSNumber *useDoorsPref = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_DOORS_UI];
 	if (useDoorsPref && [useDoorsPref boolValue]) {
 		useDoors = YES;
 	}
-
+	
 	NSNumber *respectSidingLengthsPref = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI];
 	BOOL respectSidingLengths = NO;
 	if (respectSidingLengthsPref && [respectSidingLengthsPref boolValue]) {
 		respectSidingLengths = YES;
 	}
-	
-	TrainAssigner *ta = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: useDoors respectSidingLengths: respectSidingLengths];
+		
+	NSArray *errs = [layoutController_ assignCarsToTrains: allTrains respectSidingLengths: respectSidingLengths useDoors: useDoors];
 
-	[ta assignCarsToTrains: allTrains];
-	[doorAssignmentRecorder_ release];
-	doorAssignmentRecorder_ = [[ta doorAssignmentRecorder] retain];
-	NSArray *errs = [ta errors];
 	SwitchListAppDelegate *appDelegate = (SwitchListAppDelegate*) [[NSApplication sharedApplication] delegate];
 	[appDelegate setProblems: errs];
-	
-	[ta release];
 }
 
-/**
- * Selects a random set of cargos, and assigns them to available freight cars.
- */
+// Selects a random set of cargos, and assigns them to available freight cars.
 - (void) createAndAssignNewCargos: (int) loadsToAdd {
 
-	CargoAssigner *assigner = [[[CargoAssigner alloc] initWithEntireLayout: entireLayout_] autorelease];
-	NSArray *cargosForToday = [assigner cargosForToday: loadsToAdd];
-	// Keep track of how many cargos couldn't be filled to help layout owner with cargo balance.
-	NSMutableDictionary *carTypeUnavailableCount = [NSMutableDictionary dictionary];
-	
-	NSArray *allFreightCars = [entireLayout_ allAvailableFreightCars];
-	id cargo;
-	
-	// Sanity check.
-	if ([allFreightCars count] < 1) {
-		return;
-	}
-	
-	CarAssigner *carAssigner = [[CarAssigner alloc] initWithUnassignedCars: allFreightCars layout: entireLayout_];
+	NSMutableDictionary *carTypeUnavailableCount;
+	carTypeUnavailableCount = [layoutController_ createAndAssignNewCargos: loadsToAdd];
 
-	NSEnumerator *cargoEnum = [cargosForToday objectEnumerator];
-	while ((cargo = [cargoEnum nextObject]) != nil) {
-		
-		FreightCar *frtCar = [carAssigner assignedCarForCargo: cargo];
-		
-		if (frtCar == nil) {
-			// No cars available - increase the count on this cargo in the unavailable cars dict.
-			NSString *cargoCarReqt = [[cargo carTypeRel] carTypeName];
-			if (cargoCarReqt == nil) {
-					cargoCarReqt = @"Unspecified";
-			}
-			NSNumber *count = [carTypeUnavailableCount valueForKey: cargoCarReqt];
-			if (count == nil) {
-				// first car of this type that's unavailable.
-				count = [NSNumber numberWithInt: 1];
-			} else {
-				count = [NSNumber numberWithInt: [count intValue] + 1];
-			}
-			[carTypeUnavailableCount setObject: count forKey: cargoCarReqt];;
-		}
-	}
-	[carAssigner release];
+	if (!carTypeUnavailableCount) return;
 
 	// Format the warnings for unavailable cars.
 	NSArray *unavailableCarTypes = [carTypeUnavailableCount allKeys];
@@ -566,7 +506,8 @@
 	[summaryWarningsField_ setStringValue: warningString];
 }
 
-// scorched earth on loads -- for debugging, mainly.
+// Scorched earth on loads: reset everything about all freight cars.
+// For debugging, mainly.
 - (IBAction) doClearAllLoads: (id)sender {
 	
 	NSAlert *alert = [NSAlert alertWithMessageText: @"Are you sure you want to clear cargo loads from all cars?"
@@ -579,14 +520,7 @@
 		return;
 	}
 
-	NSArray *unavailableFreightCars = [entireLayout_ allReservedFreightCars];
-	NSEnumerator *e = [unavailableFreightCars objectEnumerator];
-	id car;
-	while ((car = [e nextObject]) != nil) {
-		[car setIsLoaded: NO];
-		[car setCargo: nil];
-		[car setCurrentTrain: nil];
-	}
+	[layoutController_ clearAllLoads];
 	[self updateSummaryInfo: self];
 }
 
@@ -662,6 +596,7 @@
 	[[slwc window] makeKeyAndOrderFront: self];
 }
 
+// Cancel a train, and reassign its freight cars to other trains when possible.
 - (IBAction) doAnnulTrain: (id) sender {
 	NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
 	int selRow = [selection firstIndex];
@@ -685,20 +620,14 @@
 	[self updateSummaryInfo: self];
 }
 
-
+// Mark the train as complete, and move all its freight cars to their final location.
 - (IBAction) doCompleteTrain: (id) sender {
 	NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
 	
 	int selRow = [selection firstIndex];
     while (selRow != NSNotFound) {
 		ScheduledTrain *train = [trains_ objectAtIndex: selRow];
-		
-		NSSet *carMvmts = [NSSet setWithSet: [train freightCars]];
-		for (FreightCar *car in carMvmts) {
-			if (![car moveOneStep]) {
-				// Problem occurred - silently fail.
-			}
-		}
+		[layoutController_ completeTrain: train];
 		selRow = [selection indexGreaterThanIndex: selRow];
 	}	
 	[self updateSummaryInfo: self];
@@ -726,10 +655,8 @@
 	// sheet is up here
 }
 
-/**
- * Handles presses on "Set Route" button in Trains panel.  Brings up dialog box to allow user to select
- * the stops a train makes.
- */
+// Handles presses on "Set Route" button in Trains panel.  Brings up dialog box to allow user to select
+// the stops a train makes.
 - (IBAction) doSetRoute: (id) sender {
 	[self updateAndCacheListOfTrains];
 	NSIndexSet *selection = [trainListTable_ selectedRowIndexes];
@@ -756,7 +683,7 @@
 	[switchRouteController_ update: self];
 }
 
-/* When the date in the Layout Preferences changes, update the EntireLayout's date. */
+// Updates the EntireLayout's date when the date in the Layout Preferences changes.
 - (IBAction) doChangeDate: (id) sender {
 	NSDate *currentDate = [datePicker_ dateValue];
 	[entireLayout_ setCurrentDate: currentDate];
