@@ -87,6 +87,7 @@
 	[op setShowsPrintPanel: YES];
 	[[[NSDocument alloc] init] runModalPrintOperation: op delegate: nil didRunSelector: NULL 
 										  contextInfo: NULL];
+	[printInfo release];
 	[printView release];
 }
 @end

@@ -94,6 +94,7 @@
                 [delegate newRequestWithURL:(NSURL *)url connection:self userAgent: (NSString*) userAgent];
                 CFRelease(url);
                 CFRelease(message);
+				CFRelease(userAgent);
                 message = NULL;
             } else {
                 isMessageComplete = NO;
