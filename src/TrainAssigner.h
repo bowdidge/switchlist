@@ -76,7 +76,8 @@ enum CarAssignmentResult {
 	CarAssignmentSuccess=0,
 	CarAssignmentRoutingProblem=1,
 	CarAssignmentNoMoveNeeded=2,
-	CarAssignmentNoRoomAtDestination=3
+	CarAssignmentNoRoomAtDestination=3,
+	CarAssignmentNoTrainsWithSpace=4
 };
 
 typedef enum CarAssignmentResult CarAssignmentResult;

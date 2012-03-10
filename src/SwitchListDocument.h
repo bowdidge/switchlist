@@ -70,6 +70,7 @@
 	IBOutlet NSTextField *carTypesLabel_;
 	IBOutlet NSTextField *maxLengthField_;
 	IBOutlet NSTextField *maxLengthLabel_;
+	IBOutlet NSTextField *maxLengthFeetLabel_;
 	IBOutlet NSTextField *minCarsToRunField_;
 	IBOutlet NSTextField *minCarsToRunLabel_;
 	
@@ -131,6 +132,7 @@
 	IBOutlet NSDatePicker *datePicker_;
 	IBOutlet NSTextField *layoutNameField_;
 	IBOutlet NSButton *enableDoorsButton_;
+	IBOutlet NSButton *enableSidingLengthButton_;
 	
 	IBOutlet NSTableView *carTypeTable_;
 	IBOutlet NSTableColumn *carTypeTableColumn_;
@@ -200,6 +202,10 @@
 - (void) setDoorsButtonState: (BOOL) shouldBeOn;
 // Hides or exposes siding length UI as needed.
 - (void) setSidingLengthButtonState: (BOOL) enable;
+
+// Brings up the Help page for something in the layouts panel.
+// Triggered by Help icon next to the "doors" and "siding limit options."
+- (IBAction) doLayoutHelpPressed: (id) sender;	
 @end 
 
 // Settings for the preferences dictionary.

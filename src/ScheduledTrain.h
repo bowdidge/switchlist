@@ -71,6 +71,7 @@
 // Note we do this as a string of names because CoreData
 // doesn't have idea of arrays of relationships.
 - (NSArray*) stationStopStrings;
+- (NSArray*) stationStopObjects;
 
 
 - (NSNumber *)minCarsToRun;
@@ -80,9 +81,6 @@
 - (NSArray*) carsForStation:(Place *)station;
 
 - (NSArray* ) allFreightCarsInVisitOrder;
-
-// Returns an array of NSNumbers indicating the change in train length at each station.
-- (NSArray*) changeInTrainLengthArray;
 
 // Returns an array of stations with work for this train, where each
 // dictionary entry includes a name for the station and a list of industries at the station

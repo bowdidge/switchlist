@@ -1255,6 +1255,27 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[assigner release];
 }
 
+// How does assignCarsToTrains work with cars with no destination?
+- (void) testMovingOfflineCar {
+	[self makeShortTrain];
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	FreightCar *fc = [self makeFreightCarWithReportingMarks: @"LOST 1"];
+	[fc setCurrentLocation: [self industryAtStation: @"B"]];
+	Place *offline = [self makePlaceWithName: @"Offline"];
+	[offline setIsOffline: YES];
+
+	Cargo *c = [self makeCargo: @"foo"];
+	[c setSource: [self industryAtStation: @"B"]];
+	[c setDestination: [self industryAtStation: @"Offline"]];
+	
+	[self makeYardAtStation: @"C"];
+	
+	[assigner assignCarsToTrains: [NSArray arrayWithObject: fc]];
+	STAssertEqualObjects(myTrain_, [fc currentTrain], @"");
+	STAssertTrue(0 == [[assigner errors] count], @"Unexpected errors '%@' from TrainAssigner!", [assigner errors]);
+	[assigner release];
+}	 
+
 // Test that other incoming cars are remembered when doing math for capacity.
 - (void) testMultipleCarsTooLongDoNotFit {
 	[self makeShortTrain];
@@ -1334,6 +1355,61 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 }
 
 // TODO(bowdidge): Test yards don't have capacity, and intermediate dest doesn't count.
+@end
+
+@interface TestTrainLengthLimitRespected : LayoutTest {
+}
+@end
+
+@implementation TestTrainLengthLimitRespected
+- (void) setUp {
+	[super setUp];
+	[self makeThreeStationLayout];
+}
+
+- (ScheduledTrain*) makeSimpleTrain: (int) maxLength {
+	ScheduledTrain *train = [self makeTrainWithName: @"MyTrain"];
+	[train setMaxLength: [NSNumber numberWithInt: maxLength]];
+	
+	[train setStopsString: @"A,B,C"];
+	[train addFreightCarsObject: [self makeFreightCarNamed: @"AA 1"
+														at: @"A"
+												movingFrom: @"A" to:@"C" loaded: YES]];
+	[train addFreightCarsObject: [self makeFreightCarNamed: @"AA 2"
+														at: @"A"
+												movingFrom: @"B" to:@"C" loaded: NO]];
+	
+	[train addFreightCarsObject: [self makeFreightCarNamed: @"AA 3"
+														at: @"B"
+												movingFrom: @"B" to:@"B" loaded: YES]];
+	return train;
+}
+
+- (void) testCarWillNotFitInTrain {
+	ScheduledTrain *train = [self makeSimpleTrain: 80];
+	// Overloads the a-b leg.
+	FreightCar *newCar =  [self makeFreightCarNamed: @"AA 4"
+												 at: @"A"
+										 movingFrom: @"B" to:@"C" loaded: NO];
+	
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	STAssertEquals(CarAssignmentNoTrainsWithSpace, [assigner assignCarToTrain: newCar], @"Car should not have fit.");
+	STAssertEqualsInt(1, [[assigner errors] count], @"Wrong number of errors.");
+	STAssertContains(@"will not fit on train", [[assigner errors] objectAtIndex: 0], @"Wrong error");
+}
+
+- (void) testCarFitsInTrain {
+	ScheduledTrain *train = [self makeSimpleTrain: 120];
+	// Overloads the a-b leg.
+	FreightCar *newCar =  [self makeFreightCarNamed: @"AA 4"
+												 at: @"A"
+										 movingFrom: @"B" to:@"C" loaded: NO];
+	
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	STAssertEquals(CarAssignmentSuccess, [assigner assignCarToTrain: newCar], @"Car should have fit.");
+	STAssertEqualsInt(0, [[assigner errors] count], @"Wrong number of errors.");
+}
+
 @end
 
 @interface InfiniteLoopInRouteTest : LayoutTest {

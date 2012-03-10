@@ -418,13 +418,7 @@
 // TODO(bowdidge): Rename to match generic use.
 - (IBAction) switchListStyleHelpPressed: (id) sender {
 	NSString *locBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
-	if ([sender tag] == 1) {
-		// Show help on web server.
-		[[NSHelpManager sharedHelpManager] openHelpAnchor: @"WebServer" inBook: locBookName];
-	} else {
-		// 0 - show help on switchlist styles.
-		[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListStyles" inBook: locBookName];
-	}
+	[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListPreferencesHelp" inBook: locBookName];
 }
 
 // Returns true if a directory named "name" exists in the specified directory,

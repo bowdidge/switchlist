@@ -7,46 +7,86 @@
 <div id="headerbox"><div id="iconbox">
 <img id="iconimg" src="../../shrd/switchListNewIcon.jpg" alt="SwitchList Icon" height="32" width="32" />
 </div>
-<h1>Moving Cars Only If Space At Industry</h1>
+<h1>Moving Cars Only If Space At Industry Or In Train</h1>
 </div>
 <div id="leftspace">
 <p>
-On smaller model railroad layouts, model railroad operations is usually busy, and sidings are often close to overflowing.
-If too many freight cars get directed at an overflowing siding, operators will get frustrated trying to figure out where
+On smaller model railroad layouts, model railroad operations is usually busy,
+and trains and industry spurs are often close to overflowing.
+If too many freight cars get directed at an overflowing industry spur, operators will get frustrated trying to figure out where
 to place cars, and the realism of operations may suffer.
+Trains with too many cars can overflow passing tracks, blocking other trains from getting through.
+Sometimes this action is part of the action and fun of model railroading, but it can also be frustrating and unrealistic.
 </p>
 <p>
-SwitchList has an optional feature where you can specify the length of each siding, then request that cars only be sent to a
-siding if space exists for the incoming car.  If the siding would overflow, SwitchList holds the car at the previous yard or siding
-until the next operating session.    SwitchList's algorithm only ensures that the siding will not be overflowing at the
+SwitchList has an optional feature to avoid overflowing spurs and too-long trains.  With this option on,
+you can specify the maximum length of each train, and ensure that extra cars are left behind if the train would ever exceed that length.  You also can specify the length of each industry spur track, then request that cars only be sent to a
+spur if space exists for the incoming car.  If the spur would overflow, SwitchList holds the car at the previous yard or industry
+until the next operating session.    SwitchList's algorithm only ensures that the track will not be overflowing at the
 end of the operating session, and so does not require trains to switch towns in a specific order.
 </p>
 <p>
-You do not need to specify siding lengths at first, nor are you ever required to do.
-SwitchList's algorithm only limits cars going to sidings with lengths specified; sidings
-with a length of zero will accept all cars.  You can slowly set siding lengths, and adjust your cargos to make sure
-no siding is requesting more cars than it can hold.  You also can leave the option off completely and not worry about
-recording the siding lengths and car lengths required for this option.
+You do not need to specify industry spur lengths at first, nor are you ever required to do.
+SwitchList's algorithm only limits cars going to spurs with lengths specified; spurs
+with a length of zero will accept all cars.  You can slowly set spur lengths, and adjust your cargos to make sure
+no spur is requesting more cars than it can hold.  You also can leave the option off completely and not worry about
+recording the spur lengths and car lengths required for this option.
 </p>
-<h2>Teaching SwitchList About Siding Lengths</h2>
+<h2>Teaching SwitchList About Industry Spur Lengths</h2>
 <p>
-Having SwitchList avoid overflowing sidings requires three steps:
+Having SwitchList avoid overflowing spurs requires three steps:
 <ul>
-<li>Turn on the siding length option in the <A HREF="pg23.html">Layout Tab</a>.
-<LI>Tell SwitchList about the lengths of each freight car.  Rough measurements are probably fine - '40' for a forty foot car.
-You shouldn't need to include coupler lengths.
-<LI>Measure each siding, and tell SwitchList its length.  You can do this slowly over time, measuring each siding with a scale
-ruler or estimating based on the number of cars that can fit on the siding.  A siding that hold three 40 foot boxcars can
-be assumed to be 120 feet long.
-<li>Simulate operating sessions for your layout, and check the <A HREF="pg31.html">Problems Window</a> for
-warnings about cars that can't be moved.  Check your list of cargos for the full siding; often, a three car siding
-might actually be scheduled for 35 cars per week or 5 cars per day.  Adjust the arriving and departing cargos for
-these overflowing sidings.
+<li>Turn on the <b>Limit industry capacity and train length</b>
+option in the <A HREF="pg23.html">Layout Tab</a>.</li>
+<LI>Tell SwitchList about the lengths of each freight car.
+<p>
+Rough measurements are probably fine -
+'40' for a forty foot car.
+You shouldn't need to include coupler lengths.  If you omit a car length or
+set the length to '0', SwitchList will ignore that car's length when checking
+for overflowing spurs or trains.</p>
+<LI>Measure each spur, and tell SwitchList its length.
+<p>You can do this slowly over time,
+measuring each spur with a scale
+ruler or estimating based on the number of cars that can fit on the spur.
+A spur that hold three 40 foot boxcars can
+be assumed to be 120 feet long.</p>
+<LI>Set a maximum length for each train in feet.
+<p>
+You'll probably want to set the maximum train length to the 
+length of the smalling passing siding or the maximum number of cars that can be switched in a
+town before things become too cluttered.  If your average passing siding can hold a 500 foot train,
+but the typical caboose and locomotive take up 100 feet of that, set the maximum train length to '400'.
+Again, leaving the maximum
+train length field blank or setting it to '0' will cause SwitchList to assume that there
+is no limit on train length.</p>
+<li>Simulate operating sessions for your layout, and check the
+<A HREF="pg31.html">Problems Window</a> for
+warnings about cars that can't be moved.
+<p>
+If you find an industry spur often
+doesn't have room for new cars, you probably have cargo rates for incoming
+or outgoing loads set too high.  Check your list of cargos for the that spur;
+often, a three car spur
+scheduled for 35 cars per week or 5 cars per day will always be overflowing.
+Adjust the arriving and departing cargos for
+these overflowing spurs as needed.</p>
+<li>Check for cargo balance problems.
+<p>
+If you find a train often cannot carry all the cars going to its town,
+check the incoming and outgoing cargos for industries in the towns served by the train.
+You may find that the cargo rate for the industries is set too high.
+Alternatively, perhaps the number of cars going to the industry is realistic;
+consider either increasing the maximum length for the train (if possible),
+or break up the duties of the train between two others, either by having two
+different trains serving different sorts of industries, or having each train handle
+only some of the towns on the original route.</p>
 </ul>
 <p>
-Once you've completed this setup, normal operations should never have overflowing sidings.
+Once you've completed this setup and tuned your cargo descriptions, normal operations should only infrequently have overflowing spurs or overflowing trains.
+<p
 There are cases where the order of trains might matter; SwitchList only keeps track of the number of cars that would be at the
-siding at the end of the operating session.  If one train is picking up cars and one dropping off, a siding may temporarily
+spur at the end of the operating session.  If one train is picking up cars and one dropping off, a spur may temporarily
 overflow if the dropping-off train arrives first.  In these cases, do what the real railroad does, and "off-spot" the car at a
 nearby location temporarily.
 </p>
@@ -55,9 +95,11 @@ See Also:
 <p>
 <A HREF="pg23.html">User Interface: Layout Tab</a> to see where the "Move Cars Only If Space At Industry" checkbox is located.
 <p>
-<A HREF="pg24.html">User Interface: Industry Tab</a> where the siding length field is located.
+<A HREF="pg24.html">User Interface: Industry Tab</a> where the spur length field is located.
 <p>
 <A HREF="pg21.html">User Interface: Freight Car Tab</a> where the car length field is located.
+<p>
+<A HREF="pg25.html">User Interface: Train Tab</a> where the maximum train length length field is located.
 </div>
 </body>
 </html>
