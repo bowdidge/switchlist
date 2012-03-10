@@ -470,7 +470,6 @@ NSString *NameOrNoValue(NSString* string) {
 			if ([addedCarVector vectorExceedsLength: [[tr maxLength] intValue]]) {
 				NSString *err = [NSString stringWithFormat: @"Car %@ will not fit on train %@.  Leaving behind.",
 							 [car reportingMarks], [tr name]];
-				NSLog(@"Car %@ unable to be added because of vector %@ was %@", [car reportingMarks], addedCarVector, sizeVector);
 				[self addError: err];
 				return CarAssignmentNoTrainsWithSpace;
 			}
