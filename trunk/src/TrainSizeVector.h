@@ -1,8 +1,9 @@
 //
-//  ScheduledTrainTest.h
+//
+//  TrainSizeVector.h
 //  SwitchList
 //
-//  Created by Robert Bowdidge on 2/23/12.
+//  Created by bowdidge on 2/25/12.
 //
 // Copyright (c)2012 Robert Bowdidge,
 // All rights reserved.
@@ -29,30 +30,25 @@
 // SUCH DAMAGE.
 
 
-#import "EntireLayout.h"
-#import "FreightCar.h"
-#import "ScheduledTrain.h"
-#import "ScheduledTrainTest.h"
+#import <Foundation/Foundation.h>
 
+@class ScheduledTrain;
 
-@implementation ScheduledTrainTest
-- (void) setUp {
-	[super setUp];
-	[self makeThreeStationLayout];
+// Class for recording the total change in length of the train at each stop.
+// Used for calculating whether cars can be added to train without the train
+// becoming larger than desired.
+@interface TrainSizeVector : NSObject {
+	// Array storing number of cars added or removed at each stop on the train.
+	NSMutableArray *vector;
 }
 
-- (void) testStationStrings {
-	[self makeThreeStationTrain];
-	
-	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
-	
-	STAssertEqualObjects(@"A,B,C", [train stops], @"Station stops not as expected.");
-	NSArray *stationStops = [train stationStopStrings];
-	NSLog(@"%d", [stationStops count]);
-	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in stationStopStrings");
-	STAssertEqualObjects(@"A", [stationStops objectAtIndex: 0], @"station stops array wrong");
-	STAssertEqualObjects(@"B", [stationStops objectAtIndex: 1], @"station stops array wrong");
-	STAssertEqualObjects(@"C", [stationStops objectAtIndex: 2], @"station stops array wrong");
-}	
+- (id) initWithCars: (NSArray*) cars stops: (NSArray*) stops;
 
+// Modifies this vector by adding values from otherVector.
+- (void) addVector: (TrainSizeVector*) vector;
+
+- (int) maximumLength;
+- (BOOL) vectorExceedsLength: (int) maxLength;
+
+- (NSArray*) vector;
 @end

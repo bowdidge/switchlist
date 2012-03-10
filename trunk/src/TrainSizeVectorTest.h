@@ -1,8 +1,9 @@
 //
-//  ScheduledTrainTest.h
+//
+//  TrainSizeVectorTest.h
 //  SwitchList
 //
-//  Created by Robert Bowdidge on 2/23/12.
+//  Created by bowdidge on 2/25/12.
 //
 // Copyright (c)2012 Robert Bowdidge,
 // All rights reserved.
@@ -28,31 +29,10 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
+#import "LayoutTest.h"
 
-#import "EntireLayout.h"
-#import "FreightCar.h"
-#import "ScheduledTrain.h"
-#import "ScheduledTrainTest.h"
-
-
-@implementation ScheduledTrainTest
-- (void) setUp {
-	[super setUp];
-	[self makeThreeStationLayout];
+@interface TrainSizeVectorTest : LayoutTest {
+	NSArray *stops_;
 }
-
-- (void) testStationStrings {
-	[self makeThreeStationTrain];
-	
-	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
-	
-	STAssertEqualObjects(@"A,B,C", [train stops], @"Station stops not as expected.");
-	NSArray *stationStops = [train stationStopStrings];
-	NSLog(@"%d", [stationStops count]);
-	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in stationStopStrings");
-	STAssertEqualObjects(@"A", [stationStops objectAtIndex: 0], @"station stops array wrong");
-	STAssertEqualObjects(@"B", [stationStops objectAtIndex: 1], @"station stops array wrong");
-	STAssertEqualObjects(@"C", [stationStops objectAtIndex: 2], @"station stops array wrong");
-}	
 
 @end

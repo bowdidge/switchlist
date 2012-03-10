@@ -75,28 +75,27 @@ int CargosNotFilled(NSDictionary* unfilledDict) {
 
 // Runs the layout through several cycles of assigning cars, running trains, and advancing cars.
 // Prints informative error and returns NO if anything appears wrong, else returns YES.
-BOOL TestLayout(char *layoutName) {
-	NSString *filename = [NSString stringWithUTF8String: layoutName];
-	if ([[NSFileManager defaultManager] fileExistsAtPath: filename] == NO) {
-		fprintf(stderr, "ERROR: No such file %s\n", layoutName);
+BOOL TestLayout(NSString *layoutName) {
+	if ([[NSFileManager defaultManager] fileExistsAtPath: layoutName] == NO) {
+		fprintf(stderr, "ERROR: No such file %@\n", layoutName);
 		return NO;
 	}
 
 	// TODO(bowdidge): Infer or allow as parameter.
 	NSString *pathToMom =  @"/SharedProducts/Debug/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 4.mom";
 	if ([[NSFileManager defaultManager] fileExistsAtPath: pathToMom] == NO) {
-		NSLog(@"FAIL: %@: Configuration error: expected schema file at %@, but not found", filename, pathToMom);
+		NSLog(@"FAIL: %@: Configuration error: expected schema file at %@, but not found", layoutName, pathToMom);
 		return NO;
 	}
 
-	NSManagedObjectContext *context = managedObjectContext(pathToMom, filename);
+	NSManagedObjectContext *context = managedObjectContext(pathToMom, layoutName);
 	if (!context) {
 		NSLog(@"FAIL: %@: Setup error: problems loading file.  (Incompatible version?)", layoutName);
 		return NO;
 	}
 	EntireLayout *entireLayout = [[EntireLayout alloc] initWithMOC: context];
 	int carCount = [[entireLayout allFreightCars] count];
-	NSLog(@"Layout is %@, %d cars", filename, carCount);
+	NSLog(@"Layout is %@, %d cars", layoutName, carCount);
 	NSArray *allTrains = [entireLayout allTrains];
 	LayoutController *controller = [[LayoutController alloc] initWithEntireLayout: entireLayout];
 	int i;
@@ -148,7 +147,7 @@ int main(int argc, char *argv[]) {
 	int testsPassed = 0;
 	for (i=1;i<argc;i++) {
 		BOOL result = NO;
-		result = TestLayout(argv[i]);
+		result = TestLayout([NSString stringWithUTF8String: argv[i]]);
 		testsRun++;
 		if (result) {
 			testsPassed++;

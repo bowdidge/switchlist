@@ -200,8 +200,10 @@
 	// Disable the car length controls if the layout preference isn't set.
 	NSNumber *useCarLengths = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI];
 	if (!useCarLengths || [useCarLengths boolValue] == NO) {
+		[enableSidingLengthButton_ setState: NO];
 		[self setSidingLengthButtonState: NO];
 	} else {
+		[enableSidingLengthButton_ setState: YES];
 		[self setSidingLengthButtonState: YES];
 	}
 
@@ -986,13 +988,23 @@
 - (void) setSidingLengthButtonState: (BOOL) enable {
 	[lengthField_ setHidden: !enable];
 	[lengthLabel_ setHidden: !enable];
-	[minCarsToRunField_ setHidden: !enable];
-	[minCarsToRunLabel_ setHidden: !enable];
+	// TODO(bowdidge): Enable when adding minimum cars to run feature.
+	[minCarsToRunField_ setHidden: YES];
+	[minCarsToRunLabel_ setHidden: YES];
 	[maxLengthField_ setHidden: !enable];
 	[maxLengthLabel_ setHidden: !enable];
+	[maxLengthFeetLabel_ setHidden: !enable];
 	[sidingLengthLabel_ setHidden: !enable];
 	[sidingFeetLabel_ setHidden: !enable];
 	[sidingLengthField_ setHidden: !enable];
+}
+
+// Brings up the Help page for something in the layouts panel.
+// Triggered by Help icon next to the "doors" and "siding limit options."
+- (IBAction) doLayoutHelpPressed: (id) sender {
+	NSString *locBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
+	// Show help on web server.
+	[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListLayoutHelp" inBook: locBookName];
 }
 
 @end

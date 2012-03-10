@@ -2,9 +2,9 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1050</int>
-		<string key="IBDocument.SystemVersion">10J869</string>
+		<string key="IBDocument.SystemVersion">10K549</string>
 		<string key="IBDocument.InterfaceBuilderVersion">851</string>
-		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.AppKitVersion">1038.36</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -13,6 +13,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="221"/>
+			<integer value="255"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -912,14 +913,14 @@
 			<object class="NSWindowTemplate" id="989276730">
 				<int key="NSWindowStyleMask">7</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{182, 581}, {444, 213}}</string>
+				<string key="NSWindowRect">{{182, 603}, {444, 191}}</string>
 				<int key="NSWTFlags">1677721600</int>
 				<string key="NSWindowTitle">Preferences</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
 				<object class="NSView" key="NSWindowView" id="962065835">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<object class="NSMutableArray" key="NSSubviews">
 						<bool key="EncodedWithXMLCoder">YES</bool>
@@ -936,7 +937,7 @@
 										<object class="NSTextField" id="777936724">
 											<reference key="NSNextResponder" ref="519539448"/>
 											<int key="NSvFlags">268</int>
-											<string key="NSFrame">{{80, 113}, {259, 17}}</string>
+											<string key="NSFrame">{{80, 80}, {259, 17}}</string>
 											<reference key="NSSuperview" ref="519539448"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSTextFieldCell" key="NSCell" id="23953521">
@@ -966,7 +967,7 @@
 										<object class="NSButton" id="58328363">
 											<reference key="NSNextResponder" ref="519539448"/>
 											<int key="NSvFlags">268</int>
-											<string key="NSFrame">{{81, 34}, {326, 18}}</string>
+											<string key="NSFrame">{{81, 12}, {326, 18}}</string>
 											<reference key="NSSuperview" ref="519539448"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSButtonCell" key="NSCell" id="632910294">
@@ -993,7 +994,7 @@
 										<object class="NSPopUpButton" id="200614197">
 											<reference key="NSNextResponder" ref="519539448"/>
 											<int key="NSvFlags">268</int>
-											<string key="NSFrame">{{92, 81}, {247, 26}}</string>
+											<string key="NSFrame">{{92, 48}, {247, 26}}</string>
 											<reference key="NSSuperview" ref="519539448"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="NSPopUpButtonCell" key="NSCell" id="1058482950">
@@ -1034,32 +1035,12 @@
 												<int key="NSArrowPosition">2</int>
 											</object>
 										</object>
-										<object class="NSButton" id="1019943632">
-											<reference key="NSNextResponder" ref="519539448"/>
-											<int key="NSvFlags">268</int>
-											<string key="NSFrame">{{358, 81}, {25, 25}}</string>
-											<reference key="NSSuperview" ref="519539448"/>
-											<bool key="NSEnabled">YES</bool>
-											<object class="NSButtonCell" key="NSCell" id="405888550">
-												<int key="NSCellFlags">67239424</int>
-												<int key="NSCellFlags2">134217728</int>
-												<string key="NSContents"/>
-												<reference key="NSSupport" ref="192541012"/>
-												<reference key="NSControlView" ref="1019943632"/>
-												<int key="NSButtonFlags">-2038415105</int>
-												<int key="NSButtonFlags2">161</int>
-												<string key="NSAlternateContents"/>
-												<string key="NSKeyEquivalent"/>
-												<int key="NSPeriodicDelay">200</int>
-												<int key="NSPeriodicInterval">25</int>
-											</object>
-										</object>
 									</object>
-									<string key="NSFrame">{{1, 1}, {408, 161}}</string>
+									<string key="NSFrame">{{1, 1}, {408, 107}}</string>
 									<reference key="NSSuperview" ref="577302875"/>
 								</object>
 							</object>
-							<string key="NSFrame">{{17, 16}, {410, 177}}</string>
+							<string key="NSFrame">{{17, 48}, {410, 123}}</string>
 							<reference key="NSSuperview" ref="962065835"/>
 							<string key="NSOffsets">{0, 0}</string>
 							<object class="NSTextFieldCell" key="NSTitleCell">
@@ -1088,8 +1069,30 @@
 							<int key="NSTitlePosition">2</int>
 							<bool key="NSTransparent">NO</bool>
 						</object>
+						<object class="NSButton" id="493793032">
+							<reference key="NSNextResponder" ref="962065835"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{402, 16}, {25, 25}}</string>
+							<reference key="NSSuperview" ref="962065835"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="15194052">
+								<int key="NSCellFlags">-2080244224</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="192541012"/>
+								<reference key="NSControlView" ref="493793032"/>
+								<int key="NSTag">1</int>
+								<int key="NSButtonFlags">-2038415105</int>
+								<int key="NSButtonFlags2">161</int>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">200</int>
+								<int key="NSPeriodicInterval">25</int>
+							</object>
+						</object>
 					</object>
-					<string key="NSFrameSize">{444, 213}</string>
+					<string key="NSFrameSize">{444, 191}</string>
+					<reference key="NSSuperview"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1600, 1002}}</string>
 				<string key="NSMaxSize">{1.79769e+308, 1.79769e+308}</string>
@@ -2091,14 +2094,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
-						<string key="label">switchListStyleHelpPressed:</string>
-						<reference key="source" ref="894572073"/>
-						<reference key="destination" ref="1019943632"/>
-					</object>
-					<int key="connectionID">406</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
 						<string key="label">showHelp:</string>
 						<reference key="source" ref="975852609"/>
 						<reference key="destination" ref="964013004"/>
@@ -2208,6 +2203,14 @@
 						<reference key="destination" ref="910995425"/>
 					</object>
 					<int key="connectionID">474</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">switchListStyleHelpPressed:</string>
+						<reference key="source" ref="894572073"/>
+						<reference key="destination" ref="15194052"/>
+					</object>
+					<int key="connectionID">478</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -2785,6 +2788,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="577302875"/>
+							<reference ref="493793032"/>
 						</object>
 						<reference key="parent" ref="989276730"/>
 					</object>
@@ -2933,46 +2937,6 @@
 						<reference key="parent" ref="770255456"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">369</int>
-						<reference key="object" ref="577302875"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="777936724"/>
-							<reference ref="58328363"/>
-							<reference ref="200614197"/>
-							<reference ref="1019943632"/>
-						</object>
-						<reference key="parent" ref="962065835"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">260</int>
-						<reference key="object" ref="777936724"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="23953521"/>
-						</object>
-						<reference key="parent" ref="577302875"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">312</int>
-						<reference key="object" ref="23953521"/>
-						<reference key="parent" ref="777936724"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">362</int>
-						<reference key="object" ref="58328363"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="632910294"/>
-						</object>
-						<reference key="parent" ref="577302875"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">363</int>
-						<reference key="object" ref="632910294"/>
-						<reference key="parent" ref="58328363"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">370</int>
 						<reference key="object" ref="168648692"/>
 						<reference key="parent" ref="662544739"/>
@@ -3045,52 +3009,6 @@
 						<int key="objectID">291</int>
 						<reference key="object" ref="796789318"/>
 						<reference key="parent" ref="861991762"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">395</int>
-						<reference key="object" ref="200614197"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="1058482950"/>
-						</object>
-						<reference key="parent" ref="577302875"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">396</int>
-						<reference key="object" ref="1058482950"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="947064894"/>
-						</object>
-						<reference key="parent" ref="200614197"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">397</int>
-						<reference key="object" ref="947064894"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="271799735"/>
-						</object>
-						<reference key="parent" ref="1058482950"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">400</int>
-						<reference key="object" ref="271799735"/>
-						<reference key="parent" ref="947064894"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">404</int>
-						<reference key="object" ref="1019943632"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="405888550"/>
-						</object>
-						<reference key="parent" ref="577302875"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">405</int>
-						<reference key="object" ref="405888550"/>
-						<reference key="parent" ref="1019943632"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">407</int>
@@ -3207,6 +3125,91 @@
 						<int key="objectID">468</int>
 						<reference key="object" ref="1059966690"/>
 						<reference key="parent" ref="413718113"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">475</int>
+						<reference key="object" ref="493793032"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="15194052"/>
+						</object>
+						<reference key="parent" ref="962065835"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">476</int>
+						<reference key="object" ref="15194052"/>
+						<reference key="parent" ref="493793032"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">369</int>
+						<reference key="object" ref="577302875"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="58328363"/>
+							<reference ref="777936724"/>
+							<reference ref="200614197"/>
+						</object>
+						<reference key="parent" ref="962065835"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">362</int>
+						<reference key="object" ref="58328363"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="632910294"/>
+						</object>
+						<reference key="parent" ref="577302875"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">363</int>
+						<reference key="object" ref="632910294"/>
+						<reference key="parent" ref="58328363"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">260</int>
+						<reference key="object" ref="777936724"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="23953521"/>
+						</object>
+						<reference key="parent" ref="577302875"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">312</int>
+						<reference key="object" ref="23953521"/>
+						<reference key="parent" ref="777936724"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">395</int>
+						<reference key="object" ref="200614197"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1058482950"/>
+						</object>
+						<reference key="parent" ref="577302875"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">396</int>
+						<reference key="object" ref="1058482950"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="947064894"/>
+						</object>
+						<reference key="parent" ref="200614197"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">397</int>
+						<reference key="object" ref="947064894"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="271799735"/>
+						</object>
+						<reference key="parent" ref="1058482950"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">400</int>
+						<reference key="object" ref="271799735"/>
+						<reference key="parent" ref="947064894"/>
 					</object>
 				</object>
 			</object>
@@ -3424,13 +3427,11 @@
 					<string>375.IBPluginDependency</string>
 					<string>376.IBPluginDependency</string>
 					<string>395.IBPluginDependency</string>
+					<string>395.IBViewBoundsToFrameTransform</string>
 					<string>396.IBPluginDependency</string>
 					<string>397.IBEditorWindowLastContentRect</string>
 					<string>397.IBPluginDependency</string>
 					<string>400.IBPluginDependency</string>
-					<string>404.IBPluginDependency</string>
-					<string>404.IBViewBoundsToFrameTransform</string>
-					<string>405.IBPluginDependency</string>
 					<string>407.IBPluginDependency</string>
 					<string>408.IBEditorWindowLastContentRect</string>
 					<string>408.IBPluginDependency</string>
@@ -3455,6 +3456,9 @@
 					<string>467.IBPluginDependency</string>
 					<string>467.IBViewBoundsToFrameTransform</string>
 					<string>468.IBPluginDependency</string>
+					<string>475.IBPluginDependency</string>
+					<string>475.IBViewBoundsToFrameTransform</string>
+					<string>476.IBPluginDependency</string>
 					<string>5.IBPluginDependency</string>
 					<string>5.ImportedFromIB2</string>
 					<string>56.IBPluginDependency</string>
@@ -3622,15 +3626,15 @@
 					<string>{213, 107}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
-					<string>{{0, 643}, {444, 213}}</string>
+					<string>{{378, 634}, {444, 191}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{0, 643}, {444, 213}}</string>
+					<string>{{378, 634}, {444, 191}}</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<boolean value="YES"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDKAAAwx0AAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABCoAAAwr4AAA</bytes>
 					</object>
 					<boolean value="YES"/>
 					<string>{{0, 688}, {480, 270}}</string>
@@ -3706,26 +3710,24 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABCogAAwrIAAA</bytes>
+						<bytes key="NSTransformStruct">P4AAAL+AAABCogAAweAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">AUGIAABBgAAAA</bytes>
+						<bytes key="NSTransformStruct">AUGIAABCQAAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABCuAAAwpAAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{99, 863}, {247, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<object class="NSAffineTransform">
-						<bytes key="NSTransformStruct">P4AAAL+AAABDswAAwtAAAA</bytes>
-					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{345, 707}, {174, 23}}</string>
@@ -3759,6 +3761,11 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABBsAAAwgwAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDyQAAwhwAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3813,7 +3820,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">474</int>
+			<int key="maxID">488</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4301,13 +4308,12 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>displayCargoReport:</string>
-							<string>displayReservedCarReport:</string>
-							<string>displayYardReport:</string>
 							<string>doAddMoreCars:</string>
 							<string>doAdvanceLoads:</string>
 							<string>doAnnulTrain:</string>
 							<string>doAssignCars:</string>
+							<string>doCarReport:</string>
+							<string>doCargoReport:</string>
 							<string>doChangeDate:</string>
 							<string>doChangeDoorsState:</string>
 							<string>doChangeLayoutName:</string>
@@ -4316,14 +4322,17 @@
 							<string>doCompleteTrain:</string>
 							<string>doGenerateSwitchList:</string>
 							<string>doImportCars:</string>
+							<string>doIndustryReport:</string>
+							<string>doLayoutHelpPressed:</string>
+							<string>doReservedCarReport:</string>
 							<string>doSetCarTypes:</string>
 							<string>doSetRoute:</string>
-							<string>makeCarReport:</string>
-							<string>makeIndustryReport:</string>
+							<string>doYardReport:</string>
 							<string>updateSummaryInfo:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -4350,13 +4359,12 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>displayCargoReport:</string>
-							<string>displayReservedCarReport:</string>
-							<string>displayYardReport:</string>
 							<string>doAddMoreCars:</string>
 							<string>doAdvanceLoads:</string>
 							<string>doAnnulTrain:</string>
 							<string>doAssignCars:</string>
+							<string>doCarReport:</string>
+							<string>doCargoReport:</string>
 							<string>doChangeDate:</string>
 							<string>doChangeDoorsState:</string>
 							<string>doChangeLayoutName:</string>
@@ -4365,26 +4373,16 @@
 							<string>doCompleteTrain:</string>
 							<string>doGenerateSwitchList:</string>
 							<string>doImportCars:</string>
+							<string>doIndustryReport:</string>
+							<string>doLayoutHelpPressed:</string>
+							<string>doReservedCarReport:</string>
 							<string>doSetCarTypes:</string>
 							<string>doSetRoute:</string>
-							<string>makeCarReport:</string>
-							<string>makeIndustryReport:</string>
+							<string>doYardReport:</string>
 							<string>updateSummaryInfo:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">displayCargoReport:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">displayReservedCarReport:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">displayYardReport:</string>
-								<string key="candidateClassName">id</string>
-							</object>
 							<object class="IBActionInfo">
 								<string key="name">doAddMoreCars:</string>
 								<string key="candidateClassName">id</string>
@@ -4399,6 +4397,14 @@
 							</object>
 							<object class="IBActionInfo">
 								<string key="name">doAssignCars:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doCarReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doCargoReport:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -4434,6 +4440,18 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">doIndustryReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doLayoutHelpPressed:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">doReservedCarReport:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">doSetCarTypes:</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -4442,11 +4460,7 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">makeCarReport:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">makeIndustryReport:</string>
+								<string key="name">doYardReport:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
@@ -4476,14 +4490,17 @@
 							<string>doorCountField_</string>
 							<string>doorCountLabel_</string>
 							<string>enableDoorsButton_</string>
+							<string>enableSidingLengthButton_</string>
 							<string>freightCarArrayController_</string>
 							<string>freightCarCarTypePopup_</string>
 							<string>freightCarCargoArrayController_</string>
+							<string>freightCarCargoColumn_</string>
 							<string>freightCarCargoPopup_</string>
 							<string>freightCarController_</string>
 							<string>freightCarCountField_</string>
 							<string>freightCarLocationArrayController_</string>
 							<string>freightCarLocationPopup_</string>
+							<string>freightCarTable_</string>
 							<string>generateMoreButton_</string>
 							<string>generateTodayLoadsButton_</string>
 							<string>hasDoorsButton_</string>
@@ -4494,6 +4511,7 @@
 							<string>lengthField_</string>
 							<string>lengthLabel_</string>
 							<string>makeSwitchlistButton_</string>
+							<string>maxLengthFeetLabel_</string>
 							<string>maxLengthField_</string>
 							<string>maxLengthLabel_</string>
 							<string>minCarsToRunField_</string>
@@ -4540,14 +4558,17 @@
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSButton</string>
+							<string>NSButton</string>
 							<string>NSArrayController</string>
 							<string>NSPopUpButton</string>
 							<string>NSArrayController</string>
+							<string>NSTableColumn</string>
 							<string>NSPopUpButton</string>
 							<string>NSArrayController</string>
 							<string>NSTextField</string>
 							<string>NSArrayController</string>
 							<string>NSPopUpButton</string>
+							<string>NSTableView</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
@@ -4558,6 +4579,7 @@
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSButton</string>
+							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
@@ -4607,14 +4629,17 @@
 							<string>doorCountField_</string>
 							<string>doorCountLabel_</string>
 							<string>enableDoorsButton_</string>
+							<string>enableSidingLengthButton_</string>
 							<string>freightCarArrayController_</string>
 							<string>freightCarCarTypePopup_</string>
 							<string>freightCarCargoArrayController_</string>
+							<string>freightCarCargoColumn_</string>
 							<string>freightCarCargoPopup_</string>
 							<string>freightCarController_</string>
 							<string>freightCarCountField_</string>
 							<string>freightCarLocationArrayController_</string>
 							<string>freightCarLocationPopup_</string>
+							<string>freightCarTable_</string>
 							<string>generateMoreButton_</string>
 							<string>generateTodayLoadsButton_</string>
 							<string>hasDoorsButton_</string>
@@ -4625,6 +4650,7 @@
 							<string>lengthField_</string>
 							<string>lengthLabel_</string>
 							<string>makeSwitchlistButton_</string>
+							<string>maxLengthFeetLabel_</string>
 							<string>maxLengthField_</string>
 							<string>maxLengthLabel_</string>
 							<string>minCarsToRunField_</string>
@@ -4723,6 +4749,10 @@
 								<string key="candidateClassName">NSButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">enableSidingLengthButton_</string>
+								<string key="candidateClassName">NSButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">freightCarArrayController_</string>
 								<string key="candidateClassName">NSArrayController</string>
 							</object>
@@ -4733,6 +4763,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">freightCarCargoArrayController_</string>
 								<string key="candidateClassName">NSArrayController</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">freightCarCargoColumn_</string>
+								<string key="candidateClassName">NSTableColumn</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">freightCarCargoPopup_</string>
@@ -4753,6 +4787,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">freightCarLocationPopup_</string>
 								<string key="candidateClassName">NSPopUpButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">freightCarTable_</string>
+								<string key="candidateClassName">NSTableView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">generateMoreButton_</string>
@@ -4793,6 +4831,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">makeSwitchlistButton_</string>
 								<string key="candidateClassName">NSButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">maxLengthFeetLabel_</string>
+								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">maxLengthField_</string>

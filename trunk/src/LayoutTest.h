@@ -88,6 +88,16 @@
 
 - (FreightCar*) freightCarWithReportingMarks: (NSString*) reportingMarks;
 
+// Create a freight car with an expected movement.
+// Name the car's current location, and where the town was loaded and unloaded,
+// along with whether it's loaded.  Location is the name of a town; location would be the
+// name of the industry in that town.
+- (FreightCar *) makeFreightCarNamed: (NSString*) name
+								  at: (NSString *) currentLocation
+						  movingFrom: (NSString *) source
+								  to: (NSString *) destination
+							  loaded: (int) loaded;
+
 // Queries for simplifying unit tests. 
 // Find the yard named stationName-yard in the given station.
 - (Yard*) yardAtStation: (NSString*) stationName;

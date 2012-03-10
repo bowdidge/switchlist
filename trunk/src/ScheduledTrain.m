@@ -173,10 +173,38 @@
     [self didChangeValueForKey: @"stops"];
 }
 
+- (Place*) stationWithName: (NSString *)stationName {
+	NSError *error;
+	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [self managedObjectContext]];
+	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
+	[req2 setEntity: ent];
+	[req2 setPredicate: [NSPredicate predicateWithFormat: @"name LIKE %@",[stationName sqlSanitizedString]]];
+	NSArray *result = [[self managedObjectContext] executeFetchRequest: req2 error:&error];
+	
+	if ([result count] == 0) {
+		NSLog(@"No such station named %@", stationName);
+		return nil;
+	}
+	
+	if ([result count] > 1) {
+		NSLog(@"Too many stations named %@", stationName);
+		// TODO(bowdidge): Correct response?
+	}
+	return [result objectAtIndex: 0];
+}
+
 - (NSArray*) stationStopStrings {
 	NSString *stops = [self stops];
 	NSArray *ret = [stops componentsSeparatedByString: @","];
 	return ret;
+}
+
+- (NSArray*) stationStopObjects {
+	NSMutableArray *array = [NSMutableArray array];
+	for (NSString *stationName in [self stationStopStrings]) {
+		[array addObject: [self stationWithName: stationName]];
+	}
+	return array;
 }
 
 - (BOOL) beginsAndEndsAtSameStation {
@@ -231,26 +259,6 @@
 	
 }
 
-- (Place*) stationWithName: (NSString *)stationName {
-	NSError *error;
-	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [self managedObjectContext]];
-	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
-	[req2 setEntity: ent];
-	[req2 setPredicate: [NSPredicate predicateWithFormat: @"name LIKE %@",[stationName sqlSanitizedString]]];
-	NSArray *result = [[self managedObjectContext] executeFetchRequest: req2 error:&error];
-	
-	if ([result count] == 0) {
-		NSLog(@"No such station named %@", stationName);
-		return nil;
-	}
-	
-	if ([result count] > 1) {
-		NSLog(@"Too many stations named %@", stationName);
-		// TODO(bowdidge): Correct response?
-	}
-	return [result objectAtIndex: 0];
-}
-
 - (NSArray*) sortedCarsInSet: (NSSet*) cars atStation: (Place *) station {
 	NSMutableArray *carsAtStation  = [NSMutableArray array];
 	for (FreightCar *f in cars ) {
@@ -284,71 +292,6 @@
 	}
 	return sortedList;
 }
-
-			
-// Caculates the number of cars added or subtracted overall at each station stop.
-// Assumes cars dropped off at last possible visit to station, picked up at first possible.
-- (NSArray*) changeInTrainLengthArray {
-	NSArray *stationStops = [self stationStopStrings];
-	int numberOfStations = [[self stationStopStrings] count];
-	
-	NSMutableArray *carDeltaArray = [NSMutableArray array];
-	NSMutableDictionary *carsAddedDict = [NSMutableDictionary dictionary];
-	NSMutableDictionary *carsRemovedDict = [NSMutableDictionary dictionary];
-	
-	for (FreightCar *fc in [self freightCars]) {
-		if (![fc currentTown]) continue;
-		
-		if (![carsAddedDict objectForKey: [[fc currentTown] objectID]]) {
-			[carsAddedDict setObject: [NSNumber numberWithInt: 0] forKey: [[fc currentTown] objectID]];
-		}
-
-		int carsAddedAtStation = [[carsAddedDict objectForKey: [[fc currentTown] objectID]] intValue];
-		NSLog(@"Car %@ added at %@", fc, [fc currentTown]);
-		[carsAddedDict setObject: [NSNumber numberWithInt: carsAddedAtStation + 1] forKey: [[fc currentTown] objectID]];
-			 
-		if (![fc nextTown]) continue;
-		if (![carsRemovedDict objectForKey: [[fc nextTown] objectID]]) {
-			[carsRemovedDict setObject: [NSNumber numberWithInt: 0] forKey: [[fc nextTown] objectID]];
-		}
-
-		int carsRemovedAtStation = [[carsRemovedDict objectForKey: [[fc nextTown] objectID]] intValue];
-		NSLog(@"Car %@ removed at %@", fc, [fc currentTown]);
-		[carsRemovedDict setObject: [NSNumber numberWithInt: carsRemovedAtStation + 1] forKey: [[fc nextTown] objectID]];
-	}
-	NSLog(@"%@", carsAddedDict);
-	NSLog(@"%@", carsRemovedDict);
-	// Run through stations to find the number of cars added at each station.
-	// Remove in each case so that we don't 
-	int stationIndex=0;
-	for (stationIndex=0; stationIndex<numberOfStations; stationIndex++) {
-		id stationID =  [[self stationWithName: [stationStops objectAtIndex: stationIndex]] objectID];
-		NSNumber *carsAdded = [carsAddedDict objectForKey: stationID];
-		[carsAddedDict removeObjectForKey: stationID];
-		
-		if (carsAdded) {
-			[carDeltaArray addObject: carsAdded];
-		} else {
-			[carDeltaArray addObject: [NSNumber numberWithInt: 0]];
-		}
-	}
-	NSLog(@"%@", carDeltaArray);
-	// Run backwards for dropping off.
-	for (stationIndex=numberOfStations - 1; stationIndex>= 0; stationIndex--) {
-		id stationID =  [[self stationWithName: [stationStops objectAtIndex: stationIndex]] objectID];
-		NSNumber *carsRemoved = [carsRemovedDict objectForKey: stationID];
-		[carsRemovedDict removeObjectForKey: stationID];
-		int delta = [[carDeltaArray objectAtIndex: stationIndex] intValue];
-		if (carsRemoved) {
-			delta -= [carsRemoved intValue];
-		}
-		[carDeltaArray replaceObjectAtIndex: stationIndex withObject: [NSNumber numberWithInt: delta]];
-	}
-	NSLog(@"%@", carDeltaArray);
-	return carDeltaArray;
-}
-		
-	
 
 // Returns an array of stations with work for this train, where each
 // dictionary entry includes a name for the station and a list of industries at the station

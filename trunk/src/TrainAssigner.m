@@ -38,6 +38,7 @@
 #import "Industry.h"
 #import "Place.h" 
 #import "ScheduledTrain.h"
+#import "TrainSizeVector.h"
 #import "Yard.h"
 
 
@@ -268,7 +269,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 				// If reachableSta is a yard, then it's potentially an intermediate point.  Otherwise,
 				// we can ignore following any routes from the non-yard place.
 
-				if ([stationsAlreadyVisited containsObject: reachableSta] == NO && 
+				if ([stationsAlreadyVisited containsObject: reachableSta] == NO &&
 					[reachableSta hasYard]) {
 					[newRoute addObject: reachableSta];
 					[potentialRoutes addObject: newRoute];
@@ -365,13 +366,25 @@ NSString *NameOrNoValue(NSString* string) {
 
 // Given a car, find the proper train to carry it on its way.  Add the car to the train,
 // and if multiple steps are required, set intermediate destination to go there.
+//
+// Arguments:
+//   car: freight car to assign to one of the available trains.
+//
+// Returns:
+//    CarAssignmentSuccess if car was assigned to a train, or another value if
+//    a problem occurred.
+//    On exit, the a freight car with a cargo either has intermediateLocation set to nil
+//    (if the next destination is reachable on the assigned train), or the intermediate
+//    yard where it will be dropped on.
+//    A freight car with no cargo must have an intermediate location set to indicate its final
+//    destination.
 - (CarAssignmentResult) assignCarToTrain: (FreightCar *) car  {
 	NSArray *route;
 	[car setIntermediateDestination: nil];
 	
 	// Is this a car we have no intention of moving?
-	if ([car currentLocation] == [entireLayout_ workbenchIndustry]) return NO;
-	if ([car currentLocation] == nil) return NO;
+	if ([car currentLocation] == [entireLayout_ workbenchIndustry]) return CarAssignmentNoMoveNeeded;
+	if ([car currentLocation] == nil) return CarAssignmentNoMoveNeeded;
 	// Is this a car that can't be routed because of missing or inconsistent information?
 	if ([[car currentLocation] isOffline]) {
 		[self addError: [NSString stringWithFormat: @"Cannot move car %@ because it is at %@, an offline location.",
@@ -390,7 +403,7 @@ NSString *NameOrNoValue(NSString* string) {
 		return CarAssignmentRoutingProblem;
 	}
 	route = [self routeToNextStopForCar: car];
-	
+
 	if (route == nil) {
 		// We couldn't find a route.  Try to diagnose what went wrong.
 		if ([car cargo] == nil) {
@@ -422,6 +435,9 @@ NSString *NameOrNoValue(NSString* string) {
 		// Staying in same town - just transfer.
 		tr = [self trainServingStation: [car currentTown]  acceptingCar: car];
 		there = [route objectAtIndex: 0];
+		if ([car cargo] == nil) {
+			[car setIntermediateDestination: [[there yards] anyObject]];
+		}
 	} else {
 		// We have one or more steps to go.  Find a train for the next step.
 		// The route code shouldn't have given us a possible step if it wasn't valid.
@@ -430,9 +446,37 @@ NSString *NameOrNoValue(NSString* string) {
 			NSLog(@"%@ ought to go via %@\n",[car reportingMarks], [route componentsJoinedByString: @","]);
 			NSLog(@"Need to find a train going from %@ to %@\n", [here name], [there name]);
 		}
+		
+		// It's acceptable to choose any of the yards in town;
+		// we know this stop is along the path to the final
+		// station, and we know all trains have to stop at all
+		// industries (and yards) in the town.
+		if (there != [[car nextIndustry] location]) {
+			[car setIntermediateDestination: [[there yards] anyObject]];
+		}
+
 		// TODO(bowdidge): Replace with [route objectAtIndex: 0]
-		// TODO(bowdidge): Allow trying multiple cars.
+		// TODO(bowdidge): Allow trying multiple trains.
 		tr = [self trainBetweenStation: here andStation: there acceptingCar: car];
+
+		if (respectSidingLengths_) {
+			NSArray *stationStops = [tr stationStopObjects];
+			TrainSizeVector *sizeVector = [[TrainSizeVector alloc] initWithCars: [[tr freightCars] allObjects]
+																		  stops: stationStops];
+			TrainSizeVector *addedCarVector = [[TrainSizeVector alloc] initWithCars: [NSArray arrayWithObject: car]
+																		  stops: stationStops];
+			[addedCarVector addVector: sizeVector];
+		
+			if ([addedCarVector vectorExceedsLength: [[tr maxLength] intValue]]) {
+				NSString *err = [NSString stringWithFormat: @"Car %@ will not fit on train %@.  Leaving behind.",
+							 [car reportingMarks], [tr name]];
+				NSLog(@"Car %@ unable to be added because of vector %@ was %@", [car reportingMarks], addedCarVector, sizeVector);
+				NSLog(@"%@", [[TrainSizeVector alloc] initWithCars: [[tr freightCars] allObjects] stops: stationStops]);
+				[self addError: err];
+				return CarAssignmentNoTrainsWithSpace;
+			}
+		}
+		
 		if (DEBUG_CAR_ASSN) {
 			NSLog(@"Car %@ route: %@.  Train from %@ to %@ is %@",
 				  [car reportingMarks], [route componentsJoinedByString: @","], [here name], [there name], [tr name]);
@@ -447,29 +491,7 @@ NSString *NameOrNoValue(NSString* string) {
 		return CarAssignmentRoutingProblem;
 	}
 
-	// We found a train.
-
-	// We didn't already identify an alternate place to go to next.
-	// Set the intermediate destination if the final destination is either 
-	// offline or if the car has a chain of stops.
-	if ([route count] <= 2) {
-		// If we don't have a realistic place to go to, trust the work we already
-		// did on the route and find a yard to terminate in.
-		if (([car nextIndustry] == nil) ||
-			([[[car nextIndustry] location] isOffline] == YES)) {
-			// TODO(bowdidge): May be unsafe - may choose wrong yard if multiple available.
-			// However, doesn't matter because all trains stop in all yards in the town.
-			[car setIntermediateDestination: [[[route lastObject] yards] anyObject]];
-		}
-	} else if ([route count] > 2) {
-		if (DEBUG_CAR_ASSN) NSLog(@"No intermediate dest - choosing yard in %@", [[route objectAtIndex: 1] name]);
-		// It's acceptable to choose any of the yards in town;
-		// we know this stop is along the path to the final
-		// station, and we know all trains have to stop at all
-		// industries (and yards) in the town.
-		[car setIntermediateDestination: [[[route objectAtIndex: 1] yards] anyObject]];
-	} 
-	
+	// We found a train.	
 	[car setCurrentTrain: tr];
 	return CarAssignmentSuccess;
 }
@@ -633,9 +655,12 @@ NSString *NameOrNoValue(NSString* string) {
 	for (FreightCar *car in allCars) {
 		if ([self assignCarToTrain: car] == CarAssignmentSuccess) {
 			[carsMoved addObject: car];
+			assert([car cargo] != nil || [car intermediateDestination] != nil);
 		}
 	}
 	
+	// TODO(bowdidge): Car assignment assumes all the cars will be delivered; overflowing cars 
+	// eat up space in the train.
 	if (respectSidingLengths_) {
 		[self leaveBehindOverflowingCars];
 	}
