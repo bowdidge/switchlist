@@ -77,7 +77,7 @@ int CargosNotFilled(NSDictionary* unfilledDict) {
 // Prints informative error and returns NO if anything appears wrong, else returns YES.
 BOOL TestLayout(NSString *layoutName) {
 	if ([[NSFileManager defaultManager] fileExistsAtPath: layoutName] == NO) {
-		fprintf(stderr, "ERROR: No such file %@\n", layoutName);
+		NSLog(@"ERROR: No such file %@\n", layoutName);
 		return NO;
 	}
 
