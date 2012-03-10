@@ -1,5 +1,4 @@
 //
-//
 //  TrainSizeVector.h
 //  SwitchList
 //

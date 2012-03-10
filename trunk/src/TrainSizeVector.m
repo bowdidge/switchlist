@@ -1,5 +1,4 @@
 //
-//
 //  TrainSizeVector.m
 //  SwitchList
 //
@@ -146,7 +145,6 @@
 	}
 }
 
-
 - (int) maximumLength {
 	int currentLength = 0;
 	int maximumLength = 0;
@@ -165,7 +163,6 @@
 - (BOOL) vectorExceedsLength: (int) maxLength {
 	return [self maximumLength] > maxLength;
 }
-
 
 - (NSArray*) vector {
 	return vector;
