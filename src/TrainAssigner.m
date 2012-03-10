@@ -461,17 +461,16 @@ NSString *NameOrNoValue(NSString* string) {
 
 		if (respectSidingLengths_) {
 			NSArray *stationStops = [tr stationStopObjects];
-			TrainSizeVector *sizeVector = [[TrainSizeVector alloc] initWithCars: [[tr freightCars] allObjects]
-																		  stops: stationStops];
-			TrainSizeVector *addedCarVector = [[TrainSizeVector alloc] initWithCars: [NSArray arrayWithObject: car]
-																		  stops: stationStops];
+			TrainSizeVector *sizeVector = [[[TrainSizeVector alloc] initWithCars: [[tr freightCars] allObjects]
+																		  stops: stationStops] autorelease];
+			TrainSizeVector *addedCarVector = [[[TrainSizeVector alloc] initWithCars: [NSArray arrayWithObject: car]
+																		  stops: stationStops] autorelease];
 			[addedCarVector addVector: sizeVector];
 		
 			if ([addedCarVector vectorExceedsLength: [[tr maxLength] intValue]]) {
 				NSString *err = [NSString stringWithFormat: @"Car %@ will not fit on train %@.  Leaving behind.",
 							 [car reportingMarks], [tr name]];
 				NSLog(@"Car %@ unable to be added because of vector %@ was %@", [car reportingMarks], addedCarVector, sizeVector);
-				NSLog(@"%@", [[TrainSizeVector alloc] initWithCars: [[tr freightCars] allObjects] stops: stationStops]);
 				[self addError: err];
 				return CarAssignmentNoTrainsWithSpace;
 			}
@@ -616,7 +615,7 @@ NSString *NameOrNoValue(NSString* string) {
 	}
 	
 	for (ScheduledTrain *train in [entireLayout_ allTrains]) {
-		NSSet *allCarsInTrain = [[train freightCars] copy];
+		NSSet *allCarsInTrain = [[[train freightCars] copy] autorelease];
 		for (FreightCar *car in allCarsInTrain) {
 			InduYard *currentLocation = [car currentLocation];
 			InduYard *nextLocation = [car nextStop];
