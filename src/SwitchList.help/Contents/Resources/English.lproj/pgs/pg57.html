@@ -18,63 +18,69 @@ cannot be reached, and some industries will not receive traffic.  You can still 
 and use SwitchList when problems appear.
 <p>
 Here are the problems that can appear in SwitchList:
-<p>
 <ul>
 <li>"Industry <i>X</i> does not have its town set.  Car <i>Y</i> cannot be moved."
 <p>
 If an industry's town is 'No Value', then no trains can visit that industry and move the freight car.
 Change the location of the industry to a valid town so that a train visiting the town can pick up the car.
 Test.
-<p>
+</p>
 <li>"Next destination <i>X</i> for car <i>Y</i> does not have its town set."
 <p>
 If an industry's town is 'No Value', then no trains can visit that industry and drop off the freight car.  Change the
 location of the industry to a valid town so that a train can pick up the car.
 Test.
-<p>
+</p>
 <li>"Cannot move car <i>X</i> because it is at <i>Y</i>, an <A HREF="pg102.html">offline location</a>."
 <p>
 Freight cars can only have locations that are in towns on the layout - either on the visible layout or in staging.  Cars
 located in the "imaginary" offline towns can't be picked up by trains.
 Move the offending cars to a staging yard or town on the layout so that it may be carried to its next destination.
-<p>
-<p>
+</p>
 <li>"Cannot place car <i>X</i> because source location for cargo <i>Y</i> is unset."
 <p>
 Car X is assigned to be loaded with the named cargo, but that cargo's source industry isn't set.
 Change the cargo's source industry location from 'No Value' to a valid town.
-<p>
+</p>
 <li>"Cannot place car <i>X</i> because destination location for cargo <i>Y</i> is unset."
 <p>
 Car X is loaded with the named cargo, but that cargo's destination industry isn't set.
 Set the cargo's destination industry.
-<p>
+</p>
 <li>Cannot find route for car <i>X</i> from <i>Y</i> to a yard accepting cars of division <i>Z</i>."
 <p>
 Because car X has no cargo, it needs to be returned to its source railroad.  However,
 SwitchList doesn't know where to send the car.  Mark one of the yards, either in staging or
 on the layout, as accepting the name division so the car gets routed towards it.
-<p>
+</p>
 <li>Cannot find route to get car <i>X</i> from <i>Y</i> to <i>Z</i>
 <p>
 The car needs to be delivered from town Y to town Z, but no combination of trains will take a car
 like Car X between those towns.  Check that a sequence of trains exist that would go between the towns,
 and make sure both will carry cars of the same car type as X.
-<p>
+</p>
 <li>"Cannot find train going from <i>X</i> to <i>Y</i> that can carry car type <i>Z</i>"
 <p>
 A combination of trains will take cars from X to Y, but no combination of trains will take cars of type
 Z.  Make sure that some trains exist that will carry such cars.
+</p>
+<li>Cannot fit car <i>X</i> onto train <i>Y</i>.  Leaving car at current location.
 <p>
+The car is being routed on to the named train, but the train's maximum length has already been reached
+and more cars cannot be carried.  Check that your maximum train length value is appropriate.  Consider
+limiting the number of cars on the offending train by (1) defining new trains to handle some of the overflowing
+train's work, (2) increasing the maximum train length, or (3) limiting the number of cargos sending freight
+cars to the towns along the train's path.
+</p>
 </ul>
 <p>
-See Also:
+<hr><p>Related Topics:</p>
 <p>
-<a href="pg24.html">Industries Tab</a> for details on setting the town where an industry sits.
+<a href="pg24.html">User Interface: Industries Tab</a> for details on setting the town where an industry sits.
 <p>
-<A HREF="pg22.html">Yards Tab</a> for details on setting the town where a yard sits.
+<A HREF="pg22.html">User Interface: Yards Tab</a> for details on setting the town where a yard sits.
 <p>
-<A HREF="pg31.html">Problems Window</a>.
+<A HREF="pg31.html">User Interface: Problems Window</a>.
 <p>
 </div>
 </body>

@@ -1395,7 +1395,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
 	STAssertEquals(CarAssignmentNoTrainsWithSpace, [assigner assignCarToTrain: newCar], @"Car should not have fit.");
 	STAssertEqualsInt(1, [[assigner errors] count], @"Wrong number of errors.");
-	STAssertContains(@"will not fit on train", [[assigner errors] objectAtIndex: 0], @"Wrong error");
+	STAssertContains(@"Cannot fit car", [[assigner errors] objectAtIndex: 0], @"Wrong error");
 }
 
 - (void) testCarFitsInTrain {
