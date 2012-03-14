@@ -38,8 +38,8 @@ img.floatRight {
 }
 
 /* Default type style for text. */
-p {
-	font-size: 9pt;
+body {
+	font-size: 10pt;
 	font-family: "Lucida Grande", Arial, sans-serif;
 	line-height: 12pt;
 	text-decoration: none;
@@ -50,7 +50,7 @@ p {
 li {
 	font-size: 10pt;
 	font-family: "Lucida Grande", Arial, sans-serif;
-	line-height: 16pt;
+	line-height: 12pt;
 	text-decoration: none;
 	padding-bottom: 8px;
 	margin-left: 0px;
@@ -59,9 +59,9 @@ li {
 }
 
 ol {
-	font-size: 12pt;
+	font-size: 10pt;
 	font-family: "Lucida Grande", Arial, sans-serif;
-	line-height: 14pt;
+	line-height: 12pt;
 	text-decoration: none;
 	padding-bottom: 8px;
 	margin-left: 0px;

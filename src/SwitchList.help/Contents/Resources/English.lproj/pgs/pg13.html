@@ -1,21 +1,196 @@
 <html>
 <head>
-<title>In Depth: How to Design Cargos</TITLE>
+<TITLE>In Depth: Hints on Choosing Cargos</TITLE>
 <link href="../../shrd/switchlist.css" rel="stylesheet" type="text/css" media="all" />
 </head>
-<body>
+<BODY>
 <div id="headerbox"><div id="iconbox">
 <img id="iconimg" src="../../shrd/switchListNewIcon.jpg" alt="SwitchList Icon" height="32" width="32" />
 </div>
-<H1>How to Design Cargos</h1>
+<H1>In Depth: Hints On Choosing Cargos</H1>
 </div>
 <div id="leftspace">
+There are two reasons we do model railroad operation.  First, it helps us increase the fun of running trains oun our layouts
+by giving our crews interesting, challenging, and realistic work to do.  Second, it strengthens our layout's setting and theme
+by showing realistic car movements.
+Carefully choosing the cargos to be moved deserves some careful thought to keep the fun and realism high.
 <p>
-<hr><p>Related Topics:</p>
+SwitchList allows you to define realistic cargos and traffic flows for your railroad.
+It also lets you easily create, remove, and adjust the list of potential cargos
+being carried on freight cars so you can set up potential cargos, and then adjust the cargos and their frequency
+to best meet fun and realism goals.
+<h2>Overall Goals for Choosing Cargos</h2>
 <p>
-<A HREF="pg56.html">Layout Balance and Unavailable Cars</a>
-for hints on making all the cargos work together to create the operating session
-you want.
-</pre>
-</div>
+Choosing the right set of cargo shipments moving around your layout deserves some thought. 
+<ul>
+<li> Do the incoming and outgoing cars reinforce the operators' imagination of what each industry is supposed to be?
+<li> Do the cargos make switching work seem purposeful and realistic?
+<li> Do the amount of cars moving around on each train appear realistic
+and help set the crew's sense of purpose and the tone of the layout?
+<li> Do the set of cargos being carried generate enough operations to make the layout fun, but not overwhelming?
+</ul>
+<p>
+The cargo choices are important from the amount of fun or satisfaction they generate.
+The cargos represent the "moves" that make your operations interesting and fun.
+You want enough cars moving from industries to make the operators on each train feel like they're accomplishing something,
+so you want to make sure the flow of traffic into each of your towns sets up a reasonable amount of work.
+A train between towns A and B that only carries two cars won't be very fun.
+Similarly, a switch job that only requires simple switching moves (pull out all those cars,
+put in all these cars) may not be interesting enough for your operators.
+<p>
+But there's also the importance of making the cargos realistic so that your train crews
+believe that they're actually performing real roles on a real railroad:
+<ul>
+<li> Are there enough cars coming in and out of each industry to match the operator's expectations? 
+<p>
+A large cannery ought to have many boxcars coming and going to carry all its canned goods,
+or it will seem abandoned or unrealistic. 
+A steel mill not producing a huge number of gondola loads of finished steel won't seem realistic.
+<li> Are the contents of your cars realistic?
+<p>
+A switch crew handling a gondola at a scrap yard won't be getting into the game of operations
+if the gondola is supposedly carrying "feather pillows" or "long weights".
+<li> Is the traffic flow realistic?
+<p>
+A warehouse area or big city ought to be generating a huge amount of traffic,
+and should encourage your crews to be rushed and busy.
+A branch line going through the woods might carry less traffic, and your crews should understand
+they're doing a more easy-going job.
+</ul>
+<p>
+As you decide on cargos for your layout, keep all these issues in mind.
+<h2>Choosing Realistic Cargos: What's being Carried?</h2>
+<p>When you're ready to start setting up cargos in SwitchList,
+the first step is to think what might be arriving and departing from each of your industries.
+Sometimes, you already know likely cargos because of general knowledge of each industry or what you've seen local trains carry.
+Your cannery, for instance, must need to bring in cans, and ship out finished canned goods.
+You know a lumberyard will receive flatcars of lumber, and maybe the occasional boxcar.
+<p>
+Doing some simple research on different industries can also help.
+You might learn that some canneries would have received fruits and vegetables by train,
+or shipped in sugar for syrup or box material for crating the finished canned goods.
+Researching the oil industry might hint that most materials came in by tank car or boxcar.
+Old paperwork from railroads can also hint at the likely
+incoming and outgoing loads.
+<p>
+You can also turn to sources such as the OPSIG (Operations Special Interest Group)
+<A HREF="http://www.opsig.org/reso/inddb/">Industry Database</a>,
+a list of real industries and the products each received and shipped for inspiration.
+If you've got a propane dealer industry in the Western U.S.,
+check the industry database for similar industries.
+Ferrell Gas in Adamana, Arizona, received liquid petroleum gas (LPG), and shipped LPG and propane out.
+<p>
+When in doubt, make guesses about likely incoming or outgoing shipments, or put some generic name for contents.
+The exact contents matter more for realism, but the incoming and outgoing rates are more important for a fun operating session.
+<h2>Choosing Where the Cargos Go</h2>
+<p>
+Each freight shipment on the railroad involves traveling between two locations&mdash;
+where the cargo is picked up, and where it's being sent to.
+This also affects realism;
+a cannery sending a boxcar a day to the next town over doesn't seem very realistic,
+but a cannery shipping product back east, or a steel mill receiving iron ore from Minnesota
+reinforces our ideas of realistic train movement.
+The OPSIG industry database can give some clues about likely sources of traffic, as can research.
+<p>
+But just saying "this refrigerator car of pork comes from the midwest"
+isn't enough because most sources for the different cargos won't be on your layout.
+You also need to make sure your model railroad has a likely path for the incoming cars to follow.
+Usually, this means having staging yards or some other sense of "offstage" where cars can come from.
+In SwitchList, you can do this two ways via "staging" yards that represent all offline locations,
+and explicit "offline" industries that don't exist on the layout.
+or .
+<p>
+On my "Vasona Branch" layout, all trains start from unscenicked "offstage" staging yards in "San Jose Yard"
+and "Santa Cruz", and come on-stage onto the layout to switch.
+Some cargos are assumed to come from those offstage towns,
+and the staging yards themselves count as the source for the cargos.
+Some of the gravel loads originate in "San Jose Yard",
+and go to a particular spur on the layout where new track is being built.
+<p>
+The other option is to create either specific or general offline locations to convey where cars are going.
+I define several offline towns and industries,
+usually with the same name "East Coast" industry at "East Coast" offline town,
+"Midwest" industry at "Midwest" town, etc.
+When I have a cargo that would realistically go to an industry in Chicago or New York,
+I choose one of these fake places as destination.  In SwitchList, cars never reach an offline location;
+as soon as the car visits a staging yard, it's assumed to have made its way to the final offline location,
+and is turned around for its next trip.
+<p>
+In SwitchList, you can also create separate offline industries and towns to convey real receivers:
+"Paterno Wholesale Grocery" in "New York", where New York was an offline location.
+This can make cargos seem more realistic.  However, this is a lot of work for little return;
+because cars never actually go to the offline destination,
+the final destination is never shown in any of the standard SwitchList paperwork, and so most operators
+will never see the destinations you create.
+<p>
+When you're choosing the offline source and destinations for cargos, make sure to keep the idea of "divisions"
+in mind.  Divisions in SwitchList give you a way to indicate the direction trains should exit and the 
+cars allowed to carry those cargos.  Read <A HREF="pg51.html">Detail: Divisions for Cars and Industries</a>
+for more information.
+<h2>Choosing Cargo Rates</h2>
+<p>
+In SwitchList, cargos are always measured in the number of carloads per week that should be moving on the layout.
+By default, this represents the "average" number of shipments of that kind.
+Specifying "7 loads a week"
+means that on average one car a day should be moving the cargo,
+but random chance could mean two or three moving on one day, and none another day.
+Cargo rates are entered in the <a href="pg27.html">Cargo Tab</a> as you enter information
+about the cargo.
+Alternatively, you can declare that there should always
+be exactly 14 cars a week or 2 cars a day by marking the "Fixed Rate" checkbox.
+Fixed Rate cargos will always appear at a constant rate (as long as there's available cars).
+The fixed rate must be a multiple of seven because the rate per day is rounded.
+Setting a fixed rate of 10 cars per week will get you exactly one car a day, not one car a day for two days
+and then two cars on the third day.
+Whether a fixed or random rate, SwitchList always assumes that each car will be loaded and unloaded in exactly one day,
+and be ready for its next movement in the operating session after it reaches a destination.
+<p>
+Choosing the exact cargo rate requires a bit of care to make sure you don't overload the industry's spur with too many cars,
+that the trains carrying the cars aren't overloaded,
+and that you don't starve other industries for cars by requesting too many for this industry. 
+<p>
+Most importantly, the number of cargos shipped per week through a given industry
+should never be larger than the industry spur length times seven.
+If a spur only has room for two cars, then having more than 14 cars a week
+going to that spur will certainly overload the spur.
+(Remember to be thinking about *all* cargos going to a particular industry, both incoming and outgoing.)
+<p>
+You also might want some industries to be very busy, and others to be very quiet.
+An interesting, active chemical plant might have a total number of incoming and outgoing cargos
+close to the limit the siding can handle, while a team track in a small town might deserve to be empty most of the time,
+only getting one cargo a week.
+You'll want to balance the feel of each industry (quiet vs busy)
+against the amount of traffic you need to keep your layout busy and your operators interested.
+If you are only operating your layout yourself and want just a bit of operations to do occasionally,
+then low incoming and outgoing rates of cars is fine.
+If you're trying to keep several operators constantly busy and the layout is small, you may want the cargo rates to be high.
+<p>
+Finally, think about what the industry might actually need to consume.
+A lumberyard in a quiet town may only deserve a freight car every few days.
+(In the real world, it may only get a car weekly or monthly,
+but that wouldn't be much fun for a model railroad,
+so setting a rate so a car arrives every second or third session might better convey that the industry only gets a few cars.)
+A busy auto plant ought to be shipping and receiving lots of cars every day&mdash;
+enough for a dedicated switch crew, as occurs on real railroads.
+<h2>Tuning Cargos</h2>
+<p>
+Once you've decided on a set of cargos, try operating your layout with those choices.
+Watch for problems: overflowing sidings or industries that don't get enough cars,
+reasonable amounts of traffic on each train, whether certain car type get stuck at certain places because no trains can carry them, etc.
+The "Cargo Report" (in the Reports Menu) can help you here; it shows a large table listing the number of incoming and outgoing cargos
+(again measured in cargos per week), and grouped by car type.
+This report can help you see if two comparable industries have similar amounts of incoming and outgoing traffic,
+or if you don't have enough cargos for a particular car type.
+<hr>
+<p>
+<h2>Related Topics:</h2>
+<p><A HREF="pg27.html">User Interface: Cargos Tab</a>
+<p><A HREF="pg51.html">Detail: Divisions for Cars and Industries</a>
+<p><A HREF="pg56.html">Detail: Layout Balance and Unavailable Cars</a>
+<p><A HREF="pg57.html">Detail: Difficulties in Car Movement</a>
+<p><A HREF="pg101.html">Definition: What are towns in staging?</a>
+<p><A HREF="pg102.html">Definition: What are offline towns?</a>
+<p><A HREF="pg104.html">Definition: What counts as an industry?</a>
+<p><A HREF="pg105.html">Definition: Yard</a>
+<p><A HREF="pg106.html">Definition: Interchange</a>
 </body>
