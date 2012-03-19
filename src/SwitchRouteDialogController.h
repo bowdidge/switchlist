@@ -46,8 +46,10 @@
 	IBOutlet NSButton *cancelButton_;
 	IBOutlet NSButton *okButton_;
 	IBOutlet NSWindow *switchRouteDialogWindow_;
+	// Array of all non-offline Place objects on the layout.  Used to populate the list of potential stops.
 	NSArray *townList_;
 	ScheduledTrain *trainBeingChanged_;
+	// Array of all stops on the current train as Place objects.
 	NSMutableArray *routeList_;
 	EntireLayout *entireLayout_;
 	

@@ -59,7 +59,7 @@ NSString *DragTownsType = @"DragTownsType";
 // Method for passing in info about what we're editing.
 - (void) setTrain: (ScheduledTrain*) tr layout: (EntireLayout*) layout{
 	[routeList_ release];
-	routeList_ = [NSMutableArray arrayWithArray: [tr stationStopStrings]];
+	routeList_ = [NSMutableArray arrayWithArray: [tr stationStopObjects]];
 	[routeList_ retain];
 	
 	[trainBeingChanged_ release];
@@ -80,11 +80,11 @@ NSString *DragTownsType = @"DragTownsType";
 		warning = @"A train needs at least one stop.";
 		hasProblem = YES;
 	} else {
-		if ([[entireLayout_ stationWithName: [routeList_ lastObject]] hasYard] == NO) {
+		if ([[routeList_ lastObject] hasYard] == NO) {
 			warning = @"A train must end in a town with a yard.";
 			hasProblem = YES;
 		}
-		if ([[entireLayout_ stationWithName: [routeList_ objectAtIndex: 0]] hasYard] == NO) {
+		if ([[routeList_ objectAtIndex: 0] hasYard] == NO) {
 			warning =  @"A train must begin in a town with a yard.";
 			hasProblem = YES;
 		}
@@ -101,6 +101,7 @@ NSString *DragTownsType = @"DragTownsType";
 }
 
 - (IBAction) update: (id) sender {
+	// TODO(bowdidge): Add filter to remove offline objects as part of query.
 	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [sender managedObjectContext]];
 	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
 	[req2 setEntity: ent];
@@ -111,10 +112,10 @@ NSString *DragTownsType = @"DragTownsType";
 	Place *pl;
 	while ((pl = [e nextObject]) != nil) {
 		if ([pl isOffline] == NO) {
-			[townNameList addObject: [pl name]];
+			[townNameList addObject: pl];
 		}
 	}
-	[townNameList sortUsingSelector: @selector(compare:)];
+	[townNameList sortUsingSelector: @selector(compareNames:)];
 	townList_ = [townNameList retain];
 	
 	[townTableView_ setDataSource: self];
@@ -123,7 +124,7 @@ NSString *DragTownsType = @"DragTownsType";
 }
 
 - (IBAction) done: (id) sender {
-	[trainBeingChanged_ setStationStopStrings: routeList_];
+	[trainBeingChanged_ setStationStopObjects: routeList_];
 	[NSApp endSheet: switchRouteDialogWindow_];
 }
 
@@ -173,19 +174,17 @@ NSString *DragTownsType = @"DragTownsType";
 }
 
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
-	NSString *townName;
+	Place *town;
 	if (tableView == townTableView_) {
 		if ([townList_ count] <= row) {
 			return @"???"; // out of bounds
 		}
-		townName = [townList_ objectAtIndex: row];
+		town = [townList_ objectAtIndex: row];
 	} else if (tableView == routeTableView_) {
-		townName = [routeList_ objectAtIndex: row];
+		town= [routeList_ objectAtIndex: row];
 	} else {
 		return @"???";
 	}
-
-	Place *town = [entireLayout_ stationWithName: townName];
 
 	NSMutableDictionary *attrDict = [NSMutableDictionary dictionary];
 	if ([town hasYard]) {
@@ -193,7 +192,7 @@ NSString *DragTownsType = @"DragTownsType";
 		[attrDict setObject: [ NSFont boldSystemFontOfSize: 14]
 					 forKey: NSFontAttributeName];
 	}
-	NSAttributedString *str = [[NSAttributedString alloc] initWithString: townName attributes: attrDict];
+	NSAttributedString *str = [[NSAttributedString alloc] initWithString: [town name] attributes: attrDict];
 	return [str autorelease];
 }
 
@@ -218,7 +217,7 @@ NSString *ROUTE_TOKEN = @",route";
 
 	unsigned int current = [rowIndexes firstIndex];
 	while (current != NSNotFound) {
-		[townNames addObject: [tableList objectAtIndex: current]];
+		[townNames addObject: [[tableList objectAtIndex: current] name]];
 		current = [rowIndexes indexGreaterThanIndex: current];
 	}
 	
@@ -258,7 +257,13 @@ NSString *ROUTE_TOKEN = @",route";
 	}
 
 	for (NSString *name in townNames) {
-		[routeList_ insertObject: name atIndex: insertPoint++];
+		Place *station = [entireLayout_ stationWithName: name];
+		// TODO(bowdidge): Better way to fail this sanity check?
+		if (!station) {
+			NSLog(@"Don't have any knowledge of station named %@.  Removing from list of stops.", name);
+			continue;
+		}
+		[routeList_ insertObject: station atIndex: insertPoint++];
 	}
 	[self updateRouteList];
 	return YES;
