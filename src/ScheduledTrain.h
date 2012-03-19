@@ -62,16 +62,21 @@
 - (NSString *)name;
 - (void)setName:(NSString *)value;
 
-// String version of stops.  Use EntireLayout's stationStopsForTrain: to get
-// the Place objects.
+// String version of stops.  
+// FOR TESTING ONLY.  Array versions should be preferred.
 - (NSString *)stops;
-- (void)setStopsString:(NSString *)value;
+- (void)setStops:(NSString *)value;
 
 // names in array form.
 // Note we do this as a string of names because CoreData
 // doesn't have idea of arrays of relationships.
+// TODO(bowdidge): Switch to using object ids.
 - (NSArray*) stationStopStrings;
+- (void) setStationStopStrings: (NSArray*) stops;
+
+// Setters for station stop list, using arrays of Place objects instead of names.
 - (NSArray*) stationStopObjects;
+- (void) setStationStopObjects: (NSArray*) stationStopObjects;
 
 
 - (NSNumber *)minCarsToRun;

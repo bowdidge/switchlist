@@ -118,21 +118,6 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	return [result objectAtIndex: 0];
 }
 
-// Returns an array containing the Place locations where the train stops, in order.
-- (NSArray*) stationStopsForTrain: (ScheduledTrain*) train {
-	NSArray *stationStopStrings = [train stationStopStrings];
-	NSMutableArray *result = [NSMutableArray array];
-	for (NSString *stationName in stationStopStrings) {
-		Place *p = [self stationWithName: stationName];
-		if (p == nil) {
-			// TODO(bowdidge): Better fix?
-			NSLog(@"Can't find station %@", stationName);
-		}
-		[result addObject: p];
-	}
-	return result;
-}
-
 // Find or create the workbench place and the workbench industry.  This gives us a known object
 // as a default location.
 // Private.

@@ -110,7 +110,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
 		if ([tr acceptsCarType: carType] == NO) continue;
 		
-		NSArray *stations = [entireLayout_ stationStopsForTrain: tr];
+		NSArray *stations = [tr stationStopObjects];
 		int ct = [stations count];
 		int i;
 		for (i=0;i<ct-1;i++) {
@@ -163,7 +163,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
 		if ([tr acceptsCar: car] == NO) continue;
 		
-		NSArray *stops = [entireLayout_ stationStopsForTrain: tr];
+		NSArray *stops = [tr stationStopObjects];
 		int startIndex = [stops indexOfObject: start];
 		if (startIndex != NSNotFound) return tr;
 	}
@@ -176,7 +176,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
 		if ([tr acceptsCar: car] == NO) continue;
 		
-		NSArray *stops = [entireLayout_ stationStopsForTrain: tr];
+		NSArray *stops = [tr stationStopObjects];
 		int startIndex = [stops indexOfObject: start];
 		if (startIndex == NSNotFound) continue;
 		

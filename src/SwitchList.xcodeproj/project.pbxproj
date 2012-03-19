@@ -708,6 +708,8 @@
 				3E9AF07C14F7505400580148 /* ScheduledTrainTest.m */,
 				3E71870C13B1B17000ED3840 /* SwitchListBaseViewTest.h */,
 				3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */,
+				3EFEC5551408533700F9CF15 /* SwitchListFiltersTest.h */,
+				3EFEC5561408533700F9CF15 /* SwitchListFiltersTest.m */,
 				3E6E30A0146636040069D022 /* SwitchList_OCUnit.h */,
 				3E30DBDE12B44C2900FF224E /* SwitchListReportTest.h */,
 				3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */,
@@ -719,6 +721,8 @@
 				3E9AF46D14F9FC8900580148 /* TrainSizeVectorTest.h */,
 				3E9AF46E14F9FC8900580148 /* TrainSizeVectorTest.m */,
 				3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */,
+				3EFEC5211408515500F9CF15 /* WebServerDelegateTest.h */,
+				3EFEC5221408515500F9CF15 /* WebServerDelegateTest.m */,
 				3E62C0F8128E610E00520752 /* YardTest.h */,
 				3E62C0F9128E610E00520752 /* YardTest.m */,
 			);
@@ -733,13 +737,9 @@
 				3E6B58A4140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.h */,
 				3E6B58A5140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m */,
 				3EFEC530140851A200F9CF15 /* SwitchListFilters.h */,
-				3EFEC5551408533700F9CF15 /* SwitchListFiltersTest.h */,
-				3EFEC5561408533700F9CF15 /* SwitchListFiltersTest.m */,
 				3EFEC531140851A200F9CF15 /* SwitchListFilters.m */,
 				3EFEC51F1408515500F9CF15 /* WebServerDelegate.h */,
 				3EFEC5201408515500F9CF15 /* WebServerDelegate.m */,
-				3EFEC5211408515500F9CF15 /* WebServerDelegateTest.h */,
-				3EFEC5221408515500F9CF15 /* WebServerDelegateTest.m */,
 			);
 			name = "Web Interface";
 			sourceTree = "<group>";
