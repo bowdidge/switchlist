@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+<?xml version="1.0" standalone="yes"?>
 <!DOCTYPE database SYSTEM "file:///System/Library/DTDs/CoreData.dtd">
 
 <database>
@@ -124,13 +124,13 @@
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z108">
-        <attribute name="stops" type="string">Center,West Industries,West End,East Industries,East End,Center</attribute>
+        <attribute name="stops" type="string">Center++\u2600\u2600West Industries++\u2600\u2600West End++\u2600\u2600East Industries++\u2600\u2600East End++\u2600\u2600Center</attribute>
         <attribute name="name" type="string">Daily</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <attribute name="acceptedcartypes" type="string">Any</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z111 z110 z116 z112 z109 z114 z117 z113 z115 z118"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z118 z110 z112 z117 z116 z111 z109 z113 z115 z114"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z109">
         <attribute name="reportingmarks" type="string">NYC 0009</attribute>
@@ -418,10 +418,10 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="name" type="string">SP Interchange</attribute>
         <attribute name="division" type="string">SP</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z140"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z111 z114 z117"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z117 z114 z111"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z113 z115 z116 z118"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z118 z116 z115 z113"></relationship>
     </object>
     <object type="YARD" id="z138">
         <attribute name="acceptsdivisions" type="string">WP</attribute>
@@ -440,10 +440,10 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="name" type="string">Center Yard</attribute>
         <attribute name="division" type="string">Here</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z141"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z109 z113 z110 z115"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z113 z115 z110 z109"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z111 z117 z112"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z117 z112 z111"></relationship>
     </object>
     <object type="PLACE" id="z140">
         <attribute name="name" type="string">West End</attribute>

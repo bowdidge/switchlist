@@ -102,16 +102,16 @@
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z106">
-        <attribute name="stops" type="string">Off West,Waterside,Off East</attribute>
+        <attribute name="stops" type="string">Off West++\u2600\u2600Waterside++\u2600\u2600Off East</attribute>
         <attribute name="name" type="string">Eastbound freight</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <attribute name="acceptedcartypes" type="string">Any</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z113 z111 z115 z110"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z110 z113 z115 z111"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z107">
-        <attribute name="stops" type="string">Waterside,Off Branch,Waterside</attribute>
+        <attribute name="stops" type="string">Waterside++\u2600\u2600Off Branch++\u2600\u2600Waterside</attribute>
         <attribute name="name" type="string">Branch freight</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
@@ -120,13 +120,13 @@
         <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z114 z116"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z108">
-        <attribute name="stops" type="string">Off East,Waterside,Off West</attribute>
+        <attribute name="stops" type="string">Off East++\u2600\u2600Waterside++\u2600\u2600Off West</attribute>
         <attribute name="name" type="string">Westbound freight</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <attribute name="acceptedcartypes" type="string">Any</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z112 z118 z109 z117"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z117 z118 z112 z109"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z109">
         <attribute name="reportingmarks" type="string">UTLX 0009</attribute>
@@ -422,7 +422,7 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="name" type="string">Waterside Yard</attribute>
         <attribute name="division" type="string">west</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z141"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z112 z114"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z114 z112"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z113"></relationship>
