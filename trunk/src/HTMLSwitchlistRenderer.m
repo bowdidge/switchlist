@@ -205,6 +205,7 @@
 								  train, @"train", 
 								  [[train stationStopStrings] objectAtIndex: 0],@"firstStation", 
 								  layout, @"layout",
+								  [NSNumber numberWithInt: 1], @"interactive",
 								  nil];
 	NSString *switchlistTemplatePath = (isIPhone ? [self filePathForSwitchlistIPhoneHTML] : [self filePathForSwitchlistHTML]);
 	return [engine_ processTemplateInFileAtPath: switchlistTemplatePath
@@ -223,6 +224,7 @@
 								  carLocations, @"carLocations",
 								  [layout allIndustries], @"allIndustries",
 								  [layout allYards], @"allYards",
+								  [NSNumber numberWithInt: 1], @"interactive",
 								  nil];
 	// Note that switchlist-carlist is the interactive version.
 	return [self renderReport: @"switchlist-carlist" withDict: templateDict];

@@ -221,6 +221,18 @@ NSString *CurrentHostname() {
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
+// Marks the given train as completed, and moves cars to final locations.
+- (void) processCompleteTrain: (NSString*) trainName forLayout: (SwitchListDocument*) document {
+	ScheduledTrain *train  = [[document entireLayout] trainWithName: trainName];
+	if (!train) {
+		[server_ replyWithStatusCode: HTTP_OK message: [NSString stringWithFormat: @"Unknown train %@", trainName]];
+		return;
+	}
+	[[document layoutController] completeTrain: train];
+	[server_ replyWithStatusCode: HTTP_OK message: [NSString stringWithFormat: @"Train %@ marked completed!", trainName]];
+	
+}
+
 // Given parameters to changeCarLocation, updates database.
 - (void) processChangeLocationForLayout: (SwitchListDocument*) document car: (NSString*) carName location: (NSString*) locationName {
 	carName = [carName stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
@@ -331,7 +343,18 @@ NSString *CurrentHostname() {
 		isIPhone = YES;
 	}
 	
-	if ([[url path] hasPrefix: @"/setCarLocation"]) {
+	if ([[url path] hasPrefix: @"/completeTrain"]) {
+		NSString *train = [query objectForKey: @"train"];
+		NSString *layout = [query objectForKey: @"layout"];
+		SwitchListDocument *document = [self layoutWithName: layout];
+		if (!document) {
+			[server_ replyWithStatusCode: HTTP_OK
+								 message: [NSString stringWithFormat: @"No layout named %@.", layout]];
+			return;
+		}
+		[self processCompleteTrain: train forLayout: document];
+		return;
+	} else if ([[url path] hasPrefix: @"/setCarLocation"]) {
 		NSString *car = [query objectForKey: @"car"];
 		NSString *location = [query objectForKey: @"location"];
 		NSString *layout = [query objectForKey: @"layout"];

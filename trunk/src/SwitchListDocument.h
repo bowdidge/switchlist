@@ -145,6 +145,8 @@
 	NSPredicate *placeIsNotOfflineFilter_;
 }
 
+// Returns LayoutController object which actually does the advancing actions.
+- (LayoutController*) layoutController;
 
 - (IBAction) doAssignCars: (id) sender;
 // Creates an extra 10% of loads and adds them to existing trains
