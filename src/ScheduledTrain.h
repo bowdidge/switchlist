@@ -62,22 +62,17 @@
 - (NSString *)name;
 - (void)setName:(NSString *)value;
 
-// String version of stops.  
+// Set the list of station stops as a string with a "," separator.
 // FOR TESTING ONLY.  Array versions should be preferred.
-- (NSString *)stops;
+- (NSString*) stops;
 - (void)setStops:(NSString *)value;
-
-// names in array form.
-// Note we do this as a string of names because CoreData
-// doesn't have idea of arrays of relationships.
-// TODO(bowdidge): Switch to using object ids.
-- (NSArray*) stationStopStrings;
-- (void) setStationStopStrings: (NSArray*) stops;
 
 // Setters for station stop list, using arrays of Place objects instead of names.
 - (NSArray*) stationStopObjects;
 - (void) setStationStopObjects: (NSArray*) stationStopObjects;
 
+// List of station names, suitable for human display.
+- (NSString*) listOfStationsString;
 
 - (NSNumber *)minCarsToRun;
 - (void)setMinCarsToRun:(NSNumber *)value;
@@ -102,3 +97,8 @@
 // via the UI.  Add a sanity check function that boots freight cars out of the
 // train if they're no longer appropriate, and check this when regenerating trains.
 @end
+
+// Separators used for list of train stops.  Should only be used by testing code
+// and code determining whether to force conversion.
+NSString *NEW_SEPARATOR_FOR_STOPS;
+NSString *OLD_SEPARATOR_FOR_STOPS;

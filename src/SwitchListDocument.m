@@ -177,6 +177,26 @@
 	}
 }	
 
+// Converts the train stop string in all trains from the old comma-based separator to the
+// newer approach that will allow commas in place names.  If it looks like the stops has
+// been converted on one already, assume all are converted and do nothing.
+// This routine helps us avoid having station stop lists in both forms.
+- (void) updateTrainsToUseNewSeparator {
+	NSArray *allTrains = [entireLayout_ allTrains];
+
+	if ([allTrains count] == 0) return;
+	
+	if ([[[allTrains lastObject] stops] rangeOfString: NEW_SEPARATOR_FOR_STOPS].length != 0) {
+		// We've already converted stuff.
+		return;
+	}
+	
+	// Otherwise, force conversion.
+	for (ScheduledTrain *train in allTrains) {
+		[train setStationStopObjects: [train stationStopObjects]];
+	}
+}
+
 - (void) awakeFromNib {
 	entireLayout_ = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
 	layoutController_ = [[LayoutController alloc] initWithEntireLayout: entireLayout_];
@@ -222,6 +242,7 @@
 	
 	// If we need to upgrade, do so.
 	[self updateLayoutToUseCarTypeObjects];
+	[self updateTrainsToUseNewSeparator];
 	
 	[self doAssignCars: self];
 }

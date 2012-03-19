@@ -45,14 +45,30 @@
 	[self makeThreeStationTrain];
 	
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
-	
+	// Test raw string is the old form with commas.
 	STAssertEqualObjects(@"A,B,C", [train stops], @"Station stops not as expected.");
-	NSArray *stationStops = [train stationStopStrings];
+	
+	// Test that the parsing code correctly handles the old-style separator.
+	NSArray *stationStops = [train stationStopObjects];
 	NSLog(@"%d", [stationStops count]);
-	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in stationStopStrings");
-	STAssertEqualObjects(@"A", [stationStops objectAtIndex: 0], @"station stops array wrong");
-	STAssertEqualObjects(@"B", [stationStops objectAtIndex: 1], @"station stops array wrong");
-	STAssertEqualObjects(@"C", [stationStops objectAtIndex: 2], @"station stops array wrong");
+	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in station stop array");
+	STAssertEqualObjects(@"A", [[stationStops objectAtIndex: 0] name], @"station stops array wrong");
+	STAssertEqualObjects(@"B", [[stationStops objectAtIndex: 1] name], @"station stops array wrong");
+	STAssertEqualObjects(@"C", [[stationStops objectAtIndex: 2] name], @"station stops array wrong");
 }	
 
+- (void) testStationStringsWithComma {
+	[self makeThreeStationTrain];
+	Place *p1 = [self makePlaceWithName: @"Erie, Pennsylvania"];
+	Place *p2 = [self makePlaceWithName: @"Pasco, WA"];
+	Place *p3 = [self makePlaceWithName: @"College Park Yard, San Jose"];
+	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
+	[train setStationStopObjects: [NSArray arrayWithObjects: p1, p2, p3, nil]];
+
+	NSArray *stationStops = [train stationStopObjects];
+	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in station stop array");
+	STAssertEqualObjects(p1, [stationStops objectAtIndex: 0], @"station stops array wrong");
+	STAssertEqualObjects(p2, [stationStops objectAtIndex: 1], @"station stops array wrong");
+	STAssertEqualObjects(p3, [stationStops objectAtIndex: 2], @"station stops array wrong");
+}	
 @end
