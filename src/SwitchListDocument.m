@@ -123,6 +123,10 @@
 	[super dealloc];
 }
 
+- (LayoutController*) layoutController { 
+	return layoutController_;
+}
+
 // Examines the current layout database, and changes all model objects to use
 // the new relationship-based CarType rather than the string based approach.
 // Searches the existing database for all car types used.

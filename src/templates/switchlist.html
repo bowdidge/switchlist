@@ -9,16 +9,16 @@
 <link href='builtin-switchlist.css' rel='stylesheet' type='text/css'>
 <link href='builtin-switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
 
-<TITLE>Switch List for {{ trainName }}</TITLE>
+<TITLE>Switch List for {{ train.name }}</TITLE>
 </HEAD>
 <BODY>
 <div class="switch-list">
-<div class="train-name">{{trainName}}</div>
+<div class="train-name">{{train.name}}</div>
 <div class="report-layout-title">{{ layout.layoutName }}</div>
 <div class="report-title">SWITCH LIST</div>
 <div class="switch-list-instructions">
 <span class="switch-list-instructions-filled-in">
-<u>{{ trainName }}</u>
+<u>{{ train.name }}</u>
 </span>
 AT
 <span class="switch-list-instructions-filled-in">
@@ -52,10 +52,12 @@ STATION,
   {% /for %}
 </TABLE>
 </center>
+{% if interactive %}
 <p align="right">
 <INPUT TYPE=BUTTON value="Go Back" onclick="location.href='?layout={{layout.layoutName}}'">
-<INPUT TYPE=BUTTON value="Train Finished">
+<INPUT TYPE=BUTTON value="Train Finished" onclick="location.href='completeTrain?layout={{layout.layoutName}}&train={{train.name}}'">
 </p>
+{% /if %}
 </div>
 </HTML>
 	
