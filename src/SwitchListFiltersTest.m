@@ -35,6 +35,10 @@
 #import "SwitchListFilters.h"
 #import "SwitchList_OCUnit.h"
 
+// Tests Switchlist-specific filter extensions for the MGTemplateEngine.
+
+// Replaces the random number generator value with a fixed set so we can correctly
+// test behavior.
 @implementation SwitchListFilterReplaceRandom 
 - (id) setRandomValues: (int*) randomValues {
 	currentRandom_ = 0;

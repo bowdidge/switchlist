@@ -36,6 +36,8 @@
 
 #import "SwitchListFilters.h"
 
+// Tests Switchlist-specific filter extensions for the MGTemplateEngine.
+
 @interface SwitchListFilterReplaceRandom : SwitchListFilters {
 	int *randomValues_;
 	int currentRandom_;
