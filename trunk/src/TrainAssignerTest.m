@@ -70,10 +70,9 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain setStops: @"A,B"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
 
-	STAssertEqualsInt(2, [[myTrain stationStopStrings] count], @"Wrong number of station stops");
-	STAssertTrue([[myTrain stationStopStrings] containsObject: @"A"], @"A missing");
-	STAssertTrue([[myTrain stationStopStrings] containsObject: @"B"], @"B missing");
-	STAssertFalse([[myTrain stationStopStrings] containsObject: @"C"], @"C missing");
+	STAssertEqualsInt(2, [[myTrain stationStopObjects] count], @"Wrong number of station stops");
+	STAssertEqualObjects(@"A", [[[myTrain stationStopObjects] objectAtIndex: 0] name], @"A missing");
+	STAssertEqualObjects(@"B", [[[myTrain stationStopObjects] objectAtIndex: 1] name], @"B missing");
 
 	Cargo *c1 = [self makeCargo: @"b to c"];
 	[c1 setSource: [self industryAtStation: @"B"]];
@@ -1213,10 +1212,10 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[myTrain_ setStops: @"A,B,C"];
 	[self setTrain: myTrain_ acceptsCarTypes: @"XM"];
 	
-	STAssertEqualsInt(3, [[myTrain_ stationStopStrings] count], @"Wrong number of station stops");
-	STAssertTrue([[myTrain_ stationStopStrings] containsObject: @"A"], @"A missing");
-	STAssertTrue([[myTrain_ stationStopStrings] containsObject: @"B"], @"B missing");
-	STAssertTrue([[myTrain_ stationStopStrings] containsObject: @"C"], @"C missing");
+	STAssertEqualsInt(3, [[myTrain_ stationStopObjects] count], @"Wrong number of station stops");
+	STAssertEqualObjects(@"A", [[[myTrain_ stationStopObjects] objectAtIndex: 0] name], @"A missing");
+	STAssertEqualObjects(@"B", [[[myTrain_ stationStopObjects] objectAtIndex: 1] name], @"B missing");
+	STAssertEqualObjects(@"C", [[[myTrain_ stationStopObjects] objectAtIndex: 2] name], @"C missing");
 	
 	Cargo *c1 = [self makeCargo: @"b to c"];
 	[c1 setSource: [self industryAtStation: @"B"]];

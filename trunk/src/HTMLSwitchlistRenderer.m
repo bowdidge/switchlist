@@ -203,7 +203,7 @@
 - (NSString*) renderSwitchlistForTrain: (ScheduledTrain*) train layout: (EntireLayout*)layout iPhone: (BOOL) isIPhone {
 	NSDictionary *templateDict = [NSDictionary dictionaryWithObjectsAndKeys:
 								  train, @"train", 
-								  [[train stationStopStrings] objectAtIndex: 0],@"firstStation", 
+								  [[[train stationStopObjects] objectAtIndex: 0] name], @"firstStation", 
 								  layout, @"layout",
 								  [NSNumber numberWithInt: 1], @"interactive",
 								  nil];

@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="6"/>
+			<integer value="928"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3259,7 +3259,7 @@
 								</object>
 								<object class="NSTabViewItem" id="1040909287">
 									<object class="NSView" key="NSView" id="244424627">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="293883163"/>
 										<int key="NSvFlags">257</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -3626,6 +3626,7 @@
 												<reference key="NSHScroller" ref="150371741"/>
 												<reference key="NSContentView" ref="190034365"/>
 												<reference key="NSHeaderClipView" ref="308754832"/>
+												<reference key="NSCornerView" ref="97839124"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSSearchField" id="836297352">
@@ -3870,6 +3871,7 @@
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {654, 465}}</string>
+										<reference key="NSSuperview" ref="293883163"/>
 										<reference key="NSNextKeyView" ref="836297352"/>
 									</object>
 									<string key="NSLabel">Trains</string>
@@ -4392,7 +4394,7 @@
 								<object class="NSTabViewItem" id="60309906">
 									<string key="NSIdentifier">Item 7</string>
 									<object class="NSView" key="NSView" id="970644811">
-										<reference key="NSNextResponder" ref="293883163"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<object class="NSMutableArray" key="NSSubviews">
 											<bool key="EncodedWithXMLCoder">YES</bool>
@@ -4831,21 +4833,20 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 											</object>
 										</object>
 										<string key="NSFrame">{{10, 33}, {654, 465}}</string>
-										<reference key="NSSuperview" ref="293883163"/>
 									</object>
 									<string key="NSLabel">Layout</string>
 									<reference key="NSColor" ref="501741954"/>
 									<reference key="NSTabView" ref="293883163"/>
 								</object>
 							</object>
-							<reference key="NSSelectedTabViewItem" ref="60309906"/>
+							<reference key="NSSelectedTabViewItem" ref="1040909287"/>
 							<reference key="NSFont" ref="347224745"/>
 							<int key="NSTvFlags">0</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<object class="NSMutableArray" key="NSSubviews">
 								<bool key="EncodedWithXMLCoder">YES</bool>
-								<reference ref="970644811"/>
+								<reference ref="244424627"/>
 							</object>
 						</object>
 					</object>
@@ -4994,6 +4995,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>acceptedCarTypesRel.@unionOfObjects.carTypeName</string>
 					<string>acceptedCarTypesRel.@distinctUnionOfObjects</string>
 					<string>carTypesAcceptedString</string>
+					<string>listOfStationsString</string>
 				</object>
 				<bool key="NSEditable">YES</bool>
 				<bool key="NSAutomaticallyPreparesContent">YES</bool>
@@ -8222,22 +8224,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<int key="connectionID">2790</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.stops</string>
-						<reference key="source" ref="231278772"/>
-						<reference key="destination" ref="663085867"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="231278772"/>
-							<reference key="NSDestination" ref="663085867"/>
-							<string key="NSLabel">value: selection.stops</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.stops</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">3272</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">doChangeDate:</string>
 						<reference key="source" ref="344813097"/>
@@ -10334,6 +10320,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="destination" ref="1342700"/>
 					</object>
 					<int key="connectionID">5248</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.listOfStationsString</string>
+						<reference key="source" ref="231278772"/>
+						<reference key="destination" ref="663085867"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="231278772"/>
+							<reference key="NSDestination" ref="663085867"/>
+							<string key="NSLabel">value: selection.listOfStationsString</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.listOfStationsString</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">5249</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -15124,7 +15126,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">5248</int>
+			<int key="maxID">5249</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
