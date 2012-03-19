@@ -166,7 +166,7 @@
     return tmpValue;
 }
 
-- (void)setStopsString:(NSString *)value 
+- (void)setStops:(NSString *)value 
 {
     [self willChangeValueForKey: @"stops"];
     [self setPrimitiveValue: value forKey: @"stops"];
@@ -193,12 +193,23 @@
 	return [result objectAtIndex: 0];
 }
 
+// Returns array of string names for the stations visited by this train.
+// Array is in visit order.
 - (NSArray*) stationStopStrings {
 	NSString *stops = [self stops];
 	NSArray *ret = [stops componentsSeparatedByString: @","];
 	return ret;
 }
 
+// Changes the train's list of stops.  Array is list of station names
+// in order.
+- (void) setStationStopStrings: (NSArray*) stationStops {
+	[self setStops: [stationStops componentsJoinedByString: @","]];
+}
+	
+
+// Changes the train's list of stops.  Array is list of station objects
+// in order.
 - (NSArray*) stationStopObjects {
 	NSMutableArray *array = [NSMutableArray array];
 	for (NSString *stationName in [self stationStopStrings]) {
@@ -206,6 +217,15 @@
 	}
 	return array;
 }
+
+- (void) setStationStopObjects: (NSArray*) stationStopObjects {
+	NSMutableArray *stationStopNames = [NSMutableArray array];
+	for (id stationStopObject in stationStopObjects) {
+		[stationStopNames addObject: [stationStopObject name]];
+	}
+	[self setStops: [stationStopNames componentsJoinedByString: @","]];
+}
+
 
 - (BOOL) beginsAndEndsAtSameStation {
 	NSArray *allStops = [self stationStopStrings];

@@ -57,7 +57,7 @@
 	DoorAssignmentRecorder *recorder = [owningDocument_ doorAssignmentRecorder];
 	NSMutableString *piclString = [NSMutableString string];
 	
-	NSArray *stops = [[owningDocument_ entireLayout] stationStopsForTrain: train_];
+	NSArray *stops = [train_ stationStopObjects];
 	// Create unique list of stops because the train may visit the same town twice.
 	// We'll make the list ourselves to keep the list in visited order.
 	NSMutableArray *stopsVisited = [NSMutableArray array];

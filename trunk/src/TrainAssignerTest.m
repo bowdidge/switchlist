@@ -67,7 +67,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // defines two cargos, one going from B to C, and the other from A to B.
 - (ScheduledTrain*) makeShortTrain {
 	ScheduledTrain *myTrain = [self makeTrainWithName: @"MyTrain"];
-	[myTrain setStopsString: @"A,B"];
+	[myTrain setStops: @"A,B"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
 
 	STAssertEqualsInt(2, [[myTrain stationStopStrings] count], @"Wrong number of station stops");
@@ -137,11 +137,11 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 
 - (void) testTrainServingStationName2 {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B"];
+	[myTrain1 setStops: @"A,B"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 
 	ScheduledTrain *myTrain2 = [self makeTrainWithName: @"Train 2"];
-	[myTrain2 setStopsString: @"A,B,C"];
+	[myTrain2 setStops: @"A,B,C"];
 	[self setTrain: myTrain2 acceptsCarTypes: @"XA"];
 	
 	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
@@ -176,11 +176,11 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // correct cars.
 - (void) testAssignCarsToTrains {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B"];
+	[myTrain1 setStops: @"A,B"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
 	ScheduledTrain *myTrain2 = [self makeTrainWithName: @"Train 2"];
-	[myTrain2 setStopsString: @"A,B,C"];
+	[myTrain2 setStops: @"A,B,C"];
 	[self setTrain: myTrain2 acceptsCarTypes: @"XA"];
 	
 	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
@@ -213,11 +213,11 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // Make sure a single car can move farther than any one train can go.
 - (void) testMultiStepMove {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B"];
+	[myTrain1 setStops: @"A,B"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
 	ScheduledTrain *myTrain2 = [self makeTrainWithName: @"Train 2"];
-	[myTrain2 setStopsString: @"B,C"];
+	[myTrain2 setStops: @"B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
 	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
@@ -254,11 +254,11 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 - (void) testEmptyMove {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
 
-	[myTrain1 setStopsString: @"A,B"];
+	[myTrain1 setStops: @"A,B"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 
 	ScheduledTrain *myTrain2 = [self makeTrainWithName: @"Train 2"];
-	[myTrain2 setStopsString: @"B,C"];
+	[myTrain2 setStops: @"B,C"];
 	[self setTrain: myTrain2 acceptsCarTypes: @"XM"];
 
 	
@@ -278,7 +278,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // Do we correctly treat an empty car type in a train as "Any"?
 - (void) testEmptyCarTypeCarAndTrain {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B,C"];
+	[myTrain1 setStops: @"A,B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @""];
 	
 	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
@@ -302,7 +302,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // Do we correctly treat an empty car type in a train as "Any"?
 - (void) testNoMoveCarAtCorrectLocation {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B,C"];
+	[myTrain1 setStops: @"A,B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
 	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
@@ -331,7 +331,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // Do we correctly treat an empty car type in a train as "Any"?
 - (void) testEmptyCarTypeInCar {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B,C"];
+	[myTrain1 setStops: @"A,B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
 	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
@@ -354,7 +354,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // Do we correctly treat an empty car type in a train as "Any"?
 - (void) testEmptyCarTypeInTrain {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B,C"];
+	[myTrain1 setStops: @"A,B,C"];
 	[self setTrain: myTrain1 acceptsCarTypes: @""];
 	
 	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"A"]];
@@ -377,7 +377,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // Make sure that we don't try to switch things backwards.
 - (void) testTrainDirectionRespected2 {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B,C,A"];
+	[myTrain1 setStops: @"A,B,C,A"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
 	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"C"]];
@@ -405,7 +405,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // Make sure that we don't try to switch things backwards.
 - (void) testTrainDirectionRespected3 {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B,C,A"];
+	[myTrain1 setStops: @"A,B,C,A"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
 	[xmMovingBToC_ setCurrentLocation: [self industryAtStation: @"C"]];
@@ -457,15 +457,15 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // If we have no yards, does the reachability graph realize we can only go where trains go?
 - (void) testStationReachabilityGraph {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B"];
+	[myTrain1 setStops: @"A,B"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
 	ScheduledTrain *myTrain2 = [self makeTrainWithName: @"Train 2"];
-	[myTrain2 setStopsString: @"B,C"];
+	[myTrain2 setStops: @"B,C"];
 	[self setTrain: myTrain2 acceptsCarTypes: @"XM,XA"];
 	
 	ScheduledTrain *myTrain3 = [self makeTrainWithName: @"Train 3"];
-	[myTrain3 setStopsString: @"C,A"];
+	[myTrain3 setStops: @"C,A"];
 	[self setTrain: myTrain3 acceptsCarTypes: @"T"];
 
 	TrainAssigner *assigner = [[[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO] autorelease];
@@ -494,11 +494,11 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 
 - (void) testMultiHopPaths {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B"];
+	[myTrain1 setStops: @"A,B"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	
 	ScheduledTrain *myTrain2 = [self makeTrainWithName: @"Train 2"];
-	[myTrain2 setStopsString: @"B,C"];
+	[myTrain2 setStops: @"B,C"];
 	[self setTrain: myTrain2 acceptsCarTypes: @"XM"];
 
 	[freightCar1_ setHomeDivision: @"C"];
@@ -541,7 +541,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	
 - (void) testCarReturnedToAnyYard {
 	ScheduledTrain *myTrain1 = [self makeTrainWithName: @"Train 1"];
-	[myTrain1 setStopsString: @"A,B"];
+	[myTrain1 setStops: @"A,B"];
 	[self setTrain: myTrain1 acceptsCarTypes: @"XM"];
 	[freightCar1_ setCurrentLocation: [self industryAtStation: @"A"]];
 	
@@ -616,7 +616,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[[self industryAtStation: @"D"] setDivision: @"Here"];
 	
 	train_ = [self makeTrainWithName: @"daily"];
-	[train_ setStopsString: @"A,B,C,D,E,A"];
+	[train_ setStops: @"A,B,C,D,E,A"];
 }
 
 - (void) testReachability {
@@ -827,7 +827,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[self industryAtStation: @"B"];
 	
 	ScheduledTrain *train = [self makeTrainWithName: @"Train"];
-	[train setStopsString: @"A,B,A"];
+	[train setStops: @"A,B,A"];
 }
 
 - (void) setUp {
@@ -1210,7 +1210,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 // defines two cargos, one going from B to C, and the other from A to B.
 - (ScheduledTrain*) makeShortTrain {
 	myTrain_ = [self makeTrainWithName: @"MyTrain"];
-	[myTrain_ setStopsString: @"A,B,C"];
+	[myTrain_ setStops: @"A,B,C"];
 	[self setTrain: myTrain_ acceptsCarTypes: @"XM"];
 	
 	STAssertEqualsInt(3, [[myTrain_ stationStopStrings] count], @"Wrong number of station stops");
@@ -1371,7 +1371,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	ScheduledTrain *train = [self makeTrainWithName: @"MyTrain"];
 	[train setMaxLength: [NSNumber numberWithInt: maxLength]];
 	
-	[train setStopsString: @"A,B,C"];
+	[train setStops: @"A,B,C"];
 	[train addFreightCarsObject: [self makeFreightCarNamed: @"AA 1"
 														at: @"A"
 												movingFrom: @"A" to:@"C" loaded: YES]];
@@ -1432,14 +1432,14 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	Place *p = [self makePlaceWithName: @"town-branch"];
 				
 	ScheduledTrain *mainTrain  =[self makeTrainWithName: @"stops everywhere"];
-	[mainTrain setStopsString: @"town-1,town-2,town-3,town-4,town-5,town-6,town-7"];
+	[mainTrain setStops: @"town-1,town-2,town-3,town-4,town-5,town-6,town-7"];
 	
 	ScheduledTrain *mainTrain3  =[self makeTrainWithName: @"stops everywhere"];
-	[mainTrain3 setStopsString: @"town-7,town-6,town-5,town-4,town-3,town-2,town-1"];
+	[mainTrain3 setStops: @"town-7,town-6,town-5,town-4,town-3,town-2,town-1"];
 	
 	// Note no way *to* branch.
 	ScheduledTrain *branchTrain  =[self makeTrainWithName: @"branchTrain"];
-	[branchTrain setStopsString: @"town-branch,town-3"];
+	[branchTrain setStops: @"town-branch,town-3"];
 
 	Cargo *c = [self makeCargo: @"cargo"];
 	[c setSource: [self industryAtStation: @"town-1"]];

@@ -148,7 +148,7 @@
 			return [[fc currentLocation] name];
 		case 4:
 		{
-			NSArray *stationStops = [[owningDocument_ entireLayout] stationStopsForTrain: train_];
+			NSArray *stationStops = [train_ stationStopObjects];
 			Place *lastStation = [stationStops lastObject];
 			if (([[fc nextStop] location] != lastStation) &&
 				([[[fc nextStop] location] isOffline] == NO)) {
@@ -170,7 +170,7 @@ int ROWS_PER_TABLE = 8;
 // Only stops that aren't the beginning and end and have traffic need forms.
 - (NSSet*) stopsForForm {
 	NSMutableSet *stops = [NSMutableSet set];
-	NSArray *allStops = [[owningDocument_ entireLayout] stationStopsForTrain: train_];
+	NSArray *allStops = [train_ stationStopObjects];
 	for (Place *stop in allStops) {
 		if ([[train_ carsForStation: stop] count] != 0 ||
 			[[train_ carsAtStation: stop] count] != 0) {

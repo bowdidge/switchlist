@@ -123,7 +123,7 @@ NSString *DragTownsType = @"DragTownsType";
 }
 
 - (IBAction) done: (id) sender {
-	[trainBeingChanged_ setStopsString: [routeList_ componentsJoinedByString: @","]];
+	[trainBeingChanged_ setStationStopStrings: routeList_];
 	[NSApp endSheet: switchRouteDialogWindow_];
 }
 

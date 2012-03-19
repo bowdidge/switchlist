@@ -114,9 +114,6 @@ NSString *NormalizeDivisionString(NSString *inString);
 // List all cars sitting in a yard.  Used for yard report.
 - (NSArray*) allFreightCarsInYard;
 
-// Returns an array containing the Place locations where the train stops, in order.
-- (NSArray*) stationStopsForTrain: (ScheduledTrain*) train;
-
 - (NSArray*) allTrains;
 
 // Remember the date of the current operating session.

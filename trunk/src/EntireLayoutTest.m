@@ -431,7 +431,7 @@
 	[self makeThreeStationTrain];
 	
 	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
-	NSArray *stops = [entireLayout_ stationStopsForTrain: myTrain1];
+	NSArray *stops = [myTrain1 stationStopObjects];
 	
 	STAssertEqualsInt(3, [stops count], @"Incorrect number of stops for train");
 	STAssertEqualObjects([entireLayout_ stationWithName: @"A"],
@@ -450,7 +450,7 @@
 	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_2_NAME];
 	[fc2 setCarTypeRel: [entireLayout_ carTypeForName: @"XA"]];
 
-	[myTrain setStopsString: @"A,B,C"];
+	[myTrain setStops: @"A,B,C"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
 	
 	STAssertTrue([myTrain acceptsCar: fc1], @"Should be accepted");

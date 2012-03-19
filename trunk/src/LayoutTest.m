@@ -224,7 +224,7 @@
 - (void) makeThreeStationTrain {
 	ScheduledTrain *myTrain = [self makeTrainWithName: @"MyTrain"];
 	
-	[myTrain setStopsString: @"A,B,C"];
+	[myTrain setStops: @"A,B,C"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
 	
 	STAssertEqualsInt(3, [[myTrain stationStopStrings] count], @"Wrong number of station stops");
