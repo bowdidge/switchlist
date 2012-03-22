@@ -251,6 +251,26 @@
 	STAssertTrue([[entireLayout allStationNamesInStaging] containsObject: @"B"], @"Place A not in all station names in staging.");
 }
 
+- (void) testAllOnlineStations {
+	// Make sure the workbench industry is in the workbench place.
+	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
+    Place *placeA = [self makePlaceWithName: @"A"];
+	Place *placeB = [self makePlaceWithName: @"B"];
+	[placeB setIsOffline: YES];
+	Place *placeC = [self makePlaceWithName: @"C"];
+	[placeC setIsStaging: YES];
+	Place *placeAa = [self makePlaceWithName: @"Aa+"];
+	[placeAa setIsStaging: YES];
+	
+	// Workbench counts as a station.
+	NSArray *allOnlineStations = [entireLayout allOnlineStationsSortedOrder];
+	STAssertEqualsInt(5, [[entireLayout allStations] count], @"Wrong number of stations");
+	STAssertEqualsInt(3, [allOnlineStations count], @"Wrong number of stations online");
+	STAssertEquals(placeA, [allOnlineStations objectAtIndex: 0], @"Expected station A to be first in %@.", allOnlineStations);
+	STAssertEquals(placeAa, [allOnlineStations objectAtIndex: 1], @"Expected station Aa to be second in %@.", allOnlineStations);
+	STAssertEquals(placeC, [allOnlineStations objectAtIndex: 2], @"Expected station C to be third in %@.", allOnlineStations);
+}
+
 // Make sure we correctly handle valid and invalid names.
 - (void) testStationWithName {
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];

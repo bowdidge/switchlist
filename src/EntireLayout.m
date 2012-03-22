@@ -419,10 +419,24 @@ NSString *NormalizeDivisionString(NSString *inString) {
 }
 
 
+// Returns the list of all stations (Places) on the layout in no particular order.
 - (NSArray*) allStations {
 	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [self managedObjectContext]];
 	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
 	[req2 setEntity: ent];
+	NSError *error;
+	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
+}
+
+// Returns the list of all stations either on the layout or in staging, in alphabetical order.
+// Offline stations are not included.
+- (NSArray*) allOnlineStationsSortedOrder {
+	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [self managedObjectContext]];
+	NSFetchRequest *req2  = [[[NSFetchRequest alloc] init] autorelease];
+	[req2 setPredicate: [NSPredicate predicateWithFormat: @"isOffline != YES"]];
+	[req2 setEntity: ent];
+	NSSortDescriptor *nameSortDesc = [[[NSSortDescriptor alloc] initWithKey: @"name" ascending: YES] autorelease];
+	[req2 setSortDescriptors: [NSArray arrayWithObject: nameSortDesc]];
 	NSError *error;
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }

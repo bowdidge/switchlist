@@ -707,7 +707,6 @@
 	// sheet is up here
 
 	[switchRouteController_ setTrain: train layout: entireLayout_];
-	[switchRouteController_ update: self];
 }
 
 // Updates the EntireLayout's date when the date in the Layout Preferences changes.

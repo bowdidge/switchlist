@@ -95,7 +95,13 @@ NSString *NormalizeDivisionString(NSString *inString);
 - (int) loadsPerDay;
 
 - (NSArray*) allYards;
+
+// Returns the list of all stations (Places) on the layout in no particular order.
 - (NSArray*) allStations;
+
+// Returns the list of all stations either on the layout or in staging, in alphabetical order.
+- (NSArray*) allOnlineStationsSortedOrder;
+
 // Returns an array of all stations ordered by station name.
 - (NSArray*) allStationsSortedOrder;
 - (NSArray*) allStationsInStaging;

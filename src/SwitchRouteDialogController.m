@@ -41,6 +41,7 @@ NSString *DragTownsType = @"DragTownsType";
 	[routeTableView_ registerForDraggedTypes: [NSArray arrayWithObject: DragTownsType]];
 	routeList_ = [[NSMutableArray alloc] init];
 	[routeTableView_ setDataSource: self];
+	[townTableView_ setDataSource: self];
 	[routeTableView_ setDraggingSourceOperationMask: NSDragOperationMove forLocal: YES];
 	[sheetTitle_ setStringValue: [NSString stringWithFormat: @"Stations to Visit:", [trainBeingChanged_ name]]];
 	[warningText_ setStringValue: @""];
@@ -56,24 +57,8 @@ NSString *DragTownsType = @"DragTownsType";
 	[super dealloc];
 }
 
-// Method for passing in info about what we're editing.
-- (void) setTrain: (ScheduledTrain*) tr layout: (EntireLayout*) layout{
-	[routeList_ release];
-	routeList_ = [NSMutableArray arrayWithArray: [tr stationStopObjects]];
-	[routeList_ retain];
-	
-	[trainBeingChanged_ release];
-	trainBeingChanged_ = [tr retain];
-	
-	[entireLayout_ release];
-	entireLayout_ = [layout retain];
-	
-	[sheetTitle_ setStringValue: [NSString stringWithFormat: @"Stations for \"%@\" to Visit:", [trainBeingChanged_ name]]];
-}
-
-
-
-- (void) updateRouteList {
+// Check the current route for problems, and display warnings as appropriate.
+- (void) reloadRouteListAndCheckForWarnings {
 	BOOL hasProblem = NO;
 	NSString *warning = @"";
 	if ([routeList_ count] < 1) {
@@ -97,29 +82,27 @@ NSString *DragTownsType = @"DragTownsType";
 	}
 	[warningText_ setStringValue: warning];
 	[routeTableView_ reloadData];
-	
 }
 
-- (IBAction) update: (id) sender {
-	// TODO(bowdidge): Add filter to remove offline objects as part of query.
-	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [sender managedObjectContext]];
-	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
-	[req2 setEntity: ent];
-	NSError *error;
-	NSArray *townList = [NSMutableArray arrayWithArray: [[sender managedObjectContext] executeFetchRequest: req2 error:&error]];
-	NSMutableArray *townNameList = [NSMutableArray array];
-	NSEnumerator *e = [townList objectEnumerator];
-	Place *pl;
-	while ((pl = [e nextObject]) != nil) {
-		if ([pl isOffline] == NO) {
-			[townNameList addObject: pl];
-		}
-	}
-	[townNameList sortUsingSelector: @selector(compareNames:)];
-	townList_ = [townNameList retain];
+// Informs dialog box that a new train's information will be displayed.
+- (void) setTrain: (ScheduledTrain*) tr layout: (EntireLayout*) layout{
+	[routeList_ release];
+	routeList_ = [NSMutableArray arrayWithArray: [tr stationStopObjects]];
+	[routeList_ retain];
 	
-	[townTableView_ setDataSource: self];
-	[self updateRouteList];
+	[trainBeingChanged_ release];
+	trainBeingChanged_ = [tr retain];
+	
+	[entireLayout_ release];
+	entireLayout_ = [layout retain];
+	
+	[sheetTitle_ setStringValue: [NSString stringWithFormat: @"Stations for \"%@\" to Visit:", [trainBeingChanged_ name]]];
+
+	[townList_ release];
+	townList_ = [[entireLayout_ allOnlineStationsSortedOrder] retain];
+	
+	[townTableView_ reloadData];
+	[self reloadRouteListAndCheckForWarnings];
 
 }
 
@@ -144,7 +127,7 @@ NSString *DragTownsType = @"DragTownsType";
 
 	[removeButton_ setEnabled: NO];
 	[routeTableView_ deselectAll: self];
-	[self updateRouteList];
+	[self reloadRouteListAndCheckForWarnings];
 }
 
 - (IBAction) addTownToRoute: (id) sender {
@@ -154,7 +137,7 @@ NSString *DragTownsType = @"DragTownsType";
 		[routeList_ addObject: [townList_ objectAtIndex: currentIndex]];
         currentIndex = [townsToAdd indexGreaterThanIndex:currentIndex];
     }
-	[self updateRouteList];
+	[self reloadRouteListAndCheckForWarnings];
 
 }
 
@@ -265,7 +248,7 @@ NSString *ROUTE_TOKEN = @",route";
 		}
 		[routeList_ insertObject: station atIndex: insertPoint++];
 	}
-	[self updateRouteList];
+	[self reloadRouteListAndCheckForWarnings];
 	return YES;
 }
 

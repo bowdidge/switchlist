@@ -63,8 +63,6 @@
 - (void) testOnlyDisplaysOnlineStations {
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
 	[controller_ setTrain:train layout:entireLayout_];
-	// Update needs a sender which has a managedObjectContext.
-	[controller_ update: entireLayout_];
 	
 	int numberOfNonOfflineStations=0;
 	for (Place *station in [entireLayout_ allStations]) {
@@ -103,9 +101,6 @@
 - (void) testStationNamesCorrect {
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
 	[controller_ setTrain:train layout:entireLayout_];
-	// Update needs a sender which has a managedObjectContext.
-	[controller_ update: entireLayout_];
-	
 	
 	[self checkStationTableRow: 0 townName: @"A"];
 	[self checkStationTableRow: 1 townName: @"B"];
@@ -115,8 +110,6 @@
 - (void) testTrainStopsCorrect {
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
 	[controller_ setTrain:train layout:entireLayout_];
-	// Update needs a sender which has a managedObjectContext.
-	[controller_ update: entireLayout_];
 	
 	int rowsInStopsTable = [controller_ numberOfRowsInTableView: mockStopsTableView_];
 	STAssertEqualsInt(3, rowsInStopsTable,
