@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="4989"/>
+			<integer value="252"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -301,6 +301,7 @@
 												<reference key="NSHScroller" ref="1047853551"/>
 												<reference key="NSContentView" ref="518755731"/>
 												<reference key="NSHeaderClipView" ref="317232389"/>
+												<reference key="NSCornerView" ref="958668592"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSButton" id="880796958">
@@ -361,7 +362,7 @@
 												<object class="NSButtonCell" key="NSCell" id="150585928">
 													<int key="NSCellFlags">67239424</int>
 													<int key="NSCellFlags2">134217728</int>
-													<string key="NSContents">Make Switchlist</string>
+													<string key="NSContents">Make switchlist</string>
 													<reference key="NSSupport" ref="347224745"/>
 													<reference key="NSControlView" ref="182111567"/>
 													<int key="NSButtonFlags">-2038284033</int>
@@ -1247,6 +1248,7 @@
 												<reference key="NSHScroller" ref="706978213"/>
 												<reference key="NSContentView" ref="976928203"/>
 												<reference key="NSHeaderClipView" ref="841764218"/>
+												<reference key="NSCornerView" ref="439586394"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSSearchField" id="340474954">
@@ -1734,6 +1736,7 @@
 												<reference key="NSHScroller" ref="89030999"/>
 												<reference key="NSContentView" ref="545327434"/>
 												<reference key="NSHeaderClipView" ref="996933669"/>
+												<reference key="NSCornerView" ref="1066642577"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSSearchField" id="1065958203">
@@ -3123,6 +3126,7 @@
 												<reference key="NSHScroller" ref="468725243"/>
 												<reference key="NSContentView" ref="1052493739"/>
 												<reference key="NSHeaderClipView" ref="559133124"/>
+												<reference key="NSCornerView" ref="905837521"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSSearchField" id="98796163">
@@ -3627,6 +3631,7 @@
 												<reference key="NSHScroller" ref="150371741"/>
 												<reference key="NSContentView" ref="190034365"/>
 												<reference key="NSHeaderClipView" ref="308754832"/>
+												<reference key="NSCornerView" ref="97839124"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSSearchField" id="836297352">
@@ -3697,9 +3702,9 @@
 												<reference key="NSSuperview" ref="244424627"/>
 												<bool key="NSEnabled">YES</bool>
 												<object class="NSButtonCell" key="NSCell" id="773772444">
-													<int key="NSCellFlags">67239424</int>
+													<int key="NSCellFlags">-2080244224</int>
 													<int key="NSCellFlags2">134217728</int>
-													<string key="NSContents">Change Stops...</string>
+													<string key="NSContents">Change stops...</string>
 													<reference key="NSSupport" ref="347224745"/>
 													<reference key="NSControlView" ref="55562119"/>
 													<int key="NSButtonFlags">-2038284033</int>
@@ -4320,6 +4325,7 @@
 												<reference key="NSHScroller" ref="628071721"/>
 												<reference key="NSContentView" ref="975014685"/>
 												<reference key="NSHeaderClipView" ref="530233597"/>
+												<reference key="NSCornerView" ref="13236950"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSSearchField" id="704659761">
