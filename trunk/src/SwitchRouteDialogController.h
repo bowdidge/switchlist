@@ -62,6 +62,7 @@
 - (IBAction) cancel: (id) sender;
 - (IBAction) done: (id) sender;
 
-- (IBAction) update: (id) sender;
+// Regenerates data and reloads table data for SwitchRoute dialog.  To be called when
+// dialog is to be displayed for a new train.
 - (void) setTrain: (ScheduledTrain*) tr layout: (EntireLayout*) layout;
 @end
