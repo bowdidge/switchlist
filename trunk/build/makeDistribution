@@ -50,10 +50,12 @@ hdiutil create ./$DMG_NAME.dmg -srcfolder SwitchList/ -ov
 popd
 
 # Make sure it's a fat binary.
-file /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList | grep "ppc"
+file /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList | grep "ppc" >&/dev/null
 if $status != 0 then
-  echo "Missing PowerPC binary!"
+  echo "FAIL: Missing PowerPC binary!"
   exit 1
+else
+  echo "PASS: Contains PowerPC binary."
 endif
 
 echo "/tmp/$DMG_NAME.dmg has the final disk image."
