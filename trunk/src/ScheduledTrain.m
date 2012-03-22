@@ -173,7 +173,9 @@
 - (void)setStops:(NSString *)value 
 {
     [self willChangeValueForKey: @"stops"];
+	[self willChangeValueForKey: @"listOfStationsString"];
     [self setPrimitiveValue: value forKey: @"stops"];
+    [self didChangeValueForKey: @"listOfStationsString"];
     [self didChangeValueForKey: @"stops"];
 }
 
