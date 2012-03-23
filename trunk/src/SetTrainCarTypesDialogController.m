@@ -66,7 +66,7 @@
 	} else {
 		currentCarTypes_ = [[NSMutableSet alloc] initWithSet: officialCarTypes];
 	}
-
+    [trainCarTypesTable_ reloadData];
 	[_sheetTitle setStringValue: [NSString stringWithFormat: @"Car types for \"%@\" to carry:", [trainToChange_ name]]];
 }
 
