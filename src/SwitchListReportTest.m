@@ -32,7 +32,7 @@
 
 #import "Cargo.h"
 #import "DoorAssignmentRecorder.h"
-#import "EntireLayout.h";
+#import "EntireLayout.h"
 #import "FakeSwitchListDocument.h"
 #import "FreightCar.h"
 #import "Industry.h"
