@@ -57,7 +57,7 @@
 		// print section header.
 		if (((currentIndustry == nil) && (firstLine == YES)) || 
 			((currentLocation != nil) && (currentIndustry == nil)) ||
-			([currentLocation compare: currentIndustry] != NSOrderedSame)) {
+			(currentIndustry != nil && [currentLocation compare: currentIndustry] != NSOrderedSame)) {
 			firstLine = NO;
 			currentIndustry = currentLocation;
 			[reportString appendFormat: @"\n %s: %s\n",(currentTown ? [currentTown UTF8String] : "unknown"), (currentLocation ? [currentLocation UTF8String] : "unknown")];
