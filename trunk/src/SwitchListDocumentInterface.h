@@ -38,5 +38,7 @@
 // For switch list generators to get knowledge of door assignments.
 - (DoorAssignmentRecorder*) doorAssignmentRecorder;
 
+// For accessing current document's printing configuration.
+- (id) printInfo;
 
 @end

@@ -61,4 +61,8 @@
 - (NSURL*) autosavedContentsFileURL {
 	return nil;
 }
+
+- (id) printInfo {
+    return nil;
+}
 @end

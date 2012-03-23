@@ -63,6 +63,9 @@
 - (id) doorAssignmentRecorder {
 	return nil;
 }
+- (id) printInfo {
+    return nil;
+}
 @end
 
 @implementation ReportTest
