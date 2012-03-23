@@ -403,7 +403,7 @@
 // Sets the list of problem strings to display in the Problems window.
 - (void) setProblems: (NSArray*) problemStrings {
 	[problems_ release];
-	problems_ = [problemStrings retain];
+	problems_ = [[NSMutableArray alloc] initWithArray:problemStrings];
 	if ([problems_ count] == 0) {
 		[problems_ addObject: @"No problems."];
 		[problemsOutlineView_ reloadData];
