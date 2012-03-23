@@ -37,6 +37,7 @@
 - (void) testStockTemplateTest {
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
+	
 	NSBundle *bundleForUnitTests = [NSBundle bundleForClass:[HTMLSwitchlistRenderer class]];
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
 	NSString *text = [renderer renderSwitchlistForTrain: [[self entireLayout] trainWithName: @"MyTrain"]

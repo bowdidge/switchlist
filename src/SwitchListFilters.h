@@ -55,8 +55,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "MGTemplateFilter.h"
 
-@interface SwitchListFilters : NSObject {
+@interface SwitchListFilters : NSObject <MGTemplateFilter> {
 }
 - (NSArray *)filters;
 - (NSObject *)filterInvoked:(NSString *)filter withArguments:(NSArray *)args onValue:(NSObject *)value;

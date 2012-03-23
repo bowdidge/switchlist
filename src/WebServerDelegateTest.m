@@ -114,7 +114,7 @@
 - (void) setUp {
 	[super setUp];
 	// Needed files need to be in the unit test's main bundle.
-	unitTestBundle_ = [[NSBundle bundleWithIdentifier: @"com.blogspot.vasonabranch.Unit tests"] retain];
+	unitTestBundle_ = [[NSBundle bundleWithIdentifier: @"com.blogspot.vasonabranch.UnitTests"] retain];
 	server_ = [[MockSimpleHTTPServer alloc] init];
 	webServerDelegate_ = [[WebServerDelegate alloc] initWithServer: (SimpleHTTPServer*) server_
 														withBundle: unitTestBundle_
@@ -143,8 +143,9 @@
 - (void) testSwitchlistCss {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/builtin-switchlist.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
-		  
-	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist.css (should be > 200");
+	
+	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist.css (should be > 200_>, was %d)",
+					[server_->lastBody length]);
 }
 
 - (void) testSwitchlistIpadCss {
@@ -167,7 +168,7 @@
 
 - (void) testInvalidFileLayoutsOpen {
 	NSDocumentController *sharedDocumentController = [NSDocumentController sharedDocumentController];
-	[sharedDocumentController addDocument: [[FakeSwitchListDocument alloc] init]];
+	[sharedDocumentController addDocument: (NSDocument*) [[FakeSwitchListDocument alloc] init]];
 	NSURL *url = [NSURL URLWithString: @"http://localhost/foo.h"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
@@ -196,8 +197,8 @@
 
 - (void) testTwoLayouts {
 	NSDocumentController *sharedDocumentController = [NSDocumentController sharedDocumentController];
-	[sharedDocumentController addDocument: [[FakeSwitchListDocument alloc] init]];
-	[sharedDocumentController addDocument: [[FakeSwitchListDocument alloc] init]];
+	[sharedDocumentController addDocument: (NSDocument*) [[FakeSwitchListDocument alloc] init]];
+	[sharedDocumentController addDocument: (NSDocument*) [[FakeSwitchListDocument alloc] init]];
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
@@ -212,10 +213,10 @@
 // TODO(bowdidge): Get this test working.
 - (void) BrokenTestCarlist {
 	NSDocumentController *sharedDocumentController = [NSDocumentController sharedDocumentController];
-	SwitchListDocument *doc = [[FakeSwitchListDocument alloc] init];
+	FakeSwitchListDocument *doc = [[[FakeSwitchListDocument alloc] init] autorelease];
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
-	[webServerDelegate_ processRequestForCarListForLayout: doc];
+	[webServerDelegate_ processRequestForCarListForLayout: (SwitchListDocument*) doc];
 	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
 	STAssertContains(@"foo", server_->lastMessage,
 					 [NSString stringWithFormat: @"Unexpected output %@", server_->lastMessage]);

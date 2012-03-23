@@ -39,7 +39,7 @@
 @interface PrintEverythingView : NSView {
 	// SwitchListBaseViews for each train switch list.
 	NSMutableArray *subviews;
-	SwitchListDocument *document_;
+	NSObject<SwitchListDocumentInterface> *document_;
 	float imageableWidth_;
 	float imageableHeight_;
 }

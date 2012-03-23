@@ -40,6 +40,8 @@
 #import "TrainAssigner.h"
 #import "Yard.h"
 
+#import "stdlib.h"
+
 // Tests for TrainAssigner class, the core algorithm for SwitchList.
 @implementation TrainAssignerTest
 
@@ -769,7 +771,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[freightCar1_ setCurrentLocation: [self industryAtStation: @"D"]];
 	
 	// See what train assigner says.
-	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
+	TrainAssigner *assigner = [[[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO] autorelease];
 	[assigner assignCarsToTrains: [NSArray arrayWithObject: train_]];
 	
 	// Would the car get routed to the yard?
@@ -795,7 +797,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[freightCar1_ setHomeDivision: @"WP"];
 	[freightCar1_ setCurrentLocation: [self yardAtStation: @"A"]];
 	
-	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO];
+	TrainAssigner *assigner = [[[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO] autorelease];
 	// Route for empty car from A to C?
 	[self checkAssigner:assigner routesFrom:@"A-industry" to:@"C-industry" forCar:freightCar1_ matches:@"A,C"];
 	[self checkAssigner:assigner routesFrom:@"C-industry" to:@"C-industry" forCar:freightCar1_ matches:@"C"];
@@ -964,6 +966,9 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	Industry* newIndustry;
 }
 @end
+
+extern void srandom(unsigned);
+extern unsigned gettimeofday (void*, void*);
 
 @implementation TestDoorAssignment
 - (void) setUp {

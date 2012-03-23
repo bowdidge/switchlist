@@ -35,7 +35,7 @@
 #import "WebServerDelegate.h"
 
 #import "CarType.h"
-#import "EntireLayout.h";
+#import "EntireLayout.h"
 #import "FreightCar.h"
 #import "GlobalPreferences.h"
 #import "HTMLSwitchlistRenderer.h"
@@ -45,7 +45,7 @@
 #import "MGTemplateEngine/ICUTemplateMatcher.h"
 #import "NSFileManager+DirectoryLocations.h"
 #import "Place.h"
-#import "SwitchListAppDelegate.h";
+#import "SwitchListAppDelegate.h"
 #import "SwitchListDocument.h"
 #import "SwitchListFilters.h"
 #import "SimpleHTTPServer/SimpleHTTPServer.h"
@@ -102,7 +102,7 @@ NSString *CurrentHostname() {
 // For mocking.
 - (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) bundle withRenderer: (HTMLSwitchlistRenderer*) renderer {
 	[super init];
-	server_ = server;
+	server_ = [server retain];
     htmlRenderer_ = [renderer retain];
 	[htmlRenderer_ setTemplate: DEFAULT_SWITCHLIST_TEMPLATE];
 	if (server_) {
@@ -118,7 +118,7 @@ NSString *CurrentHostname() {
 	HTMLSwitchlistRenderer *htmlRenderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
 	[htmlRenderer autorelease];
 	
-	return [self initWithServer: [[SimpleHTTPServer alloc] initWithTCPPort: DEFAULT_SWITCHLIST_PORT delegate:self]
+	return [self initWithServer: [[[SimpleHTTPServer alloc] initWithTCPPort: DEFAULT_SWITCHLIST_PORT delegate:self] autorelease]
 					 withBundle: [NSBundle mainBundle]
 				   withRenderer: htmlRenderer];
 }

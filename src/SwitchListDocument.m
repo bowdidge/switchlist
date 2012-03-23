@@ -594,7 +594,7 @@
 	if (reportClass == nil) {
 		// There's no native way of drawing this, so fall back on the HTML version.
 		NSString *title = [NSString stringWithFormat: @"Switch list for %@", [train name]];
-		HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+		HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
 		[renderer setTemplate: preferredSwitchlistStyle];
 		NSString *switchlistHtmlFile = [renderer filePathForTemplateFile: @"switchlist"];
 
@@ -790,7 +790,7 @@
 }
 	
 - (IBAction) doCarReport: (id) sender {
-	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
 	NSString *carReport = [renderer filePathForTemplateFile: @"car-report"];
@@ -805,7 +805,7 @@
 }
 
 - (IBAction) doIndustryReport: (id) sender {
-	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
+	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
 	NSString *industryHtml = [renderer filePathForTemplateFile: @"industry-report"];
