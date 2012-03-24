@@ -72,6 +72,9 @@
 	IBOutlet NSButton *splashScreenOpenButton_;
 	IBOutlet NSTextField *splashScreenDocumentName_;
 	
+	// Submenu containing list of example layouts to explore.
+	IBOutlet NSMenu *exampleMenu_;
+	
 	// Web server status window.
 	IBOutlet NSPanel *webServerStatusPanel_;
 	IBOutlet NSImageView *networkIconView_;
@@ -108,6 +111,9 @@
 - (IBAction) webServerPreferenceChanged: (id) sender;
 
 - (IBAction) webServerRunStatusChanged: (id) sender;
+
+// Selector for the example menu items.  Opens the example named by the sending menu.
+- (IBAction) doOpenExample: (id) sender;
 
 // Set the current set of problem strings.
 - (void) setProblems: (NSArray*) problemStrings;

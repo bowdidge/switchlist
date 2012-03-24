@@ -323,6 +323,64 @@
 		[self setWebServerRunStatus: NO];
 	}
 	[webController_ setTemplate: preferredSwitchlistStyle]; 
+	
+	
+	// Fill in the Examples menu.
+	NSString *bundleRoot = [[NSBundle mainBundle] resourcePath];
+	NSFileManager *fm = [NSFileManager defaultManager];
+	NSArray *dirContents = [fm contentsOfDirectoryAtPath:bundleRoot error:nil];
+	NSPredicate *switchlistFilter = [NSPredicate predicateWithFormat:@"self ENDSWITH '.swl'"];
+	NSArray *switchlistExamples = [dirContents filteredArrayUsingPredicate:switchlistFilter];
+	
+	for (NSString *exampleFile in switchlistExamples) {
+		// Remove four characters for .swl.
+		NSString *exampleName = [exampleFile substringToIndex: [exampleFile length] - 4];
+		[exampleMenu_ addItem:  [[[NSMenuItem alloc] initWithTitle: exampleName
+															action: @selector(doOpenExample:)
+													 keyEquivalent: @""] autorelease]];
+	}
+}
+
+// Selector for the example menu items.  Opens the example named by the sending menu,
+// and provides a helpful dialog box pointing the user at documentation.
+- (IBAction) doOpenExample: (id) sender {
+	NSMenuItem *chosenItem = (NSMenuItem*) sender;
+	NSString *exampleName = [chosenItem title];
+	NSString *exampleFile = [exampleName stringByAppendingPathExtension: @"swl"];
+	NSString *examplePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: exampleFile];
+	NSURL *exampleURL = [NSURL fileURLWithPath: examplePath];
+	NSError *error = nil;
+	// Nonexistence of file isn't an error to NSDocumentController, so catch that issue explicitly.
+	if ([[NSFileManager defaultManager] fileExistsAtPath: examplePath] == NO) {
+		NSAlert *alert = [NSAlert alertWithMessageText: [NSString stringWithFormat: @"Example file %@ is missing.", exampleFile]
+										 defaultButton: @"OK" alternateButton: nil otherButton: nil
+							 informativeTextWithFormat: @"The example file can't be found in the application.  This version of SwitchList may be corrupted."];
+		[alert runModal];
+		return;
+	}
+	id result= [[NSDocumentController sharedDocumentController] openDocumentWithContentsOfURL: exampleURL
+																					  display: YES
+																						error: &error];
+	
+	if (!result) {
+		NSAlert *alert = [NSAlert alertWithMessageText: @"Cannot open example file."
+										 defaultButton: @"OK" alternateButton: nil otherButton: nil
+							 informativeTextWithFormat: [error localizedDescription]];
+		[alert runModal];
+		return;
+	}
+
+	// Provide helpful hints.
+	NSAlert *alert = [NSAlert alertWithMessageText: [NSString stringWithFormat: @"Example '%@' loaded.", exampleName]
+									 defaultButton: @"OK" alternateButton: nil otherButton: nil
+						 informativeTextWithFormat:
+					  @"For more background on this example, check out the 'Example Layouts' section of the SwitchList help."];
+	[alert setShowsHelp: YES];
+	NSString *helpAnchor = [NSString stringWithFormat: @"Example-%@", exampleName];
+	NSLog(@"Help anchor is %@", helpAnchor);
+	[alert setHelpAnchor: helpAnchor];
+	[alert runModal];
+	return;
 }
 
 - (NSWindow*) reportWindow {
