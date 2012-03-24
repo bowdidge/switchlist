@@ -921,7 +921,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH \\;\npopd\n\n";
+			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n";
 		};
 		3EC3B0861277DEFE00C00AD3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
