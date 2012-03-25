@@ -39,6 +39,8 @@
 {
 }
 
+// freightCars is a PUBLIC TEMPLATE API.
+// Set of all freight cars to be inclued in the train in no order.
 @property (nonatomic, retain) NSSet *freightCars;
 
 - (NSNumber *)maxLength;
@@ -59,6 +61,8 @@
 - (BOOL) acceptsCar: (FreightCar*) car;
 - (BOOL) containsCar: (FreightCar*) car;
 
+// Returns the name of the train.
+// PUBLIC TEMPLATE API.
 - (NSString *)name;
 - (void)setName:(NSString *)value;
 
@@ -68,6 +72,7 @@
 - (void)setStops:(NSString *)value;
 
 // Setters for station stop list, using arrays of Place objects instead of names.
+// PUBLIC TEMPLATE API.
 - (NSArray*) stationsInOrder;
 - (void) setStationsInOrder: (NSArray*) stationsInOrder;
 
@@ -87,6 +92,7 @@
 // with cars for the current train, and each industry is a dictionary with name and list
 // of cars.
 // Needed for implementing PICL switchlist and other by-station switchlists in the web interface.
+// PUBLIC TEMPLATE API.
 - (NSArray*) stationsWithWork;
 
 // Access to-many relationship via -[NSObject mutableSetValueForKey:]
