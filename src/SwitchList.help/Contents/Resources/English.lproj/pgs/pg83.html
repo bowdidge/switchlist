@@ -1,0 +1,68 @@
+<HTML>
+<HEAD>
+<TITLE>Example Layout: Oakland</TITLE>
+<link href="../../shrd/switchlist.css" rel="stylesheet" type="text/css" media="all" />
+</HEAD>
+<BODY>
+<div id="headerbox"><div id="iconbox">
+<img id="iconimg" src="../../shrd/switchListNewIcon.jpg" alt="SwitchList Icon" height="32" width="32" />
+</div>
+<H1>Example Layout: Oakland</h1>
+<a name="Example-Oakland Repair Depot"></a>
+</div>
+<div id="leftspace">
+<p>
+The Oakland Repair Depot example shows why you might want to have one physical location on your layout represented by multiple towns.
+<p>
+<img src="../../shrd/oakland_schematic.jpeg">
+<p>
+This Oakland Repair Depot layout represents a small British-style fiddle yard layout.
+Trains come from Staging into Oakland to drop off cars at Oakland's yard.
+Within Oakland, two trains handle cars: the Local Switcher which handles the local industries
+(in this case only Oakland Lumber) and a Repair Switcher
+which ferries damaged cars over to the Oakland Repair Depot for minor or major repairs.
+<p>
+SwitchList simplifies describing a layout by assuming that any train visiting a town
+can handle any cars going to any industries in that town.
+If we treated Oakland as one town with a yard, an industry, and a repair depot,
+then the Mainline Train bringing the cars in would also switch
+any of the industries as if Oakland was some small town with a passing siding.
+Because we want to treat Oakland as a larger station,
+we want the Mainline Train to only bring cars to the yard,
+and then allow other local trains to handle the switching.
+Creating separate Towns for Oakland, Oakland Yard, and Oakland Repair Depot keeps the Mainline Train in Oakland Yard,
+and lets the Repair Switcher and Local Switcher each handle their own parts of town without interference.
+<p>
+The Repair Depot also uses cargos in an interesting way.
+The layout owner wanted occasional cars needing repairs to arrive in town,
+be dragged over to the repair depot, pass through two or three separate areas in the repair depot,
+and return to service.  The Oakland Repair Depot "town" has three industries to simulate these three areas:
+a heavy repair area, light repair area, and paint shop area.
+<p>
+Fake cargos cause the movement through the repair depot.
+One cargo has the "Heavy Repair" industry as its source and "Paint Shop" as its destination;
+the other has the the "Light Repair" industry as its source and "Paint Shop" as its destination.
+When an empty car gets one of these cargos, it first goes to the Heavy Repair or Light Repair station to be "loaded",
+then gets sent to the "Paint Shop" to be unloaded,
+at which point it's available to return to a nearby yard or be given a new cargo to deliver.
+The repair cargos thus encourage movement from elsewhere in the layout through multiple steps
+of the repair depot and back out again, providing lots of work for the Repair Switcher.
+<p>
+By careful use of divisions, the Oakland Repair Depot only handles the local (Southern Pacific) cars.
+The division for all three stops in the repair depot is SP, so only cars in the SP division would ever get the repair "cargo".
+<p>
+The single industry, Oakland Lumber, is in the SP division,
+but the source of the lumber is a lumber mill in staging in the WP division.
+Thus, any SP or WP division car can carry the lumber.
+<p>
+<hr><p><h2>Related Topics:</h2></p>
+<A HREF="pg51.html">Detail: Divisions for cars and industries</a> for
+more details on how a freight car's "Home Division" affects the assigning
+of cars to cargos.
+<p>
+<a href="pg25.html">User Interface: Towns Tab</a> for hints on
+deciding what counts as a town.
+<p>
+</div>
+</body>
+</html>
