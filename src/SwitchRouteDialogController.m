@@ -87,7 +87,7 @@ NSString *DragTownsType = @"DragTownsType";
 // Informs dialog box that a new train's information will be displayed.
 - (void) setTrain: (ScheduledTrain*) tr layout: (EntireLayout*) layout{
 	[routeList_ release];
-	routeList_ = [NSMutableArray arrayWithArray: [tr stationStopObjects]];
+	routeList_ = [NSMutableArray arrayWithArray: [tr stationsInOrder]];
 	[routeList_ retain];
 	
 	[trainBeingChanged_ release];
@@ -107,7 +107,7 @@ NSString *DragTownsType = @"DragTownsType";
 }
 
 - (IBAction) done: (id) sender {
-	[trainBeingChanged_ setStationStopObjects: routeList_];
+	[trainBeingChanged_ setStationsInOrder: routeList_];
 	[NSApp endSheet: switchRouteDialogWindow_];
 }
 

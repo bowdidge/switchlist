@@ -157,7 +157,7 @@
 
 // Set the list of station stops as a string of station names separated by either
 // a comma (OLD_SEPARATOR_FOR_STOPS) or more complicated separator (NEW_SEPARATOR_FOR_STOPS).
-// This is For internal use only; all real callers should use stationStopObjects which will give
+// This is For internal use only; all real callers should use stationsInOrder which will give
 // a list of Place objects for each station.
 - (NSString *)stops 
 {
@@ -210,7 +210,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 
 // Changes the train's list of stops.  Array is list of station objects
 // in order.
-- (NSArray*) stationStopObjects {
+- (NSArray*) stationsInOrder {
 	// First, parse the string containing the list of stations.
 	// Assume we're using the old one.
 	NSString *separator = NEW_SEPARATOR_FOR_STOPS;
@@ -236,7 +236,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 
 // List of station names, suitable for human display.
 - (NSString*) listOfStationsString {
-	NSArray *stations = [self stationStopObjects];
+	NSArray *stations = [self stationsInOrder];
 	NSMutableArray *stationNames = [NSMutableArray array];
 	for (Place *station in stations) {
 		[stationNames addObject: [station name]];
@@ -245,9 +245,9 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	return [stationNames componentsJoinedByString: @", "];
 }	
 
-- (void) setStationStopObjects: (NSArray*) stationStopObjects {
+- (void) setStationsInOrder: (NSArray*) stationsInOrder {
 	NSMutableArray *stationStopNames = [NSMutableArray array];
-	for (id stationStopObject in stationStopObjects) {
+	for (id stationStopObject in stationsInOrder) {
 		[stationStopNames addObject: [stationStopObject name]];
 	}
 	[self setStops: [stationStopNames componentsJoinedByString: NEW_SEPARATOR_FOR_STOPS]];
@@ -255,7 +255,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 
 
 - (BOOL) beginsAndEndsAtSameStation {
-	NSArray *allStops = [self stationStopObjects];
+	NSArray *allStops = [self stationsInOrder];
 	if ([allStops objectAtIndex: 0] == [allStops lastObject]) {
 		return YES;
 	}
@@ -328,7 +328,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	
 	NSSet *cars = [self freightCars];
 	
-	NSArray *stationStops = [self stationStopObjects];
+	NSArray *stationStops = [self stationsInOrder];
 	for (Place *station in stationStops) {
 		if ([stationsVisited containsObject: station]) continue;
 		[stationsVisited addObject: station];
@@ -349,7 +349,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	NSMutableArray *result = [NSMutableArray array];
 	
 	// Create temp objects for all stations, remove at end.
-	NSArray *stationStops = [self stationStopObjects];
+	NSArray *stationStops = [self stationsInOrder];
 	// Contains station name if already created.
 	NSMutableDictionary *stationMap = [NSMutableDictionary dictionary];
 	for (Place *station in stationStops) {

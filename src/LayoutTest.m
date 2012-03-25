@@ -227,10 +227,10 @@
 	[myTrain setStops: @"A,B,C"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
 	
-	STAssertEqualsInt(3, [[myTrain stationStopObjects] count], @"Wrong number of station stops");
-	STAssertEqualObjects(@"A", [[[myTrain stationStopObjects] objectAtIndex: 0] name], @"A missing");
-	STAssertEqualObjects(@"B", [[[myTrain stationStopObjects] objectAtIndex: 1] name], @"B missing");
-	STAssertEqualObjects(@"C", [[[myTrain stationStopObjects] objectAtIndex: 2] name], @"C missing");
+	STAssertEqualsInt(3, [[myTrain stationsInOrder] count], @"Wrong number of station stops");
+	STAssertEqualObjects(@"A", [[[myTrain stationsInOrder] objectAtIndex: 0] name], @"A missing");
+	STAssertEqualObjects(@"B", [[[myTrain stationsInOrder] objectAtIndex: 1] name], @"B missing");
+	STAssertEqualObjects(@"C", [[[myTrain stationsInOrder] objectAtIndex: 2] name], @"C missing");
 	
 	FreightCar *fc1 = [self makeFreightCarNamed: FREIGHT_CAR_1_NAME at: @"B" movingFrom: @"B" to: @"C" loaded: YES];
 	FreightCar *fc2 = [self makeFreightCarNamed: FREIGHT_CAR_2_NAME at: @"A" movingFrom: @"A" to: @"B" loaded: YES];

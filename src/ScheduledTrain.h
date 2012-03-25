@@ -68,8 +68,8 @@
 - (void)setStops:(NSString *)value;
 
 // Setters for station stop list, using arrays of Place objects instead of names.
-- (NSArray*) stationStopObjects;
-- (void) setStationStopObjects: (NSArray*) stationStopObjects;
+- (NSArray*) stationsInOrder;
+- (void) setStationsInOrder: (NSArray*) stationsInOrder;
 
 // List of station names, suitable for human display.
 - (NSString*) listOfStationsString;

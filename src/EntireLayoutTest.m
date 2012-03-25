@@ -451,7 +451,7 @@
 	[self makeThreeStationTrain];
 	
 	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
-	NSArray *stops = [myTrain1 stationStopObjects];
+	NSArray *stops = [myTrain1 stationsInOrder];
 	
 	STAssertEqualsInt(3, [stops count], @"Incorrect number of stops for train");
 	STAssertEqualObjects([entireLayout_ stationWithName: @"A"],
