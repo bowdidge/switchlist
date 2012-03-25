@@ -49,7 +49,7 @@
 	STAssertEqualObjects(@"A,B,C", [train stops], @"Station stops not as expected.");
 	
 	// Test that the parsing code correctly handles the old-style separator.
-	NSArray *stationStops = [train stationStopObjects];
+	NSArray *stationStops = [train stationsInOrder];
 	NSLog(@"%d", [stationStops count]);
 	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in station stop array");
 	STAssertEqualObjects(@"A", [[stationStops objectAtIndex: 0] name], @"station stops array wrong");
@@ -63,9 +63,9 @@
 	Place *p2 = [self makePlaceWithName: @"Pasco, WA"];
 	Place *p3 = [self makePlaceWithName: @"College Park Yard, San Jose"];
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
-	[train setStationStopObjects: [NSArray arrayWithObjects: p1, p2, p3, nil]];
+	[train setStationsInOrder: [NSArray arrayWithObjects: p1, p2, p3, nil]];
 
-	NSArray *stationStops = [train stationStopObjects];
+	NSArray *stationStops = [train stationsInOrder];
 	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in station stop array");
 	STAssertEqualObjects(p1, [stationStops objectAtIndex: 0], @"station stops array wrong");
 	STAssertEqualObjects(p2, [stationStops objectAtIndex: 1], @"station stops array wrong");

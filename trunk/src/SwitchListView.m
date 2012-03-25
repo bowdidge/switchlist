@@ -142,7 +142,7 @@
 	
 	// TODO(bowdidge): Change this to size to the field. 
 	NSString *firstTownString = @"";
-	// NSString *firstTownString = [[[train_ stationStopObjects] objectAtIndex: 0] name];
+	// NSString *firstTownString = [[[train_ stationsInOrder] objectAtIndex: 0] name];
 	[self drawFormLine: locationDateString centerX: locationStringCenterX centerY: offsetY + locationStringCenterY
 			   strings: [NSArray arrayWithObjects: @"", @"", firstTownString, @"", dateString, @"", yearString, nil]
 		  printedAttrs: title3Attrs];

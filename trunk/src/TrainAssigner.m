@@ -110,7 +110,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
 		if ([tr acceptsCarType: carType] == NO) continue;
 		
-		NSArray *stations = [tr stationStopObjects];
+		NSArray *stations = [tr stationsInOrder];
 		int ct = [stations count];
 		int i;
 		for (i=0;i<ct-1;i++) {
@@ -163,7 +163,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
 		if ([tr acceptsCar: car] == NO) continue;
 		
-		NSArray *stops = [tr stationStopObjects];
+		NSArray *stops = [tr stationsInOrder];
 		int startIndex = [stops indexOfObject: start];
 		if (startIndex != NSNotFound) return tr;
 	}
@@ -176,7 +176,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
 		if ([tr acceptsCar: car] == NO) continue;
 		
-		NSArray *stops = [tr stationStopObjects];
+		NSArray *stops = [tr stationsInOrder];
 		int startIndex = [stops indexOfObject: start];
 		if (startIndex == NSNotFound) continue;
 		
@@ -460,7 +460,7 @@ NSString *NameOrNoValue(NSString* string) {
 		tr = [self trainBetweenStation: here andStation: there acceptingCar: car];
 
 		if (respectSidingLengths_) {
-			NSArray *stationStops = [tr stationStopObjects];
+			NSArray *stationStops = [tr stationsInOrder];
 			TrainSizeVector *sizeVector = [[[TrainSizeVector alloc] initWithCars: [[tr freightCars] allObjects]
 																		  stops: stationStops] autorelease];
 			TrainSizeVector *addedCarVector = [[[TrainSizeVector alloc] initWithCars: [NSArray arrayWithObject: car]

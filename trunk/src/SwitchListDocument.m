@@ -193,7 +193,7 @@
 	
 	// Otherwise, force conversion.
 	for (ScheduledTrain *train in allTrains) {
-		[train setStationStopObjects: [train stationStopObjects]];
+		[train setStationsInOrder: [train stationsInOrder]];
 	}
 }
 
