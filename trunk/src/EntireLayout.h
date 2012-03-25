@@ -103,7 +103,9 @@ NSString *NormalizeDivisionString(NSString *inString);
 - (NSArray*) allOnlineStationsSortedOrder;
 
 // Returns an array of all stations ordered by station name.
+// PUBLIC TEMPLATE API.
 - (NSArray*) allStationsSortedOrder;
+
 - (NSArray*) allStationsInStaging;
 - (NSArray*) allStationNamesInStaging;
 // Returns a list of potential Places with staging yards that can accept a car going to an offline
@@ -123,9 +125,11 @@ NSString *NormalizeDivisionString(NSString *inString);
 - (NSArray*) allTrains;
 
 // Remember the date of the current operating session.
+// PUBLIC TEMPLATE API.
 - (NSDate*) currentDate;
 - (void) setCurrentDate: (NSDate*) date;
 
+// PUBLIC TEMPLATE API.
 - (NSString*) layoutName;
 - (void) setLayoutName: (NSString*) name;
 	
