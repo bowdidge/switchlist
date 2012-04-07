@@ -219,18 +219,7 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	centerX += offsetX;
 	centerY += offsetY;
 	
-	NSSize stringSize = [str sizeWithAttributes: attrs];
-	NSFont *curFont = [attrs objectForKey: NSFontAttributeName];
-	while (stringSize.width > columnSize) {
-		NSFont *newFont = [NSFont fontWithName: [curFont fontName]  size: [curFont pointSize] * 0.9];
-		attrs = [NSMutableDictionary dictionaryWithDictionary: attrs];
-		[attrs setObject: newFont forKey: NSFontAttributeName];
-		stringSize = [str sizeWithAttributes: attrs];
-		curFont = newFont;
-	}
-	
-	// +1 on Y is fudge factor -- easier to move text up instead of down, descenders don't collide with lines.
-	[self drawCenteredString: str centerY: centerY centerX: centerX attributes: attrs];
+	[self drawHandwrittenString: str centerX: centerX centerY: centerY columnSize: columnSize handwrittenAttrs: attrs];
 }
 
 // Draws a handwritten string in the named location, fitting the string to the specified column size.
@@ -240,19 +229,18 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 					columnSize: (float) columnSize 
 			  handwrittenAttrs: (NSDictionary*) attrs {
 	
-	NSSize stringSize = [str sizeWithAttributes: attrs];
-	NSFont *curFont = [attrs objectForKey: NSFontAttributeName];
-	while (stringSize.width > columnSize) {
-		NSFont *newFont = [NSFont fontWithName: [curFont fontName]  size: [curFont pointSize] * 0.9];
-		NSMutableDictionary *newDict = [NSMutableDictionary dictionaryWithDictionary: attrs];
-		[newDict setObject: newFont forKey: NSFontAttributeName];
-		attrs = newDict;
-		stringSize = [str sizeWithAttributes: attrs];
+	NSMutableDictionary *newAttrs = [NSMutableDictionary dictionaryWithDictionary: attrs];
+	NSSize stringSize = [str sizeWithAttributes: newAttrs];
+	NSFont *curFont = [newAttrs objectForKey: NSFontAttributeName];
+	// 1.2 magic number is to try to account for descenders.  Without it, text in some fonts gets awfully small.
+	while (stringSize.width > columnSize || stringSize.height > rowHeight_ * 1.2) {
+		NSFont *newFont = [NSFont fontWithName: [curFont fontName]  size: [curFont pointSize] - 1];
+		[newAttrs setObject: newFont forKey: NSFontAttributeName];
+		stringSize = [str sizeWithAttributes: newAttrs];
 		curFont = newFont;
 	}
 	
-	// +1 on Y is fudge factor -- easier to move text up instead of down, descenders don't collide with lines.
-	[self drawCenteredString: str centerY: centerY centerX: centerX attributes: attrs];
+	[self drawCenteredString: str centerY: centerY centerX: centerX attributes: newAttrs];
 }
 
 // Returns a string, split up into dash and non-dash components.
@@ -456,19 +444,31 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 
 - (NSString*) handwritingFontName {
 	// Dakota's really nice, but only available if you installed a special version of iLife.
-	NSString *defaultFont =  @"Handwriting - Dakota";
-	if ([NSFont fontWithName: defaultFont size: 12.0]) {
-		return defaultFont;
+	// Rock Salt takes too much space, but is nice.
+	NSMutableArray *fontChoices = [NSMutableArray arrayWithObjects: 
+								   // @"Handwriting - Dakota", 
+								   @"Rock Salt", 
+								   nil];
+	
+	NSString *preferredFont = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_HANDWRITTEN_FONT];
+	if (preferredFont) {
+		[fontChoices insertObject: preferredFont atIndex: 0];
+	}
+	
+	for (NSString *fontName in fontChoices) {
+		if (fontName && [NSFont fontWithName: fontName size: 12.0]) {
+			return fontName;
+		}
 	}
 	
 	// Still not there?  Choose chalkboard.
-	// Chalkboard is a standard font.
+	// Chalkboard is a standard font on the Mac.
 	return @"Chalkboard";
 }
 
 - (NSDictionary*) handwritingFontAttr {
-	// TODO(bowdidge): Why the alternate font?  How much does the alternate font mess layout up?
-	NSFont *handwritingFont =  [NSFont fontWithName: [self handwritingFontName] size: 18];
+	// Maximum size.
+	NSFont *handwritingFont =  [NSFont fontWithName: [self handwritingFontName] size: 12];
 	
 	// This uses a blue color and handwriting font.
 	NSDictionary *handwritingFontAttr = [NSMutableDictionary dictionary];
@@ -477,16 +477,9 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	return handwritingFontAttr;
 }
 
-- (float) handwritingFontSize {
-	return 12.0;
-}
-
 - (NSDictionary*) handwritingFontAttrForSize: (float) size {
 	// TODO(bowdidge): Why the alternate font?  How much does the alternate font mess layout up?
 	NSFont *handwritingFont =  [NSFont fontWithName: [self handwritingFontName] size: size];
-	if (handwritingFont == nil) {
-		handwritingFont = [NSFont fontWithName: @"Chalkboard" size: [self handwritingFontSize]];
-	}
 	
 	// This uses a blue color and handwriting font.
 	NSDictionary *handwritingFontAttr = [NSMutableDictionary dictionary];
