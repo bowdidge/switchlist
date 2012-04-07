@@ -35,5 +35,6 @@ NSString *GLOBAL_PREFS_SWITCH_LIST_DEFAULT_STYLE = @"SwitchListDefaultStyle";
 NSString *GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE = @"SwitchListDefaultTemplateName";
 NSString *GLOBAL_PREFS_DISPLAY_WEB_SERVER = @"SwitchListWebServerVisible";
 NSString *GLOBAL_PREFS_ENABLE_WEB_SERVER = @"SwitchListWebServerEnabled";
+NSString *GLOBAL_PREFS_HANDWRITTEN_FONT = @"SwitchListHandwrittenFont";
 
 NSString *DEFAULT_SWITCHLIST_TEMPLATE = @"Handwritten";

@@ -284,6 +284,58 @@
 	}
 }
 
+// Load all fonts from the Application bundle.  Generate an error if the fonts in the array fontnames
+// are not present.
+- (BOOL)loadLocalFonts:(NSError **)err requiredFonts:(NSArray *)fontnames {
+	NSString *resourcePath, *fontsFolder,*errorMessage;    
+	NSURL *fontsURL;
+	resourcePath = [[NSBundle mainBundle] resourcePath];
+	if (!resourcePath) {
+		errorMessage = @"Failed to load fonts! no resource path...";
+		goto error;
+	}
+
+	fontsFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/fonts"];
+	NSFileManager *fm = [NSFileManager defaultManager];
+	if (![fm fileExistsAtPath:fontsFolder])	{
+		errorMessage = @"Failed to load fonts! Font folder not found...";
+		goto error;
+	}
+	
+	if(fontsURL = [NSURL fileURLWithPath:fontsFolder]) {
+		OSStatus status;
+		FSRef fsRef;
+		CFURLGetFSRef((CFURLRef)fontsURL, &fsRef);
+		status = ATSFontActivateFromFileReference(&fsRef, kATSFontContextLocal, kATSFontFormatUnspecified, 
+												  NULL, kATSOptionFlagsDefault, NULL);
+		if (status != noErr) {
+			errorMessage = @"Failed to acivate fonts!";
+			goto error;
+		}
+	}
+	if (fontnames != nil) {
+		NSFontManager *fontManager = [NSFontManager sharedFontManager];
+		for (NSString *fontname in fontnames) {
+			BOOL fontFound = [[fontManager availableFonts] containsObject:fontname]; 
+			if (!fontFound) {
+				errorMessage = [NSString stringWithFormat:@"Required font not found:%@",fontname];
+				goto error;
+			}
+		}
+	}
+	return YES;
+
+error:
+	if (err != NULL) {
+		NSString *localizedMessage = NSLocalizedString(errorMessage, @"");
+		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedMessage forKey:NSLocalizedDescriptionKey];
+		*err = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+	}
+	
+	return NO;
+	
+}
+
 - (void) awakeFromNib {
 	[problems_ addObject: @"No problems."];
 	MyOutlineDelegate *myOutlineDelegate = [[[MyOutlineDelegate alloc] initWithAppDelegate: self
@@ -339,6 +391,8 @@
 															action: @selector(doOpenExample:)
 													 keyEquivalent: @""] autorelease]];
 	}
+	NSError *err = nil;
+	[self loadLocalFonts: &err requiredFonts: [NSArray array]];
 }
 
 // Selector for the example menu items.  Opens the example named by the sending menu,

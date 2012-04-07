@@ -106,7 +106,7 @@
 - (NSColor*) bluePenColor;
 // Can be overridden by defaults setting.
 - (NSString*) handwritingFontName;
-- (float) handwritingFontSize;
+
 // Gray in header?
 - (BOOL) useGrayBlock;
 

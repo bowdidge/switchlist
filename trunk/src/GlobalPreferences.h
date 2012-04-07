@@ -46,6 +46,10 @@ extern NSString *GLOBAL_PREFS_DISPLAY_WEB_SERVER;
 // Indicates whether the web server should be running.  Boolean.
 extern NSString *GLOBAL_PREFS_ENABLE_WEB_SERVER;
 
+// Indicates the preferred handwriting font to use, overriding SwitchList's default choices.
+// String name of font installed on system.
+NSString *GLOBAL_PREFS_HANDWRITTEN_FONT;
+
 // Constants handy for defaults.
 // Name for the default template as displayed in the switchlist
 // preference pop up.

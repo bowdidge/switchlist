@@ -390,23 +390,4 @@ int sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar*
 	return font;
 }
 
-- (float) handwritingFontSize {
-	return 14;
-}
-
-- (NSDictionary*) handwritingFontAttr {
-	// TODO(bowdidge): Why the alternate font?  How much does the alternate font mess layout up?
-	NSFont *handwritingFont =  [NSFont fontWithName: [self handwritingFontName] size: [self handwritingFontSize]];
-	if (handwritingFont == nil) {
-		handwritingFont = [NSFont fontWithName: @"Chalkboard" size: [self handwritingFontSize]];
-	}
-	
-	// This uses a blue color and handwriting font.
-	NSDictionary *handwritingFontAttr = [NSMutableDictionary dictionary];
-	[handwritingFontAttr setValue: [self bluePenColor] forKey: NSForegroundColorAttributeName];
-	[handwritingFontAttr setValue: handwritingFont forKey: NSFontAttributeName];
-	return handwritingFontAttr;
-}
-
-
 @end
