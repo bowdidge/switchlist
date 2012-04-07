@@ -40,7 +40,7 @@
 	<key>CFBundleHelpBookName</key>
 	<string>SwitchList.help</string>
 	<key>CFBundleIconFile</key>
-	<string>switchlistNewIcon.icns</string>
+	<string>lantern-icon.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.blogspot.vasonabranch.SwitchListApp</string>
 	<key>CFBundleInfoDictionaryVersion</key>
