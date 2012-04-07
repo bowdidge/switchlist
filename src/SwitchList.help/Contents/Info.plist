@@ -21,7 +21,7 @@
 	<key>HPDBookAccessPath</key>
 	<string>SwitchList.html</string>
 	<key>HPDBookIconPath</key>
-	<string>shrd/switchlistNewIcon.png</string>
+	<string>shrd/lantern-help.png</string>
 	<key>HPDBookIndexPath</key>
 	<string>SwitchList.helpindex</string>
 	<key>HPDBookKBProduct</key>
