@@ -229,7 +229,7 @@
 		3E042CA110AFD44C0002A609 /* SwitchListDocument 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 2.xcdatamodel"; sourceTree = "<group>"; };
 		3E048E5308DCAE4000383A67 /* SwitchListAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListAppDelegate.h; sourceTree = "<group>"; };
 		3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListAppDelegate.m; sourceTree = "<group>"; };
-		3E0C52461524299D0036AAE7 /* RockSalt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = RockSalt.ttf; path = "../../../Desktop/Handwriting Fonts/rock-salt/RockSalt.ttf"; sourceTree = SOURCE_ROOT; };
+		3E0C52461524299D0036AAE7 /* RockSalt.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = RockSalt.ttf; path = resources/RockSalt.ttf; sourceTree = "<group>"; };
 		3E0E27AA13F63AD500488E4D /* network_wireless.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = network_wireless.jpg; sourceTree = "<group>"; };
 		3E108B9614049E7900B77CFE /* DeepMutableCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeepMutableCopy.h; sourceTree = "<group>"; };
 		3E108B9F14049E7900B77CFE /* MGTemplateEngine README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "MGTemplateEngine README.txt"; sourceTree = "<group>"; };
