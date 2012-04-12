@@ -9,6 +9,7 @@ switchlist style:
   Open the Library folder, then the Application Support folder.  If there
   is no SwitchList folder inside your Application Support folder, create one.
 
-* Copy the Thomas directory into the SwitchList folder in Application Support.
+* Copy the directory for the custom switchlist template (the Thomas directory 
+  or the Waybill directory) into the SwitchList folder in Application Support.
 
-* Run SwitchList.  "Thomas" should now be one choice for a switchlist style.
+* Run SwitchList.  Your new custom switchlist template should now be one choice for a switchlist style.

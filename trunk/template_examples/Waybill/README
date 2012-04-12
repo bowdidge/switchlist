@@ -1,0 +1,18 @@
+Waybill switchlist style
+Robert Bowdidge, April 11, 2012
+
+This is an alternate switchlist style for the Mac SwitchList application,
+
+http://www.vasonabranch.com/railroad/switchlist.html
+
+This draws freight car switchlists in the style of a pile of waybills
+that a conductor would carry.  The waybills are inspired by Tony
+Thompson's articles on waybills:
+
+http://modelingthesp.blogspot.com/2010/12/waybills.html
+
+The iPhone version uses swipes to switch between waybills.
+
+The swiping code is based on SwipeView by Matteo Spinnelli.
+
+This is a work-in-progress.
