@@ -626,14 +626,22 @@ function OnLoad() {
    <!-- children div used to identify each of the individual pages -->
     <div id="children">
 <!-- Intro page -->
-<div class="waybill" style="background:white;">
-<h2>
-Train: {{train.name}}
+<div class="waybill" style="background:white; font-size:12pt;">
+Waybills for Train:
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{{train.name}}
 <p>
-Stops: {{train.listOfStationsString}}
+Stops:
+<ul>
+{% for station in train.stationsInOrder %}
+<li> {{station.name}}
+{% /for %}
+</ul>
 </h2>
 </div>
-<!-- Page 1 -->
+
+{% for car in train.allFreightCarsInVisitOrder %}
+{% if car.cargo and car.isLoaded %}
 <div class="waybill" style="background:Linen;">
 <table border="0" style="text-align: center;">
 <tr>
@@ -641,7 +649,7 @@ Stops: {{train.listOfStationsString}}
   <!-- Put the car's initials in the place where the name of the railroad
        should go, and let JavaScript at load time replace the initials with
        the full name of the railroad. -->
-  <td class="railroadName">TNO</td>
+  <td class="railroadName">{{car.initials}}</td>
   <td>721</td>
 </tr>
 <tr>
@@ -663,26 +671,26 @@ Stops: {{train.listOfStationsString}}
 <table>
 <tr class="lineAbove">
   <td class="lineRight">INITIALS</br>
-  <span class="typed">TNO</span>
+  <span class="typed">{{car.initials}}</span>
   </td>
   <td>NUMBER<br>
-    <span class="typed">38365</span>
+    <span class="typed">{{car.number}}</span>
   </td>
 </tr>
 <tr class="lineAbove">
   <td class="lineRight">TO STATION     STATE<br>
-  <span class="typed">Campbell</span>
+  <span class="typed">{{car.nextStop.location.name}}</span>
   </td>
   <td>FROM     STATION STATE<br>
-    <span class="typed">San Jose Yard</span>
+    <span class="typed">{{car.cargo.source.location.name}}</span>
   </td>
 </tr>
 <tr class="lineAbove">
   <td class="lineRight">CONSIGNEE AND ADDRESS<br>
-    <span class="typed">Hyde Cannery</span>
+    <span class="typed">{{car.nextStop.name}}</span>
   </td>
   <td>SHIPPER<br>
-    <span class="typed">San Jose Yard</span>
+    <span class="typed">{{car.cargo.source.name}}</span>
   </td>
 </tr>
 <tr class="lineAbove">
@@ -691,7 +699,7 @@ Stops: {{train.listOfStationsString}}
     <!-- Stuff the cargo's originating town into the ROUTE field,
          and then let some JavaScript convert that to a more realistic
          sequence of railroads or places. -->
-    <span class="typed"><span class="route">San Jose Yard</span>
+    <span class="typed"><span class="route">{{car.cargo.source.location.name}}</span>
   </td>
   <td style="border-top:solid 1px;">
     <div class="rightItem">
@@ -699,7 +707,7 @@ Stops: {{train.listOfStationsString}}
       CAR ORDERED
     </div>
     <div class="rightEntry">
-      <span class="typed" style="text-align: right;">XMC</span>
+      <span class="typed" style="text-align: right;">{{car.carTypeRel.carTypeName}}</span>
     </div>
  </td>
 </tr>
@@ -710,7 +718,7 @@ Stops: {{train.listOfStationsString}}
      CAR ORDERED
     </div>
     <div class="rightEntry">
-      <span class="typed">40'</span>
+      <span class="typed">{{car.length}}'</span>
     </div>
   </td>
 </tr>
@@ -719,7 +727,7 @@ Stops: {{train.listOfStationsString}}
     <div class="rightItem">
       WEIGHED<br>
       <span style="font-size:9px;">E=Estimated S=Shipper's Tested Weights<br>
-      R=Railroad Scale  T=Tariff Classification</span>
+      R=Railroad Scale	T=Tariff Classification</span>
     </div>
     <div class="rightEntry">
       <span class="typed">R</span>
@@ -737,7 +745,7 @@ Stops: {{train.listOfStationsString}}
     <span class="typed">1 car</span>
   </td>
   <td>
-    <span class="typed">cans</span>
+    <span class="typed">{{car.cargo.name}}</span>
   </td>
 <tr class="lineAbove">
   <td colspan="2">
@@ -752,7 +760,7 @@ Stops: {{train.listOfStationsString}}
 </tr>
 </table>
 </div>
-
+{% else %}
 <div class="waybill" style="background: #fff380;">
 <center>
 Southern Pacific Company
@@ -762,22 +770,22 @@ Southern Pacific Company
 <table>
 <tr class="lineAbove">
   <td class="lineRight">CAR INITIAL<br>
-  <span class="typed">PFE</span>
+  <span class="typed">{{car.initials}}</span>
   </td>
   <td>CAR NUMBER<br>
-    <span class="typed">92841</span>
+    <span class="typed">{{car.number}}</span>
   </td>
 </tr>
 <tr class="lineAbove">
   <td class="lineRight">
     AAR CLASS OF<br>
     CAR ORDERED<br>
-    <span class="typed">RS</span>
+    <span class="typed">{{car.carTypeRel.carTypeName}}</span>
   </td>
   <td>
     LENGTH/CAPY OF<br>
     CAR ORDERED<br>
-    <span class="typed">40</span>
+    <span class="typed">{{car.length}}</span>
   </td>
 </tr>
 <tr class="lineAbove">
@@ -785,7 +793,7 @@ Southern Pacific Company
    <span style="font-size: 14pt;">FOR HOME</span><br>
   </td>
 </tr>
-
+{% if car.cargo %}
 <tr>
   <td>
     Billed from
@@ -804,72 +812,35 @@ Southern Pacific Company
 <tr>
   <td style="width: 30%">Billed from</td>
   <td style="width: 70%">
-    <SPAN class="typed">San Jose Yard</span>
+    <SPAN class="typed">{{car.currentLocation.location.name}}</span>
   </td>
 </tr>
 <tr>
   <td style="width: 30%"> To</td>
   <td style="width: 70%">
-    <SPAN class="typed">Campbell</span>
+    <SPAN class="typed">{{car.nextStop.location.name}}</span>
   </td>
 </tr>
 <tr>
   <td style="width: 30%">Shipper</td>
   <td style="width: 70%">
-    <SPAN class="typed">Hyde Cannery</span>
+    <SPAN class="typed">{{car.nextStop.name}}</span>
     Spot
   </td>
 </tr>
-
-</table>
-<hr>
-<center>
-INSTRUCTIONS-This form must accompany all empty foreign cars and must
-be used in billing private line cars under General Order Ten.
-</center>
-</div>
-
-<div class="waybill" style="background: #fff380;">
-<center>
-Southern Pacific Company
-<br>
-<span style="font-size:20pt; font-weight:bold;">EMPTY CAR BILL</span>
-</center>
-<table>
-<tr class="lineAbove">
-  <td class="lineRight">CAR INITIAL<br>
-  <span class="typed">RI</span>
-  </td>
-  <td>CAR NUMBER<br>
-    <span class="typed">42165</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td class="lineRight">
-    AAR CLASS OF<br>
-    CAR ORDERED<br>
-    <span class="typed">XMC</span>
-  </td>
-  <td>
-    LENGTH/CAPY OF<br>
-    CAR ORDERED<br>
-    <span class="typed">40</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td colspan="2" style="text-align:center">
-   <span style="font-size: 14pt;">FOR HOME</span><br>
-  </td>
-</tr>
-
+{% else %}
 <tr>
-  <td>
-    Billed from
+  <td style="width:30%">Billed from</td>
+  <td style="width:70%">
+    <SPAN class="typed">{{car.currentLocation.location.name}}</span>
   </td>
 </tr>
 <tr>
-  <td>
+  <td style="width:30%">
     To or Via
+  </td>
+  <td style="width:70%">
+    <SPAN class="typed">{{car.nextStop.location.name}}-SP-{{car.initials}}</span>
   </td>
 </tr>
 <tr class="lineAbove">
@@ -878,339 +849,22 @@ Southern Pacific Company
   </td>
 </tr>
 <tr>
-  <td style="width: 30%">Billed from</td>
-  <td style="width: 70%">
-    <SPAN class="typed">San Jose Yard</span>
-  </td>
-</tr>
-<tr>
-  <td style="width: 30%"> To</td>
-  <td style="width: 70%">
-    <SPAN class="typed">Campbell</span>
-  </td>
-</tr>
-<tr>
-  <td style="width: 30%">Shipper</td>
-  <td style="width: 70%">
-    <SPAN class="typed">Hyde Cannery</span>
-    Spot
-  </td>
-</tr>
-
-</table>
-<hr>
-<center>
-INSTRUCTIONS-This form must accompany all empty foreign cars and must
-be used in billing private line cars under General Order Ten.
-</center>
-</div>
-
-<div class="waybill" style="background:Linen;">
-<table border="0" style="text-align: center;">
-<tr>
-  <td>721</td>
-  <!-- Put the car's initials in the place where the name of the railroad
-       should go, and let JavaScript at load time replace the initials with
-       the full name of the railroad. -->
-  <td class="railroadName">PFE</td>
-  <td>721</td>
-</tr>
-<tr>
-  <td></td>
-  <td>
-    <span class="roman">FREIGHT WAYBILL</span>
-  </td>
-  <td></td>
-</tr>
-<tr>
-  <td colspan="3">
-    <span style="font-size: 10;">
-    TO BE USED FOR SINGLE CONSIGNMENTS,
-    CARLOAD, and LESS CARLOAD
-    </span>
-  </td>
-</tr>
-</table>
-<table>
-<tr class="lineAbove">
-  <td class="lineRight">INITIALS</br>
-  <span class="typed">PFE</span>
-  </td>
-  <td>NUMBER<br>
-    <span class="typed">24935</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td class="lineRight">TO STATION     STATE<br>
-  <span class="typed">Los Gatos</span>
-  </td>
-  <td>FROM     STATION STATE<br>
-    <span class="typed">San Jose Yard</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td class="lineRight">CONSIGNEE AND ADDRESS<br>
-    <span class="typed">Hunts Cannery</span>
-  </td>
-  <td>SHIPPER<br>
-    <span class="typed">San Jose Yard</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td class="lineRight" rowspan="3">
-    ROUTE<br>
-    <!-- Stuff the cargo's originating town into the ROUTE field,
-         and then let some JavaScript convert that to a more realistic
-         sequence of railroads or places. -->
-    <span class="typed"><span class="route">San Jose Yard</span>
-  </td>
-  <td style="border-top:solid 1px;">
-    <div class="rightItem">
-      AAR CLASS OF<br>
-      CAR ORDERED
-    </div>
-    <div class="rightEntry">
-      <span class="typed" style="text-align: right;">RS</span>
-    </div>
- </td>
-</tr>
-<tr>
-  <td style="border-top:solid 1px;">
-    <div class="rightItem">
-     LENGTH/CAPY OF<br>
-     CAR ORDERED
-    </div>
-    <div class="rightEntry">
-      <span class="typed">40'</span>
-    </div>
-  </td>
-</tr>
-<tr>
-  <td style="border-top:solid 1px;">
-    <div class="rightItem">
-      WEIGHED<br>
-      <span style="font-size:9px;">E=Estimated S=Shipper's Tested Weights<br>
-      R=Railroad Scale  T=Tariff Classification</span>
-    </div>
-    <div class="rightEntry">
-      <span class="typed">R</span>
-    </div>
-  </td>
-</tr>
-<tr class="shortLineAbove">
-  <td>NO. PKGS.</td>
-  <td>
-    DESCRIPTION OF ARTICLES
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td valign="top">
-    <span class="typed">1 car</span>
-  </td>
-  <td>
-    <span class="typed">tomatoes</span>
-  </td>
-<tr class="lineAbove">
   <td colspan="2">
-    <span style="font-size: 10px;">
-    ON C.L. TRAFFIC-INSTRUCTIONS<br>
-    Regarding Icing, Ventilation, Etc.)<br>
-    & EXCEPTIONS
-    </div>x
-  </td>
-</tr>
-<tr style="height: 40px;">
-</tr>
-</table>
-</div>
-
-<div class="waybill" style="background:Linen;">
-<table border="0" style="text-align: center;">
-<tr>
-  <td>721</td>
-  <!-- Put the car's initials in the place where the name of the railroad
-       should go, and let JavaScript at load time replace the initials with
-       the full name of the railroad. -->
-  <td class="railroadName">CMWX</td>
-  <td>721</td>
-</tr>
-<tr>
-  <td></td>
-  <td>
-    <span class="roman">FREIGHT WAYBILL</span>
-  </td>
-  <td></td>
-</tr>
-<tr>
-  <td colspan="3">
-    <span style="font-size: 10;">
-    TO BE USED FOR SINGLE CONSIGNMENTS,
-    CARLOAD, and LESS CARLOAD
-    </span>
-  </td>
-</tr>
-</table>
-<table>
-<tr class="lineAbove">
-  <td class="lineRight">INITIALS</br>
-  <span class="typed">CMWX</span>
-  </td>
-  <td>NUMBER<br>
-    <span class="typed">143</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td class="lineRight">TO STATION     STATE<br>
-  <span class="typed">Campbell</span>
-  </td>
-  <td>FROM     STATION STATE<br>
-    <span class="typed">San Jose Yard</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td class="lineRight">CONSIGNEE AND ADDRESS<br>
-    <span class="typed">Drew Cannery</span>
-  </td>
-  <td>SHIPPER<br>
-    <span class="typed">San Jose Yard</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td class="lineRight" rowspan="3">
-    ROUTE<br>
-    <!-- Stuff the cargo's originating town into the ROUTE field,
-         and then let some JavaScript convert that to a more realistic
-         sequence of railroads or places. -->
-    <span class="typed"><span class="route">San Jose Yard</span>
-  </td>
-  <td style="border-top:solid 1px;">
-    <div class="rightItem">
-      AAR CLASS OF<br>
-      CAR ORDERED
-    </div>
-    <div class="rightEntry">
-      <span class="typed" style="text-align: right;">RS</span>
-    </div>
- </td>
-</tr>
-<tr>
-  <td style="border-top:solid 1px;">
-    <div class="rightItem">
-     LENGTH/CAPY OF<br>
-     CAR ORDERED
-    </div>
-    <div class="rightEntry">
-      <span class="typed">40'</span>
-    </div>
-  </td>
-</tr>
-<tr>
-  <td style="border-top:solid 1px;">
-    <div class="rightItem">
-      WEIGHED<br>
-      <span style="font-size:9px;">E=Estimated S=Shipper's Tested Weights<br>
-      R=Railroad Scale  T=Tariff Classification</span>
-    </div>
-    <div class="rightEntry">
-      <span class="typed">R</span>
-    </div>
-  </td>
-</tr>
-<tr class="shortLineAbove">
-  <td>NO. PKGS.</td>
-  <td>
-    DESCRIPTION OF ARTICLES
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td valign="top">
-    <span class="typed">1 car</span>
-  </td>
-  <td>
-    <span class="typed">fresh fruit</span>
-  </td>
-<tr class="lineAbove">
-  <td colspan="2">
-    <span style="font-size: 10px;">
-    ON C.L. TRAFFIC-INSTRUCTIONS<br>
-    Regarding Icing, Ventilation, Etc.)<br>
-    & EXCEPTIONS
-    </div>x
-  </td>
-</tr>
-<tr style="height: 40px;">
-</tr>
-</table>
-</div>
-
-<div class="waybill" style="background: #fff380;">
-<center>
-Southern Pacific Company
-<br>
-<span style="font-size:20pt; font-weight:bold;">EMPTY CAR BILL</span>
-</center>
-<table>
-<tr class="lineAbove">
-  <td class="lineRight">CAR INITIAL<br>
-  <span class="typed">PH&D</span>
-  </td>
-  <td>CAR NUMBER<br>
-    <span class="typed">1010</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td class="lineRight">
-    AAR CLASS OF<br>
-    CAR ORDERED<br>
-    <span class="typed">XMC</span>
-  </td>
-  <td>
-    LENGTH/CAPY OF<br>
-    CAR ORDERED<br>
-    <span class="typed">40</span>
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td colspan="2" style="text-align:center">
-   <span style="font-size: 14pt;">FOR HOME</span><br>
-  </td>
-</tr>
-
-<tr>
-  <td>
     Billed from
   </td>
 </tr>
 <tr>
-  <td>
-    To or Via
-  </td>
-</tr>
-<tr class="lineAbove">
-  <td colspan="2" style="text-align:center;">
-   <span style="font-size: 14pt;">FOR LOADING</span>
+  <td colspan="2">
+    To
   </td>
 </tr>
 <tr>
-  <td style="width: 30%">Billed from</td>
-  <td style="width: 70%">
-    <SPAN class="typed">San Jose Yard</span>
-  </td>
-</tr>
-<tr>
-  <td style="width: 30%"> To</td>
-  <td style="width: 70%">
-    <SPAN class="typed">Campbell</span>
-  </td>
-</tr>
-<tr>
-  <td style="width: 30%">Shipper</td>
-  <td style="width: 70%">
-    <SPAN class="typed">Drew Cannery</span>
+  <td colspan="2">
+    Shipper
     Spot
   </td>
 </tr>
-
+{% /if %}
 </table>
 <hr>
 <center>
@@ -1218,8 +872,9 @@ INSTRUCTIONS-This form must accompany all empty foreign cars and must
 be used in billing private line cars under General Order Ten.
 </center>
 </div>
-    </div>
-  
+{% /if %}
+<br>
+{% /for %}
 <script type="text/javascript">
 document.addEventListener('touchmove', function (e) { e.preventDefault(); }, 
 				       false);
@@ -1228,21 +883,20 @@ var gallery;
 var el;
 var i;
 var page;
-var pageCount = 6;
 
 // Store the pre-generated pages away, and remove from the page.
 var container = document.getElementById("children");
 var waybillChildren = document.getElementsByClassName("waybill");
 var pages = Array.prototype.slice.call(waybillChildren);
+var pageCount = pages.length;
 // Process waybills before pulling them out of the document.
 OnLoad();
-
-for (i=0; i< pages.length; i++) {
+for (i=0; i< pageCount; i++) {
   container.removeChild(pages[i]);
 }
 
 
-gallery = new SwipeView('#wrapper', { numberOfPages: 6 });
+gallery = new SwipeView('#wrapper', { numberOfPages: pageCount });
 
 // Load initial data into prev, current, next pages.
 for (i=0; i<3; i++) {
