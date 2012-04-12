@@ -16,3 +16,19 @@ The iPhone version uses swipes to switch between waybills.
 The swiping code is based on SwipeView by Matteo Spinnelli.
 
 This is a work-in-progress.
+
+To install the Waybill switchlist style and try it out in SwitchList:
+
+* If necessary, create a SwitchList folder in your Library/Application
+  Support folder.  In the Finder, choose "Home" from the "Go" menu to open
+  a window showing your current "home directory" where all your files live.
+  Open the Library folder, then the Application Support folder.  If there
+  is no SwitchList folder inside your Application Support folder, create one.
+
+* Copy the Waybill folder for the custom switchlist template into the
+  SwitchList folder in Application Support.  You should have a Waybill
+  folder inside the SwitchList folder, and the Waybill folder should 
+  contain the switchlist.html file and switchlist-iphone.html file.
+
+* Run SwitchList.  Your new custom switchlist template should now be one choic\
+e for a switchlist style.
