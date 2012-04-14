@@ -210,15 +210,19 @@
 	
 }
 
-// TODO(bowdidge): Get this test working.
-- (void) BrokenTestCarlist {
+- (void) testCarlist {
 	NSDocumentController *sharedDocumentController = [NSDocumentController sharedDocumentController];
-	FakeSwitchListDocument *doc = [[[FakeSwitchListDocument alloc] init] autorelease];
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
+	FakeSwitchListDocument *doc = [[[FakeSwitchListDocument alloc] initWithLayout: entireLayout_] autorelease];
 	[webServerDelegate_ processRequestForCarListForLayout: (SwitchListDocument*) doc];
 	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
-	STAssertContains(@"foo", server_->lastMessage,
-					 [NSString stringWithFormat: @"Unexpected output %@", server_->lastMessage]);
+	STAssertNotNil(server_->lastMessage, @"");
+	// Check for industry and freight car names in script portion.
+	STAssertContains(@"'WP 1'", server_->lastMessage, @"");
+	STAssertContains(@"'UP 2'", server_->lastMessage, @"");
+	STAssertContains(@"'A-industry'", server_->lastMessage, @"");
+	// Check car listed in HTML.
+	STAssertContains(@"<td>WP 1</td>", server_->lastMessage, @"");
 }
 @end
