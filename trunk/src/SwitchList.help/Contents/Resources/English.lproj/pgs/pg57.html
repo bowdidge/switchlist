@@ -19,17 +19,16 @@ and use SwitchList when problems appear.
 <p>
 Here are the problems that can appear in SwitchList:
 <ul>
-<li>"Industry <i>X</i> does not have its town set.  Car <i>Y</i> cannot be moved."
+<li>"Industry/Yard '<i>X</i>' does not have its town set."
 <p>
 If an industry's town is 'No Value', then no trains can visit that industry and move the freight car.
 Change the location of the industry to a valid town so that a train visiting the town can pick up the car.
 Test.
 </p>
-<li>"Next destination <i>X</i> for car <i>Y</i> does not have its town set."
+<li>"Cargo '<i>X</i>' does not have its source/destination set."
 <p>
-If an industry's town is 'No Value', then no trains can visit that industry and drop off the freight car.  Change the
-location of the industry to a valid town so that a train can pick up the car.
-Test.
+If a cargo does not have both a source and destination industry or yard, then SwitchList will not know where to move the car.
+Go to the Cargo tab and change the source or destination to the preferred industry."
 </p>
 <li>"Cannot move car <i>X</i> because it is at <i>Y</i>, an <A HREF="pg102.html">offline location</a>."
 <p>
