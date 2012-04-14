@@ -856,7 +856,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	// Should fail because of missing source.
 	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc], @"Incorrectly assigns car with missing source for cargo.");
 	STAssertEqualsInt(1, [[assigner errors] count], @"Expected one error from train assigner, found %d", [[assigner errors] count]);
-	STAssertContains(@"source location for cargo", [[assigner errors] objectAtIndex: 0],
+	STAssertContains(@"Cargo 'cargo' does not have source set", [[assigner errors] objectAtIndex: 0],
 					 @"Wrong error for missing source", [[assigner errors] count]);
 }
    
@@ -875,7 +875,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	// Should fail because of missing destination.
 	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc2], @"Incorrectly assigns car with missing destination for cargo.");
 	STAssertEqualsInt(1, [[assigner errors] count], @"Expected one error from train assigner, found %d", [[assigner errors] count]);
-	STAssertContains(@"destination location for cargo", [[assigner errors] objectAtIndex: 0],
+	STAssertContains(@"Cargo 'cargo' does not have destination set", [[assigner errors] objectAtIndex: 0],
 					 @"Wrong error for missing source: found %@", [[assigner errors] objectAtIndex: 0]);
 	
 }
@@ -896,7 +896,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	STAssertEquals(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
 	
 	STAssertEqualsInt(2, [[assigner errors] count], @"Expected two errors from train assigner, found %d", [[assigner errors] count]);
-	STAssertContains(@"does not have its town set", [[assigner errors] objectAtIndex: 0],
+	STAssertContains(@"'Yard without Town-yard' does not have its town set", [[assigner errors] objectAtIndex: 0],
 					 @"Wrong error for missing source", [[assigner errors] count]);
 	STAssertContains(@"Cannot find route for car SP 1 from A to a yard", [[assigner errors] objectAtIndex: 1],
 					 @"Wrong error for missing source", [[assigner errors] count]);

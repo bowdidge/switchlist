@@ -207,20 +207,22 @@ BOOL DEBUG_CAR_ASSN = NO;
 	
 	if (startPlace == nil) {
 		[self addError: 
-		 [NSString stringWithFormat: @"Industry %@ does not have its town set.  Car %@ cannot be moved.",
-		  [[c currentLocation] name], [c reportingMarks]]];
+		 [NSString stringWithFormat: @"%@ '%@' does not have its town set.",
+		  ([startIndustry isYard] ? @"Yard" : @"Industry"),
+		  [startIndustry name]]];
 		return nil;
 		
 	}
 	
 	if (endPlace == nil) {
 		[self addError:
-		 [NSString stringWithFormat: @"Next destination %@ for car %@ does not have its town set.",
-		  [c currentLocation], [c reportingMarks]]];
+		 [NSString stringWithFormat: @"%@ '%@' does not have its town set.",
+		  ([endIndustry isYard] ? @"Yard" : @"Industry"),
+		  [endIndustry name]]];
 		return nil;
 	}
 	
-	if (DEBUG_CAR_ASSN) NSLog(@"Looking for route from %@ to %@ for %@", [startPlace name], [endPlace name], c);
+	if (DEBUG_CAR_ASSN) NSLog(@"Looking for route from '%@' to '%@' for '%@'", [startPlace name], [endPlace name], c);
 	// Staying at same place?  Give one item route.
 	if (startPlace == endPlace) {
 		return [NSArray arrayWithObject: startPlace];
@@ -391,6 +393,21 @@ NSString *NameOrNoValue(NSString* string) {
 						 [car reportingMarks], [[car currentLocation] name]]];
 		return CarAssignmentRoutingProblem;
 	}
+
+	// TODO(bowdidge): Move to do check before routing?
+	if ([car cargo] && ![[car cargo] source]) {
+		[self addError: [NSString stringWithFormat: @"Cargo '%@' does not have source set.",
+						 [[car cargo] name]]];
+		return CarAssignmentRoutingProblem;
+	}
+	
+
+	if ([car cargo] && ![[car cargo] destination]) {
+		[self addError: [NSString stringWithFormat: @"Cargo '%@' does not have destination set.",
+						 [[car cargo] name]]];
+		return CarAssignmentRoutingProblem;
+	}
+	
 	if ([car cargo] && [[car cargo] source] == nil) {
 		[self addError: [NSString stringWithFormat: @"Cannot place car %@ because source location for cargo %@ is unset.",
 						 [car reportingMarks], [[car cargo] cargoDescription]]];
