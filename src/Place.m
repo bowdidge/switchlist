@@ -61,6 +61,33 @@
     [self didChangeValueForKey: @"isOffline"];
 }
 
+// Converts the two booleans for describing places into a single string value
+// suitable for NSComboBox.
+// TODO(bowdidge): Replace with an enum in the data structure.
+// TODO(bowdidge): Put the strings somewhere they'll be easier to translate.
+- (NSString*) kind {
+	if ([self isOffline]) {
+		return @"Offline";
+	} else if ([self isStaging]) {
+		return @"Staging";
+	} 
+	return @"On Layout";
+}
+
+// Sets the two booleans for describing places based on the string value
+// of the setting.  Valid arguments: Offline, Staging, On Layout.
+// Other values cause On Layout to be set.
+- (void) setKind: (NSString*) value {
+	if ([value isEqualToString: @"Offline"]) {
+		[self setIsOffline: YES];
+	} else if ([value isEqualToString: @"Staging"]) {
+		[self setIsStaging: YES];
+	} else {
+		[self setIsOffline: NO];
+		[self setIsStaging: NO];
+	}
+}
+	
 - (BOOL) isStaging 
 {
     NSNumber * tmpValue;
