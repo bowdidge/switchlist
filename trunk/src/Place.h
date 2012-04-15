@@ -48,6 +48,14 @@
 - (BOOL)isStaging;
 - (void)setIsStaging:(BOOL) value;
 
+// Synthesized field that converts the isStaging and isOffline flag
+// into a single string value, and allowing both to be set.
+// Will return either "On Layout", "Staging", or "Offline".
+- (NSString*) kind;
+// Pass either "On Layout", "Staging", or "Offline" as input; other values
+// treated as "On Layout".
+- (void) setKind: (NSString*) kind;
+
 - (NSSet*) industries;
 - (NSArray*) allIndustriesSortedOrder;
 - (NSSet*) yards;

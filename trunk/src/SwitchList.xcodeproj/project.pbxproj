@@ -45,6 +45,7 @@
 		3E30DBB912B447D700FF224E /* DoorAssignmentRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */; };
 		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
 		3E3620FA1539341700A57574 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
+		3E362363153A899300A57574 /* PlaceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E362362153A899300A57574 /* PlaceTest.m */; };
 		3E3B3A34140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3A33140DDEF900F4F56C /* HTMLSwitchlistRenderer.m */; };
 		3E3B3A35140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3A33140DDEF900F4F56C /* HTMLSwitchlistRenderer.m */; };
 		3E3B3BA5140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
@@ -269,6 +270,8 @@
 		3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoorAssignmentRecorder.m; sourceTree = "<group>"; };
 		3E30DBDE12B44C2900FF224E /* SwitchListReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListReportTest.h; sourceTree = "<group>"; };
 		3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListReportTest.m; sourceTree = "<group>"; };
+		3E362361153A899300A57574 /* PlaceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceTest.h; sourceTree = "<group>"; };
+		3E362362153A899300A57574 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceTest.m; sourceTree = "<group>"; };
 		3E3B3A32140DDEF900F4F56C /* HTMLSwitchlistRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSwitchlistRenderer.h; sourceTree = "<group>"; };
 		3E3B3A33140DDEF900F4F56C /* HTMLSwitchlistRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLSwitchlistRenderer.m; sourceTree = "<group>"; };
 		3E3B3BA3140E09D700F4F56C /* HTMLSwitchListWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSwitchListWindowController.h; sourceTree = "<group>"; };
@@ -706,6 +709,8 @@
 				3E88AD43127A9CFD003486E2 /* IndustryTest.h */,
 				3E88AD44127A9CFD003486E2 /* IndustryTest.m */,
 				3E90BFF8127937860074F2FA /* LayoutTest.h */,
+				3E362361153A899300A57574 /* PlaceTest.h */,
+				3E362362153A899300A57574 /* PlaceTest.m */,
 				3E90BFF9127937860074F2FA /* LayoutTest.m */,
 				3E90BF3612792E3F0074F2FA /* NSManagedObjectContext.h */,
 				3E90BF3712792E3F0074F2FA /* NSManagedObjectContext.m */,
@@ -1052,6 +1057,7 @@
 				3E9AF45214F9FABE00580148 /* TrainSizeVector.m in Sources */,
 				3E9AF46F14F9FC8900580148 /* TrainSizeVectorTest.m in Sources */,
 				3E43B3A715073D1F00AAA92B /* LayoutController.m in Sources */,
+				3E362363153A899300A57574 /* PlaceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
