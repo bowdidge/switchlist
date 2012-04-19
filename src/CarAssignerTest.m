@@ -49,6 +49,26 @@ NSString *FREIGHT_CAR_3 = @"ATSF 1";
 	[super tearDown];
 }
 
+- (void) testCarWithNoCargoButLoadedGetsCargo {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
+	[fc1 setCargo: nil];
+	[fc1 setIsLoaded: YES];
+	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	
+	Cargo *c1 = [self makeCargo: @"a to b"];	
+	[c1 setSource: [self industryAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	
+	// Car fc1 should be a find.
+	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"cargo and car with undefined division");
+	
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+																	  layout: entireLayout_];
+	[myCarAssigner autorelease];
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Find assigned car with incomplete cargo.");
+	
+	
+}
 - (void) testCarAssignerCarDivisionsUnset {
 	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
 
