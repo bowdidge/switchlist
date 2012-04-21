@@ -324,9 +324,9 @@
         <attribute name="name" type="string">PG\u2600E</attribute>
         <attribute name="division" type="string">SP</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z335"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z200 z227 z181 z194 z215 z235"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z156 z235 z234 z149 z212 z207 z239 z215"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z319 z263 z280 z275"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z275 z263 z280 z319"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z128">
@@ -345,7 +345,7 @@
         <attribute name="maxlength" type="int16">400</attribute>
         <attribute name="acceptedcartypes" type="string">GR</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z251"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z239 z152 z227 z156 z194 z200 z234 z181 z212 z149 z207"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z130">
         <attribute name="stops" type="string">San Jose Yard++\u2600\u2600West San Jose++\u2600\u2600Auzerais St.++\u2600\u2600West San Jose++\u2600\u2600San Jose Yard</attribute>
@@ -353,8 +353,8 @@
         <attribute name="mincarstorun" type="int16">2</attribute>
         <attribute name="maxlength" type="int16">520</attribute>
         <attribute name="acceptedcartypes" type="string">XMC,RS</attribute>
-        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z253 z246"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z210 z151 z199"></relationship>
+        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z246 z253"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z151 z199 z210"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z131">
         <attribute name="stops" type="string">Santa Cruz++\u2600\u2600Glenwood++\u2600\u2600Wrights++\u2600\u2600Alma++\u2600\u2600San Jose Yard++\u2600\u2600Alma++\u2600\u2600Wrights++\u2600\u2600Glenwood++\u2600\u2600Santa Cruz</attribute>
@@ -371,8 +371,8 @@
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">480</attribute>
         <attribute name="acceptedcartypes" type="string">XMC,RS</attribute>
-        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z253 z246"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR"></relationship>
+        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z246 z253"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z170"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z133">
         <attribute name="stops" type="string">San Jose Yard++\u2600\u2600West San Jose++\u2600\u2600Auzerais St.++\u2600\u2600Campbell++\u2600\u2600Los Gatos++\u2600\u2600Campbell++\u2600\u2600Auzerais St.++\u2600\u2600West San Jose++\u2600\u2600San Jose Yard</attribute>
@@ -380,8 +380,8 @@
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">480</attribute>
         <attribute name="acceptedcartypes" type="string">XA,XM,T,G,FM,S,RO</attribute>
-        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z247 z249 z244 z245 z248 z250 z252"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z354 z154 z193 z215 z242 z137 z161"></relationship>
+        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z250 z244 z249 z247 z245 z248 z252"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z169 z193 z154 z354 z242 z137 z215 z161"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z134">
         <attribute name="reportingmarks" type="string">ACY 1136</attribute>
@@ -571,8 +571,8 @@
         <attribute name="cartype" type="string">GR</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z319"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z150">
@@ -607,8 +607,8 @@
         <attribute name="cartype" type="string">GR</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z319"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z329"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z153">
@@ -656,8 +656,8 @@
         <attribute name="cartype" type="string">XM</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z319"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z157">
@@ -813,7 +813,7 @@
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z245"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z318"></relationship>
         <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z329"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z133"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z170">
@@ -825,7 +825,7 @@
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z253"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z307"></relationship>
         <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z329"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z132"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z171">
@@ -956,8 +956,8 @@
         <attribute name="cartype" type="string">GR</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z319"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z182">
@@ -1112,8 +1112,8 @@
         <attribute name="cartype" type="string">GR</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z302"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z195">
@@ -1185,8 +1185,8 @@
         <attribute name="cartype" type="string">GR</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z319"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z201">
@@ -1269,8 +1269,8 @@
         <attribute name="cartype" type="string">GR</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z319"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z208">
@@ -1329,8 +1329,8 @@
         <attribute name="cartype" type="string">XM</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z319"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z213">
@@ -1509,8 +1509,8 @@
         <attribute name="cartype" type="string">GR</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z302"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z228">
@@ -1593,8 +1593,8 @@
         <attribute name="cartype" type="string">GR</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z319"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z235">
@@ -1653,8 +1653,8 @@
         <attribute name="cartype" type="string">G</attribute>
         <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z251"></relationship>
         <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z319"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z328"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z129"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN"></relationship>
         <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="FREIGHTCAR" id="z240">
@@ -2499,8 +2499,8 @@ eQCEhAhOU09iamVjdACFhAFpA5KEhIQITlNTdHJpbmcBlYQBKxBTaG93U2lkaW5nTGVuZ3RohpKEhIQI
         <attribute name="name" type="string">Santa Cruz Yard</attribute>
         <attribute name="division" type="string">SP</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z337"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z350 z356 z149 z212 z155 z234 z163 z156 z182 z225 z207 z178 z239"></relationship>
-        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z284 z279 z319 z302 z315 z266"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z200 z181 z163 z152 z194 z225 z155 z227 z350 z356 z178 z182"></relationship>
+        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z284 z315 z279 z266 z319 z302"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z321 z300 z289"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
@@ -2510,10 +2510,10 @@ eQCEhAhOU09iamVjdACFhAFpA5KEhIQITlNTdHJpbmcBlYQBKxBTaG93U2lkaW5nTGVuZ3RohpKEhIQI
         <attribute name="name" type="string">San Jose Yard</attribute>
         <attribute name="division" type="string">SP</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z332"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z187 z228 z158 z174 z199 z188 z230 z170 z138 z140 z186 z165 z242 z179 z229 z195 z168 z139 z224 z150 z351 z152 z349 z223 z147 z185 z191 z192 z198 z219 z175 z209 z161 z217 z143 z166 z216 z136 z226 z142 z211 z151 z218 z162 z202 z189 z210 z193 z214 z176 z190 z233 z169 z238 z159 z141 z135 z167"></relationship>
-        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z320 z282 z264 z267 z314 z263 z288 z296 z291 z292"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z324 z269 z302 z268 z255 z357"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z354 z215 z137 z154"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z187 z216 z169 z202 z210 z199 z218 z166 z190 z141 z192 z233 z217 z179 z170 z159 z195 z176 z238 z349 z242 z191 z142 z209 z151 z198 z147 z351 z186 z188 z229 z230 z174 z162 z211 z165 z167 z185 z136 z193 z223 z175 z161 z139 z168 z214 z135 z189 z140 z138 z228 z219 z226 z158 z143 z224 z150"></relationship>
+        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z291 z320 z292 z314 z263 z282 z288 z296 z267 z264"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z357 z324 z255 z269 z268 z302"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z154 z215 z137 z354"></relationship>
     </object>
     <object type="YARD" id="z330">
         <attribute name="acceptsdivisions" type="string">SP,East,Mid,WP</attribute>
