@@ -485,8 +485,8 @@ NSString *NameOrNoValue(NSString* string) {
 			[addedCarVector addVector: sizeVector];
 		
 			if ([addedCarVector vectorExceedsLength: [[tr maxLength] intValue]]) {
-				NSString *err = [NSString stringWithFormat: @"Cannot fit car %@ onto train %@.  Leaving car at current location.",
-							 [car reportingMarks], [tr name]];
+				NSString *err = [NSString stringWithFormat: @"Cannot fit car %@ onto train %@.  Leaving car at current location %@.",
+							 [car reportingMarks], [tr name], [[car currentLocation] name]];
 				[self addError: err];
 				return CarAssignmentNoTrainsWithSpace;
 			}
@@ -644,7 +644,8 @@ NSString *NameOrNoValue(NSString* string) {
 									forSiding: nextLocation
 									 byLength: [[car length] intValue]] == NO) {
 					[errors_ addObject: 
-					 [NSString stringWithFormat: @"No room for %@ at %@!  Not moving car.", [car reportingMarks], [nextLocation name]]];
+					 [NSString stringWithFormat: @"No room for car %@ at %@.  Leaving car at current location %@.",
+					  [car reportingMarks], [nextLocation name], [currentLocation name]]];
 					[[car currentTrain] removeFreightCarsObject: car];
 				}
 			}
