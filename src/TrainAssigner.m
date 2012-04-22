@@ -643,6 +643,7 @@ NSString *NameOrNoValue(NSString* string) {
 				if ([self canChangeSidingDict: carChangeDictionary
 									forSiding: nextLocation
 									 byLength: [[car length] intValue]] == NO) {
+					// TODO(bowdidge): Add tests to check this message appears.
 					[errors_ addObject: 
 					 [NSString stringWithFormat: @"No room for car %@ at %@.  Leaving car at current location %@.",
 					  [car reportingMarks], [nextLocation name], [currentLocation name]]];
