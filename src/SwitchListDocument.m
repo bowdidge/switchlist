@@ -850,7 +850,7 @@
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
 	
-	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Reserved Car Report"];
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Yard Report"];
 	[[view window] makeKeyAndOrderFront: self];
 	[view drawHTML: message template: yardHtml];
 }
