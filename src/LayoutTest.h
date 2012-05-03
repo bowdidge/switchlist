@@ -75,6 +75,9 @@
 - (void) setTrain: (ScheduledTrain*) st acceptsCarTypes: (NSString*) carTypesToSetString;
 // Handy objects for creating entire starter layouts.
 
+// Creates an empty layout that's standalone.  Useful for creating multiple layouts in one test.
+- (EntireLayout*) createEmptyLayout;
+
 // Creates a layout with no stations, cars, or trains.
 - (void) makeSimpleLayout;
 // Creates a layout with three stations A, B, and C.
@@ -106,7 +109,6 @@
 - (EntireLayout*) entireLayout;
 
 - (void) checkRoute: (NSArray*) routeOfPlaces equals: (NSString*) stringOfStops;
-
 
 extern NSString *FREIGHT_CAR_1_NAME;
 extern NSString *FREIGHT_CAR_2_NAME;

@@ -165,6 +165,13 @@
 	return cargo;
 }
 
+// Creates an empty layout that's standalone.  Useful for creating multiple layouts in one test.
+- (EntireLayout*) createEmptyLayout {
+	// TODO(bowdidge): Consider making all the "make layout" routines behave like this.
+	NSManagedObjectContext *context = [NSManagedObjectContext inMemoryMOCFromBundle: [NSBundle bundleForClass: [self class]]];
+	EntireLayout *layout = [[EntireLayout alloc] initWithMOC: context];
+	return [layout autorelease];
+}
 // Creates a layout with no freight cars, places, or industries.
 - (void) makeSimpleLayout {
 	[NSEntityDescription entityForName: @"LayoutInfo" inManagedObjectContext: context_];
