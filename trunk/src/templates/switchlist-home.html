@@ -1,24 +1,26 @@
 <!-- Main landing page for SwitchList. -->
-<HTML>
-<HEAD>
-<TITLE>SwitchList</TITLE>
-<!-- Sans-serif font for titles. -->
-<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-<!-- Handwritten block letters font -->
-<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+<!DOCTYPE html>
 
-<!-- Use iPad specific settings to increase font sizes. -->
-<link href='builtin-switchlist.css' rel='stylesheet' type='text/css'>
-<link href='builtin-switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
-<link href='builtin-switchlist-iphone.css' rel='stylesheet' type='text/css' media='only screen and (max-device-width: 480px)'/>
-</HEAD>
-<BODY>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css"/>
+	<link href="http://fonts.googleapis.com/css?family=Rock Salt" rel="stylesheet" type="text/css"/>
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+	<link href="switchlist.css" rel="stylesheet"/>
+<!--<link href="builtin-switchlist.css" rel="stylesheet"/> -->
+	<link href="switchlist-iphone.css" rel="stylesheet" media="(max-device-width: 480px)"/>
+	<link href="switchlist-ipad.css" rel="stylesheet" media="(min-device-width: 481px) and (max-device-width: 1024px)"/>
+	<title>SwitchList Home</title>
+</head>
+<body>
 <div class="report-title">SwitchList Home</div>
 
-<h1>Layouts</h1>
+<h1 class="report-layouts">Layouts</h1>
 <ul>
 {% for layoutName in layoutNames %}
-  <li> <A HREF="get?layout={{layoutName}}">{{layoutName}}</A>
+  <li class="report-list"> <A HREF="get?layout={{layoutName}}">{{layoutName}}</A>
 {% /for %}
 </ul>
 </BODY>
