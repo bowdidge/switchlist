@@ -38,6 +38,7 @@
 #import "HTMLSwitchlistRenderer.h"
 #import "FreightCar.h"
 #import "Industry.h"
+#import "StringHelpers.h"
 #import "SwitchListDocument.h"
 #import "WebServerDelegate.h"
 
@@ -197,16 +198,25 @@
 
 - (void) testTwoLayouts {
 	NSDocumentController *sharedDocumentController = [NSDocumentController sharedDocumentController];
-	[sharedDocumentController addDocument: (NSDocument*) [[FakeSwitchListDocument alloc] init]];
-	[sharedDocumentController addDocument: (NSDocument*) [[FakeSwitchListDocument alloc] init]];
+	FakeSwitchListDocument *doc1 = [[FakeSwitchListDocument alloc] initWithLayout: [self createEmptyLayout]];
+	FakeSwitchListDocument *doc2 = [[FakeSwitchListDocument alloc] initWithLayout: [self createEmptyLayout]];
+	[sharedDocumentController addDocument: (NSDocument*) doc1];
+	[sharedDocumentController addDocument: (NSDocument*) doc2];
+	// TODO(bowdidge): Changes both.
+	[[doc1 entireLayout] setLayoutName: @"My Layout"];
+	
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
 	STAssertNotNil(server_->lastMessage, @"No message received - switchlist-home.html not loaded.");
 	// Make sure we have the links to at least one layout.
-	STAssertContains(@"get?layout=untitled", server_->lastMessage,
-					 [NSString stringWithFormat: @"Expected %@ in %@", @"get?layout=untitled", server_->lastMessage]);
+	// Because only one layout has a name, only one name shows up.
+	STAssertContains(@"get?layout=My Layout", server_->lastMessage,
+					 [NSString stringWithFormat: @"Expected %@ in %@", @"get?layout=My Layout", server_->lastMessage]);
+	STAssertEquals(1, [server_->lastMessage occurrencesOfString: @"get?layout="],
+					@"Wrong number of layouts in layout list, expected 1, found %d", 
+				   [server_->lastMessage occurrencesOfString: @"get?layout="]);
 	
 }
 

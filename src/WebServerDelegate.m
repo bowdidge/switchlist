@@ -261,11 +261,14 @@ NSString *CurrentHostname() {
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
-- (SwitchListDocument*) layoutWithName: (NSString*) layout {
+- (SwitchListDocument*) layoutWithName: (NSString*) layoutName {
+	if ([layoutName isEqualToString: @"untitled"]) {
+		layoutName = @"";
+	}
 	NSDocumentController *controller = [NSDocumentController sharedDocumentController];
 	NSArray *allDocuments = [controller documents];
 	for (SwitchListDocument *d in allDocuments) {
-		if ([[[d entireLayout] layoutName] isEqualToString: layout]) {
+		if ([[[d entireLayout] layoutName] isEqualToString: layoutName]) {
 			return d;
 		}
 	}
