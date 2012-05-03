@@ -1,31 +1,33 @@
 <!-- Full template for the main SwitchList page for a particular layout. -->
-<HTML>
-<HEAD>
-<!-- Sans-serif font for titles. -->
-<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
-<!-- Handwritten block letters font -->
-<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+<!DOCTYPE html>
 
-<!-- Use iPad specific settings to increase font sizes. -->
-<link href='builtin-switchlist.css' rel='stylesheet' type='text/css'>
-<link href='builtin-switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
-<link href='builtin-switchlist-iphone.css' rel='stylesheet' type='text/css' media='only screen and (max-device-width: 480px)'/>
-<TITLE>{{layout.layoutName}} Layout</TITLE>
-</HEAD>
-<BODY>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css"/>
+	<link href="http://fonts.googleapis.com/css?family=Rock Salt" rel="stylesheet" type="text/css"/>
+	<meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+	<link href="switchlist.css" rel="stylesheet"/>
+<!--<link href="builtin-switchlist.css" rel="stylesheet"/> -->
+	<link href="switchlist-iphone.css" rel="stylesheet" media="(max-device-width: 480px)"/>
+	<link href="switchlist-ipad.css" rel="stylesheet" media="(min-device-width: 481px) and (max-device-width: 1024px)"/>
+<title>{{layout.layoutName}} Layout New</title>
+</head>
+<body>
 <div class="report-layout-title">{{ layout.layoutName }}</div>
 <div class="report-title">Main Page</div>
-<H1>Trains and Switchlists</h1>
+<h1 class="report-layouts">Trains and Switchlists</h1>
 <ul>
 {% for train in layout.allTrains %}
-<li><A HREF="?layout={{layout.layoutName}}&train={{train.name}}">{{train.name}}</A>
+<li class="report-list"><A HREF="?layout={{layout.layoutName}}&train={{train.name}}">{{train.name}}</A></li>
 {% /for %}
 </ul>
 
-<h1>Reports</h1>
+<h1 class="report-layouts">Reports</h1>
 <ul>
-<li><A HREF="?layout={{layout.layoutName}}&carList=1">Reposition Freight Cars</a>
-<li><A HREF="?layout={{layout.layoutName}}&industryList=1">Industry Car Report</a>
+<li class="report-list"><A HREF="?layout={{layout.layoutName}}&carList=1">Reposition Freight Cars</a>
+<li class="report-list"><A HREF="?layout={{layout.layoutName}}&industryList=1">Industry Car Report</a>
 </ul>
 </body>
 </html>
