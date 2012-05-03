@@ -259,8 +259,12 @@
 	NSMutableArray *layoutNames = [NSMutableArray array];
 	for (SwitchListDocument *document in allDocuments) {
 		NSString *layoutName = [[document entireLayout] layoutName];
+		NSLog(@"Name=%@", layoutName);
 		if (!layoutName || [layoutName isEqualToString: @""]) {
-			[layoutNames addObject: @"untitled"];
+			// If there's no cars in the layout, ignore.
+			if ([[[document entireLayout] allFreightCars] count] > 0) {
+				[layoutNames addObject: @"untitled"];
+			}
 		} else {
 			[layoutNames addObject: layoutName];
 		}

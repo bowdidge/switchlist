@@ -39,4 +39,6 @@
 // Removes single quotes when including a name in a predicate.
 - (NSString*) sqlSanitizedString;
 
+// Returns the number of times the string appears in the larger string.
+- (int) occurrencesOfString: (NSString*) substring;
 @end

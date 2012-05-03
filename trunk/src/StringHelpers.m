@@ -54,4 +54,16 @@
 - (NSString*) sqlSanitizedString {
 	return [self stringByReplacingOccurrencesOfString: @"'" withString: @"\\'"];
 }
+
+// Returns the number of times the string appears in the larger string.
+- (int) occurrencesOfString: (NSString*) substring {
+	// TODO(bowdidge): Implement more efficiently.
+	if ([substring length] == 0) {
+		return 0;
+	}
+	int oldLength = [self length];
+	NSString *substringRemoved = [self stringByReplacingOccurrencesOfString: substring withString: @""];
+	int newLength = [substringRemoved length];
+	return (oldLength - newLength) / [substring length];
+}
 @end
