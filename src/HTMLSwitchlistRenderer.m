@@ -102,53 +102,23 @@
 	return;
 }
 
-// Returns path to default css file for standard switchlists or switchlists that don't define
-// their own copy of a particular report.
-- (NSString*) filePathForDefaultCSS: (NSString*) filePrefix {
-	return [mainBundle_ pathForResource: filePrefix ofType: @"css"];
-}
-	
-- (NSString*) filePathForSwitchlistIPhoneCSS {
-	NSString *cssFilePath;
+// Returns the path to the named file, either in the current template directory
+// or in the main bundle.  Error if in neither.
+- (NSString*) filePathForTemplateFile: (NSString*) filename {
 	if (templateDirectory_) {
-		cssFilePath = [templateDirectory_ stringByAppendingPathComponent: @"switchlist-iphone.css"];
-		if ([[NSFileManager defaultManager] fileExistsAtPath: cssFilePath]) {
-			return cssFilePath;
+		NSString *htmlFilePath = [templateDirectory_ stringByAppendingPathComponent: filename];
+		if ([[NSFileManager defaultManager] fileExistsAtPath: htmlFilePath]) {
+			return htmlFilePath;
 		}
 	}
-	
-	// Not defined? Error.
-	return nil;
-}
-
-
-- (NSString *) filePathForSwitchlistIPadCSS {
-	NSString *cssFilePath;
-	if (templateDirectory_) {
-		cssFilePath = [templateDirectory_ stringByAppendingPathComponent: @"switchlist-ipad.css"];
-		if ([[NSFileManager defaultManager] fileExistsAtPath: cssFilePath]) {
-			return cssFilePath;
-		}
-	}
-	
-	return nil;
-}
-
-- (NSString *) filePathForSwitchlistCSS {
-	NSString *cssFilePath;
-	if (templateDirectory_) {
-		cssFilePath = [templateDirectory_ stringByAppendingPathComponent: @"switchlist.css"];
-		if ([[NSFileManager defaultManager] fileExistsAtPath: cssFilePath]) {
-			return cssFilePath;
-		}
-	}
-	
-	return nil;
+	// Default to stock version.
+	return [mainBundle_ pathForResource: [filename stringByDeletingPathExtension]
+								 ofType: [filename pathExtension]];
 }
 
 // Returns the path to the template with the given name, as found in one of the switchlist template
 // directories.  If none can be found, it uses the copy in the main bundle.
-- (NSString*) filePathForTemplateFile: (NSString*) template {
+- (NSString*) filePathForTemplateHtml: (NSString*) template {
 	NSString *htmlFilePath;
 	if (templateDirectory_) {
 		htmlFilePath = [templateDirectory_ stringByAppendingPathComponent: [NSString stringWithFormat: @"%@.html",  template]];
@@ -160,22 +130,8 @@
 	return [mainBundle_ pathForResource: template ofType: @"html"];
 }
 
-// Returns the path to the template with the given name, found either in the main bundle or in the Application Support directory.
-// Used for pages that are not part of a particular template - home page, list of layouts, etc.
-- (NSString *) filePathForPrimaryFile: (NSString*) filenamePrefix {
-	NSString *primaryFile = [[[NSFileManager defaultManager] applicationSupportDirectory] stringByAppendingPathComponent: [NSString stringWithFormat: @"%@.html", filenamePrefix]];
-	
-	if ([[NSFileManager defaultManager] fileExistsAtPath: primaryFile]) {
-		return primaryFile;
-	}
-	
-	// Otherwise, default to stock version.
-	return [mainBundle_ pathForResource: filenamePrefix ofType: @"html"];
-	
-}
-
 - (NSString*) filePathForSwitchlistHTML {
-	return [self filePathForTemplateFile: @"switchlist"];
+	return [self filePathForTemplateHtml: @"switchlist"];
 }
 
 // Returns the path to the iPhone-specific HTML file for the current template.
@@ -233,7 +189,7 @@
 // Renders a generic report, but allows the caller to specify a template dictionary with
 // more than just the layout name.
 - (NSString*) renderReport: (NSString*) reportName withDict: (NSDictionary*) dict {
-	NSString *industryHtml = [self filePathForTemplateFile: reportName];
+	NSString *industryHtml = [self filePathForTemplateHtml: reportName];
 	return [engine_ processTemplateInFileAtPath: industryHtml
 								  withVariables: dict];
 }
@@ -243,9 +199,19 @@
 																								forKey: @"layout"]];
 }
 
+- (NSString*) renderYardReportForLayout: (EntireLayout*) layout {
+	return [self renderReport: @"yard-report" withDict: [NSDictionary dictionaryWithObject: layout
+																						forKey: @"layout"]];
+}
+
+- (NSString*) renderReservedCarReportForLayout: (EntireLayout*) layout {
+	return [self renderReport: @"reserved-car-report" withDict: [NSDictionary dictionaryWithObject: layout
+																							forKey: @"layout"]];
+}
+
 - (NSString*) renderLayoutPageForLayout: (EntireLayout*) layout {
 	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: layout forKey: @"layout"];
-	return [engine_ processTemplateInFileAtPath: [self filePathForPrimaryFile: @"switchlist-layout"]
+	return [engine_ processTemplateInFileAtPath: [self filePathForTemplateHtml: @"switchlist-layout"]
 								  withVariables: templateDict];
 }
 
@@ -271,7 +237,7 @@
 	}
 	
 	NSDictionary *templateDict = [NSDictionary dictionaryWithObject: layoutNames forKey:  @"layoutNames"];
-	NSString *message = [engine_ processTemplateInFileAtPath: [self filePathForPrimaryFile: @"switchlist-home"]
+	NSString *message = [engine_ processTemplateInFileAtPath: [self filePathForTemplateHtml: @"switchlist-home"]
 											   withVariables: templateDict];
 	return message;
 }

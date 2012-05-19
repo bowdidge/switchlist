@@ -8,10 +8,9 @@
 	<link href="http://fonts.googleapis.com/css?family=Oswald" rel="stylesheet" type="text/css"/>
 	<link href="http://fonts.googleapis.com/css?family=Rock Salt" rel="stylesheet" type="text/css"/>
 	<meta name="viewport" content="width=device-width, maximum-scale=1.0" />
-	<link href="switchlist.css" rel="stylesheet"/>
-<!--<link href="builtin-switchlist.css" rel="stylesheet"/> -->
-	<link href="switchlist-iphone.css" rel="stylesheet" media="(max-device-width: 480px)"/>
-	<link href="switchlist-ipad.css" rel="stylesheet" media="(min-device-width: 481px) and (max-device-width: 1024px)"/>
+	<link href="layout.css" rel="stylesheet"/>
+	<!-- <link href="layout-iphone.css" rel="stylesheet" media="(max-device-width: 480px)"/> -->
+	<!-- <link href="layout-ipad.css" rel="stylesheet" media="(min-device-width: 481px) and (max-device-width: 1024px)"/> -->
 <title>{{layout.layoutName}} Layout New</title>
 </head>
 <body>
@@ -20,14 +19,16 @@
 <h1 class="report-layouts">Trains and Switchlists</h1>
 <ul>
 {% for train in layout.allTrains %}
-<li class="report-list"><A HREF="?layout={{layout.layoutName}}&train={{train.name}}">{{train.name}}</A></li>
+<li class="report-list"><A HREF="switchlist?layout={{layout.layoutName}}&train={{train.name}}">{{train.name}}</A></li>
 {% /for %}
 </ul>
 
 <h1 class="report-layouts">Reports</h1>
 <ul>
-<li class="report-list"><A HREF="?layout={{layout.layoutName}}&carList=1">Reposition Freight Cars</a>
-<li class="report-list"><A HREF="?layout={{layout.layoutName}}&industryList=1">Industry Car Report</a>
+<li class="report-list"><A HREF="carList?layout={{layout.layoutName}}">Reposition Freight Cars</a>
+<li class="report-list"><A HREF="industryList?layout={{layout.layoutName}}">Industry Car Report</a>
+<li class="report-list"><A HREF="yardReport?layout={{layout.layoutName}}">Yard Report</a>
+<li class="report-list"><A HREF="reservedCarReport?layout={{layout.layoutName}}">Reserved Car Report</a>
 </ul>
 </body>
 </html>

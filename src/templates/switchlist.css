@@ -1,0 +1,80 @@
+.handwritten {
+  color: DarkBlue;
+  font-family: "Rock Salt";
+}
+
+/* Common formatting for all reports.  Use the same typography as the
+ * Handwritten switchlists - sans-serif fonts, handwritten tables, etc.
+ */
+
+/* Layout name, always visible at top of report. */
+.report-layout-title {
+  font-family: Oswald;
+  font-size: 14pt;
+  text-align:  center;
+  font-variant: small-caps;
+}
+
+/* Report name */
+.report-title {
+  font-family: Oswald;
+  font-size: 20px;
+  text-align:  center;
+  font-variant: small-caps;
+}
+
+/* Faint upper-left description of train on switchlists. */
+.train-name {
+  color: ddd;
+  display:float; 
+  font-family: Oswald;
+  font-size: 10px;
+}
+
+
+/* Formatting for text.  Instructions are the portions of text
+ * from the simulated form, filled-in is for handwritten portions.
+ */ 
+.switch-list-instructions {
+  font-family: Oswald;
+  text-align: center;
+}
+
+.switch-list-instructions-filled-in {
+  color: DarkBlue;
+  font-family: "Rock Salt";
+  font-size: 10px;
+}
+
+/* Switchlist table settings. These only apply
+ * to the web interface, as the Handwritten switchlist
+ * style is done in Cocoa.
+ */
+
+/* Standard format for tables in all reports. */
+table {
+  align: center;
+  border: 1;
+  border-collapse: collapse; 
+  border: 2px solid #999;
+}
+
+td { 
+  border: 2px solid #999;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-family: "Rock Salt";
+  color: DarkBlue;
+  font-size: 10px;
+}
+
+th {
+  border: 2px solid #999;
+  font-family: Oswald;
+  font-size: 12px;
+  font-variant: small-caps;
+  text-align: center;
+  background: #bbb;
+}
+
+

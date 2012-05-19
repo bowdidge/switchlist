@@ -43,6 +43,6 @@
 	NSString *text = [renderer renderSwitchlistForTrain: [[self entireLayout] trainWithName: @"MyTrain"]
 												 layout: [self entireLayout]
 												 iPhone: NO];
-	STAssertContains(@"builtin-switchlist.css", text, @"%@ does not contain builtin ref", text);
+	STAssertContains(@"switchlist.css", text, @"%@ does not contain builtin ref", text);
 }
 @end
