@@ -86,7 +86,7 @@
 // Same, but no intermediate yards.
 - (void) makeThreeStationLayoutNoYards;
 // Make train that goes A->B->C.
-- (void) makeThreeStationTrain;
+- (ScheduledTrain*) makeThreeStationTrain;
 - (Yard*) makeYardAtStation: (NSString*) stationName;
 
 - (FreightCar*) freightCarWithReportingMarks: (NSString*) reportingMarks;

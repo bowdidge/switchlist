@@ -228,7 +228,7 @@
 // Make three stations, A, B, and C.
 // Each has an industry; B has a yard.
 
-- (void) makeThreeStationTrain {
+- (ScheduledTrain *) makeThreeStationTrain {
 	ScheduledTrain *myTrain = [self makeTrainWithName: @"MyTrain"];
 	
 	[myTrain setStops: @"A,B,C"];
@@ -245,6 +245,7 @@
 	[myTrain addFreightCarsObject: fc1];
 	[myTrain addFreightCarsObject: fc2];
 	STAssertEqualsInt(2, [[[entireLayout_ trainWithName: @"MyTrain"] freightCars] count], @"Not enough cars in train.");
+	return myTrain;
 }
 
 - (Yard*) yardAtStation: (NSString*) stationName {
