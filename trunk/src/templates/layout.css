@@ -23,14 +23,6 @@
   font-variant: small-caps;
 }
 
-/* Faint upper-left description of train on switchlists. */
-.train-name {
-  color: ddd;
-  display:float; 
-  font-family: Oswald;
-  font-size: 10px;
-}
-
 /* Basic web UI controls. */
 h1 {
   font-family: Oswald;
@@ -45,51 +37,6 @@ h1 {
 ul {
   font-family: Oswald;
   font-size: 16px;
-}
-
-/* Formatting for text.  Instructions are the portions of text
- * from the simulated form, filled-in is for handwritten portions.
- */ 
-.switch-list-instructions {
-  font-family: Oswald;
-  text-align: center;
-}
-
-.switch-list-instructions-filled-in {
-  color: DarkBlue;
-  font-family: "Rock Salt";
-  font-size: 10px;
-}
-
-/* Switchlist table settings. These only apply
- * to the web interface, as the Handwritten switchlist
- * style is done in Cocoa.
- */
-
-/* Standard format for tables in all reports. */
-table {
-  align: center;
-  border: 1;
-  border-collapse: collapse; 
-  border: 2px solid #999;
-}
-
-td { 
-  border: 2px solid #999;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-family: "Rock Salt";
-  color: DarkBlue;
-  font-size: 10px;
-}
-
-th {
-  border: 2px solid #999;
-  font-family: Oswald;
-  font-size: 12px;
-  font-variant: small-caps;
-  text-align: center;
-  background: #bbb;
 }
  
 /* Industry report-specific page style.  Again, the default style

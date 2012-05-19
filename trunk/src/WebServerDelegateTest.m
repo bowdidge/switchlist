@@ -135,14 +135,14 @@
 	
 - (void) testSwitchlistIPhoneCss {
 	// TODO(bowdidge): Fails.
-	NSURL *url = [NSURL URLWithString: @"http://localhost/builtin-switchlist-iphone.css"];
+	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist-iphone.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-iphone.css (should be > 200");
 }
 				  
 - (void) testSwitchlistCss {
-	NSURL *url = [NSURL URLWithString: @"http://localhost/builtin-switchlist.css"];
+	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist.css (should be > 200_>, was %d)",
@@ -150,7 +150,7 @@
 }
 
 - (void) testSwitchlistIpadCss {
-	NSURL *url = [NSURL URLWithString: @"http://localhost/builtin-switchlist-ipad.css"];
+	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist-ipad.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-ipad.css (should be > 200");
@@ -162,8 +162,8 @@
 	
 	STAssertEquals(404, server_->lastCode,
 				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
-	STAssertContains(@"Unknown path: '/foo.h'", server_->lastMessage,
-					 [NSString stringWithFormat: @"Expected string 'Unknown path: /foo.h', found %@",
+	STAssertContains(@"Unknown URL: '/foo.h'", server_->lastMessage,
+					 [NSString stringWithFormat: @"Expected string 'Unknown URL: /foo.h', found %@",
 					  server_->lastMessage]);
 }
 
@@ -175,8 +175,8 @@
 	
 	STAssertEquals(404, server_->lastCode,
 				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
-	STAssertContains(@"Unknown path: '/foo.h'", server_->lastMessage,
-					 [NSString stringWithFormat: @"Expected string 'Unknown path: /foo.h', found %@",
+	STAssertContains(@"Unknown URL: '/foo.h'", server_->lastMessage,
+					 [NSString stringWithFormat: @"Expected string 'Unknown URL: /foo.h', found %@",
 					  server_->lastMessage]);
 }
 
@@ -189,11 +189,11 @@
 }
 
 - (void) testNoSuchLayout {
-	NSURL *url = [NSURL URLWithString: @"http://localhost/get?layout=Nonexistent"];
+	NSURL *url = [NSURL URLWithString: @"http://localhost/layout?layout=Nonexistent"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	STAssertEquals(404, server_->lastCode,
-				   [NSString stringWithFormat: @"Expected 404, got %d", server_->lastCode]);
+				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
 }
 
 - (void) testTwoLayouts {
@@ -212,11 +212,11 @@
 	STAssertNotNil(server_->lastMessage, @"No message received - switchlist-home.html not loaded.");
 	// Make sure we have the links to at least one layout.
 	// Because only one layout has a name, only one name shows up.
-	STAssertContains(@"get?layout=My Layout", server_->lastMessage,
-					 [NSString stringWithFormat: @"Expected %@ in %@", @"get?layout=My Layout", server_->lastMessage]);
-	STAssertEquals(1, [server_->lastMessage occurrencesOfString: @"get?layout="],
+	STAssertContains(@"layout?layout=My Layout", server_->lastMessage,
+					 [NSString stringWithFormat: @"Expected %@ in %@", @"layout?layout=My Layout", server_->lastMessage]);
+	STAssertEquals(1, [server_->lastMessage occurrencesOfString: @"layout?layout="],
 					@"Wrong number of layouts in layout list, expected 1, found %d", 
-				   [server_->lastMessage occurrencesOfString: @"get?layout="]);
+				   [server_->lastMessage occurrencesOfString: @"layout?layout="]);
 	
 }
 

@@ -151,51 +151,6 @@ NSString *CurrentHostname() {
 						message: [NSString stringWithFormat: @"Unknown URL %@", [badURL path]]];
 }
 
-- (void) processRequestForSwitchlistCSS {
-	NSString *cssFile = [htmlRenderer_ filePathForSwitchlistCSS];
-	if (!cssFile) {
-		[server_ replyWithStatusCode: HTTP_NOT_FOUND
-							 message: [NSString stringWithFormat: @"Unknown URL switchlist.css"]];
-		return;
-	}
-
-	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
-	[server_ replyWithData:data MIMEType: @"text/css"];
-}
-
-- (void) processRequestForSwitchlistIPhoneCSS {
-	NSString *cssFile = [htmlRenderer_ filePathForSwitchlistIPhoneCSS];
-	if (!cssFile) {
-		[server_ replyWithStatusCode: HTTP_NOT_FOUND
-							 message: [NSString stringWithFormat: @"Unknown URL switchlist.css"]];
-		return;
-	}
-	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
-	[server_ replyWithData:data MIMEType: @"text/css"];
-}
-
-- (void) processRequestForSwitchlistIPadCSS {
-	NSString *cssFile = [htmlRenderer_ filePathForSwitchlistIPadCSS];
-	if (!cssFile) {
-		[server_ replyWithStatusCode: HTTP_NOT_FOUND
-							 message: [NSString stringWithFormat: @"Unknown URL switchlist.css"]];
-		return;
-	}
-	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
-	[server_ replyWithData:data MIMEType: @"text/css"];
-}
-
-- (void) processRequestForDefaultCSS: (NSString*) filePrefix {
-	NSString *cssFile = [htmlRenderer_ filePathForDefaultCSS: filePrefix];
-	if (!cssFile) {
-		[server_ replyWithStatusCode: HTTP_NOT_FOUND
-							 message: [NSString stringWithFormat: @"Unknown URL %@.css", filePrefix]];
-		return;
-	}
-	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: cssFile]];
-	[server_ replyWithData:data MIMEType: @"text/css"];
-}
-
 - (void) processRequestForLayout: (SwitchListDocument*) document train: (NSString*) trainName forIPhone: (BOOL) isIPhone {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
@@ -218,6 +173,20 @@ NSString *CurrentHostname() {
 - (void) processRequestForIndustryListForLayout: (SwitchListDocument*) document {
 	EntireLayout *layout = [document entireLayout];
 	NSString *message = [htmlRenderer_ renderIndustryListForLayout: layout];
+	[server_ replyWithStatusCode: HTTP_OK message: message];
+}
+
+// Returns HTML for yard report.
+- (void) processRequestForYardReportForLayout: (SwitchListDocument*) document {
+	EntireLayout *layout = [document entireLayout];
+	NSString *message = [htmlRenderer_ renderYardReportForLayout: layout];
+	[server_ replyWithStatusCode: HTTP_OK message: message];
+}
+
+// Returns HTML for reserved car report.
+- (void) processRequestForReservedCarReportForLayout: (SwitchListDocument*) document {
+	EntireLayout *layout = [document entireLayout];
+	NSString *message = [htmlRenderer_ renderReservedCarReportForLayout: layout];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
@@ -254,11 +223,28 @@ NSString *CurrentHostname() {
 	[server_ replyWithStatusCode: HTTP_OK
 						 message: @"OK"];
 }	
-
 	
 - (void) processRequestForLayout: (SwitchListDocument*) document {
 	NSString *message = [htmlRenderer_ renderLayoutPageForLayout: [document entireLayout]];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
+}
+
+// Handle request for arbitrary file.  The filename will always be truncated to the last path component,
+// and will be searched for in the current template directory and in app's Resources folder.
+- (void) processRequestForFile: (NSString*) filename {
+	NSString *cleanFilename = [filename lastPathComponent];
+	NSString *filePath = [htmlRenderer_ filePathForTemplateFile: cleanFilename];
+	NSLog(@"filename %@ %d", filePath, [[NSFileManager defaultManager] isReadableFileAtPath: filePath]);
+	if (!filePath || 
+		![[NSFileManager defaultManager] isReadableFileAtPath: filePath]) {
+		[server_ replyWithStatusCode: HTTP_NOT_FOUND
+							 message: [NSString stringWithFormat: @"Unknown URL: '%@'.", filename]];
+		return;
+	}
+	
+	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: filePath]];
+	NSLog(@"%@ %d", data, [data length]);
+	[server_ replyWithData:data MIMEType: [NSString stringWithFormat: @"text/%@", [filePath pathExtension]]];
 }
 
 - (SwitchListDocument*) layoutWithName: (NSString*) layoutName {
@@ -285,16 +271,24 @@ NSString *CurrentHostname() {
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
+// Error for invalid layout parameter.  Shouldn't be reachable without a mangled URL.
+- (void) replyWithNoKnownLayout: (NSString*) layoutName {
+	[server_ replyWithStatusCode: HTTP_NOT_FOUND
+						 message: [NSString stringWithFormat: @"No layout named %@.", layoutName]];
+	return;
+}
+	
+
 - (void) showAllLayouts {
 	[server_ replyWithStatusCode: HTTP_OK message: [htmlRenderer_ renderLayoutsPage]];
 	}	
 
 // URLs should be of form:
 // http://localhost:20000/ -- show list of layouts
-// http://localhost:20000/get?layout="xxx" -- show list of trains on layout xxx.
-// http://localhost:20000/get?layout="xxx"&train="yyyy" - show details on train yyy on layout xxx.
-// http://localhost:20000/get?layout="xxx"&carList=1 -- show list of freight cars, and allow changing locations.
-// http://localhost:20000/get?layout="xxx"&industryList=1 -- show list of freight cars, and allow changing locations.
+// http://localhost:20000/layout?layout="xxx" -- show list of trains on layout xxx.
+// http://localhost:20000/switchlist?layout="xxx"&train="yyyy" - show details on train yyy on layout xxx.
+// http://localhost:20000/carList?layout="xxx" -- show list of freight cars, and allow changing locations.
+// http://localhost:20000/industryList?layout="xxx" -- show list of freight cars, and allow changing locations.
 //
 // http://localhost:20000/setCarLocation?layout="xxx"&car="xxx"&location="xxx" -- change car's location.
 
@@ -306,29 +300,6 @@ NSString *CurrentHostname() {
 	
 	// If connecting from an iPhone, the UserAgent should contain '(iPhone;' somewhere.
 	BOOL isIPhone = [userAgent rangeOfString: @"iPhone"].location != NSNotFound;
-	
-	if ([[url path] isEqualToString: @"/switchlist.css"]) {
-		[self processRequestForSwitchlistCSS];
-		return;
-	} else if ([[url path] isEqualToString: @"/switchlist-iphone.css"]) {
-		[self processRequestForSwitchlistIPhoneCSS];
-		return;
-	} else if ([[url path] isEqualToString: @"/switchlist-ipad.css"]) {
-		[self processRequestForSwitchlistIPadCSS];
-		return;
-	}
-
-	if ([[url path] isEqualToString: @"/builtin-switchlist.css"]) {
-		NSLog(@"In builtin-switchlist.css");
-		[self processRequestForDefaultCSS: @"builtin-switchlist"];
-		return;
-	} else if ([[url path] isEqualToString: @"/builtin-switchlist-iphone.css"]) {
-		[self processRequestForDefaultCSS: @"builtin-switchlist-iphone"];
-		return;
-	} else if ([[url path] isEqualToString: @"/builtin-switchlist-ipad.css"]) {
-		[self processRequestForDefaultCSS: @"builtin-switchlist-ipad"];
-		return;
-	}
 	
 	NSArray *queryTerms = [urlClean componentsSeparatedByString: @"&"];
 	NSMutableDictionary *query = [NSMutableDictionary dictionary];
@@ -345,56 +316,76 @@ NSString *CurrentHostname() {
 	if ([query objectForKey: @"iphone"]) {
 		isIPhone = YES;
 	}
-	
-	if ([[url path] hasPrefix: @"/completeTrain"]) {
-		NSString *train = [query objectForKey: @"train"];
+	if ([[url path] isEqualToString: @"/"]) {
+		[self showAllLayouts];
+		return;
+	} else {
+		// All these expect a layout to be named.
 		NSString *layout = [query objectForKey: @"layout"];
 		SwitchListDocument *document = [self layoutWithName: layout];
-		if (!document) {
-			[server_ replyWithStatusCode: HTTP_OK
-								 message: [NSString stringWithFormat: @"No layout named %@.", layout]];
-			return;
-		}
-		[self processCompleteTrain: train forLayout: document];
-		return;
-	} else if ([[url path] hasPrefix: @"/setCarLocation"]) {
-		NSString *car = [query objectForKey: @"car"];
-		NSString *location = [query objectForKey: @"location"];
-		NSString *layout = [query objectForKey: @"layout"];
-		SwitchListDocument *document = [self layoutWithName: layout];
-		if (!document) {
-			[server_ replyWithStatusCode: HTTP_OK
-								 message: [NSString stringWithFormat: @"No layout named %@.", layout]];
-			return;
-		}
-		[self processChangeLocationForLayout: document car: car location: location];
-		return;
-	} else if ([[url path] isEqualToString: @"/get"]) {
-		NSString *layoutName = [query objectForKey: @"layout"];
-		SwitchListDocument *document = [self layoutWithName: layoutName];
 		
-		if (document == nil) {
-			[server_ replyWithStatusCode: HTTP_NOT_FOUND
-								 message: [NSString stringWithFormat: @"No such layout: '%@'.", layoutName]];
+		if ([[url path] hasPrefix: @"/completeTrain"]) {
+			NSString *train = [query objectForKey: @"train"];
+			if (!document) {
+				[self replyWithNoKnownLayout: layout];
+				return;
+			}
+			[self processCompleteTrain: train forLayout: document];
 			return;
-		}
-		
-		if ([query objectForKey: @"train"] != nil) {
-			[self processRequestForLayout: document train: [query objectForKey: @"train"] forIPhone: isIPhone];
-		} else if ([query objectForKey: @"carList"] != nil) {
+		} else if ([[url path] hasPrefix: @"/setCarLocation"]) {
+			if (!document) {
+				[self replyWithNoKnownLayout: layout];
+				return;
+			}
+			NSString *car = [query objectForKey: @"car"];
+			NSString *location = [query objectForKey: @"location"];
+			[self processChangeLocationForLayout: document car: car location: location];
+			return;
+		} else if ([[url path] isEqualToString: @"/carList"]) {
+			if (!document) {
+				[self replyWithNoKnownLayout: layout];
+				return;
+			}
 			[self processRequestForCarListForLayout: document];
-		} else if ([query objectForKey: @"industryList"] != nil) {
+			return;
+		} else if ([[url path] isEqualToString: @"/industryList"]) {
+			if (!document) {
+				[self replyWithNoKnownLayout: layout];
+				return;
+			}
 			[self processRequestForIndustryListForLayout: document];
-		} else {
-			// Default to showing layout.
+			return;
+		} else if ([[url path] isEqualToString: @"/yardReport"]) {
+			if (!document) {
+				[self replyWithNoKnownLayout: layout];
+				return;
+			}
+			[self processRequestForYardReportForLayout: document];
+			return;
+		} else if ([[url path] isEqualToString: @"/reservedCarReport"]) {
+			if (!document) {
+				[self replyWithNoKnownLayout: layout];
+				return;
+			}
+			[self processRequestForReservedCarReportForLayout: document];
+			return;
+		} else if ([[url path] isEqualToString: @"/switchlist"]) {
+			if (!document) {
+				[self replyWithNoKnownLayout: layout];
+				return;
+			}
+			NSString *trainName = [query objectForKey: @"train"];
+			[self processRequestForLayout: document train: trainName forIPhone: isIPhone];
+		} else if ([[url path] isEqualToString: @"/layout"]) {
+			if (!document) {
+				[self replyWithNoKnownLayout: layout];
+				return;
+			}
 			[self processRequestForLayout: document];
 		}
-	} else if ([[url path] isEqualToString: @"/"]) {
-		[self showAllLayouts];
-	} else {
-		[server_ replyWithStatusCode: HTTP_NOT_FOUND
-							 message: [NSString stringWithFormat: @"Unknown path: '%@'.", [url path]]];
 	}
+	
+	[self processRequestForFile: [url path]];
 }
 
 

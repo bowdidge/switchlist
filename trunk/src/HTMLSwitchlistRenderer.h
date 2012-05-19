@@ -62,23 +62,22 @@
 // If no directory with the template's name is found in either directory or if the
 // template name is nil, then the default switchlist will be used.
 - (void) setTemplate: (NSString*) templateName;	
-- (NSString *) filePathForSwitchlistIPadCSS;
-- (NSString *) filePathForSwitchlistIPhoneCSS;
-- (NSString *) filePathForSwitchlistCSS;
 - (NSString *) filePathForSwitchlistHTML;
 - (NSString *) filePathForSwitchlistIPhoneHTML;
 
-// Returns path to default css file for standard switchlists or switchlists that don't define
-// their own copy of a particular report.
-- (NSString*) filePathForDefaultCSS: (NSString*) filePrefix;
+// Returns the path to the named file, either in the current template directory
+// or in the main bundle.  Error if in neither.
+- (NSString*) filePathForTemplateFile: (NSString*) filename;	
 
 // Returns the path to the template with the given name, as found in one of the switchlist template
 // directories.  If none can be found, it uses the copy in the main bundle.
-- (NSString*) filePathForTemplateFile: (NSString*) template;
+- (NSString*) filePathForTemplateHtml: (NSString*) template;
 	
 - (NSString *) renderSwitchlistForTrain: (ScheduledTrain*) train layout: (EntireLayout*)layout iPhone: (BOOL) isIPhone;
 - (NSString*) renderCarlistForLayout: (EntireLayout*) layout;
 - (NSString*) renderIndustryListForLayout: (EntireLayout*) layout;
+- (NSString*) renderYardReportForLayout: (EntireLayout*) layout;
+- (NSString*) renderReservedCarReportForLayout: (EntireLayout*) layout;
 - (NSString*) renderLayoutPageForLayout: (EntireLayout*) layout;
 - (NSString*) renderLayoutsPage;
 // Renders a generic report (in reportName.html) using the provided template dictionary.

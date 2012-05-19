@@ -596,7 +596,7 @@
 		NSString *title = [NSString stringWithFormat: @"Switch list for %@", [train name]];
 		HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
 		[renderer setTemplate: preferredSwitchlistStyle];
-		NSString *switchlistHtmlFile = [renderer filePathForTemplateFile: @"switchlist"];
+		NSString *switchlistHtmlFile = [renderer filePathForTemplateHtml: @"switchlist"];
 
 		NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO];
 		// TODO(bowdidge): Switch this to match/inherit from the SwitchListBaseView so print all works.
@@ -793,7 +793,7 @@
 	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
-	NSString *carReport = [renderer filePathForTemplateFile: @"car-report"];
+	NSString *carReport = [renderer filePathForTemplateHtml: @"car-report"];
 	NSString *message = [renderer renderReport: @"car-report"
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
@@ -808,7 +808,7 @@
 	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
-	NSString *industryHtml = [renderer filePathForTemplateFile: @"industry-report"];
+	NSString *industryHtml = [renderer filePathForTemplateHtml: @"industry-report"];
 	NSString *message = [renderer renderReport: @"industry-report"
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
@@ -829,7 +829,7 @@
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
-	NSString *reservedCarReport = [renderer filePathForTemplateFile: @"reserved-car-report"];
+	NSString *reservedCarReport = [renderer filePathForTemplateHtml: @"reserved-car-report"];
 	NSString *message = [renderer renderReport: @"reserved-car-report"
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
@@ -845,7 +845,7 @@
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
 	[renderer setTemplate: preferredSwitchlistStyle];
-	NSString *yardHtml = [renderer filePathForTemplateFile: @"yard-report"];
+	NSString *yardHtml = [renderer filePathForTemplateHtml: @"yard-report"];
 	NSString *message = [renderer renderReport: @"yard-report"
 									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
 																			forKey: @"layout"]];
