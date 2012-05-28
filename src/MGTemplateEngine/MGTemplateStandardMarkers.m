@@ -249,9 +249,10 @@
 			// Check to see if this was a block with an invalid looping condition.
 			NSNumber *disabledOutput = (NSNumber *)[frame objectForKey:FOR_STACK_DISABLED_OUTPUT];
 			if (disabledOutput && [disabledOutput boolValue]) {
-				*outputEnabled = YES;
 				*blockEnded = YES;
 				[forStack removeLastObject];
+				// Restore status of previous loop.
+				*outputEnabled = ![[[forStack lastObject] objectForKey:FOR_STACK_DISABLED_OUTPUT] boolValue];
 			}
 			
 			// This is the same loop that's on top of our stack. Check to see if we need to loop back.
@@ -388,11 +389,7 @@
 				} else if ([op isEqualToString:@"<="]) {
 					argTrue = (num1 <= num2);
 				} else if ([op isEqualToString:@"\%"]) {
-					if (num2 == 0) {
-                        argTrue = NO;
-                    } else {
-                        argTrue = ((num1 % num2) > 0);
-                    }
+					argTrue = ((num1 % num2) > 0);
 				} else if ([op isEqualToString:@"equalsstring"] || [op isEqualToString:@"notequalsstring"]) {
 					NSObject *firstVal = [engine resolveVariable:firstArg];
 					NSObject *secondVal = [engine resolveVariable:secondArg];
