@@ -172,6 +172,7 @@
 		3ED58A7013A727FF00F6E26E /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
 		3ED58A7113A7280D00F6E26E /* SwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED482330D715B3600C36741 /* SwitchListView.m */; };
 		3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
+		3EE0B6831573446E00281B33 /* MGTemplateEngineTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE0B6821573446E00281B33 /* MGTemplateEngineTest.m */; };
 		3EE19374145C924000CB614D /* car-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE19373145C924000CB614D /* car-report.html */; };
 		3EE19379145C925200CB614D /* industry-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE19377145C925200CB614D /* industry-report.html */; };
 		3EE1937A145C925200CB614D /* reserved-car-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE19378145C925200CB614D /* reserved-car-report.html */; };
@@ -383,6 +384,8 @@
 		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
 		3ED697D8130139C100DA9074 /* SouthernPacificSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouthernPacificSwitchListView.h; sourceTree = "<group>"; };
 		3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouthernPacificSwitchListView.m; sourceTree = "<group>"; };
+		3EE0B6811573446E00281B33 /* MGTemplateEngineTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTemplateEngineTest.h; path = MGTemplateEngine/MGTemplateEngineTest.h; sourceTree = "<group>"; };
+		3EE0B6821573446E00281B33 /* MGTemplateEngineTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTemplateEngineTest.m; path = MGTemplateEngine/MGTemplateEngineTest.m; sourceTree = "<group>"; };
 		3EE19373145C924000CB614D /* car-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "car-report.html"; path = "templates/car-report.html"; sourceTree = "<group>"; };
 		3EE19377145C925200CB614D /* industry-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "industry-report.html"; path = "templates/industry-report.html"; sourceTree = "<group>"; };
 		3EE19378145C925200CB614D /* reserved-car-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "reserved-car-report.html"; path = "templates/reserved-car-report.html"; sourceTree = "<group>"; };
@@ -741,6 +744,8 @@
 				3EFEC5221408515500F9CF15 /* WebServerDelegateTest.m */,
 				3E62C0F8128E610E00520752 /* YardTest.h */,
 				3E62C0F9128E610E00520752 /* YardTest.m */,
+				3EE0B6811573446E00281B33 /* MGTemplateEngineTest.h */,
+				3EE0B6821573446E00281B33 /* MGTemplateEngineTest.m */,
 			);
 			name = "Unit tests";
 			sourceTree = "<group>";
@@ -1064,6 +1069,7 @@
 				3E9AF46F14F9FC8900580148 /* TrainSizeVectorTest.m in Sources */,
 				3E43B3A715073D1F00AAA92B /* LayoutController.m in Sources */,
 				3E362363153A899300A57574 /* PlaceTest.m in Sources */,
+				3EE0B6831573446E00281B33 /* MGTemplateEngineTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
