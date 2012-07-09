@@ -85,6 +85,11 @@
 - (NSArray*) carsAtStation:(Place *)station;
 - (NSArray*) carsForStation:(Place *)station;
 
+// Return the list of freight cars in the train in the order they would be visited during the
+// operation of the train.
+// This method is guaranteed to have the same sort order between runs; use it for getting the
+// list of freight cars for any code that might affect display order or which cars get booted
+// from the train.
 - (NSArray* ) allFreightCarsInVisitOrder;
 
 // Returns an array of stations with work for this train, where each
