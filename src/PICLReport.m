@@ -96,7 +96,7 @@
 			}
 			
 			// TODO(mcnab) Currently sorting by Destination in Alphabetical Order.  Should sort in Station Order.
-			NSArray *carsAtIndustrySortedByDestination = [carsAtIndustry sortedArrayUsingFunction: sortCarsByDestination context: nil];
+			NSArray *carsAtIndustrySortedByDestination = [carsAtIndustry sortedArrayUsingFunction: sortCarsByDestinationIndustry context: nil];
 			
 			int seq = 1;
 			

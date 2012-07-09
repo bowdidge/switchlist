@@ -163,6 +163,8 @@ NSString *NormalizeDivisionString(NSString *inString);
 @end
 
 
+// Sorts cars by the town name for each car, then the industry name for each car, then reporting marks.
 NSInteger sortCarsByCurrentIndustry(FreightCar *a, FreightCar *b, void *context);
-NSInteger sortCarsByDestination(FreightCar *a, FreightCar *b, void *context);
+// Sorts cars by the destination town name for each car, then the industry name for each car, then reporting marks.
+NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *context);
 

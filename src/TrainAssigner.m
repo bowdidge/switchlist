@@ -478,7 +478,7 @@ NSString *NameOrNoValue(NSString* string) {
 
 		if (respectSidingLengths_) {
 			NSArray *stationStops = [tr stationsInOrder];
-			TrainSizeVector *sizeVector = [[[TrainSizeVector alloc] initWithCars: [[tr freightCars] allObjects]
+			TrainSizeVector *sizeVector = [[[TrainSizeVector alloc] initWithCars: [tr allFreightCarsInVisitOrder]
 																		  stops: stationStops] autorelease];
 			TrainSizeVector *addedCarVector = [[[TrainSizeVector alloc] initWithCars: [NSArray arrayWithObject: car]
 																		  stops: stationStops] autorelease];
@@ -631,7 +631,7 @@ NSString *NameOrNoValue(NSString* string) {
 	}
 	
 	for (ScheduledTrain *train in [entireLayout_ allTrains]) {
-		NSSet *allCarsInTrain = [[[train freightCars] copy] autorelease];
+		NSArray *allCarsInTrain = [train allFreightCarsInVisitOrder];
 		for (FreightCar *car in allCarsInTrain) {
 			InduYard *currentLocation = [car currentLocation];
 			InduYard *nextLocation = [car nextStop];

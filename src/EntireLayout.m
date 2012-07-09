@@ -284,16 +284,32 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	NSEntityDescription *ent = [NSEntityDescription entityForName: @"FreightCar" inManagedObjectContext: [self managedObjectContext]];
 	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
 	[req2 setEntity: ent];
-	NSArray *cars = [[self managedObjectContext] executeFetchRequest: req2 error:&error];
-	return cars;
+
+	// Sort by reporting marks to ensure consistent sort order..
+	// TODO(bowdidge): Sort by objectID for a bit more randomness so cars with reporting marks that 
+	// sort later aren't always the ones left behind.
+	NSSortDescriptor *ind1 = [[[NSSortDescriptor alloc] initWithKey: @"reportingMarks" ascending: YES] autorelease];
+	NSMutableArray *sortDescs = [NSMutableArray arrayWithObject: ind1];
+	[req2 setSortDescriptors: sortDescs];
+
+	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }
 
 - (NSArray*) allFreightCarsNotInTrain {
+	NSError *error;
+	
 	NSEntityDescription *ent = [NSEntityDescription entityForName: @"FreightCar" inManagedObjectContext: [self managedObjectContext]];
 	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
 	[req2 setEntity: ent];
 	[req2 setPredicate: [NSPredicate predicateWithFormat: @"currentTrain == nil"]];
-	NSError *error;
+
+	// Sort by reporting marks to ensure consistent sort order.
+	// TODO(bowdidge): Sort by objectID for a bit more randomness so cars with reporting marks that 
+	// sort later aren't always the ones left behind.
+	NSSortDescriptor *ind1 = [[[NSSortDescriptor alloc] initWithKey: @"reportingMarks" ascending: YES] autorelease];
+	NSMutableArray *sortDescs = [NSMutableArray arrayWithObject: ind1];
+	[req2 setSortDescriptors: sortDescs];
+	
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }
 
@@ -601,23 +617,44 @@ NSString *NormalizeDivisionString(NSString *inString) {
 
 /* Sorting for doing switch lists in as-visited order. */
 NSInteger sortCarsByCurrentIndustry(FreightCar *a, FreightCar *b, void *context) {
-	return ([[[a currentLocation] name] compare: [[b currentLocation] name]]);
+	InduYard *currentA = [a currentLocation];
+	InduYard *currentB = [b currentLocation];
+	
+	if (currentA == nil || currentB == nil) {
+		return [[a reportingMarks] compare: [b reportingMarks]];
+	}
+
+	int currentResult = [[[currentA location] name] compare: [[currentB location] name]];
+	if (currentResult != NSOrderedSame) return currentResult;
+
+	currentResult = ([[[a currentLocation] name] compare: [[b currentLocation] name]]);
+	if (currentResult != NSOrderedSame) return currentResult;
+	
+	// Compare by reporting marks when all else fails.
+	return [[a reportingMarks] compare: [b reportingMarks]];
 }
 
-NSInteger sortCarsByDestination(FreightCar *a, FreightCar *b, void *context) {
-	// TODO(bowdidge): Don't sort by name, sort by town (in train order) then industry.
+// Sorts cars by destination industry.  Assumes all cars are in the same town.
+NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *context) {
 	InduYard *destA = [a nextStop];
 	InduYard *destB = [b nextStop];
-	if ((destA == nil) || (destB == nil)) return 0;
-	int compareResult = [[destA name] compare: [destB name]];
+	
+	if ((destA == nil) || (destB == nil)) {
+		return [[a reportingMarks] compare: [b reportingMarks]];
+	}
+	
+	int compareResult = [[[destA location] name] compare: [[destB location] name]];
 	if (compareResult != NSOrderedSame) {
 		return compareResult;
 	}
-	if ([destA isKindOfClass: [Industry class]] == NO) {
-		return NSOrderedSame;
+	
+	compareResult = [[destA name] compare: [destB name]];
+	if (compareResult != NSOrderedSame) {
+		return compareResult;
 	}
 	
-	return 0;
+	// Do cars in reporting mark order when all else matches.
+	return [[a reportingMarks] compare: [b reportingMarks]];
 }
 
 - (id) getLayoutInfo {

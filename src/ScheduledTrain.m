@@ -289,7 +289,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 		}
 	}
 	// Now, sort carsAtStation according to industry
-	return [carsAtStation sortedArrayUsingFunction: sortCarsByDestination context: NULL];
+	return [carsAtStation sortedArrayUsingFunction: sortCarsByDestinationIndustry context: NULL];
 	
 }
 
@@ -314,7 +314,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 		}
 	}
 	// Now, sort carsAtStation according to industry
-	return [carsAtStation sortedArrayUsingFunction: sortCarsByDestination context: nil];
+	return [carsAtStation sortedArrayUsingFunction: sortCarsByDestinationIndustry context: nil];
 	
 }
 
