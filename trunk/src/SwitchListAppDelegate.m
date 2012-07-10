@@ -432,7 +432,6 @@ error:
 					  @"For more background on this example, check out the 'Example Layouts' section of the SwitchList help."];
 	[alert setShowsHelp: YES];
 	NSString *helpAnchor = [NSString stringWithFormat: @"Example-%@", exampleName];
-	NSLog(@"Help anchor is %@", helpAnchor);
 	[alert setHelpAnchor: helpAnchor];
 	[alert runModal];
 	return;
