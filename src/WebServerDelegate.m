@@ -234,7 +234,7 @@ NSString *CurrentHostname() {
 - (void) processRequestForFile: (NSString*) filename {
 	NSString *cleanFilename = [filename lastPathComponent];
 	NSString *filePath = [htmlRenderer_ filePathForTemplateFile: cleanFilename];
-	NSLog(@"filename %@ %d", filePath, [[NSFileManager defaultManager] isReadableFileAtPath: filePath]);
+
 	if (!filePath || 
 		![[NSFileManager defaultManager] isReadableFileAtPath: filePath]) {
 		[server_ replyWithStatusCode: HTTP_NOT_FOUND
@@ -243,7 +243,6 @@ NSString *CurrentHostname() {
 	}
 	
 	NSData *data = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: filePath]];
-	NSLog(@"%@ %d", data, [data length]);
 	[server_ replyWithData:data MIMEType: [NSString stringWithFormat: @"text/%@", [filePath pathExtension]]];
 }
 
@@ -295,7 +294,6 @@ NSString *CurrentHostname() {
 // TODO(bowdidge): Perhaps switch layout/train query to being part of the path, then use queries to set'
 // values?  That would also make it easier to do a car detail view.
 - (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn userAgent: (NSString*) userAgent {
-	NSLog(@"Process %@", url);
 	NSString *urlClean = [[url query] stringByReplacingOccurrencesOfString: @"%20" withString: @" "];
 	
 	// If connecting from an iPhone, the UserAgent should contain '(iPhone;' somewhere.
