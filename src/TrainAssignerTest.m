@@ -636,9 +636,6 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	[assigner assignCarsToTrains: [NSArray arrayWithObject: train_]];
 	
 	// Reachability graphs don't matter much here because we haven't set car types.
-	NSLog(@"Reachability is %@", [assigner createStationReachabilityGraphForCarType: nil]);
-	NSLog(@"Reachability is %@", [assigner createStationReachabilityGraphForCarType: [entireLayout_ carTypeForName: @"XM"]]);
-
 	STAssertEqualObjects([assigner createStationReachabilityGraphForCarType: nil],
 						 [assigner createStationReachabilityGraphForCarType: [entireLayout_ carTypeForName: @"XM"]],
 						 @"");
@@ -1430,7 +1427,6 @@ extern unsigned gettimeofday (void*, void*);
 	for (i=1;i<8;i++) {
 		NSString *townName = [NSString stringWithFormat: @"town-%d", i];
 		Place *p = [self makePlaceWithName: townName];
-		NSLog(@"%@", p);
 		[self makeYardAtStation: townName];
 	}
 	Place *p = [self makePlaceWithName: @"town-branch"];
