@@ -95,7 +95,6 @@ BOOL TestLayout(NSString *layoutName) {
 	}
 	EntireLayout *entireLayout = [[EntireLayout alloc] initWithMOC: context];
 	int carCount = [[entireLayout allFreightCars] count];
-	NSLog(@"Layout is %@, %d cars", layoutName, carCount);
 	NSArray *allTrains = [entireLayout allTrains];
 	LayoutController *controller = [[LayoutController alloc] initWithEntireLayout: entireLayout];
 	int i;
