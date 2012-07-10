@@ -302,7 +302,8 @@
 		goto error;
 	}
 	
-	if(fontsURL = [NSURL fileURLWithPath:fontsFolder]) {
+    fontsURL = [NSURL fileURLWithPath:fontsFolder];
+	if (fontsURL) {
 		OSStatus status;
 		FSRef fsRef;
 		CFURLGetFSRef((CFURLRef)fontsURL, &fsRef);
