@@ -100,6 +100,12 @@
 // PUBLIC TEMPLATE API.
 - (NSArray*) stationsWithWork;
 
+// Returns an array of stops with work for this train.  Each dictionary entry
+// contains station (object), list of industries at station, list of cars to pick up, list of cars
+// to drop off, and total empty and loaded count being picked up here.
+// PUBLIC TEMPLATE API.
+- (NSArray*) trainWorkByStation;
+
 // Access to-many relationship via -[NSObject mutableSetValueForKey:]
 - (void)addFreightCarsObject:(FreightCar *)value;
 - (void)removeFreightCarsObject:(FreightCar *)value;

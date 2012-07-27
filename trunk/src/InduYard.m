@@ -95,4 +95,14 @@
 	return [[self name] compare: [i name]];
 }
 
+// Copy fields that are officially part of the HTML template to the dictionary
+// representing an industry.
+- (NSMutableDictionary*) templateDictionary {
+	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+	[dict setObject: [self name] forKey: @"name"];
+	[dict setObject: [self location] forKey: @"location"];
+	return dict;
+}
+
+
 @end

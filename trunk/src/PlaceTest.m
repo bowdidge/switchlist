@@ -36,4 +36,12 @@
 	STAssertFalse([stationA isStaging], @"");
 	STAssertFalse([stationA isOffline], @"");
 }
+
+- (void) testTemplateDirectory {
+	Place *stationA = [self makePlaceWithName: @"A"];
+	
+	NSDictionary *templateDictionary = [stationA templateDictionary];
+	STAssertEqualObjects(@"A", [templateDictionary objectForKey: @"name"], @"");
+	STAssertEqualsInt(1, [[templateDictionary objectForKey: @"allIndustriesSortedOrder"] count], @"");
+}
 @end

@@ -29,9 +29,16 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 #import "LayoutTest.h"
+#import "MGTemplateEngine.h"
 
 @interface HTMLSwitchlistRendererTest : LayoutTest {
 
 }
 
 @end
+
+@interface TemplateExampleTest : SenTestCase {
+	MGTemplateEngine *engine_;
+}
+@end
+

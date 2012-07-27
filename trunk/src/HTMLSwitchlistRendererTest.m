@@ -30,6 +30,9 @@
 
 #import "EntireLayout.h"
 #import "HTMLSwitchlistRenderer.h"
+#import "MGTemplateEngine.h"
+#import "ICUTemplateMatcher.h"
+#import "SwitchListFilters.h"
 
 
 @implementation HTMLSwitchlistRendererTest
@@ -45,4 +48,130 @@
 												 iPhone: NO];
 	STAssertContains(@"switchlist.css", text, @"%@ does not contain builtin ref", text);
 }
+@end
+
+// Minimal tests to ensure MGTemplate is working.
+@implementation TemplateExampleTest
+- (void)setUp {
+	engine_ = [[MGTemplateEngine alloc] init];
+	// Why is this required?
+	[engine_ setMatcher: [ICUTemplateMatcher matcherWithTemplateEngine: engine_]];
+	[engine_ loadFilter: [[[SwitchListFilters alloc] init] autorelease]];
+}
+
+- (void) tearDown {
+	[engine_ release];
+}
+	
+- (void) testSimpleTemplate {
+	NSString *result = [engine_ processTemplate: @"foo" withVariables: [NSDictionary dictionaryWithObject: @"1" forKey: @"foo"]];
+	STAssertEqualObjects(@"foo", result, @"");
+}
+
+- (void) testSimpleIfTemplate {
+	NSString *result = [engine_ processTemplate: @"{% if foo == 1 %}bah{%/if%}" withVariables: [NSDictionary dictionaryWithObject: @"1" forKey: @"foo"]];
+	STAssertEqualObjects(@"bah", result, @"");
+}
+
+- (void) testSimpleCountTemplate {
+	NSString *result = [engine_ processTemplate: @"{{foo.@count}}" withVariables: [NSDictionary dictionaryWithObject: [NSArray arrayWithObject: @"1"] forKey: @"foo"]];
+	STAssertEqualObjects(@"1", result, @"");
+}
+
+- (void) FailingTestSimpleCountZeroTemplate {
+	NSString *result = [engine_ processTemplate: @"{{foo.@count}}" withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
+	STAssertEqualObjects(@"0", result, @"");
+}
+
+- (void) testArrayCount {
+	NSNumber *count = [[NSArray array] valueForKeyPath: @"@count"];
+	STAssertEquals(0, [count intValue], @"");
+}
+
+- (void) testSimpleIfCountZeroTemplate {
+	NSString *result = [engine_ processTemplate: @"{% if foo.@count != 0 %}not-zero{% else %}zero{%/if%}" withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
+	STAssertEqualObjects(@"zero", result, @"");
+}
+
+- (void) testSimpleIfCountZeroDictTemplate {
+	NSDictionary *dict = [NSDictionary dictionaryWithObject: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"myArray"] forKey: @"myKey"];
+	NSString *result = [engine_ processTemplate: @"{% if myKey.myArray.@count != 0 %}not-zero{% else %}zero{%/if%}" withVariables: dict];
+	STAssertEqualObjects(@"zero", result, @"");
+}
+- (void) testSimpleIfCountNonZeroDictTemplate {
+	NSDictionary *dict = [NSDictionary dictionaryWithObject: [NSDictionary dictionaryWithObject: [NSArray arrayWithObject: @"a"] forKey: @"myArray"] forKey: @"myKey"];
+	NSString *result = [engine_ processTemplate: @"{% if myKey.myArray.@count != 0 %}not-zero{% else %}zero{%/if%}" withVariables: dict];
+	STAssertEqualObjects(@"not-zero", result, @"");
+}
+
+- (void) testNestedForLoop {
+	// Two stations: A, B
+	// A has two industries, B has none.
+	NSArray *industryA1 = [NSDictionary dictionaryWithObject: @"A1" forKey: @"name"];
+	NSArray *industryA2 = [NSDictionary dictionaryWithObject: @"A2" forKey: @"name"];
+	NSDictionary *stationA = [NSDictionary dictionaryWithObjectsAndKeys:
+							 @"A", @"stationName",
+							  [NSArray arrayWithObjects: industryA1, industryA2, nil], @"industries",
+							  nil];
+	NSDictionary *stationB = [NSDictionary dictionaryWithObjectsAndKeys:
+							  @"B", @"stationName",
+							  [NSArray array], @"industries",
+							  nil];
+	NSDictionary *vars = [NSDictionary dictionaryWithObject: [NSArray arrayWithObjects: stationA, stationB, nil] 
+													 forKey: @"stations"];
+	NSString *result = [engine_ processTemplate: @"{% for station in stations %}{{station.stationName}}:{% for industry in station.industries %} ind:{{industry.name}} EndInd{% /for %} EndSta {% /for %}"
+								  withVariables: vars];
+					
+	STAssertEqualObjects(@"A: ind:A1 EndInd ind:A2 EndInd EndSta B: EndSta ", result, @"");
+}
+
+- (void) testNestedTripleForLoop {
+	// Two stations: A, B
+	// A has two industries, B has none.
+	NSArray *industryA1 = [NSDictionary dictionaryWithObjectsAndKeys:
+						   @"A1", @"industryName", [NSArray arrayWithObject: @"SP 1"], @"cars", nil];
+						   
+	NSArray *industryA2 = [NSDictionary dictionaryWithObjectsAndKeys:
+							@"A2", @"industryName",
+						   [NSArray array], @"cars", nil];
+	NSDictionary *stationA = [NSDictionary dictionaryWithObjectsAndKeys:
+							  @"A", @"name",
+							  [NSArray arrayWithObjects: industryA1, industryA2, nil], @"industries",
+							  nil];
+	NSDictionary *stationB = [NSDictionary dictionaryWithObjectsAndKeys:
+							  @"B", @"name",
+							  [NSArray array], @"industries",
+							  nil];
+	NSDictionary *vars = [NSDictionary dictionaryWithObject: [NSArray arrayWithObjects: stationA, stationB, nil] 
+													 forKey: @"stations"];
+	NSString *result = [engine_ processTemplate: @"{% for station in stations %}StartStation {{station.name}}:{% for industry in station.industries %} StartInd:{{industry.industryName}} {% for car in industry.cars %}{{car}}{% /for %}EndInd{%/for %}EndStation{% /for %}"
+								  withVariables: vars];
+	// FIXME - StartStation B: shouldn't be followed by endInd because it shouldn't go through the industry loop.
+	STAssertEqualObjects(@"StartStation A: StartInd:A1 SP 1EndInd StartInd:A2 EndIndEndStationStartStation B:EndStation", result, @"");
+}
+
+- (void) testNestedTripleForLoopWithIf {
+	// Two stations: A, B
+	// A has two industries, B has none.
+	NSArray *industryA1 = [NSDictionary dictionaryWithObjectsAndKeys:
+						   @"A1", @"name", [NSArray arrayWithObject: @"SP 1"], @"cars", nil];
+	
+	NSArray *industryA2 = [NSDictionary dictionaryWithObjectsAndKeys:
+						   @"A2", @"name", [NSArray array], @"cars", nil];
+	NSDictionary *stationA = [NSDictionary dictionaryWithObjectsAndKeys:
+							  @"A", @"stationName",
+							  [NSArray arrayWithObjects: industryA1, industryA2, nil], @"industries",
+							  nil];
+	NSDictionary *stationB = [NSDictionary dictionaryWithObjectsAndKeys:
+							  @"B", @"stationName",
+							  [NSArray array], @"industries",
+							  nil];
+	NSDictionary *vars = [NSDictionary dictionaryWithObject: [NSArray arrayWithObjects: stationA, stationB, nil] 
+													 forKey: @"stations"];
+	NSString *result = [engine_ processTemplate: @"{% for station in stations %}station:{{station.stationName}}:{% for industry in station.industries %}-ind:{{industry.name}}-{% if industry.cars.@count %}{% for car in industry.cars %}.{{car}}.{% /for %}{%/if%}EndInd{%/for %}EndSta{% /for %}"
+								  withVariables: vars];
+	
+	STAssertEqualObjects(@"station:A:-ind:A1-.SP 1.EndInd-ind:A2-EndIndEndStastation:B:EndSta", result, @"");
+}
+
 @end

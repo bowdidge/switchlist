@@ -108,4 +108,10 @@
     [self didChangeValueForKey: @"sidingLength"];
 }
 
+// Copy fields that are officially part of the HTML template to the dictionary
+// representing an industry.
+- (NSMutableDictionary*) templateDictionary {
+	NSMutableDictionary *dict = [super templateDictionary];
+	return dict;
+}
 @end
