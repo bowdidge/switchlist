@@ -31,8 +31,12 @@
 
 #import "EntireLayout.h"
 #import "FreightCar.h"
+#import "ICUTemplateMatcher.h"
+#import "MGTemplateEngine.h"
 #import "ScheduledTrain.h"
 #import "ScheduledTrainTest.h"
+#import "SwitchListFilters.h"
+#import "TrainSizeVector.h"
 
 
 @implementation ScheduledTrainTest
@@ -50,7 +54,7 @@
 	
 	// Test that the parsing code correctly handles the old-style separator.
 	NSArray *stationStops = [train stationsInOrder];
-	NSLog(@"%d", [stationStops count]);
+
 	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in station stop array");
 	STAssertEqualObjects(@"A", [[stationStops objectAtIndex: 0] name], @"station stops array wrong");
 	STAssertEqualObjects(@"B", [[stationStops objectAtIndex: 1] name], @"station stops array wrong");
@@ -71,4 +75,97 @@
 	STAssertEqualObjects(p2, [stationStops objectAtIndex: 1], @"station stops array wrong");
 	STAssertEqualObjects(p3, [stationStops objectAtIndex: 2], @"station stops array wrong");
 }	
+
+// Tests object used for rendering some HTML switchlists.
+// trainWorkByStation provides a station-by-station view of what should be picked up and dropped off.
+- (void) testTrainWorkByStation {
+	ScheduledTrain *train = [self makeThreeStationTrain];
+	[train setStops: @"A,B,C,B,A"];
+	NSArray *result = [train trainWorkByStation];
+	STAssertEqualsInt(5, [result count], @"");
+	// TODO(bowdidge): Wrong.
+	NSDictionary *stationA =  [result objectAtIndex: 0];
+
+	STAssertEqualObjects(@"A", [[stationA objectForKey: @"station"] name], @"");
+	STAssertEqualsInt(0, [[stationA objectForKey: @"emptyCount"] intValue], @"");
+	STAssertEqualsInt(1, [[stationA objectForKey: @"loadedCount"] intValue], @"");
+	STAssertEqualsInt(1, [[stationA objectForKey: @"carsToPickUp"] count], @"");
+	STAssertEqualsInt(0, [[stationA objectForKey: @"carsToDropOff"] count], @"");
+
+	STAssertEqualsInt(1, [[stationA objectForKey: @"industries"] count], @"");
+	NSDictionary *industryA =  [[stationA objectForKey: @"industries"] objectAtIndex: 0];
+	STAssertEqualObjects(@"A-industry", [[industryA objectForKey: @"industry"] name], @"");
+	STAssertEqualsInt(1, [[industryA objectForKey: @"carsToPickUp"] count], @"");
+	STAssertEqualsInt(0, [[industryA objectForKey: @"carsToDropOff"] count], @"");\
+	
+	NSDictionary *stationB =  [result objectAtIndex: 1];
+	STAssertEqualObjects(@"B", [[stationB objectForKey: @"station"] name], @"");
+	STAssertEqualsInt(0, [[stationB objectForKey: @"emptyCount"] intValue], @"");
+	STAssertEqualsInt(1, [[stationB objectForKey: @"loadedCount"] intValue], @"");
+	STAssertEqualsInt(1, [[stationB objectForKey: @"carsToPickUp"] count], @"");
+	STAssertEqualsInt(1, [[stationB objectForKey: @"carsToDropOff"] count], @"");
+
+	STAssertEqualsInt(1, [[stationB objectForKey: @"industries"] count], @"");
+	NSDictionary *industryB =  [[stationB objectForKey: @"industries"] objectAtIndex: 0];
+	STAssertEqualObjects(@"B-industry", [[industryB objectForKey: @"industry"] name], @"");
+	STAssertEqualsInt(1, [[industryB objectForKey: @"carsToPickUp"] count], @"");
+	STAssertEqualsInt(1, [[industryB objectForKey: @"carsToDropOff"] count], @"");\
+	
+	NSDictionary *stationC = [result objectAtIndex: 2];
+	STAssertEqualObjects(@"C", [[stationC objectForKey: @"station"] name], @"");
+	STAssertEqualsInt(0, [[stationC objectForKey: @"emptyCount"] intValue], @"");
+	STAssertEqualsInt(0, [[stationC objectForKey: @"loadedCount"] intValue], @"");
+	STAssertEqualsInt(0, [[stationC objectForKey: @"carsToPickUp"] count], @"");
+	STAssertEqualsInt(1, [[stationC objectForKey: @"carsToDropOff"] count], @"");
+
+	STAssertEqualObjects(@"B", [[[result objectAtIndex: 3] objectForKey: @"station"] name], @"");
+	STAssertEqualsInt(0, [[[result objectAtIndex: 3] objectForKey: @"emptyCount"] intValue], @"");
+	STAssertEqualsInt(0, [[[result objectAtIndex: 3] objectForKey: @"loadedCount"] intValue], @"");
+	STAssertEqualsInt(0, [[[result objectAtIndex: 3] objectForKey: @"carsToPickUp"] count], @"");
+	STAssertEqualsInt(0, [[[result objectAtIndex: 3] objectForKey: @"carsToDropOff"] count], @"");
+
+	STAssertEqualObjects(@"A", [[[result objectAtIndex: 4] objectForKey: @"station"] name], @"");
+	STAssertEqualsInt(0, [[[result objectAtIndex: 4] objectForKey: @"emptyCount"] intValue], @"");
+	STAssertEqualsInt(0, [[[result objectAtIndex: 4] objectForKey: @"loadedCount"] intValue], @"");
+	STAssertEqualsInt(0, [[[result objectAtIndex: 4] objectForKey: @"carsToPickUp"] count], @"");
+	STAssertEqualsInt(0, [[[result objectAtIndex: 4] objectForKey: @"carsToDropOff"] count], @"");
+}
+@end
+
+@implementation ScheduledTrainTemplateTest
+- (void)setUp {
+	[super setUp];
+	engine_ = [[MGTemplateEngine alloc] init];
+	// Why is this required?
+	[engine_ setMatcher: [ICUTemplateMatcher matcherWithTemplateEngine: engine_]];
+	[engine_ loadFilter: [[[SwitchListFilters alloc] init] autorelease]];
+}
+
+- (void) tearDown {
+	[engine_ release];
+	[super tearDown];
+}
+
+// Make sure a simple template gets expanded correctly.
+- (void) testSampleTemplate {
+	// Stations always print, industries only printed if there's something there.
+	NSString *switchlistTemplate = [NSString stringWithFormat: @"%@ %@ %@ %@ %@ %@ %@ %@ %@ %@\n",
+										@"{%for station in work%}station {{station.name}}:<br>",
+										@"  {%for industry in station.industries%}",
+										@"    {% if industry.carsToPickUp.@count %}",
+									    @"      {{station.name}}: industry {{industry.name}}<br>",
+										@"      {% for car in industry.carsToPickUp %}",
+									    @"        {{car.reportingMarks}} going to {{car.nextStop}}",
+									    @"      {%/for%}",
+										@"     {%/if%}",
+										@"  {%/for%}<p>",
+									    @"{%/for%}"];
+	ScheduledTrain *train = [self makeThreeStationTrain];
+	[train setStops: @"A,B,C,B,A"];
+	NSArray *work = [train trainWorkByStation];
+	NSDictionary *params = [NSDictionary dictionaryWithObject: work forKey: @"work"];
+	NSString *result = [engine_ processTemplate: switchlistTemplate withVariables:params];
+	STAssertContains(@"station A:", result, @"Missing station name");
+	STAssertContains(@"B: industry B-industry", result, @"Missing industry name");
+}
 @end

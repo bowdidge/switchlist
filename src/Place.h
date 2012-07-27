@@ -76,4 +76,6 @@
 
 - (BOOL)validateName: (id*) namePtr error:(NSError **)error;
 
+// Create dictionary imitating all HTML accessible fields of object.
+- (NSMutableDictionary*) templateDictionary;
 @end

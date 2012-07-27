@@ -35,6 +35,7 @@
 #import "Industry.h"
 #import "Place.h"
 #import "StringHelpers.h"
+#import "TrainSizeVector.h"
 #import "Yard.h"
 
 @implementation ScheduledTrain 
@@ -177,6 +178,11 @@
     [self setPrimitiveValue: value forKey: @"stops"];
     [self didChangeValueForKey: @"listOfStationsString"];
     [self didChangeValueForKey: @"stops"];
+}
+
+- (TrainSizeVector*) trainSizeVector {
+	return [[TrainSizeVector alloc] initWithCars: [[self freightCars] allObjects]
+                                           stops: [self stationsInOrder]];
 }
 
 - (Place*) stationWithName: (NSString *)stationName {
@@ -339,12 +345,76 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	return sortedList;
 }
 
+// Generates the data needed for the trainWorkByStation template
+// variable.  Generates a list of dictionaries for each stop the
+// train will make, and lists the cars likely to be added and removed
+// at each stop.  The list of stops may include the same station more
+// than once if the train would visit the station multiple times.
+- (NSArray*) trainWorkByStation {
+	NSMutableArray *result = [NSMutableArray array];
+	TrainSizeVector *trainSizeVector = [self trainSizeVector];
+	for (Stop *stop in [trainSizeVector vector]) {		
+		NSMutableDictionary *industryMap = [NSMutableDictionary dictionary];
+		NSMutableArray *industriesArray = [NSMutableArray array];
+		for (Industry *ind in [[stop place] allIndustriesSortedOrder]) {
+			NSMutableDictionary *industryDict = [ind templateDictionary];
+			[industryDict setObject: [NSMutableArray array] forKey: @"carsToPickUp"];
+			[industryDict setObject: [NSMutableArray array] forKey: @"carsToDropOff"];							
+			[industryDict setObject: ind forKey: @"industry"];
+
+			[industryMap setObject: industryDict forKey: [ind objectID]];
+		}
+		int emptyCount = 0;
+		int loadedCount = 0;
+		for (FreightCar *fc in [stop pickUpList]) {
+			NSDictionary *industryDict = [industryMap objectForKey: [[fc currentLocation] objectID]];
+			[[industryDict objectForKey: @"carsToPickUp"] addObject: fc];
+			if ([fc isLoaded]) {
+				loadedCount++;
+			} else {
+				emptyCount++;
+			}
+		}
+		// Only add interesting industries.
+		// TODO(bowdidge): Sort to predictable order?
+		for (NSDictionary *ind in [industryMap allValues]) {
+			if (([[ind objectForKey: @"carsToPickUp"] count] != 0) ||
+				([[ind objectForKey: @"carsToDropOff"] count] != 0)) {
+				[industriesArray addObject: ind];
+			}
+		}
+
+		
+
+		for (FreightCar *fc in [stop dropOffList]) {
+			NSDictionary *industryDict = [industryMap objectForKey: [[fc nextIndustry] objectID]];
+			[[industryDict objectForKey: @"carsToDropOff"] addObject: fc];
+		}
+		
+		NSMutableDictionary *stationDict = [[stop place ] templateDictionary];
+		[stationDict setObject: industriesArray forKey: @"industries"];
+		[stationDict setObject: [NSNumber numberWithBool: [industriesArray count] != 0] forKey: @"hasIndustries"];
+		[stationDict setObject: [stop pickUpList] forKey: @"carsToPickUp"];
+		[stationDict setObject: [stop dropOffList] forKey: @"carsToDropOff"];
+		[stationDict setObject: [NSNumber numberWithInt: emptyCount] forKey: @"emptyCount"];
+		[stationDict setObject: [NSNumber numberWithInt: loadedCount] forKey: @"loadedCount"];
+		[stationDict setObject: [stop place] forKey: @"station"];
+		
+
+		[result addObject: stationDict];
+	}
+	return result;
+	}
+	
+
 // Returns an array of stations with work for this train, where each
 // dictionary entry includes a name for the station and a list of industries at the station
 // with cars for the current train, and each industry is a dictionary with name and list
 // of cars.
 // Needed for implementing PICL switchlist and other by-station switchlists in the web interface.
+// TODO: Better done this way, or should I just be generating JSON and let all the work be done in JavaScript?
 - (NSArray*) stationsWithWork {
+	// TODO(bowdidge): Use TrainSizeVector instead.
 	NSArray *freightCars = [self allFreightCarsInVisitOrder];
 	NSMutableArray *result = [NSMutableArray array];
 	
@@ -354,10 +424,8 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	NSMutableDictionary *stationMap = [NSMutableDictionary dictionary];
 	for (Place *station in stationStops) {
 		if ([stationMap objectForKey: [station name]] == nil) {
-			NSMutableDictionary *stationDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-												[station name], @"name",
-												[NSMutableDictionary dictionary], @"industries",
-												nil];
+			NSMutableDictionary *stationDict = [station templateDictionary];
+			[stationDict setObject: [NSMutableDictionary dictionary] forKey: @"industries"];
 			[result addObject: stationDict];
 			[stationMap setObject: stationDict forKey: [station name]];
 		}
@@ -376,13 +444,18 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 		// Make place for start.
 		NSMutableDictionary *startIndustryDict = [startStationDict objectForKey: [start name]];
 		if (startIndustryDict == nil) {
-			startIndustryDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-								 [start name], @"name",
-								 [NSMutableArray array], @"carsToPickUp",
-								 [NSMutableArray array], @"carsToDropOff",
-								 [NSNumber numberWithInt: 0], @"emptyCount",
-								 [NSNumber numberWithInt: 0], @"loadsCount",
-								 nil];
+			startIndustryDict = [start templateDictionary];
+			[startIndustryDict setObject: [NSMutableArray array]
+                                  forKey: @"carsToPickUp"];
+			[startIndustryDict setObject: [NSMutableArray array]
+                                  forKey: @"carsToPickUp"];
+			[startIndustryDict setObject: [NSMutableArray array]
+                                  forKey: @"carsToDropOff"];
+			[startIndustryDict setObject: [NSNumber numberWithInt: 0]
+                                  forKey: @"emptyCount"];
+			[startIndustryDict setObject: [NSNumber numberWithInt: 0]
+                                  forKey: @"loadsCount"];
+
 			[startStationDict setObject: startIndustryDict forKey: [start name]];
 		}
 		[[startIndustryDict objectForKey: @"carsToPickUp"] addObject: fc];		
@@ -415,6 +488,10 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	for (NSMutableDictionary *station in result) {
 		if ([[station objectForKey: @"industries"] count] == 0) {
 			[stationsToRemove addObject: station];
+		} else {
+			[station setObject: [NSNumber numberWithInt: 1] forKey: @"outgoingEmptyCount"];
+			[station setObject: [NSNumber numberWithInt: 1] forKey: @"outgoingLoadsCount"];
+            [station setObject: [NSNumber numberWithInt: 40] forKey: @"outgoingLength"];
 		}
 	}
 

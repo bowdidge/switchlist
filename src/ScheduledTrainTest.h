@@ -31,8 +31,15 @@
 
 #import "LayoutTest.h"
 
+@class MGTemplateEngine;
+
 @interface ScheduledTrainTest : LayoutTest {
 
 }
 
+@end
+
+@interface ScheduledTrainTemplateTest : ScheduledTrainTest {
+	MGTemplateEngine *engine_;
+}
 @end

@@ -33,7 +33,66 @@
 #import "FreightCar.h"
 #import "InduYard.h"
 #import "Place.h"
+#import "ScheduledTrain.h"
 
+@implementation Stop 
+// Creates a stop for the train at the named station.
+// There may be more than one stop per place for a train if it visits
+// the same town multiple times.
+- (id) initWithPlace: (Place*) p {
+	[super init];
+	place_ = [p retain];
+	carsPickedUp_ = [[NSMutableArray alloc] init];
+	carsDroppedOff_ = [[NSMutableArray alloc] init];
+	return self;
+}
+
+- (void) dealloc {
+	[place_ release];
+	[super dealloc];
+}
+
+// Alternate allocator.
++ (id) stopWithPlace: (Place*) p {
+	Stop *s = [[Stop alloc] initWithPlace: p];
+	return [s autorelease];
+}
+
+- (Place*) place {
+	return place_;
+}
+
+// Returns the change in the train's length feet at the current stop.
+- (int) changeInLengthAtStop {
+	int value = 0;
+	for (FreightCar *fc in carsPickedUp_) {
+		value += [[fc length] intValue];
+	}
+	for (FreightCar *fc in carsDroppedOff_) {
+		value -= [[fc length] intValue];
+	}
+	return value;
+}
+
+// Adds a new car to be picked up at the current place.
+- (void) addCarToPickUpList: (FreightCar*) car {
+	[carsPickedUp_ addObject: car];
+}
+
+// Remembers a car to be removed at the current place.
+- (void) addCarToDropOffList: (FreightCar*) car {
+	[carsDroppedOff_ addObject: car];
+}
+
+- (NSArray*) pickUpList {
+	return carsPickedUp_;
+}
+
+- (NSArray*) dropOffList {
+	return carsDroppedOff_;
+}
+
+@end
 
 @implementation TrainSizeVector
 
@@ -71,13 +130,11 @@
 		}
 
 		if (found == YES) {
-			int currentLength = [[vector objectAtIndex: i] intValue];
-			[vector replaceObjectAtIndex: i
-							  withObject: [NSNumber numberWithInt: currentLength - [[car length] intValue]]];
+			Stop *currentStop = [stopsVector_ objectAtIndex: i];
+			[currentStop addCarToDropOffList: car];
 
-			currentLength = [[vector objectAtIndex: j] intValue];
-			[vector replaceObjectAtIndex: j
-							  withObject: [NSNumber numberWithInt: currentLength + [[car length] intValue]]];
+			Stop *prevStop = [stopsVector_ objectAtIndex: j];
+			[prevStop addCarToPickUpList: car];
 			continue;
 		}
 		
@@ -101,30 +158,39 @@
 		}
 		
 		if (found == YES) {
-			int currentLength = [[vector objectAtIndex: i] intValue];
-			[vector replaceObjectAtIndex: i
-							  withObject: [NSNumber numberWithInt: currentLength + [[car length] intValue]]];
+			Stop *currentStop = [stopsVector_ objectAtIndex: i];
+			[currentStop addCarToPickUpList: car];
 			
-			currentLength = [[vector objectAtIndex: j] intValue];
-			[vector replaceObjectAtIndex: j
-							  withObject: [NSNumber numberWithInt: currentLength - [[car length] intValue]]];
+			Stop *nextStop = [stopsVector_ objectAtIndex: j];
+			[nextStop addCarToDropOffList: car];
 			continue;
 		}
-			
-		// TODO(bowdidge): Fix.
+		
+		// We should have been able to figure out which start and end could carry this car;
+		// if we couldn't, how was the car ever determined to be safe to put on this train?
+		// TODO(bowdidge): any way to get rid of assert?
 		assert(found != NO);
 	}
 }
 
+- (id) initWithTrain: (ScheduledTrain*) train {
+	return [self initWithCars: [[train freightCars] allObjects] stops: [train stationsInOrder]];
+}
+
+// Creates a new TrainSizeVector with only a single car but with
+// a full list of stops for some train.
+// For specifying a single car to add to a train, or for testing.
 - (id) initWithCars: (NSArray*) cars stops: (NSArray*) stops {
 	int i;
 
 	[super init];
 	
 	int vectorLength = [stops count];
-	vector = [[NSMutableArray alloc] init];
+	stopsVector_ = [[NSMutableArray alloc] init];
 	for (i=0; i<vectorLength; i++) {
-		[vector addObject: [NSNumber numberWithInt: 0]];
+		Place *currentPlace = [stops objectAtIndex: i];
+		assert([currentPlace isMemberOfClass: [Place class]]);
+		[stopsVector_ addObject: [Stop stopWithPlace: currentPlace ]];
 	}
 	
 	[self addCars: cars stops: stops];
@@ -132,16 +198,24 @@
 }
 
 - (void) addVector: (TrainSizeVector*) otherVector {
-	if ([vector count] != [otherVector->vector count]) {
-		NSLog(@"Trying to compare TrainSizeVectors from different trains! %@ vs %@", vector, otherVector);
+	if ([stopsVector_ count] != [otherVector->stopsVector_ count]) {
+		NSLog(@"Trying to compare TrainSizeVectors from different trains! %@ vs %@", stopsVector_, otherVector);
 		return;
 	}
 	
-	int count = [vector count];
+	int count = [stopsVector_ count];
 	int i;
 	for (i=0; i<count; i++) {
-		int newValue = [[vector objectAtIndex: i] intValue] + [[otherVector->vector objectAtIndex: i] intValue];
-		[vector replaceObjectAtIndex: i withObject: [NSNumber numberWithInt: newValue]];
+		Stop *stop = [stopsVector_ objectAtIndex: i];
+		Stop *otherStop = [otherVector->stopsVector_ objectAtIndex: i];
+		assert([stop place] == [otherStop place]);
+
+		for (FreightCar *fc in [otherStop pickUpList]) {
+			[stop addCarToPickUpList: fc];
+		}
+		for (FreightCar *fc in [otherStop dropOffList]) {
+			[stop addCarToDropOffList: fc];
+		}
 	}
 }
 
@@ -149,10 +223,10 @@
 	int currentLength = 0;
 	int maximumLength = 0;
 	int i = 0;
-	int count = [vector count];
+	int count = [stopsVector_ count];
 	for (i=0;i<count; i++) {
-		NSNumber *change = [vector objectAtIndex: i];
-		currentLength += [change intValue];
+		Stop *change = [stopsVector_ objectAtIndex: i];
+		currentLength += [change changeInLengthAtStop];
 		if (currentLength > maximumLength) {
 			maximumLength = currentLength;
 		}
@@ -165,10 +239,10 @@
 }
 
 - (NSArray*) vector {
-	return vector;
+	return stopsVector_;
 }
 
 - (NSString*) description {
-	return [NSString stringWithFormat: @"<TrainSizeVector: %d elements, %@>", [vector count], vector];
+	return [NSString stringWithFormat: @"<TrainSizeVector: %d elements, %@>", [stopsVector_ count], stopsVector_];
 }
 @end

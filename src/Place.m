@@ -220,4 +220,12 @@
 - (NSComparisonResult) compareNames: (Place*) p {
 	return [[self name] compare: [p name]];
 }
+
+// Create dictionary imitating all HTML accessible fields of object.
+- (NSMutableDictionary*) templateDictionary {
+	NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+	[dict setObject: [self name] forKey: @"name"];
+	[dict setObject: [self allIndustriesSortedOrder] forKey: @"allIndustriesSortedOrder"];
+	return dict;
+}
 @end

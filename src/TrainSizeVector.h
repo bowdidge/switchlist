@@ -32,16 +32,43 @@
 #import <Foundation/Foundation.h>
 
 @class ScheduledTrain;
+@class Place;
+@class FreightCar;
 
-// Class for recording the total change in length of the train at each stop.
+// Stores information about a given stop for the train in the TrainSizeVector.
+// Remembers the cars added and removed, and total change in train length.
+@interface Stop : NSObject {
+	// Station this stop corresponds to.
+	Place *place_;
+	// List of cars picked up at this stop.
+	NSMutableArray *carsPickedUp_;
+	// List of cars dropped off at this stop.
+	NSMutableArray *carsDroppedOff_;
+}
+- (id) initWithPlace: (Place*) p;
++ (id) stopWithPlace: (Place*) p;
+- (Place*) place;
+
+- (NSArray*) pickUpList;
+- (NSArray*) dropOffList;
+
+- (void) addCarToPickUpList: (FreightCar*) car;
+- (void) addCarToDropOffList: (FreightCar*) car;
+
+- (int) changeInLengthAtStop;
+@end
+
+// Records the cars added and removed from the train at each stop.
 // Used for calculating whether cars can be added to train without the train
 // becoming larger than desired.
 @interface TrainSizeVector : NSObject {
 	// Array storing number of cars added or removed at each stop on the train.
-	NSMutableArray *vector;
+	NSMutableArray *stopsVector_;
 }
 
+// Constructor.  stops should be array of Place objects for the stops of the train.
 - (id) initWithCars: (NSArray*) cars stops: (NSArray*) stops;
+- (id) initWithTrain: (ScheduledTrain*) train;
 
 // Modifies this vector by adding values from otherVector.
 - (void) addVector: (TrainSizeVector*) vector;
