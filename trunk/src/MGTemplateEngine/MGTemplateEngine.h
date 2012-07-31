@@ -98,6 +98,9 @@
 // Utilities.
 - (NSObject *)resolveVariable:(NSString *)var;
 - (NSDictionary *)templateVariables;
+// Dump out dictionary of all variables currently set,
+// overriding as appropriate.
+- (NSDictionary*) allVariables;
 
 // Processing templates.
 - (NSString *)processTemplate:(NSString *)templateString withVariables:(NSDictionary *)variables;

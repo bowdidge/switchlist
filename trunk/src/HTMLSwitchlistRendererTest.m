@@ -78,9 +78,49 @@
 	STAssertEqualObjects(@"1", result, @"");
 }
 
-- (void) FailingTestSimpleCountZeroTemplate {
+- (void) failingTestSimpleCountZeroTemplate {
 	NSString *result = [engine_ processTemplate: @"{{foo.@count}}" withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
 	STAssertEqualObjects(@"0", result, @"");
+}
+
+- (void) testSimpleAssignment {
+	NSString *result = [engine_ processTemplate: @"{% set seq 0 %}{{seq}}" withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
+	STAssertEqualObjects(@"0", result, @"");
+}
+
+// Tests that the assignment of boo with a mathematical expression
+// returns the mathematical expression.
+- (void) testComplexAssignment {
+	NSString *result = [engine_ processTemplate: @"{% set seq 0 %}{{seq}} {% set boo 1+3 %}{{boo}}"
+								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"seq"]];
+	STAssertEqualObjects(@"0 4", result, @"");
+}
+
+// Tests that references to an invalid variable in an expression is handled without crashing
+// or throwing an exception.
+- (void) testReferenceToInvalidVariable {
+	NSString *result = [engine_ processTemplate: @"{% set seq bar+1 %}{{seq}}"
+								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"seq"]];
+	STAssertEqualObjects(@"bar+1", result, @"");
+}
+
+// Tests that a reassignment of an existing variable works.
+- (void) testReassignment {
+	NSString *result = [engine_ processTemplate: @"{% set seq 0 %}{{seq}} {% set seq seq+1 %}{{seq}}"
+								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"bar"]];
+	STAssertEqualObjects(@"0 1", result, @"");
+}
+
+- (void) failedTestForTo {
+	NSString *result = [engine_ processTemplate: @"{% for 1 to 5 %}1{% for %}"
+								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"loop"]];
+	STAssertEqualObjects(@"11111", result, @"");
+}
+
+- (void) testOverrideGlobal {
+	NSString *result = [engine_ processTemplate: @"{% set bar 17 %}{{bar}}"
+								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"bar"]];
+	STAssertEqualObjects(@"17", result, @"");
 }
 
 - (void) testArrayCount {
