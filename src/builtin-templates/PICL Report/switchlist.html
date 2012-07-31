@@ -2,10 +2,6 @@
 <HEAD>
 <title>Switchlist for {{train.name}}</title>
 <link href='switchlist.css' rel='stylesheet' type='text/css' media='all'>
-<script>
-<!-- This example still does not work because of problems handling empty for loops and if clauses.
-	 Consider writing out a JSON representation of the train and processing the list in JavaScript. -->
-</script>
 </HEAD>
 <BODY>
 <div class="switch-list">
@@ -14,42 +10,40 @@
 <br>
 WORK ORDER FOR {{train.name}}
 </div>
-{% for station in train.trainWorkByStation %}
-  {% if station.hasIndustries %}
-  {% for industry in station.industries %}
-    <div class="industry-header">
-    TRACK: {{industry.industry.name}}  STATION: {{station.station.name}}
-    </div>
-    <table class="industry-table">
-    <th>Seq</th><th>Car</th><th>LE</th><th>Block to</th><th></th>
-    {% for car in industry.carsToPickUp %}
-      <tr>
-      <td></td>
-      <td>{{car.reportingMarks }}</td>
-      <td>{% if car.isLoaded == 1 %} 
-            L
-          {% else %}
-            E
-          {% /if %}
-    </td>
-    <td> {{car.nextStop.name}} </td>
-    <td> {{car.nextStop.location.name}} </td>
-    </tr>
-	{% set outgoingLength outgoingLength+car.length %}
-	{% /for %}
-    </table>
-    <br>
+{% set seq 1 %}
+{% for station in train.stationsWithWork %}
+  {% for industry in station.industries %} 
+    {% if industry.carsToPickUp.@count >  0 %}
+      <div class="industry-header">
+        TRACK: {{industry.name}}  STATION: {{station.name}}
+      </div>
+      <table class="industry-table">
+      <th>Seq</th><th>Car</th><th>LE</th><th>Block to</th><th></th>
+      {% for car in industry.carsToPickUp %}
+        <tr>
+          <td>{{seq}}{% set seq seq+1 %}</td>
+          <td>{{car.reportingMarks }}</td>
+          <td>{% if car.isLoaded == 1 %} L {% else %} E {% /if %}</td>
+          <td> {{car.nextStop.name}} </td>
+          <td> {{car.nextStop.location.name}} </td>
+       </tr>
+      {% /for %}
+      </table>
+    {% /if %}
+    <!-- Don't ask me why I need to have the two if loops. -->
+
+    {% if industry.carsToPickUp.@count > 0 %}
+      <div class="industry-footer">
+      <div style="display: inline-block; width: 25%">Loads: {{industry.loadsCount}}</div>
+      <div style="display: inline-block; width: 25%">Empty: {{industry.emptyCount}}</div>
+      <div style="display: inline-block; width: 45%">Length: {{industry.carsToPickUp | sum_of_lengths}}</div>
+      </div>
+      <br>
+    {% /if %}
   {% /for %}
-  <!-- Consider generating all this in JavaScript. -->
-  <div class="industry-footer">
-  <div style="display: inline-block; width: 25%">Loads: {{station.outgoingEmptyCount}}</div>
-  <div style="display: inline-block; width: 25%">Empty: {{station.outgoingLoadsCount}}</div>
-  <div style="display: inline-block; width: 45%">Length: {{station.outgoingLength}}</div>
-  </div>
-  {% /if %}
 {% /for %}
 <div class="footer">
-PRINTED {{layout.currentDate | date_format: "MM/DD/YY - HH:mm:SS" }}
+PRINTED {{layout.currentDate | date_format: "MM/dd/YY - HH:mm:SS" }}
 <br>
 ** END OF REPORT **
 </div>
