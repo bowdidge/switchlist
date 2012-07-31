@@ -221,7 +221,6 @@
 
 #pragma mark Utilities.
 
-
 - (NSObject *)valueForVariable:(NSString *)var parent:(NSObject **)parent parentKey:(NSString **)parentKey
 {
 	// Returns value for given variable-path, and returns by reference the parent object the variable
@@ -655,6 +654,19 @@ but current block was started by \"%@\" marker",
 	}
 	return result;
 }
+
+// Return dictionary of all variables currently defined.
+- (NSDictionary*) allVariables {
+	NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary: _templateVariables];
+	[dict addEntriesFromDictionary: _globals];
+	NSEnumerator *stack = [_openBlocksStack reverseObjectEnumerator];
+	NSDictionary *stackFrame = nil;
+	while (stackFrame = [stack nextObject]) {
+		[dict addEntriesFromDictionary: [stackFrame objectForKey:BLOCK_VARIABLES_KEY]];
+	}
+	return dict;
+}
+
 
 
 #pragma mark Properties

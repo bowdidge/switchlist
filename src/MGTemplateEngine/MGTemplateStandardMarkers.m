@@ -549,7 +549,19 @@
 	} else if ([marker isEqualToString:SET]) {
 		if (args && [args count] == 2 && *outputEnabled) {
 			// Set variable arg1 to value arg2.
-			NSDictionary *newVar = [NSDictionary dictionaryWithObject:[args objectAtIndex:1] 
+			// Try evaluating arg1 as a mathematical expression.
+			NSPredicate *expr = [NSPredicate predicateWithFormat: [[args objectAtIndex: 1] stringByAppendingString: @"= 0"]];
+			NSExpression * left = [(NSComparisonPredicate *)expr leftExpression];
+			NSNumber *result;
+			@try {
+				// TODO(bowdidge): There's got to be a more efficient way than gathering all variables here -
+				// perhaps scan the string for literals, and lookup the value of only those?
+				result = [left expressionValueWithObject: [engine allVariables] 
+														   context:nil];
+			} @catch (NSException *e) {
+				result = [args objectAtIndex: 1];
+			}
+			NSDictionary *newVar = [NSDictionary dictionaryWithObject:result 
 															   forKey:[args objectAtIndex:0]];
 			if (newVar) {
 				*newVariables = newVar;
