@@ -13,7 +13,6 @@
 		3E01BF1114076E81008954B1 /* switchlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BF0914076E81008954B1 /* switchlist.html */; };
 		3E01BF391407722E008954B1 /* switchlist-layout.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BEA4140768ED008954B1 /* switchlist-layout.html */; };
 		3E01BF3A1407722E008954B1 /* switchlist-home.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E01BEA2140768ED008954B1 /* switchlist-home.html */; };
-		3E0C52471524299D0036AAE7 /* RockSalt.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3E0C52461524299D0036AAE7 /* RockSalt.ttf */; };
 		3E0E27AB13F63AD500488E4D /* network_wireless.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E0E27AA13F63AD500488E4D /* network_wireless.jpg */; };
 		3E108BC114049E7900B77CFE /* MGTemplateEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BA114049E7900B77CFE /* MGTemplateEngine.m */; };
 		3E108BC214049E7900B77CFE /* MGTemplateStandardFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BA914049E7900B77CFE /* MGTemplateStandardFilters.m */; };
@@ -519,8 +518,8 @@
 		2A37F4B8FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3E8258281528FCC400AF1FB8 /* lantern-icon.icns */,
 				3E0C52461524299D0036AAE7 /* RockSalt.ttf */,
+				3E8258281528FCC400AF1FB8 /* lantern-icon.icns */,
 				3E6B59B4140CB1CD006FFDD3 /* builtin-templates */,
 				3E0E27AA13F63AD500488E4D /* network_wireless.jpg */,
 				3EE5ED9D131A1E03009E2C83 /* SwitchList.help */,
@@ -926,7 +925,6 @@
 				3EE1937A145C925200CB614D /* reserved-car-report.html in Resources */,
 				3EE1943C145CCD6500CB614D /* yard-report.html in Resources */,
 				3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */,
-				3E0C52471524299D0036AAE7 /* RockSalt.ttf in Resources */,
 				3E8258291528FCC400AF1FB8 /* lantern-icon.icns in Resources */,
 				3E6BA8F8155266880030AE7D /* layout.css in Resources */,
 				3E6BA8F9155266880030AE7D /* switchlist.css in Resources */,
@@ -949,7 +947,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n";
+			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\nmkdir $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\ncp resources/RockSalt.ttf $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n";
 		};
 		3EC3B0861277DEFE00C00AD3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
