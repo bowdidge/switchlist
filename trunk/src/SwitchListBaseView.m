@@ -445,8 +445,10 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 - (NSString*) handwritingFontName {
 	// Dakota's really nice, but only available if you installed a special version of iLife.
 	// Rock Salt takes too much space, but is nice.
+	// Fonts loaded in SwitchListAppDelegate.m's - (BOOL)loadLocalFonts:requiredFonts:
+
 	NSMutableArray *fontChoices = [NSMutableArray arrayWithObjects: 
-								   // @"Handwriting - Dakota", 
+								   @"Handwriting - Dakota", 
 								   @"Rock Salt", 
 								   nil];
 	
