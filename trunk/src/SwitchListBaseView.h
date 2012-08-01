@@ -73,6 +73,9 @@
 	// all drawing decisions, and represents the size of the paper inside the default margins.
 	float imageableWidth_;
 	float imageableHeight_;
+
+	// Each document gets a random number exactly once so values don't change per redraw.
+	int randomValue_;
 }
 
 // Initial frame size indicates the initial page size.
@@ -162,7 +165,8 @@
 - (void) drawTableForCars: (NSArray*) carsToDisplay rect: (NSRect) rect source: (SwitchListSource*) source;
 
 // Returns a random name for signatures.
-- (NSString*) randomFunctionary;
+// Seed used to generate different names per document.
+- (NSString*) randomFunctionary: (int) seed;
 
 // Testing only.
 - (NSArray*) splitStringByDashes: (NSString*) input;

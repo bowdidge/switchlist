@@ -132,6 +132,7 @@
 	imageableWidth_ = frameRect.size.width;
 	imageableHeight_ = frameRect.size.height;
 	
+	randomValue_ = random();
 	return self;
 }
 
@@ -513,8 +514,9 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 }
 
 // Returns a random name for signatures.
-- (NSString*) randomFunctionary {
+- (NSString*) randomFunctionary: (int) seed {
 	// Taken from SP company officers from a 1946 timetable.
+	// Keep the list odd and prime to avoid giving similar names with multiples-of-ten sees.
 	NSArray *names = [NSArray arrayWithObjects: @"R. Riggs",
 					  @"T. F. Goodwin",
 					  @" F. J. Dignon",
@@ -525,8 +527,9 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 					  @"Fuzzy Schetter", 
 					  @"E. L. Cooper",
 					  @"L.d'A",
+					  @"R. Souza",
 					  nil];
-	int rnd = random() % [names count];
+	int rnd = (randomValue_ + seed) % [names count];
 	return [names objectAtIndex: rnd];
 }
 
