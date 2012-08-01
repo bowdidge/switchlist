@@ -76,6 +76,19 @@
 	STAssertEqualObjects(@"Name:", [a objectAtIndex: 0], @"");
 	STAssertEqualObjects(@"_______", [a objectAtIndex: 1], @"");
 }
+
+- (void) testRandomFunctionary {
+	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
+	NSString *firstString = [view randomFunctionary: 0];
+	// Make sure same answer each time.
+	STAssertEqualObjects(firstString, [view randomFunctionary: 0], @"");
+	// Make sure changed seed returns different value.
+	STAssertFalse([firstString compare: [view randomFunctionary: 1]] == NSOrderedSame, @"");
+	// Make sure likely seed returns different value.
+	// 540 is likely window size.
+	STAssertFalse([firstString compare: [view randomFunctionary: 720]] == NSOrderedSame,
+				  @"%@ shouldn't equal %@", firstString, [view randomFunctionary: 540]);
+}
 @end
 
 
