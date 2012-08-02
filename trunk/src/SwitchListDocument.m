@@ -961,7 +961,7 @@
 		return [self trainTableObjectValueForTableColumn: tableColumn row: row];
 	} else {
 		// Seems to happen on PowerPC in Mac OS X 10.5.  No idea why.
-		NSLog(@"Calling numberOfRowsInTableView on wrong table: %@ != %@!", tableView, overviewTrainTable_);
+		NSLog(@"Calling tableView:ObjectValueForTableColumn:row: on wrong table: %@ != %@!", tableView, overviewTrainTable_);
 		return nil;
 	}
 }
