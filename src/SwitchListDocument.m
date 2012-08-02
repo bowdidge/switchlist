@@ -939,7 +939,8 @@
 	if (tableView == overviewTrainTable_) {
 		return [self numberOfRowsInTrainTableView];
 	} else {
-		assert(1==0);
+		// Seems to happen on PowerPC in Mac OS X 10.5.  No idea why.
+		NSLog(@"Calling numberOfRowsInTableView on wrong table: %@ != %@!", tableView, overviewTrainTable_);
 	}
 	return 0;
 }
@@ -959,7 +960,8 @@
 	if (tableView == overviewTrainTable_) {
 		return [self trainTableObjectValueForTableColumn: tableColumn row: row];
 	} else {
-		assert(1==0);
+		// Seems to happen on PowerPC in Mac OS X 10.5.  No idea why.
+		NSLog(@"Calling numberOfRowsInTableView on wrong table: %@ != %@!", tableView, overviewTrainTable_);
 	}
 }
 
