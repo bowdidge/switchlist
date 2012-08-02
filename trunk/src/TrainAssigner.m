@@ -672,7 +672,6 @@ NSString *NameOrNoValue(NSString* string) {
 	for (FreightCar *car in allCars) {
 		if ([self assignCarToTrain: car] == CarAssignmentSuccess) {
 			[carsMoved addObject: car];
-			assert([car cargo] != nil || [car intermediateDestination] != nil);
 		}
 	}
 	

@@ -226,7 +226,6 @@ int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *co
     [self willAccessValueForKey: @"currentLocation"];
     tmpObject = [self primitiveValueForKey: @"currentLocation"];
     [self didAccessValueForKey: @"currentLocation"];
-//	assert([tmpObject isOffline] == NO);
     
     return tmpObject;
 }

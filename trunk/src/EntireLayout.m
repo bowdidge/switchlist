@@ -146,7 +146,9 @@ NSString *NormalizeDivisionString(NSString *inString) {
 		[workbench_ setIsStaging: NO];
 		[workbench_ setIsOffline: YES];
 	} else {
-		assert([result count] == 1);
+		if ([result count] != 1) {
+			NSLog(@"Too many workbenches!");
+		}
 		workbench_ = [result objectAtIndex: 0];
 	}
 	[workbench_ retain];

@@ -117,7 +117,7 @@
 			}
 		}
 		
-		assert(i != stationCount);
+		NSAssert(i != stationCount, @"Couldn't find next station for car %@", car);
 
 		// Go backwards to find prev visit.
 		BOOL found = NO;
@@ -169,7 +169,7 @@
 		// We should have been able to figure out which start and end could carry this car;
 		// if we couldn't, how was the car ever determined to be safe to put on this train?
 		// TODO(bowdidge): any way to get rid of assert?
-		assert(found != NO);
+		NSAssert(found != NO, @"TrainSizeVector addCars:stops: could not find how to carry car %@", car);
 	}
 }
 
@@ -189,7 +189,6 @@
 	stopsVector_ = [[NSMutableArray alloc] init];
 	for (i=0; i<vectorLength; i++) {
 		Place *currentPlace = [stops objectAtIndex: i];
-		assert([currentPlace isMemberOfClass: [Place class]]);
 		[stopsVector_ addObject: [Stop stopWithPlace: currentPlace ]];
 	}
 	
@@ -208,7 +207,7 @@
 	for (i=0; i<count; i++) {
 		Stop *stop = [stopsVector_ objectAtIndex: i];
 		Stop *otherStop = [otherVector->stopsVector_ objectAtIndex: i];
-		assert([stop place] == [otherStop place]);
+		NSAssert([stop place] == [otherStop place], @"Tried to merge two train vectors for different trains.");
 
 		for (FreightCar *fc in [otherStop pickUpList]) {
 			[stop addCarToPickUpList: fc];
