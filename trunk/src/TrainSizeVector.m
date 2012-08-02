@@ -117,7 +117,9 @@
 			}
 		}
 		
-		NSAssert(i != stationCount, @"Couldn't find next station for car %@", car);
+		if (i == stationCount) {
+			NSLog(@"Couldn't find next station for car %@", car);
+		}
 
 		// Go backwards to find prev visit.
 		BOOL found = NO;
@@ -169,7 +171,9 @@
 		// We should have been able to figure out which start and end could carry this car;
 		// if we couldn't, how was the car ever determined to be safe to put on this train?
 		// TODO(bowdidge): any way to get rid of assert?
-		NSAssert(found != NO, @"TrainSizeVector addCars:stops: could not find how to carry car %@", car);
+		if (found == NO) {
+			NSLog(@"TrainSizeVector addCars:stops: could not find how to carry car %@", car);
+		}
 	}
 }
 
