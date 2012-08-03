@@ -66,6 +66,7 @@
 	lastBody = nil;
 	lastType = nil;
 	lastMessage = nil;
+    return self;
 }
 
 - (void) clearState {
@@ -130,6 +131,7 @@
 	}
 	[webServerDelegate_ release];
 	webServerDelegate_ = nil;
+    [server_ release];
 	[unitTestBundle_ release];
 }
 	
