@@ -48,7 +48,7 @@
 @end
 
 // Hides details on app-level actions -- mostly menus.
-@interface SwitchListAppDelegate : NSObject<NSOutlineViewDataSource, NSOutlineViewDelegate>  {
+@interface SwitchListAppDelegate : NSObject<NSOutlineViewDataSource, NSOutlineViewDelegate, NSAlertDelegate>  {
 	IBOutlet NSWindow *reportWindow_;
 	IBOutlet NSTextView *reportTextView_;
 

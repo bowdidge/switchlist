@@ -396,6 +396,14 @@ error:
 	[self loadLocalFonts: &err requiredFonts: [NSArray array]];
 }
 
+- (BOOL)alertShowHelp:(NSAlert *)alert {
+	// Open the help link in the alert.
+	// TODO(bowdidge): Still doesn't appear to work.  Are spaces the problem?
+	NSString *locBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
+	[[NSHelpManager sharedHelpManager] openHelpAnchor: [alert helpAnchor] inBook: locBookName];
+	return YES;
+}
+
 // Selector for the example menu items.  Opens the example named by the sending menu,
 // and provides a helpful dialog box pointing the user at documentation.
 - (IBAction) doOpenExample: (id) sender {
@@ -430,8 +438,11 @@ error:
 									 defaultButton: @"OK" alternateButton: nil otherButton: nil
 						 informativeTextWithFormat:
 					  @"For more background on this example, check out the 'Example Layouts' section of the SwitchList help."];
+	// Contact SwitchListAppDelegate for dispatching the help.
+	[alert setDelegate: self];
 	[alert setShowsHelp: YES];
-	NSString *helpAnchor = [NSString stringWithFormat: @"Example-%@", exampleName];
+	NSString *helpAnchor = [NSString stringWithFormat: @"Example%@", [exampleName stringByReplacingOccurrencesOfString:@" " withString:@""]];
+	NSLog(@"SwitchListPreferencesHelp", helpAnchor);
 	[alert setHelpAnchor: helpAnchor];
 	[alert runModal];
 	return;
