@@ -181,8 +181,8 @@
 }
 
 - (TrainSizeVector*) trainSizeVector {
-	return [[TrainSizeVector alloc] initWithCars: [[self freightCars] allObjects]
-                                           stops: [self stationsInOrder]];
+	return [[[TrainSizeVector alloc] initWithCars: [[self freightCars] allObjects]
+                                           stops: [self stationsInOrder]] autorelease];
 }
 
 - (Place*) stationWithName: (NSString *)stationName {
