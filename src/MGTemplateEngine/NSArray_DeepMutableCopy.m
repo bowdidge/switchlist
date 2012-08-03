@@ -23,13 +23,13 @@
 		
         anObject = [self objectAtIndex:index];
         if ([anObject respondsToSelector:@selector(deepMutableCopy)]) {
-            anObject = [anObject deepMutableCopy];
-            [newArray addObject:anObject];
-            [anObject release];
+            id anObject2 = [anObject deepMutableCopy];
+            [newArray addObject:anObject2];
+            [anObject2 release];
         } else if ([anObject respondsToSelector:@selector(mutableCopyWithZone:)]) {
-            anObject = [anObject mutableCopyWithZone:nil];
-            [newArray addObject:anObject];
-            [anObject release];
+            id anObject2 = [anObject mutableCopyWithZone:nil];
+            [newArray addObject:anObject2];
+            [anObject2 release];
         } else {
             [newArray addObject:anObject];
         }
