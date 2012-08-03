@@ -442,7 +442,6 @@ error:
 	[alert setDelegate: self];
 	[alert setShowsHelp: YES];
 	NSString *helpAnchor = [NSString stringWithFormat: @"Example%@", [exampleName stringByReplacingOccurrencesOfString:@" " withString:@""]];
-	NSLog(@"SwitchListPreferencesHelp", helpAnchor);
 	[alert setHelpAnchor: helpAnchor];
 	[alert runModal];
 	return;
