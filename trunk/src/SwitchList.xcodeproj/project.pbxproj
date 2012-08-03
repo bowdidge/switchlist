@@ -1052,8 +1052,8 @@
 				3E108BC314049E7900B77CFE /* MGTemplateStandardMarkers.m in Sources */,
 				3E108BC414049E7900B77CFE /* NSArray_DeepMutableCopy.m in Sources */,
 				3E108BC514049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */,
-				3E108BC614049E7900B77CFE /* RegexKitLite.m in Sources */,
 				3E108C621404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
+				3E108BC614049E7900B77CFE /* RegexKitLite.m in Sources */,
 				3EFEC5251408515500F9CF15 /* WebServerDelegate.m in Sources */,
 				3EFEC5261408515500F9CF15 /* WebServerDelegateTest.m in Sources */,
 				3EFEC533140851A200F9CF15 /* SwitchListFilters.m in Sources */,
@@ -1202,6 +1202,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -1216,6 +1217,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -1223,6 +1225,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
@@ -1236,6 +1239,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
+				SKIP_INSTALL = YES;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1244,6 +1248,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -1255,12 +1260,14 @@
 					AppKit,
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
+				SKIP_INSTALL = YES;
 			};
 			name = Default;
 		};
 		3EA5977D08DC051800D5A852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -1272,9 +1279,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -1289,6 +1297,7 @@
 					i386,
 					ppc,
 				);
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1298,9 +1307,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -1311,6 +1321,7 @@
 		3EA5977F08DC051800D5A852 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -1319,9 +1330,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -1372,6 +1384,7 @@
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 			};
@@ -1399,6 +1412,7 @@
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
 				ZERO_LINK = NO;
@@ -1425,6 +1439,7 @@
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
 				VALID_ARCHS = i386;
 				WRAPPER_EXTENSION = octest;
