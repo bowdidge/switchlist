@@ -1,21 +1,25 @@
 #!/bin/csh
 #
 # Build the SwitchList.app distribution and put everything in a single 
-# Disk Image.
-#
-# Get the version by searching the CVS log for a file for the tag names. 
-# Pick the first tag name, and grab the name portion.
-#
-# TODO(bowdidge) Redo for SVN
+# Disk Image.  Either build from top-of-tree (using the trunk branch),
+# or build from the named svn tag for a specific version.
 
-if $#argv != 1 then
-  echo Usage: makeDistribution SwitchList.x.y.z
+# Default values.
+set TAG="trunk"
+set DMG_NAME="SwitchList"
+
+if ( $#argv == 1) then
+  set TAG="tag/$1"
+  set DMG_NAME=$1
+else if ($#argv > 2) then
+  echo "Usage: makeDistribution [SwitchList.x.y.z]"
+  echo "If tag is omitted, project will be built from trunk."
   exit 1
 endif
 
-set DMG_NAME=$1
-
 echo Disk Image name will be $DMG_NAME
+
+# Do needed cleanup and remove remnants of previous builds.
 rm -rf /tmp/SwitchList /tmp/$DMG_NAME.dmg
 rm -f /tmp/SwitchList.tar.gz /tmp/SwitchList.tar
 rm -rf /tmp/switchlist-read-only
@@ -24,10 +28,9 @@ rm -rf /tmp/switchlist-read-only
 mkdir /tmp/SwitchList
 
 # /tmp/switchlist-read-only contains the checked-out version of the sources.
-# TODO(bowdidge) Check out the specific tag.
-svn checkout http://switchlist.googlecode.com/svn/tags/$1 /tmp/switchlist-read-only
+svn checkout http://switchlist.googlecode.com/svn/$TAG /tmp/switchlist-read-only
 if $status != 0 then
-  echo "Problems checking out svn sources - non-existent tag $1?"
+  echo "Problems checking out svn sources - non-existent tag $TAG?"
   exit 1
 endif
 
@@ -45,9 +48,19 @@ cp -r /tmp/XcodeBuildProducts/Release/SwitchList.app /tmp/SwitchList
 cp -r examples /tmp/SwitchList/Example\ Layouts
 cp -r template_examples /tmp/SwitchList/Custom\ Switchlist\ Examples
 
+# Create disk image.
 pushd /tmp/
 hdiutil create ./$DMG_NAME.dmg -srcfolder SwitchList/ -ov
 popd
+
+# Validate.
+
+# Make sure something was built.
+if ( -e /tmp/SwitchList.dst/Applications/SwitchList.app ) then
+  echo "PASS: SwitchList.app directory exists."
+else 
+  echo "FAIL: No SwitchList.app directory seen."
+endif
 
 # Make sure it's a fat binary.
 file /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList | grep "ppc" >&/dev/null
