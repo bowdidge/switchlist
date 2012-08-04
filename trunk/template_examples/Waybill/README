@@ -17,6 +17,8 @@ The swiping code is based on SwipeView by Matteo Spinnelli.
 
 This is a work-in-progress.
 
+To see an example, open waybillExample.html in your web browser.
+
 To install the Waybill switchlist style and try it out in SwitchList:
 
 * If necessary, create a SwitchList folder in your Library/Application
