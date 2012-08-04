@@ -771,7 +771,7 @@
 	if (outErrors != nil) {
 		NSAlert *alert = [NSAlert alertWithMessageText: @"Errors while importing file."
 										 defaultButton: @"OK" alternateButton: nil otherButton: nil
-							 informativeTextWithFormat: outErrors];
+							 informativeTextWithFormat: @"%@", outErrors];
 		[alert runModal];
 		return;
 	}
@@ -785,7 +785,7 @@
 	
 	NSAlert *alert = [NSAlert alertWithMessageText: @"Import complete."
 									 defaultButton: @"OK" alternateButton: nil otherButton: nil
-						 informativeTextWithFormat: successString];
+						 informativeTextWithFormat: @"%@", successString];
 	[alert runModal];
 }
 	
