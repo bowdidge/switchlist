@@ -43,7 +43,7 @@ NSString *DragTownsType = @"DragTownsType";
 	[routeTableView_ setDataSource: self];
 	[townTableView_ setDataSource: self];
 	[routeTableView_ setDraggingSourceOperationMask: NSDragOperationMove forLocal: YES];
-	[sheetTitle_ setStringValue: [NSString stringWithFormat: @"Stations to Visit:", [trainBeingChanged_ name]]];
+	[sheetTitle_ setStringValue: [NSString stringWithFormat: @"Stations for train %@ to Visit:", [trainBeingChanged_ name]]];
 	[warningText_ setStringValue: @""];
 	trainBeingChanged_ = nil;
 	entireLayout_ = nil;

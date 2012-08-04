@@ -77,7 +77,7 @@
 	for (NSNumber *key in [industryToCarMapping_ keyEnumerator]) {
 		[result appendFormat: @"  Industry %@:\n", key];
 		for (FreightCar *fc in [industryToCarMapping_ objectForKey: key]) {
-			[result appendFormat: @"%    @: door %@\n", fc, [carToDoorMapping_ objectForKey: [fc objectID]]];
+			[result appendFormat: @"    %@: door %@\n", fc, [carToDoorMapping_ objectForKey: [fc objectID]]];
 		}
 	}
 	[result appendString: @">\n"];
