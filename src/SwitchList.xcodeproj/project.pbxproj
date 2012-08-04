@@ -111,7 +111,6 @@
 		3E9AF44314F9F2AF00580148 /* TrainSizeVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF44214F9F2AF00580148 /* TrainSizeVector.m */; };
 		3E9AF45214F9FABE00580148 /* TrainSizeVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF44214F9F2AF00580148 /* TrainSizeVector.m */; };
 		3E9AF46F14F9FC8900580148 /* TrainSizeVectorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF46E14F9FC8900580148 /* TrainSizeVectorTest.m */; };
-		3E9CE102128CFA9F0077E916 /* switchlistNewIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */; };
 		3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */; };
 		3EB0AC0C127BB95000E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
 		3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
@@ -163,7 +162,6 @@
 		3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED482330D715B3600C36741 /* SwitchListView.m */; };
 		3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
 		3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */; };
-		3EC83F6D127CFC1A00B9DF33 /* SwitchList icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */; };
 		3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
 		3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3ED58A6F13A727F500F6E26E /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
@@ -359,7 +357,6 @@
 		3E9AF44214F9F2AF00580148 /* TrainSizeVector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainSizeVector.m; sourceTree = "<group>"; };
 		3E9AF46D14F9FC8900580148 /* TrainSizeVectorTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrainSizeVectorTest.h; sourceTree = "<group>"; };
 		3E9AF46E14F9FC8900580148 /* TrainSizeVectorTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrainSizeVectorTest.m; sourceTree = "<group>"; };
-		3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = switchlistNewIcon.icns; path = resources/switchlistNewIcon.icns; sourceTree = "<group>"; };
 		3E9E1F780951605600C5E038 /* IndustryReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryReport.h; sourceTree = "<group>"; };
 		3E9E1F790951605600C5E038 /* IndustryReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryReport.m; sourceTree = "<group>"; };
 		3EA1162213501BC500365DEB /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/SwitchListReportWindow.xib; sourceTree = "<group>"; };
@@ -376,7 +373,6 @@
 		3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
 		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntireLayoutTest.h; sourceTree = "<group>"; };
 		3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntireLayoutTest.m; sourceTree = "<group>"; };
-		3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = "SwitchList icon.icns"; path = "resources/SwitchList icon.icns"; sourceTree = "<group>"; };
 		3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-carlist.html"; path = "templates/switchlist-carlist.html"; sourceTree = "<group>"; };
 		3ED482320D715B3600C36741 /* SwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListView.h; sourceTree = "<group>"; };
 		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
@@ -487,8 +483,6 @@
 		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				3E9CE101128CFA9F0077E916 /* switchlistNewIcon.icns */,
-				3EC83F6C127CFC1A00B9DF33 /* SwitchList icon.icns */,
 				3E917A130951659A004647C7 /* Reports */,
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
 				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
@@ -905,14 +899,12 @@
 			files = (
 				3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */,
 				3E6C6EC812F007E200C7A8D1 /* Credits.html in Resources */,
-				3EC83F6D127CFC1A00B9DF33 /* SwitchList icon.icns in Resources */,
 				3E88AED5127B2DD2003486E2 /* train.jpg in Resources */,
 				8D15AC2D0486D014006FF6A4 /* MainMenu.nib in Resources */,
 				8D15AC2E0486D014006FF6A4 /* SwitchListWindow.nib in Resources */,
 				8D15AC2F0486D014006FF6A4 /* InfoPlist.strings in Resources */,
 				3EFA164509515C1500654CC9 /* Report.nib in Resources */,
 				3E3B3BBF140E0B4B00F4F56C /* HTMLSwitchListView.xib in Resources */,
-				3E9CE102128CFA9F0077E916 /* switchlistNewIcon.icns in Resources */,
 				3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */,
 				3E0E27AB13F63AD500488E4D /* network_wireless.jpg in Resources */,
 				3E01BEAC140768ED008954B1 /* switchlist-layout.html in Resources */,
