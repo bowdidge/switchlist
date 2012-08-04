@@ -48,7 +48,7 @@
 	[super initWithDocument: document];
 	industryObjects_  = [industryObjects retain];
 	uniqueStrings_ = nil;
-	unspecifiedString_ = [NSString stringWithString: @"Unspecified"];
+	unspecifiedString_ = @"Unspecified";
 	return self;
 }
 - (void) dealloc {
@@ -142,7 +142,7 @@
 	NSString *carType;
 	[result appendFormat: @"%20s ","Industry"];
 	while ((carType = [carTypeEnum nextObject]) != nil) {
-		[result appendFormat: @" %04s    ",[carType UTF8String]];
+		[result appendFormat: @" %4s    ",[carType UTF8String]];
 	}
 	[result appendString: @"\n"];
 

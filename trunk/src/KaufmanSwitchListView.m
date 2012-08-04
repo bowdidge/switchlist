@@ -353,7 +353,7 @@ int sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar*
 	
 	NSDictionary *tinyTitleAttrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: 6]
 																 forKey: NSFontAttributeName];
-	NSString *formNumber = [NSString stringWithString: @"FORM B-7"];
+	NSString *formNumber = @"FORM B-7";
 	[formNumber drawInRect: NSMakeRect(18,18,100,40) withAttributes: tinyTitleAttrs];
 }
 

@@ -183,7 +183,7 @@
 - (float) lineHeight {
 	NSMutableDictionary *typedFontAttr = [NSMutableDictionary dictionary];
 	[typedFontAttr setValue: [self typedFont] forKey: NSFontAttributeName];
-	NSSize size = [[NSString stringWithString: @"gHpQ"] sizeWithAttributes: typedFontAttr];
+	NSSize size = [@"gHpQ" sizeWithAttributes: typedFontAttr];
 	return size.height;
 }
 	
