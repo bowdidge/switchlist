@@ -38,6 +38,7 @@
 @implementation CarAssignerTest
 
 NSString *FREIGHT_CAR_3 = @"ATSF 1";
+NSString *FREIGHT_CAR_4 = @"NYC 1";
 
 - (void) setUp {
 	[super setUp];
@@ -228,6 +229,40 @@ NSString *FREIGHT_CAR_3 = @"ATSF 1";
 
 	[fc1 setHomeDivision: @" "];
 	STAssertNil([fc1 homeDivision], @"Check setting home division to spaces works.");
+}
+
+- (void) testSameCarNotAssignedEveryTime {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
+	[fc1 setCargo: nil];
+	[fc1 setIsLoaded: YES];
+	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+
+	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_4];
+	[fc2 setCargo: nil];
+	[fc2 setIsLoaded: YES];
+	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
+
+	
+	Cargo *c1 = [self makeCargo: @"a to b"];	
+	[c1 setSource: [self industryAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	
+
+    int numberOfTimesFc1Assigned = 0;
+	int i;
+	for (i=0;i<10;i++) {
+		CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObjects: fc1, fc2, nil]
+																		  layout: entireLayout_];
+		[myCarAssigner autorelease];
+		if (fc1 == [myCarAssigner assignedCarForCargo: c1]) {
+			numberOfTimesFc1Assigned++;
+			[fc1 setCargo: nil];
+		}
+	}
+	// fc1 and fc2 should have been assigned equally.  If only fc1 or fc2 got
+	// assigned, something's probably wrong.
+	// TODO(bowdidge): Probably a flaky test. There's probably a better way to test this.
+	STAssertTrue(2 < numberOfTimesFc1Assigned < 8, @"Car assigner skewed to particular car, expected 5 uses, found %d", numberOfTimesFc1Assigned);
 }
 
 
