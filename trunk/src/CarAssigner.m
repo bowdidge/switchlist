@@ -32,6 +32,26 @@
 #import "Cargo.h"
 #import "Industry.h"
 
+@interface NSArray (RandomizedList) 
+- (NSArray*) randomize;
+@end
+
+@implementation NSArray (RandomizedList)
+
+// Creates a new version of an array in a different order chosen randomly.
+- (NSArray*) randomize {
+	NSMutableArray *remainingItems = [NSMutableArray arrayWithArray: self];
+	NSMutableArray *result = [NSMutableArray array];
+	int i;
+	for (i=[remainingItems count]; i>0; i--) {
+		int itemToRemove = rand() % i;
+		id object = [remainingItems objectAtIndex: itemToRemove];
+		[remainingItems removeObjectAtIndex: itemToRemove];
+		[result addObject: object];
+	}
+	return result;
+}
+@end
 
 @implementation CarAssigner
 - (id) initWithUnassignedCars: (NSArray*) cars layout: (EntireLayout*) objMap {
@@ -76,7 +96,7 @@
 - (FreightCar*) assignedCarForCargo: (Cargo*) cargo {
 	// pick first cargo.  Find first freight car with this car type. 
 	// set cargo on freight car to that cargo, remove freight car from available list, and loop.
-	NSEnumerator *e = [availableCars_ objectEnumerator];
+	NSEnumerator *e = [[availableCars_ randomize] objectEnumerator];
 	FreightCar *frtCar;
 	while ((frtCar = [e nextObject]) != nil) {
 		if ([self cargo: cargo appropriateForCar: frtCar] == YES) {
