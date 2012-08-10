@@ -304,15 +304,16 @@
 	
     fontsURL = [NSURL fileURLWithPath:fontsFolder];
 	if (fontsURL) {
-		OSStatus status;
-		FSRef fsRef;
-		CFURLGetFSRef((CFURLRef)fontsURL, &fsRef);
-		status = ATSFontActivateFromFileReference(&fsRef, kATSFontContextLocal, kATSFontFormatUnspecified, 
-												  NULL, kATSOptionFlagsDefault, NULL);
-		if (status != noErr) {
-			errorMessage = @"Failed to acivate fonts!";
-			goto error;
-		}
+        FSRef fsRef;
+        CFURLGetFSRef((CFURLRef)fontsURL, &fsRef);
+        OSStatus status;
+        // Prepare to switch to CoreText Font Manager - ATSFontActivate* is deprecated.
+        status = ATSFontActivateFromFileReference(&fsRef, kATSFontContextLocal, kATSFontFormatUnspecified,
+                                                  NULL, kATSOptionFlagsDefault, NULL);
+        if (status != noErr) {
+            errorMessage = @"Failed to activate fonts!";
+            goto error;
+        }
 	}
 	if (fontnames != nil) {
 		NSFontManager *fontManager = [NSFontManager sharedFontManager];
@@ -428,7 +429,7 @@ error:
 	if (!result) {
 		NSAlert *alert = [NSAlert alertWithMessageText: @"Cannot open example file."
 										 defaultButton: @"OK" alternateButton: nil otherButton: nil
-							 informativeTextWithFormat: [error localizedDescription]];
+							 informativeTextWithFormat: @"%@", [error localizedDescription]];
 		[alert runModal];
 		return;
 	}
