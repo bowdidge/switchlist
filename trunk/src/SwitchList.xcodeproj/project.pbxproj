@@ -1263,8 +1263,10 @@
 		3EA5977D08DC051800D5A852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1275,10 +1277,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = /Applications;
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -1293,9 +1294,10 @@
 					i386,
 					ppc,
 				);
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEPLOYMENT_LOCATION = YES;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1308,7 +1310,6 @@
 				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -1319,8 +1320,9 @@
 		3EA5977F08DC051800D5A852 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_MODEL_TUNING = G5;
@@ -1329,10 +1331,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = /Applications;
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -1448,6 +1449,94 @@
 			};
 			name = Default;
 		};
+		3ECA381C15D4C46E0084413B /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+			};
+			name = "App Store";
+		};
+		3ECA381D15D4C46E0084413B /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = SwitchList_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = /Applications;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				PRODUCT_NAME = SwitchList;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = macosx;
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = "App Store";
+		};
+		3ECA381E15D4C46E0084413B /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Cocoa.framework/Headers/Cocoa.h";
+				INFOPLIST_FILE = "Unit tests-Info.plist";
+				INSTALL_PATH = "$(USER_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Cocoa,
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "Unit tests";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				TEST_AFTER_BUILD = YES;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = "App Store";
+		};
+		3ECA381F15D4C46E0084413B /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PRODUCT_NAME = testAdvanceLayouts;
+				SKIP_INSTALL = YES;
+				ZERO_LINK = NO;
+			};
+			name = "App Store";
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1456,40 +1545,44 @@
 			buildConfigurations = (
 				3E43B4BF1507411B00AAA92B /* Debug */,
 				3E43B4C01507411B00AAA92B /* Release */,
+				3ECA381F15D4C46E0084413B /* App Store */,
 				3E43B4C11507411B00AAA92B /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 		3EA5977C08DC051800D5A852 /* Build configuration list for PBXNativeTarget "SwitchList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3EA5977D08DC051800D5A852 /* Debug */,
 				3EA5977E08DC051800D5A852 /* Release */,
+				3ECA381D15D4C46E0084413B /* App Store */,
 				3EA5977F08DC051800D5A852 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 		3EA5978008DC051800D5A852 /* Build configuration list for PBXProject "SwitchList" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3EA5978108DC051800D5A852 /* Debug */,
 				3EA5978208DC051800D5A852 /* Release */,
+				3ECA381C15D4C46E0084413B /* App Store */,
 				3EA5978308DC051800D5A852 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 		3EC3B08E1277DEFF00C00AD3 /* Build configuration list for PBXNativeTarget "Unit tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3EC3B08A1277DEFE00C00AD3 /* Debug */,
 				3EC3B08B1277DEFE00C00AD3 /* Release */,
+				3ECA381E15D4C46E0084413B /* App Store */,
 				3EC3B08C1277DEFE00C00AD3 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
