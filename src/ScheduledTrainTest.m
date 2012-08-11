@@ -59,6 +59,17 @@
 	STAssertEqualObjects(@"A", [[stationStops objectAtIndex: 0] name], @"station stops array wrong");
 	STAssertEqualObjects(@"B", [[stationStops objectAtIndex: 1] name], @"station stops array wrong");
 	STAssertEqualObjects(@"C", [[stationStops objectAtIndex: 2] name], @"station stops array wrong");
+}
+
+- (void) testNoStationStrings {
+	[self makeThreeStationTrain];
+	
+	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
+	// Test raw string is the old form with commas.
+    [train setStops: @""];
+	NSArray *stationStops = [train stationsInOrder];
+    
+	STAssertEqualsInt(0, [stationStops count], @"Wrong number of items in station stop array");
 }	
 
 - (void) testStationStringsWithComma {
