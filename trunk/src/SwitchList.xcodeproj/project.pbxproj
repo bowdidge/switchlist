@@ -69,7 +69,6 @@
 		3E43B4D51507419800AAA92B /* AddSidingLength.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */; };
 		3E43B4D61507419800AAA92B /* LayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B3A515073D1F00AAA92B /* LayoutController.m */; };
 		3E43B4DC150741B400AAA92B /* testAdvanceLayoutsMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */; };
-		3E43B4E3150741E200AAA92B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E43B4E2150741E200AAA92B /* Cocoa.framework */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
@@ -292,7 +291,6 @@
 		3E43B49F15073F2300AAA92B /* LayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutController.h; sourceTree = "<group>"; };
 		3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testAdvanceLayouts; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testAdvanceLayoutsMain.m; sourceTree = "<group>"; };
-		3E43B4E2150741E200AAA92B /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		3E4D49050D0F47E40092D1A3 /* CarAssigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarAssigner.h; sourceTree = "<group>"; };
 		3E4D49060D0F47E40092D1A3 /* CarAssigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarAssigner.m; sourceTree = "<group>"; };
 		3E4D490D0D0F484D0092D1A3 /* EntireLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntireLayout.h; sourceTree = "<group>"; };
@@ -325,7 +323,6 @@
 		3E71870C13B1B17000ED3840 /* SwitchListBaseViewTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListBaseViewTest.h; sourceTree = "<group>"; };
 		3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseViewTest.m; sourceTree = "<group>"; };
 		3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCarType.xcmappingmodel; sourceTree = "<group>"; };
-		3E8258281528FCC400AF1FB8 /* lantern-icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "lantern-icon.icns"; sourceTree = "<group>"; };
 		3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 4.xcdatamodel"; sourceTree = "<group>"; };
 		3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddSidingLength.xcmappingmodel; sourceTree = "<group>"; };
 		3E88AD43127A9CFD003486E2 /* IndustryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryTest.h; sourceTree = "<group>"; };
@@ -427,7 +424,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E43B4E3150741E200AAA92B /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,8 +481,6 @@
 		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				3E1FD9B615CCEBC800568E36 /* SwitchList.entitlements */,
-				3E1FD9B415CCE78F00568E36 /* icon.icns */,
 				3E917A130951659A004647C7 /* Reports */,
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
 				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
@@ -500,7 +494,6 @@
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
-				3E43B4E2150741E200AAA92B /* Cocoa.framework */,
 			);
 			name = SwitchList.CoreData;
 			sourceTree = "<group>";
@@ -517,7 +510,6 @@
 			isa = PBXGroup;
 			children = (
 				3E0C52461524299D0036AAE7 /* RockSalt.ttf */,
-				3E8258281528FCC400AF1FB8 /* lantern-icon.icns */,
 				3E6B59B4140CB1CD006FFDD3 /* builtin-templates */,
 				3E0E27AA13F63AD500488E4D /* network_wireless.jpg */,
 				3EE5ED9D131A1E03009E2C83 /* SwitchList.help */,
@@ -531,6 +523,8 @@
 				3EFA164309515C1500654CC9 /* Report.nib */,
 				3E6C6EC712F007E200C7A8D1 /* Credits.html */,
 				3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */,
+				3E1FD9B615CCEBC800568E36 /* SwitchList.entitlements */,
+				3E1FD9B415CCE78F00568E36 /* icon.icns */,
 			);
 			name = Resources;
 			sourceTree = "<group>";

@@ -54,7 +54,7 @@ fi
 pushd /tmp/switchlist-read-only/src
 
 # Rebuild help index.
-hiutil -C -a SwitchList.help -f SwitchList.help.helpindex
+hiutil -C -a SwitchList.help -f SwitchList.help/SwitchList.help.helpindex
 
 xcodebuild -target SwitchList -configuration Release  clean
 xcodebuild -target SwitchList -configuration Release  SYMROOT=/tmp/XcodeBuildProducts OBJROOT=/tmp/XcodeBuildIntermediates DSTROOT=/tmp/SwitchList.dst
