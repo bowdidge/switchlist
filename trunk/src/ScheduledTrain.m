@@ -225,6 +225,11 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 		// Old-style separator.
 		separator = OLD_SEPARATOR_FOR_STOPS;
 	}
+    
+    if ([stops length] == 0) {
+        return [NSArray array];
+    }
+    
 	NSArray *stationNames = [stops componentsSeparatedByString: separator];
 	
 	// Validate the station names are valid, and produce the final list.
