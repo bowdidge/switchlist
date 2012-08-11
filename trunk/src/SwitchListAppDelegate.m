@@ -253,6 +253,7 @@
 	} else {
 		[networkIconView_ setImage: nil];
 		[webAccessCheckBox_ setState: status];
+		[webAccessStatusMessage_ setStringValue: @""];
 		[connectAtMessage_ setTextColor: [NSColor grayColor]];
 		[self setWebServerName: @"Not running" withLink: NO];
 		[self stopWebServer];
