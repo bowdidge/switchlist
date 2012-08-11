@@ -149,14 +149,14 @@ NSString *DragTownsType = @"DragTownsType";
 	return YES;
 }
 
-- (int)numberOfRowsInTableView:(NSTableView *)tableView {
+- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView {
 	if (tableView == townTableView_) {
 		return [townList_ count];
 	}
 	return [routeList_ count];
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	Place *town;
 	if (tableView == townTableView_) {
 		if ([townList_ count] <= row) {
@@ -208,11 +208,11 @@ NSString *ROUTE_TOKEN = @",route";
 	return YES;
 }
 
-- (NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(int)row proposedDropOperation:(NSTableViewDropOperation)op {
+- (NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
 	return NSDragOperationMove;
 }
 
-- (BOOL)tableView:(NSTableView*)tv acceptDrop:(id <NSDraggingInfo>)info row:(int)row dropOperation:(NSTableViewDropOperation)op {
+- (BOOL)tableView:(NSTableView*)tv acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)op {
 	if (tv != routeTableView_) {
 		// Only route table can be changed.
 		return NO;
@@ -222,7 +222,7 @@ NSString *ROUTE_TOKEN = @",route";
 	NSData *data  = [pboard dataForType: DragTownsType];
 	NSMutableArray *townNames = [NSMutableArray arrayWithArray: [NSKeyedUnarchiver unarchiveObjectWithData: data]];
 	
-	int insertPoint = row;
+	NSUInteger insertPoint = row;
 	
 	// TODO(bowdidge) Hack to detect whether the drag is from the route table.  Create a new type to pass
 	// this fact.

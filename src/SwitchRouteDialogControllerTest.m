@@ -111,7 +111,7 @@
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
 	[controller_ setTrain:train layout:entireLayout_];
 	
-	int rowsInStopsTable = [controller_ numberOfRowsInTableView: mockStopsTableView_];
+	NSInteger rowsInStopsTable = [controller_ numberOfRowsInTableView: mockStopsTableView_];
 	STAssertEqualsInt(3, rowsInStopsTable,
 				 @"Wrong number of towns displayed, found %d.", rowsInStopsTable);
 	[self checkStopsTableRow: 0 townName: @"A"];

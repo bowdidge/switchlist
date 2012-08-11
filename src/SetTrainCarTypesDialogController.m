@@ -91,7 +91,7 @@
 
 - (void)tableView:(NSTableView *)aTable setObjectValue:(id)aData 
    forTableColumn:(NSTableColumn *)aCol 
-			  row:(int)aRow {
+			  row:(NSInteger)aRow {
 	// Only for check box - editing off elsewhere.
 	NSNumber *result = (NSNumber*) aData;
 	if ([result boolValue] == NO) {
@@ -101,7 +101,7 @@
 	}
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	CarType *carType = [allCarTypes_ objectAtIndex: row];
 	if (tableColumn == carTypeNameColumn_) {
 		return [carType carTypeName];
