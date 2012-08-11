@@ -134,7 +134,7 @@
 
 - (void)closeConnection:(SimpleHTTPConnection *)connection;
 {
-    unsigned connectionIndex = [connections indexOfObjectIdenticalTo:connection];
+    NSInteger connectionIndex = [connections indexOfObjectIdenticalTo:connection];
     if( connectionIndex == NSNotFound ) return;
 
     // We remove all pending requests pertaining to connection
@@ -257,7 +257,7 @@
     // A reply indicates that the current request has been completed
     // (either successfully of by responding with an error message)
     // Hence we need to remove the current request:
-    unsigned index = [requests indexOfObjectIdenticalTo:[self currentRequest]];
+    NSInteger index = [requests indexOfObjectIdenticalTo:[self currentRequest]];
     if( index != NSNotFound ) {
         NSIndexSet *indexSet = [NSIndexSet indexSetWithIndex:index];
         [self willChange:NSKeyValueChangeRemoval valuesAtIndexes:indexSet

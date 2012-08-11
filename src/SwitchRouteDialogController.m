@@ -118,7 +118,7 @@ NSString *DragTownsType = @"DragTownsType";
 - (IBAction) removeTownInRoute: (id) sender {
 	NSIndexSet *townsToRemove = [routeTableView_ selectedRowIndexes];
 	int itemsRemoved = 0;
-    unsigned currentIndex = [townsToRemove firstIndex];
+    NSInteger currentIndex = [townsToRemove firstIndex];
     while (currentIndex != NSNotFound) {
 		[routeList_ removeObjectAtIndex: currentIndex + itemsRemoved];
 		itemsRemoved++;
@@ -132,7 +132,7 @@ NSString *DragTownsType = @"DragTownsType";
 
 - (IBAction) addTownToRoute: (id) sender {
 	NSIndexSet *townsToAdd = [townTableView_ selectedRowIndexes];
-    unsigned currentIndex = [townsToAdd firstIndex];
+    NSInteger currentIndex = [townsToAdd firstIndex];
     while (currentIndex != NSNotFound) {
 		[routeList_ addObject: [townList_ objectAtIndex: currentIndex]];
         currentIndex = [townsToAdd indexGreaterThanIndex:currentIndex];
@@ -195,10 +195,10 @@ NSString *ROUTE_TOKEN = @",route";
 	// TODO(bowdidge): Hack.  Need better way to tell where drag comes from.
 	if (tv == routeTableView_) {
 		[townNames addObject: ROUTE_TOKEN];
-		[townNames addObject: [NSNumber numberWithInt: [rowIndexes firstIndex]]];
+		[townNames addObject: [NSNumber numberWithInteger: [rowIndexes firstIndex]]];
 	}
 
-	unsigned int current = [rowIndexes firstIndex];
+	NSInteger current = [rowIndexes firstIndex];
 	while (current != NSNotFound) {
 		[townNames addObject: [[tableList objectAtIndex: current] name]];
 		current = [rowIndexes indexGreaterThanIndex: current];

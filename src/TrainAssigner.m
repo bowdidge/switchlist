@@ -164,7 +164,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 		if ([tr acceptsCar: car] == NO) continue;
 		
 		NSArray *stops = [tr stationsInOrder];
-		int startIndex = [stops indexOfObject: start];
+		NSInteger startIndex = [stops indexOfObject: start];
 		if (startIndex != NSNotFound) return tr;
 	}
 	return nil;
@@ -177,12 +177,12 @@ BOOL DEBUG_CAR_ASSN = NO;
 		if ([tr acceptsCar: car] == NO) continue;
 		
 		NSArray *stops = [tr stationsInOrder];
-		int startIndex = [stops indexOfObject: start];
+		NSInteger startIndex = [stops indexOfObject: start];
 		if (startIndex == NSNotFound) continue;
 		
 		int searchRangeStart = startIndex+1;
 		int searchLength=  [stops count] - searchRangeStart ;
-		int endIndex = [stops indexOfObject: end inRange: NSMakeRange(searchRangeStart, searchLength)];
+		NSInteger endIndex = [stops indexOfObject: end inRange: NSMakeRange(searchRangeStart, searchLength)];
 		
 		if ((endIndex != NSNotFound) &&
 			(startIndex < endIndex)) {
