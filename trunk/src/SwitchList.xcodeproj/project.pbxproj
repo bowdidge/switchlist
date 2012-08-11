@@ -167,6 +167,8 @@
 		3ED58A7013A727FF00F6E26E /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
 		3ED58A7113A7280D00F6E26E /* SwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED482330D715B3600C36741 /* SwitchListView.m */; };
 		3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
+		3EDCB51015D71EFC000419A9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7788DA0506752A1600599AAD /* CoreData.framework */; };
+		3EDCB59015D71F0E000419A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */; };
 		3EE0B6831573446E00281B33 /* MGTemplateEngineTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE0B6821573446E00281B33 /* MGTemplateEngineTest.m */; };
 		3EE19374145C924000CB614D /* car-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE19373145C924000CB614D /* car-report.html */; };
 		3EE19379145C925200CB614D /* industry-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE19377145C925200CB614D /* industry-report.html */; };
@@ -424,6 +426,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EDCB59015D71F0E000419A9 /* Foundation.framework in Frameworks */,
+				3EDCB51015D71EFC000419A9 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
