@@ -246,11 +246,11 @@ float HEADER_HEIGHT = 126.0;
 		  printedAttrs: tinyTimesAttr];
 }
 
-int sortFreightCarByIndustry(const FreightCar *fc1, const FreightCar* fc2, void *context) {
+NSInteger sortFreightCarByIndustry(const FreightCar *fc1, const FreightCar* fc2, void *context) {
 	return [[[fc1 currentLocation] name] compare: [[fc2 currentLocation] name]];
 }
 
-int sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar* fc2, void *context) {
+NSInteger sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar* fc2, void *context) {
 	DoorAssignmentRecorder *recorder = (DoorAssignmentRecorder*) context;
 	NSComparisonResult result = [[[fc1 nextStop] name] compare: [[fc2 nextStop] name]];
 	if (result != NSOrderedSame) {

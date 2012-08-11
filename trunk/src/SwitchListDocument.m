@@ -935,7 +935,7 @@
 // Table view for main document.
 // This handles multiple tables, so dispatch off to different methods depending
 // on the table.
-- (int)numberOfRowsInTableView:(NSTableView *)tableView {
+- (NSInteger) numberOfRowsInTableView:(NSTableView *)tableView {
 	if (tableView == overviewTrainTable_) {
 		return [self numberOfRowsInTrainTableView];
 	} else {
@@ -956,7 +956,7 @@
 	return YES;
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	if (tableView == overviewTrainTable_) {
 		return [self trainTableObjectValueForTableColumn: tableColumn row: row];
 	} else {

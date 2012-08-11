@@ -39,7 +39,7 @@
 @class ScheduledTrain;
 
 // Compares the two freight car names, and returns order of the two.
-int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *context);
+NSInteger compareReportingMarksAlphabetically(FreightCar* s1,FreightCar* s2, void *context);
 
 @interface FreightCar :  NSManagedObject  
 {

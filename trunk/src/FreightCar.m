@@ -36,7 +36,7 @@
 
 #import <Foundation/Foundation.h>
 
-int compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *context) {
+NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *context) {
 	NSArray *marksComponents1 = [[s1 reportingMarks] componentsSeparatedByString: @" "];
 	NSArray *marksComponents2 = [[s2 reportingMarks] componentsSeparatedByString: @" "];
 	if (([marksComponents1 count] != 2) || ([marksComponents2 count] != 2)) {
