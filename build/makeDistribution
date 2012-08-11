@@ -1,28 +1,38 @@
-#!/bin/csh
+#!/bin/sh
 #
 # Build the SwitchList.app distribution and put everything in a single 
 # Disk Image.  Either build from top-of-tree (using the trunk branch),
 # or build from the named svn tag for a specific version.
 
-# Default values.
-set TAG="trunk"
-set DMG_NAME="SwitchList"
+function TestBinaryForFatness {
+  file $1 | grep $2 >&/dev/null
+  if [ $? -ne 0 ]; then 
+    echo "FAIL: Missing $2 binary!"
+    exit 1
+  else
+     echo "PASS: Contains $2 binary."
+  fi 
+}
 
-if ( $#argv == 1) then
-  set TAG="tag/$1"
-  set DMG_NAME=$1
-else if ($#argv > 2) then
+# Default values.
+TAG="trunk"
+DMG_NAME="SwitchList"
+
+if [ $# -eq 1 ]; then
+  TAG="tag/$1"
+  DMG_NAME=$1
+elif [ $# -ge 2 ]; then
   echo "Usage: makeDistribution [SwitchList.x.y.z]"
   echo "If tag is omitted, project will be built from trunk."
   exit 1
-endif
+fi
 
 # Check that all changes have been checked in.
 svn status | grep '^[AMCDG]'
-if ( $status == 0 ) then
+if [ $? -eq 0 ]; then
   echo Outstanding changes exist.  Please check in all changes before building.
-  exit 1
-endif
+  #exit 1
+fi
 
 echo Disk Image name will be $DMG_NAME
 
@@ -36,22 +46,26 @@ mkdir /tmp/SwitchList
 
 # /tmp/switchlist-read-only contains the checked-out version of the sources.
 svn checkout http://switchlist.googlecode.com/svn/$TAG /tmp/switchlist-read-only
-if $status != 0 then
+if [ $? -ne 0 ]; then
   echo "Problems checking out svn sources - non-existent tag $TAG?"
   exit 1
-endif
+fi
 
 pushd /tmp/switchlist-read-only/src
-# Fat x86/ppc binary.
+
+# Rebuild help index.
+hiutil -C -a SwitchList.help -f SwitchList.help.helpindex
+
 xcodebuild -target SwitchList -configuration Release  clean
-xcodebuild -target SwitchList -configuration Release  SYMROOT=/tmp/XcodeBuildProducts OBJROOT=/tmp/XcodeBuildIntermediates
-if $status != 0 then
-  echo Problems building SwitchList
+xcodebuild -target SwitchList -configuration Release  SYMROOT=/tmp/XcodeBuildProducts OBJROOT=/tmp/XcodeBuildIntermediates DSTROOT=/tmp/SwitchList.dst
+
+if [ $? -ne 0]; then
+  echo Problems building SwitchList - problems during xcodebuild.
   exit 1
-endif
+fi
 popd 
 
-cp -r /tmp/XcodeBuildProducts/Release/SwitchList.app /tmp/SwitchList
+cp -r /tmp/SwitchList.dst/Applications/SwitchList.app /tmp/SwitchList/
 cp -r examples /tmp/SwitchList/Example\ Layouts
 cp -r template_examples /tmp/SwitchList/Custom\ Switchlist\ Examples
 
@@ -63,19 +77,14 @@ popd
 # Validate.
 
 # Make sure something was built.
-if ( -e /tmp/SwitchList.dst/Applications/SwitchList.app ) then
+if [ -e /tmp/SwitchList/SwitchList.app ]; then
   echo "PASS: SwitchList.app directory exists."
 else 
   echo "FAIL: No SwitchList.app directory seen."
-endif
+fi
 
 # Make sure it's a fat binary.
-file /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList | grep "ppc" >&/dev/null
-if $status != 0 then
-  echo "FAIL: Missing PowerPC binary!"
-  exit 1
-else
-  echo "PASS: Contains PowerPC binary."
-endif
+TestBinaryForFatness /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList "ppc"
+TestBinaryForFatness /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList "i386"
 
 echo "/tmp/$DMG_NAME.dmg has the final disk image."
