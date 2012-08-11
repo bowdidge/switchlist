@@ -151,7 +151,7 @@
 	NSString *argsPattern = @"\"(.*?)(?<!\\\\)\"|'(.*?)(?<!\\\\)'|(\\S+)";
 	NSMutableArray *args = [NSMutableArray array];
 	
-	int location = 0;
+	NSInteger location = 0;
 	while (location != NSNotFound) {
 		NSRange searchRange  = NSMakeRange(location, [argString length] - location);
 		NSRange entireRange = [argString rangeOfRegex:argsPattern options:RKLNoOptions 

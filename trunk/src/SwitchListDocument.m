@@ -583,7 +583,7 @@
 	if ([selection count] > 1) {
 		NSBeep(); return;
 	}
-	int selRow = [selection firstIndex];
+	NSInteger selRow = [selection firstIndex];
 	ScheduledTrain *train = [trains_ objectAtIndex: selRow];
 	
 	SwitchListBaseView *switchListView;
@@ -626,7 +626,7 @@
 // Cancel a train, and reassign its freight cars to other trains when possible.
 - (IBAction) doAnnulTrain: (id) sender {
 	NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
-	int selRow = [selection firstIndex];
+	NSInteger selRow = [selection firstIndex];
 	
 	NSMutableArray *allTrains = [NSMutableArray arrayWithArray: [entireLayout_ allTrains]];
 	while (selRow != NSNotFound) {
@@ -651,7 +651,7 @@
 - (IBAction) doCompleteTrain: (id) sender {
 	NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
 	
-	int selRow = [selection firstIndex];
+	NSInteger selRow = [selection firstIndex];
     while (selRow != NSNotFound) {
 		ScheduledTrain *train = [trains_ objectAtIndex: selRow];
 		[layoutController_ completeTrain: train];
