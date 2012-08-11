@@ -207,14 +207,39 @@
 	return YES;
 }
 
+// Changes the web server address displayed to the named host and default port.
+// Address is set up to appear and act like a web link.
+- (void) setWebServerName: (NSString*) label withLink: (BOOL) hasLink {
+	NSMutableAttributedString *webServerAttrString = [[[NSMutableAttributedString alloc] initWithString: label] autorelease];
+    NSRange range = NSMakeRange(0, [webServerAttrString length]);
+
+	[webServerAttrString beginEditing];
+	[webServerAttrString addAttribute: NSFontAttributeName value: [NSFont systemFontOfSize:13.0] range: range];
+	NSMutableParagraphStyle *mutParaStyle=[[[NSMutableParagraphStyle alloc] init] autorelease];
+	[mutParaStyle setAlignment:NSCenterTextAlignment];
+	[webServerAttrString addAttributes:[NSDictionary dictionaryWithObject:mutParaStyle forKey:NSParagraphStyleAttributeName] range: range];
+	
+	if (hasLink) {
+		// make the text appear in blue
+		[webServerAttrString addAttribute: NSLinkAttributeName value: label range: range];
+		[webServerAttrString addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:range];
+		// make the text appear with an underline
+		[webServerAttrString addAttribute: NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSSingleUnderlineStyle] range:range];
+	} else {
+		[webServerAttrString addAttribute:NSForegroundColorAttributeName value:[NSColor grayColor] range:range];
+	}
+	[webServerAttrString endEditing];
+
+	[webAccessAddressMessage_ setAttributedStringValue: webServerAttrString];
+}
+
 // Changes the web server's state and UI to match status.
 - (IBAction) setWebServerRunStatus: (bool) status {
 	if (status) {
 		[networkIconView_ setImage: networkIconImage_];
 		[webAccessCheckBox_ setState: status];
 		[connectAtMessage_ setTextColor: [NSColor blackColor]];
-		[webAccessAddressMessage_ setTextColor: [NSColor blackColor]];
-		
+
 		NSString *currentHostname = CurrentHostname();
 		if ([currentHostname isEqualToString: @"127.0.0.1"]) {
 			currentHostname = @"localhost";
@@ -223,20 +248,13 @@
 			[webAccessStatusMessage_ setStringValue: @""];
 		}
 		NSString *webServerName = [NSString stringWithFormat: @"http://%@:%d", currentHostname, DEFAULT_SWITCHLIST_PORT];
-		NSMutableAttributedString *webServerAttrString = [[[NSMutableAttributedString alloc] initWithString: webServerName] autorelease];
-		NSDictionary *webServerAddressAttrs = [NSDictionary dictionaryWithObject: webServerName
-																		  forKey: NSLinkAttributeName];
-		[webServerAttrString addAttributes: webServerAddressAttrs
-									 range: NSMakeRange(0, [webServerName length])];
-		[webAccessAddressMessage_ setAttributedStringValue: webServerAttrString];
-		
-		
+		[self setWebServerName: webServerName withLink: YES];
 		[self startWebServer];
 	} else {
 		[networkIconView_ setImage: nil];
 		[webAccessCheckBox_ setState: status];
 		[connectAtMessage_ setTextColor: [NSColor grayColor]];
-		[webAccessAddressMessage_ setTextColor: [NSColor grayColor]];
+		[self setWebServerName: @"Not running" withLink: NO];
 		[self stopWebServer];
 	}
 }
