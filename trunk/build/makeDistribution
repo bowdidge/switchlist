@@ -59,6 +59,8 @@ hiutil -C -a SwitchList.help -f SwitchList.help/SwitchList.help.helpindex
 xcodebuild -target SwitchList -configuration Release  clean
 xcodebuild -target SwitchList -configuration Release  SYMROOT=/tmp/XcodeBuildProducts OBJROOT=/tmp/XcodeBuildIntermediates DSTROOT=/tmp/SwitchList.dst
 
+xcodebuild -target testAdvanceLayouts -configuration Release  SYMROOT=/tmp/XcodeBuildProducts OBJROOT=/tmp/XcodeBuildIntermediates DSTROOT=/tmp/SwitchList.dst
+
 if [ $? -ne 0 ]; then
   echo Problems building SwitchList - problems during xcodebuild.
   exit 1
@@ -86,5 +88,8 @@ fi
 # Make sure it's a fat binary.
 TestBinaryForFatness /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList "ppc"
 TestBinaryForFatness /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList "i386"
+
+# Test that layouts correctly advance without error.
+/tmp/XcodeBuildProducts/Release/testAdvanceLayouts examples/*/*.swl
 
 echo "/tmp/$DMG_NAME.dmg has the final disk image."
