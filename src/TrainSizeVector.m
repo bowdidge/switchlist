@@ -246,6 +246,6 @@
 }
 
 - (NSString*) description {
-	return [NSString stringWithFormat: @"<TrainSizeVector: %d elements, %@>", [stopsVector_ count], stopsVector_];
+	return [NSString stringWithFormat: @"<TrainSizeVector: %d elements, %@>", (int) [stopsVector_ count], stopsVector_];
 }
 @end
