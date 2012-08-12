@@ -19,7 +19,7 @@ TAG="trunk"
 DMG_NAME="SwitchList"
 
 if [ $# -eq 1 ]; then
-  TAG="tag/$1"
+  TAG="tags/$1"
   DMG_NAME=$1
 elif [ $# -ge 2 ]; then
   echo "Usage: makeDistribution [SwitchList.x.y.z]"
@@ -31,7 +31,6 @@ fi
 svn status | grep '^[AMCDG]'
 if [ $? -eq 0 ]; then
   echo Outstanding changes exist.  Please check in all changes before building.
-  #exit 1
 fi
 
 echo Disk Image name will be $DMG_NAME
