@@ -67,7 +67,9 @@
 - (NSArray*) errors;
 
 // Returns a train that goes between the named stations.
+// For testing only.
 - (ScheduledTrain*) trainBetweenStation: (Place*) start andStation: (Place*) end acceptingCar: (FreightCar*) car;
+
 // Given a station, what train works that station?
 - (ScheduledTrain*) trainServingStation: (Place*) start acceptingCar: (FreightCar*) car;
 - (NSMutableDictionary *) createStationReachabilityGraphForCarType: (CarType *) carType;
