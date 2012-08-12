@@ -179,4 +179,18 @@
 	STAssertContains(@"station A:", result, @"Missing station name");
 	STAssertContains(@"B: industry B-industry", result, @"Missing industry name");
 }
+
+// Make sure the stationsInOrder method correctly uses the cache.
+- (void) testCacheInvalidation {
+	ScheduledTrain *train = [self makeThreeStationTrain];
+	[train setStops: @"A,B,C,B,A"];
+	STAssertEqualsInt(5, [[train stationsInOrder] count], @"");
+	STAssertEqualsInt(5, [[train stationsInOrder] count], @"");
+
+	[train setStops: @"A,B,C"];
+	STAssertEqualsInt(3, [[train stationsInOrder] count], @"");
+	
+	// TODO(bowdidge): Should use mock to prove we're actually retrieving the cached value.
+}
+	
 @end
