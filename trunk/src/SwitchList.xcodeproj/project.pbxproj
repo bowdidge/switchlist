@@ -111,6 +111,38 @@
 		3E9AF45214F9FABE00580148 /* TrainSizeVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF44214F9F2AF00580148 /* TrainSizeVector.m */; };
 		3E9AF46F14F9FC8900580148 /* TrainSizeVectorTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF46E14F9FC8900580148 /* TrainSizeVectorTest.m */; };
 		3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */; };
+		3EA4879015D83CE1008A169F /* SwitchListAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4878F15D83CE1008A169F /* SwitchListAppDelegateTest.m */; };
+		3EA4879915D83D73008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
+		3EA487AE15D83E31008A169F /* typical_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879C15D83D83008A169F /* typical_main.m */; };
+		3EA487B415D83E73008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
+		3EA487B515D83E73008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
+		3EA487BD15D83EA7008A169F /* typicalIndustry.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EA487BC15D83EA7008A169F /* typicalIndustry.plist */; };
+		3EA487DC15D8410E008A169F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7788DA0506752A1600599AAD /* CoreData.framework */; };
+		3EA487DF15D8412C008A169F /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
+		3EA487E015D8412C008A169F /* FreightCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11C30A3963F20071D6B4 /* FreightCar.m */; };
+		3EA487E115D8412C008A169F /* Yard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D50A39652F0071D6B4 /* Yard.m */; };
+		3EA487E215D8412C008A169F /* Industry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D70A39652F0071D6B4 /* Industry.m */; };
+		3EA487E315D8412C008A169F /* Place.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D90A39652F0071D6B4 /* Place.m */; };
+		3EA487E415D8412C008A169F /* ScheduledTrain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11DB0A39652F0071D6B4 /* ScheduledTrain.m */; };
+		3EA487E515D8412C008A169F /* Cargo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11DD0A39652F0071D6B4 /* Cargo.m */; };
+		3EA487E615D8412C008A169F /* CarAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49060D0F47E40092D1A3 /* CarAssigner.m */; };
+		3EA487E715D8412C008A169F /* EntireLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D490E0D0F484D0092D1A3 /* EntireLayout.m */; };
+		3EA487E815D8412C008A169F /* TrainAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49130D0F48640092D1A3 /* TrainAssigner.m */; };
+		3EA487E915D8412C008A169F /* CargoAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AE98127B293E003486E2 /* CargoAssigner.m */; };
+		3EA487EA15D8412C008A169F /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
+		3EA487EB15D8412C008A169F /* CarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258A6B1286657A00D233DB /* CarType.m */; };
+		3EA487EC15D8412C008A169F /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
+		3EA487ED15D8412C008A169F /* DoorAssignmentRecorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */; };
+		3EA487EE15D8412C008A169F /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
+		3EA487EF15D8412C008A169F /* StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB507BC13243F2600D85B59 /* StringHelpers.m */; };
+		3EA487F015D8412C008A169F /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B58A5140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m */; };
+		3EA487F115D8412C008A169F /* AddSidingLength.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */; };
+		3EA487F215D8412C008A169F /* LayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B3A515073D1F00AAA92B /* LayoutController.m */; };
+		3EA487F315D84133008A169F /* TrainSizeVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF44214F9F2AF00580148 /* TrainSizeVector.m */; };
+		3EA487F515D8414C008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
+		3EA4883B15D846F7008A169F /* TypicalIndustryStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4883A15D846F7008A169F /* TypicalIndustryStoreTest.m */; };
+		3EA4884615D84B00008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
+		3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
 		3EB0AC0C127BB95000E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
 		3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
 		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
@@ -209,6 +241,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3EC3B0871277DEFE00C00AD3;
 			remoteInfo = "Unit tests";
+		};
+		3EA487AC15D83E22008A169F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D15AC270486D014006FF6A4 /* SwitchList */;
+			remoteInfo = SwitchList;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -361,6 +400,16 @@
 		3E9E1F780951605600C5E038 /* IndustryReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryReport.h; sourceTree = "<group>"; };
 		3E9E1F790951605600C5E038 /* IndustryReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryReport.m; sourceTree = "<group>"; };
 		3EA1162213501BC500365DEB /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/SwitchListReportWindow.xib; sourceTree = "<group>"; };
+		3EA4878E15D83CE1008A169F /* SwitchListAppDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListAppDelegateTest.h; sourceTree = "<group>"; };
+		3EA4878F15D83CE1008A169F /* SwitchListAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListAppDelegateTest.m; sourceTree = "<group>"; };
+		3EA4879715D83D73008A169F /* TypicalIndustryStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypicalIndustryStore.h; sourceTree = "<group>"; };
+		3EA4879815D83D73008A169F /* TypicalIndustryStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypicalIndustryStore.m; sourceTree = "<group>"; };
+		3EA4879C15D83D83008A169F /* typical_main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = typical_main.m; sourceTree = "<group>"; };
+		3EA487A415D83E1A008A169F /* typical_main */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = typical_main; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LatentSemanticMapping.framework; path = /System/Library/Frameworks/LatentSemanticMapping.framework; sourceTree = "<absolute>"; };
+		3EA487BC15D83EA7008A169F /* typicalIndustry.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = typicalIndustry.plist; path = resources/typicalIndustry.plist; sourceTree = "<group>"; };
+		3EA4883915D846F7008A169F /* TypicalIndustryStoreTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypicalIndustryStoreTest.h; sourceTree = "<group>"; };
+		3EA4883A15D846F7008A169F /* TypicalIndustryStoreTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypicalIndustryStoreTest.m; sourceTree = "<group>"; };
 		3EA80AF90E426FDF009C223A /* PrintEverythingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintEverythingView.h; sourceTree = "<group>"; };
 		3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintEverythingView.m; sourceTree = "<group>"; };
 		3EB0AC0A127BB95000E27063 /* InduYard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InduYard.h; sourceTree = "<group>"; };
@@ -431,10 +480,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EA487A215D83E1A008A169F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EA487DC15D8410E008A169F /* CoreData.framework in Frameworks */,
+				3EA487B515D83E73008A169F /* LatentSemanticMapping.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EC3B0851277DEFE00C00AD3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */,
 				3EF245D5141B477400618125 /* WebKit.framework in Frameworks */,
 				3E108C1714049FDA00B77CFE /* libicucore.A.dylib in Frameworks */,
 			);
@@ -447,6 +506,7 @@
 				775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */,
 				3E108C1814049FDA00B77CFE /* libicucore.A.dylib in Frameworks */,
 				3E3B3BF5140E0DE100F4F56C /* WebKit.framework in Frameworks */,
+				3EA487B415D83E73008A169F /* LatentSemanticMapping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +545,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */,
 				3E917A130951659A004647C7 /* Reports */,
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
 				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
@@ -498,6 +559,7 @@
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				2A37F4B8FDCFA73011CA2CEA /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
+				3EA487A515D83E1A008A169F /* Products */,
 			);
 			name = SwitchList.CoreData;
 			sourceTree = "<group>";
@@ -505,6 +567,7 @@
 		2A37F4AFFDCFA73011CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3EA4879C15D83D83008A169F /* typical_main.m */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -514,6 +577,7 @@
 			isa = PBXGroup;
 			children = (
 				3E0C52461524299D0036AAE7 /* RockSalt.ttf */,
+				3EA487BC15D83EA7008A169F /* typicalIndustry.plist */,
 				3E6B59B4140CB1CD006FFDD3 /* builtin-templates */,
 				3E0E27AA13F63AD500488E4D /* network_wireless.jpg */,
 				3EE5ED9D131A1E03009E2C83 /* SwitchList.help */,
@@ -647,6 +711,14 @@
 			path = SimpleHttpServer;
 			sourceTree = "<group>";
 		};
+		3EA487A515D83E1A008A169F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3EA487A415D83E1A008A169F /* typical_main */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3EBAC6D6127B382A001F3FC7 /* Algorithm */ = {
 			isa = PBXGroup;
 			children = (
@@ -719,6 +791,8 @@
 				3E60B66E1318B49C007C094D /* ReportTest.m */,
 				3E9AF07B14F7505400580148 /* ScheduledTrainTest.h */,
 				3E9AF07C14F7505400580148 /* ScheduledTrainTest.m */,
+				3EA4878E15D83CE1008A169F /* SwitchListAppDelegateTest.h */,
+				3EA4878F15D83CE1008A169F /* SwitchListAppDelegateTest.m */,
 				3E71870C13B1B17000ED3840 /* SwitchListBaseViewTest.h */,
 				3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */,
 				3EFEC5551408533700F9CF15 /* SwitchListFiltersTest.h */,
@@ -731,6 +805,8 @@
 				3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */,
 				3E90C06B12793F510074F2FA /* TrainAssignerTest.h */,
 				3E90C06C12793F510074F2FA /* TrainAssignerTest.m */,
+				3EA4883915D846F7008A169F /* TypicalIndustryStoreTest.h */,
+				3EA4883A15D846F7008A169F /* TypicalIndustryStoreTest.m */,
 				3E9AF46D14F9FC8900580148 /* TrainSizeVectorTest.h */,
 				3E9AF46E14F9FC8900580148 /* TrainSizeVectorTest.m */,
 				3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */,
@@ -782,6 +858,8 @@
 				3E3C11DB0A39652F0071D6B4 /* ScheduledTrain.m */,
 				3EB507BB13243F2600D85B59 /* StringHelpers.h */,
 				3EB507BC13243F2600D85B59 /* StringHelpers.m */,
+				3EA4879715D83D73008A169F /* TypicalIndustryStore.h */,
+				3EA4879815D83D73008A169F /* TypicalIndustryStore.m */,
 				3E3C11D40A39652F0071D6B4 /* Yard.h */,
 				3E3C11D50A39652F0071D6B4 /* Yard.m */,
 				3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */,
@@ -807,6 +885,23 @@
 			name = testAdvanceLayouts;
 			productName = testAdvanceLayoutsMain;
 			productReference = 3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */;
+			productType = "com.apple.product-type.tool";
+		};
+		3EA487A315D83E1A008A169F /* typical_main */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EA487AB15D83E1B008A169F /* Build configuration list for PBXNativeTarget "typical_main" */;
+			buildPhases = (
+				3EA487A115D83E1A008A169F /* Sources */,
+				3EA487A215D83E1A008A169F /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3EA487AD15D83E22008A169F /* PBXTargetDependency */,
+			);
+			name = typical_main;
+			productName = typical_main;
+			productReference = 3EA487A415D83E1A008A169F /* typical_main */;
 			productType = "com.apple.product-type.tool";
 		};
 		3EC3B0871277DEFE00C00AD3 /* Unit tests */ = {
@@ -866,12 +961,14 @@
 				German,
 			);
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */;
+			productRefGroup = 3EA487A515D83E1A008A169F /* Products */;
 			projectDirPath = "";
 			projectRoot = ..;
 			targets = (
 				8D15AC270486D014006FF6A4 /* SwitchList */,
 				3EC3B0871277DEFE00C00AD3 /* Unit tests */,
 				3E43B4BC1507411A00AAA92B /* testAdvanceLayouts */,
+				3EA487A315D83E1A008A169F /* typical_main */,
 			);
 		};
 /* End PBXProject section */
@@ -924,6 +1021,7 @@
 				3E6BA8F9155266880030AE7D /* switchlist.css in Resources */,
 				3E6BA8FA155266880030AE7D /* switchlist-iphone.css in Resources */,
 				3E6BA8FB155266880030AE7D /* switchlist-ipad.css in Resources */,
+				3EA487BD15D83EA7008A169F /* typicalIndustry.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -988,10 +1086,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EA487A115D83E1A008A169F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EA487DF15D8412C008A169F /* CarTypes.m in Sources */,
+				3EA487E015D8412C008A169F /* FreightCar.m in Sources */,
+				3EA487E115D8412C008A169F /* Yard.m in Sources */,
+				3EA487E215D8412C008A169F /* Industry.m in Sources */,
+				3EA487E315D8412C008A169F /* Place.m in Sources */,
+				3EA487E415D8412C008A169F /* ScheduledTrain.m in Sources */,
+				3EA487F315D84133008A169F /* TrainSizeVector.m in Sources */,
+				3EA487E515D8412C008A169F /* Cargo.m in Sources */,
+				3EA487E615D8412C008A169F /* CarAssigner.m in Sources */,
+				3EA487E715D8412C008A169F /* EntireLayout.m in Sources */,
+				3EA487E815D8412C008A169F /* TrainAssigner.m in Sources */,
+				3EA487E915D8412C008A169F /* CargoAssigner.m in Sources */,
+				3EA487EA15D8412C008A169F /* InduYard.m in Sources */,
+				3EA487EB15D8412C008A169F /* CarType.m in Sources */,
+				3EA487EC15D8412C008A169F /* NSMigrationManagerCategory.m in Sources */,
+				3EA487ED15D8412C008A169F /* DoorAssignmentRecorder.m in Sources */,
+				3EA487EE15D8412C008A169F /* GlobalPreferences.m in Sources */,
+				3EA487EF15D8412C008A169F /* StringHelpers.m in Sources */,
+				3EA487F015D8412C008A169F /* NSFileManager+DirectoryLocations.m in Sources */,
+				3EA487F115D8412C008A169F /* AddSidingLength.xcmappingmodel in Sources */,
+				3EA487F215D8412C008A169F /* LayoutController.m in Sources */,
+				3EA487AE15D83E31008A169F /* typical_main.m in Sources */,
+				3EA487F515D8414C008A169F /* TypicalIndustryStore.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EC3B0841277DEFE00C00AD3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EA4884615D84B00008A169F /* TypicalIndustryStore.m in Sources */,
 				3E71871913B1B30B00ED3840 /* SwitchListBaseViewTest.m in Sources */,
 				3ED58A7113A7280D00F6E26E /* SwitchListView.m in Sources */,
 				3ED58A7013A727FF00F6E26E /* PICLReport.m in Sources */,
@@ -1064,6 +1193,8 @@
 				3E43B3A715073D1F00AAA92B /* LayoutController.m in Sources */,
 				3E362363153A899300A57574 /* PlaceTest.m in Sources */,
 				3EE0B6831573446E00281B33 /* MGTemplateEngineTest.m in Sources */,
+				3EA4879015D83CE1008A169F /* SwitchListAppDelegateTest.m in Sources */,
+				3EA4883B15D846F7008A169F /* TypicalIndustryStoreTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1127,6 +1258,7 @@
 				3E6B58A6140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m in Sources */,
 				3E9AF44314F9F2AF00580148 /* TrainSizeVector.m in Sources */,
 				3E43B3A615073D1F00AAA92B /* LayoutController.m in Sources */,
+				3EA4879915D83D73008A169F /* TypicalIndustryStore.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1137,6 +1269,11 @@
 			isa = PBXTargetDependency;
 			target = 3EC3B0871277DEFE00C00AD3 /* Unit tests */;
 			targetProxy = 3E25F51512B4CD780051EFC0 /* PBXContainerItemProxy */;
+		};
+		3EA487AD15D83E22008A169F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D15AC270486D014006FF6A4 /* SwitchList */;
+			targetProxy = 3EA487AC15D83E22008A169F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1255,6 +1392,92 @@
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
 				SKIP_INSTALL = YES;
+			};
+			name = Default;
+		};
+		3EA487A715D83E1B008A169F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = typical_main;
+			};
+			name = Debug;
+		};
+		3EA487A815D83E1B008A169F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = typical_main;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		3EA487A915D83E1B008A169F /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = typical_main;
+			};
+			name = "App Store";
+		};
+		3EA487AA15D83E1B008A169F /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = typical_main;
 			};
 			name = Default;
 		};
@@ -1553,6 +1776,17 @@
 				3E43B4C01507411B00AAA92B /* Release */,
 				3ECA381F15D4C46E0084413B /* App Store */,
 				3E43B4C11507411B00AAA92B /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EA487AB15D83E1B008A169F /* Build configuration list for PBXNativeTarget "typical_main" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EA487A715D83E1B008A169F /* Debug */,
+				3EA487A815D83E1B008A169F /* Release */,
+				3EA487A915D83E1B008A169F /* App Store */,
+				3EA487AA15D83E1B008A169F /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
