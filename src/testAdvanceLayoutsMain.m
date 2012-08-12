@@ -1,10 +1,10 @@
 //
-//  main.m
+//  testAdvanceLayoutsMain.m
 //  SwitchList
 //
-//  Created by Robert Bowdidge on 9/17/05.
+//  Created by Robert Bowdidge on 3/7/12.
 //
-// Copyright (c)2005 Robert Bowdidge,
+// Copyright (c)2012 Robert Bowdidge,
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
