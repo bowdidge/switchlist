@@ -235,7 +235,7 @@
     }
 
     if( body ) {
-        NSString *length = [NSString stringWithFormat:@"%d", [body length]];
+        NSString *length = [NSString stringWithFormat:@"%d", (int) [body length]];
         CFHTTPMessageSetHeaderFieldValue(msg,
                                          (CFStringRef)@"Content-Length",
                                          (CFStringRef)length);
