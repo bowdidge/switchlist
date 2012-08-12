@@ -346,7 +346,7 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 // of last page at (0,0), and top right at (page width, pages * page_height).
 // For the nth page, we'll start at the top and measure down n pages.
 // The top should always be at a page boundary.
-- (NSRect)rectForPage:(int)page {
+- (NSRect)rectForPage:(NSInteger)page {
 	// TODO(bowdidge): Reverse.
 	NSRect rectForPage = NSMakeRect(0, [self imageableHeight] * (page - 1), [self imageableWidth], [self imageableHeight]);
 	return rectForPage;
