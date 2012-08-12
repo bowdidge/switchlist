@@ -172,7 +172,10 @@ BOOL DEBUG_CAR_ASSN = NO;
 
 // Given a pair of stations that we learned are sequential in a route, name the train that will
 // take visit both.  Return nil if no such train exists.
-- (ScheduledTrain*) trainBetweenStation: (Place*) start andStation: (Place*) end acceptingCar: (FreightCar*) car {
+// In case of multiple trains following the same route, the order is unspecified (though currently the
+// trains should always be returned in the same order for consistent replay.)
+- (NSArray*) trainsBetweenStation: (Place*) start andStation: (Place*) end acceptingCar: (FreightCar*) car {
+	NSMutableArray *allTrains = [NSMutableArray array];
 	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
 		if ([tr acceptsCar: car] == NO) continue;
 		
@@ -184,12 +187,26 @@ BOOL DEBUG_CAR_ASSN = NO;
 		int searchLength=  [stops count] - searchRangeStart ;
 		NSInteger endIndex = [stops indexOfObject: end inRange: NSMakeRange(searchRangeStart, searchLength)];
 		
-		if ((endIndex != NSNotFound) &&
-			(startIndex < endIndex)) {
-			return tr;
+		if ((endIndex != NSNotFound) && (startIndex < endIndex)) {
+			[allTrains addObject: tr];
 		}
 	}
-	return nil;
+	
+	if ([allTrains count] == 0) {
+		return nil;
+	}
+
+	return allTrains;
+}
+
+// Returns a train going between the named station that would accept the specified car.
+// In case of multiple trains following the same route, only returns the first matching
+// station.
+// Used only for testing.
+- (ScheduledTrain*) trainBetweenStation: (Place*) start andStation: (Place*) end acceptingCar: (FreightCar*) car {
+	NSArray *result = [self trainsBetweenStation: start andStation: end acceptingCar: car];
+	if (!result) return nil;
+	return [result objectAtIndex: 0];
 }
 
 // Find shortest set of steps to go from one station to the other.
@@ -366,6 +383,23 @@ NSString *NameOrNoValue(NSString* string) {
 	return @"'No Value'";
 }
 
+// Returns YES if the train has space for the named car.
+// This routine doesn't actually assign the car, but just checks capacity.
+- (BOOL) train: (ScheduledTrain *) tr hasSpaceForCar: (FreightCar *) car  {
+	NSArray *stationStops = [tr stationsInOrder];
+	
+	
+	TrainSizeVector *sizeVector = [[[TrainSizeVector alloc] initWithCars: [tr allFreightCarsInVisitOrder]
+																   stops: stationStops] autorelease];
+	TrainSizeVector *addedCarVector = [[[TrainSizeVector alloc] initWithCars: [NSArray arrayWithObject: car]
+																	   stops: stationStops] autorelease];
+	[addedCarVector addVector: sizeVector];
+		
+	if ([addedCarVector vectorExceedsLength: [[tr maxLength] intValue]]) {
+		return NO;
+	}
+	return YES;
+}
 // Given a car, find the proper train to carry it on its way.  Add the car to the train,
 // and if multiple steps are required, set intermediate destination to go there.
 //
@@ -472,38 +506,32 @@ NSString *NameOrNoValue(NSString* string) {
 			[car setIntermediateDestination: [[there yards] anyObject]];
 		}
 
-		// TODO(bowdidge): Replace with [route objectAtIndex: 0]
-		// TODO(bowdidge): Allow trying multiple trains.
-		tr = [self trainBetweenStation: here andStation: there acceptingCar: car];
-
-		if (respectSidingLengths_) {
-			NSArray *stationStops = [tr stationsInOrder];
-			TrainSizeVector *sizeVector = [[[TrainSizeVector alloc] initWithCars: [tr allFreightCarsInVisitOrder]
-																		  stops: stationStops] autorelease];
-			TrainSizeVector *addedCarVector = [[[TrainSizeVector alloc] initWithCars: [NSArray arrayWithObject: car]
-																		  stops: stationStops] autorelease];
-			[addedCarVector addVector: sizeVector];
-		
-			if ([addedCarVector vectorExceedsLength: [[tr maxLength] intValue]]) {
+		NSArray *trains = [self trainsBetweenStation: here andStation: there acceptingCar: car];
+	
+		if (!respectSidingLengths_) {
+			// If there are no limits on train size, just keep piling cars on the first available train.
+			if (trains == nil) {
+				NSString *err = [NSString stringWithFormat: @"Cannot find train going from %@ to %@ that can take car type %@\n",
+								 [here name], [there name], [car carType]];
+				[self addError: err];
+				return CarAssignmentRoutingProblem;
+			}
+			tr = [trains objectAtIndex: 0];
+		} else {	
+			for (ScheduledTrain *train in trains) {
+				if ([self train: train hasSpaceForCar: car] == YES) {
+					tr = train;
+					break;
+				}
+			}
+			
+			if (!tr) {
 				NSString *err = [NSString stringWithFormat: @"Cannot fit car %@ onto train %@.  Leaving car at current location %@.",
-							 [car reportingMarks], [tr name], [[car currentLocation] name]];
+								 [car reportingMarks], [tr name], [[car currentLocation] name]];
 				[self addError: err];
 				return CarAssignmentNoTrainsWithSpace;
 			}
 		}
-		
-		if (DEBUG_CAR_ASSN) {
-			NSLog(@"Car %@ route: %@.  Train from %@ to %@ is %@",
-				  [car reportingMarks], [route componentsJoinedByString: @","], [here name], [there name], [tr name]);
-		}
-		there = [route objectAtIndex: 1];
-	}
-
-	if (tr == nil) {
-		NSString *err = [NSString stringWithFormat: @"Cannot find train going from %@ to %@ that can take car type %@\n",
-						 [here name], [there name], [car carType]];
-		[self addError: err];
-		return CarAssignmentRoutingProblem;
 	}
 
 	// We found a train.	
@@ -669,6 +697,9 @@ NSString *NameOrNoValue(NSString* string) {
 	NSArray *allCars = [entireLayout_ allFreightCarsNotInTrain];
 	NSMutableArray *carsMoved = [NSMutableArray array];
 	
+	// TODO(bowdidge): Should assign cars randomly so the same cars aren't always
+	// assigned first, and the same cars are always left behind.  Doing so would
+	// require not recalculating assigned trains each time the overview pane is showed. 
 	for (FreightCar *car in allCars) {
 		if ([self assignCarToTrain: car] == CarAssignmentSuccess) {
 			[carsMoved addObject: car];

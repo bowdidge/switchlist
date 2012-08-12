@@ -1355,6 +1355,92 @@ extern unsigned gettimeofday (void*, void*);
 	[assigner release];
 }
 
+- (void) testAssignsToMultipleTrainsOnOverflow {
+	ScheduledTrain *train1 = [self makeTrainWithName: @"Train1"];
+	[train1 setStops: @"A,B,C"];
+	[train1 setMaxLength: [NSNumber numberWithInt: 80]];
+
+	ScheduledTrain *train2 = [self makeTrainWithName: @"Train2"];
+	[train2 setStops: @"A,B,C"];
+	[train2 setMaxLength: [NSNumber numberWithInt: 80]];
+
+	Cargo *c1 = [self makeCargo: @"b to c"];
+	[c1 setSource: [self industryAtStation: @"B"]];
+	[c1 setDestination: [self industryAtStation: @"C"]];
+	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+
+	
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"WP 1"];
+	[fc1 setLength: [NSNumber numberWithInt: 50]];
+	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc1 setCargo: c1];
+	
+	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: @"WP 2"];
+	[fc2 setLength: [NSNumber numberWithInt: 50]];
+	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc2 setCargo: c1];
+
+	FreightCar *fc3 = [self makeFreightCarWithReportingMarks: @"WP 3"];
+	[fc3 setLength: [NSNumber numberWithInt: 50]];
+	[fc3 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc3 setCargo: c1];
+	
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	STAssertEquals(CarAssignmentSuccess, [assigner assignCarToTrain: fc1], @"");
+	STAssertEquals(CarAssignmentSuccess, [assigner assignCarToTrain: fc2], @"");
+	STAssertNotNil([fc1 currentTrain], @"Expected fc1 would have been assigned to a tree.");
+	STAssertNotNil([fc2 currentTrain], @"Expected fc2 would have been assigned to a tree.");
+	STAssertFalse([fc1 currentTrain] == [fc2 currentTrain], @"Expected trains freight cars would have been on different trains.");
+
+	STAssertEquals(CarAssignmentNoTrainsWithSpace, [assigner assignCarToTrain: fc3], @"");
+	STAssertNil([fc3 currentTrain], @"");
+}
+
+// Make sure the train choice stays on one train til it's full.
+- (void) testAssignsToSameTrainWhenSpace {
+	ScheduledTrain *train1 = [self makeTrainWithName: @"Train1"];
+	[train1 setStops: @"A,B,C"];
+	[train1 setMaxLength: [NSNumber numberWithInt: 100]];
+	
+	ScheduledTrain *train2 = [self makeTrainWithName: @"Train2"];
+	[train2 setStops: @"A,B,C"];
+	[train2 setMaxLength: [NSNumber numberWithInt: 100]];
+	
+	Cargo *c1 = [self makeCargo: @"b to c"];
+	[c1 setSource: [self industryAtStation: @"B"]];
+	[c1 setDestination: [self industryAtStation: @"C"]];
+	[c1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
+	
+	
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"WP 1"];
+	[fc1 setLength: [NSNumber numberWithInt: 50]];
+	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc1 setCargo: c1];
+	
+	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: @"WP 2"];
+	[fc2 setLength: [NSNumber numberWithInt: 50]];
+	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc2 setCargo: c1];
+	
+	FreightCar *fc3 = [self makeFreightCarWithReportingMarks: @"WP 3"];
+	[fc3 setLength: [NSNumber numberWithInt: 50]];
+	[fc3 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc3 setCargo: c1];
+	
+	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
+	STAssertEquals(CarAssignmentSuccess, [assigner assignCarToTrain: fc1], @"");
+	STAssertEquals(CarAssignmentSuccess, [assigner assignCarToTrain: fc2], @"");
+	STAssertEquals(CarAssignmentSuccess, [assigner assignCarToTrain: fc3], @"");
+	
+	STAssertNotNil([fc1 currentTrain], @"Expected fc1 would have been assigned to a train.");
+	STAssertNotNil([fc2 currentTrain], @"Expected fc2 would have been assigned to a train.");
+	STAssertNotNil([fc3 currentTrain], @"Expected fc3 would have been assigned to a train.");
+	
+	STAssertTrue([fc1 currentTrain] == [fc2 currentTrain], @"Expected trains freight cars would have been on same train.");
+	STAssertFalse([fc3 currentTrain] == [fc2 currentTrain], @"Expected trains freight cars would have been on same train.");
+}
+
+
 // TODO(bowdidge): Test yards don't have capacity, and intermediate dest doesn't count.
 @end
 
