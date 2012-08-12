@@ -30,6 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 #include <sys/time.h>
+#include "unistd.h"
 
 #import "EntireLayout.h"
 #import "LayoutController.h"
@@ -75,7 +76,8 @@ int CargosNotFilled(NSDictionary* unfilledDict) {
 
 // Runs the layout through several cycles of assigning cars, running trains, and advancing cars.
 // Prints informative error and returns NO if anything appears wrong, else returns YES.
-BOOL TestLayout(NSString *layoutName) {
+// If verboseOutput is true, then partial results for individual layouts are shown.
+BOOL TestLayout(NSString *layoutName, BOOL verbose) {
 	if ([[NSFileManager defaultManager] fileExistsAtPath: layoutName] == NO) {
 		NSLog(@"ERROR: No such file %@\n", layoutName);
 		return NO;
@@ -115,7 +117,9 @@ BOOL TestLayout(NSString *layoutName) {
 				  carCount/5 , carsMoved);
 			return NO;
 		}
-	    NSLog(@"PASS: iteration %d: Cars moved: %d, unfilled cargos: %d, assignment errors: %3d", i, carsMoved, cargosNotFilled, [errs count]);
+	    if (verbose) {
+			NSLog(@"PASS: iteration %d: Cars moved: %d, unfilled cargos: %d, assignment errors: %3d", i, carsMoved, cargosNotFilled, [errs count]);
+		}
 	}
 
 	[controller release];
@@ -123,11 +127,19 @@ BOOL TestLayout(NSString *layoutName) {
 	return YES;
 }
 
+void usage() {
+	fprintf(stderr, "Usage: testAdvanceLayoutsMain [-v] [layout files]+\n");
+	fprintf(stderr, "  -v: show progress verbosely.\n");
+	exit(1);
+}
+
 // Takes a list of layout files on the command line, and runs each repeatedly to make sure the current
 // car assignment, train generation, and car advancing code works well on real layouts.
 int main(int argc, char *argv[]) {
 	struct timeval tp;
 	struct timezone tz;
+	BOOL verbose = NO;
+
 	gettimeofday(&tp, &tz);
 	srand(tp.tv_usec);
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
@@ -135,18 +147,29 @@ int main(int argc, char *argv[]) {
 	// Workaround for bug in 10.5.
 	[NSMigrationManager addRelationshipMigrationMethodIfMissing];
 
-	int i;
-
-	if (argc < 2) {
-		fprintf(stderr, "Usage: testAdvanceLayoutsMain [layout files]+\n");
-		exit(1);
+	char ch;
+	while ((ch = getopt(argc, argv, "v")) != -1) {
+		switch (ch) {
+		case 'v':
+			verbose = YES;
+			break;
+		default:
+			usage();
+		}
 	}
+	argc -= optind;
+	argv += optind;
+	if (argc < 2) {
+		usage();
+	}
+				
 	
 	int testsRun = 0;
 	int testsPassed = 0;
+	int i;
 	for (i=1;i<argc;i++) {
 		BOOL result = NO;
-		result = TestLayout([NSString stringWithUTF8String: argv[i]]);
+		result = TestLayout([NSString stringWithUTF8String: argv[i]], verbose);
 		testsRun++;
 		if (result) {
 			testsPassed++;
