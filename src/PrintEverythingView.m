@@ -52,7 +52,7 @@
 	return YES;
 }
 
-- (NSRect)rectForPage:(int)page {
+- (NSRect)rectForPage:(NSInteger)page {
     // All the switchlists are printing in the same containing view, so document bounds should match.
 	// Note we don't call through to views.
 	return NSMakeRect(0, imageableHeight_ * (page-1), imageableWidth_, imageableHeight_);
