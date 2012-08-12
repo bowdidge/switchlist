@@ -37,6 +37,10 @@
 
 @interface ScheduledTrain :  NSManagedObject  
 {
+	// Array of station objects so we don't need to recalculate.
+	NSArray *cachedListOfStations_;
+	// For checking when to invalidate cachedListOfStations.
+	NSString *cachedStationsString_;
 }
 
 // freightCars is a PUBLIC TEMPLATE API.

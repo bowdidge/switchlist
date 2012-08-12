@@ -217,8 +217,16 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 // Changes the train's list of stops.  Array is list of station objects
 // in order.
 - (NSArray*) stationsInOrder {
+	// This method is called often in many of the car assignment algorithms,
+	// so cache its results for speed.
+	if (cachedStationsString_ != nil) {
+		if ([[self stops] isEqualToString: cachedStationsString_]) {
+			return cachedListOfStations_;
+		}
+	}
+	
 	// First, parse the string containing the list of stations.
-	// Assume we're using the old one.
+	// Assume we're using the old one.	
 	NSString *separator = NEW_SEPARATOR_FOR_STOPS;
 	NSString *stops = [self stops];
 	if ([stops rangeOfString: NEW_SEPARATOR_FOR_STOPS].length == 0) {
@@ -242,6 +250,12 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 		}
 		[stationArray addObject: nextStation];
 	}
+
+	// Cache for next call.
+	[cachedStationsString_ release];
+	cachedStationsString_ = [stops retain];
+	cachedListOfStations_ = [stationArray retain];
+	
 	return stationArray;
 }
 
