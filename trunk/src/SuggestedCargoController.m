@@ -187,6 +187,7 @@
 	return [[document_ entireLayout] workbenchIndustry];
 }
 
+// Reloads the table with data for the provided category.
 - (void) setCargosToCategory: (NSNumber*) category {
 	NSDictionary *industryDict = [store_ industryDictForCategory: category];
 
