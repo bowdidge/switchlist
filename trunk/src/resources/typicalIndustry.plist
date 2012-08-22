@@ -236,7 +236,7 @@
     <string>lumber camp</string>
     <key>Synonyms</key>
     <array>
-      <string>Camp</string>
+      <string>logging area</string>
     </array>
     <key>Cargo</key>
     <array>
@@ -668,25 +668,25 @@
     <dict>
       <key>Name</key><string>cattle</string>
       <key>Incoming</key><false/>
-      <key>Rate</key><integer>100</integer>
+      <key>Rate</key><integer>5</integer>
     </dict>
     <dict>
       <key>Name</key>
       <string>irrigation pipe</string>
       <key>Incoming</key><false/>
-      <key>Rate</key><integer>20</integer>
+      <key>Rate</key><integer>5</integer>
     </dict>
     <dict>
       <key>Name</key>
       <string>machinery</string>
       <key>Incoming</key><false/>
-      <key>Rate</key><integer>20</integer>
+      <key>Rate</key><integer>5</integer>
     </dict>
     <dict>
       <key>Name</key>
       <string>furniture</string>
       <key>Incoming</key><false/>
-      <key>Rate</key><integer>12</integer>
+      <key>Rate</key><integer>5</integer>
     </dict>
   </array>
   </dict>

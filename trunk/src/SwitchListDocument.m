@@ -52,6 +52,7 @@
 #import "ReservedCarReport.h"
 #import "ScheduledTrain.h"
 #import "SouthernPacificSwitchListView.h"
+#import "SuggestedCargoController.h"
 #import "SwitchListAppDelegate.h"
 #import "SwitchListReport.h"
 #import "SwitchListView.h"
@@ -357,7 +358,7 @@
 		rearrangeCallback: @selector(rearrangeYardLocationArrayController:)
 			popup: yardLocationPopup_
 			sortField: @"name"];
-	
+
 	// TODO(bowdidge): This *should* be sorting the main tables in each view, but it isn't.
 	// Now, set up main tables in each view to sort alphabetically by default.
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc]
@@ -853,6 +854,10 @@
 	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Yard Report"];
 	[[view window] makeKeyAndOrderFront: self];
 	[view drawHTML: message template: yardHtml];
+}
+
+- (IBAction) doOpenSuggestedCargoWindow: (id) sender {
+	return [[suggestedCargoController_ window] makeKeyAndOrderFront: self];
 }
 
 - (void)windowDidResignKey:(NSNotification *)notification {

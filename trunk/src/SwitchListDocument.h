@@ -34,9 +34,11 @@
 #import "LayoutController.h"
 #import "SwitchListDocumentInterface.h"
 #import "SwitchRouteDialogController.h"
+#import "SuggestedCargoController.h"
 #import "SetTrainCarTypesDialogController.h"
 
 @class DoorAssignmentRecorder;
+@class SuggestedCargoController;
 
 @interface SwitchListDocument : NSPersistentDocument<SwitchListDocumentInterface> {
 	IBOutlet NSTextField *freightCarCountField_;
@@ -143,6 +145,8 @@
 	// Filters to limit what appears in popups.
 	NSPredicate *locationIsNotOfflineFilter_;
 	NSPredicate *placeIsNotOfflineFilter_;
+	
+	IBOutlet SuggestedCargoController *suggestedCargoController_;
 }
 
 // Returns LayoutController object which actually does the advancing actions.
@@ -184,6 +188,7 @@
 - (IBAction) doCargoReport: (id) sender;
 - (IBAction) doReservedCarReport: (id) sender;
 - (IBAction) doYardReport: (id) sender;
+- (IBAction) doOpenSuggestedCargoWindow: (id) sender;
 
 // Car type table - providing data.
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
