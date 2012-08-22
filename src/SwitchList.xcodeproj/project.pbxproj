@@ -143,6 +143,7 @@
 		3EA4883B15D846F7008A169F /* TypicalIndustryStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4883A15D846F7008A169F /* TypicalIndustryStoreTest.m */; };
 		3EA4884615D84B00008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
 		3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
+		3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4891815D85C7C008A169F /* SuggestedCargoController.m */; };
 		3EB0AC0C127BB95000E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
 		3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
 		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
@@ -246,7 +247,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 8D15AC270486D014006FF6A4 /* SwitchList */;
+			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
 			remoteInfo = SwitchList;
 		};
 /* End PBXContainerItemProxy section */
@@ -410,6 +411,8 @@
 		3EA487BC15D83EA7008A169F /* typicalIndustry.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = typicalIndustry.plist; path = resources/typicalIndustry.plist; sourceTree = "<group>"; };
 		3EA4883915D846F7008A169F /* TypicalIndustryStoreTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TypicalIndustryStoreTest.h; sourceTree = "<group>"; };
 		3EA4883A15D846F7008A169F /* TypicalIndustryStoreTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TypicalIndustryStoreTest.m; sourceTree = "<group>"; };
+		3EA4891715D85C7C008A169F /* SuggestedCargoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedCargoController.h; sourceTree = "<group>"; };
+		3EA4891815D85C7C008A169F /* SuggestedCargoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCargoController.m; sourceTree = "<group>"; };
 		3EA80AF90E426FDF009C223A /* PrintEverythingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintEverythingView.h; sourceTree = "<group>"; };
 		3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintEverythingView.m; sourceTree = "<group>"; };
 		3EB0AC0A127BB95000E27063 /* InduYard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InduYard.h; sourceTree = "<group>"; };
@@ -747,6 +750,8 @@
 				3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */,
 				3E048E5308DCAE4000383A67 /* SwitchListAppDelegate.h */,
 				3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */,
+				3EA4891715D85C7C008A169F /* SuggestedCargoController.h */,
+				3EA4891815D85C7C008A169F /* SuggestedCargoController.m */,
 				2A37F4AEFDCFA73011CA2CEA /* SwitchListDocument.h */,
 				2A37F4ACFDCFA73011CA2CEA /* SwitchListDocument.m */,
 				3E8D889512B4A24000DB580E /* SwitchListDocumentInterface.h */,
@@ -1259,6 +1264,7 @@
 				3E9AF44314F9F2AF00580148 /* TrainSizeVector.m in Sources */,
 				3E43B3A615073D1F00AAA92B /* LayoutController.m in Sources */,
 				3EA4879915D83D73008A169F /* TypicalIndustryStore.m in Sources */,
+				3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

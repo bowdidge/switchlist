@@ -98,8 +98,6 @@
 	categoryMap_ = [[NSMutableDictionary alloc] init];
 	typicalIndustries_ = [industryFileContents retain];
 	[self makeMapFromIndustryDict];
-	NSLog(@"Typical industries: %@", typicalIndustries_);
-	NSLog(@"Category map: %@", categoryMap_);
 	return self;
 }	
 	
@@ -122,6 +120,13 @@
 	[super dealloc];
 }
 
+- (NSArray*) allCategoryNames {
+	NSMutableArray *result = [NSMutableArray array];
+	for (NSString *categoryName in [categoryMap_ allValues]) {
+		[result addObject: categoryName];
+	}
+	return result;
+}
 // Returns a list of categories (as NSNumbers) describing the best fits for the
 // industry named.  The threshold value sets a cutoff for (compared to the best
 // match.  By taking the best match's score and dividing by threshold, it sets a lower
@@ -179,6 +184,17 @@
 	for (NSDictionary *industry in typicalIndustries_) {
 		if ([[industry objectForKey: @"IndustryClass"] isEqualToString: industryName]) {
 			return industry;
+		}
+	}
+	return nil;
+}
+
+// Given a canonical name for an industry (which should be unique), return the NSNumber
+// identifying that particular category which is an index to the industry dictionary.
+- (NSNumber*) categoryWithCanonicalName: (NSString*) canonicalName {
+	for (NSNumber* category in [categoryMap_ allKeys]) {
+		if ([[categoryMap_ objectForKey: category] isEqualToString: canonicalName]) {
+			return category;
 		}
 	}
 	return nil;

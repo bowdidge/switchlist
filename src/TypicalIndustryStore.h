@@ -37,6 +37,7 @@
 @interface TypicalIndustryStore: NSObject {
 	LSMMapRef industryMap_;
 	NSArray *typicalIndustries_;
+	// Map from category number to category's canonical name.
 	NSDictionary *categoryMap_;
 }
 
@@ -46,6 +47,9 @@
 
 // For testing only.
 - (id) initWithIndustryPlistArray: (NSArray*) industryPListArray;
+
+// All category canonical names.
+- (NSArray*) allCategoryNames;
 
 // Given an incoming industry name, finds a set of categories
 // of typical industries that may be the same.
@@ -57,6 +61,10 @@
 
 // Returns the raw data on the typical industry.
 - (NSDictionary*) industryDictForCategory: (NSNumber*) category;
+
+// Given a canonical name for an industry (which should be unique), return the NSNumber
+// identifying that particular category which is an index to the industry dictionary.
+- (NSNumber*) categoryWithCanonicalName: (NSString*) canonicalName;	
 
 // Human readable description of what advice we might give for the industry.
 - (void) helpUser: (NSString*) industryName;
