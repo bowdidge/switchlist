@@ -40,6 +40,8 @@
 @dynamic name;
 @dynamic division;
 @dynamic location;
+@dynamic originatingCargos;
+@dynamic terminatingCargos;
 
 - (BOOL) isOffline {
 	return [[self location] isOffline];

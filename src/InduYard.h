@@ -38,7 +38,8 @@
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *division;
 @property (nonatomic, retain) Place *location;
-
+@property (nonatomic, retain) NSSet* originatingCargos;
+@property (nonatomic, retain) NSSet* terminatingCargos;
 
 - (NSSet*) freightCars;
 - (BOOL) isOffline;
