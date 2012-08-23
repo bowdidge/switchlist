@@ -77,16 +77,15 @@ int GenerateRandomNumber(int max) {
 	// Sum up total number of cars/week
 	int sum=0;
 	for (cargo in allCargos) {
-		id carCount = [cargo valueForKey: @"carsPerWeek"];
-		sum += [carCount intValue];
+		sum += [[cargo carsPerWeek] intValue];
 	}
 	
 	for (i=0;i<count;i++) {
 		int cargoChoice = GenerateRandomNumber(sum);
 		int curSum=0;
 		for (cargo in allCargos) {
-			int thisCargoCarsPerWeek = [[cargo valueForKey: @"carsPerWeek"] intValue];
-			if (cargoChoice < thisCargoCarsPerWeek+curSum) {
+			int thisCargoCarsPerWeek = [[cargo carsPerWeek] intValue];
+			if (cargoChoice < thisCargoCarsPerWeek + curSum) {
 				// this is our match
 				[resultCargos addObject: cargo];
 				break;
