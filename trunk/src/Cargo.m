@@ -40,24 +40,45 @@
 @dynamic carTypeRel;
 @dynamic cargoDescription;
 @dynamic source,destination;
+@dynamic rate, rateUnits;
 
-
-- (NSNumber *)carsPerWeek 
-{
-    NSNumber * tmpValue;
-    
-    [self willAccessValueForKey: @"carsPerWeek"];
-    tmpValue = [self primitiveValueForKey: @"carsPerWeek"];
-    [self didAccessValueForKey: @"carsPerWeek"];
-    
-    return tmpValue;
+// Returns the integer number of cars per week expected to move carrying this
+// cargo.
+// TODO(bowdidge): Change all the algorithms to correctly handle a small number of
+// cars per month.  One possibility is to do all the analysis in carsPerMonth.
+// Also switch the new suggested cargo assistant to allow units.
+- (NSNumber *)carsPerWeek {
+	[self willAccessValueForKey: @"rate"];
+   	[self willAccessValueForKey: @"rateUnits"];
+	NSNumber *rateUnits = [self valueForKeyPath: @"rateUnits"];
+	NSNumber *rate = [self valueForKeyPath: @"rate"];
+	int rateValue = [rate intValue];
+	int rateUnitsEnum = [rateUnits intValue];
+	float carsPerWeek = 0;
+	switch (rateUnitsEnum) {
+		case RATE_PER_DAY:
+			carsPerWeek = rateValue * 7;
+			break;
+		case RATE_PER_WEEK:
+			carsPerWeek = rateValue;
+			break;
+		case RATE_PER_MONTH:
+			carsPerWeek = rateValue / 7.0;
+			break;
+	}
+    [self didAccessValueForKey: @"rate"];
+    [self didAccessValueForKey: @"rateUnits"];
+	return [NSNumber numberWithInt: carsPerWeek];
 }
 
-- (void)setCarsPerWeek:(NSNumber *)value 
-{
-    [self willChangeValueForKey: @"carsPerWeek"];
-    [self setPrimitiveValue: value forKey: @"carsPerWeek"];
-    [self didChangeValueForKey: @"carsPerWeek"];
+// Sets the preferred number of cars carrying this cargo to move each week.
+- (void)setCarsPerWeek:(NSNumber *)value {
+    [self willChangeValueForKey: @"rate"];
+    [self willChangeValueForKey: @"rateUnits"];
+    [self setPrimitiveValue: value forKey: @"rate"];
+	[self setPrimitiveValue: [NSNumber numberWithInt: RATE_PER_WEEK] forKey: @"rateUnits"];
+    [self didChangeValueForKey: @"rate"];
+    [self didChangeValueForKey: @"rateUnits"];
 }
 
 - (BOOL) isSourceOffline {
