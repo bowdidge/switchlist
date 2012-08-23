@@ -66,6 +66,9 @@ if [ $? -ne 0 ]; then
 fi
 popd 
 
+# Replace the new icon with the old so things work on 10.5.
+cp /tmp/switchlist-read-only/src/resources/icon-old.icns /tmp/SwitchList.dst/Applications/SwitchList.app/Contents/Resources/icon.icns
+
 cp -r /tmp/SwitchList.dst/Applications/SwitchList.app /tmp/SwitchList/
 cp -r examples /tmp/SwitchList/Example\ Layouts
 cp -r template_examples /tmp/SwitchList/Custom\ Switchlist\ Examples
