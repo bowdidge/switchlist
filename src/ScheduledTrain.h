@@ -43,6 +43,9 @@
 	NSString *cachedStationsString_;
 }
 
+// Actual CarType objects accepted by this train.
+@property (nonatomic, retain) NSSet *acceptedCarTypesRel;
+
 // freightCars is a PUBLIC TEMPLATE API.
 // Set of all freight cars to be inclued in the train in no order.
 @property (nonatomic, retain) NSSet *freightCars;
@@ -50,8 +53,6 @@
 - (NSNumber *)maxLength;
 - (void)setMaxLength:(NSNumber *)value;
 
-//- (NSString *)acceptedCarTypes;
-//- (void)setAcceptedCarTypes:(NSString *)value;
 - (BOOL) acceptsCarType: (CarType*) carType;
 
 // Returns a comma-separated string listing the car types that this

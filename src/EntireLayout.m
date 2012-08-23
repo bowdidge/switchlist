@@ -402,10 +402,10 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	NSEnumerator *placeEnum = [listOfPlaces objectEnumerator];
 	Place* place;
 	while ((place = [placeEnum nextObject]) != nil) {
-		if ([[place primitiveValueForKey: @"industries"] count] == 0) continue;
+		if ([[place industries] count] == 0) continue;
 		[req2 setEntity: indEnt];
 		NSPredicate *industriesHerePred = [NSPredicate predicateWithFormat:
-										   [NSString stringWithFormat: @"location.name LIKE '%@'",[[place valueForKey: @"name"] sqlSanitizedString]]];
+										   [NSString stringWithFormat: @"location.name LIKE '%@'",[[place name] sqlSanitizedString]]];
 		[req2 setPredicate: industriesHerePred];
 		[req2 setSortDescriptors: [NSArray arrayWithObject: ind2]];
 		NSArray *industries = [[self managedObjectContext] executeFetchRequest: req2 error: &error];
@@ -590,7 +590,7 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	while ((car = [e nextObject]) != nil) {
 		BOOL isLoaded = [car isLoaded];
 		InduYard *carIndustryLocation = [car currentLocation];
-		Cargo *cargo = [car valueForKey: @"cargo"];
+		Cargo *cargo = [car cargo];
 		//NSString *carName = [car reportingMarks];
 		
 		// Any car in staging without a cargo is fair game.
@@ -599,8 +599,8 @@ NSString *NormalizeDivisionString(NSString *inString) {
 			continue;
 		}
 		// Is the car where it's supposed to be?
-		id cargoDest = [cargo valueForKey: @"destination"];	
-		id cargoSrc = [cargo valueForKey: @"source"];	
+		id cargoDest = [cargo destination];
+		id cargoSrc = [cargo source];
 		
 		if (((isLoaded == YES) && (carIndustryLocation == cargoDest)) ||
 			((isLoaded == NO) && (carIndustryLocation == cargoSrc))) {
