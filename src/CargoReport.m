@@ -48,7 +48,7 @@
 	[super initWithDocument: document];
 	industryObjects_  = [industryObjects retain];
 	uniqueStrings_ = nil;
-	unspecifiedString_ = @"Unspecified";
+	unspecifiedString_ = @"???";
 	return self;
 }
 - (void) dealloc {
