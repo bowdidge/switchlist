@@ -41,6 +41,13 @@
 	cargoAssigner_ = [[CargoAssigner alloc] initWithEntireLayout: entireLayout_];
 }
 
+- (void) testDailyCargo {
+	Cargo *c1 = [self makeCargo: @"a to b"];
+	[c1 setRate: [NSNumber numberWithInt: 3]];
+	[c1 setRateUnits: [NSNumber numberWithInt: RATE_PER_DAY]];
+	STAssertEqualsInt(21, [[c1 carsPerWeek] intValue], @"Expected 21 cars per week.");
+}
+	
 - (void) testFixedRateCargosAlwaysShowUp {
 	[self makeThreeStationLayout];
 
@@ -81,6 +88,36 @@
 		Cargo *c = [cargos objectAtIndex: i];
 		STAssertTrue(c == c2 || c == c3, @"%dth cargo is not c2 or c3", i);
 	}
+}
+
+- (void) testMixOfDailyAndWeekly {
+	[self makeThreeStationLayout];
+	
+	Cargo *c1 = [self makeCargo: @"a to b"];
+	[c1 setSource: [self industryAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	[c1 setRate: [NSNumber numberWithInt: 3]];
+	[c1 setRateUnits: [NSNumber numberWithInt: RATE_PER_DAY]];
+	
+	Cargo *c2 = [self makeCargo: @"b to c"];
+	[c2 setSource: [self industryAtStation: @"B"]];
+	[c2 setDestination: [self industryAtStation: @"C"]];
+	[c2 setRate: [NSNumber numberWithInt: 21]];
+	[c2 setRateUnits: [NSNumber numberWithInt: RATE_PER_WEEK]];
+	
+	// Should be an average of 3 cars a day with cargo type C1 and C2.
+	NSArray *cargos = [cargoAssigner_ cargosForToday: 6];
+	int i;
+	int cargoCount = [cargos count];
+	STAssertEqualsInt(6, [cargos count], @"Not enough cargos chosen.");
+	
+	int numberOfC2=0;
+	for (i=0; i<6; i++) {
+		if ([cargos objectAtIndex: i] == c2) numberOfC2++;
+	}
+	
+	// Should be true most of the time.
+	STAssertTrue(numberOfC2 > 1 && numberOfC2 < 5, @"c2 came up %d times - not random enough?", numberOfC2);
 }
 
 - (void) tearDown {

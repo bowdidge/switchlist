@@ -195,6 +195,12 @@
 		3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
 		3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */; };
 		3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
+		3ED2011915E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */; };
+		3ED2011A15E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */; };
+		3ED2011B15E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */; };
+		3ED2012A15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */; };
+		3ED2012B15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */; };
+		3ED2012C15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */; };
 		3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3ED58A6F13A727F500F6E26E /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
 		3ED58A7013A727FF00F6E26E /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
@@ -427,10 +433,13 @@
 		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntireLayoutTest.h; sourceTree = "<group>"; };
 		3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntireLayoutTest.m; sourceTree = "<group>"; };
 		3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-carlist.html"; path = "templates/switchlist-carlist.html"; sourceTree = "<group>"; };
+		3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCargoRate.xcmappingmodel; sourceTree = "<group>"; };
+		3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCargoRate.xcmappingmodel; sourceTree = "<group>"; };
 		3ED482320D715B3600C36741 /* SwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListView.h; sourceTree = "<group>"; };
 		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
 		3ED697D8130139C100DA9074 /* SouthernPacificSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouthernPacificSwitchListView.h; sourceTree = "<group>"; };
 		3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouthernPacificSwitchListView.m; sourceTree = "<group>"; };
+		3EDD57EC15E5D7ED006E0B5C /* SwitchListDocument 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 5.xcdatamodel"; sourceTree = "<group>"; };
 		3EE0B6811573446E00281B33 /* MGTemplateEngineTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTemplateEngineTest.h; path = MGTemplateEngine/MGTemplateEngineTest.h; sourceTree = "<group>"; };
 		3EE0B6821573446E00281B33 /* MGTemplateEngineTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTemplateEngineTest.m; path = MGTemplateEngine/MGTemplateEngineTest.m; sourceTree = "<group>"; };
 		3EE19373145C924000CB614D /* car-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "car-report.html"; path = "templates/car-report.html"; sourceTree = "<group>"; };
@@ -548,6 +557,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */,
 				3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */,
 				3E917A130951659A004647C7 /* Reports */,
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
@@ -869,6 +879,7 @@
 				3E3C11D50A39652F0071D6B4 /* Yard.m */,
 				3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */,
 				3EE3F5C50E4234C2003BA863 /* SwitchListDocument.xcdatamodeld */,
+				3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1088,6 +1099,8 @@
 				3E43B4D61507419800AAA92B /* LayoutController.m in Sources */,
 				3E43B4DC150741B400AAA92B /* testAdvanceLayoutsMain.m in Sources */,
 				3E7A781F1509AEA7001D37E6 /* TrainSizeVector.m in Sources */,
+				3ED2011B15E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */,
+				3ED2012B15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1200,6 +1213,8 @@
 				3EE0B6831573446E00281B33 /* MGTemplateEngineTest.m in Sources */,
 				3EA4879015D83CE1008A169F /* SwitchListAppDelegateTest.m in Sources */,
 				3EA4883B15D846F7008A169F /* TypicalIndustryStoreTest.m in Sources */,
+				3ED2011A15E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */,
+				3ED2012C15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1265,6 +1280,8 @@
 				3E43B3A615073D1F00AAA92B /* LayoutController.m in Sources */,
 				3EA4879915D83D73008A169F /* TypicalIndustryStore.m in Sources */,
 				3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */,
+				3ED2011915E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */,
+				3ED2012A15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1507,7 +1524,6 @@
 				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
-				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -1837,10 +1853,11 @@
 				3E042CA110AFD44C0002A609 /* SwitchListDocument 2.xcdatamodel */,
 				3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */,
 				3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */,
+				3EDD57EC15E5D7ED006E0B5C /* SwitchListDocument 5.xcdatamodel */,
 				3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */,
 				3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */,
 			);
-			currentVersion = 3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */;
+			currentVersion = 3EDD57EC15E5D7ED006E0B5C /* SwitchListDocument 5.xcdatamodel */;
 			path = SwitchListDocument.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

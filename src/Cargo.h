@@ -33,6 +33,12 @@
 @class CarType;
 @class InduYard;
 
+enum RateUnits {
+	RATE_PER_DAY = 0,
+	RATE_PER_WEEK = 1,
+	RATE_PER_MONTH = 2
+};
+
 @interface Cargo :  NSManagedObject  
 {
 }
@@ -44,6 +50,9 @@
 @property(nonatomic, retain) CarType* carTypeRel;
 @property (nonatomic, retain) NSString* cargoDescription;
 @property (nonatomic, retain) InduYard* source, *destination;
+// rate replaces carsPerWeek.  rate is an NSNumber (integer) representing the number
+// of cars per unit time; rateUnits is 0 for per day, 1 for perWeek, 2 for perMonth.
+@property (nonatomic, retain) NSNumber* rate, *rateUnits;
 
 
 - (NSNumber *)carsPerWeek;
