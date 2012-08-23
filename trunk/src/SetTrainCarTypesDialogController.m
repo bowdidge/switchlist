@@ -60,7 +60,7 @@
 	allCarTypes_ = [[NSMutableArray alloc] initWithArray: [entireLayout_ allCarTypes]];
 	[allCarTypes_ sortUsingSelector: @selector(compare:)];
 
-	NSSet *officialCarTypes = [trainToChange_ primitiveValueForKey: @"acceptedCarTypesRel"];
+	NSSet *officialCarTypes = [trainToChange_ acceptedCarTypesRel];
 	if ([officialCarTypes count] == 0) {
 		currentCarTypes_ = [[NSMutableSet alloc] initWithArray: allCarTypes_];
 	} else {

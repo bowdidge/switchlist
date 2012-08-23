@@ -40,6 +40,7 @@
 
 @implementation ScheduledTrain 
 
+@dynamic acceptedCarTypesRel;
 @dynamic freightCars;
 
 // Code run the first time an object is created. 
@@ -70,17 +71,6 @@
     [self didChangeValueForKey: @"maxLength"];
 }
 
-- (NSString *)acceptedCarTypes 
-{
-    NSString * tmpValue;
-    
-    [self willAccessValueForKey: @"acceptedCarTypes"];
-    tmpValue = [self primitiveValueForKey: @"acceptedCarTypes"];
-    [self didAccessValueForKey: @"acceptedCarTypes"];
-    
-    return tmpValue;
-}
-
 // Returns a string containing the comma-separated types of
 // car types picked up by this train.  This is treated
 // like a valid property and marked as invalid so parts of the 
@@ -107,13 +97,6 @@
 	[self didChangeValueForKey: @"carTypesAcceptedRel"];
 	[self didChangeValueForKey: @"acceptedCarTypesString"];
 }
-
-//- (void)setAcceptedCarTypes:(NSString *)value 
-//{
-//    [self willChangeValueForKey: @"acceptedCarTypes"];
-//    [self setPrimitiveValue: value forKey: @"acceptedCarTypes"];
-//    [self didChangeValueForKey: @"acceptedCarTypes"];
-//}
 
 - (BOOL) acceptsCarType: (CarType*) carType {
 	NSSet *acceptedCarTypes = [self valueForKey: @"acceptedCarTypesRel"];
