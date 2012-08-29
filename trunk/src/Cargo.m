@@ -63,7 +63,7 @@
 			carsPerWeek = rateValue;
 			break;
 		case RATE_PER_MONTH:
-			carsPerWeek = rateValue / 7.0;
+			carsPerWeek = rateValue / 4.0;
 			break;
 	}
     [self didAccessValueForKey: @"rate"];
