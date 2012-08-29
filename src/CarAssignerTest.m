@@ -46,271 +46,232 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[super setUp];
 	carAssigner_ = [[CarAssigner alloc] initWithUnassignedCars:nil layout:nil];
 	[self makeThreeStationLayout];
+
+	myCargo_ = [[self makeCargo: @"a to b"] retain];	
+	[myCargo_ setSource: [self industryAtStation: @"A"]];
+	[myCargo_ setDestination: [self industryAtStation: @"B"]];
+	
+	myFreightCar_ = [[self makeFreightCarWithReportingMarks: FREIGHT_CAR_3] retain];
 }
 - (void) tearDown {
 	[carAssigner_ release];
+	[myCargo_ release];
+	[myFreightCar_ release];
 	[super tearDown];
 }
 
 - (void) testCarWithNoCargoButLoadedGetsCargo {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
-	[fc1 setCargo: nil];
-	[fc1 setIsLoaded: YES];
-	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	[myFreightCar_ setCargo: nil];
+	[myFreightCar_ setIsLoaded: YES];
+	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"A"]];
 	
-	Cargo *c1 = [self makeCargo: @"a to b"];	
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
 	
 	// Car fc1 should be a find.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"cargo and car with undefined division");
+	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"cargo and car with undefined division");
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
 																	  layout: entireLayout_];
 	[myCarAssigner autorelease];
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Find assigned car with incomplete cargo.");
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo: myCargo_], myFreightCar_, @"Find assigned car with incomplete cargo.");
 	
 	
 }
 - (void) testCarAssignerCarDivisionsUnset {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
-
-	Cargo *c1 = [self makeCargo: @"a to b"];	
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
-
-	[fc1 setHomeDivision: nil];
+	[myFreightCar_ setHomeDivision: nil];
 	
-	STAssertNil([fc1 homeDivision], @"Check home division unset for freight car");
-	STAssertNil([[c1 source] division], @"Check cargo source division unset");
-	STAssertNil([[c1 destination] division], @"Check cargo destination division unset");
+	STAssertNil([myFreightCar_ homeDivision], @"Check home division unset for freight car");
+	STAssertNil([[myCargo_ source] division], @"Check cargo source division unset");
+	STAssertNil([[myCargo_ destination] division], @"Check cargo destination division unset");
 	
 	// Everything has no division - should be a good match.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"cargo and car with undefined division");
+	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"cargo and car with undefined division");
 		
-	[[c1 source] setDivision: @"ATSF"];
+	[[myCargo_ source] setDivision: @"ATSF"];
 	// Car is undefined, destination is undefined, so we should use it.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"undefined division car, source not of this division");
+	STAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"undefined division car, source not of this division");
 
-	[[c1 source] setDivision: nil];
-	[[c1 destination] setDivision: @"ATSF"];
+	[[myCargo_ source] setDivision: nil];
+	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is undefined, source is undefined so we should use it.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"undefined division car, destination not of this division");
+	STAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"undefined division car, destination not of this division");
 
-	[[c1 source] setDivision: @"ATSF"];
-	[[c1 destination] setDivision: @"ATSF"];
+	[[myCargo_ source] setDivision: @"ATSF"];
+	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is undefined, source and destination not here.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"undefined division car, cargo src, dest not of this division");
+	STAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"undefined division car, cargo src, dest not of this division");
 }
 
 - (void) testCarAssignerCarForeignDivision {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
+	[myFreightCar_ setHomeDivision: @"ATSF"];
 	
-	Cargo *c1 = [self makeCargo: @"a to b"];
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
-	[fc1 setHomeDivision: @"ATSF"];
-	
-	STAssertEqualObjects([fc1 homeDivision], @"ATSF", @"Check foreign car has foreign division");
-	STAssertNil([[c1 source] division], @"Check cargo source division unset");
-	STAssertEqualObjects([[c1 destination] division], nil, @"Check cargo destination division unset");
+	STAssertEqualObjects([myFreightCar_ homeDivision], @"ATSF", @"Check foreign car has foreign division");
+	STAssertNil([[myCargo_ source] division], @"Check cargo source division unset");
+	STAssertEqualObjects([[myCargo_ destination] division], nil, @"Check cargo destination division unset");
 
 
 	// Car isn't of this division, but everything else is undefined.  Should be a good match.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"car foreign, cargo doesn't care");
+	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, cargo doesn't care");
 	
-	[[c1 source] setDivision: @"ATSF"];
+	[[myCargo_ source] setDivision: @"ATSF"];
 	// Car is foreign road, source is foreign.  We should use it.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"car and source are both same foreign division");
+	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car and source are both same foreign division");
 
 	// Car isn't of this division, destination is same foreign division, use.
-	[[c1 source] setDivision: nil];
-	[[c1 destination] setDivision: @"ATSF"];
+	[[myCargo_ source] setDivision: nil];
+	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is home-road, source is here so we should use it
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"car and destination are same division");
+	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car and destination are same division");
 	
-	[[c1 source] setDivision: @"ATSF"];
-	[[c1 destination] setDivision: @"ATSF"];
+	[[myCargo_ source] setDivision: @"ATSF"];
+	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is foreign, source and destination same.  Use.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"car, source, dest all the same.");
+	STAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"car, source, dest all the same.");
 }
 
 - (void) testCarAssignerCarMismatchDivision {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
+	[myFreightCar_ setHomeDivision: @"BN"];
 	
-	Cargo *c1 = [self makeCargo: @"a to b"];
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
-	[fc1 setHomeDivision: @"BN"];
-	
-	STAssertEqualObjects([fc1 homeDivision], @"BN", @"Check foreign car has foreign division");
-	STAssertNil([[c1 source] division], @"Check cargo source division unset");
-	STAssertNil([[c1 destination] division], @"Check cargo destination division unset");
+	STAssertEqualObjects([myFreightCar_ homeDivision], @"BN", @"Check foreign car has foreign division");
+	STAssertNil([[myCargo_ source] division], @"Check cargo source division unset");
+	STAssertNil([[myCargo_ destination] division], @"Check cargo destination division unset");
 	
 	
 	// Car isn't of this division, but everything else doesn't care.  Should be a good match.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"car foreign, cargo doesn't care");
+	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, cargo doesn't care");
 	
-	[[c1 source] setDivision: @"ATSF"];
+	[[myCargo_ source] setDivision: @"ATSF"];
 	// Car is foreign road, source is foreign.  We should use it.
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"car foreign, destination doesn't care.");
+	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, destination doesn't care.");
 	
 	// Car isn't of this division, destination is same foreign division, use.
-	[[c1 source] setDivision: nil];
-	[[c1 destination] setDivision: @"ATSF"];
+	[[myCargo_ source] setDivision: nil];
+	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is home-road, source is here so we should use it
-	STAssertTrue([carAssigner_ cargo:c1 appropriateForCar:fc1], @"car foreign, source doesn't care.");
+	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, source doesn't care.");
 	
-	[[c1 source] setDivision: @"ATSF"];
-	[[c1 destination] setDivision: @"ATSF"];
+	[[myCargo_ source] setDivision: @"ATSF"];
+	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is foreign, source and destination same.  Use.
-	STAssertFalse([carAssigner_ cargo:c1 appropriateForCar:fc1], @"car is foreign, and source/dest are different division.");
+	STAssertFalse([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"car is foreign, and source/dest are different division.");
 }
 
 // Do we correctly just mark the cargo as loaded if the car's already there?
 - (void) testFreightCarAutoLoadedIfAtSource {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
-	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"A"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
 																	  layout: entireLayout_];
 	[myCarAssigner autorelease];
-	Cargo *c1 = [self makeCargo: @"a to b"];
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
-	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
-	STAssertTrue([fc1 isLoaded], @"Test cargo is marked as loaded because we're already there.");
+		
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	STAssertTrue([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
 }
 
 // Do we mark the cargo as loaded if the car's already there and we're in staging?
 - (void) testFreightCarNotAutoLoadedIfAtSourceInStaging {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
 	[[entireLayout_ stationWithName: @"A"] setIsStaging: YES];
 	[self makeYardAtStation: @"A"];
-	[fc1 setCurrentLocation: [self yardAtStation: @"A"]];
+	[myFreightCar_ setCurrentLocation: [self yardAtStation: @"A"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
 																	  layout: entireLayout_];
 	[myCarAssigner autorelease];
-	Cargo *c1 = [self makeCargo: @"a to b"];
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
-	STAssertFalse([fc1 isLoaded], @"Test cargo should be not marked as loaded because it can be moved.");
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo: myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	STAssertFalse([myFreightCar_ isLoaded], @"Test cargo should be not marked as loaded because it can be moved.");
 }
 
 // Do we correctly just mark the cargo as loaded if the car's already there and we're in staging?
 - (void) testFreightCarAutoLoadedIfAtSourceInStagingAndCarInYard {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
 	[[entireLayout_ stationWithName: @"A"] setIsStaging: YES];
 	[self makeYardAtStation: @"A"];
-	[fc1 setCurrentLocation: [self yardAtStation: @"A"]];
+	[myFreightCar_ setCurrentLocation: [self yardAtStation: @"A"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
 																	  layout: entireLayout_];
 	[myCarAssigner autorelease];
-	Cargo *c1 = [self makeCargo: @"a to b"];
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
-	STAssertFalse([fc1 isLoaded], @"Test cargo is not marked as loaded because it can be moved in staging.");
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	STAssertFalse([myFreightCar_ isLoaded], @"Test cargo is not marked as loaded because it can be moved in staging.");
 }
 
 // Do we correctly just mark the cargo as loaded if the car's already there and we're in staging?
 - (void) testFreightCarNotAutoLoadedIfAtSourceInStagingAndCarAtOtherStaging {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
 	[[entireLayout_ stationWithName: @"A"] setIsStaging: YES];
 	[[entireLayout_ stationWithName: @"C"] setIsStaging: YES];
-	[fc1 setCurrentLocation: [self industryAtStation: @"C"]];
+	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"C"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
 																	  layout: entireLayout_];
 	[myCarAssigner autorelease];
-	Cargo *c1 = [self makeCargo: @"a to b"];
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
-	STAssertFalse([fc1 isLoaded], @"Test cargo is marked as loaded because we're already there.");
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	STAssertFalse([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
 }
 
 // Do we correctly just mark the cargo as loaded in C because it's staging and load comes from offline?
 - (void) testFreightCarAutoLoadedIfAtSourceOffline {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
 	[[entireLayout_ stationWithName: @"A"] setIsOffline: YES];
 	[[entireLayout_ stationWithName: @"C"] setIsStaging: YES];
-	[fc1 setCurrentLocation: [self industryAtStation: @"C"]];
+	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"C"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
 																	  layout: entireLayout_];
 	[myCarAssigner autorelease];
-	Cargo *c1 = [self makeCargo: @"a to b"];
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
-	STAssertTrue([fc1 isLoaded], @"Test cargo is marked as loaded because we're already there.");
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	STAssertTrue([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
 }
 
 
 // Do we correctly mark cargo as unloaded if car isn't at correct site?
 - (void) testFreightCarNotLoadedAtStart {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
-	[fc1 setCurrentLocation: [self industryAtStation: @"B"]];
+	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"B"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
 																	  layout: entireLayout_];
 	[myCarAssigner autorelease];
-	Cargo *c1 = [self makeCargo: @"a to b"];
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
-	STAssertFalse([fc1 isLoaded], @"Test cargo is marked as loaded because we're already there.");
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	STAssertFalse([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
 }
 
 - (void) testHandlesIncompleteCargoSafely {
 	// TODO(bowdidge): Bad test.  Incomplete cargos shouldn't get passed to assignedCarForCargo.
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
-	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"A"]];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
 																	  layout: entireLayout_];
 	[myCarAssigner autorelease];
-	Cargo *c1 = [self makeCargo: @"a to b"];
+	Cargo *incompleteCargo = [self makeCargo: @"a to b"];
 	// This shouldn't crash.
-	STAssertTrue([myCarAssigner cargo:c1 appropriateForCar:fc1], @"car foreign, cargo doesn't care");
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Find assigned car with incomplete cargo.");
-	STAssertNotNil([fc1 cargo], @"Cargo assigned");
-	STAssertFalse([fc1 isLoaded], @"Cargo should not be loaded.");
+	STAssertTrue([myCarAssigner cargo:incompleteCargo appropriateForCar:myFreightCar_], @"car foreign, cargo doesn't care");
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo: incompleteCargo], myFreightCar_, @"Find assigned car with incomplete cargo.");
+	STAssertNotNil([myFreightCar_ cargo], @"Cargo assigned");
+	STAssertFalse([myFreightCar_ isLoaded], @"Cargo should not be loaded.");
 }
 
 // TODO(bowdidge): Move to freight car test eventually.
 - (void) testFreightCarHomeDivision {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
-	STAssertNil([fc1 homeDivision], @"Check foreign car has foreign division");
+	STAssertNil([myFreightCar_ homeDivision], @"Check division starts empty.");
 	
-	[fc1 setHomeDivision: @"BN"];
-	STAssertEqualObjects([fc1 homeDivision], @"BN", @"Check setting home division is permanent.");
+	[myFreightCar_ setHomeDivision: @"BN"];
+	STAssertEqualObjects([myFreightCar_ homeDivision], @"BN", @"Check home division is settable.");
 	
-	[fc1 setHomeDivision: @"Here"];
-	STAssertEqualObjects([fc1 homeDivision], @"Here", @"Check setting home division to Here works.");
+	[myFreightCar_ setHomeDivision: @"Here"];
+	STAssertEqualObjects([myFreightCar_ homeDivision], @"Here", @"Check setting home division to Here works.");
 
 	
-	[fc1 setHomeDivision: @""];
-	STAssertNil([fc1 homeDivision], @"Check setting home division to empty string works.");
+	[myFreightCar_ setHomeDivision: @""];
+	STAssertNil([myFreightCar_ homeDivision], @"Check setting home division to empty string works.");
 
-	[fc1 setHomeDivision: @" "];
-	STAssertNil([fc1 homeDivision], @"Check setting home division to spaces works.");
+	[myFreightCar_ setHomeDivision: @" "];
+	STAssertNil([myFreightCar_ homeDivision], @"Check setting home division to spaces works.");
 }
 
 - (void) testSameCarNotAssignedEveryTime {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
-	[fc1 setCargo: nil];
-	[fc1 setIsLoaded: YES];
-	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	[myFreightCar_ setCargo: nil];
+	[myFreightCar_ setIsLoaded: YES];
+	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"A"]];
 
 	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_4];
 	[fc2 setCargo: nil];
@@ -318,20 +279,15 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
 
 	
-	Cargo *c1 = [self makeCargo: @"a to b"];	
-	[c1 setSource: [self industryAtStation: @"A"]];
-	[c1 setDestination: [self industryAtStation: @"B"]];
-	
-
     int numberOfTimesFc1Assigned = 0;
 	int i;
 	for (i=0;i<10;i++) {
-		CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObjects: fc1, fc2, nil]
+		CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObjects: myFreightCar_, fc2, nil]
 																		  layout: entireLayout_];
 		[myCarAssigner autorelease];
-		if (fc1 == [myCarAssigner assignedCarForCargo: c1]) {
+		if (myFreightCar_ == [myCarAssigner assignedCarForCargo:myCargo_]) {
 			numberOfTimesFc1Assigned++;
-			[fc1 setCargo: nil];
+			[myFreightCar_ setCargo: nil];
 		}
 	}
 	// fc1 and fc2 should have been assigned equally.  If only fc1 or fc2 got
