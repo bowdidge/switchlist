@@ -3,8 +3,7 @@
 <plist version="1.0">
 <array>
   <dict>
-    <key>IndustryClass</key>
-    <string>cannery</string>
+    <key>IndustryClass</key><string>cannery</string>
     <key>Synonyms</key>
     <array>
       <string>Di Fiore Canning Corporation</string>
@@ -39,46 +38,33 @@
     <key>Cargo</key>
     <array>
       <dict>
-        <key>Name</key>
-	<string>cans</string>
-	<key>Incoming</key>
-	<true/>
-	<key>Rate</key>
-	<integer>20</integer>
+        <key>Name</key><string>cans</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>20</integer>
       </dict>
       <dict>
-        <key>Name</key>
-	<string>canned fruit</string>
-	<key>Incoming</key>
-	<false/>
-	<key>Rate</key>
-	<integer>75</integer>
+        <key>Name</key><string>canned fruit</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>75</integer>
       </dict>
       <dict>
-        <key>Name</key>
-	<string>boxes</string>
+        <key>Name</key><string>boxes</string>
 	<key>Era</key>
 	<integer>1970</integer>
-	<key>Incoming</key>
-	<true/>
-	<key>Rate</key>
-	<integer>5</integer>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>5</integer>
       </dict>
       <dict>
-        <key>Name</key>
-	<string>crates</string>
+        <key>Name</key><string>crates</string>
 	<key>Era</key>
 	<integer>1930</integer>
-	<key>Incoming</key>
-	<true/>
-	<key>Rate</key>
-	<integer>5</integer>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>5</integer>
       </dict>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>fresh fruit packer</string>
+    <key>IndustryClass</key><string>fresh fruit packer</string>
     <key>Synonyms</key>
     <array>
       <string>United Fruit Co.</string>
@@ -88,19 +74,33 @@
       <string>Sunkist</string>
       <string>Citrus</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>fruit</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>frozen fruit plant</string>
+    <key>IndustryClass</key><string>frozen fruit plant</string>
     <key>Synonyms</key>
     <array>
       <string>Alpine Frozen Foods</string>
       <string>Birdseye</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>frozen foods</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>fruit</string>
+    <key>IndustryClass</key><string>fruit</string>
     <key>Synonyms</key>
     <array>
       <string>packing</string>
@@ -108,16 +108,27 @@
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>auto parts</string>
+    <key>IndustryClass</key><string>auto parts</string>
     <key>Synonyms</key>
     <array>
       <string>American Motors</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>steel</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>40</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>car parts</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>60</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>dried fruit packer</string>
+    <key>IndustryClass</key><string>dried fruit packer</string>
     <key>Synonyms</key>
     <array>
       <string>Sunsweet Growers</string>
@@ -136,18 +147,6 @@
       <string>J. W. Chilton Fruit Packing</string>
       <string>Cupertino Fruit Co.</string>
     </array>
-  </dict>
-  <dict>
-    <key>IndustryClass</key>
-    <string>can factory</string>
-    <key>Synonyms</key>
-    <array>
-      <string>American Can Company</string>
-      <string>Western Can Co.</string>
-      <string>National Can Company</string>
-      <string>American Can</string>
-      <string>Continental Can Co.</string>
-    </array>
     <key>Cargo</key>
     <array>
       <dict>
@@ -161,34 +160,53 @@
 	<key>Rate</key><integer>15</integer>
       </dict>
       <dict>
-	<key>Name</key>
-	<string>boxes</string>
+	<key>Name</key><string>boxes</string>
 	<key>Incoming</key><false/>
 	<key>Rate</key><integer>23</integer>
       </dict>
       <dict>
-	<key>Name</key>
-	<string>fresh fruit</string>
+	<key>Name</key><string>fresh fruit</string>
 	<key>Incoming</key><false/>
 	<key>Rate</key><integer>15</integer>
       </dict>
       <dict>
-	<key>Name</key>
-	<string>cans</string>
+	<key>Name</key><string>cans</string>
 	<key>Incoming</key><false/>
 	<key>Rate</key><integer>7</integer>
       </dict>
       <dict>
-	<key>Name</key>
-	<string>fresh fruit</string>
+	<key>Name</key><string>fresh fruit</string>
 	<key>Incoming</key><false/>
 	<key>Rate</key><integer>15</integer>
       </dict>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>lumberyard</string>
+    <key>IndustryClass</key><string>can factory</string>
+    <key>Synonyms</key>
+    <array>
+      <string>American Can Company</string>
+      <string>Western Can Co.</string>
+      <string>National Can Company</string>
+      <string>American Can</string>
+      <string>Continental Can Co.</string>
+    </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>tinplate</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>30</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>cans</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>70</integer>
+      </dict>
+    </array>
+  </dict>
+  <dict>
+    <key>IndustryClass</key><string>lumberyard</string>
     <key>Synonyms</key>
     <array>
       <string>lumberyard</string>
@@ -222,37 +240,14 @@
     <key>Cargo</key>
     <array>
       <dict>
-        <key>Name</key>
-	<string>lumber</string>
-	<key>Incoming</key>
-	<true/>
-	<key>Rate</key>
-	<integer>100</integer>
+        <key>Name</key><string>lumber</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
       </dict>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>lumber camp</string>
-    <key>Synonyms</key>
-    <array>
-      <string>logging area</string>
-    </array>
-    <key>Cargo</key>
-    <array>
-      <dict>
-        <key>Name</key>
-	<string>logs</string>
-	<key>Incoming</key>
-	<true/>
-	<key>Rate</key>
-	<integer>100</integer>
-      </dict>
-    </array>
-  </dict>
-  <dict>
-    <key>IndustryClass</key>
-    <string>lumber mill</string>
+    <key>IndustryClass</key><string>lumber mill</string>
     <key>Synonyms</key>
     <array>
       <string>Santa Clara Mill and Lumber</string>
@@ -268,52 +263,55 @@
     <key>Cargo</key>
     <array>
       <dict>
-        <key>Name</key>
-	<string>lumber</string>
-	<key>Incoming</key>
-	<false/>
-	<key>Rate</key>
-	<integer>100</integer>
+        <key>Name</key><string>lumber</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
       </dict>
       <dict>
-        <key>Name</key>
-	<string>lumber chips</string>
-	<key>Incoming</key>
-	<false/>
-	<key>Rate</key>
-	<integer>5</integer>
+        <key>Name</key><string>lumber chips</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>5</integer>
       </dict>
       <dict>
-	<key>Name</key>
-	<string>machinery</string>
+	<key>Name</key><string>machinery</string>
 	<key>Incoming</key><false/>
 	<key>Rate</key><integer>4</integer>
       </dict>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>stock yard</string>
+    <key>IndustryClass</key><string>stock yard</string>
     <key>Synonyms</key>
     <array>
       <string>stock pen</string>
       <string>pens</string>
       <string>stockyards</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>cattle</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>60</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>cattle</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>40</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>ice dock</string>
+    <key>IndustryClass</key><string>ice dock</string>
     <key>Synonyms</key>
     <array>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>manufacturer</string>
+    <key>IndustryClass</key><string>manufacturer</string>
     <key>Synonyms</key>
     <array>
-      <string>mufacturing</string>
+      <string>manufacturing</string>
       <string>industry</string>
       <string>Mfg.</string>
       <string>FMC</string>
@@ -323,10 +321,17 @@
       <string>Acme Door</string>
       <string>Arizona Sash and Door</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>finished goods</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>freight forwarder</string>
+    <key>IndustryClass</key><string>freight forwarder</string>
     <key>Synonyms</key>
     <array>
       <string>Acme Fast Freight</string>
@@ -334,10 +339,22 @@
       <string>REA</string>
       <string>LCL</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>mixed freight</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>mixed freight</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>trucking line</string>
+    <key>IndustryClass</key><string>trucking line</string>
     <key>Synonyms</key>
     <array>
       <string>Pacific Motor Trucking</string>
@@ -351,10 +368,22 @@
       <string>Triangle Trucking</string>
       <string>Lynch Van and Storage</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>mixed freight</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>mixed freight</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>steel fabricator</string>
+    <key>IndustryClass</key><string>steel fabricator</string>
     <key>Synonyms</key>
     <array>
       <string>crane</string>
@@ -369,26 +398,54 @@
       <string>U.S. Steel, Strapping Div</string>
       <string>Pacific Metals Co.</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>steel</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>30</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>steel products</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>furnace</string>
+    <key>IndustryClass</key><string>furnace</string>
     <key>Synonyms</key>
     <array>
       <string>steel</string>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>tire manufacturer</string>
+    <key>IndustryClass</key><string>tire manufacturer</string>
     <key>Synonyms</key>
     <array>
       <string>Goodyear Tire and Rubber</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>steel</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>20</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>rubber</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>10</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>tires</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>70</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>brewery</string>
+    <key>IndustryClass</key><string>brewery</string>
     <key>Synonyms</key>
     <array>
       <string>Burgermeister Brew.</string>
@@ -397,10 +454,22 @@
       <string>Brew</string>
       <string>Beer</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>grain</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>40</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>bottled beer</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>60</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>paper</string>
+    <key>IndustryClass</key><string>paper</string>
     <key>Synonyms</key>
     <array>
       <string>Papercraft Specialty</string>
@@ -411,18 +480,42 @@
       <string>Avery-Dennison</string>
       <string>H.S. Crocker</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>wood chips</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>caustic soda</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>10</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>paper</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>40</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>pipe</string>
+    <key>IndustryClass</key><string>pipe</string>
     <key>Synonyms</key>
     <array>
       <string>Allied Supply</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>pipe</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>beer distributor</string>
+    <key>IndustryClass</key><string>beer distributor</string>
     <key>Synonyms</key>
     <array>
       <string>Bakersfield Beer Warehouse</string>
@@ -430,10 +523,22 @@
       <string>8th Ave Beer Warehouse</string>
       <string>Beverage</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>beer</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>80</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>boxes</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>20</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>oil depot</string>
+    <key>IndustryClass</key><string>oil depot</string>
     <key>Synonyms</key>
     <array>
       <string>Standard Oil</string>
@@ -445,18 +550,32 @@
       <string>Sinclair Refining</string>
       <string>Doklos Oil</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>oil</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>oil production</string>
+    <key>IndustryClass</key><string>oil production</string>
     <key>Synonyms</key>
     <array>
       <string>Oil</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>crude oil</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>propane dealer</string>
+    <key>IndustryClass</key><string>propane dealer</string>
     <key>Synonyms</key>
     <array>
       <string>Amoco Canada Petroleum</string>
@@ -464,10 +583,17 @@
       <string>CALGAS</string>
       <string>Amerigas Propane</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>propane</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>meat packer</string>
+    <key>IndustryClass</key><string>meat packer</string>
     <key>Synonyms</key>
     <array>
       <string>Lakeside Farm Industries</string>
@@ -476,10 +602,17 @@
       <string>Armour &amp; Co</string>
       <string>Denver Meat</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>beef</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>grocery warehouse</string>
+    <key>IndustryClass</key><string>grocery warehouse</string>
     <key>Synonyms</key>
     <array>
       <string>Best Foods</string>
@@ -489,10 +622,17 @@
       <string>M.J.B. Coffee</string>
       <string>Julliard Fancy Foods</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>food</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>general warehouse</string>
+    <key>IndustryClass</key><string>general warehouse</string>
     <key>Synonyms</key>
     <array>
       <string>General Electric Supply</string>
@@ -504,10 +644,17 @@
       <string>Haslett Warehouse Co</string>
       <string>Terminal</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>manufactured goods</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>hardware wholesaler</string>
+    <key>IndustryClass</key><string>hardware wholesaler</string>
     <key>Synonyms</key>
     <array>
       <string>Graybar Electrical</string>
@@ -515,53 +662,100 @@
       <string>Baker &amp; Hamilton</string>
       <string>Philco Distributors</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>manufactured goods</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>fertilizer dealer</string>
+    <key>IndustryClass</key><string>fertilizer dealer</string>
     <key>Synonyms</key>
     <array>
       <string>Conagra Fertilizer</string>
       <string>Sherridan Fertilizer</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>bulk fertilizer</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>sand and gravel</string>
+    <key>IndustryClass</key><string>sand and gravel</string>
     <key>Synonyms</key>
     <array>
       <string>San Francisco Gravel</string>
       <string>Kaiser Sand and Gravel</string>
       <string>Rock</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>sand</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>freight house</string>
+    <key>IndustryClass</key><string>freight house</string>
     <key>Synonyms</key>
     <array>
       <string>freighthouse</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>misc freight</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>coal tipple</string>
+    <key>IndustryClass</key><string>coal tipple</string>
     <key>Synonyms</key>
     <array>
       <string>Audobon Fuel Co.</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>coal</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>produce warehouse</string>
+    <key>IndustryClass</key><string>produce warehouse</string>
     <key>Synonyms</key>
     <array>
       <string>Ballantine Produce</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+	<key>Name</key><string>fresh fruit</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+      <dict>
+	<key>Name</key><string>fresh vegetables</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>smelter</string>
+    <key>IndustryClass</key><string>smelter</string>
     <key>Synonyms</key>
     <array>
       <string>Kennecott Copper</string>
@@ -570,8 +764,7 @@
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>scrapyard</string>
+    <key>IndustryClass</key><string>scrapyard</string>
     <key>Synonyms</key>
     <array>
       <string>tie</string>
@@ -582,22 +775,42 @@
       <string>Rice Recycling Co.</string>
       <string>Torigini Pallet Co.</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+	<key>Name</key><string>scrap metal</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>boxes</string>
+    <key>IndustryClass</key><string>boxes</string>
     <key>Synonyms</key>
     <array>
+      <string>box factory</string>
       <string>Fiberboard</string>
       <string>Cardboard</string>
       <string>Cal Container</string>
       <string>Container Corp.</string>
       <string>Packaging Corp of America</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>boxes</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>boxes</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>bakery</string>
+    <key>IndustryClass</key><string>bakery</string>
     <key>Synonyms</key>
     <array>
       <string>Rainbow Baking</string>
@@ -609,10 +822,17 @@
       <string>baking</string>
       <string>bread</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>flour</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>cold storage</string>
+    <key>IndustryClass</key><string>cold storage</string>
     <key>Synonyms</key>
     <array>
       <string>Union Cold Storage Co.</string>
@@ -621,17 +841,36 @@
       <string>Artic Cold Storage</string>
       <string>Union Cold Storage Co.</string>
     </array>
-  </dict>
-  <dict>
-    <key>IndustryClass</key>
-    <string>grain elevator</string>
-    <key>Synonyms</key>
+    <key>Cargo</key>
     <array>
+      <dict>
+        <key>Name</key><string>fruit</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+      <dict>
+        <key>Name</key><string>fruit</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>mine</string>
+    <key>IndustryClass</key><string>grain elevator</string>
+    <key>Synonyms</key>
+    <array>
+    </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>grain</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
+  </dict>
+  <dict>
+    <key>IndustryClass</key><string>mine</string>
     <key>Synonyms</key>
     <array>
       <string>Real Good Mining Co.</string>
@@ -639,19 +878,34 @@
       <string>Mount Galena Mine</string>
       <string>Death Gulch mine</string>
     </array>
-  </dict>
-  <dict>
-    <key>IndustryClass</key>
-    <string>grains</string>
-    <key>Synonyms</key>
+    <key>Cargo</key>
     <array>
-      <string>Albers Mill</string>
-      <string>Consolidated Milling</string>
+      <dict>
+        <key>Name</key><string>ore</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>team track</string>
+    <key>IndustryClass</key><string>mill</string>
+    <key>Synonyms</key>
+    <array>
+      <string>grain mill</string>
+      <string>Albers Mill</string>
+      <string>Consolidated Milling</string>
+    </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>grain</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
+  </dict>
+  <dict>
+    <key>IndustryClass</key><string>team track</string>
     <key>Synonyms</key>
     <array>
       <string>Valbrick Team Track</string>
@@ -691,8 +945,7 @@
   </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>station</string>
+    <key>IndustryClass</key><string>station</string>
     <key>Synonyms</key>
     <array>
       <string>depot</string>
@@ -700,8 +953,7 @@
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>chemical plant</string>
+    <key>IndustryClass</key><string>chemical plant</string>
     <key>Synonyms</key>
     <array>
       <string>Yosemite Chemical</string>
@@ -710,18 +962,32 @@
       <string>Glidden</string>
       <string>paint</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>chemicals</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>chemical warehouse</string>
+    <key>IndustryClass</key><string>chemical warehouse</string>
     <key>Synonyms</key>
     <array>
       <string>Carmona Chemical</string>
     </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+        <key>Name</key><string>chemicals</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>100</integer>
+      </dict>
+    </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>equipment</string>
+    <key>IndustryClass</key><string>equipment</string>
     <key>Synonyms</key>
     <array>
       <string>Heil Equipment</string>
@@ -729,8 +995,7 @@
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>electric generator</string>
+    <key>IndustryClass</key><string>electric generator</string>
     <key>Synonyms</key>
     <array>
       <string>Pacific Gas and Electric</string>
@@ -740,65 +1005,51 @@
     <key>Cargo</key>
     <array>
       <dict>
-	<key>Name</key>
-	<string>machinery</string>
+	<key>Name</key><string>machinery</string>
 	<key>Incoming</key><false/>
-	<key>Rate</key><integer>2</integer>
+	<key>Rate</key><integer>5</integer>
       </dict>
       <dict>
-	<key>Name</key>
-	<string>machinery</string>
+	<key>Name</key><string>machinery</string>
 	<key>Incoming</key><false/>
-	<key>Rate</key><integer>2</integer>
+	<key>Rate</key><integer>5</integer>
       </dict>
       <dict>
-	<key>Name</key>
-	<string>gravel for new line</string>
+	<key>Name</key><string>oil</string>
 	<key>Incoming</key><false/>
-	<key>Rate</key><integer>75</integer>
-      </dict>
-      <dict>
-	<key>Name</key>
-	<string>oil</string>
-	<key>Incoming</key><false/>
-	<key>Rate</key><integer>18</integer>
+	<key>Rate</key><integer>90</integer>
       </dict>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>paving</string>
+    <key>IndustryClass</key><string>paving</string>
     <key>Synonyms</key>
     <array>
       <string>A. J. Raisch Paving</string>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>feed</string>
+    <key>IndustryClass</key><string>feed</string>
     <key>Synonyms</key>
     <array>
       <string>Animal Foods</string>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>wine distributor</string>
+    <key>IndustryClass</key><string>wine distributor</string>
     <key>Synonyms</key>
     <array>
       <string>Almaden Vineyards</string>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>cement and concrete</string>
+    <key>IndustryClass</key><string>cement and concrete</string>
     <key>Synonyms</key>
     <array>
     </array>
   </dict>
   <dict>
-    <key>IndustryClass</key>
-    <string>interchange</string>
+    <key>IndustryClass</key><string>interchange</string>
     <key>Synonyms</key>
     <array>
       <string>Interchange</string>
