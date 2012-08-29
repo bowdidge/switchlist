@@ -82,7 +82,7 @@
 	}
 	
 	// Should be true most of the time.
-	STAssertTrue(numberOfC2 > 3 && numberOfC2 < 8, @"c2 came up %d times - not random enough?", numberOfC2);
+	STAssertTrue(numberOfC2 > 2 && numberOfC2 < 8, @"c2 came up %d times - not random enough?", numberOfC2);
 	
 	for (i=5; i < 15; i++) {
 		Cargo *c = [cargos objectAtIndex: i];
