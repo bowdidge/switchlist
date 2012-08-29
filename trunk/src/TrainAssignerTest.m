@@ -1482,7 +1482,10 @@ extern unsigned gettimeofday (void*, void*);
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: NO respectSidingLengths: YES];
 	STAssertEquals(CarAssignmentNoTrainsWithSpace, [assigner assignCarToTrain: newCar], @"Car should not have fit.");
 	STAssertEqualsInt(1, [[assigner errors] count], @"Wrong number of errors.");
-	STAssertContains(@"Cannot fit car", [[assigner errors] objectAtIndex: 0], @"Wrong error");
+	STAssertContains(@"Cannot fit car AA 4", [[assigner errors] objectAtIndex: 0],
+					 @"Substring not found, found %@", [[assigner errors] objectAtIndex: 0]);
+	STAssertContains(@"from A to B", [[assigner errors] objectAtIndex: 0],
+					 @"Substring not found, found %@", [[assigner errors] objectAtIndex: 0]);
 }
 
 - (void) testCarFitsInTrain {
