@@ -33,6 +33,8 @@
 @class CarAssigner;
 @interface CarAssignerTest : LayoutTest {
 	CarAssigner *carAssigner_;
+	Cargo *myCargo_;
+	FreightCar *myFreightCar_;
 }
 
 @end
