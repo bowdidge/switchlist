@@ -198,7 +198,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	
 	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
-	STAssertFalse([fc1 isLoaded], @"Test cargo should be not marked as loaded because it can be moved .");
+	STAssertFalse([fc1 isLoaded], @"Test cargo should be not marked as loaded because it can be moved.");
 }
 
 // Do we correctly just mark the cargo as loaded if the car's already there and we're in staging?
