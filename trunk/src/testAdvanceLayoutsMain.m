@@ -84,7 +84,7 @@ BOOL TestLayout(NSString *layoutName, BOOL verbose) {
 	}
 
 	// TODO(bowdidge): Infer or allow as parameter.
-	NSString *pathToMom =  @"/XcodeCache/SharedProducts/Debug/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 4.mom";
+	NSString *pathToMom =  @"/XcodeCache/SharedProducts/Debug/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
 	if ([[NSFileManager defaultManager] fileExistsAtPath: pathToMom] == NO) {
 		NSLog(@"FAIL: %@: Configuration error: expected schema file at %@, but not found", layoutName, pathToMom);
 		return NO;
@@ -167,7 +167,7 @@ int main(int argc, char *argv[]) {
 	int testsRun = 0;
 	int testsPassed = 0;
 	int i;
-	for (i=1;i<argc;i++) {
+	for (i=0; i<argc; i++) {
 		BOOL result = NO;
 		result = TestLayout([NSString stringWithUTF8String: argv[i]], verbose);
 		testsRun++;
