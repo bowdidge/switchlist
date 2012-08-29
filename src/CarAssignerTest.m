@@ -34,6 +34,8 @@
 #import "Cargo.h"
 #import "FreightCar.h"
 #import "Industry.h"
+#import "Place.h"
+#import "Yard.h"
 
 @implementation CarAssignerTest
 
@@ -180,6 +182,79 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
 	STAssertTrue([fc1 isLoaded], @"Test cargo is marked as loaded because we're already there.");
 }
+
+// Do we mark the cargo as loaded if the car's already there and we're in staging?
+- (void) testFreightCarNotAutoLoadedIfAtSourceInStaging {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
+	[[entireLayout_ stationWithName: @"A"] setIsStaging: YES];
+	[self makeYardAtStation: @"A"];
+	[fc1 setCurrentLocation: [self yardAtStation: @"A"]];
+	
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+																	  layout: entireLayout_];
+	[myCarAssigner autorelease];
+	Cargo *c1 = [self makeCargo: @"a to b"];
+	[c1 setSource: [self industryAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
+	STAssertFalse([fc1 isLoaded], @"Test cargo should be not marked as loaded because it can be moved .");
+}
+
+// Do we correctly just mark the cargo as loaded if the car's already there and we're in staging?
+- (void) testFreightCarAutoLoadedIfAtSourceInStagingAndCarInYard {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
+	[[entireLayout_ stationWithName: @"A"] setIsStaging: YES];
+	[self makeYardAtStation: @"A"];
+	[fc1 setCurrentLocation: [self yardAtStation: @"A"]];
+	
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+																	  layout: entireLayout_];
+	[myCarAssigner autorelease];
+	Cargo *c1 = [self makeCargo: @"a to b"];
+	[c1 setSource: [self industryAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
+	STAssertFalse([fc1 isLoaded], @"Test cargo is not marked as loaded because it can be moved in staging.");
+}
+
+// Do we correctly just mark the cargo as loaded if the car's already there and we're in staging?
+- (void) testFreightCarNotAutoLoadedIfAtSourceInStagingAndCarAtOtherStaging {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
+	[[entireLayout_ stationWithName: @"A"] setIsStaging: YES];
+	[[entireLayout_ stationWithName: @"C"] setIsStaging: YES];
+	[fc1 setCurrentLocation: [self industryAtStation: @"C"]];
+	
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+																	  layout: entireLayout_];
+	[myCarAssigner autorelease];
+	Cargo *c1 = [self makeCargo: @"a to b"];
+	[c1 setSource: [self industryAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
+	STAssertFalse([fc1 isLoaded], @"Test cargo is marked as loaded because we're already there.");
+}
+
+// Do we correctly just mark the cargo as loaded in C because it's staging and load comes from offline?
+- (void) testFreightCarAutoLoadedIfAtSourceOffline {
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: FREIGHT_CAR_3];
+	[[entireLayout_ stationWithName: @"A"] setIsOffline: YES];
+	[[entireLayout_ stationWithName: @"C"] setIsStaging: YES];
+	[fc1 setCurrentLocation: [self industryAtStation: @"C"]];
+	
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: fc1]
+																	  layout: entireLayout_];
+	[myCarAssigner autorelease];
+	Cargo *c1 = [self makeCargo: @"a to b"];
+	[c1 setSource: [self industryAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	
+	STAssertEqualObjects([myCarAssigner assignedCarForCargo: c1], fc1, @"Test car is correctly assigned to cargo");
+	STAssertTrue([fc1 isLoaded], @"Test cargo is marked as loaded because we're already there.");
+}
+
 
 // Do we correctly mark cargo as unloaded if car isn't at correct site?
 - (void) testFreightCarNotLoadedAtStart {
