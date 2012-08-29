@@ -526,8 +526,8 @@ NSString *NameOrNoValue(NSString* string) {
 			}
 			
 			if (!tr) {
-				NSString *err = [NSString stringWithFormat: @"Cannot fit car %@ onto train %@.  Leaving car at current location %@.",
-								 [car reportingMarks], [tr name], [[car currentLocation] name]];
+				NSString *err = [NSString stringWithFormat: @"Cannot fit car %@ onto any train going from %@ to %@.  Leaving car at current location %@.",
+								 [car reportingMarks], [here name], [there name], [[car currentLocation] name]];
 				[self addError: err];
 				return CarAssignmentNoTrainsWithSpace;
 			}

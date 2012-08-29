@@ -65,11 +65,11 @@ and make sure both will carry cars of the same car type as X.
 A combination of trains will take cars from X to Y, but no combination of trains will take cars of type
 Z.  Make sure that some trains exist that will carry such cars.
 </p>
-<li>Cannot fit car <i>X</i> onto train <i>Y</i>.  Leaving car at current location <i>Z</i>.
+<li>Cannot fit car <i>X</i> onto any train going from <i>Y</i> to <i>Z</i>.  Leaving car at current location <i>Z</i>.
 <p>
-The car is being routed on to the named train, but the train's maximum length has already been reached
+The car should be routed on a train from station Y to station z, but all potential trains are already at maximum capacity
 and more cars cannot be carried.  Check that your maximum train length value is appropriate.  Consider
-limiting the number of cars on the offending train by (1) defining new trains to handle some of the overflowing
+increasing the number of cars on trains between the stations by (1) defining new trains to handle some of the overflowing
 train's work, (2) increasing the maximum train length, or (3) limiting the number of cargos sending freight
 cars to the towns along the train's path.
 </p>
