@@ -45,7 +45,7 @@
 
 - (id) initWithDocument: (NSDocument<SwitchListDocumentInterface>*) document 
 		 withIndustries: (NSArray*) industryObjects {
-	[super initWithDocument: document];
+	self = [super initWithDocument: document];
 	industryObjects_  = [industryObjects retain];
 	uniqueStrings_ = nil;
 	unspecifiedString_ = @"???";

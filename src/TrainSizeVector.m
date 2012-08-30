@@ -40,7 +40,7 @@
 // There may be more than one stop per place for a train if it visits
 // the same town multiple times.
 - (id) initWithPlace: (Place*) p {
-	[super init];
+	self = [super init];
 	place_ = [p retain];
 	carsPickedUp_ = [[NSMutableArray alloc] init];
 	carsDroppedOff_ = [[NSMutableArray alloc] init];
@@ -187,7 +187,7 @@
 - (id) initWithCars: (NSArray*) cars stops: (NSArray*) stops {
 	int i;
 
-	[super init];
+	self = [super init];
 	
 	int vectorLength = [stops count];
 	stopsVector_ = [[NSMutableArray alloc] init];

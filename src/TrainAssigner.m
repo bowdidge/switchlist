@@ -60,7 +60,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 @implementation TrainAssigner
 
 - (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths {
-	[super init];
+	self = [super init];
 	entireLayout_ = [mapper retain];
 	stationReachabilityGraph_ = [[NSMutableDictionary alloc] init];
 	errors_ = [[NSMutableArray alloc] init];
@@ -601,6 +601,7 @@ NSString *NameOrNoValue(NSString* string) {
 	
 	if (availableDoorCount == 0) {
 		// No space left at industry.
+        free(doorAvailableMap);
 		return nil;
 	}
 	// Add one b/c doors numbered from one.

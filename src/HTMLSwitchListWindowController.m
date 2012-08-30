@@ -34,7 +34,7 @@
 // For testing - allow injection of an NSBundle and NSFileManager.
 - (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager title: (NSString*) title {
 	// TODO(bowdidge): Why doesn't initWithWindowNibName work?
-	[super init];
+	self = [super init];
 	mainBundle_ = [mainBundle retain];
 	fileManager_ = [fileManager retain];
 	title_ = [title retain];

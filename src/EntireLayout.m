@@ -58,7 +58,7 @@ NSString *NormalizeDivisionString(NSString *inString) {
 
 @implementation EntireLayout
 - (id) initWithMOC: (NSManagedObjectContext*) moc {
-	[super init];
+	self = [super init];
 	moc_ = [moc retain];
 	currentDate_ = nil;
 	layoutName_ = nil;

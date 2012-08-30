@@ -93,7 +93,7 @@
 // Creates a TypicalIndustryStore based on an in-memory version of
 // the plist contents.  For testing.
 - (id) initWithIndustryPlistArray: (NSArray*) industryFileContents {
-	[super init];
+	self = [super init];
 	
 	categoryMap_ = [[NSMutableDictionary alloc] init];
 	typicalIndustries_ = [industryFileContents retain];
@@ -104,12 +104,12 @@
 // Creates a TypicalIndustryStore based on the on-disk version of the
 // typical industry database.
 - (id) initWithIndustryPlistFile: (NSString*) industryPlistFile {
-	NSArray *industryFileContents = [self readIndustryFile: industryPlistFile];
+    NSArray *industryFileContents = [self readIndustryFile: industryPlistFile];
 	if (!industryFileContents) {
 		return nil;
 	}
 	
-	[self initWithIndustryPlistArray: industryFileContents];
+	self = [self initWithIndustryPlistArray: industryFileContents];
 	return self;
 }
 

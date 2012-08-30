@@ -35,7 +35,7 @@
 
 @implementation CargoAssigner
 - (id) initWithEntireLayout: (EntireLayout*) layout {
-	[super init];
+	self = [super init];
 	entireLayout_ = [layout retain];
 	return self;
 }

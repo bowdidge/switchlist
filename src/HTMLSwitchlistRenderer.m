@@ -47,7 +47,8 @@
 // Create a new HTMLSwitchlistRenderer.
 //   bundle: pointer to app's main bundle, used for finding default switchlist files.
 - (id) initWithBundle: (NSBundle*) bundle {
-	mainBundle_ = [bundle retain];
+	self = [super init];
+    mainBundle_ = [bundle retain];
 	templateDirectory_ = nil;
 	engine_ = [[MGTemplateEngine alloc] init];
 	[engine_ setMatcher: [ICUTemplateMatcher matcherWithTemplateEngine: engine_]];
