@@ -35,7 +35,7 @@
 
 @implementation FakeSwitchListDocument 
 - (id) initWithLayout: (EntireLayout*) entireLayout {
-	[super init];
+	self = [super init];
 	layout = [entireLayout retain];
 	recorder = [[DoorAssignmentRecorder alloc] init];
 	return self;

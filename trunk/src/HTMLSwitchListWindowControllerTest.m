@@ -65,7 +65,7 @@
 - (NSURLRequest *) getRequestedFileNameForFile: (NSString *) fileToRequest withinTemplate: (NSString *) templateFile  {
   [windowController_ drawHTML: @"<html><body>Hello World!</body></html>"
 			  template: templateFile];
-	NSURLRequest *initialRequest = [[NSURLRequest alloc] initWithURL: [NSURL fileURLWithPath: templateFile]];
+	NSURLRequest *initialRequest = [[[NSURLRequest alloc] initWithURL: [NSURL fileURLWithPath: templateFile]] autorelease];
 	WebDataSource *dataSource = [[[WebDataSource alloc] initWithRequest: initialRequest] autorelease];
 
 	NSURLRequest *req = [[[NSURLRequest alloc] initWithURL: [NSURL fileURLWithPath: fileToRequest]] autorelease];

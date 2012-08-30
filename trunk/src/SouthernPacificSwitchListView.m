@@ -101,7 +101,7 @@
 
 @implementation SouthernPacificSwitchListView
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSDocument<SwitchListDocumentInterface>*) document {
-	[super initWithFrame: frameRect withDocument: document];
+	self = [super initWithFrame: frameRect withDocument: document];
 	headerHeight_ = 80;
 	// Off by one because header occupies one space.
 	carsPerPage_ = floor(([self imageableHeight] - headerHeight_) / rowHeight_) - 1;

@@ -101,7 +101,7 @@ NSString *CurrentHostname() {
 
 // For mocking.
 - (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) bundle withRenderer: (HTMLSwitchlistRenderer*) renderer {
-	[super init];
+	self = [super init];
 	server_ = [server retain];
     htmlRenderer_ = [renderer retain];
 	[htmlRenderer_ setTemplate: DEFAULT_SWITCHLIST_TEMPLATE];

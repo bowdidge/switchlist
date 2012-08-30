@@ -18,7 +18,7 @@
 // Abstract class for teletype-style switchlists.
 @implementation TextSwitchListView
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSDocument<SwitchListDocumentInterface>*) document {
-	[super initWithFrame: frameRect withDocument: document];
+	self = [super initWithFrame: frameRect withDocument: document];
 	textView_ = [[NSTextView alloc] initWithFrame: frameRect];
 	[self addSubview: textView_];
 	typedFont_ = nil;
@@ -44,6 +44,7 @@
 	}
 	testCString[[self expectedColumns]] = '\0';
 	NSString *testString = [NSString stringWithUTF8String: testCString];
+    free(testCString);
 	float testSize = 10.0;
 	
 	NSDictionary *fontForSizing = [NSDictionary dictionaryWithObject: [NSFont fontWithName: fontName size: testSize] forKey: NSFontAttributeName];

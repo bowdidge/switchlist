@@ -41,7 +41,7 @@
 
 @implementation Report
 - (id) initWithDocument: (NSDocument<SwitchListDocumentInterface>*) document {
-	[super init];
+	self = [super init];
     if ([NSBundle loadNibNamed:@"Report.nib" owner: self] != YES) {
 		NSLog(@"Problems loading report nib!\n");
 	}

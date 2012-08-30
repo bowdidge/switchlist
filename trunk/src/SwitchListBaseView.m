@@ -46,7 +46,7 @@
 - (id) initWithTrain: (ScheduledTrain*) train
 			withCars: (NSArray*) cars
 	  owningDocument: (NSDocument<SwitchListDocumentInterface>*) doc {
-	[super init];
+	self = [super init];
 	
 	train_ = [train retain];
 	owningDocument_ = [doc retain];
@@ -121,7 +121,7 @@
 // list needs to be multiple pages, then the view will set its frame (and bounds) to a larger size
 // which the container should be able to handle.
 - (id) initWithFrame: (NSRect) frameRect withDocument: (NSDocument<SwitchListDocumentInterface>*) document {
-	[super initWithFrame: frameRect];
+	self = [super initWithFrame: frameRect];
 
 	train_ = nil;
 	carsInTrain_ = [[NSArray alloc] init];

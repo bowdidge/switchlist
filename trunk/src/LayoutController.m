@@ -42,7 +42,7 @@
 @implementation LayoutController
 // Creates a new LayoutController.
 - (id) initWithEntireLayout: (EntireLayout*) layout {
-	[super init];
+	self = [super init];
 	entireLayout_ = [layout retain];
 	doorAssignmentRecorder_ = [[DoorAssignmentRecorder alloc] init];
 	return self;

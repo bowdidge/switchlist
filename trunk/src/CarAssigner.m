@@ -55,7 +55,7 @@
 
 @implementation CarAssigner
 - (id) initWithUnassignedCars: (NSArray*) cars layout: (EntireLayout*) objMap {
-	[super init];
+	self = [super init];
 	availableCars_ = [[NSMutableArray alloc] initWithArray: cars];
 	objectMapper_ = [objMap retain];
 	return self;
