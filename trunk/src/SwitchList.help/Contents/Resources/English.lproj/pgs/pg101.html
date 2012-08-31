@@ -18,13 +18,19 @@ know where they're going.  If the location isn't on the visible layout,
 then you can mark a town as "in staging".
 
 Towns in staging are special because if a freight car arrives at a
-yard in that town and is destined for any other non-visible place on the layout
-(either a town represented by staging or a town that's offline),
+yard in that town and is destined for any offline place,
 then the car is treated as if it
 arrived at its final destination.
-<p>
 In effect, once the freight car goes off the visible layout, then
 any stop it makes should unload it and send it off on its next journey.
+<p>
+This isn't true for cargos with a destination at an industry in staging.
+Cars destined for a "staging" town will still be switched as if on the
+visible portion of the layout.  Place industries in staging only if you
+want cars spotted at a specific track in staging.  You can also set a cargo's source
+or destination to a yard in staging if you want to ensure cars carrying that cargo always
+go to a specific staging yard.
+
 <p>
 <hr><p><h2>Related Topics:</h2></p> 
 <p>
