@@ -37,17 +37,14 @@
 - (id) initWithEntireLayout: (EntireLayout*) layout {
 	self = [super init];
 	entireLayout_ = [layout retain];
+	generator_ = [[RandomNumberGenerator alloc] init];
 	return self;
 }
 
 - (void) dealloc {
 	[entireLayout_ release];
+	[generator_ release];
 	[super dealloc];
-}
-
-int GenerateRandomNumber(int max) {
-	if (max == 0) return 0;
-	return rand() % max;
 }
 
 - (NSArray *) cargosForToday: (int) count {
@@ -67,7 +64,7 @@ int GenerateRandomNumber(int max) {
 		}
 		// For the fractional part, choose random number to
 		// decide if the fractional car appears today.
-		if (GenerateRandomNumber(7) < (cargosPerWeek % 7)) {
+		if ([generator_ generateRandomNumber: 7] < (cargosPerWeek % 7)) {
 			[resultCargos addObject: cargo];
 		}
 	}
@@ -81,7 +78,7 @@ int GenerateRandomNumber(int max) {
 	}
 	
 	for (i=0;i<count;i++) {
-		int cargoChoice = GenerateRandomNumber(sum);
+		int cargoChoice = [generator_ generateRandomNumber: sum];
 		int curSum=0;
 		for (cargo in allCargos) {
 			int thisCargoCarsPerWeek = [[cargo carsPerWeek] intValue];
@@ -96,4 +93,12 @@ int GenerateRandomNumber(int max) {
 	
 	return resultCargos;
 }
+
+
+// For testing only.
+- (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator {
+	[generator_ release];
+	generator_ = [generator retain];
+}
+
 @end

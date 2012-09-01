@@ -93,6 +93,11 @@
 - (void) testMixOfDailyAndWeekly {
 	[self makeThreeStationLayout];
 	
+	MockRandomNumberGenerator *generator = [[[MockRandomNumberGenerator alloc] init] autorelease];
+	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 10], [NSNumber numberWithInt: 31], [NSNumber numberWithInt: 3],
+							[NSNumber numberWithInt: 38], [NSNumber numberWithInt: 12], [NSNumber numberWithInt: 25], nil]];
+	[cargoAssigner_ setRandomNumberGenerator: generator];
+	 
 	Cargo *c1 = [self makeCargo: @"a to b"];
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
@@ -111,13 +116,12 @@
 	int cargoCount = [cargos count];
 	STAssertEqualsInt(6, [cargos count], @"Not enough cargos chosen.");
 	
-	int numberOfC2=0;
-	for (i=0; i<6; i++) {
-		if ([cargos objectAtIndex: i] == c2) numberOfC2++;
-	}
-	
-	// Should be true most of the time.
-	STAssertTrue(numberOfC2 > 1 && numberOfC2 < 5, @"c2 came up %d times - not random enough?", numberOfC2);
+	STAssertEquals(c1, [cargos objectAtIndex: 0], @"Expected item %d was %@, was %@", 0, c1, [cargos objectAtIndex: 0]);
+	STAssertEquals(c2, [cargos objectAtIndex: 1], @"Expected item %d was %@, was %@", 1, c2, [cargos objectAtIndex: 1]);
+	STAssertEquals(c1, [cargos objectAtIndex: 2], @"Expected item %d was %@, was %@", 2, c1, [cargos objectAtIndex: 2]);
+	STAssertEquals(c2, [cargos objectAtIndex: 3], @"Expected item %d was %@, was %@", 3, c2, [cargos objectAtIndex: 3]);
+	STAssertEquals(c1, [cargos objectAtIndex: 4], @"Expected item %d was %@, was %@", 4, c1, [cargos objectAtIndex: 4]);
+	STAssertEquals(c2, [cargos objectAtIndex: 5], @"Expected item %d was %@, was %@", 5, c2, [cargos objectAtIndex: 5]);
 }
 
 - (void) tearDown {
