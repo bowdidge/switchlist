@@ -31,6 +31,7 @@
 #import <Foundation/Foundation.h>
 
 #import "DoorAssignmentRecorder.h"
+#import "RandomNumberGenerator.h"
 #import "ScheduledTrain.h"
 #import "EntireLayout.h"
 
@@ -51,6 +52,7 @@
 	NSMutableDictionary *leavingCars_;
 	
 	DoorAssignmentRecorder* doorAssignmentRecorder_;
+	RandomNumberGenerator* randomNumberGenerator_;
 }
 
 - (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths;
@@ -97,6 +99,9 @@ typedef enum CarAssignmentResult CarAssignmentResult;
 							 inTrain: (ScheduledTrain*) train
 					 goingToIndustry:(Industry*) industry 
 			  industryArrivingCarMap: (DoorAssignmentRecorder*) doorAssignments;
+
+// For testing only.
+- (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator;
 
 @end
 
