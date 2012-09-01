@@ -35,6 +35,7 @@
 #import "EntireLayout.h"
 #import "LayoutController.h"
 #import "NSMigrationManagerCategory.h"
+#import "RandomNumberGenerator.h"
 #import "ScheduledTrain.h"
 
 // Creates NSManagedObjectModel for the named database schema.
@@ -136,12 +137,8 @@ void usage() {
 // Takes a list of layout files on the command line, and runs each repeatedly to make sure the current
 // car assignment, train generation, and car advancing code works well on real layouts.
 int main(int argc, char *argv[]) {
-	struct timeval tp;
-	struct timezone tz;
 	BOOL verbose = NO;
-
-	gettimeofday(&tp, &tz);
-	srand(tp.tv_usec);
+	GenerateSeed();
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	// Workaround for bug in 10.5.
