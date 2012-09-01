@@ -29,9 +29,9 @@
 // SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
-#import "FreightCar.h"
 #import "Cargo.h"
 #import "EntireLayout.h"
+#import "FreightCar.h"
 #import "RandomNumberGenerator.h"
 
 // This object hides the process of choosing an appropriate car for a cargo.
