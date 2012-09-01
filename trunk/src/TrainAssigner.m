@@ -68,6 +68,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 	respectSidingLengths_ = respectSidingLengths;
 	doorAssignmentRecorder_ = nil;
 	arrivingCars_ = [[NSMutableDictionary alloc] init];
+	randomNumberGenerator_ = [[RandomNumberGenerator alloc] init];
 	return self;
 }
 
@@ -81,7 +82,14 @@ BOOL DEBUG_CAR_ASSN = NO;
 	[errors_ release];
 	[doorAssignmentRecorder_ release];
 	[arrivingCars_ release];
+	[randomNumberGenerator_ release];
 	[super dealloc];
+}
+
+// For testing only.
+- (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator {
+	[randomNumberGenerator_ release];
+	randomNumberGenerator_ = [generator retain];
 }
 
 // Access the DoorAssignmentRecorder containing details about which
@@ -605,7 +613,7 @@ NSString *NameOrNoValue(NSString* string) {
 		return nil;
 	}
 	// Add one b/c doors numbered from one.
-	int randomDoor = 1 + random() % availableDoorCount;
+	int randomDoor = 1 + [randomNumberGenerator_ generateRandomNumber: availableDoorCount];
 	// Find nth available door.
 	for (i = 1; i <= doorCount; i++) {
 		if (doorAvailableMap[i] == YES) {

@@ -36,6 +36,7 @@
 #import "FreightCar.h"
 #import "Industry.h"
 #import "Place.h"
+#import "RandomNumberGenerator.h"
 #import "ScheduledTrain.h"
 #import "TrainAssigner.h"
 #import "Yard.h"
@@ -961,22 +962,24 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 @interface TestDoorAssignment : LayoutTest {
 	TrainAssigner* assigner;
 	Industry* newIndustry;
+	MockRandomNumberGenerator *generator_;
 }
 @end
-
-extern void srandom(unsigned);
-extern unsigned gettimeofday (void*, void*);
 
 @implementation TestDoorAssignment
 - (void) setUp {
 	[super setUp];
 	newIndustry = [[self makeIndustryWithName: @"MyIndustry"] retain];
 	assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: YES];
-	srandom(gettimeofday(NULL, NULL));
+	generator_ = [[MockRandomNumberGenerator alloc] init];
+	[generator_ setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 2],  nil]];
+	[assigner setRandomNumberGenerator: generator_];
 }
+
 - (void) tearDown {
 	[assigner release];
 	[newIndustry release];
+	[generator_ release];
 	[super tearDown];
 }
 
@@ -993,16 +996,13 @@ extern unsigned gettimeofday (void*, void*);
 	DoorAssignmentRecorder *doorAssignments = [DoorAssignmentRecorder doorAssignmentRecorder];
 
 	int i;
-	// Test 10 times to make sure random values aren't out of range.
-	for (i = 0; i< 10; i++) {
-		NSNumber *door = [assigner chooseRandomDoorForCar: fc1
-												  inTrain: newTrain
-										  goingToIndustry: newIndustry
-								   industryArrivingCarMap: doorAssignments];
-		STAssertNotNil(door, @"Door expected to be non-nil");
-		STAssertTrue([door intValue] > 0, [NSString stringWithFormat: @"Door expected > 0, but was %d", [door intValue]]);
-		STAssertTrue([door intValue] <= 4, [NSString stringWithFormat: @"Door expected 1-4, but was %d", [door intValue]]);
-	}
+	NSNumber *door = [assigner chooseRandomDoorForCar: fc1
+											  inTrain: newTrain
+									  goingToIndustry: newIndustry
+							   industryArrivingCarMap: doorAssignments];
+	STAssertNotNil(door, @"Door expected to be non-nil");
+	// Random number generate generates 2, 
+	STAssertEquals(3, [door intValue], [NSString stringWithFormat: @"Door expected 3, but was %d", [door intValue]]);
 }
 
 // Place a freight car at door 2.  Do we avoid assigning the new car to door 2?
@@ -1020,18 +1020,13 @@ extern unsigned gettimeofday (void*, void*);
 	
 	DoorAssignmentRecorder *doorAssignments = [DoorAssignmentRecorder doorAssignmentRecorder];
 	
-	int i;
-	// Test 10 times to make sure random values aren't out of range.
-	for (i = 0; i< 10; i++) {
-		NSNumber *door = [assigner chooseRandomDoorForCar: fc1
-												  inTrain: newTrain
-										  goingToIndustry: newIndustry
-								   industryArrivingCarMap: doorAssignments];
-		STAssertNotNil(door, @"Door expected to be non-nil");
-		STAssertTrue([door intValue] > 0, [NSString stringWithFormat: @"Door expected > 0, but was %d", [door intValue]]);
-		STAssertTrue([door intValue] <= 4, [NSString stringWithFormat: @"Door expected 1-4, but was %d", [door intValue]]);
-		STAssertTrue([door intValue] != 2, @"Door 2 already occupied.");
-	}
+	NSNumber *door = [assigner chooseRandomDoorForCar: fc1
+											  inTrain: newTrain
+									  goingToIndustry: newIndustry
+							   industryArrivingCarMap: doorAssignments];
+	STAssertNotNil(door, @"Door expected to be non-nil");
+	// Availiable doors are 1,3,4; for random number 2, we should get 4.
+	STAssertEquals(4, [door intValue],  @"Door expected 3, but was %d", [door intValue]);
 }
 
 // Place a freight car at door 2, but it's moving.  Do we get both door 1 and 2?
@@ -1051,28 +1046,20 @@ extern unsigned gettimeofday (void*, void*);
 	DoorAssignmentRecorder *doorAssignments = [DoorAssignmentRecorder doorAssignmentRecorder];
 	
 	int i;
-	int sawTwo = 0;
-	// Test 10 times to make sure random values aren't out of range.
-	for (i = 0; i< 100; i++) {
-		NSNumber *door = [assigner chooseRandomDoorForCar: fc1
-												  inTrain: newTrain
-										  goingToIndustry: newIndustry
-								   industryArrivingCarMap: doorAssignments];
-		STAssertNotNil(door, @"Door expected to be non-nil");
-		STAssertTrue([door intValue] > 0, [NSString stringWithFormat: @"Door expected > 0, but was %d", [door intValue]]);
-		STAssertTrue([door intValue] <= 4, [NSString stringWithFormat: @"Door expected 1-4, but was %d", [door intValue]]);
-		if ([door intValue] == 2) {
-			sawTwo = 1;
-		}
-	}
-	STAssertFalse(sawTwo == 0, @"Should have seen door 2 at least once.");
-		
+	NSNumber *door = [assigner chooseRandomDoorForCar: fc1
+											  inTrain: newTrain
+									  goingToIndustry: newIndustry
+							   industryArrivingCarMap: doorAssignments];
+	STAssertNotNil(door, @"Door expected to be non-nil");
+	STAssertEquals(3, [door intValue], [NSString stringWithFormat: @"Door expected 2, but was %d", [door intValue]]);
 }
 
 // TODO(bowdidge): Need test where we've already put one car in the train into a door in the same industry.
 
 // Only one space - door 2.  Do we end up choosing it?
 - (void) testOnlyOneChoiceDoorAssignment {
+	[generator_ setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 0],  nil]];
+
 	[newIndustry setHasDoors: YES];
 	[newIndustry setNumberOfDoors: [NSNumber numberWithInt: 2]];
 	
@@ -1086,18 +1073,20 @@ extern unsigned gettimeofday (void*, void*);
 
 	DoorAssignmentRecorder *doorAssignments = [DoorAssignmentRecorder doorAssignmentRecorder];
 	
-	// We go straight for door 2, right?
 	NSNumber *door = [assigner chooseRandomDoorForCar: fc1
 											  inTrain: newTrain
 									  goingToIndustry: newIndustry
 							   industryArrivingCarMap: doorAssignments];
 	STAssertNotNil(door, @"Door expected to be non-nil");
+	// Door 1 is taken, so should go for door 3.
 	STAssertEqualsInt(2, [door intValue], [NSString stringWithFormat: @"Door expected 2, but was %d", [door intValue]]);
 }
 
 // Only one space - door 1.  Does second car get rejected because there's no space?
 // TODO(bowdidge): Need arrivingIndustryMap to have both industry->car and car->door mappings.
 - (void) testSpaceTakenByOtherCar {
+	[generator_ setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 0],  nil]];
+
 	[newIndustry setHasDoors: YES];
 	[newIndustry setNumberOfDoors: [NSNumber numberWithInt: 1]];
 	
@@ -1143,7 +1132,6 @@ extern unsigned gettimeofday (void*, void*);
 	[fc2 setCurrentLocation: newIndustry];
 	[fc2 setDoorToSpot: [NSNumber numberWithInt: 1]];
 	
-	// TODO(bowdidge): Should accept my own random number generator so I can make sure 2 comes up.
 	DoorAssignmentRecorder *doorAssignments = [DoorAssignmentRecorder doorAssignmentRecorder];
 	
 	// We go straight for door 2, right?
