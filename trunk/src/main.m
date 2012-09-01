@@ -32,13 +32,11 @@
 #include <sys/time.h>
 
 #import "NSMigrationManagerCategory.h"
+#import "RandomNumberGenerator.h"
 
 int main(int argc, char *argv[])
 {
-	struct timeval tp;
-	struct timezone tz;
-	gettimeofday(&tp, &tz);
-	srand(tp.tv_usec);
+	GenerateSeed();
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 	
 	// Workaround for bug in 10.5.
