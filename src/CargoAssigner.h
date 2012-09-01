@@ -30,11 +30,18 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "RandomNumberGenerator.h"
+
 @class EntireLayout;
 // CargoAssigner hides the act of choosing a random set of cargos.
 @interface CargoAssigner : NSObject {
 	EntireLayout *entireLayout_;
+	RandomNumberGenerator *generator_;
 }
 - (id) initWithEntireLayout: (EntireLayout*) layout;
 - (NSArray *) cargosForToday: (int) count;
+
+// For testing only.
+- (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator;
+
 @end
