@@ -278,24 +278,15 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[fc2 setIsLoaded: YES];
 	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
 
-	
-    int numberOfTimesFc1Assigned = 0;
-	int i;
-	for (i=0;i<10;i++) {
-		CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObjects: myFreightCar_, fc2, nil]
-																		  layout: entireLayout_];
-		[myCarAssigner autorelease];
-		if (myFreightCar_ == [myCarAssigner assignedCarForCargo:myCargo_]) {
-			numberOfTimesFc1Assigned++;
-			[myFreightCar_ setCargo: nil];
-		}
-	}
-	// fc1 and fc2 should have been assigned equally.  If only fc1 or fc2 got
-	// assigned, something's probably wrong.
-	// TODO(bowdidge): Probably a flaky test. There's probably a better way to test this.
-	STAssertTrue(2 < numberOfTimesFc1Assigned < 8, @"Car assigner skewed to particular car, expected 5 uses, found %d", numberOfTimesFc1Assigned);
+	MockRandomNumberGenerator *generator = [[[MockRandomNumberGenerator alloc] init] autorelease];
+	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 0], [NSNumber numberWithInt: 1], nil]];
+	 
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObjects: myFreightCar_, fc2, nil]
+																	  layout: entireLayout_];
+	// Make sure the two cars both get picked.
+	STAssertEquals(fc2, [myCarAssigner assignedCarForCargo:myCargo_], @"");
+	STAssertEquals(myFreightCar_, [myCarAssigner assignedCarForCargo:myCargo_], @"");
+	STAssertNil([myCarAssigner assignedCarForCargo:myCargo_], @"");
 }
-
-
 
 @end
