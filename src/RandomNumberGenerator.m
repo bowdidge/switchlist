@@ -72,7 +72,7 @@ int GenerateSeed() {
 		NSLog(@"MockRandomNumberGenerator: Proposed random number %d greater or equal to than max %d\n", nextNumber, max);
 		return -1;
 	}
-	NSLog(@"Generating %d", nextNumber);
+	NSLog(@"Generating rand(%d) -> %d", max, nextNumber);
 	return [[numbers_ objectAtIndex: nextIndex_++] intValue];
 }
 	
