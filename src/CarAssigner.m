@@ -31,20 +31,21 @@
 #import "CarAssigner.h"
 #import "Cargo.h"
 #import "Industry.h"
+#import "RandomNumberGenerator.h"
 
 @interface NSArray (RandomizedList) 
-- (NSArray*) randomize;
+- (NSArray*) randomizeWithGenerator: (RandomNumberGenerator*) generator;
 @end
 
 @implementation NSArray (RandomizedList)
 
 // Creates a new version of an array in a different order chosen randomly.
-- (NSArray*) randomize {
+- (NSArray*) randomizeWithGenerator: (RandomNumberGenerator*) generator {
 	NSMutableArray *remainingItems = [NSMutableArray arrayWithArray: self];
 	NSMutableArray *result = [NSMutableArray array];
 	int i;
 	for (i=[remainingItems count]; i>0; i--) {
-		int itemToRemove = rand() % i;
+		int itemToRemove = [generator generateRandomNumber: i];
 		id object = [remainingItems objectAtIndex: itemToRemove];
 		[remainingItems removeObjectAtIndex: itemToRemove];
 		[result addObject: object];
@@ -58,6 +59,7 @@
 	self = [super init];
 	availableCars_ = [[NSMutableArray alloc] initWithArray: cars];
 	objectMapper_ = [objMap retain];
+	generator_ = [[RandomNumberGenerator alloc] init];
 	return self;
 }
 
@@ -96,7 +98,7 @@
 - (FreightCar*) assignedCarForCargo: (Cargo*) cargo {
 	// pick first cargo.  Find first freight car with this car type. 
 	// set cargo on freight car to that cargo, remove freight car from available list, and loop.
-	NSEnumerator *e = [[availableCars_ randomize] objectEnumerator];
+	NSEnumerator *e = [[availableCars_ randomizeWithGenerator: generator_] objectEnumerator];
 	FreightCar *frtCar;
 	while ((frtCar = [e nextObject]) != nil) {
 		if ([self cargo: cargo appropriateForCar: frtCar] == YES) {
@@ -121,7 +123,14 @@
 - (void) dealloc {
 	[availableCars_ release];
 	[objectMapper_ release];
+	[generator_ release];
 	[super dealloc];
+}
+
+// For testing only.
+- (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator {
+	[generator_ release];
+	generator_ = [generator retain];
 }
 
 @end

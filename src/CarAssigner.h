@@ -32,6 +32,7 @@
 #import "FreightCar.h"
 #import "Cargo.h"
 #import "EntireLayout.h"
+#import "RandomNumberGenerator.h"
 
 // This object hides the process of choosing an appropriate car for a cargo.
 // It's initialized with the unattached cars, and then as cargos are given, it chooses 
@@ -40,6 +41,7 @@
 @interface CarAssigner : NSObject {
 	NSMutableArray *availableCars_;
 	EntireLayout *objectMapper_;
+	RandomNumberGenerator *generator_;
 }
 
 - (id) initWithUnassignedCars: (NSArray*) cars layout: (EntireLayout*) mapper;
@@ -47,5 +49,8 @@
 
 // For testing only:
 - (BOOL) cargo: (Cargo*) cargo appropriateForCar: (id) frtCar;
+
+// For testing only.
+- (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator;
 
 @end
