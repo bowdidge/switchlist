@@ -43,21 +43,29 @@
 	MockRandomNumberGenerator *generator = [[[MockRandomNumberGenerator alloc] init] autorelease];
 	
 	// Returns 0 before setNumbers:
-	STAssertEquals(0, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(0, [generator generateRandomNumber: 100], @"");
+	STAssertEquals(-1, [generator generateRandomNumber: 100], @"");
+	STAssertEquals(-1, [generator generateRandomNumber: 100], @"");
 
 	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 1], [NSNumber numberWithInt: 2], [NSNumber numberWithInt: 3], nil]];
 	
 	STAssertEquals(1, [generator generateRandomNumber: 100], @"");
 	STAssertEquals(2, [generator generateRandomNumber: 100], @"");
 	STAssertEquals(3, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(0, [generator generateRandomNumber: 100], @"");
+	STAssertEquals(-1, [generator generateRandomNumber: 100], @"");
 
 	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 1], [NSNumber numberWithInt: 2], [NSNumber numberWithInt: 3], nil]];
 	STAssertEquals(1, [generator generateRandomNumber: 100], @"");
 	STAssertEquals(2, [generator generateRandomNumber: 100], @"");
 	STAssertEquals(3, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(0, [generator generateRandomNumber: 100], @"");
+	STAssertEquals(-1, [generator generateRandomNumber: 100], @"");
 	
+}
+
+- (void) testExceedsMax {
+	MockRandomNumberGenerator *generator = [[[MockRandomNumberGenerator alloc] init] autorelease];
+	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 5], [NSNumber numberWithInt: 3], nil]];
+	
+	STAssertEquals(-1, [generator generateRandomNumber: 5], @"Expected error when next number == max");
+	STAssertEquals(-1, [generator generateRandomNumber: 2], @"Expected error when next number > max");
 }
 @end

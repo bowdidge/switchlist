@@ -41,9 +41,16 @@ int GenerateSeed() {
 
 - (int) generateRandomNumber: (int) max {
 	if (nextIndex_ >= [numbers_ count]) {
-		NSLog(@"MockRandomNumberGenerator ran out of numbers!");
-		return 0;
+		NSLog(@"MockRandomNumberGenerator: Ran out of numbers!");
+		return -1;
 	}
+	
+	int nextNumber = [[numbers_ objectAtIndex: nextIndex_] intValue];
+	if (nextNumber >= max) {
+		NSLog(@"MockRandomNumberGenerator: Proposed random number %d greater or equal to than max %d\n", nextNumber, max);
+		return -1;
+	}
+	NSLog(@"Generating %d", nextNumber);
 	return [[numbers_ objectAtIndex: nextIndex_++] intValue];
 }
 	
