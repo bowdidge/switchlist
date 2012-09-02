@@ -275,7 +275,6 @@
 	NSArray *cargos = [proposedCargoArrayController_ content];
 	for (ProposedCargo *cargo in cargos) {
 		if ([[cargo isKeep] intValue]) {
-			NSLog(@"Create cargo %@", [cargo name]);
 			NSManagedObjectContext *context = [currentIndustry_ managedObjectContext];
 			[NSEntityDescription entityForName: @"Cargo" inManagedObjectContext: context];
 			Cargo *c1 = [NSEntityDescription insertNewObjectForEntityForName:@"Cargo"

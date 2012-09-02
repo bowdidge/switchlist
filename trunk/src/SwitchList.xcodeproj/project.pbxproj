@@ -98,6 +98,7 @@
 		3E7A781F1509AEA7001D37E6 /* TrainSizeVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF44214F9F2AF00580148 /* TrainSizeVector.m */; };
 		3E7B6EA71287C9F60069FF31 /* AddCarType.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */; };
 		3E8328C514553A6400A6A662 /* AddSidingLength.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */; };
+		3E87754D15F2D07F00E08413 /* cargo-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E87754C15F2D07F00E08413 /* cargo-report.html */; };
 		3E88AD45127A9CFD003486E2 /* IndustryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD44127A9CFD003486E2 /* IndustryTest.m */; };
 		3E88AD57127A9E14003486E2 /* CargoReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD56127A9E14003486E2 /* CargoReportTest.m */; };
 		3E88AE99127B293E003486E2 /* CargoAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AE98127B293E003486E2 /* CargoAssigner.m */; };
@@ -381,6 +382,7 @@
 		3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCarType.xcmappingmodel; sourceTree = "<group>"; };
 		3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 4.xcdatamodel"; sourceTree = "<group>"; };
 		3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddSidingLength.xcmappingmodel; sourceTree = "<group>"; };
+		3E87754C15F2D07F00E08413 /* cargo-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "cargo-report.html"; path = "templates/cargo-report.html"; sourceTree = "<group>"; };
 		3E88AD43127A9CFD003486E2 /* IndustryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryTest.h; sourceTree = "<group>"; };
 		3E88AD44127A9CFD003486E2 /* IndustryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryTest.m; sourceTree = "<group>"; };
 		3E88AD55127A9E14003486E2 /* CargoReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoReportTest.h; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 			children = (
 				3E6BA8F4155266880030AE7D /* layout.css */,
 				3E6BA8F5155266880030AE7D /* switchlist.css */,
+				3E87754C15F2D07F00E08413 /* cargo-report.html */,
 				3E6BA8F6155266880030AE7D /* switchlist-iphone.css */,
 				3E6BA8F7155266880030AE7D /* switchlist-ipad.css */,
 				3EE19373145C924000CB614D /* car-report.html */,
@@ -1049,6 +1052,7 @@
 				3E6BA8FA155266880030AE7D /* switchlist-iphone.css in Resources */,
 				3E6BA8FB155266880030AE7D /* switchlist-ipad.css in Resources */,
 				3EA487BD15D83EA7008A169F /* typicalIndustry.plist in Resources */,
+				3E87754D15F2D07F00E08413 /* cargo-report.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

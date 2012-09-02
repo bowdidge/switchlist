@@ -126,15 +126,15 @@ BOOL BuildCargos(NSString *industryPlistFile, NSString *layoutFile) {
 		NSMutableArray *outgoingLoads = [NSMutableArray array];
 		NSMutableArray *incomingLoads = [NSMutableArray array];
 
-		int totalCarsPerWeek = 0;
+		int totalCarsPerMonth = 0;
 		for (Cargo *c in [entireLayout allCargos]) {
 			if ([c source] == industry) {
 				[outgoingLoads addObject: c];
-				totalCarsPerWeek += [[c carsPerWeek] intValue];
+				totalCarsPerMonth += [[c carsPerMonth] intValue];
 			}
 			if ([c destination] == industry) {
 				[incomingLoads addObject: c];
-				totalCarsPerWeek += [[c carsPerWeek] intValue];
+				totalCarsPerMonth += [[c carsPerMonth] intValue];
 			}
 		}
 			
@@ -145,14 +145,14 @@ BOOL BuildCargos(NSString *industryPlistFile, NSString *layoutFile) {
 			printf("    <dict>\n");
 			printf("      <key>Name</key><string>%s</string>\n", [[c name] UTF8String]);
 			printf("      <key>Incoming</key><false/>\n");
-			printf("      <key>Rate</key><integer>%d</integer>\n", [[c carsPerWeek] intValue] * 100 / totalCarsPerWeek);
+			printf("      <key>Rate</key><integer>%d</integer>\n", [[c carsPerMonth] intValue] * 100 / totalCarsPerMonth);
 			printf("    </dict>\n");
 		}
 		for (Cargo *c in incomingLoads) {
 			printf("    <dict>\n");
 			printf("      <key>Name</key>\n<string>%s</string>\n", [[c name] UTF8String]);
 			printf("      <key>Incoming</key><false/>\n");
-			printf("      <key>Rate</key><integer>%d</integer>\n", [[c carsPerWeek] intValue] * 100 / totalCarsPerWeek);
+			printf("      <key>Rate</key><integer>%d</integer>\n", [[c carsPerMonth] intValue] * 100 / totalCarsPerMonth);
 			printf("    </dict>\n");
 		}
 		printf("  </array>\n  </dict>\n");

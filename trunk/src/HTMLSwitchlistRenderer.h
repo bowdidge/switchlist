@@ -77,6 +77,7 @@
 - (NSString*) renderCarlistForLayout: (EntireLayout*) layout;
 - (NSString*) renderIndustryListForLayout: (EntireLayout*) layout;
 - (NSString*) renderYardReportForLayout: (EntireLayout*) layout;
+- (NSString*) renderCargoReportForLayout: (EntireLayout*) layout;
 - (NSString*) renderReservedCarReportForLayout: (EntireLayout*) layout;
 - (NSString*) renderLayoutPageForLayout: (EntireLayout*) layout;
 - (NSString*) renderLayoutsPage;

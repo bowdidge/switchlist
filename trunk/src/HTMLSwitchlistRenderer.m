@@ -200,6 +200,11 @@
 																								forKey: @"layout"]];
 }
 
+- (NSString*) renderCargoReportForLayout: (EntireLayout*) layout {
+	return [self renderReport: @"cargo-report" withDict: [NSDictionary dictionaryWithObject: layout
+																						forKey: @"layout"]];
+}
+
 - (NSString*) renderYardReportForLayout: (EntireLayout*) layout {
 	return [self renderReport: @"yard-report" withDict: [NSDictionary dictionaryWithObject: layout
 																						forKey: @"layout"]];
@@ -226,7 +231,6 @@
 	NSMutableArray *layoutNames = [NSMutableArray array];
 	for (SwitchListDocument *document in allDocuments) {
 		NSString *layoutName = [[document entireLayout] layoutName];
-		NSLog(@"Name=%@", layoutName);
 		if (!layoutName || [layoutName isEqualToString: @""]) {
 			// If there's no cars in the layout, ignore.
 			if ([[[document entireLayout] allFreightCars] count] > 0) {
