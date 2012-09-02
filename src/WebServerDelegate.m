@@ -190,6 +190,13 @@ NSString *CurrentHostname() {
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
+// Returns HTML for cargo report.
+- (void) processRequestForCargoReportForLayout: (SwitchListDocument*) document {
+	EntireLayout *layout = [document entireLayout];
+	NSString *message = [htmlRenderer_ renderCargoReportForLayout: layout];
+	[server_ replyWithStatusCode: HTTP_OK message: message];
+}
+
 // Marks the given train as completed, and moves cars to final locations.
 - (void) processCompleteTrain: (NSString*) trainName forLayout: (SwitchListDocument*) document {
 	ScheduledTrain *train  = [[document entireLayout] trainWithName: trainName];
@@ -366,6 +373,13 @@ NSString *CurrentHostname() {
 				return;
 			}
 			[self processRequestForReservedCarReportForLayout: document];
+			return;
+		} else if ([[url path] isEqualToString: @"/cargoReport"]) {
+			if (!document) {
+				[self replyWithNoKnownLayout: layout];
+				return;
+			}
+			[self processRequestForCargoReportForLayout: document];
 			return;
 		} else if ([[url path] isEqualToString: @"/switchlist"]) {
 			if (!document) {

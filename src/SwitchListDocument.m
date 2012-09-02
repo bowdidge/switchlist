@@ -68,8 +68,8 @@
 // the cargo tab, and helps users understand if the number of cargos
 // is balanced relative to the number of freight cars.
 // On the InterfaceBuilder side, this is set up as looking at arrangedObjects
-// for the table, and grabbing each of the carsPerWeek value from all visible
-// cargos.  This ensures that the value is recalculated whenever carsPerWeek
+// for the table, and grabbing each of the carsPerMonth value from all visible
+// cargos.  This ensures that the value is recalculated whenever carsPerMonth
 // changes
 @interface CargoCountTransformer: NSValueTransformer {}
 @end
@@ -84,7 +84,7 @@
     return NO;
 }
 
-// Adds up all the carsPerWeek and divides by seven to calculate the 
+// Adds up all the carsPerMonth and divides by thirty to calculate the 
 // preferred loads per day.
 // This code should match the loadsPerDay calculation in SwitchListDocument.
 - (id)transformedValue:(id)value {
@@ -93,8 +93,8 @@
 	NSNumber *thisCargo;
 	NSEnumerator *e = [allCargoCounts objectEnumerator];
 	while ((thisCargo = [e nextObject]) != nil) {
-		int thisCargoCarsPerWeek = [thisCargo intValue];
-		curSum += thisCargoCarsPerWeek;
+		int thisCargoCarsPerMonth = [thisCargo intValue];
+		curSum += thisCargoCarsPerMonth;
 	}
 	return [NSNumber numberWithInt: curSum / 7];
 }
@@ -825,6 +825,23 @@
 	[report setObjects: [[self entireLayout] allValidCargos]];
 	[report generateReport];
 }
+
+#if (0)
+// TODO(bowdidge): Switch to HTML report.
+- (IBAction) doCargoReport: (id) sender {
+	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
+	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	[renderer setTemplate: preferredSwitchlistStyle];
+	NSString *industryHtml = [renderer filePathForTemplateHtml: @"cargo-report"];
+	NSString *message = [renderer renderReport: @"cargo-report"
+									  withDict: [NSDictionary dictionaryWithObject: [self entireLayout]
+																			forKey: @"layout"]];
+	
+	HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: @"Cargo Report"];
+    [[view window] makeKeyAndOrderFront: self];
+	[view drawHTML: message template: industryHtml];	
+}
+#endif
 
 - (IBAction) doReservedCarReport: (id) sender {
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
