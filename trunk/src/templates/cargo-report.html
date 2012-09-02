@@ -1,0 +1,111 @@
+<HTML>
+<HEAD>
+<TITLE>Cargo Report for {{layout.layoutName}}</TITLE>
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+
+<!-- Use iPad specific settings to increase font sizes. -->
+<link href='layout.css' rel='stylesheet' type='text/css'>
+
+<script type="text/javascript">
+
+function doDrawTable() {
+  var allIndustries = [{% for industry in layout.allIndustries %}["{{industry.name}}","{{industry.objectID.URIRepresentation}}"],
+{% /for %}];
+  var allYards = [{% for industry in layout.allYards %}["{{industry.name}}","{{industry.objectID.URIRepresentation}}"],
+{% /for %}];
+  allIndustries = allIndustries.concat(allYards);
+  var allCargos = [{% for cargo in layout.allCargos %}["{{cargo.name}}","{{cargo.source.objectID.URIRepresentation}}","{{cargo.destination.objectID.URIRepresentation}}", '{{cargo.carType}}', {{cargo.carsPerMonth}}],
+{%/for%}];
+  var allCarTypes = [{% for carType in layout.allCarTypes %}["{{carType.carTypeName}}", "{{carType.carTypeDescription}}"], {%/for%}];
+
+  allIndustries.sort(function(a,b) { return a[0].localeCompare(b[0])});
+  allCarTypes.sort(function(a,b) { return a[0].localeCompare(b[0])});
+  var cargoTable = document.getElementById("cargoReportTable");
+  var industryToSourceCarTypeMap = {}
+  var industryToDestCarTypeMap = {}
+  var industryToNameMap = {}
+  var i;
+  for (i=0;i < allIndustries.length; i++) {
+    var industry = allIndustries[i];
+    industryToSourceCarTypeMap[industry[1]] = {};
+    industryToDestCarTypeMap[industry[1]] = {};
+    industryToNameMap[industry[1]] = industry[0];
+  }
+
+  for (i=0;i<allCargos.length;i++) {
+    var cargo = allCargos[i];
+    var sourceID = cargo[1]
+    var destID = cargo[2]
+    var carType = cargo[3];
+    var carsPerMonth = cargo[4];
+    if (industryToSourceCarTypeMap[sourceID][carType] != undefined) {
+      industryToSourceCarTypeMap[sourceID][carType] += carsPerMonth;
+    } else {
+      industryToSourceCarTypeMap[sourceID][carType] = carsPerMonth;
+    }
+
+    if (industryToDestCarTypeMap[destID][carType] != undefined) {
+      industryToDestCarTypeMap[destID][carType] += carsPerMonth;
+    } else {
+      industryToDestCarTypeMap[destID][carType] = carsPerMonth;
+    }
+  }
+
+  
+  var row = document.createElement("tr");
+  var industryTitle = document.createElement("th");
+  industryTitle.innerText = "Industry";
+  row.appendChild(industryTitle);
+  var j;
+  for (j=0;j<allCarTypes.length;j++) {
+    var carTypeTitle = document.createElement("th");
+    carTypeTitle.innerHTML = allCarTypes[j][0] + "<br><small>(" + allCarTypes[j][1] + ")</small>";
+    row.appendChild(carTypeTitle);
+  }				       
+  cargoReportTable.appendChild(row);
+
+  for (i=0;i<allIndustries.length;i++) {
+    industry = allIndustries[i];
+    industryName = industry[0];
+    industryURI = industry[1];
+
+    var row = document.createElement("tr");
+    var industryNameTag = document.createElement("td");
+    industryNameTag.appendChild(document.createTextNode(industry[0]));
+    row.appendChild(industryNameTag);
+    for (j=0;j<allCarTypes.length;j++) {
+      var firstType = document.createElement("td");
+      var sourceCarCount = industryToSourceCarTypeMap[industryURI][allCarTypes[j][0]];
+      if (sourceCarCount == undefined) {
+        sourceCarCount = 0;
+      }
+      var destCarCount = industryToDestCarTypeMap[industryURI][allCarTypes[j][0]];
+      if (destCarCount == undefined) {
+        destCarCount = 0;
+      }
+      firstType.appendChild(document.createTextNode(sourceCarCount + " / " + destCarCount));
+      row.appendChild(firstType);
+    }
+    cargoReportTable.appendChild(row);
+  }
+}
+</script>
+</HEAD>
+<BODY onload="doDrawTable()">
+<div class="report">
+<div class="report-layout-title">{{ layout.layoutName }}</div>
+<div class="report-title">CARGO REPORT</div>
+
+Summary of number of incoming and outgoing cars per week for each car type and each industry.
+Ensure that industries of similar size have similar numbers of incoming and outgoing cars.
+
+<table id="cargoReportTable" cellpadding="1">
+<!--  {% for industry in layout.allIndustries %}
+  <tr><td>{{industry.name}}</td><td>1</td></tr>
+  {% /for %}
+-->
+</table>
+</div>
+</body>
+</html>
