@@ -96,7 +96,7 @@
 		NSString *source = [cargo valueForKeyPath: @"destination.name"];
 		NSString *carTypeName = [cargo carType];
 		if (carTypeName == nil) carTypeName = unspecifiedString_;
-		int carsPerWeek = [[cargo carsPerWeek] intValue];
+		int carsPerMonth = [[cargo carsPerMonth] intValue];
 		NSString *uniqueCarType = [self uniqueCarType: carTypeName];
 		NSMutableDictionary *carDict = [industryReceivingDict valueForKey: source];
 		if (carDict == nil) {
@@ -106,9 +106,9 @@
 		
 		NSNumber *carCount = [carDict valueForKey: uniqueCarType];
 		if (carCount == nil) {
-			carCount = [NSNumber numberWithInt: carsPerWeek];
+			carCount = [NSNumber numberWithInt: carsPerMonth];
 		} else {
-			carCount = [NSNumber numberWithInt: carsPerWeek + [carCount intValue]];
+			carCount = [NSNumber numberWithInt: carsPerMonth + [carCount intValue]];
 		}
 		[carDict setObject: carCount forKey: carTypeName];
 	}
@@ -119,7 +119,7 @@
 		NSString *dest = [cargo valueForKeyPath: @"source.name"];
 		NSString *carTypeName = [cargo carType];
 		if (carTypeName == nil) carTypeName = unspecifiedString_;
-		int carsPerWeek = [[cargo carsPerWeek] intValue];
+		int carsPerMonth = [[cargo carsPerMonth] intValue];
 		NSString *uniqueCarType = [self uniqueCarType: carTypeName];
 		NSMutableDictionary *carDict = [industrySendingDict valueForKey: dest];
 		if (carDict == nil) {
@@ -129,9 +129,9 @@
 		
 		NSNumber *carCount = [carDict valueForKey: uniqueCarType];
 		if (carCount == nil) {
-			carCount = [NSNumber numberWithInt: carsPerWeek];
+			carCount = [NSNumber numberWithInt: carsPerMonth];
 		} else {
-			carCount = [NSNumber numberWithInt: carsPerWeek + [carCount intValue]];
+			carCount = [NSNumber numberWithInt: carsPerMonth + [carCount intValue]];
 		}
 		[carDict setObject: carCount forKey: carTypeName];
 	}

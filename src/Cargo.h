@@ -50,13 +50,16 @@ enum RateUnits {
 @property(nonatomic, retain) CarType* carTypeRel;
 @property (nonatomic, retain) NSString* cargoDescription;
 @property (nonatomic, retain) InduYard* source, *destination;
-// rate replaces carsPerWeek.  rate is an NSNumber (integer) representing the number
+// rate replaces carsPerMonth.  rate is an NSNumber (integer) representing the number
 // of cars per unit time; rateUnits is 0 for per day, 1 for perWeek, 2 for perMonth.
 @property (nonatomic, retain) NSNumber* rate, *rateUnits;
 
 
 - (NSNumber *)carsPerWeek;
 - (void)setCarsPerWeek:(NSNumber *)value;
+
+- (NSNumber*) carsPerMonth;
+- (void)setCarsPerMonth:(NSNumber *)value;
 
 // Only for consistency in template language.
 - (NSString*) name;

@@ -556,14 +556,14 @@
 	Cargo *c1 = [self makeCargo: @"b to c"];
 	[c1 setSource: [self industryAtStation: @"B"]];
 	[c1 setDestination: [self industryAtStation: @"C"]];
-	[c1 setCarsPerWeek: [NSNumber numberWithInt: 10]];
+	[c1 setCarsPerMonth: [NSNumber numberWithInt: 41]];
 	
 	Cargo *c2 = [self makeCargo: @"a to b"];
 	[c2 setSource: [self industryAtStation: @"A"]];
 	[c2 setDestination: [self industryAtStation: @"B"]];
-	[c2 setCarsPerWeek: [NSNumber numberWithInt: 11]];
+	[c2 setCarsPerMonth: [NSNumber numberWithInt: 49]];
 	
-	STAssertEqualsInt(3, [entireLayout_ loadsPerDay], @"Expected 1 load/day, got %d", [entireLayout_ loadsPerDay]);
+	STAssertEqualsInt(3, [entireLayout_ loadsPerDay], @"Expected 3 loads/day, got %d", [entireLayout_ loadsPerDay]);
 }
 
 - (void) testSqlSanity {

@@ -226,10 +226,10 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	NSArray *allCargos = [self allNonFixedRateCargos];
 	NSEnumerator *e = [allCargos objectEnumerator];
 	while ((thisCargo = [e nextObject]) != nil) {
-		int thisCargoCarsPerWeek = [[thisCargo carsPerWeek] intValue];
-		curSum += thisCargoCarsPerWeek;
+		int thisCargoCarsPerMonth = [[thisCargo carsPerMonth] intValue];
+		curSum += thisCargoCarsPerMonth;
 	}
-	return curSum / 7;
+	return curSum / 30;
 }
 
 // returns array of freight car managed objects that have loaded flag set or where cargo isn't NULL.
