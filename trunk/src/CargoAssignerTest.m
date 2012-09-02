@@ -90,38 +90,55 @@
 	}
 }
 
+int CountOfItemInArray(id item, NSArray* array) {
+	int count = 0;
+	for (id i in array) {
+		if (i == item) {
+			count++;
+		}
+	}
+	return count;
+}
+	
 - (void) testMixOfDailyAndWeekly {
 	[self makeThreeStationLayout];
 	
 	MockRandomNumberGenerator *generator = [[[MockRandomNumberGenerator alloc] init] autorelease];
-	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 10], [NSNumber numberWithInt: 31], [NSNumber numberWithInt: 3],
-							[NSNumber numberWithInt: 38], [NSNumber numberWithInt: 12], [NSNumber numberWithInt: 25], nil]];
+	NSMutableArray *numbers = [NSMutableArray array];
+	int totalCargoChoiceCount = 30 + 4 + 1;
+	int i;
+	for (i=0; i < totalCargoChoiceCount; i++) {
+		[numbers addObject: [NSNumber numberWithInt: totalCargoChoiceCount - i - 1]];
+	}
+		
+	[generator setNumbers: numbers];
 	[cargoAssigner_ setRandomNumberGenerator: generator];
 	 
 	Cargo *c1 = [self makeCargo: @"a to b"];
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
-	[c1 setRate: [NSNumber numberWithInt: 3]];
+	[c1 setRate: [NSNumber numberWithInt: 1]];
 	[c1 setRateUnits: [NSNumber numberWithInt: RATE_PER_DAY]];
 	
 	Cargo *c2 = [self makeCargo: @"b to c"];
 	[c2 setSource: [self industryAtStation: @"B"]];
 	[c2 setDestination: [self industryAtStation: @"C"]];
-	[c2 setRate: [NSNumber numberWithInt: 21]];
+	[c2 setRate: [NSNumber numberWithInt: 1]];
 	[c2 setRateUnits: [NSNumber numberWithInt: RATE_PER_WEEK]];
 	
-	// Should be an average of 3 cars a day with cargo type C1 and C2.
-	NSArray *cargos = [cargoAssigner_ cargosForToday: 6];
-	int i;
-	int cargoCount = [cargos count];
-	STAssertEqualsInt(6, [cargos count], @"Not enough cargos chosen.");
+	Cargo *c3 = [self makeCargo: @"c to a"];
+	[c3 setSource: [self industryAtStation: @"C"]];
+	[c3 setDestination: [self industryAtStation: @"A"]];
+	[c3 setRate: [NSNumber numberWithInt: 1]];
+	[c3 setRateUnits: [NSNumber numberWithInt: RATE_PER_MONTH]];
 	
-	STAssertEquals(c1, [cargos objectAtIndex: 0], @"Expected item %d was %@, was %@", 0, c1, [cargos objectAtIndex: 0]);
-	STAssertEquals(c2, [cargos objectAtIndex: 1], @"Expected item %d was %@, was %@", 1, c2, [cargos objectAtIndex: 1]);
-	STAssertEquals(c1, [cargos objectAtIndex: 2], @"Expected item %d was %@, was %@", 2, c1, [cargos objectAtIndex: 2]);
-	STAssertEquals(c2, [cargos objectAtIndex: 3], @"Expected item %d was %@, was %@", 3, c2, [cargos objectAtIndex: 3]);
-	STAssertEquals(c1, [cargos objectAtIndex: 4], @"Expected item %d was %@, was %@", 4, c1, [cargos objectAtIndex: 4]);
-	STAssertEquals(c2, [cargos objectAtIndex: 5], @"Expected item %d was %@, was %@", 5, c2, [cargos objectAtIndex: 5]);
+	NSArray *cargos = [cargoAssigner_ cargosForToday: totalCargoChoiceCount];
+	int cargoCount = [cargos count];
+	STAssertEqualsInt(totalCargoChoiceCount, [cargos count], @"Not enough cargos chosen.");
+	
+	STAssertEquals(30, CountOfItemInArray(c1, cargos), @"");
+	STAssertEquals(4, CountOfItemInArray(c2, cargos), @"");
+	STAssertEquals(1, CountOfItemInArray(c3, cargos), @"");
 }
 
 - (void) tearDown {

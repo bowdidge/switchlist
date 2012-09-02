@@ -72,7 +72,7 @@
 	[cargoReport setObjects: [entireLayout_ allValidCargos]];
 	NSString *contents = [cargoReport contents];
 	STAssertNotNil(contents, @"Contents should not be empty.");
-	STAssertContains(@"7/  0", contents, @"");
+	STAssertContains(@"30/  0", contents, @"Expected 30/0, got %@", contents);
 }
 
 

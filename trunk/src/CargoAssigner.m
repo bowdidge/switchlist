@@ -57,37 +57,37 @@
 	// arrivals.  Add those to the beginning of the list.
 	Cargo *cargo;
 	for (cargo in [entireLayout_ allFixedRateCargos]) {
-		int cargosPerWeek = [[cargo carsPerWeek] intValue];
+		int cargosPerMonth = [[cargo carsPerMonth] intValue];
 		int i;
-		for (i=0; i < cargosPerWeek / 7; i++) {
+		for (i=0; i < cargosPerMonth / 30; i++) {
 			[resultCargos addObject: cargo];
 		}
 		// For the fractional part, choose random number to
 		// decide if the fractional car appears today.
-		if ([generator_ generateRandomNumber: 7] < (cargosPerWeek % 7)) {
+		if ([generator_ generateRandomNumber: 30] < (cargosPerMonth % 30)) {
 			[resultCargos addObject: cargo];
 		}
 	}
 	
 	// Now, add the non-guaranteed cargos.
 	NSArray *allCargos = [entireLayout_ allNonFixedRateCargos];
-	// Sum up total number of cars/week
+	// Sum up total number of cars/month
 	int sum=0;
 	for (cargo in allCargos) {
-		sum += [[cargo carsPerWeek] intValue];
+		NSLog(@"month %@", [cargo carsPerMonth]);
+		sum += [[cargo carsPerMonth] intValue];
 	}
-	
 	for (i=0;i<count;i++) {
 		int cargoChoice = [generator_ generateRandomNumber: sum];
 		int curSum=0;
 		for (cargo in allCargos) {
-			int thisCargoCarsPerWeek = [[cargo carsPerWeek] intValue];
-			if (cargoChoice < thisCargoCarsPerWeek + curSum) {
+			int thisCargoCarsPerMonth = [[cargo carsPerMonth] intValue];
+			if (cargoChoice < thisCargoCarsPerMonth + curSum) {
 				// this is our match
 				[resultCargos addObject: cargo];
 				break;
 			}
-			curSum += thisCargoCarsPerWeek;
+			curSum += thisCargoCarsPerMonth;
 		}
 	}
 	

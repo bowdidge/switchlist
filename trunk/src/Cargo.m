@@ -71,12 +71,47 @@
 	return [NSNumber numberWithInt: carsPerWeek];
 }
 
+- (NSNumber*) carsPerMonth {
+	[self willAccessValueForKey: @"rate"];
+   	[self willAccessValueForKey: @"rateUnits"];
+	NSNumber *rateUnits = [self valueForKeyPath: @"rateUnits"];
+	NSNumber *rate = [self valueForKeyPath: @"rate"];
+	int rateValue = [rate intValue];
+	int rateUnitsEnum = [rateUnits intValue];
+	float carsPerMonth = 0;
+	switch (rateUnitsEnum) {
+		case RATE_PER_DAY:
+			carsPerMonth = rateValue * 30.0;
+			break;
+		case RATE_PER_WEEK:
+			carsPerMonth = rateValue * 30.0 / 7.0;
+			break;
+		case RATE_PER_MONTH:
+			carsPerMonth = rateValue;
+			break;
+	}
+    [self didAccessValueForKey: @"rate"];
+    [self didAccessValueForKey: @"rateUnits"];
+	return [NSNumber numberWithInt: carsPerMonth];
+}
+
 // Sets the preferred number of cars carrying this cargo to move each week.
 - (void)setCarsPerWeek:(NSNumber *)value {
     [self willChangeValueForKey: @"rate"];
     [self willChangeValueForKey: @"rateUnits"];
     [self setPrimitiveValue: value forKey: @"rate"];
 	[self setPrimitiveValue: [NSNumber numberWithInt: RATE_PER_WEEK] forKey: @"rateUnits"];
+    [self didChangeValueForKey: @"rate"];
+    [self didChangeValueForKey: @"rateUnits"];
+}
+
+
+// Sets the preferred number of cars carrying this cargo to move each week.
+- (void)setCarsPerMonth:(NSNumber *)value {
+    [self willChangeValueForKey: @"rate"];
+    [self willChangeValueForKey: @"rateUnits"];
+    [self setPrimitiveValue: value forKey: @"rate"];
+	[self setPrimitiveValue: [NSNumber numberWithInt: RATE_PER_MONTH] forKey: @"rateUnits"];
     [self didChangeValueForKey: @"rate"];
     [self didChangeValueForKey: @"rateUnits"];
 }
