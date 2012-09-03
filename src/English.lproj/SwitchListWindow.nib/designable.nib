@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="5309"/>
 			<integer value="260"/>
+			<integer value="5308"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -6230,7 +6230,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{157, 38}, {699, 423}}</string>
 				<int key="NSWTFlags">1685586944</int>
-				<string key="NSWindowTitle">Cargo Assistant</string>
+				<string key="NSWindowTitle">Suggest Cargos</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<string key="NSWindowContentMaxSize">{1.79769e+308, 1.79769e+308}</string>
