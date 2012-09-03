@@ -31,12 +31,12 @@ ul {
 
 /* JSON array describing SwitchList industries. */ 
 RAW_INDUSTRIES = [{% for industry in layout.allIndustries %}
-  { name: "{{industry.name}}", objectId: "{{industry.objectID.URIRepresentation}}"},{% /for %}
+  { name: "{{industry.name}}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: {{industry.sidingLength}}},{% /for %}
 ];
 
 /* JSON array describing SwitchList yards. */ 
 RAW_YARDS = [{% for industry in layout.allYards %}
-  { name: "{{industry.name}}", objectId: "{{industry.objectID.URIRepresentation}}" },{% /for %}
+  { name: "{{industry.name}}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: 0 },{% /for %}
 ];
 
 /* JSON array describing SwitchList cargos. */ 
@@ -81,7 +81,8 @@ function CargoReportGenerator() {
   this.carTypeToCountMap = {};
 
   // Map of each industry objectId to name.
-  this.industryToNameMap = {}
+  this.industryIdToNameMap = {}
+  this.industryIdToIndustryMap = {}
 }
 
 /**
@@ -97,9 +98,10 @@ CargoReportGenerator.prototype.GenerateTable = function(cargoReportTable) {
   for (i=0;i < this.allIndustries.length; i++) {
     var industry = this.allIndustries[i];
     this.industryToSourceCarTypeMap[industry['objectId']] = {};
-    this.industryToDestCarTypeMap[industry['objectId']] = {};
-    this.industryToNameMap[industry['objectId']] = industry['name'];
-  }
+    this.industryToDestCarTypeMap[industry['objectId']] = {}; 
+    this.industryIdToNameMap[industry['objectId']] = industry['name'];
+    this.industryIdToIndustryMap[industry['objectId']] = industry;
+ }
 
   // Run through all industries, and tabulate number of incoming and
   // outgoing cars per week for each industry/car type pair.
@@ -158,6 +160,10 @@ CargoReportGenerator.prototype.makeTableHeader = function() {
       '<br><small>(' + this.allCarTypes[i]['description'] + ')</small>';
     headerRow.appendChild(carTypeTitle);
   }				       
+
+  var carTypeTitle = document.createElement('th');
+  carTypeTitle.innerHTML = 'Total';
+  headerRow.appendChild(carTypeTitle);
   return headerRow;
 }
 
@@ -171,7 +177,7 @@ CargoReportGenerator.prototype.makeTableHeader = function() {
  *   <TR> element for the row.
  */
 CargoReportGenerator.prototype.makeIndustryRow = function(industryId) {
-  var industryName = this.industryToNameMap[industryId];
+  var industryName = this.industryIdToNameMap[industryId];
   if (industryName == '') {
     industryName = 'Not specified';
   }
@@ -183,11 +189,48 @@ CargoReportGenerator.prototype.makeIndustryRow = function(industryId) {
   industryNameTag.appendChild(document.createTextNode(industryName));
   row.appendChild(industryNameTag);
 
+  var totalCarCount = 0;
   for (j=0;j<this.allCarTypes.length;j++) {
-    var carCountCell = this.makeCountTag(industryId,
-                                         this.allCarTypes[j]['name']);
+    var carType = this.allCarTypes[j]['name'];
+    var carCountCell = this.makeCountTag(industryId, carType);
+    sourceCount = this.industryToSourceCarTypeMap[industryId][carType];
+    destCount = this.industryToDestCarTypeMap[industryId][carType];
+    if (sourceCount) totalCarCount += sourceCount;
+    if (destCount) totalCarCount += destCount;
     row.appendChild(carCountCell);
   }
+
+  var totalCountCell = document.createElement('td');
+  var totalCellText = document.createTextNode(totalCarCount);
+  totalCountCell.appendChild(totalCellText);
+  row.appendChild(totalCountCell);
+  var industry = this.industryIdToIndustryMap[industryId];
+  sidingCapacityCars = (industry['sidingLength'] / 40);
+  carsPerDay = (totalCarCount / 7);
+  if (totalCarCount == 0) {
+    totalCountCell.style.color = 'lightGray';
+  } else if (sidingCapacityCars > 0 && 
+             sidingCapacityCars < carsPerDay) {
+    totalCountCell.style.color = 'red';
+    totalCountCell.title = "Siding has room for " + sidingCapacityCars +
+                           " 40' cars but may not hold " + 
+                           (carsPerDay / 7).toFixed(1) +
+		           " cars a day.";
+  } else if (sidingCapacityCars > 0 && 
+             sidingCapacityCars < carsPerDay) {
+    totalCountCell.style.color = 'yellow';
+    totalCountCell.title = "Siding looks full - can hold " + sidingCapacityCars +
+                           " 40' cars but may not hold " + 
+                           carsPerDay.toFixed(1) +
+		           " cars a day.";
+  } else if (sidingCapacityCars > 0) {
+    totalCountCell.title = "Siding looks large enough - can hold " + sidingCapacityCars +
+                           " 40' cars and receives " + 
+                           carsPerDay.toFixed(1) +
+		           " cars a day.";
+  }
+  row.appendChild(totalCountCell);
+
   return row;
 }
 
@@ -215,6 +258,7 @@ CargoReportGenerator.prototype.makeTotalRow = function() {
     totalCountTag.appendChild(document.createTextNode(carCount));
     row.appendChild(totalCountTag);
   }
+
   return row;
 }
 
