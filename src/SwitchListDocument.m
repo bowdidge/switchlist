@@ -202,6 +202,15 @@
 	entireLayout_ = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
 	layoutController_ = [[LayoutController alloc] initWithEntireLayout: entireLayout_];
 	
+	// Make sure every layout has a name.
+	// TODO(bowdidge): Fix so unsaved layouts have unique names.
+	if ([[entireLayout_ layoutName] length] == 0) {
+		NSString *filename = [[[self fileURL] lastPathComponent] stringByDeletingPathExtension];
+		if (filename) {
+			[entireLayout_ setLayoutName: filename];
+		}
+	}
+	
 	NSMutableDictionary *layoutPrefs = [entireLayout_ getPreferencesDictionary];
 	NSNumber *defaultLoadsNumber = [layoutPrefs objectForKey: LAYOUT_PREFS_DEFAULT_NUM_LOADS];
 	int defaultLoads = [defaultLoadsNumber intValue];
@@ -819,15 +828,7 @@
 	[view drawHTML: message template: industryHtml];	
 }
 
-- (IBAction) doCargoReport: (id) sender {
-	CargoReport *report = [[CargoReport alloc] initWithDocument: self
-												 withIndustries: [[self entireLayout] allIndustries]];
-	[report setObjects: [[self entireLayout] allValidCargos]];
-	[report generateReport];
-}
-
-#if (0)
-// TODO(bowdidge): Switch to HTML report.
+// Generates the cargo report from the HTML version.
 - (IBAction) doCargoReport: (id) sender {
 	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
 	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
@@ -841,7 +842,6 @@
     [[view window] makeKeyAndOrderFront: self];
 	[view drawHTML: message template: industryHtml];	
 }
-#endif
 
 - (IBAction) doReservedCarReport: (id) sender {
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
