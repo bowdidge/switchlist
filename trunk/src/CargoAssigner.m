@@ -74,7 +74,6 @@
 	// Sum up total number of cars/month
 	int sum=0;
 	for (cargo in allCargos) {
-		NSLog(@"month %@", [cargo carsPerMonth]);
 		sum += [[cargo carsPerMonth] intValue];
 	}
 	for (i=0;i<count;i++) {
