@@ -47,5 +47,7 @@
 - (void) setCar: (FreightCar*) fc destinedForIndustry: (Industry*) industry door: (int) doorNumber;
 - (int) doorForCar: (const FreightCar*) car;
 - (NSArray*) carsAtIndustry: (Industry*) industry;
+@property (retain) NSMutableDictionary *industryToCarMapping;
+@property (retain) NSMutableDictionary *carToDoorMapping;
 @end
 

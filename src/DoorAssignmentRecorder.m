@@ -33,8 +33,8 @@
 @implementation DoorAssignmentRecorder
 - (id) init {
 	self = [super init];
-	industryToCarMapping_ = [[NSMutableDictionary alloc] init];
-	carToDoorMapping_ = [[NSMutableDictionary alloc] init];
+	industryToCarMapping_ = [NSMutableDictionary dictionary];
+	carToDoorMapping_ = [NSMutableDictionary dictionary];
 	return self;
 }
 
@@ -43,46 +43,45 @@
 }
 
 - (void) dealloc {
-	[industryToCarMapping_ release];
-	[carToDoorMapping_ release];
 	[super dealloc];
 }
 
 - (void) setCar: (FreightCar*) car destinedForIndustry: (Industry*) industry door: (int) doorNumber {
-	NSMutableArray *industryMap = [industryToCarMapping_ objectForKey: [industry objectID]];
+	NSMutableArray *industryMap = [self.industryToCarMapping objectForKey: [industry objectID]];
 	if (industryMap == nil) {
 		industryMap = [NSMutableArray array];
-		[industryToCarMapping_ setObject: industryMap forKey: [industry objectID]];
+		[self.industryToCarMapping setObject: industryMap forKey: [industry objectID]];
 	}
 	[industryMap addObject: car];
 	
-	[carToDoorMapping_ setObject: [NSNumber numberWithInt: doorNumber] forKey: [car objectID]];
+	[self.carToDoorMapping setObject: [NSNumber numberWithInt: doorNumber] forKey: [car objectID]];
 }
 
 - (int) doorForCar: (const FreightCar*) car {
-	return [[carToDoorMapping_ objectForKey: [car objectID]] intValue];
+	return [[self.carToDoorMapping objectForKey: [car objectID]] intValue];
 }
 
 - (NSArray*) carsAtIndustry: (Industry*) industry {
-	return [industryToCarMapping_ objectForKey: [industry objectID]];
+	return [self.industryToCarMapping objectForKey: [industry objectID]];
 }
 
 - (NSString*) description {
-	if ([carToDoorMapping_ count] == 0) {
+	if ([self.carToDoorMapping count] == 0) {
 		return @"<DoorAssignmentRecorder: empty>";
 	}
 	
 	NSMutableString *result = [NSMutableString string];
 	[result appendString: @"<DoorAssignmentRecorder: \n"];
-	for (NSNumber *key in [industryToCarMapping_ keyEnumerator]) {
+	for (NSNumber *key in [self.industryToCarMapping keyEnumerator]) {
 		[result appendFormat: @"  Industry %@:\n", key];
-		for (FreightCar *fc in [industryToCarMapping_ objectForKey: key]) {
-			[result appendFormat: @"    %@: door %@\n", fc, [carToDoorMapping_ objectForKey: [fc objectID]]];
+		for (FreightCar *fc in [self.industryToCarMapping objectForKey: key]) {
+			[result appendFormat: @"    %@: door %@\n", fc, [self.carToDoorMapping objectForKey: [fc objectID]]];
 		}
 	}
 	[result appendString: @">\n"];
 	return result;
 }
 
-
+@synthesize industryToCarMapping=industryToCarMapping_;
+@synthesize carToDoorMapping=carToDoorMapping_;
 @end
