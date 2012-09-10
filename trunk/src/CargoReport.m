@@ -85,14 +85,13 @@
 	
 	NSMutableDictionary *industryReceivingDict = [NSMutableDictionary dictionary];
 	NSMutableDictionary *industrySendingDict = [NSMutableDictionary dictionary];
-	NSEnumerator *e = [objectsToDisplay_ objectEnumerator];
 
 	if (!objectsToDisplay_ || [objectsToDisplay_ count] == 0) {
 		return @"No cargos defined";
 	}
 
 	Cargo *cargo;
-	while ((cargo = [e nextObject]) != nil) {
+	for (cargo in objectsToDisplay_) {
 		NSString *source = [cargo valueForKeyPath: @"destination.name"];
 		NSString *carTypeName = [cargo carType];
 		if (carTypeName == nil) carTypeName = unspecifiedString_;
@@ -114,8 +113,7 @@
 	}
 
 	/* Do the same for sources. */
-	e = [objectsToDisplay_ objectEnumerator];
-	while ((cargo = [e nextObject]) != nil) {
+	for (cargo in objectsToDisplay_) {
 		NSString *dest = [cargo valueForKeyPath: @"source.name"];
 		NSString *carTypeName = [cargo carType];
 		if (carTypeName == nil) carTypeName = unspecifiedString_;
@@ -138,18 +136,16 @@
 	
 	NSMutableString *result = [NSMutableString string];
 	NSArray *carTypes = [self allCarTypes];
-	NSEnumerator *carTypeEnum = [carTypes objectEnumerator];
 	NSString *carType;
 	[result appendFormat: @"%20s ","Industry"];
-	while ((carType = [carTypeEnum nextObject]) != nil) {
+	for (carType in carTypes) {
 		[result appendFormat: @" %4s    ",[carType UTF8String]];
 	}
 	[result appendString: @"\n"];
 
 
-	NSEnumerator *indEnum = [industryObjects_ objectEnumerator];
 	InduYard *ind;
-	while ((ind = [indEnum nextObject]) != nil) {
+	for (ind in industryObjects_) {
 		int sumRcv = 0;
 		int sumSend = 0;
 		[result appendFormat: @"%20s ",[[ind name] UTF8String]];
@@ -184,4 +180,7 @@
 }
 
 
+@synthesize industryObjects_;
+@synthesize uniqueStrings_;
+@synthesize unspecifiedString_;
 @end
