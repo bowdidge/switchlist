@@ -36,12 +36,11 @@
 @implementation CarReport
 - (NSString*) contents {
 	NSMutableString *reportString = [NSMutableString string];
-	NSEnumerator *e = [objectsToDisplay_ objectEnumerator];
 	FreightCar *car;
 
 	[reportString appendString:@"  Reporting marks  type  location                 contents\n"];
 
-	while ((car=[e nextObject]) != nil) {
+	for (car in objectsToDisplay_) {
 		NSString* currentLocation = [[car currentLocation] name];
 		NSString* contents = [car cargoDescription];
 		
