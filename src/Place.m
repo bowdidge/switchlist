@@ -106,41 +106,6 @@
     [self didChangeValueForKey: @"isStaging"];
 }
 
-
-- (void)addAdjacentPlacesObject:(NSManagedObject *)value 
-{    
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"adjacentPlaces" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey: @"adjacentPlaces"] addObject: value];
-    [self didChangeValueForKey:@"adjacentPlaces" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
-- (void)removeAdjacentPlacesObject:(NSManagedObject *)value {
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"adjacentPlaces" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey: @"adjacentPlaces"] removeObject: value];
-    [self didChangeValueForKey:@"adjacentPlaces" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
-
-- (void)addIndustriesObject:(InduYard *)value {    
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"industries" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey: @"industries"] addObject: value];
-    [self didChangeValueForKey:@"industries" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
-- (void)removeIndustriesObject:(InduYard *)value {
-    NSSet *changedObjects = [[NSSet alloc] initWithObjects:&value count:1];
-    [self willChangeValueForKey:@"industries" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [[self primitiveValueForKey: @"industries"] removeObject: value];
-    [self didChangeValueForKey:@"industries" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
-}
-
 - (NSSet*) industries {
 	return [self primitiveValueForKey: @"industries"];
 }

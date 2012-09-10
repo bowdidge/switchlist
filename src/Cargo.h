@@ -39,6 +39,12 @@ enum RateUnits {
 	RATE_PER_MONTH = 2
 };
 
+// for cargoRate method.
+struct CargoRate {
+    int rate;
+    enum RateUnits units;
+};
+
 @interface Cargo :  NSManagedObject  
 {
 }
@@ -60,6 +66,9 @@ enum RateUnits {
 
 - (NSNumber*) carsPerMonth;
 - (void)setCarsPerMonth:(NSNumber *)value;
+
+// Returns rate in terms of the unit that the user explicitly chose.
+- (struct CargoRate) cargoRate;
 
 // Only for consistency in template language.
 - (NSString*) name;

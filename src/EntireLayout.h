@@ -28,9 +28,8 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import <AppKit/NSPersistentDocument.h>
 
 @class CarType;
 @class DoorAssignmentRecorder;
@@ -57,7 +56,8 @@ NSString *NormalizeDivisionString(NSString *inString);
 	Industry *workbenchIndustry_;
 	NSMutableDictionary *preferences_;
 	NSMutableDictionary *carTypes_;
-}
+};
+
 - (id) initWithMOC: (NSManagedObjectContext*) moc;
 
 /* Queries used for reports. */
@@ -68,6 +68,7 @@ NSString *NormalizeDivisionString(NSString *inString);
 - (NSArray*) allAvailableFreightCars;
 - (NSArray*) allReservedFreightCars;
 - (NSArray*) allFreightCarsOnWorkbench;
+- (NSArray*) allFreightCarsOnLayout;
 - (NSArray*) allLoadedFreightCarsReportingMarkOrder;
 
 // Returns one freight car with matching reporting marks, or nil if none exist.
@@ -93,8 +94,6 @@ NSString *NormalizeDivisionString(NSString *inString);
 - (NSArray*) allCargos;
 // Calculates the average number of loads per day based on the cargos defined.
 - (int) loadsPerDay;
-
-- (NSArray*) allYards;
 
 // Returns the list of all stations (Places) on the layout in no particular order.
 - (NSArray*) allStations;

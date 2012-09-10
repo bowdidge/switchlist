@@ -34,6 +34,7 @@
 
 #import "Cargo.h"
 #import "EntireLayout.h"
+#import "FreightCar.h"
 #import "SCheduledTrain.h"
 
 @implementation CarTypes
