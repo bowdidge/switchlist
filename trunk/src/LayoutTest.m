@@ -140,7 +140,7 @@
 	[place setName: name];
 	
 	Industry *industry = [self makeIndustryWithName: name];
-	[place addIndustriesObject: industry];
+	[industry setLocation: place];
 	return place;
 }
 
@@ -151,7 +151,7 @@
 	[yard setName: [NSString stringWithFormat: @"%@-yard", stationName]];
 	Place *station = [entireLayout_ stationWithName: stationName];
 	STAssertNotNil(station, @"Yard for station %@ not found", stationName);
-	[station addIndustriesObject: yard];
+	[yard setLocation: station];
 	return yard;
 }
 	
