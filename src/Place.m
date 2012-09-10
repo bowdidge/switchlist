@@ -120,8 +120,7 @@
 	NSSet *industries = [self industries];
 	NSMutableSet *result = [NSMutableSet set];
 	Industry *i;
-	NSEnumerator *e = [industries objectEnumerator];
-	while ((i = [e nextObject]) != nil) {
+	for (i in industries) {
 		if ([i isYard]) {
 			[result addObject: i];
 		}
@@ -137,9 +136,8 @@
 - (NSSet*) freightCarsAtStation {
 	NSSet *industriesHere = [self industries];
 	NSMutableSet *allFreightCars = [NSMutableSet set];
-	NSEnumerator *indEnum = [industriesHere objectEnumerator];
 	Industry *ind;
-	while ((ind = [indEnum nextObject]) != nil) {
+	for (ind in industriesHere) {
 		[allFreightCars unionSet: [ind freightCars]];
 	}
 	return allFreightCars;
