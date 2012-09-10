@@ -67,4 +67,6 @@
 
 // For switchlists to get door assignment info.
 - (DoorAssignmentRecorder*) doorAssignmentRecorder;
+@property (retain) EntireLayout *entireLayout;
+@property (retain) DoorAssignmentRecorder *doorAssignmentRecorder;
 @end
