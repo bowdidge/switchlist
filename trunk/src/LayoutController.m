@@ -43,23 +43,16 @@
 // Creates a new LayoutController.
 - (id) initWithEntireLayout: (EntireLayout*) layout {
 	self = [super init];
-	entireLayout_ = [layout retain];
-	doorAssignmentRecorder_ = [[DoorAssignmentRecorder alloc] init];
+	self.entireLayout = layout;
+	self.doorAssignmentRecorder = [[[DoorAssignmentRecorder alloc] init] autorelease];
 	return self;
-}
-
-- (void) dealloc {
-	[entireLayout_ release];
-	[doorAssignmentRecorder_ release];
-	[super dealloc];
 }
 
 // Marks unloaded cars as loaded, and loaded as empty.
 - (void) advanceLoads {
-	NSArray *freightCarsToAdvance = [entireLayout_ allFreightCarsAtDestination];
-	NSEnumerator *e = [freightCarsToAdvance objectEnumerator];
+	NSArray *freightCarsToAdvance = [self.entireLayout allFreightCarsAtDestination];
 	FreightCar *car;
-	while ((car = [e nextObject]) != nil) {
+	for (car in freightCarsToAdvance) {
 		if ([car isLoaded] == NO) {
 			[car setIsLoaded: YES];
 			// cargo stays the same
@@ -76,19 +69,17 @@
 // if requested.  Returns array of strings describing any errors encontered during assignment process.
 - (NSArray *) assignCarsToTrains: (NSArray*) allTrains respectSidingLengths: (BOOL) respectSidingLengths useDoors: (BOOL) useDoors  {
 	// Start from scratch (all cars, not just available) to make sure the placement is right.
-	NSArray *allFreightCars = [entireLayout_ allFreightCars];
+	NSArray *allFreightCars = [self.entireLayout allFreightCars];
 	
-	NSEnumerator *e = [allFreightCars objectEnumerator];
 	FreightCar *car;
-	while ((car = [e nextObject]) != nil) {
+	for (car in allFreightCars) {
 		[car setCurrentTrain: nil];
 	}
 	
-	TrainAssigner *ta = [[TrainAssigner alloc] initWithLayout: entireLayout_ useDoors: useDoors respectSidingLengths: respectSidingLengths];
+	TrainAssigner *ta = [[TrainAssigner alloc] initWithLayout: self.entireLayout useDoors: useDoors respectSidingLengths: respectSidingLengths];
 	
 	[ta assignCarsToTrains: allTrains];
-	[doorAssignmentRecorder_ release];
-	doorAssignmentRecorder_ = [[ta doorAssignmentRecorder] retain];
+	self.doorAssignmentRecorder = [ta doorAssignmentRecorder] ;
 	NSArray *errs = [[[ta errors] retain] autorelease];
 	[ta release];
 	return errs;
@@ -98,7 +89,7 @@
 // Returns dictionary mapping car type name (as string) to NSNumber showing number of cars
 // that could not be loaded.
 - (NSMutableDictionary *) createAndAssignNewCargos: (int) loadsToAdd  {
-	NSArray *allFreightCars = [entireLayout_ allAvailableFreightCars];
+	NSArray *allFreightCars = [self.entireLayout allAvailableFreightCars];
 	
 	// Sanity check - if no freight cars, just return.
 	if ([allFreightCars count] < 1)  return nil;
@@ -106,15 +97,14 @@
 	// Keep track of how many cargos couldn't be filled to help layout owner with cargo balance.
 	NSMutableDictionary *unavailableCarTypeDict = [NSMutableDictionary dictionary];
 
-	CargoAssigner *cargoAssigner = [[CargoAssigner alloc] initWithEntireLayout: entireLayout_];
+	CargoAssigner *cargoAssigner = [[CargoAssigner alloc] initWithEntireLayout: self.entireLayout];
 	NSArray *cargosForToday = [cargoAssigner cargosForToday: loadsToAdd];
 	
 	
-	CarAssigner *carAssigner = [[CarAssigner alloc] initWithUnassignedCars: allFreightCars layout: entireLayout_];
+	CarAssigner *carAssigner = [[CarAssigner alloc] initWithUnassignedCars: allFreightCars];
 	id cargo;
 	
-	NSEnumerator *cargoEnum = [cargosForToday objectEnumerator];
-	while ((cargo = [cargoEnum nextObject]) != nil) {
+	for (cargo in cargosForToday) {
 		
 		FreightCar *frtCar = [carAssigner assignedCarForCargo: cargo];
 		
@@ -152,19 +142,15 @@
 // Clear all cargos for all freight cars with extreme prejudice.
 // For restoring to a known state.
 - (void) clearAllLoads {
-	NSArray *unavailableFreightCars = [entireLayout_ allReservedFreightCars];
-	NSEnumerator *e = [unavailableFreightCars objectEnumerator];
+	NSArray *unavailableFreightCars = [self.entireLayout allReservedFreightCars];
 	id car;
-	while ((car = [e nextObject]) != nil) {
+	for (car in unavailableFreightCars) {
 		[car setIsLoaded: NO];
 		[car setCargo: nil];
 		[car setCurrentTrain: nil];
 	}
 }
 
-
-
-- (DoorAssignmentRecorder*) doorAssignmentRecorder {
-	return doorAssignmentRecorder_;
-}
+@synthesize entireLayout=entireLayout_;
+@synthesize doorAssignmentRecorder=doorAssignmentRecorder_;
 @end
