@@ -43,4 +43,7 @@
 - (NSString*) contents;
 - (NSString *) typeString;
 
+@property (retain) NSArray *industryObjects_;
+@property (retain) NSHashTable *uniqueStrings_;
+@property (retain) NSString *unspecifiedString_;
 @end
