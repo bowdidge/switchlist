@@ -44,13 +44,12 @@
 
 
 - (NSString*) contents {
-	NSEnumerator *e = [objectsToDisplay_ objectEnumerator];
 	FreightCar *car;
 	NSMutableString *reportString = [NSMutableString string];
 	[reportString appendString:@"  Reporting marks  type   contents\n"];
 	NSString *currentIndustry=nil;
 	BOOL firstLine = YES;
-	while ((car=[e nextObject]) != nil) {
+	for (car in objectsToDisplay_) {
 		NSString* currentLocation = [[car currentLocation] name];
 		NSString* currentTown = [[car currentTown] name];
 
