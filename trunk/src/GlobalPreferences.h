@@ -29,7 +29,7 @@
 // SUCH DAMAGE.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 // Settings for global app preferences dictionary.
 

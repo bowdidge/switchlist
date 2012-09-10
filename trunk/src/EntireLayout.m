@@ -80,6 +80,7 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	[super dealloc];
 }
 
+
 - (NSManagedObjectContext*) managedObjectContext {
 	return moc_;
 }
@@ -100,9 +101,9 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	
 - (Place*) stationWithName: (NSString *)stationName {
 	NSError *error;
-	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [self managedObjectContext]];
-	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
-	[req2 setEntity: ent];
+    NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [self managedObjectContext]];
+    NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
+    [req2 setEntity: ent];
 	[req2 setPredicate: [NSPredicate predicateWithFormat: @"name LIKE %@",[stationName sqlSanitizedString]]];
 	NSArray *result = [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 
@@ -155,10 +156,9 @@ NSString *NormalizeDivisionString(NSString *inString) {
 
 	// Do the same for the workbench industry.
 
-	ent = [NSEntityDescription entityForName: @"Industry" inManagedObjectContext: [self managedObjectContext]];
-	req2  = [[[NSFetchRequest alloc] init] autorelease];
-	
-	[req2 setEntity: ent];
+    ent = [NSEntityDescription entityForName: @"Industry" inManagedObjectContext: [self managedObjectContext]];
+    req2  = [[[NSFetchRequest alloc] init] autorelease];
+    [req2 setEntity: ent];
 	[req2 setPredicate: [NSPredicate predicateWithFormat: @"name LIKE %@",@"Workbench"]];
 	result = [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 
@@ -248,6 +248,16 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
 	[req2 setEntity: ent];
 	[req2 setPredicate: [NSPredicate predicateWithFormat: @"currentLocation.name == 'Workbench'"]];
+	NSError *error;
+	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
+}
+
+// returns array of freight car managed objects that have loaded flag set or where cargo isn't NULL.
+- (NSArray*) allFreightCarsOnLayout {
+	NSEntityDescription *ent = [NSEntityDescription entityForName: @"FreightCar" inManagedObjectContext: [self managedObjectContext]];
+	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
+	[req2 setEntity: ent];
+	[req2 setPredicate: [NSPredicate predicateWithFormat: @"currentLocation.name != 'Workbench'"]];
 	NSError *error;
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }
@@ -719,13 +729,15 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 		[preferences_ release];
 		preferences_ = [[NSMutableDictionary alloc] init];
 	} else {
-		preferences_ = [[NSUnarchiver unarchiveObjectWithData: prefData] retain]; 
+		// TODO(bowdidge): Inappropriate for iOS.
+		preferences_ = [[NSUnarchiver unarchiveObjectWithData: prefData] retain];
 	}
 	return preferences_;
 }
 
 - (void) writePreferencesDictionary {
 	id layoutInfo = [self getLayoutInfo];
+	// TODO(bowdidge): Inappropriate for iOS.
 	[layoutInfo setValue: [NSArchiver archivedDataWithRootObject: preferences_] forKey: @"layoutPreferences"];
 
 	[layoutInfo didChangeValueForKey: @"layoutPreferences"];

@@ -31,7 +31,7 @@
 // Encapsulates the idea of a random number generator, and provides mock
 // for testing.
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 @protocol RandomNumberGeneratorInterface
 - (int) generateRandomNumber: (int) max;

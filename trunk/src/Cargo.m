@@ -42,6 +42,19 @@
 @dynamic source,destination;
 @dynamic rate, rateUnits;
 
+- (struct CargoRate) cargoRate {
+    struct CargoRate retValue;
+    [self willAccessValueForKey: @"rate"];
+    [self willAccessValueForKey: @"rateUnits"];
+  	NSNumber *rateUnits = [self valueForKeyPath: @"rateUnits"];
+	NSNumber *rate = [self valueForKeyPath: @"rate"];
+	retValue.rate = [rate intValue];
+	retValue.units = [rateUnits intValue];
+	[self didAccessValueForKey: @"rate"];
+   	[self didAccessValueForKey: @"rateUnits"];
+    return retValue;
+}
+
 // Returns the integer number of cars per week expected to move carrying this
 // cargo.
 // TODO(bowdidge): Change all the algorithms to correctly handle a small number of

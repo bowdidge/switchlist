@@ -62,15 +62,6 @@
 
 - (NSSet*) freightCarsAtStation;
 
-// Access to-many relationship via -[NSObject mutableSetValueForKey:]
-// TODO(bowdidge): Remove.  Unused.
-- (void)addAdjacentPlacesObject:(NSManagedObject *)value;
-- (void)removeAdjacentPlacesObject:(NSManagedObject *)value;
-
-// Access to-many relationship via -[NSObject mutableSetValueForKey:]
-- (void)addIndustriesObject:(InduYard *)value;
-- (void)removeIndustriesObject:(InduYard *)value;
-
 // Does this place have a yard?
 - (BOOL) hasYard;
 
