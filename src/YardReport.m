@@ -38,11 +38,8 @@
 @implementation YardReport
 - (NSString*) contents {
 	NSMutableString *reportString = [NSMutableString string];
-	NSEnumerator *e = [objectsToDisplay_ objectEnumerator];
-	FreightCar *car;
 	NSString *lastLocation = nil;
-	
-	while ((car=[e nextObject]) != nil) {
+	for (FreightCar *car in objectsToDisplay_) {
 		// The car list is sorted by yard and then reporting marks.
 		// When the car location changes, we're then starting to print the
 		// next yard.  Add space and column headers to separate each yard's cars.

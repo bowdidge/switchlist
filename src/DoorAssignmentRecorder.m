@@ -33,8 +33,8 @@
 @implementation DoorAssignmentRecorder
 - (id) init {
 	self = [super init];
-	industryToCarMapping_ = [NSMutableDictionary dictionary];
-	carToDoorMapping_ = [NSMutableDictionary dictionary];
+	self.industryToCarMapping = [NSMutableDictionary dictionary];
+	self.carToDoorMapping = [NSMutableDictionary dictionary];
 	return self;
 }
 
