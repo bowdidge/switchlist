@@ -34,13 +34,13 @@
 #import "RandomNumberGenerator.h"
 
 @interface NSArray (RandomizedList) 
-- (NSArray*) randomizeWithGenerator: (RandomNumberGenerator*) generator;
+- (NSArray*) randomizeWithGenerator: (NSObject<RandomNumberGeneratorInterface> *) generator;
 @end
 
 @implementation NSArray (RandomizedList)
 
 // Creates a new version of an array in a different order chosen randomly.
-- (NSArray*) randomizeWithGenerator: (RandomNumberGenerator*) generator {
+- (NSArray*) randomizeWithGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator {
 	NSMutableArray *remainingItems = [NSMutableArray arrayWithArray: self];
 	NSMutableArray *result = [NSMutableArray array];
 	int i;

@@ -28,7 +28,7 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 #import "RandomNumberGenerator.h"
 
@@ -36,7 +36,7 @@
 // CargoAssigner hides the act of choosing a random set of cargos.
 @interface CargoAssigner : NSObject {
 	EntireLayout *entireLayout_;
-	RandomNumberGenerator *generator_;
+	NSObject<RandomNumberGeneratorInterface> *generator_;
 }
 - (id) initWithEntireLayout: (EntireLayout*) layout;
 - (NSArray *) cargosForToday: (int) count;
