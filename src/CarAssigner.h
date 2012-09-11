@@ -40,11 +40,10 @@
 
 @interface CarAssigner : NSObject {
 	NSMutableArray *availableCars_;
-	EntireLayout *objectMapper_;
 	RandomNumberGenerator *generator_;
 }
 
-- (id) initWithUnassignedCars: (NSArray*) cars layout: (EntireLayout*) mapper;
+- (id) initWithUnassignedCars: (NSArray*) cars;
 - (FreightCar*) assignedCarForCargo: (Cargo*) cargo;
 
 // For testing only:

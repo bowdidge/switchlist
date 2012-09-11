@@ -55,10 +55,9 @@
 @end
 
 @implementation CarAssigner
-- (id) initWithUnassignedCars: (NSArray*) cars layout: (EntireLayout*) objMap {
+- (id) initWithUnassignedCars: (NSArray*) cars {
 	self = [super init];
 	availableCars_ = [[NSMutableArray alloc] initWithArray: cars];
-	objectMapper_ = [objMap retain];
 	generator_ = [[RandomNumberGenerator alloc] init];
 	return self;
 }
@@ -122,7 +121,6 @@
 
 - (void) dealloc {
 	[availableCars_ release];
-	[objectMapper_ release];
 	[generator_ release];
 	[super dealloc];
 }

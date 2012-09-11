@@ -44,7 +44,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 
 - (void) setUp {
 	[super setUp];
-	carAssigner_ = [[CarAssigner alloc] initWithUnassignedCars:nil layout:nil];
+	carAssigner_ = [[CarAssigner alloc] initWithUnassignedCars:nil];
 	[self makeThreeStationLayout];
 
 	myCargo_ = [[self makeCargo: @"a to b"] retain];	
@@ -69,8 +69,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	// Car fc1 should be a find.
 	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"cargo and car with undefined division");
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
-																	  layout: entireLayout_];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	STAssertEqualObjects([myCarAssigner assignedCarForCargo: myCargo_], myFreightCar_, @"Find assigned car with incomplete cargo.");
 	
@@ -159,8 +158,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 - (void) testFreightCarAutoLoadedIfAtSource {
 	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"A"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
-																	  layout: entireLayout_];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 		
 	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
@@ -173,8 +171,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[self makeYardAtStation: @"A"];
 	[myFreightCar_ setCurrentLocation: [self yardAtStation: @"A"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
-																	  layout: entireLayout_];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
 	STAssertEqualObjects([myCarAssigner assignedCarForCargo: myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
@@ -187,8 +184,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[self makeYardAtStation: @"A"];
 	[myFreightCar_ setCurrentLocation: [self yardAtStation: @"A"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
-																	  layout: entireLayout_];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
 	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
@@ -201,8 +197,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[[entireLayout_ stationWithName: @"C"] setIsStaging: YES];
 	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"C"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
-																	  layout: entireLayout_];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
 	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
@@ -215,8 +210,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[[entireLayout_ stationWithName: @"C"] setIsStaging: YES];
 	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"C"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
-																	  layout: entireLayout_];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
 	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
@@ -228,8 +222,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 - (void) testFreightCarNotLoadedAtStart {
 	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"B"]];
 	
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
-																	  layout: entireLayout_];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
 	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
@@ -239,8 +232,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 - (void) testHandlesIncompleteCargoSafely {
 	// TODO(bowdidge): Bad test.  Incomplete cargos shouldn't get passed to assignedCarForCargo.
 	[myFreightCar_ setCurrentLocation: [self industryAtStation: @"A"]];
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]
-																	  layout: entireLayout_];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	Cargo *incompleteCargo = [self makeCargo: @"a to b"];
 	// This shouldn't crash.
@@ -281,8 +273,7 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	MockRandomNumberGenerator *generator = [[[MockRandomNumberGenerator alloc] init] autorelease];
 	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 0], [NSNumber numberWithInt: 1], nil]];
 	 
-	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObjects: myFreightCar_, fc2, nil]
-																	  layout: entireLayout_];
+	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObjects: myFreightCar_, fc2, nil]];
 	// Make sure the two cars both get picked.
 	STAssertEquals(fc2, [myCarAssigner assignedCarForCargo:myCargo_], @"");
 	STAssertEquals(myFreightCar_, [myCarAssigner assignedCarForCargo:myCargo_], @"");
