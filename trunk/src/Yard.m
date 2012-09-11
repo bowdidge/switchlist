@@ -76,9 +76,7 @@
 		return YES;
 	}
 	
-	NSEnumerator *e = [thisYardDivisions objectEnumerator];
-	NSString *div;
-	while ((div=[e nextObject]) != nil) {
+	for (NSString *div in thisYardDivisions) {
 		NSString *cleanedDivisionName = NormalizeDivisionString(div);
 		if ([cleanedRequestedDivisionName isEqualToString: cleanedDivisionName]) {
 			return YES;
