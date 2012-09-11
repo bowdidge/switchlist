@@ -40,7 +40,7 @@
 
 @interface CarAssigner : NSObject {
 	NSMutableArray *availableCars_;
-	RandomNumberGenerator *generator_;
+	NSObject<RandomNumberGeneratorInterface> *generator_;
 }
 
 - (id) initWithUnassignedCars: (NSArray*) cars;

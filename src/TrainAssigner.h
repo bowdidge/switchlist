@@ -51,8 +51,8 @@
 	NSMutableDictionary *arrivingCars_;
 	NSMutableDictionary *leavingCars_;
 	
-	DoorAssignmentRecorder* doorAssignmentRecorder_;
-	RandomNumberGenerator* randomNumberGenerator_;
+	DoorAssignmentRecorder *doorAssignmentRecorder_;
+	NSObject<RandomNumberGeneratorInterface> *randomNumberGenerator_;
 }
 
 - (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths;
