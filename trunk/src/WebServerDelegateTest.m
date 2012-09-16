@@ -116,7 +116,7 @@
 - (void) setUp {
 	[super setUp];
 	// Needed files need to be in the unit test's main bundle.
-	unitTestBundle_ = [[NSBundle bundleWithIdentifier: @"com.blogspot.vasonabranch.UnitTests"] retain];
+	unitTestBundle_ = [[NSBundle bundleForClass: [self class]] retain];
 	server_ = [[MockSimpleHTTPServer alloc] init];
 	webServerDelegate_ = [[WebServerDelegate alloc] initWithServer: (SimpleHTTPServer*) server_
 														withBundle: unitTestBundle_
@@ -137,6 +137,7 @@
 	
 - (void) testSwitchlistIPhoneCss {
 	// TODO(bowdidge): Fails.
+	STAssertNotNil(unitTestBundle_, @"Can't find unit test bundle, so all attempts to access files will fail.");
 	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist-iphone.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
