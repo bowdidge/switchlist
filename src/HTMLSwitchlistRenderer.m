@@ -38,7 +38,6 @@
 #import "MGTemplateEngine.h"
 #import "NSFileManager+DirectoryLocations.h"
 #import "ScheduledTrain.h"
-#import "SwitchListDocument.h"
 #import "SwitchListFilters.h"
 
 
@@ -221,19 +220,17 @@
 								  withVariables: templateDict];
 }
 
-- (NSString*) renderLayoutsPage{
-	NSDocumentController *controller = [NSDocumentController sharedDocumentController];
-	NSArray *allDocuments = [controller documents];
-	if ([allDocuments count] == 0) {
+- (NSString*) renderLayoutsPageWithLayouts: (NSArray*) allLayouts {
+	if ([allLayouts count] == 0) {
 		return @"No layouts open in SwitchList!";
 	}
 	
 	NSMutableArray *layoutNames = [NSMutableArray array];
-	for (SwitchListDocument *document in allDocuments) {
-		NSString *layoutName = [[document entireLayout] layoutName];
+	for (EntireLayout *layout in allLayouts) {
+		NSString *layoutName = [layout layoutName];
 		if (!layoutName || [layoutName isEqualToString: @""]) {
 			// If there's no cars in the layout, ignore.
-			if ([[[document entireLayout] allFreightCars] count] > 0) {
+			if ([[layout allFreightCars] count] > 0) {
 				[layoutNames addObject: @"untitled"];
 			}
 		} else {
