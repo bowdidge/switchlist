@@ -48,7 +48,6 @@
 		3E3B3BA5140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BBF140E0B4B00F4F56C /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
-		3E3B3BF5140E0DE100F4F56C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3B3BF4140E0DE100F4F56C /* WebKit.framework */; };
 		3E43B3A615073D1F00AAA92B /* LayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B3A515073D1F00AAA92B /* LayoutController.m */; };
 		3E43B3A715073D1F00AAA92B /* LayoutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B3A515073D1F00AAA92B /* LayoutController.m */; };
 		3E43B4DC150741B400AAA92B /* testAdvanceLayoutsMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */; };
@@ -266,7 +265,7 @@
 		3EE711371285D4F2006059F4 /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
 		3EE711561285D7EB006059F4 /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
 		3EE711681285D81E006059F4 /* CarTypesTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711671285D81E006059F4 /* CarTypesTest.m */; };
-		3EF245D5141B477400618125 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3B3BF4140E0DE100F4F56C /* WebKit.framework */; };
+		3EF245D5141B477400618125 /*  in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E3B3BF4140E0DE100F4F56C /*  */; };
 		3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
 		3EF294E31312F4B300D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
 		3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
@@ -370,7 +369,7 @@
 		3E3B3BA3140E09D700F4F56C /* HTMLSwitchListWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSwitchListWindowController.h; sourceTree = "<group>"; };
 		3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLSwitchListWindowController.m; sourceTree = "<group>"; };
 		3E3B3BBE140E0B4B00F4F56C /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/HTMLSwitchListView.xib; sourceTree = "<group>"; };
-		3E3B3BF4140E0DE100F4F56C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
+		3E3B3BF4140E0DE100F4F56C /*  */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ""; path = /System/Library/Frameworks/WebKit.framework; sourceTree = "<absolute>"; };
 		3E3C11C20A3963F20071D6B4 /* FreightCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FreightCar.h; sourceTree = "<group>"; };
 		3E3C11C30A3963F20071D6B4 /* FreightCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FreightCar.m; sourceTree = "<group>"; };
 		3E3C11D40A39652F0071D6B4 /* Yard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yard.h; sourceTree = "<group>"; };
@@ -456,6 +455,7 @@
 		3E9B75B716063FE600891318 /* SwitchListEngine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SwitchListEngine.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9B75BC16063FFD00891318 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3E9B75BF1606400400891318 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3E9B77551606464F00891318 /* Unit tests-Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info copy.plist"; sourceTree = "<group>"; };
 		3E9E1F780951605600C5E038 /* IndustryReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryReport.h; sourceTree = "<group>"; };
 		3E9E1F790951605600C5E038 /* IndustryReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryReport.m; sourceTree = "<group>"; };
 		3EA1162213501BC500365DEB /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/SwitchListReportWindow.xib; sourceTree = "<group>"; };
@@ -568,7 +568,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */,
-				3EF245D5141B477400618125 /* WebKit.framework in Frameworks */,
+				3EF245D5141B477400618125 /*  in Frameworks */,
 				3E108C1714049FDA00B77CFE /* libicucore.A.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,7 +580,6 @@
 				3E9B762A160640AD00891318 /* SwitchListEngine.dylib in Frameworks */,
 				775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */,
 				3E108C1814049FDA00B77CFE /* libicucore.A.dylib in Frameworks */,
-				3E3B3BF5140E0DE100F4F56C /* WebKit.framework in Frameworks */,
 				3EA487B415D83E73008A169F /* LatentSemanticMapping.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -660,7 +659,7 @@
 				3EE5ED9D131A1E03009E2C83 /* SwitchList.help */,
 				3E88AED3127B2DD2003486E2 /* train.jpg */,
 				3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */,
-				3E3B3BF4140E0DE100F4F56C /* WebKit.framework */,
+				3E3B3BF4140E0DE100F4F56C /*  */,
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
 				2A37F4B4FDCFA73011CA2CEA /* SwitchListWindow.nib */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
@@ -901,6 +900,7 @@
 				3E62C0F9128E610E00520752 /* YardTest.m */,
 				3EE0B6811573446E00281B33 /* MGTemplateEngineTest.h */,
 				3EE0B6821573446E00281B33 /* MGTemplateEngineTest.m */,
+				3E9B77551606464F00891318 /* Unit tests-Info copy.plist */,
 			);
 			name = "Unit tests";
 			sourceTree = "<group>";
@@ -1575,13 +1575,11 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
 				INSTALL_PATH = /usr/local/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
-					"-framework",
-					AppKit,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SwitchListEngine;
@@ -1604,13 +1602,11 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
 				INSTALL_PATH = /usr/local/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
-					"-framework",
-					AppKit,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SwitchListEngine;
@@ -1627,13 +1623,11 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
 				INSTALL_PATH = /usr/local/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
-					"-framework",
-					AppKit,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SwitchListEngine;
@@ -1649,13 +1643,11 @@
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
 				INSTALL_PATH = /usr/local/lib;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
-					"-framework",
-					AppKit,
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = SwitchListEngine;
@@ -1857,6 +1849,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
