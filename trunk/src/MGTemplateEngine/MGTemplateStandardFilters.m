@@ -5,7 +5,7 @@
 //  Copyright 2008 Instinctive Code. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 #import "MGTemplateStandardFilters.h"
 
