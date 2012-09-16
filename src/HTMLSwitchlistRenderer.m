@@ -30,6 +30,8 @@
 // SUCH DAMAGE.
 //
 
+#import <Foundation/Foundation.h>
+
 #import "FreightCar.h"
 #import "GlobalPreferences.h"
 #import "HTMLSwitchlistRenderer.h"
@@ -169,6 +171,7 @@
 }
 
 - (NSString*) renderCarlistForLayout: (EntireLayout*) layout {
+	NSLog(@"AAA");
 	NSMutableString *carLocations = [NSMutableString string];
 	NSArray *allFreightCars = [[layout allFreightCarsReportingMarkOrder] sortedArrayUsingSelector: @selector(compareNames:)];
 	for (FreightCar *freightCar in allFreightCars) {
