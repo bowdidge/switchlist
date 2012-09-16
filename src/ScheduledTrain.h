@@ -122,5 +122,5 @@
 
 // Separators used for list of train stops.  Should only be used by testing code
 // and code determining whether to force conversion.
-NSString *NEW_SEPARATOR_FOR_STOPS;
-NSString *OLD_SEPARATOR_FOR_STOPS;
+extern NSString *NEW_SEPARATOR_FOR_STOPS;
+extern NSString *OLD_SEPARATOR_FOR_STOPS;
