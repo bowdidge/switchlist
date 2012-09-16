@@ -171,7 +171,6 @@
 }
 
 - (NSString*) renderCarlistForLayout: (EntireLayout*) layout {
-	NSLog(@"AAA");
 	NSMutableString *carLocations = [NSMutableString string];
 	NSArray *allFreightCars = [[layout allFreightCarsReportingMarkOrder] sortedArrayUsingSelector: @selector(compareNames:)];
 	for (FreightCar *freightCar in allFreightCars) {
