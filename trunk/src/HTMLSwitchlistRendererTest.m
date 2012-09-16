@@ -46,6 +46,7 @@
 	NSString *text = [renderer renderSwitchlistForTrain: [[self entireLayout] trainWithName: @"MyTrain"]
 												 layout: [self entireLayout]
 												 iPhone: NO];
+	STAssertNotNil(text, @"Expected renderSwitchListForTrain to return something, but returned nil.");
 	STAssertContains(@"switchlist.css", text, @"%@ does not contain builtin ref", text);
 }
 @end
