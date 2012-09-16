@@ -33,7 +33,7 @@
 // HTMLSwitchlistRenderer: Hide the details of where to find switchlist
 // template files, and how to turn the templates into HTML.
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 @class MGTemplateEngine;
 @class ScheduledTrain;
@@ -80,7 +80,7 @@
 - (NSString*) renderCargoReportForLayout: (EntireLayout*) layout;
 - (NSString*) renderReservedCarReportForLayout: (EntireLayout*) layout;
 - (NSString*) renderLayoutPageForLayout: (EntireLayout*) layout;
-- (NSString*) renderLayoutsPage;
+- (NSString*) renderLayoutsPageWithLayouts: (NSArray*) allLayouts;
 // Renders a generic report (in reportName.html) using the provided template dictionary.
 - (NSString*) renderReport: (NSString*) reportName withDict: (NSDictionary*) templateDict;
 @end

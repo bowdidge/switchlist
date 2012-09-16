@@ -286,8 +286,23 @@ NSString *CurrentHostname() {
 	
 
 - (void) showAllLayouts {
-	[server_ replyWithStatusCode: HTTP_OK message: [htmlRenderer_ renderLayoutsPage]];
-	}	
+	NSDocumentController *controller = [NSDocumentController sharedDocumentController];
+	NSArray *allDocuments = [controller documents];
+	NSMutableArray *allLayouts = [NSMutableArray array];
+	for (SwitchListDocument *document in allDocuments) {
+		NSString *layoutName = [[document entireLayout] layoutName];
+		if (!layoutName || [layoutName isEqualToString: @""]) {
+			// If there's no cars in the layout, ignore.
+			if ([[[document entireLayout] allFreightCars] count] > 0) {
+				[allLayouts addObject: [document entireLayout]];
+			}
+		} else {
+			[allLayouts addObject: [document entireLayout]];
+		}
+	}
+	
+	[server_ replyWithStatusCode: HTTP_OK message: [htmlRenderer_ renderLayoutsPageWithLayouts: allLayouts]];
+}	
 
 // URLs should be of form:
 // http://localhost:20000/ -- show list of layouts
