@@ -96,8 +96,6 @@
 		3E6E2F5314660B210069D022 /* HTMLSwitchlistRendererTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6E2F5214660B210069D022 /* HTMLSwitchlistRendererTest.m */; };
 		3E71871913B1B30B00ED3840 /* SwitchListBaseViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */; };
 		3E7A781F1509AEA7001D37E6 /* TrainSizeVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF44214F9F2AF00580148 /* TrainSizeVector.m */; };
-		3E7B6EA71287C9F60069FF31 /* AddCarType.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */; };
-		3E8328C514553A6400A6A662 /* AddSidingLength.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */; };
 		3E87754D15F2D07F00E08413 /* cargo-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E87754C15F2D07F00E08413 /* cargo-report.html */; };
 		3E88AD45127A9CFD003486E2 /* IndustryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD44127A9CFD003486E2 /* IndustryTest.m */; };
 		3E88AD57127A9E14003486E2 /* CargoReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD56127A9E14003486E2 /* CargoReportTest.m */; };
@@ -156,6 +154,7 @@
 		3EB507BD13243F2600D85B59 /* StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB507BC13243F2600D85B59 /* StringHelpers.m */; };
 		3EB507C213243FA200D85B59 /* StringHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB507BC13243F2600D85B59 /* StringHelpers.m */; };
 		3EB677B8130E4B460012DE1D /* CargoAssignerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */; };
+		3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */; };
 		3EC3B0931277DF6600C00AD3 /* EntireLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */; };
 		3EC3B1441277E4E300C00AD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; };
 		3EC3B1451277E4E300C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3EE3F5C50E4234C2003BA863 /* SwitchListDocument.xcdatamodeld */; };
@@ -201,10 +200,8 @@
 		3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
 		3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */; };
 		3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
-		3ED2011915E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */; };
 		3ED2011A15E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */; };
 		3ED2011B15E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */; };
-		3ED2012A15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */; };
 		3ED2012B15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */; };
 		3ED2012C15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */; };
 		3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
@@ -381,7 +378,6 @@
 		3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseViewTest.m; sourceTree = "<group>"; };
 		3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCarType.xcmappingmodel; sourceTree = "<group>"; };
 		3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 4.xcdatamodel"; sourceTree = "<group>"; };
-		3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddSidingLength.xcmappingmodel; sourceTree = "<group>"; };
 		3E87754C15F2D07F00E08413 /* cargo-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "cargo-report.html"; path = "templates/cargo-report.html"; sourceTree = "<group>"; };
 		3E88AD43127A9CFD003486E2 /* IndustryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryTest.h; sourceTree = "<group>"; };
 		3E88AD44127A9CFD003486E2 /* IndustryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryTest.m; sourceTree = "<group>"; };
@@ -438,13 +434,14 @@
 		3EB507BC13243F2600D85B59 /* StringHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringHelpers.m; sourceTree = "<group>"; };
 		3EB677B6130E4B460012DE1D /* CargoAssignerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoAssignerTest.h; sourceTree = "<group>"; };
 		3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CargoAssignerTest.m; sourceTree = "<group>"; };
+		3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = NoSidingToLatest.xcmappingmodel; sourceTree = "<group>"; };
 		3EC3B0881277DEFE00C00AD3 /* Unit tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
 		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntireLayoutTest.h; sourceTree = "<group>"; };
 		3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntireLayoutTest.m; sourceTree = "<group>"; };
 		3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-carlist.html"; path = "templates/switchlist-carlist.html"; sourceTree = "<group>"; };
 		3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCargoRate.xcmappingmodel; sourceTree = "<group>"; };
-		3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCargoRate.xcmappingmodel; sourceTree = "<group>"; };
+		3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; name = AddCargoRate.xcmappingmodel; path = SwitchListDocument.xcdatamodeld/AddCargoRate.xcmappingmodel; sourceTree = "<group>"; };
 		3ED482320D715B3600C36741 /* SwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListView.h; sourceTree = "<group>"; };
 		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
 		3ED697D8130139C100DA9074 /* SouthernPacificSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouthernPacificSwitchListView.h; sourceTree = "<group>"; };
@@ -567,7 +564,6 @@
 		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */,
 				3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */,
 				3E917A130951659A004647C7 /* Reports */,
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
@@ -891,7 +887,6 @@
 				3EA4879815D83D73008A169F /* TypicalIndustryStore.m */,
 				3E3C11D40A39652F0071D6B4 /* Yard.h */,
 				3E3C11D50A39652F0071D6B4 /* Yard.m */,
-				3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */,
 				3EE3F5C50E4234C2003BA863 /* SwitchListDocument.xcdatamodeld */,
 				3ED2012915E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel */,
 			);
@@ -1241,67 +1236,64 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */,
-				3EC3B1641277E4F900C00AD3 /* SwitchListDocument.m in Sources */,
-				8D15AC320486D014006FF6A4 /* main.m in Sources */,
-				3EC3B1651277E4F900C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */,
-				3EC3B16C1277E4F900C00AD3 /* SwitchListAppDelegate.m in Sources */,
-				3EC3B16E1277E4F900C00AD3 /* Report.m in Sources */,
-				3EC3B1701277E4F900C00AD3 /* IndustryReport.m in Sources */,
-				3EC3B1711277E4F900C00AD3 /* ReservedCarReport.m in Sources */,
-				3EC3B1721277E4F900C00AD3 /* SwitchListReport.m in Sources */,
+				3EC3B17C1277E4F900C00AD3 /* CarAssigner.m in Sources */,
+				3EC3B17A1277E4F900C00AD3 /* Cargo.m in Sources */,
+				3E88AE9A127B293E003486E2 /* CargoAssigner.m in Sources */,
+				3EC3B1741277E4F900C00AD3 /* CargoReport.m in Sources */,
 				3EC3B16F1277E4F900C00AD3 /* CarReport.m in Sources */,
-				3EC3B17B1277E4F900C00AD3 /* SwitchRouteDialogController.m in Sources */,
-				3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */,
-				3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */,
-				3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */,
-				3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */,
-				3E7B6EA71287C9F60069FF31 /* AddCarType.xcmappingmodel in Sources */,
+				3E258A6C1286657A00D233DB /* CarType.m in Sources */,
+				3EE711371285D4F2006059F4 /* CarTypes.m in Sources */,
+				3E30DBB812B447D700FF224E /* DoorAssignmentRecorder.m in Sources */,
+				3EC3B17D1277E4F900C00AD3 /* EntireLayout.m in Sources */,
+				3EC3B1751277E4F900C00AD3 /* FreightCar.m in Sources */,
+				3E3B3A34140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */,
+				3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */,
+				3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
+				3EC3B1771277E4F900C00AD3 /* Industry.m in Sources */,
+				3EC3B1701277E4F900C00AD3 /* IndustryReport.m in Sources */,
+				3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */,
 				3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */,
-				3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */,
-				3E95843A12986D7D00A10258 /* SimpleHTTPConnection.m in Sources */,
-				3E95843B12986D7D00A10258 /* SimpleHTTPServer.m in Sources */,
-				3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */,
+				3E43B3A615073D1F00AAA92B /* LayoutController.m in Sources */,
+				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				3E108BD514049E7900B77CFE /* MGTemplateEngine.m in Sources */,
 				3E108BD614049E7900B77CFE /* MGTemplateStandardFilters.m in Sources */,
 				3E108BD714049E7900B77CFE /* MGTemplateStandardMarkers.m in Sources */,
 				3E108BD814049E7900B77CFE /* NSArray_DeepMutableCopy.m in Sources */,
 				3E108BD914049E7900B77CFE /* NSDictionary_DeepMutableCopy.m in Sources */,
-				3E3B3A34140DDEF900F4F56C /* HTMLSwitchlistRenderer.m in Sources */,
-				3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */,
-				3E8328C514553A6400A6A662 /* AddSidingLength.xcmappingmodel in Sources */,
-				3E108BDA14049E7900B77CFE /* RegexKitLite.m in Sources */,
-				3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
-				3EFEC5231408515500F9CF15 /* WebServerDelegate.m in Sources */,
-				3EFEC532140851A200F9CF15 /* SwitchListFilters.m in Sources */,
-				3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */,
-				3EC3B1741277E4F900C00AD3 /* CargoReport.m in Sources */,
-				3EE711371285D4F2006059F4 /* CarTypes.m in Sources */,
-				3EC3B1751277E4F900C00AD3 /* FreightCar.m in Sources */,
-				3EC3B1761277E4F900C00AD3 /* Yard.m in Sources */,
-				3EC3B1771277E4F900C00AD3 /* Industry.m in Sources */,
-				3EC3B1781277E4F900C00AD3 /* Place.m in Sources */,
-				3EC3B1791277E4F900C00AD3 /* ScheduledTrain.m in Sources */,
-				3EC3B17A1277E4F900C00AD3 /* Cargo.m in Sources */,
-				3EC3B17C1277E4F900C00AD3 /* CarAssigner.m in Sources */,
-				3EC3B17D1277E4F900C00AD3 /* EntireLayout.m in Sources */,
-				3EC3B17E1277E4F900C00AD3 /* TrainAssigner.m in Sources */,
-				3E88AE9A127B293E003486E2 /* CargoAssigner.m in Sources */,
-				3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */,
-				3E258A6C1286657A00D233DB /* CarType.m in Sources */,
-				3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */,
-				3E30DBB812B447D700FF224E /* DoorAssignmentRecorder.m in Sources */,
-				3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */,
-				3EB507BD13243F2600D85B59 /* StringHelpers.m in Sources */,
-				3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */,
 				3E6B58A6140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m in Sources */,
-				3E9AF44314F9F2AF00580148 /* TrainSizeVector.m in Sources */,
-				3E43B3A615073D1F00AAA92B /* LayoutController.m in Sources */,
-				3EA4879915D83D73008A169F /* TypicalIndustryStore.m in Sources */,
-				3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */,
-				3ED2011915E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel in Sources */,
-				3ED2012A15E5FE5100DFBA60 /* AddCargoRate.xcmappingmodel in Sources */,
+				3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */,
+				3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */,
+				3EC3B1781277E4F900C00AD3 /* Place.m in Sources */,
+				3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */,
 				3E2CFBE115F1F0C7000A50D9 /* RandomNumberGenerator.m in Sources */,
+				3E108BDA14049E7900B77CFE /* RegexKitLite.m in Sources */,
+				3EC3B16E1277E4F900C00AD3 /* Report.m in Sources */,
+				3EC3B1711277E4F900C00AD3 /* ReservedCarReport.m in Sources */,
+				3EC3B1791277E4F900C00AD3 /* ScheduledTrain.m in Sources */,
+				3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */,
+				3E95843A12986D7D00A10258 /* SimpleHTTPConnection.m in Sources */,
+				3E95843B12986D7D00A10258 /* SimpleHTTPServer.m in Sources */,
+				3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */,
+				3EB507BD13243F2600D85B59 /* StringHelpers.m in Sources */,
+				3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */,
+				3EC3B16C1277E4F900C00AD3 /* SwitchListAppDelegate.m in Sources */,
+				3EC3B1641277E4F900C00AD3 /* SwitchListDocument.m in Sources */,
+				3EC3B1651277E4F900C00AD3 /* SwitchListDocument.xcdatamodeld in Sources */,
+				3EFEC532140851A200F9CF15 /* SwitchListFilters.m in Sources */,
+				3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */,
+				3EC3B1721277E4F900C00AD3 /* SwitchListReport.m in Sources */,
+				3EC3B17B1277E4F900C00AD3 /* SwitchRouteDialogController.m in Sources */,
+				3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */,
+				3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */,
+				3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */,
+				3EC3B17E1277E4F900C00AD3 /* TrainAssigner.m in Sources */,
+				3E9AF44314F9F2AF00580148 /* TrainSizeVector.m in Sources */,
+				3EA4879915D83D73008A169F /* TypicalIndustryStore.m in Sources */,
+				3EFEC5231408515500F9CF15 /* WebServerDelegate.m in Sources */,
+				3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */,
+				3EC3B1761277E4F900C00AD3 /* Yard.m in Sources */,
+				3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */,
+				3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1527,7 +1519,7 @@
 		3EA5977D08DC051800D5A852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1555,6 +1547,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
+					"x86-64",
 					i386,
 					ppc,
 				);
@@ -1661,6 +1654,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					i386,
+					ppc,
+					"x86-64",
+				);
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1872,8 +1870,10 @@
 				3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */,
 				3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */,
 				3EDD57EC15E5D7ED006E0B5C /* SwitchListDocument 5.xcdatamodel */,
-				3E8328C414553A6400A6A662 /* AddSidingLength.xcmappingmodel */,
+				3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */,
+				3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */,
 				3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */,
+				3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */,
 			);
 			currentVersion = 3EDD57EC15E5D7ED006E0B5C /* SwitchListDocument 5.xcdatamodel */;
 			path = SwitchListDocument.xcdatamodeld;
