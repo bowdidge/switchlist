@@ -31,6 +31,7 @@
 #import "AppDelegate.h"
 #import "Cargo.h"
 #import "CargoTableCell.h"
+#import "SwitchListColors.h"
 
 @interface CargoTableViewController ()
 
@@ -82,6 +83,13 @@
         [cell fillInAsCargo: cargo];
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row % 2 == 1) {
+        // Alternate colors get a slight gray.
+        cell.backgroundColor = [SwitchListColors switchListLightBeige];
+    }
 }
 
 /*

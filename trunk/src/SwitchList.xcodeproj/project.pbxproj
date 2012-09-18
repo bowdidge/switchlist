@@ -21,6 +21,9 @@
 		3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */; };
 		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
 		3E3620FA1539341700A57574 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
+		3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741916082E200023C8B5 /* switchlistButton.png */; };
+		3E37741C160838D00023C8B5 /* vasona.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741B160838D00023C8B5 /* vasona.sql */; };
+		3E37741F160847000023C8B5 /* SwitchListColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E37741E160847000023C8B5 /* SwitchListColors.m */; };
 		3E3B3BA5140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BBF140E0B4B00F4F56C /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
@@ -286,8 +289,6 @@
 		3EAAA7651606CC3500C3D7A8 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108BB114049E7900B77CFE /* RegexKitLite.m */; };
 		3EAAA7671606CC5400C3D7A8 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EAAA7661606CC5400C3D7A8 /* libicucore.dylib */; };
 		3EAAA7681606CC8F00C3D7A8 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
-		3EAAA76A1606CD4D00C3D7A8 /* vasona.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3EAAA7691606CD4D00C3D7A8 /* vasona.sql */; };
-		3EAAA76B1606CDA800C3D7A8 /* vasona.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3EAAA7691606CD4D00C3D7A8 /* vasona.sql */; };
 		3EAAA76F1606FEEA00C3D7A8 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
 		3EAAA770160708BE00C3D7A8 /* layout.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E6BA8F4155266880030AE7D /* layout.css */; };
 		3EAAA771160708BF00C3D7A8 /* switchlist.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E6BA8F5155266880030AE7D /* switchlist.css */; };
@@ -519,6 +520,10 @@
 		3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListReportTest.m; sourceTree = "<group>"; };
 		3E362361153A899300A57574 /* PlaceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceTest.h; path = Engine/PlaceTest.h; sourceTree = "<group>"; };
 		3E362362153A899300A57574 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceTest.m; path = Engine/PlaceTest.m; sourceTree = "<group>"; };
+		3E37741916082E200023C8B5 /* switchlistButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchlistButton.png; sourceTree = "<group>"; };
+		3E37741B160838D00023C8B5 /* vasona.sql */ = {isa = PBXFileReference; lastKnownFileType = file; name = vasona.sql; path = "resources-iPad/vasona.sql"; sourceTree = "<group>"; };
+		3E37741D160847000023C8B5 /* SwitchListColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListColors.h; sourceTree = "<group>"; };
+		3E37741E160847000023C8B5 /* SwitchListColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListColors.m; sourceTree = "<group>"; };
 		3E3B3A32140DDEF900F4F56C /* HTMLSwitchlistRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLSwitchlistRenderer.h; path = Engine/HTMLSwitchlistRenderer.h; sourceTree = "<group>"; };
 		3E3B3A33140DDEF900F4F56C /* HTMLSwitchlistRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLSwitchlistRenderer.m; path = Engine/HTMLSwitchlistRenderer.m; sourceTree = "<group>"; };
 		3E3B3BA3140E09D700F4F56C /* HTMLSwitchListWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSwitchListWindowController.h; sourceTree = "<group>"; };
@@ -709,7 +714,6 @@
 		3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintEverythingView.m; sourceTree = "<group>"; };
 		3EAAA7091606C4BD00C3D7A8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3EAAA7661606CC5400C3D7A8 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
-		3EAAA7691606CD4D00C3D7A8 /* vasona.sql */ = {isa = PBXFileReference; lastKnownFileType = file; name = vasona.sql; path = "../../SwitchlistIpad/SwitchList for iPad/Engine/vasona.sql"; sourceTree = "<group>"; };
 		3EAAA77F1608226A00C3D7A8 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		3EAAA7811608235400C3D7A8 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3EABC36E1606991800EBD6C5 /* CarType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarType.m; path = Engine/CarType.m; sourceTree = "<group>"; };
@@ -1070,6 +1074,8 @@
 				3E407D8E160693E30037134D /* SelectionCell.h */,
 				3E407D8F160693E30037134D /* SelectionCell.m */,
 				3E407D90160693E30037134D /* SwitchList for iPad-Prefix.pch */,
+				3E37741D160847000023C8B5 /* SwitchListColors.h */,
+				3E37741E160847000023C8B5 /* SwitchListColors.m */,
 				3E407D91160693E30037134D /* SwitchlistPresentationViewController.h */,
 				3E407D92160693E30037134D /* SwitchlistPresentationViewController.m */,
 				3E407D93160693E30037134D /* SwitchListTouchCatcherView.h */,
@@ -1094,6 +1100,8 @@
 		3E407DB8160693F10037134D /* resources-Ipad */ = {
 			isa = PBXGroup;
 			children = (
+				3E407DD91606945E0037134D /* MainStoryboard.storyboard */,
+				3E37741916082E200023C8B5 /* switchlistButton.png */,
 				3EAAA7091606C4BD00C3D7A8 /* icon.png */,
 				3EAAA7811608235400C3D7A8 /* Default-Landscape~ipad.png */,
 				3EAAA77F1608226A00C3D7A8 /* Default-Portrait~ipad.png */,
@@ -1108,12 +1116,11 @@
 				3E407DC1160694070037134D /* industry.png */,
 				3E407DC2160694070037134D /* RS.jpg */,
 				3E407DD81606945E0037134D /* InfoPlist.strings */,
-				3E407DD91606945E0037134D /* MainStoryboard.storyboard */,
 				3E407DC3160694070037134D /* SwitchList for iPad-Info.plist */,
 				3E407DC4160694070037134D /* T.jpg */,
 				3E407DC5160694070037134D /* train.png */,
-				3EAAA7691606CD4D00C3D7A8 /* vasona.sql */,
 				3E407DC6160694070037134D /* XM.jpg */,
+				3E37741B160838D00023C8B5 /* vasona.sql */,
 				3E407DC7160694070037134D /* yard.jpg */,
 			);
 			name = "resources-Ipad";
@@ -1575,7 +1582,6 @@
 				3EAAA77B160708BF00C3D7A8 /* switchlist-home.html in Resources */,
 				3EAAA77C160708BF00C3D7A8 /* switchlist-layout.html in Resources */,
 				3EAAA77D160708BF00C3D7A8 /* yard-report.html in Resources */,
-				3EAAA76B1606CDA800C3D7A8 /* vasona.sql in Resources */,
 				3E407DC8160694070037134D /* camera.jpg in Resources */,
 				3E407DC9160694070037134D /* cargo.jpg in Resources */,
 				3E407DCA160694070037134D /* city.png in Resources */,
@@ -1596,6 +1602,8 @@
 				3EAAA70A1606C4BD00C3D7A8 /* icon.png in Resources */,
 				3EAAA7801608226B00C3D7A8 /* Default-Portrait~ipad.png in Resources */,
 				3EAAA7821608235400C3D7A8 /* Default-Landscape~ipad.png in Resources */,
+				3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */,
+				3E37741C160838D00023C8B5 /* vasona.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1666,7 +1674,6 @@
 				3E6BA8FB155266880030AE7D /* switchlist-ipad.css in Resources */,
 				3EA487BD15D83EA7008A169F /* typicalIndustry.plist in Resources */,
 				3E87754D15F2D07F00E08413 /* cargo-report.html in Resources */,
-				3EAAA76A1606CD4D00C3D7A8 /* vasona.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1773,6 +1780,7 @@
 				3E407DB5160693E30037134D /* TrainTableViewController.m in Sources */,
 				3E407DB6160693E30037134D /* YardTableCell.m in Sources */,
 				3E407DB7160693E30037134D /* YardTableViewController.m in Sources */,
+				3E37741F160847000023C8B5 /* SwitchListColors.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

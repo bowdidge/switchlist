@@ -26,6 +26,9 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
+#import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+
 #import "MainWindowViewController.h"
 
 #import "AppDelegate.h"
@@ -34,6 +37,7 @@
 #import "HTMLSwitchlistRenderer.h"
 #import "LayoutDetailTabBarController.h"
 #import "ScheduledTrain.h"
+#import "SwitchListColors.h"
 #import "SwitchlistPresentationViewController.h"
 #import "SwitchListTouchCatcherView.h"
 
@@ -58,6 +62,23 @@
     return self;
 }
 
+- (void)makeBox:(CGRect)rect caption: (NSString*) caption {
+    // TODO(bowdidge): Do in custom view in drawRect.
+    UILabel *switchlistBox = [[UILabel alloc] initWithFrame: rect];
+    switchlistBox.text = @"";
+    switchlistBox.backgroundColor = [SwitchListColors switchListDarkBeige];
+    switchlistBox.layer.borderWidth = 2.0;
+    switchlistBox.layer.borderColor = [SwitchListColors switchListMediumBeige];
+    [[self view] addSubview: switchlistBox];
+    
+    CGRect smallBox = rect;
+    smallBox.size.height = 20; // big enough for text.
+    UILabel *label = [[UILabel alloc] initWithFrame: smallBox];
+    label.text = caption;
+    label.backgroundColor = [SwitchListColors switchListDarkBeige];
+    [[self view] addSubview: label];
+}
+
 // Generate the SwitchList html documents to display on the screen.
 - (void)generateDocumentTable {
     // For now, use table to decide where the items will appear.
@@ -76,29 +97,51 @@
         [subview removeFromSuperview];
     }
     
+    [self makeBox:CGRectMake(32, 75, 704, 390) caption: @"Switchlists for train crews"];
+    [self makeBox: CGRectMake(32, 475, 704, 390) caption: @"Paperwork for setup"];
+    
     HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
     int i=0;
     for (ScheduledTrain *train in [layout allTrains]) {
         NSString *switchlistText = [renderer renderSwitchlistForTrain: train
                                                                layout: layout
                                                                iPhone: NO];
-        NSString *label = [NSString stringWithFormat: @"%@ (%d)", [train name], [[train freightCars] count]];
         CGRect frame = CGRectMake(xStart[i], yStart[i], SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT);
-        SwitchListTouchCatcherView *catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: frame
-                                                                                          label: label];
+        SwitchListTouchCatcherView *catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: frame];
         [[self view] addSubview: catcher];
         [catcher setDelegate: self];
+        [catcher setTrain: train];
         [self.allCatchers addObject: catcher];
         catcher.switchlistHtml = switchlistText;
         i++;
     }
     
+    // Force to third row.
+    i = 8;
     // Do industry report as well.
     NSString *switchlistText = [renderer renderIndustryListForLayout: layout];
-    SwitchListTouchCatcherView *catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: CGRectMake(xStart[i], yStart[i], SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT)
-                                                                                      label: @"Industry Report"];
+    SwitchListTouchCatcherView *catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: CGRectMake(xStart[i], yStart[i], SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT)];
     [[self view] addSubview: catcher];
     [catcher setDelegate: self];
+    catcher.label = @"Industry Report";
+    catcher.switchlistHtml = switchlistText;
+    i++;
+    
+    switchlistText = [renderer renderCarlistForLayout: layout];
+    catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: CGRectMake(xStart[i], yStart[i], SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT)];
+    [[self view] addSubview: catcher];
+
+    [catcher setDelegate: self];
+    catcher.label = @"Car List";
+    catcher.switchlistHtml = switchlistText;
+    i++;
+    
+    switchlistText = [renderer renderYardReportForLayout: layout];
+    catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: CGRectMake(xStart[i], yStart[i], SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT)];
+    [[self view] addSubview: catcher];
+    
+    [catcher setDelegate: self];
+    catcher.label = @"Yard Report";
     catcher.switchlistHtml = switchlistText;
     i++;
 }

@@ -55,9 +55,6 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    //   switchlistView.layer.borderColor = [UIColor redColor].CGColor;
-    //  switchlistView.layer.borderWidth = 3.0f;
-    
 	// Do any additional setup after loading the view.
     [self.webView setDelegate: self];
     

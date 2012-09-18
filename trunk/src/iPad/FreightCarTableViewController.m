@@ -36,6 +36,7 @@
 #import "FreightCar.h"
 #import "FreightCarEditController.h"
 #import "FreightCarTableCell.h"
+#import "SwitchListColors.h"
 
 @interface FreightCarTableViewController ()
 
@@ -119,6 +120,13 @@
         return [allFreightCars objectAtIndex: row];
     } else {
         return [allFreightCarsOnWorkbench objectAtIndex: row];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row % 2 == 1) {
+        // Alternate colors get a slight gray.
+        cell.backgroundColor = [SwitchListColors switchListLightBeige];
     }
 }
 

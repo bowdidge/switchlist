@@ -1,9 +1,9 @@
 //
-//  SwitchListTouchCatcherView.h
-//  SwitchList for iPad
+//  SwitchListColors.h
+//  SwitchList
 //
-//  Created by Robert Bowdidge on 9/6/12.
-//  Copyright (c) 2012 Robert Bowdidge. All rights reserved.
+//  Created by Robert Bowdidge on 9/17/12.
+//
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -26,20 +26,15 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
+@class UIColor;
 
-#import "MainWindowViewController.h"
+// Stock colors for iPad app.
+@interface SwitchListColors : NSObject
+// Backgrounds of main screen sections.
++ (UIColor*) switchListLightBeige;
+// Edge colors for main screen sections.
++ (UIColor*) switchListMediumBeige;
+// Color bars.
++ (UIColor*) switchListDarkBeige;
 
-@class ScheduledTrain;
-
-@interface SwitchListTouchCatcherView : UIView {
-}
-- (id) initWithFrame: (CGRect) frame;
-
-@property(nonatomic, retain) IBOutlet MainWindowViewController *delegate;
-// Text of report to show when this button is pressed.
-// TODO(bowdidge): Generate lazily.
-@property(nonatomic, retain) NSString *switchlistHtml;
-@property(nonatomic, retain) ScheduledTrain *train;
-@property(nonatomic, retain) NSString *label;
 @end
