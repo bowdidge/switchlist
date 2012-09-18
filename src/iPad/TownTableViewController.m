@@ -32,6 +32,7 @@
 #import "AppNavigationController.h"
 #import "EntireLayout.h"
 #import "Place.h"
+#import "SwitchListColors.h"
 #import "TownTableCell.h"
 
 @interface TownTableViewController ()
@@ -145,6 +146,13 @@
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row % 2 == 1) {
+        // Alternate colors get a slight gray.
+        cell.backgroundColor = [SwitchListColors switchListLightBeige];
+    }
 }
 
 /*

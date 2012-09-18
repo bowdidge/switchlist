@@ -33,6 +33,7 @@
 #import "Cargo.h"
 #import "Industry.h"
 #import "IndustryTableCell.h"
+#import "SwitchListColors.h"
 
 @interface IndustryTableViewController ()
 @property (retain, nonatomic) NSArray *allIndustries;
@@ -94,6 +95,13 @@
         [cell fillInAsIndustry: industry];
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row % 2 == 1) {
+        // Alternate colors get a slight gray.
+        cell.backgroundColor = [SwitchListColors switchListLightBeige];
+    }
 }
 
 /*

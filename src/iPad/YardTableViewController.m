@@ -31,6 +31,7 @@
 #import "AppDelegate.h"
 #import "EntireLayout.h"
 #import "Place.h"
+#import "SwitchListColors.h"
 #import "Yard.h"
 #import "YardTableCell.h"
 
@@ -94,6 +95,13 @@
        [cell fillInAsYard: yard];
      }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row % 2 == 1) {
+        // Alternate colors get a slight gray.
+        cell.backgroundColor = [SwitchListColors switchListLightBeige];
+    }
 }
 
 /*
