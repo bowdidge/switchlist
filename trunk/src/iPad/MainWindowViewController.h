@@ -1,13 +1,10 @@
 //
+//  SwitchListViewController.h
+//  SwitchList for iPad
 //
-//  SwitchListFilters.m
-//  SwitchList
+//  Created by Robert Bowdidge on 9/5/12.
+//  Copyright (c) 2012 Robert Bowdidge. All rights reserved.
 //
-//  Created by bowdidge on 8/26/2011
-//
-// Copyright (c)2011 Robert Bowdidge,
-// All rights reserved.
-// 
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
 // are met:
@@ -16,7 +13,7 @@
 // 2. Redistributions in binary form must reproduce the above copyright
 //    notice, this list of conditions and the following disclaimer in the
 //    documentation and/or other materials provided with the distribution.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,44 +25,19 @@
 // LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
-//
 
-// Defines new MGTemplateEngine filters for converting values in templates.
-//
-// New filters are:
-//
-// jitter:
-//
-// adds random space at the ends or in the middle of an existing string
-// in order to make strings appear random and hand-drawn in handwritten
-// switchlists.  It only affects x position; there's probably a way with
-// CSS styles to change the y location.
-//
-// Example:
-//   {{ car.location.name | jitter }} 
-// draws the freight car's name with slight changes on each line.
-//
-// sum_of_lengths:
-//
-// Takes an array of freight cars, and returns the sum of lengths of cars.
-//
-// Example:
-//   {{ all_incoming_cars | sum_of_lengths }}
-// draws the number for the sum of lengths.
+#import <UIKit/UIKit.h>
+#import "SwitchlistPresentationViewController.h"
 
-#import <Cocoa/Cocoa.h>
+@interface MainWindowViewController : UIViewController
 
-#import "MGTemplateFilter.h"
+// Handles press on one of the switchlist forms.
+- (IBAction) didTouchSwitchList: (id) sender;
 
-@interface SwitchListFilters : NSObject <MGTemplateFilter> {
-}
-- (NSArray *)filters;
-- (NSObject *)filterInvoked:(NSString *)filter withArguments:(NSArray *)args onValue:(NSObject *)value;
+// Handles press on layout detail gear.
+- (IBAction) showLayoutDetail: (id) sender;
 
-- (NSString*) jitterString: (NSString*) value;
-- (NSString*) sumOfLengths: (NSArray*) value;
-
-// For predictably testing which way a jittered string will change.
-- (int) getRandomValue: (int) max;
+// Handles press on advance layout button.
+- (IBAction) doAdvanceLayout: (id) sender;
 
 @end

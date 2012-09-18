@@ -729,16 +729,38 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 		[preferences_ release];
 		preferences_ = [[NSMutableDictionary alloc] init];
 	} else {
+        // Try first as a keyed archive, then as the older (SwitchList-1.1)
+        // plain archive.
 		// TODO(bowdidge): Inappropriate for iOS.
-		preferences_ = [[NSUnarchiver unarchiveObjectWithData: prefData] retain];
+		@try {
+          preferences_ = [[NSKeyedUnarchiver unarchiveObjectWithData: prefData] retain];
+		} @catch (NSException *exception) {
+			preferences_ = nil;
+		}
+		
+        if (preferences_ == nil) {
+#ifndef TARGET_OS_IPHONE
+            @try {
+                // Try to unarchive with NSUnarchiver.
+                preferences_ = [[NSUnarchiver unarchiveObjectWithData: prefData] retain];
+            }
+            @catch (NSException *exception) {
+                // Couldn't be parsed.
+                preferences_ = [[NSMutableDictionary alloc] init];
+            }
+#else
+            // On iOS, assume the data is invalid and create a new dictionary.
+            preferences_ = [[NSMutableDictionary alloc] init];
+#endif
+        }
 	}
 	return preferences_;
 }
 
 - (void) writePreferencesDictionary {
 	id layoutInfo = [self getLayoutInfo];
-	// TODO(bowdidge): Inappropriate for iOS.
-	[layoutInfo setValue: [NSArchiver archivedDataWithRootObject: preferences_] forKey: @"layoutPreferences"];
+	// In SwitchList-1.1 and before, an NSArchiver was used here.
+	[layoutInfo setValue: [NSKeyedArchiver archivedDataWithRootObject: preferences_] forKey: @"layoutPreferences"];
 
 	[layoutInfo didChangeValueForKey: @"layoutPreferences"];
 }
