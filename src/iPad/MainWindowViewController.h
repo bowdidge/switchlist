@@ -40,4 +40,13 @@
 // Handles press on advance layout button.
 - (IBAction) doAdvanceLayout: (id) sender;
 
+// NSView and labels used for grouping switchlists and reports.
+// By doing these as views, it's easy to animate their resizing.
+@property(nonatomic, retain) IBOutlet UILabel *switchlistsLabel;
+@property(nonatomic, retain) IBOutlet UILabel *reportsLabel;
+// Box that all switchlists will be displayed on top of.
+@property(nonatomic, retain) IBOutlet UIView *switchlistBox;
+// Box that all reports will be displayed on top of.  Disappears when
+// in landscape mode.
+@property(nonatomic, retain) IBOutlet UIView *reportBox;
 @end

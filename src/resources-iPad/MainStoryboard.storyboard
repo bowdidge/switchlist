@@ -29,11 +29,11 @@
                         <subviews>
                             <view contentMode="scaleToFill" id="ICm-gl-VKE">
                                 <rect key="frame" x="0.0" y="885" width="768" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hGZ-vl-A68">
-                                        <rect key="frame" x="579" y="16" width="152" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="596" y="12" width="152" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Advance One Day">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -46,36 +46,68 @@
                                             <action selector="doAdvanceLayout:" destination="gjO-1d-dV8" eventType="touchUpInside" id="gke-rb-RUU"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ngk-kM-xzW">
+                                        <rect key="frame" x="20" y="17" width="39" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <accessibilityTraits key="traits" none="YES" link="YES" image="YES"/>
+                                        </accessibility>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="gear.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="showLayoutDetail:" destination="gjO-1d-dV8" eventType="touchUpInside" id="ksb-P1-eYD"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.75577445652173914" green="0.75076388873990285" blue="0.63411898356501706" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ngk-kM-xzW">
-                                <rect key="frame" x="709" y="20" width="39" height="39"/>
+                            <view contentMode="scaleToFill" id="xoM-9k-aCG">
+                                <rect key="frame" x="247" y="166" width="384" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <accessibility key="accessibilityConfiguration">
-                                    <accessibilityTraits key="traits" none="YES" link="YES" image="YES"/>
-                                </accessibility>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="gear.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="showLayoutDetail:" destination="gjO-1d-dV8" eventType="touchUpInside" id="ksb-P1-eYD"/>
-                                </connections>
-                            </button>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Box 1" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="8sC-YB-9G5">
+                                        <rect key="frame" x="8" y="0.0" width="308" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="eJo-75-TPP">
+                                <rect key="frame" x="247" y="264" width="384" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Box 2" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="nHf-Qh-jpF">
+                                        <rect key="frame" x="8" y="0.0" width="308" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.8894844890510949" green="0.85317893635610154" blue="0.67165151776474419" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="backgroundColor" red="0.81685207199999998" green="0.79517975441254352" blue="0.70507705516056296" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="eJh-8y-QVp">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="heC-Nk-mDM"/>
+                    <navigationItem key="navigationItem" title="Home" id="IqX-jp-ceR">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="NND-8E-Cil"/>
                     </navigationItem>
                     <connections>
                         <outlet property="advanceButton" destination="hGZ-vl-A68" id="cEQ-PD-KFx"/>
-                        <outlet property="view" destination="whc-ZW-t0d" id="lBK-mX-dVG"/>
+                        <outlet property="reportBox" destination="eJo-75-TPP" id="eBc-Lx-lWW"/>
+                        <outlet property="reportsLabel" destination="nHf-Qh-jpF" id="2P8-Ym-4ps"/>
+                        <outlet property="switchlistBox" destination="xoM-9k-aCG" id="ej0-Tz-WSO"/>
+                        <outlet property="switchlistsLabel" destination="8sC-YB-9G5" id="ZDg-hT-Lxm"/>
+                        <outlet property="view" destination="whc-ZW-t0d" id="8Kh-8R-zno"/>
                         <segue destination="xI8-1f-HdB" kind="push" identifier="presentation" id="9jn-Ll-g5D"/>
                         <segue destination="fVO-Ss-3j2" kind="push" identifier="detail" id="6KB-hi-vdR"/>
                     </connections>
@@ -563,13 +595,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" text="Home Division" id="Mnf-Yi-NUB">
-                                <rect key="frame" x="141" y="211" width="140" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Cargo:" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="zG3-Om-ptw">
                                 <rect key="frame" x="3" y="93" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -681,8 +706,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="doPressCarTypeButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="OmO-9k-XWX"/>
-                                    <action selector="doPressCargoButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="Hpr-e4-s7K"/>
+                                    <action selector="doPressCargoButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="ju5-FN-rDb"/>
                                 </connections>
                             </button>
                             <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Emt-pQ-TWQ">
@@ -698,11 +722,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="XMC - Clean boxcar" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="mpD-sl-n3A">
-                                                    <rect key="frame" x="20" y="11" width="212" height="21"/>
+                                                    <rect key="frame" x="7" y="11" width="235" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -714,7 +738,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ov4-S7-E0v">
-                                <rect key="frame" x="141" y="176" width="140" height="28"/>
+                                <rect key="frame" x="141" y="176" width="140" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Current Location">
@@ -725,8 +749,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="doPressCarTypeButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="Fqn-sT-jlj"/>
-                                    <action selector="doPressLocationButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="H4W-NY-aNL"/>
+                                    <action selector="doPressLocationButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="oMZ-py-98X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="J4D-99-SzT">
+                                <rect key="frame" x="141" y="212" width="140" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Home Division">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doPressDivisionButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="E4o-IT-ioX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -742,12 +780,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="cameraButton" destination="i2u-0G-mNl" id="u6S-pX-cAs"/>
                         <outlet property="carPhotoView" destination="h8b-aK-liF" id="GuR-nU-qi6"/>
                         <outlet property="carTypeButton" destination="jhV-cw-3XU" id="w52-CG-f06"/>
-                        <outlet property="currentCargoButton" destination="ZaA-Xt-bvR" id="1Gp-gb-eAg"/>
+                        <outlet property="currentCargoButton" destination="ZaA-Xt-bvR" id="aSN-0X-KMI"/>
                         <outlet property="currentLocationButton" destination="ov4-S7-E0v" id="oTw-F6-FGt"/>
-                        <outlet property="homeDivisionField" destination="Mnf-Yi-NUB" id="R3x-Si-kti"/>
+                        <outlet property="homeDivisionButton" destination="J4D-99-SzT" id="pXB-mU-6NQ"/>
                         <outlet property="loadedToggle" destination="LCf-8M-9tH" id="KCg-n7-pdg"/>
                         <outlet property="reportingMarksField" destination="FyF-qz-gLP" id="xUd-UZ-9I1"/>
-                        <outlet property="selectionTable" destination="Emt-pQ-TWQ" id="bEo-Qf-mEj"/>
+                        <outlet property="rightSideSelectionTable" destination="Emt-pQ-TWQ" id="yzW-AY-xvs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Hh-IJ-sEv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -801,7 +839,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             </button>
                             <webView contentMode="scaleToFill" id="Rrm-bW-ZiM">
                                 <rect key="frame" x="0.0" y="-5" width="768" height="1009"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
@@ -983,16 +1021,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="action" name="doPressCameraButton:"/>
                 <relationship kind="action" name="doPressCarTypeButton:"/>
                 <relationship kind="action" name="doPressCargoButton:"/>
+                <relationship kind="action" name="doPressDivisionButton:"/>
                 <relationship kind="action" name="doPressLocationButton:"/>
                 <relationship kind="outlet" name="cameraButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="carPhotoView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="carTypeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="currentCargoButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="currentLocationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homeDivisionField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="homeDivisionButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="loadedToggle" candidateClass="UISegmentedControl"/>
                 <relationship kind="outlet" name="reportingMarksField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="selectionTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="rightSideSelectionTable" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="FreightCarTableCell" superclassName="UITableViewCell">
@@ -1032,6 +1071,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="action" name="doAdvanceLayout:"/>
                 <relationship kind="action" name="showLayoutDetail:"/>
                 <relationship kind="outlet" name="advanceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="box1" candidateClass="UIView"/>
+                <relationship kind="outlet" name="box2" candidateClass="UIView"/>
+                <relationship kind="outlet" name="label1" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="label2" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="SelectionCell" superclassName="UITableViewCell">
