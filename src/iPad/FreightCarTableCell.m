@@ -64,7 +64,7 @@
         if ([fc isLoaded]) {
             [description appendFormat: @"loaded with %@, ", [[fc cargo] cargoDescription]];
         } else {
-            [description appendFormat: @"will be loaded with %@", [[fc cargo] cargoDescription]];
+            [description appendFormat: @"will be loaded with %@, ", [[fc cargo] cargoDescription]];
         }
         [description appendFormat: @"destination is %@", [[[fc cargo] destination] name]];
     }
