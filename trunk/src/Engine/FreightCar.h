@@ -129,4 +129,6 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1,FreightCar* s2, voi
 // Comparison routine for grouping cars going to the same place.
 - (NSComparisonResult) compareNextStop: (FreightCar *) other;
 
+- (NSComparisonResult) compareNames: (FreightCar *) other;
+
 @end
