@@ -30,8 +30,11 @@
 
 // Controller for showing HTML switchlists.  In charge of display as well as the
 // various controls in the window.
-@interface SwitchlistPresentationViewController : UIViewController<UIWebViewDelegate> {
+@interface SwitchlistPresentationViewController :
+    UIViewController<UIWebViewDelegate, UIPrintInteractionControllerDelegate  > {
 };
+
+- (IBAction) doPrint: (id) sender;
 
 // HTML to display as switchlist.
 @property(nonatomic, retain) NSString *htmlText;
