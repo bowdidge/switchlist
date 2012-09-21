@@ -216,7 +216,7 @@
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController: freightCarEditVC];
     freightCarEditVC.myPopoverController = popover;
     // Give editor a chance to call us back.
-    freightCarEditVC.myTabController = self;
+    freightCarEditVC.myTableController = self;
     CGRect cellRect = [tableView convertRect: cellFrame toView: self.view];
     // Move rect to far left so that we try to have the edit popover point to the left.
     cellRect.size.width = 100;

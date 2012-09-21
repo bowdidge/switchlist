@@ -32,14 +32,23 @@
 
 @class ScheduledTrain;
 
+// Draws the little icon used to represent the actual switchlist.
 @interface SwitchListTouchCatcherView : UIView {
 }
 - (id) initWithFrame: (CGRect) frame;
+// Compare in sorted order based on label.
+- (NSComparisonResult) compare: (SwitchListTouchCatcherView*) view;
 
 @property(nonatomic, retain) IBOutlet MainWindowViewController *delegate;
 // Text of report to show when this button is pressed.
 // TODO(bowdidge): Generate lazily.
 @property(nonatomic, retain) NSString *switchlistHtml;
+// Train object to be described, or nil if the document is a report.
 @property(nonatomic, retain) ScheduledTrain *train;
+// Label for the icon - either the name of the train, or the name of the report.
 @property(nonatomic, retain) NSString *label;
+@property(nonatomic) BOOL isReport;
 @end
+
+extern float SWITCHLIST_TOUCH_CATCHER_VIEW_HEIGHT;
+extern float SWITCHLIST_TOUCH_CATCHER_VIEW_WIDTH;

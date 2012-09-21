@@ -33,16 +33,20 @@
 #import "AppDelegate.h"
 #import "AppNavigationController.h"
 
+// Shows the actual HTML of a switchlist or report in a single window,
+// and allows printing and other document operations.
 @interface SwitchlistPresentationViewController ()
+// view actually drawing the HTML.
 @property(nonatomic, retain) IBOutlet UIWebView *webView;
+// Navigation bar back button.
 @property(nonatomic, retain) IBOutlet UIButton *backButton;
+// Separate button for doing AirPrint to print the document.
 @property(nonatomic, retain) IBOutlet UIButton *printButton;
 @end
 
 @implementation SwitchlistPresentationViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -50,36 +54,27 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
 	// Do any additional setup after loading the view.
     [self.webView setDelegate: self];
     
+    // Identify the file in terms of the bundle directory so that
+    // requests for additional files comefrom the bundle directory.
     NSString *path = [[NSBundle mainBundle] bundlePath];
-    // Base url names which directory contains related files to be loaded together.
     NSURL *baseURL = [NSURL fileURLWithPath:path];
     
     [self.webView loadHTMLString: self.htmlText baseURL: baseURL];
-
-    self.navigationItem.title = @"San Jose Cannery Turn Switchlist";
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
-    NSLog(@"%@", error);
+    NSLog(@"UIWebView error: %@", error);
 }
 
 @synthesize htmlText;

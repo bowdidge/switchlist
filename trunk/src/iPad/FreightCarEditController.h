@@ -34,13 +34,18 @@
 
 // Controller for freight car edit window tab.
 @interface FreightCarEditController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+// Actions for the different buttons.
 - (IBAction) doPressCameraButton: (id) sender;
 - (IBAction) doPressCarTypeButton: (id) sender;
 - (IBAction) doPressCargoButton: (id) sender;
 - (IBAction) doPressLocationButton: (id) sender;
+- (IBAction) doPressDivisionButton: (id) sender;
 
-// Car being displayed.
+// Freight car to display.
 @property (nonatomic, retain) FreightCar *freightCar;
+// Controller for small edit window once car has been selected.
 @property (nonatomic, retain) UIPopoverController *myPopoverController;
-@property (nonatomic, retain) FreightCarTableViewController *myTabController;
+// Reference back to the table controller for the list of freight cars.
+@property (nonatomic, retain) FreightCarTableViewController *myTableController;
 @end

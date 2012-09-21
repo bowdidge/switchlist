@@ -29,6 +29,7 @@
 #import "FreightCarEditController.h"
 
 #import "AppDelegate.h"
+#import "Cargo.h"
 #import "CarType.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
@@ -46,42 +47,51 @@ enum {
 } SelectionViewContents;
 
 @interface FreightCarEditController ()
+// Buttons and controls in the user interface.
 @property (retain, nonatomic) IBOutlet UITextField *reportingMarksField;
 @property (retain, nonatomic) IBOutlet UIButton *carTypeButton;
 @property (retain, nonatomic) IBOutlet UIButton *currentCargoButton;
-@property (retain, nonatomic) IBOutlet UITextField *homeDivisionField;
+@property (retain, nonatomic) IBOutlet UIButton *homeDivisionButton;
 @property (retain, nonatomic) IBOutlet UIButton *currentLocationButton;
+// Button (eventually) for taking a picture of a freight car.
 @property (retain, nonatomic) IBOutlet UIButton *cameraButton;
 @property (retain, nonatomic) IBOutlet UIImageView *carPhotoView;
 @property (retain, nonatomic) IBOutlet UISegmentedControl *loadedToggle;
-@property (retain, nonatomic) IBOutlet UITableView *selectionTable;
+@property (retain, nonatomic) IBOutlet UITableView *rightSideSelectionTable;
 
 // Cached copies of layout details.
 @property (retain, nonatomic) NSArray *carTypes;
 @property (retain, nonatomic) NSArray *locations;
 @property (retain, nonatomic) NSArray *cargos;
+@property (retain, nonatomic) NSArray *divisions;
 
 @property (nonatomic) int currentSelectionMode;
 @end
 
 @implementation FreightCarEditController
 
+// Window is about to appear for the first time.  Gather data from the layout.
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self.selectionTable setDataSource: self];
-    [self.selectionTable setDelegate: self];
+    [self.rightSideSelectionTable setDataSource: self];
+    [self.rightSideSelectionTable setDelegate: self];
     
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
     self.carTypes = [myLayout allCarTypes];
-    // TODO(bowdidge): Yards.
+    // TODO(bowdidge): Add yards.
     self.locations = [myLayout allIndustries];
     self.cargos = [myLayout allCargos];
+    
+    // TODO(bowdidge): Populate this list from freight cars and industries.
+    self.divisions = [NSArray arrayWithObjects: @"Here", @"SP", @"WP", @"East", @"Midwest", nil];
+    
     self.currentSelectionMode = SelectionViewNoContents;
 }
 
 // Returns an appropriate image for the provided freight car.
+// TODO(bowdidge): Figure out how to efficiently store the actual photos of the cars.
 - (UIImage*) imageForFreightCar: (FreightCar*) fc {
     NSString *carType = [[fc carTypeRel] carTypeName];
     NSString *imagePath = nil;
@@ -99,30 +109,66 @@ enum {
     return [UIImage imageWithContentsOfFile: imagePath];
 }
 
+// Window is about to load.  Populate the currently selected freight car's details.
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
     self.reportingMarksField.text = [self.freightCar reportingMarks];
     [self.carTypeButton setTitle: [[self.freightCar carTypeRel] carTypeName] forState: UIControlStateNormal];
     [self.currentCargoButton setTitle: [[self.freightCar cargo] name] forState: UIControlStateNormal];
-    self.homeDivisionField.text = [self.freightCar homeDivision];
+    [self.homeDivisionButton setTitle: [self.freightCar homeDivision] forState: UIControlStateNormal];
     [self.currentLocationButton setTitle: [[self.freightCar currentLocation] name] forState: UIControlStateNormal];;
     [self.loadedToggle setEnabled: YES forSegmentAtIndex: [freightCar isLoaded] ? 0 : 1];
 
     self.carPhotoView.image = [self imageForFreightCar: self.freightCar];
 }
 
+// Window is about to be closed.  Save out the changes to the current freight car.
 - (void) viewWillDisappear: (BOOL) animated {
     BOOL hasChanges = NO;
-    if ([self.reportingMarksField.text isEqualToString: [self.freightCar reportingMarks]]) {
+    if (![self.reportingMarksField.text isEqualToString: [self.freightCar reportingMarks]]) {
         [self.freightCar setReportingMarks: self.reportingMarksField.text];
-        hasChanges = 1;
+        hasChanges = YES;
     }
-    // TODO(bowdidge): Should dispose of rest of cached layout data each time view changes.
+    
+    if ([self.homeDivisionButton.titleLabel.text isEqualToString: [self.freightCar homeDivision]] != NSOrderedSame) {
+        [self.freightCar setHomeDivision: self.homeDivisionButton.titleLabel.text];
+        hasChanges = YES;
+    }
+    
+    if (![self.carTypeButton.titleLabel.text isEqualToString: [[[self freightCar] carTypeRel] carTypeName]]) {
+        for (CarType *ct in self.carTypes) {
+            if ([[ct carTypeName] isEqualToString: self.carTypeButton.titleLabel.text]) {
+                [[self freightCar] setCarTypeRel: ct];
+                hasChanges = YES;
+                break;
+            }
+        }
+    }
+    
+    if (![self.currentLocationButton.titleLabel.text isEqualToString: [[[self freightCar] currentLocation] name]]) {
+        for (InduYard *induYard in self.locations) {
+            if ([[induYard name] isEqualToString: self.currentLocationButton.titleLabel.text]) {
+                [[self freightCar] setCurrentLocation: induYard];
+                hasChanges = YES;
+                break;
+            }
+        }
+    }
+
+    if (![self.currentCargoButton.titleLabel.text isEqualToString: [[[self freightCar] cargo] name]]) {
+        for (Cargo *cargo in self.cargos) {
+            if ([[cargo name] isEqualToString: self.currentCargoButton.titleLabel.text]) {
+                [[self freightCar] setCargo: cargo];
+                hasChanges = YES;
+                break;
+            }
+        }
+    }
     
     self.carPhotoView.image = nil;
     [super viewWillDisappear: animated];
     if (hasChanges) {
-        [self.myTabController freightCarsChanged: self];
+        [self.myTableController freightCarsChanged: self];
     }
 }
 
@@ -142,7 +188,7 @@ enum {
     // Stock size is 288x342, widen to 540x342 to show list.
     currentFrame.size.width = 540;
     self.view.frame = currentFrame;
-    self.selectionTable.hidden = NO;
+    self.rightSideSelectionTable.hidden = NO;
     [self.myPopoverController setPopoverContentSize: currentFrame.size animated: YES]; 
 }
 
@@ -150,14 +196,14 @@ enum {
 - (IBAction) doPressCarTypeButton: (id) sender {
     [self doWidenPopover];
     self.currentSelectionMode = SelectionViewCarType;
-    [self.selectionTable reloadData];
+    [self.rightSideSelectionTable reloadData];
 }
 
 // Handles the user pressing the cargo button in order to select a different value.
 - (IBAction) doPressCargoButton: (id) sender {
     [self doWidenPopover];
     self.currentSelectionMode = SelectionViewCurrentCargo;
-    [self.selectionTable reloadData];    
+    [self.rightSideSelectionTable reloadData];    
 }
 
 // Handles the user pressing the location button to select a different current location
@@ -165,25 +211,64 @@ enum {
 - (IBAction) doPressLocationButton: (id) sender {
     [self doWidenPopover];
     self.currentSelectionMode = SelectionViewLocation;
-    [self.selectionTable reloadData];
+    [self.rightSideSelectionTable reloadData];
     
 }
 
-// Handles the user pressing an item in the right-hand-side table.
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+// Handles the user pressing the division button to select a different home division
+// for the freight car.
+- (IBAction) doPressDivisionButton: (id) sender {
+    [self doWidenPopover];
+    self.currentSelectionMode = SelectionViewDivision;
+    [self.rightSideSelectionTable reloadData];
     
-    NSLog(@"%d selected", [indexPath row]);
+}
+
+// Handles the user pressing an item in the right-hand-side selection table.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Selection table selected.
     CGRect currentFrame = self.view.frame;
     // Stock size is 288x342, widen to 540x342 to show list, back to 288 after.
-    // TODO(bowdidge): Doesn't redraw correctly.
-    // Why required to be so much bigger?
     currentFrame.size.width = 288;
     [self.myPopoverController setPopoverContentSize: currentFrame.size animated: YES];
+    
+    // Selected item.
+    CarType *selectedCarType;
+    InduYard *currentLocation;
+    Cargo *currentCargo;
+    NSString *currentDivision;
+    switch (self.currentSelectionMode) {
+        case SelectionViewCarType:
+            selectedCarType = [self.carTypes objectAtIndex: [indexPath row]];
+            [self.carTypeButton setTitle: [selectedCarType carTypeName]
+                                forState: UIControlStateNormal];
+            break;
+        case SelectionViewLocation:
+            currentLocation = [self.locations objectAtIndex: [indexPath row]];
+            // TODO(bowdidge): Pass actual object.
+            [self.currentLocationButton setTitle: [currentLocation name]
+                                        forState: UIControlStateNormal];
+            break;
+        case SelectionViewCurrentCargo:
+            currentCargo = [self.cargos objectAtIndex: [indexPath row]];
+            // TODO(bowdidge): Pass actual object.
+            [self.currentCargoButton setTitle: [currentCargo name]
+                                     forState: UIControlStateNormal];
+            break;
+        case SelectionViewDivision:
+            currentDivision = [self.divisions objectAtIndex: [indexPath row]];
+            // TODO(bowdidge): Pass actual object.
+            [self.homeDivisionButton setTitle: currentDivision
+                                     forState: UIControlStateNormal];
+            break;
+        default:
+            break;
+    }
+    
 }
 
 // Returns the number of sections in the selection table on the right hand side of the popover.
-// This is always 1.
+// This is always 1 - there are no divisions in the selection table.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Three sections: on layout, on workbench, and empty/add.
     return 1;
@@ -205,6 +290,7 @@ enum {
         case SelectionViewCurrentCargo:
             return self.cargos.count;
         case SelectionViewDivision:
+            return self.divisions.count;
         default:
             return 0;
     }
@@ -227,6 +313,7 @@ enum {
     switch (self.currentSelectionMode) {
         case SelectionViewCarType:
             carType = [self.carTypes objectAtIndex: [indexPath row]];
+            // Shorter form of description that has a better chance of fitting.
             cell.cellText.text = [NSString stringWithFormat: @"%@ (%@)", carType.carTypeName, carType.carTypeDescription];
             break;
         case SelectionViewLocation:
@@ -236,7 +323,12 @@ enum {
         case SelectionViewCurrentCargo:
             // TODO(bowdidge): Deserves two lines.
             cargo = [self.cargos objectAtIndex: [indexPath row]];
-            cell.cellText.text = [cargo description];
+            // Shorter form of description that has a better chance of fitting.
+            cell.cellText.text = [NSString stringWithFormat: @"%@ (%@->%@)",
+                                  [cargo name], [[cargo source] name], [[cargo destination] name]];
+            break;
+        case SelectionViewDivision:
+            cell.cellText.text = [self.divisions objectAtIndex: [indexPath row]];
             break;
         default:
             cell.cellText.text = @"";

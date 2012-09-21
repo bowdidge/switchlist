@@ -47,8 +47,7 @@
 @property (nonatomic, retain) IBOutlet UIButton *advanceButton;
 
 // Array of all miniature reports being shown.
-@property (nonatomic, retain) NSMutableArray *allCatchers;
-
+@property (nonatomic, retain) NSMutableDictionary *trainNameToCatcher;
 @end
 
 @implementation MainWindowViewController
@@ -59,98 +58,171 @@
     if (self) {
         // Custom initialization
     }
-    return self;
+   return self;
 }
 
-- (void)makeBox:(CGRect)rect caption: (NSString*) caption {
-    // TODO(bowdidge): Do in custom view in drawRect.
-    UILabel *switchlistBox = [[UILabel alloc] initWithFrame: rect];
-    switchlistBox.text = @"";
-    switchlistBox.backgroundColor = [SwitchListColors switchListDarkBeige];
-    switchlistBox.layer.borderWidth = 2.0;
-    switchlistBox.layer.borderColor = [SwitchListColors switchListMediumBeige];
-    [[self view] addSubview: switchlistBox];
-    
-    CGRect smallBox = rect;
-    smallBox.size.height = 20; // big enough for text.
-    UILabel *label = [[UILabel alloc] initWithFrame: smallBox];
-    label.text = caption;
-    label.backgroundColor = [SwitchListColors switchListDarkBeige];
-    [[self view] addSubview: label];
+// Size of switchlist icon.  Use compile-time constants.
+float SWITCHLIST_WIDTH = 120.0;
+float SWITCHLIST_HEIGHT = 180.0;
+// Space between switchlists, x and y.
+float SWITCHLIST_BORDER = 10.0;
+
+// Space between boxes.
+float GROUP_BOX_BORDER = 32.0;
+// Space above top box for icons.  Currently unused.
+float EXTRA_TOP_SPACE = 0.0;
+// Space for title.
+float BOX_HEADER = 25.0;
+
+
+// Returns the preferred rectangle for a switchlist given the outline of the
+// containing element (usually graphical box) and which switchlist this would
+// be.  Handles multiple lines.
+- (CGRect) positionForSwitchlist: (int) i box: (CGRect) boxRect {
+    float boxRectInsetWidth = boxRect.size.width - 2 * SWITCHLIST_BORDER;
+    int switchlistsPerRow = boxRectInsetWidth / SWITCHLIST_TOUCH_CATCHER_VIEW_WIDTH;
+
+    BOOL isSecondRow = ((i / switchlistsPerRow) == 1);
+    int position = i % switchlistsPerRow;
+    float rowY =  boxRect.origin.y + BOX_HEADER;
+    if (isSecondRow) {
+        rowY += SWITCHLIST_HEIGHT + SWITCHLIST_BORDER;
+    }
+        
+    float rowX = boxRect.origin.x + SWITCHLIST_BORDER + position * (SWITCHLIST_WIDTH + SWITCHLIST_BORDER);
+    CGRect frame = CGRectMake(rowX, rowY, SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT);
+    return frame;
+}
+
+// Creates a SwitchListTouchCatcherView, or reuses an existing one for the same train.
+- (SwitchListTouchCatcherView*) makeCatcherWithText: (NSString*) htmlText label: (NSString*) labelName isReport: (BOOL) isReport {
+    SwitchListTouchCatcherView *catcher;
+    if (!labelName || !(catcher = [self.trainNameToCatcher objectForKey: labelName])) {
+        CGRect fakeFrame = CGRectMake(-100, -100, 100, 100);
+        catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: fakeFrame];
+        [self.view addSubview: catcher];
+        catcher.delegate = self;
+        catcher.label = labelName;
+        catcher.isReport = isReport;
+        if (labelName) {
+            [self.trainNameToCatcher setObject: catcher forKey: labelName];
+        }
+    }
+    catcher.switchlistHtml = htmlText;
+    return catcher;
+}
+
+// Do the initial creation of the switchlists and reports, and add the needed icons to the view.
+- (void) createViews {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *layout = [myAppDelegate entireLayout];
+
+    HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
+    SwitchListTouchCatcherView *catcher;
+    for (ScheduledTrain *train in [layout allTrains]) {
+        NSString *htmlText = [renderer renderSwitchlistForTrain: train layout: layout iPhone: NO];
+        catcher = [self makeCatcherWithText: htmlText label: [train name] isReport: NO];
+        [catcher setTrain: train];
+        // Ensure badge redraws.
+        [catcher setNeedsDisplay];
+    }
+
+    [self makeCatcherWithText: [renderer renderIndustryListForLayout: layout]
+                                                        label: @"Industry Report"
+                                                     isReport: YES];
+    [self makeCatcherWithText: [renderer renderYardReportForLayout: layout]
+                                                        label: @"Yard Report"
+                                                     isReport: YES];
+    [self makeCatcherWithText: [renderer renderCarlistForLayout: layout]
+                                                        label: @"Car List"
+                                                     isReport: YES];
 }
 
 // Generate the SwitchList html documents to display on the screen.
 - (void)generateDocumentTable {
-    // For now, use table to decide where the items will appear.
-    // TODO(bowdidge): Use scrolling list.
-    // TODO(bowdidge): Correctly handle redrawing when screen rotates.
-    float xStart[16] = {50.0, 200.0, 350.0, 500, 50, 200, 350, 500, 50, 200, 350, 500, 50, 200, 350, 500};
-    float yStart[16] = {100.0, 100.0, 100.0, 100, 300, 300, 300, 300, 500, 500, 500, 500, 700, 700, 700, 700};
 
-    float SWITCHLIST_WIDTH = 120.0;
-    float SWITCHLIST_HEIGHT = 180.0;
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    EntireLayout *layout = [myAppDelegate entireLayout];
+    UIInterfaceOrientation orient = [[UIApplication sharedApplication] statusBarOrientation];
+    BOOL isPortrait = UIInterfaceOrientationIsPortrait(orient);
 
-    // Remove any existing views in preparation for the redraw.
-    for (UIView *subview in self.allCatchers) {
-        [subview removeFromSuperview];
+    CGRect rect = self.view.bounds;
+    // TODO(bowdidge): Clean up this code once I'm happy with the appearance.
+    float TWO_ROW_BOX = BOX_HEADER + 2 * SWITCHLIST_HEIGHT + 3 * SWITCHLIST_BORDER;
+    float ONE_ROW_BOX = BOX_HEADER + 1 * SWITCHLIST_HEIGHT + 2 * SWITCHLIST_BORDER;
+    
+    float FIRST_BOX_START_Y = GROUP_BOX_BORDER + EXTRA_TOP_SPACE;
+    float SECOND_BOX_START_Y = FIRST_BOX_START_Y + TWO_ROW_BOX + GROUP_BOX_BORDER;
+    
+    float BOX_WIDTH = rect.size.width - GROUP_BOX_BORDER * 2;
+    
+    CGRect firstBoxBounds = CGRectMake(GROUP_BOX_BORDER, FIRST_BOX_START_Y, BOX_WIDTH, TWO_ROW_BOX);
+    CGRect secondBoxBounds;
+    if (isPortrait) {
+        secondBoxBounds = CGRectMake(GROUP_BOX_BORDER, SECOND_BOX_START_Y, BOX_WIDTH, ONE_ROW_BOX);
+    } else {
+        // Put off screen.
+        secondBoxBounds = CGRectMake(2000.0, 2000.0, 100.0, 100.0);
     }
-    
-    [self makeBox:CGRectMake(32, 75, 704, 390) caption: @"Switchlists for train crews"];
-    [self makeBox: CGRectMake(32, 475, 704, 390) caption: @"Paperwork for setup"];
-    
-    HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
-    int i=0;
-    for (ScheduledTrain *train in [layout allTrains]) {
-        NSString *switchlistText = [renderer renderSwitchlistForTrain: train
-                                                               layout: layout
-                                                               iPhone: NO];
-        CGRect frame = CGRectMake(xStart[i], yStart[i], SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT);
-        SwitchListTouchCatcherView *catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: frame];
-        [[self view] addSubview: catcher];
-        [catcher setDelegate: self];
-        [catcher setTrain: train];
-        [self.allCatchers addObject: catcher];
-        catcher.switchlistHtml = switchlistText;
-        i++;
-    }
-    
-    // Force to third row.
-    i = 8;
-    // Do industry report as well.
-    NSString *switchlistText = [renderer renderIndustryListForLayout: layout];
-    SwitchListTouchCatcherView *catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: CGRectMake(xStart[i], yStart[i], SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT)];
-    [[self view] addSubview: catcher];
-    [catcher setDelegate: self];
-    catcher.label = @"Industry Report";
-    catcher.switchlistHtml = switchlistText;
-    i++;
-    
-    switchlistText = [renderer renderCarlistForLayout: layout];
-    catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: CGRectMake(xStart[i], yStart[i], SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT)];
-    [[self view] addSubview: catcher];
 
-    [catcher setDelegate: self];
-    catcher.label = @"Car List";
-    catcher.switchlistHtml = switchlistText;
-    i++;
+    [UIView animateWithDuration:0.5 animations:^{
+        CGRect labelFrame = firstBoxBounds;
+        labelFrame.origin.y = 0;
+        labelFrame.size.height = 20;
+        switchlistBox.frame = firstBoxBounds;
+        switchlistsLabel.text = @"Switchlists for train crews";
+        switchlistsLabel.frame = labelFrame;
     
-    switchlistText = [renderer renderYardReportForLayout: layout];
-    catcher = [[SwitchListTouchCatcherView alloc] initWithFrame: CGRectMake(xStart[i], yStart[i], SWITCHLIST_WIDTH, SWITCHLIST_HEIGHT)];
-    [[self view] addSubview: catcher];
+        labelFrame = secondBoxBounds;
+        labelFrame.origin.y = 0;
+        labelFrame.size.height = 20;
+        reportBox.frame = secondBoxBounds;
+        reportsLabel.text = @"Paperwork for setup";
+        reportsLabel.frame = labelFrame;
+
+        int i=0;
+        // Iterate through all switchlists and reports, and drop the reports for now.  They
+        // get placed in a separate box or at the end.
+        NSArray *allDocuments = [[self.trainNameToCatcher allValues] sortedArrayUsingSelector: @selector(compare:)];
+        for (SwitchListTouchCatcherView *switchlist in allDocuments) {
+            if ([switchlist isReport] == NO) {
+                [switchlist setFrame: [self positionForSwitchlist: i box: firstBoxBounds]];
+                i++;
+           }
+        }
+        
+        CGRect setupBoxBounds = firstBoxBounds;
+        if (isPortrait) {
+            // Restart for next box.
+            i = 0;
+            setupBoxBounds = secondBoxBounds;
+        }
     
-    [catcher setDelegate: self];
-    catcher.label = @"Yard Report";
-    catcher.switchlistHtml = switchlistText;
-    i++;
+        for (SwitchListTouchCatcherView *report in allDocuments) {
+            if ([report isReport]) {
+                [report setFrame: [self positionForSwitchlist: i box: setupBoxBounds]];
+                i++;
+            }
+        }
+    }];
 }
 
 - (void)viewDidLoad {
 	// Do any additional setup after loading the view.
     [super viewDidLoad];
-    // Generate the list of documents.
+
+    self.trainNameToCatcher = [NSMutableDictionary dictionary];
+
+    // Start box offscreen for better animation.
+    [switchlistBox setFrame: CGRectMake(-100, -100, 100, 100)];
+    [reportBox setFrame: CGRectMake(-100, -100, 100, 100)];
+    [switchlistsLabel setFrame: CGRectMake(-100, -100, 100, 100)];
+    [reportsLabel setFrame: CGRectMake(-100, -100, 100, 100)];
+    [self createViews];
+ 
+    // Generate the list of documents.  Disable animation on the initial render.
+    [CATransaction begin];
+    [CATransaction setDisableActions: YES];
     [self generateDocumentTable];
+    [CATransaction commit];
 }
 
 - (void)viewDidUnload {
@@ -162,6 +234,11 @@
 	return YES;
 }
 
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    // Regenerate the switchlists arrangement to match the space.
+    [self generateDocumentTable];
+}
+
 // Handle press on one of the switchlist icons, and display that switchlist full size.
 - (IBAction) didTouchSwitchList: (id) sender {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
@@ -171,6 +248,7 @@
     SwitchlistPresentationViewController *presentationVC = [storyboard instantiateViewControllerWithIdentifier:@"presentation"];
 
     [presentationVC setHtmlText: ((SwitchListTouchCatcherView*)sender).switchlistHtml];
+    presentationVC.navigationItem.title = ((SwitchListTouchCatcherView*)sender).label;
     [navigationController pushViewController: presentationVC animated: YES];
 }
 
@@ -197,8 +275,16 @@
     [myAppDelegate.layoutController advanceLoads];
     [myAppDelegate.layoutController createAndAssignNewCargos: 40];
     [myAppDelegate.layoutController assignCarsToTrains: [entireLayout allTrains] respectSidingLengths:YES useDoors:YES];
+ 
+    [self createViews];
+    [CATransaction begin];
+    [CATransaction setDisableActions: YES];
     [self generateDocumentTable];
+    [CATransaction commit];
 }
 
-@synthesize allCatchers;
+@synthesize switchlistBox;
+@synthesize reportBox;
+@synthesize switchlistsLabel;
+@synthesize reportsLabel;
 @end

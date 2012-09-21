@@ -341,6 +341,7 @@
 		3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
 		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
 		3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */; };
+		3EC1D47E160AEDB700765095 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC1D47D160AEDB700765095 /* QuartzCore.framework */; };
 		3EC3B0931277DF6600C00AD3 /* EntireLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */; };
 		3EC3B1441277E4E300C00AD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; };
 		3EC3B14C1277E4E300C00AD3 /* SwitchListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */; };
@@ -615,7 +616,7 @@
 		3E407DC6160694070037134D /* XM.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = XM.jpg; path = "resources-iPad/XM.jpg"; sourceTree = "<group>"; };
 		3E407DC7160694070037134D /* yard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = yard.jpg; path = "resources-iPad/yard.jpg"; sourceTree = "<group>"; };
 		3E407DD81606945E0037134D /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = "resources-iPad/InfoPlist.strings"; sourceTree = "<group>"; };
-		3E407DD91606945E0037134D /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = MainStoryboard.storyboard; path = "resources-iPad/MainStoryboard.storyboard"; sourceTree = "<group>"; };
+		3E407DD91606945E0037134D /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = "resources-iPad/MainStoryboard.storyboard"; sourceTree = "<group>"; };
 		3E407DE0160694EF0037134D /* libSwitchListEngine-iPad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSwitchListEngine-iPad.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E407DE4160694EF0037134D /* SwitchListEngine-iPad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwitchListEngine-iPad-Prefix.pch"; sourceTree = "<group>"; };
 		3E407DE5160694EF0037134D /* SwitchListEngine_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchListEngine_iPad.h; sourceTree = "<group>"; };
@@ -725,6 +726,7 @@
 		3EB677B6130E4B460012DE1D /* CargoAssignerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CargoAssignerTest.h; path = Engine/CargoAssignerTest.h; sourceTree = "<group>"; };
 		3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CargoAssignerTest.m; path = Engine/CargoAssignerTest.m; sourceTree = "<group>"; };
 		3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = NoSidingToLatest.xcmappingmodel; sourceTree = "<group>"; };
+		3EC1D47D160AEDB700765095 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		3EC3B0881277DEFE00C00AD3 /* Unit tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
 		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntireLayoutTest.h; path = Engine/EntireLayoutTest.h; sourceTree = "<group>"; };
@@ -783,6 +785,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EC1D47E160AEDB700765095 /* QuartzCore.framework in Frameworks */,
 				3EAAA7671606CC5400C3D7A8 /* libicucore.dylib in Frameworks */,
 				3E407D59160693170037134D /* UIKit.framework in Frameworks */,
 				3E407D5B160693170037134D /* Foundation.framework in Frameworks */,
@@ -896,6 +899,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3EC1D47D160AEDB700765095 /* QuartzCore.framework */,
 				3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */,
 				3E917A130951659A004647C7 /* Reports */,
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,

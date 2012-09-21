@@ -258,7 +258,12 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
 	[req2 setEntity: ent];
 	[req2 setPredicate: [NSPredicate predicateWithFormat: @"currentLocation.name != 'Workbench'"]];
-	NSError *error;
+
+    NSSortDescriptor *ind1 = [[[NSSortDescriptor alloc] initWithKey: @"reportingMarks" ascending: YES] autorelease];
+	NSMutableArray *sortDescs = [NSMutableArray arrayWithObject: ind1];
+	[req2 setSortDescriptors: sortDescs];
+
+    NSError *error;
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }
 
@@ -267,7 +272,12 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	NSEntityDescription *ent = [NSEntityDescription entityForName: @"CarType" inManagedObjectContext: [self managedObjectContext]];
 	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
 	[req2 setEntity: ent];
-	NSArray *carTypes = [[self managedObjectContext] executeFetchRequest: req2 error:&error];
+
+    NSSortDescriptor *ind1 = [[[NSSortDescriptor alloc] initWithKey: @"carTypeName" ascending: YES] autorelease];
+	NSMutableArray *sortDescs = [NSMutableArray arrayWithObject: ind1];
+	[req2 setSortDescriptors: sortDescs];
+
+    NSArray *carTypes = [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 	return carTypes;
 }
 
