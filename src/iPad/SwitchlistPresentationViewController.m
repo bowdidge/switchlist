@@ -41,7 +41,7 @@
 // Navigation bar back button.
 @property(nonatomic, retain) IBOutlet UIButton *backButton;
 // Separate button for doing AirPrint to print the document.
-@property(nonatomic, retain) IBOutlet UIButton *printButton;
+@property(nonatomic, retain) IBOutlet UIBarButtonItem *printButton;
 @end
 
 @implementation SwitchlistPresentationViewController
@@ -75,6 +75,29 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
     NSLog(@"UIWebView error: %@", error);
+}
+
+// Prints the current document in the UIWebView to an AirPrint printer.
+- (IBAction) doPrint: (id) sender {
+    UIPrintInteractionController *pic = [UIPrintInteractionController sharedPrintController];
+    pic.delegate = self;
+    
+    UIPrintInfo *printInfo = [UIPrintInfo printInfo];
+    printInfo.outputType = UIPrintInfoOutputGeneral;
+    // Add repot or train name.
+    printInfo.jobName = @"Switchlist";
+    pic.printInfo = printInfo;
+    // TODO(bowdidge): Hide buttons in web page.
+    pic.printFormatter = [webView viewPrintFormatter];
+    pic.showsPageRange = YES;
+    
+    void (^completionHandler)(UIPrintInteractionController *, BOOL, NSError *) =
+    ^(UIPrintInteractionController *printController, BOOL completed, NSError *error) {
+        if (!completed && error) {
+            NSLog(@"Printing could not complete because of error: %@", error);
+                  }
+                  };
+    [pic presentFromBarButtonItem: self.printButton animated: YES completionHandler: completionHandler];
 }
 
 @synthesize htmlText;
