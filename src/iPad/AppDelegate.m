@@ -139,6 +139,7 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+// Closes the currently open file, saves file, and tears down CoreData objects.
 - (void) closeFile {
     NSError *error = nil;
     [self.managedObjectContext save: &error];
@@ -149,6 +150,7 @@
     self.managedObjectContext = nil;
 }
 
+// Helper.  Open the specified path.
 - (BOOL) openNewFile: (NSURL*) filename {
     self.currentFilePath = filename;
     self.entireLayout = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
@@ -160,8 +162,11 @@
     return YES;
 }
 
+// Opens a new file with the given name in the application documents directory.
+// If the file does not exist, the store will be in memory, and written to disk on save.
 - (BOOL) openLayoutWithName: (NSString*) filename {
     [self closeFile];
+    // TODO(bowdidge): Need to keep separate map of layout name -> filename.
     NSURL *newFilePath = [[self applicationDocumentsDirectory] URLByAppendingPathComponent: filename];
     return [self openNewFile:newFilePath];
 }
