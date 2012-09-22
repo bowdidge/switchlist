@@ -3,13 +3,12 @@ SwitchList, and shows how you could create your own switchlist style and
 have SwitchList find it.  To install the Thomas example or any custom
 switchlist style:
 
-* If necessary, create a SwitchList directory in your Library/Application 
-  Support directory.  In the Finder, choose "Home" from the "Go" menu to open
-  a window showing your current "home directory" where all your files live.
-  Open the Library folder, then the Application Support folder.  If there
-  is no SwitchList folder inside your Application Support folder, create one.
+* Launch SwitchList.
 
-* Copy the directory for the custom switchlist template (the Thomas directory 
-  or the Waybill directory) into the SwitchList folder in Application Support.
+* Choose the "Import Template..." menu item.  In the Open File dialog box,
+  select the directory containing the template you want.  (That's the 
+  containing folder - the "Thomas" folder that contains the switchlist.html
+  file that contains the actual details on the switchlist style.
 
-* Run SwitchList.  Your new custom switchlist template should now be one choice for a switchlist style.
+* Go to the Preferences dialog box, found under the SwitchList menu. 
+  The template you imported should now be one of the choices.
