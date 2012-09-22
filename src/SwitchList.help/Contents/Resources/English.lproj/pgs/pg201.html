@@ -26,7 +26,8 @@ appear as a choice in the <A HREF="pg29.html">Preferences pane.
 <p>Full details are available at the <a href="http://code.google.com/p/switchlist/wiki/SwitchListTemplatesInHTML">SwitchList development site</a>
 over on code.google.com, but here's a quick rundown.
 </p>
-<p>First, download the set of alternate switchlist styles
+<ul>
+<li><p>First, download the set of alternate switchlist styles
 to use those as a starting point for your custom switchlist.
 Download the "Custom Switchlist Templates.zip" file from
 <A HREF="http://code.google.com/p/switchlist/downloads/list">SwitchList download site</a>,
@@ -34,16 +35,47 @@ and poke around at the examples.
 The <A HREF="http://www.vasonabranch.com/railroad/Thomas.html">Thomas the Tank Engine switchlist example</a>
 shows what can be done with a small bit of work.
 </p>
-<p>Second, create your own.  Create an HTML file (the same thing inside every web page)
+<li><p>Second, create your own switchlist from one of these starting points.  Create an HTML file (the same thing inside every web page)
 describing your preferred switchlist,
 color and background, and the like.  You'll place special placeholders in your file to indicate
 where freight cars and other information gets placed.
+Place the switchlist.html in a directory with the name you'd like to see in SwitchList's switchlist style list.
 </p>
-<p>Third, take your custom switchlist and place a copy in the directory ~/Library/Application Support/SwitchList/[your switchlist name], creating the directory if needed.
+<li><p>Third, copy your custom switchlist into SwitchList's special directory.
+You can do this in two ways: via the "Import Template..." menu item in the File menu,
+or by copying the file yourself.
+Using "Import Template..." is the easiest way - just select the directory containing your switchlist.html template, and
+hit OK.  The template will be copied into place.  Once the template is copied in, start using it by selecting the switchlist
+style with the name of the directory.
+</p>
+</ul>
+<p>
+If you want to copy the template directories in yourself, note that the special directory can be in one of two places
+depending on how you got SwitchList.  If you installed SwitchList via the Mac App Store, the templates are placed in the
+directory:
+</p>
+<pre>
+~/Library/Containers/com.blogspot.vasonabranch.SwitchListApp/Data/Library/Application Support/SwitchList
+</pre>
+<p>If you installed SwitchList by downloading it from www.vasonabranch.com, or copying it from a friend's machine, the templates
+are placed in the directory: 
+</p>
+<pre>
+~/Library/Application Support/SwitchList
+</pre>
+<p>
 Full details are available <a href="http://code.google.com/p/switchlist/wiki/SwitchListTemplatesInHTML">SwitchList development site</a>.
+Note that you only need to copy the files into place once; as you experiment with switchlist styles, you can just modify
+the copies of your switchlist style in the special directory, and see the changes immediately within SwitchList.  You can still use
+the "Import Template..." on an already-installed switchlist template, though it will replace the previous copy.
 </p>
-<p>Now, run SwitchList and you'll see your custom switchlist there.  It will display, print, and
+<p>
+<p>Now, run SwitchList and you'll see your custom switchlist in the list of styles.  It will display, print, and
 show up in the iPad / web interface just like any other switchlist!
+</p>
+<p>
+These same instructions hold if you want to just use a custom switchlist style - use the "Import Template..." menu to copy the switchlist style
+into SwitchList, and choose the new style as your preferred switchlist format.
 </p>
 <p>
 Again, the <A HREF="http://code.google.com/p/switchlist">SwitchList development site</a>

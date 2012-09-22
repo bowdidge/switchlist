@@ -357,6 +357,19 @@ error:
 	
 }
 
+// Puts the switchlist template names in the pop-up in sorted order,
+// rescanning the template directories.
+- (void) reloadSwitchlistTemplateNames {
+	int pos=0;
+	[switchListStyleButton_ removeAllItems];
+	for (NSString *templateName in [self validTemplateNames]) {
+		[switchListStyleButton_ insertItemWithTitle: templateName atIndex: pos++];
+	}
+	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	[switchListStyleButton_ selectItemWithTitle: preferredSwitchlistStyle];
+	[webController_ setTemplate: preferredSwitchlistStyle]; 
+}	
+
 - (void) awakeFromNib {
 	[problems_ addObject: @"No problems."];
 	MyOutlineDelegate *myOutlineDelegate = [[[MyOutlineDelegate alloc] initWithAppDelegate: self
@@ -366,19 +379,6 @@ error:
 	[problemsOutlineView_ setDelegate: myOutlineDelegate];
 	[problemsOutlineView_ setAllowsMultipleSelection: YES];
 
-	[switchListStyleButton_ removeAllItems];
-
-	[self convertSwitchListStylePreferenceIfNeeded];
-	
-	// Put the switchlist template names in the pop-up in sorted order.
-	int pos = 0;
-	for (NSString *templateName in [self validTemplateNames]) {
-		[switchListStyleButton_ insertItemWithTitle: templateName atIndex: pos++];
-	}
-	
-	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
-	[switchListStyleButton_ selectItemWithTitle: preferredSwitchlistStyle];
-	
 	webServerVisible_ = [[NSUserDefaults standardUserDefaults] boolForKey: GLOBAL_PREFS_DISPLAY_WEB_SERVER];
 	webServerEnabled_ = [[NSUserDefaults standardUserDefaults] boolForKey: GLOBAL_PREFS_ENABLE_WEB_SERVER];
 	[webServerVisibleCheckBox_ setState: webServerVisible_];
@@ -395,8 +395,10 @@ error:
 		[webServerStatusPanel_ orderOut: self];
 		[self setWebServerRunStatus: NO];
 	}
-	[webController_ setTemplate: preferredSwitchlistStyle]; 
 	
+	[self convertSwitchListStylePreferenceIfNeeded];
+
+	[self reloadSwitchlistTemplateNames];
 	
 	// Fill in the Examples menu.
 	NSString *bundleRoot = [[NSBundle mainBundle] resourcePath];
@@ -467,9 +469,90 @@ error:
 	return;
 }
 
+// Copies a template file into the correct application specific directory for the application.
+// Simplifies installing new templates, and avoids problems of cryptic paths that differ between
+// app store and non-app store version.
+- (IBAction) doImportTemplate: (id) sender {
+	NSError *error;
+	NSAlert *alert;
+	NSOpenPanel *panel = [NSOpenPanel openPanel];
+	[panel setCanChooseFiles: NO];
+	[panel setCanChooseDirectories: YES];
+	[panel setAllowsMultipleSelection: NO];
+	[panel setMessage: @"Select directory containing the new switchlist style template files."];
+	 
+	int result = [panel runModal];
+	if (result != NSOKButton) {
+		// User cancelled.
+		return;
+	}
+
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	NSString *selectedDirectory = [panel filename];
+	NSString *templateName = [selectedDirectory lastPathComponent];
+		
+	NSString *oldCopyOfDirectory = nil;
+	
+	// Check to make sure the template doesn't already exist, and warn if so.
+	NSString *userTemplateDirectory = [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: templateName];
+
+	if ([fileManager fileExistsAtPath: userTemplateDirectory]) {
+		NSString *overwriteWarning = [NSString stringWithFormat: @"A template named '%@' has already been installed.  Overwrite?", templateName];
+		alert = [NSAlert alertWithMessageText: overwriteWarning
+								defaultButton: @"OK" alternateButton: @"Cancel" otherButton: nil
+					informativeTextWithFormat: @""];
+		int overwriteWarningResult = [alert runModal];
+		if (overwriteWarningResult != NSOKButton) {
+			// User doesn't want to overwrite. Cancel.
+			return;
+		}
+		
+		// User wants to overwrite.  Move old copy aside.
+		NSString *existingDirectory = [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: templateName];
+		oldCopyOfDirectory = [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: [NSString stringWithFormat: @"%@.old", templateName]];
+		int moveResult = [fileManager moveItemAtPath: existingDirectory toPath: oldCopyOfDirectory error: &error];
+		if (moveResult == NO) {
+			// Error during copying.  Warn, and return.
+			alert = [NSAlert alertWithMessageText: @"Problems moving old copy of template out of the way."
+											 defaultButton: @"OK" alternateButton: nil otherButton: nil
+								 informativeTextWithFormat: [NSString stringWithFormat: @"%@.", [error localizedDescription]]];
+			[alert runModal];
+			return;
+		}
+	}
+
+	// Copy the template directory into the application support directory.
+	int copyResult = [fileManager copyItemAtPath: selectedDirectory 
+										  toPath: [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: templateName]
+										   error: &error];
+	if (copyResult == NO) {
+		NSAlert *alert = [NSAlert alertWithMessageText: @"Problems copying template into place."
+										 defaultButton: @"OK" alternateButton: nil otherButton: nil
+							 informativeTextWithFormat: [NSString stringWithFormat: @"%@.", [error localizedDescription]]];
+		[alert runModal];
+		return;
+	}
+	
+	// Delete old copy if it exists.
+	if (oldCopyOfDirectory) {
+		int moveResult = [fileManager removeItemAtPath: oldCopyOfDirectory error: &error];
+		if (moveResult == NO) {
+			NSAlert *alert = [NSAlert alertWithMessageText: @"New template is in place, but problems deleting old copy of template."
+											 defaultButton: @"OK" alternateButton: nil otherButton: nil
+								 informativeTextWithFormat: [NSString stringWithFormat: @"%@.", [error localizedDescription]]];
+			[alert runModal];
+			return;
+		}
+	}
+	// Success. Return.
+	[self reloadSwitchlistTemplateNames];
+	return;
+}
+
 - (NSWindow*) reportWindow {
 	return reportWindow_;
 }
+
 - (NSTextView*) reportTextView {
 	return reportTextView_;
 }
