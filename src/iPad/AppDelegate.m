@@ -27,6 +27,7 @@
 // SUCH DAMAGE.
 
 #import "AppDelegate.h"
+#import "CarType.h"
 #import "CarTypes.h"
 #import "EntireLayout.h"
 
@@ -157,7 +158,13 @@
     self.layoutController = [[LayoutController alloc] initWithEntireLayout: entireLayout];
     
     if ([[self.entireLayout allCarTypes] count] == 0) {
-        [CarTypes populateCarTypesFromLayout: self.entireLayout];
+		NSDictionary* currentlyUsedCarTypes = [CarTypes populateCarTypesFromLayout: self.entireLayout];
+		for (NSString *carTypeName in currentlyUsedCarTypes) {
+			CarType *carType = [NSEntityDescription insertNewObjectForEntityForName:@"CarType"
+															 inManagedObjectContext: self.managedObjectContext];
+			[carType setCarTypeName: carTypeName];
+			[carType setCarTypeDescription: [currentlyUsedCarTypes objectForKey: carTypeName]];
+		}
     }
     return YES;
 }
