@@ -53,19 +53,17 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void) regenerateDataAndForce: (BOOL) force {
+// Gathers freight car data from the entire layout again, reloading if necessary.
+- (void) regenerateTableData {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
-    if (!allFreightCars || !allFreightCarsOnWorkbench || force) {
-        // Why copy?
-        self.allFreightCars = [myLayout allFreightCarsOnLayout];
-        self.allFreightCarsOnWorkbench = [myLayout allFreightCarsOnWorkbench];
-    }
+    self.allFreightCars = [myLayout allFreightCarsOnLayout];
+    self.allFreightCarsOnWorkbench = [myLayout allFreightCarsOnWorkbench];
 }
 
 - (void) viewWillAppear: (BOOL) animate {
     [super viewWillAppear: animate];
-    [self regenerateDataAndForce: NO];
+    [self regenerateTableData];
 }
 
 - (void) viewWillDisappear: (BOOL) animate {
@@ -150,28 +148,27 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
+
+// Determines if row can be edited or deleted.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
-// Override to support editing the table view.
+// Handles editing actions on table - delete or insert.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        FreightCar *freightCarToDelete = [self freightCarAtIndexPath: indexPath];
+        [[freightCarToDelete managedObjectContext] deleteObject: freightCarToDelete];
+        [self regenerateTableData];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
 
 /*
 // Override to support rearranging the table view.
@@ -227,7 +224,7 @@
 }
 
 - (void) freightCarsChanged: (id) sender {
-    [self regenerateDataAndForce: YES];
+    [self regenerateTableData];
     [self.freightCarTable reloadData];
 }
 

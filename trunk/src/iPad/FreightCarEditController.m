@@ -35,6 +35,7 @@
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "FreightCarTableViewController.h"
+#import "Industry.h"
 #import "SelectionCell.h"
 
 // Identify what data is being shown in selection table to the right of the
