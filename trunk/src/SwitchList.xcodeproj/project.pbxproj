@@ -23,6 +23,7 @@
 		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
 		3E335E60160D69760097360C /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E5F160D69760097360C /* FileViewController.m */; };
 		3E335E63160D6A050097360C /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E62160D6A050097360C /* FileCell.m */; };
+		3E335E66160DAACD0097360C /* TownEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E65160DAACC0097360C /* TownEditViewController.m */; };
 		3E3620FA1539341700A57574 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
 		3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741916082E200023C8B5 /* switchlistButton.png */; };
 		3E37741C160838D00023C8B5 /* vasona.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741B160838D00023C8B5 /* vasona.sql */; };
@@ -531,6 +532,8 @@
 		3E335E5F160D69760097360C /* FileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileViewController.m; path = iPad/FileViewController.m; sourceTree = "<group>"; };
 		3E335E61160D6A050097360C /* FileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileCell.h; path = iPad/FileCell.h; sourceTree = "<group>"; };
 		3E335E62160D6A050097360C /* FileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileCell.m; path = iPad/FileCell.m; sourceTree = "<group>"; };
+		3E335E64160DAAC90097360C /* TownEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TownEditViewController.h; path = iPad/TownEditViewController.h; sourceTree = "<group>"; };
+		3E335E65160DAACC0097360C /* TownEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TownEditViewController.m; path = iPad/TownEditViewController.m; sourceTree = "<group>"; };
 		3E362361153A899300A57574 /* PlaceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceTest.h; path = Engine/PlaceTest.h; sourceTree = "<group>"; };
 		3E362362153A899300A57574 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceTest.m; path = Engine/PlaceTest.m; sourceTree = "<group>"; };
 		3E37741916082E200023C8B5 /* switchlistButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchlistButton.png; sourceTree = "<group>"; };
@@ -1117,6 +1120,8 @@
 				3E407D95160693E30037134D /* TownTableCell.h */,
 				3E407D96160693E30037134D /* TownTableCell.m */,
 				3E407D97160693E30037134D /* TownTableView.h */,
+				3E335E64160DAAC90097360C /* TownEditViewController.h */,
+				3E335E65160DAACC0097360C /* TownEditViewController.m */,
 				3E407D98160693E30037134D /* TownTableViewController.h */,
 				3E407D99160693E30037134D /* TownTableViewController.m */,
 				3E407D9A160693E30037134D /* TrainTableCell.h */,
@@ -1835,6 +1840,7 @@
 				3E540BE2160D446500D5B759 /* CurlyView.m in Sources */,
 				3E335E60160D69760097360C /* FileViewController.m in Sources */,
 				3E335E63160D6A050097360C /* FileCell.m in Sources */,
+				3E335E66160DAACD0097360C /* TownEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

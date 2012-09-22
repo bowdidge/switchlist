@@ -33,5 +33,6 @@
 @interface ChooseTemplateViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, retain) IBOutlet LayoutDetailsViewController *layoutDetailsController;
+@property(nonatomic, retain) UIPopoverController *myPopoverController;
 
 @end

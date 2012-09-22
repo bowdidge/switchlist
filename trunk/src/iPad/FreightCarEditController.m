@@ -211,6 +211,15 @@ enum {
     [self.myPopoverController setPopoverContentSize: currentFrame.size animated: YES]; 
 }
 
+// Collapses the popover frame and hides the table.
+- (void) doNarrowPopoverFrame {
+    // Selection table selected.
+    CGRect currentFrame = self.view.frame;
+    // Stock size is 288x342, widen to 540x342 to show list, back to 288 after.
+    currentFrame.size.width = 288;
+    [self.myPopoverController setPopoverContentSize: currentFrame.size animated: YES];
+}
+
 // Handles the user pressing the car type in order to select a different value.
 - (IBAction) doPressCarTypeButton: (id) sender {
     [self doWidenPopoverFrom: self.carTypeButton.frame];
@@ -245,11 +254,7 @@ enum {
 
 // Handles the user pressing an item in the right-hand-side selection table.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Selection table selected.
-    CGRect currentFrame = self.view.frame;
-    // Stock size is 288x342, widen to 540x342 to show list, back to 288 after.
-    currentFrame.size.width = 288;
-    [self.myPopoverController setPopoverContentSize: currentFrame.size animated: YES];
+    [self doNarrowPopoverFrame];
     
     // Selected item.
     CarType *selectedCarType;
@@ -291,11 +296,6 @@ enum {
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Three sections: on layout, on workbench, and empty/add.
     return 1;
-}
-
-// Returns the section title for the selection table.
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-   return @"";
 }
 
 // Returns the number of rows in the selection table to the right hand side of

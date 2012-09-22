@@ -1,8 +1,9 @@
 //
-//  LayoutDetailsTabViewController.h
+//  TownEditViewController.m
 //  SwitchList
 //
-//  Created by Robert Bowdidge on 9/21/12.
+//  Created by Robert Bowdidge on 9/22/12.
+//  Copyright (c) 2012 Robert Bowdidge. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -25,11 +26,39 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
+#import "TownEditViewController.h"
 
-@interface LayoutDetailsViewController : UIViewController
+@interface TownEditViewController ()
+@property (nonatomic, retain) IBOutlet UITextField *townNameTextField;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *townLocationControl;
+@end
 
-// Handles any action needed when the current preferred switchlist template is changed.
-- (IBAction) templateNameChanged: (NSString*) templateName;
-    
+@implementation TownEditViewController
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+@synthesize townNameTextField;
+@synthesize townLocationControl;
+@synthesize townTableViewController;
+@synthesize myPopoverController;
+
 @end
