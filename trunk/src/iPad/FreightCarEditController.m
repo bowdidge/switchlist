@@ -127,6 +127,9 @@ enum {
 
 // Window is about to be closed.  Save out the changes to the current freight car.
 - (void) viewWillDisappear: (BOOL) animated {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *myLayout = myAppDelegate.entireLayout;
+
     BOOL hasChanges = NO;
     if (![self.reportingMarksField.text isEqualToString: [self.freightCar reportingMarks]]) {
         [self.freightCar setReportingMarks: self.reportingMarksField.text];
@@ -156,6 +159,10 @@ enum {
                 break;
             }
         }
+    }
+    // Location not set?  Put at workbench.
+    if (![[self freightCar] currentLocation]) {
+        [[self freightCar] setCurrentLocation: [myLayout workbenchIndustry]];
     }
 
     if (![self.currentCargoButton.titleLabel.text isEqualToString: [[[self freightCar] cargo] name]]) {

@@ -60,7 +60,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
+// Handles press of + button at bottom of window.
+- (IBAction) createNewLayout: (id) sender {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    [myAppDelegate openLayoutWithName: @"Untitled.sql"];
+    // TODO(bowdidge): Redraw switchlists.
+}
+
+
+#pragma mark - Table for list of files.
 
 // Returns the number of sections in the towns table.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -107,9 +115,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Open.
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+
+    NSString *filename = [self.allLayouts objectAtIndex: [indexPath row]];
+    [myAppDelegate openLayoutWithName: filename];
     [self.myPopoverController dismissPopoverAnimated: YES];
 }
-
 
 @synthesize fileTable;
 @synthesize addButton;

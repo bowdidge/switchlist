@@ -152,6 +152,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="createNewLayout:" destination="aK7-Mz-XBc" eventType="touchUpInside" id="KMp-Pa-oUD"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VKI-jt-ipR">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="353"/>
@@ -1176,6 +1179,185 @@
         <image name="train.png" width="512" height="512"/>
         <image name="yard.jpg" width="225" height="225"/>
     </resources>
+    <classes>
+        <class className="AbstractTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AbstractTableViewController.h"/>
+        </class>
+        <class className="AppNavigationController" superclassName="UINavigationController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppNavigationController.h"/>
+        </class>
+        <class className="CargoTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CargoTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cargoDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cargoIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="cargoKind" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="cargoName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="CargoTableViewController" superclassName="AbstractTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CargoTableViewController.h"/>
+        </class>
+        <class className="ChooseTemplateViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChooseTemplateViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="layoutDetailsController" candidateClass="LayoutDetailsViewController"/>
+                <relationship kind="outlet" name="templateTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="CurlyView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurlyView.h"/>
+        </class>
+        <class className="FileCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FileCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FileViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FileViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createNewLayout:"/>
+                <relationship kind="outlet" name="addButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fileTable" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="myPopoverController" candidateClass="UIPopoverController"/>
+            </relationships>
+        </class>
+        <class className="FreightCarEditController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarEditController.h"/>
+            <relationships>
+                <relationship kind="action" name="doPressCameraButton:"/>
+                <relationship kind="action" name="doPressCarTypeButton:"/>
+                <relationship kind="action" name="doPressCargoButton:"/>
+                <relationship kind="action" name="doPressDivisionButton:"/>
+                <relationship kind="action" name="doPressLocationButton:"/>
+                <relationship kind="outlet" name="cameraButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="carPhotoView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="carTypeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="curlyView" candidateClass="CurlyView"/>
+                <relationship kind="outlet" name="currentCargoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="currentLocationButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="homeDivisionButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loadedToggle" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="reportingMarksField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="rightSideSelectionTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="FreightCarTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="freightCarDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="freightCarIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="freightCarKind" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="freightCarReportingMarks" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="FreightCarTableViewController" superclassName="AbstractTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarTableViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="freightCarTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="IndustryTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndustryTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="industryDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="industryIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="industryName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="industrySidingLength" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="IndustryTableViewController" superclassName="AbstractTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndustryTableViewController.h"/>
+        </class>
+        <class className="LayoutDetailTabBarController" superclassName="UITabBarController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LayoutDetailTabBarController.h"/>
+        </class>
+        <class className="LayoutDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LayoutDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doSelectTemplate:"/>
+                <relationship kind="action" name="templateNameChanged:" candidateClass="NSString"/>
+                <relationship kind="outlet" name="templateButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="MainWindowViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainWindowViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="didTouchSwitchList:"/>
+                <relationship kind="action" name="doAdvanceLayout:"/>
+                <relationship kind="action" name="doRegenerateSwitchlists:"/>
+                <relationship kind="action" name="noteRegenerateSwitchlists"/>
+                <relationship kind="action" name="showLayoutDetail:"/>
+                <relationship kind="outlet" name="advanceButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fileButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="reportBox" candidateClass="UIView"/>
+                <relationship kind="outlet" name="reportsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="switchlistBox" candidateClass="UIView"/>
+                <relationship kind="outlet" name="switchlistsLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SelectionCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cellText" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SwitchlistPresentationViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SwitchlistPresentationViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doPrint:"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="printButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
+            </relationships>
+        </class>
+        <class className="TemplateCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TemplateCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="templateDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="templateName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TownTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TownTableCell.h"/>
+            <relationships>
+                <relationship kind="action" name="hideIcon:"/>
+                <relationship kind="outlet" name="townDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="townIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="townKind" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="townName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TownTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TownTableViewController.h"/>
+        </class>
+        <class className="TrainTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="trainDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="trainIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="trainKind" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="trainName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="TrainTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainTableViewController.h"/>
+        </class>
+        <class className="YardTableCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/YardTableCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="yardDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="yardIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="yardKind" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="yardName" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="YardTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/YardTableViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
