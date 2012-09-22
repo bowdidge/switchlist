@@ -33,6 +33,7 @@
 #import "EntireLayout.h"
 #import "Place.h"
 #import "SwitchListColors.h"
+#import "TownEditViewController.h"
 #import "TownTableCell.h"
 
 @interface TownTableViewController ()
@@ -103,6 +104,20 @@
     return self.townsOffline.count + 1;
 }
 
+// Returns place object represented in table view at the given row and section.
+- (Place*) townAtIndexPath: (NSIndexPath*) indexPath {
+    int section = indexPath.section;
+    int row = indexPath.row;
+    if (section == 0) {
+        return [self.townsOnLayout objectAtIndex: row];
+    } else if (section == 1) {
+        return [self.townsInStaging objectAtIndex: row];
+    } else {
+        return [self.townsOffline objectAtIndex: row];
+    }
+    return nil;
+}
+
 // Returns contents of the cell for the specified row and section.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"townCell";
@@ -112,18 +127,10 @@
                                     reuseIdentifier:CellIdentifier];
     }
     
-    int section = indexPath.section;
-    int row = indexPath.row;
-    if (section == 2 && row == self.townsOffline.count) {
+    if (indexPath.section == 2 && indexPath.row == self.townsOffline.count) {
         [cell fillInAsAddCell];
     } else {
-        if (section == 0) {
-            [cell fillInAsTown: [self.townsOnLayout objectAtIndex: row]];
-        } else if (section == 1) {
-            [cell fillInAsTown: [self.townsInStaging objectAtIndex: row]];
-        } else {
-            [cell fillInAsTown: [self.townsOffline objectAtIndex: row]];
-        }
+        [cell fillInAsTown: [self townAtIndexPath: indexPath]];
     }
     return cell;
 }
@@ -173,15 +180,28 @@
 
 #pragma mark - Table view delegate
 
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    AppNavigationController *navigationController = (AppNavigationController*)myAppDelegate.window.rootViewController;
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    UIViewController *townEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editTown"];
-    townEditVC.modalPresentationStyle = UIModalPresentationFormSheet;
-    [navigationController pushViewController: townEditVC animated: YES];
+    TownEditViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"editTown"];
+    controller.myTown = [self townAtIndexPath: indexPath];
+
+    CGRect cellFrame = [tableView rectForRowAtIndexPath: indexPath];
+
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController: controller];
+    controller.myPopoverController = popover;
+    // Give editor a chance to call us back.
+    controller.townTableViewController = self;
+    CGRect cellRect = [tableView convertRect: cellFrame toView: self.view];
+    // Move rect to far left so that we try to have the edit popover point to the left.
+    cellRect.size.width = 100;
+    [popover presentPopoverFromRect: cellRect
+                             inView: [self view]
+           permittedArrowDirections: UIPopoverArrowDirectionLeft
+                           animated: YES];
 }
 
 @synthesize townsOnLayout;

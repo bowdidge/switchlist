@@ -36,7 +36,6 @@
 // Descriptions of all templates.  Dictionary.
 @property (nonatomic, retain) NSMutableArray *allTemplates;
 @property (nonatomic, retain) NSMutableArray *allCustomTemplates;
-
 @end
 
 // Keys for the allTemplates / allCustomTemplates dictionaries.
@@ -134,6 +133,7 @@ NSString *TEMPLATE_IS_CUSTOM_KEY = @"customTemplate";
         name = [[self.allCustomTemplates objectAtIndex: row] objectForKey: TEMPLATE_NAME_KEY];
     }
     [self.layoutDetailsController templateNameChanged: name];
+    [self.myPopoverController dismissPopoverAnimated: YES];
 }
 
 @synthesize allTemplates;

@@ -33,7 +33,6 @@
 
 @interface LayoutDetailsViewController ()
 @property (nonatomic,retain) IBOutlet UIButton *templateButton;
-@property (nonatomic, retain) UIPopoverController *currentPopover;
 @end
 
 @implementation LayoutDetailsViewController
@@ -48,17 +47,14 @@
     [self.templateButton setTitle: templateName forState: UIControlStateSelected];
 }
 
-- (IBAction) doSelectTemplate: (id) sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    ChooseTemplateViewController *templateSelectionVC = [storyboard instantiateViewControllerWithIdentifier:@"chooseTemplate"];
-    templateSelectionVC.layoutDetailsController = self;
-    
-    self.currentPopover = [[UIPopoverController alloc] initWithContentViewController: templateSelectionVC];
-
-    [self.currentPopover presentPopoverFromRect: [sender frame]
-                             inView: [self view]
-           permittedArrowDirections: UIPopoverArrowDirectionLeft
-                           animated: YES];
+// Switch from this scene to another.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"templateSegue"]) {
+        ChooseTemplateViewController *controller = segue.destinationViewController;
+        controller.myPopoverController = ((UIStoryboardPopoverSegue*)segue).popoverController;
+        controller.layoutDetailsController = self;
+        
+    }
 }
 
 - (IBAction) templateNameChanged: (NSString*) templateName {
@@ -69,6 +65,5 @@
 
     myAppDelegate.preferredTemplateStyle = templateName;
     [myAppDelegate.mainWindowViewController noteRegenerateSwitchlists];
-    [self.currentPopover dismissPopoverAnimated: YES];
 }
 @end

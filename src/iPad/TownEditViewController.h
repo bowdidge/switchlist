@@ -1,8 +1,9 @@
 //
-//  LayoutDetailsTabViewController.h
+//  TownEditViewController.h
 //  SwitchList
 //
-//  Created by Robert Bowdidge on 9/21/12.
+//  Created by Robert Bowdidge on 9/22/12.
+//  Copyright (c) 2012 Robert Bowdidge. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -27,9 +28,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LayoutDetailsViewController : UIViewController
+@class Place;
 
-// Handles any action needed when the current preferred switchlist template is changed.
-- (IBAction) templateNameChanged: (NSString*) templateName;
-    
+@interface TownEditViewController : UIViewController
+// Town to draw (or change)
+@property (nonatomic, retain)  Place *myTown;
+
+// Reference back to the controller that spawned the TownEditViewController.
+@property (nonatomic,retain) IBOutlet UIViewController *townTableViewController;
+
+// Reference to the popover controller that created the window.
+@property (nonatomic,retain) IBOutlet UIPopoverController *myPopoverController;
 @end
