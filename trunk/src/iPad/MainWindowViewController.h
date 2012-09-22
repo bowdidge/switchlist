@@ -40,6 +40,12 @@
 // Handles press on advance layout button.
 - (IBAction) doAdvanceLayout: (id) sender;
 
+// Regenerates switchlists now.  May take on the order of a second.
+- (IBAction) doRegenerateSwitchlists: (id) sender;
+
+// Warn that switchlists need regenerating on next load of main page.
+- (IBAction) noteRegenerateSwitchlists;
+
 // NSView and labels used for grouping switchlists and reports.
 // By doing these as views, it's easy to animate their resizing.
 @property(nonatomic, retain) IBOutlet UILabel *switchlistsLabel;

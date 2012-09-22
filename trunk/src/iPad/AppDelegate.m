@@ -200,4 +200,5 @@
 @synthesize layoutDetailTabBarController;
 @synthesize entireLayout;
 @synthesize layoutController;
+@synthesize preferredTemplateStyle;
 @end

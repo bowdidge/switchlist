@@ -48,6 +48,13 @@
 
 // Array of all miniature reports being shown.
 @property (nonatomic, retain) NSMutableDictionary *trainNameToCatcher;
+
+// Share location of template directory/ file root between renderer and WebView.
+// TODO(bowdidge): Find better approach.
+@property (nonatomic, retain) NSString *basePath;
+
+// Indicates if switchlists need to be regenerated when main window next appears.
+@property (nonatomic) BOOL needsSwitchlistRegeneration;
 @end
 
 @implementation MainWindowViewController
@@ -118,6 +125,18 @@ float BOX_HEADER = 25.0;
     EntireLayout *layout = [myAppDelegate entireLayout];
 
     HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
+    
+    self.basePath = nil;
+    if (myAppDelegate.preferredTemplateStyle) {
+        [renderer setTemplate: myAppDelegate.preferredTemplateStyle];
+       // Valid directory?  If not, default to the stock version.
+        if ([renderer templateDirectory]) {
+            self.basePath = [[renderer templateDirectory] stringByAppendingPathComponent: @"switchlist.html"];
+        }
+    }
+    if (!self.basePath) {
+        self.basePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"switchlist.html"];
+    }
     SwitchListTouchCatcherView *catcher;
     for (ScheduledTrain *train in [layout allTrains]) {
         NSString *htmlText = [renderer renderSwitchlistForTrain: train layout: layout iPhone: NO];
@@ -209,6 +228,9 @@ float BOX_HEADER = 25.0;
 	// Do any additional setup after loading the view.
     [super viewDidLoad];
 
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    myAppDelegate.mainWindowViewController = self;
+    
     self.trainNameToCatcher = [NSMutableDictionary dictionary];
 
     // Start box offscreen for better animation.
@@ -228,8 +250,17 @@ float BOX_HEADER = 25.0;
 - (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    myAppDelegate.mainWindowViewController = nil;
 }
 
+- (void) viewWillAppear {
+    if (self.needsSwitchlistRegeneration) {
+        [self doRenegerateSwitchlists: self];
+        self.needsSwitchlistRegeneration = NO;
+    }
+}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	return YES;
 }
@@ -248,6 +279,7 @@ float BOX_HEADER = 25.0;
     SwitchlistPresentationViewController *presentationVC = [storyboard instantiateViewControllerWithIdentifier:@"presentation"];
 
     [presentationVC setHtmlText: ((SwitchListTouchCatcherView*)sender).switchlistHtml];
+    presentationVC.basePath = self.basePath;
     presentationVC.navigationItem.title = ((SwitchListTouchCatcherView*)sender).label;
     [navigationController pushViewController: presentationVC animated: YES];
 }
@@ -268,6 +300,16 @@ float BOX_HEADER = 25.0;
 
 }
 
+// Trigger regeneration of all HTML for all trains, and create new trains.
+// To be done whenever something affecting switchlists change.
+- (IBAction) doRegenerateSwitchlists: (id) sender {
+    [self createViews];
+    [CATransaction begin];
+    [CATransaction setDisableActions: YES];
+    [self generateDocumentTable];
+    [CATransaction commit];
+}
+
 // Handles press on advance button.  Prepare for next session.
 - (IBAction) doAdvanceLayout: (id) sender {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
@@ -276,15 +318,18 @@ float BOX_HEADER = 25.0;
     [myAppDelegate.layoutController createAndAssignNewCargos: 40];
     [myAppDelegate.layoutController assignCarsToTrains: [entireLayout allTrains] respectSidingLengths:YES useDoors:YES];
  
-    [self createViews];
-    [CATransaction begin];
-    [CATransaction setDisableActions: YES];
-    [self generateDocumentTable];
-    [CATransaction commit];
+    [self doRegenerateSwitchlists: self];
+}
+
+- (IBAction) noteRegenerateSwitchlists {
+    // TODO(bowdidge): Do this lazily.
+    [self doRegenerateSwitchlists: self];
 }
 
 @synthesize switchlistBox;
 @synthesize reportBox;
 @synthesize switchlistsLabel;
 @synthesize reportsLabel;
+@synthesize basePath;
+@synthesize needsSwitchlistRegeneration;
 @end
