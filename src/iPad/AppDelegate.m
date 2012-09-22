@@ -139,28 +139,47 @@
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
+- (void) closeFile {
+    NSError *error = nil;
+    [self.managedObjectContext save: &error];
+    if (error) {
+        NSLog(@"Problems saving file!");
+    }
+    self.persistentStoreCoordinator = nil;
+    self.managedObjectContext = nil;
+}
+
+- (BOOL) openNewFile: (NSURL*) filename {
+    self.currentFilePath = filename;
+    self.entireLayout = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
+    self.layoutController = [[LayoutController alloc] initWithEntireLayout: entireLayout];
+    
+    if ([[self.entireLayout allCarTypes] count] == 0) {
+        [CarTypes populateCarTypesFromLayout: self.entireLayout];
+    }
+    return YES;
+}
+
+- (BOOL) openLayoutWithName: (NSString*) filename {
+    [self closeFile];
+    NSURL *newFilePath = [[self applicationDocumentsDirectory] URLByAppendingPathComponent: filename];
+    return [self openNewFile:newFilePath];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Load vasona.sql first, copy if not available.
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    self.currentFilePath = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"vasona.sql"];
+    NSURL *newFile = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"vasona.sql"];
 
     if (![fileManager fileExistsAtPath:[self.currentFilePath path]]) {
         NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"vasona" withExtension:@"sql"];
         if (defaultStoreURL) {
-            [fileManager copyItemAtURL:defaultStoreURL toURL:self.currentFilePath error:NULL];
+            [fileManager copyItemAtURL:defaultStoreURL toURL:newFile error:NULL];
         }
     }
  
-    entireLayout = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
-    layoutController = [[LayoutController alloc] initWithEntireLayout: entireLayout];
-
-    if ([[self.entireLayout allCarTypes] count] == 0) {
-        [CarTypes populateCarTypesFromLayout: self.entireLayout];
-    }
-    //Place *workbench = [self.entireLayout workbench];
-    //Industry *workbenchIndustry = [self.entireLayout workbenchIndustry];
+    [self openNewFile: newFile];
     return YES;
 }
 							
@@ -192,7 +211,16 @@
 }
 
 - (NSArray*) allLayouts {
-    return [NSArray arrayWithObject: @"vasona.sql"];
+    // TODO: examples, too?
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSArray *files = [fileManager contentsOfDirectoryAtPath: [[self applicationDocumentsDirectory] path]
+                                                      error: &error];
+    if (error) {
+        NSLog(@"Error when reading application documents directory: %@", error);
+        return [NSArray array];
+    }
+    return files;
 }
 
 @synthesize managedObjectModel;

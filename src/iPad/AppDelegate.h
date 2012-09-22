@@ -42,6 +42,9 @@
 // Returns list of accessible filenames containing layouts.
 - (NSArray*) allLayouts;
 
+// Closes existing file.
+- (BOOL) openLayoutWithName: (NSString*) filename;
+
 @property (strong, nonatomic) UIWindow *window;
 
 // Reference to TabBarController, used by MainController to open the tab bar.
