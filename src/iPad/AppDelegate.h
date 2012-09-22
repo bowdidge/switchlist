@@ -28,8 +28,11 @@
 
 
 #import <UIKit/UIKit.h>
+
 #import "EntireLayout.h"
 #import "LayoutController.h"
+
+@class MainWindowViewController;
 
 // Application-level support for the whole SwitchList-on-iPad app.
 // Contains functionality for looking at the current layout,
@@ -46,4 +49,11 @@
 // Controller for changing the state of the layout - advancing to the next day, creating
 // cargos, etc.
 @property (strong, nonatomic) LayoutController *layoutController;
+
+// Name of preferred HTML style for drawing switchlists.
+// TODO(bowdidge): Make persistent.
+@property (retain, nonatomic) NSString *preferredTemplateStyle;
+
+// Handle to main view controller for reloading data / reprocessing trains.
+@property (retain, nonatomic) MainWindowViewController *mainWindowViewController;
 @end

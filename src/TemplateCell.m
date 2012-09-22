@@ -1,9 +1,8 @@
 //
-//  SingleSwitchListViewController.h
-//  SwitchList for iPad
+//  TempateCell.m
+//  SwitchList
 //
-//  Created by Robert Bowdidge on 9/6/12.
-//  Copyright (c) 2012 Robert Bowdidge. All rights reserved.
+//  Created by Robert Bowdidge on 9/21/12.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -26,19 +25,10 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
+#import "TemplateCell.h"
 
-// Controller for showing HTML switchlists.  In charge of display as well as the
-// various controls in the window.
-@interface SwitchlistPresentationViewController :
-    UIViewController<UIWebViewDelegate, UIPrintInteractionControllerDelegate  > {
-};
+@implementation TemplateCell
 
-- (IBAction) doPrint: (id) sender;
-
-// HTML to display as switchlist.
-@property(nonatomic, retain) NSString *htmlText;
-// Path to HTML file, or at least to some file that hints at location of css, etc.
-@property(nonatomic, retain) NSString *basePath;
-
+@synthesize templateName;
+@synthesize templateDescription;
 @end

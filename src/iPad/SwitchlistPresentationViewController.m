@@ -63,10 +63,9 @@
     
     // Identify the file in terms of the bundle directory so that
     // requests for additional files comefrom the bundle directory.
-    NSString *path = [[NSBundle mainBundle] bundlePath];
-    NSURL *baseURL = [NSURL fileURLWithPath:path];
-    
-    [self.webView loadHTMLString: self.htmlText baseURL: baseURL];
+    // TODO(bowdidge): How to display multiple pages?
+    [self.webView loadHTMLString: self.htmlText
+                         baseURL: [NSURL fileURLWithPath: self.basePath]];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
