@@ -1,8 +1,8 @@
 //
-//  AppDelegate.h
-//  SwitchList for iPad
+//  FileCell.h
+//  SwitchList
 //
-//  Created by Robert Bowdidge on 8/30/12.
+//  Created by Robert Bowdidge on 9/21/12.
 //  Copyright (c) 2012 Robert Bowdidge. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
@@ -26,37 +26,10 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-
 #import <UIKit/UIKit.h>
 
-#import "EntireLayout.h"
-#import "LayoutController.h"
+@interface FileCell : UITableViewCell
+@property (nonatomic, retain) IBOutlet UILabel *label;
+@property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
-@class MainWindowViewController;
-
-// Application-level support for the whole SwitchList-on-iPad app.
-// Contains functionality for looking at the current layout,
-// and for any interactions between different portions of the program.
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-// Returns list of accessible filenames containing layouts.
-- (NSArray*) allLayouts;
-
-@property (strong, nonatomic) UIWindow *window;
-
-// Reference to TabBarController, used by MainController to open the tab bar.
-@property (strong, nonatomic) UITabBarController *layoutDetailTabBarController;
-
-// Wrapper object around the data file's store.
-@property (strong, nonatomic) EntireLayout *entireLayout;
-// Controller for changing the state of the layout - advancing to the next day, creating
-// cargos, etc.
-@property (strong, nonatomic) LayoutController *layoutController;
-
-// Name of preferred HTML style for drawing switchlists.
-// TODO(bowdidge): Make persistent.
-@property (retain, nonatomic) NSString *preferredTemplateStyle;
-
-// Handle to main view controller for reloading data / reprocessing trains.
-@property (retain, nonatomic) MainWindowViewController *mainWindowViewController;
 @end

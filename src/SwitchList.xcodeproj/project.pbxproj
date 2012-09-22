@@ -21,6 +21,8 @@
 		3E1FD9B515CCE78F00568E36 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3E1FD9B415CCE78F00568E36 /* icon.icns */; };
 		3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */; };
 		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
+		3E335E60160D69760097360C /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E5F160D69760097360C /* FileViewController.m */; };
+		3E335E63160D6A050097360C /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E62160D6A050097360C /* FileCell.m */; };
 		3E3620FA1539341700A57574 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
 		3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741916082E200023C8B5 /* switchlistButton.png */; };
 		3E37741C160838D00023C8B5 /* vasona.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741B160838D00023C8B5 /* vasona.sql */; };
@@ -525,6 +527,10 @@
 		3E30DBB712B447D700FF224E /* DoorAssignmentRecorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DoorAssignmentRecorder.m; path = Engine/DoorAssignmentRecorder.m; sourceTree = "<group>"; };
 		3E30DBDE12B44C2900FF224E /* SwitchListReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListReportTest.h; sourceTree = "<group>"; };
 		3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListReportTest.m; sourceTree = "<group>"; };
+		3E335E5E160D69750097360C /* FileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileViewController.h; path = iPad/FileViewController.h; sourceTree = "<group>"; };
+		3E335E5F160D69760097360C /* FileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileViewController.m; path = iPad/FileViewController.m; sourceTree = "<group>"; };
+		3E335E61160D6A050097360C /* FileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileCell.h; path = iPad/FileCell.h; sourceTree = "<group>"; };
+		3E335E62160D6A050097360C /* FileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileCell.m; path = iPad/FileCell.m; sourceTree = "<group>"; };
 		3E362361153A899300A57574 /* PlaceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceTest.h; path = Engine/PlaceTest.h; sourceTree = "<group>"; };
 		3E362362153A899300A57574 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceTest.m; path = Engine/PlaceTest.m; sourceTree = "<group>"; };
 		3E37741916082E200023C8B5 /* switchlistButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchlistButton.png; sourceTree = "<group>"; };
@@ -1076,6 +1082,10 @@
 				3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */,
 				3E540BE0160D446300D5B759 /* CurlyView.h */,
 				3E540BE1160D446500D5B759 /* CurlyView.m */,
+				3E335E61160D6A050097360C /* FileCell.h */,
+				3E335E62160D6A050097360C /* FileCell.m */,
+				3E335E5E160D69750097360C /* FileViewController.h */,
+				3E335E5F160D69760097360C /* FileViewController.m */,
 				3E407D7F160693E30037134D /* FreightCarEditController.h */,
 				3E407D80160693E30037134D /* FreightCarEditController.m */,
 				3E407D81160693E30037134D /* FreightCarTableCell.h */,
@@ -1823,6 +1833,8 @@
 				3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */,
 				3E540BDD160CE77700D5B759 /* TemplateCell.m in Sources */,
 				3E540BE2160D446500D5B759 /* CurlyView.m in Sources */,
+				3E335E60160D69760097360C /* FileViewController.m in Sources */,
+				3E335E63160D6A050097360C /* FileCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

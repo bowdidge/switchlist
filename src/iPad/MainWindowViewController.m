@@ -34,6 +34,7 @@
 #import "AppDelegate.h"
 #import "AppNavigationController.h"
 #import "EntireLayout.h"
+#import "FileViewController.h"
 #import "HTMLSwitchlistRenderer.h"
 #import "LayoutDetailTabBarController.h"
 #import "ScheduledTrain.h"
@@ -45,6 +46,9 @@
 @interface MainWindowViewController ()
 // Advance layout button.
 @property (nonatomic, retain) IBOutlet UIButton *advanceButton;
+
+// File button.
+@property (nonatomic, retain) IBOutlet UIButton *fileButton;
 
 // Array of all miniature reports being shown.
 @property (nonatomic, retain) NSMutableDictionary *trainNameToCatcher;
@@ -325,6 +329,27 @@ float BOX_HEADER = 25.0;
     // TODO(bowdidge): Do this lazily.
     [self doRegenerateSwitchlists: self];
 }
+
+// Switch from this scene to another.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"fileSegue"]) {
+        FileViewController *fileController = segue.destinationViewController;
+        fileController.myPopoverController = ((UIStoryboardPopoverSegue*)segue).popoverController;
+    }
+}
+
+/*
+- (IBAction) doOpenFilePopover: (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    FileViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"fileView"];
+    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController: controller];
+    controller.myPopoverController = popover;
+    [popover presentPopoverFromRect: [self.fileButton frame]
+                             inView: [self view]
+           permittedArrowDirections: UIPopoverArrowDirectionLeft
+                           animated: YES];
+
+}*/
 
 @synthesize switchlistBox;
 @synthesize reportBox;

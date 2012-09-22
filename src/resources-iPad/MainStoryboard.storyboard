@@ -27,11 +27,11 @@
                         <rect key="frame" x="0.0" y="64" width="768" height="960"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="ICm-gl-VKE">
+                            <view contentMode="scaleToFill" id="9B5-kE-9Ak">
                                 <rect key="frame" x="0.0" y="885" width="768" height="75"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hGZ-vl-A68">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="E1W-nb-wDE">
                                         <rect key="frame" x="596" y="12" width="152" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -43,11 +43,11 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="doAdvanceLayout:" destination="gjO-1d-dV8" eventType="touchUpInside" id="gke-rb-RUU"/>
+                                            <action selector="doAdvanceLayout:" destination="gjO-1d-dV8" eventType="touchUpInside" id="hoY-HK-yXY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ngk-kM-xzW">
-                                        <rect key="frame" x="20" y="17" width="39" height="39"/>
+                                    <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GqT-aF-qZw">
+                                        <rect key="frame" x="78" y="13" width="41" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES" link="YES" image="YES"/>
@@ -61,11 +61,28 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="showLayoutDetail:" destination="gjO-1d-dV8" eventType="touchUpInside" id="ksb-P1-eYD"/>
+                                            <action selector="showLayoutDetail:" destination="gjO-1d-dV8" eventType="touchUpInside" id="se8-MF-J8m"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gxd-rH-AYX">
+                                        <rect key="frame" x="20" y="12" width="50" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="File">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="aK7-Mz-XBc" kind="popover" identifier="fileSegue" popoverAnchorView="Gxd-rH-AYX" id="Mfq-N8-wUF">
+                                                <popoverArrowDirection key="popoverArrowDirection" left="YES"/>
+                                            </segue>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.75577445652173914" green="0.75076388873990285" blue="0.63411898356501706" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.75577445649999997" green="0.75076388869999999" blue="0.63411898359999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view contentMode="scaleToFill" id="xoM-9k-aCG">
                                 <rect key="frame" x="247" y="166" width="384" height="75"/>
@@ -102,7 +119,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="NND-8E-Cil"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="advanceButton" destination="hGZ-vl-A68" id="cEQ-PD-KFx"/>
+                        <outlet property="fileButton" destination="Gxd-rH-AYX" id="R7t-fD-8PO"/>
                         <outlet property="reportBox" destination="eJo-75-TPP" id="eBc-Lx-lWW"/>
                         <outlet property="reportsLabel" destination="nHf-Qh-jpF" id="2P8-Ym-4ps"/>
                         <outlet property="switchlistBox" destination="xoM-9k-aCG" id="ej0-Tz-WSO"/>
@@ -115,6 +132,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AA7-yn-sMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2770" y="-682"/>
+        </scene>
+        <!--File View Controller - File-->
+        <scene sceneID="6Fn-sZ-dYL">
+            <objects>
+                <viewController storyboardIdentifier="fileView" modalPresentationStyle="formSheet" id="aK7-Mz-XBc" customClass="FileViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tdc-g9-x3J">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ugm-vX-Ltc">
+                                <rect key="frame" x="184" y="361" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="VKI-jt-ipR">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="353"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="fileCell" id="2qy-4o-d6o" customClass="FileCell">
+                                        <rect key="frame" x="0.0" y="22" width="400" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Vasona Branch Layout" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="Is0-e8-KQn">
+                                                    <rect key="frame" x="20" y="11" width="332" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="DaR-ja-pPb">
+                                                    <rect key="frame" x="360" y="6" width="32" height="32"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="imageView" destination="DaR-ja-pPb" id="qrb-su-xEg"/>
+                                            <outlet property="label" destination="Is0-e8-KQn" id="GWW-00-4LW"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="aK7-Mz-XBc" id="gOx-oC-Ii7"/>
+                                    <outlet property="delegate" destination="aK7-Mz-XBc" id="b4x-Rm-P5e"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="File" id="hu5-gu-PmY"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="400"/>
+                    <connections>
+                        <outlet property="addButton" destination="ugm-vX-Ltc" id="GVK-x2-uIH"/>
+                        <outlet property="fileTable" destination="VKI-jt-ipR" id="yno-XL-NKg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4o5-Do-m2g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2856" y="558"/>
         </scene>
         <!--Industry Table View Controller - Industries-->
         <scene sceneID="cuc-3l-U6v">
@@ -1088,168 +1176,6 @@
         <image name="train.png" width="512" height="512"/>
         <image name="yard.jpg" width="225" height="225"/>
     </resources>
-    <classes>
-        <class className="AbstractTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AbstractTableViewController.h"/>
-        </class>
-        <class className="AppNavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppNavigationController.h"/>
-        </class>
-        <class className="CargoTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CargoTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cargoDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cargoIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="cargoKind" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cargoName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CargoTableViewController" superclassName="AbstractTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CargoTableViewController.h"/>
-        </class>
-        <class className="ChooseTemplateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChooseTemplateViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="layoutDetailsController" candidateClass="LayoutDetailsViewController"/>
-                <relationship kind="outlet" name="templateTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="CurlyView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurlyView.h"/>
-        </class>
-        <class className="FreightCarEditController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarEditController.h"/>
-            <relationships>
-                <relationship kind="action" name="doPressCameraButton:"/>
-                <relationship kind="action" name="doPressCarTypeButton:"/>
-                <relationship kind="action" name="doPressCargoButton:"/>
-                <relationship kind="action" name="doPressDivisionButton:"/>
-                <relationship kind="action" name="doPressLocationButton:"/>
-                <relationship kind="outlet" name="cameraButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="carPhotoView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="carTypeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="curlyView" candidateClass="CurlyView"/>
-                <relationship kind="outlet" name="currentCargoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="currentLocationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homeDivisionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loadedToggle" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="reportingMarksField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="rightSideSelectionTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FreightCarTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="freightCarDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="freightCarIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="freightCarKind" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="freightCarReportingMarks" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FreightCarTableViewController" superclassName="AbstractTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarTableViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="freightCarTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="IndustryTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndustryTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="industryDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="industryIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="industryName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="industrySidingLength" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="IndustryTableViewController" superclassName="AbstractTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndustryTableViewController.h"/>
-        </class>
-        <class className="LayoutDetailTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LayoutDetailTabBarController.h"/>
-        </class>
-        <class className="LayoutDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LayoutDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doSelectTemplate:"/>
-                <relationship kind="action" name="templateNameChanged:" candidateClass="NSString"/>
-                <relationship kind="outlet" name="templateButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MainWindowViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainWindowViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTouchSwitchList:"/>
-                <relationship kind="action" name="doAdvanceLayout:"/>
-                <relationship kind="action" name="doRegenerateSwitchlists:"/>
-                <relationship kind="action" name="noteRegenerateSwitchlists"/>
-                <relationship kind="action" name="showLayoutDetail:"/>
-                <relationship kind="outlet" name="advanceButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="reportBox" candidateClass="UIView"/>
-                <relationship kind="outlet" name="reportsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="switchlistBox" candidateClass="UIView"/>
-                <relationship kind="outlet" name="switchlistsLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SelectionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellText" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SwitchlistPresentationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SwitchlistPresentationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doPrint:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="printButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="TemplateCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TemplateCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="templateDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="templateName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TownTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TownTableCell.h"/>
-            <relationships>
-                <relationship kind="action" name="hideIcon:"/>
-                <relationship kind="outlet" name="townDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="townIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="townKind" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="townName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TownTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TownTableViewController.h"/>
-        </class>
-        <class className="TrainTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="trainDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="trainIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="trainKind" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="trainName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TrainTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainTableViewController.h"/>
-        </class>
-        <class className="YardTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YardTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="yardDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="yardIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="yardKind" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="yardName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="YardTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YardTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -33,6 +33,8 @@
 #import <CoreData/CoreData.h>
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) NSURL *currentFilePath;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
@@ -92,26 +94,13 @@
         return persistentStoreCoordinator;
     }
     
-    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"vasona.sql"];
-    
-    // Set up the store.
-    // For the sake of illustration, provide a pre-populated default store.
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    // If the expected store doesn't exist, copy the default store.
-    if (![fileManager fileExistsAtPath:[storeURL path]]) {
-        NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"vasona" withExtension:@"sql"];
-        if (defaultStoreURL) {
-            [fileManager copyItemAtURL:defaultStoreURL toURL:storeURL error:NULL];
-        }
-    }
-    
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     
     NSError *error;
     if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                   configuration:nil
-                                                            URL:storeURL
+                                                            URL:self.currentFilePath
                                                         options:options
                                                           error:&error]) {
         /*
@@ -153,8 +142,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    
+    // Load vasona.sql first, copy if not available.
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    self.currentFilePath = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"vasona.sql"];
+
+    if (![fileManager fileExistsAtPath:[self.currentFilePath path]]) {
+        NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"vasona" withExtension:@"sql"];
+        if (defaultStoreURL) {
+            [fileManager copyItemAtURL:defaultStoreURL toURL:self.currentFilePath error:NULL];
+        }
+    }
+ 
     entireLayout = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
     layoutController = [[LayoutController alloc] initWithEntireLayout: entireLayout];
 
@@ -191,6 +189,10 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (NSArray*) allLayouts {
+    return [NSArray arrayWithObject: @"vasona.sql"];
 }
 
 @synthesize managedObjectModel;
