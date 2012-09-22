@@ -127,13 +127,14 @@ enum {
 }
 
 // Window is about to be closed.  Save out the changes to the current freight car.
+// TODO(bowdidge): Should have explicit save button so possible to cancel without editing.
 - (void) viewWillDisappear: (BOOL) animated {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
 
     BOOL hasChanges = NO;
     if (![self.reportingMarksField.text isEqualToString: [self.freightCar reportingMarks]]) {
-        [self.freightCar setReportingMarks: self.reportingMarksField.text];
+        [self.freightCar setReportingMarks: [self.reportingMarksField.text uppercaseString]];
         hasChanges = YES;
     }
     
