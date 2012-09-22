@@ -115,6 +115,9 @@
 // Selector for the example menu items.  Opens the example named by the sending menu.
 - (IBAction) doOpenExample: (id) sender;
 
+// Copies a template directory into the correct application support directory for the app.
+- (IBAction) doImportTemplate: (id) sender;
+
 // Set the current set of problem strings.
 - (void) setProblems: (NSArray*) problemStrings;
 // List of strings in problems.

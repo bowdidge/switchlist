@@ -631,7 +631,7 @@
 		3E407DC6160694070037134D /* XM.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = XM.jpg; path = "resources-iPad/XM.jpg"; sourceTree = "<group>"; };
 		3E407DC7160694070037134D /* yard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = yard.jpg; path = "resources-iPad/yard.jpg"; sourceTree = "<group>"; };
 		3E407DD81606945E0037134D /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = "resources-iPad/InfoPlist.strings"; sourceTree = "<group>"; };
-		3E407DD91606945E0037134D /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard.storyboard; path = "resources-iPad/MainStoryboard.storyboard"; sourceTree = "<group>"; };
+		3E407DD91606945E0037134D /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = MainStoryboard.storyboard; path = "resources-iPad/MainStoryboard.storyboard"; sourceTree = "<group>"; };
 		3E407DE0160694EF0037134D /* libSwitchListEngine-iPad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSwitchListEngine-iPad.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E407DE4160694EF0037134D /* SwitchListEngine-iPad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwitchListEngine-iPad-Prefix.pch"; sourceTree = "<group>"; };
 		3E407DE5160694EF0037134D /* SwitchListEngine_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchListEngine_iPad.h; sourceTree = "<group>"; };
