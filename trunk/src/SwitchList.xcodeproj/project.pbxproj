@@ -82,6 +82,8 @@
 		3E540BE2160D446500D5B759 /* CurlyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BE1160D446500D5B759 /* CurlyView.m */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
+		3E5E6280160E41A20074AE1E /* SwitchListEngine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
+		3E5E628C160E42EE0074AE1E /* SwitchListEngine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
 		3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
 		3E60820413615B680054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
 		3E60820913615B940054DBA1 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
@@ -132,7 +134,7 @@
 		3E9B75F61606402A00891318 /* TrainSizeVector.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9AF44214F9F2AF00580148 /* TrainSizeVector.m */; };
 		3E9B75FA1606402A00891318 /* Yard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D50A39652F0071D6B4 /* Yard.m */; };
 		3E9B75FB1606402A00891318 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
-		3E9B762A160640AD00891318 /* SwitchListEngine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
+		3E9B762A160640AD00891318 /* SwitchListEngine.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
 		3E9B765E160643F500891318 /* CarAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D49060D0F47E40092D1A3 /* CarAssigner.m */; };
 		3E9B765F160643F500891318 /* Cargo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11DD0A39652F0071D6B4 /* Cargo.m */; };
 		3E9B7660160643F500891318 /* CargoAssigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AE98127B293E003486E2 /* CargoAssigner.m */; };
@@ -462,6 +464,16 @@
 				3EAAA7211606C7D400C3D7A8 /* train.png in CopyFiles */,
 				3EAAA7221606C7D400C3D7A8 /* XM.jpg in CopyFiles */,
 				3EAAA7231606C7D400C3D7A8 /* yard.jpg in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5E6289160E42B10074AE1E /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3E5E628C160E42EE0074AE1E /* SwitchListEngine.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -877,7 +889,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E9B762A160640AD00891318 /* SwitchListEngine.dylib in Frameworks */,
+				3E5E6280160E41A20074AE1E /* SwitchListEngine.dylib in Frameworks */,
 				775DFF38067A968500C5B868 /* Cocoa.framework in Frameworks */,
 				3E108C1814049FDA00B77CFE /* libicucore.A.dylib in Frameworks */,
 				3EA487B415D83E73008A169F /* LatentSemanticMapping.framework in Frameworks */,
@@ -1554,6 +1566,7 @@
 				8D15AC300486D014006FF6A4 /* Sources */,
 				8D15AC330486D014006FF6A4 /* Frameworks */,
 				3E6B59D9140CB21A006FFDD3 /* ShellScript */,
+				3E5E6289160E42B10074AE1E /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -1687,6 +1700,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E9B762A160640AD00891318 /* SwitchListEngine.dylib in Resources */,
 				3E1FD9B515CCE78F00568E36 /* icon.icns in Resources */,
 				3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */,
 				3E6C6EC812F007E200C7A8D1 /* Credits.html in Resources */,
@@ -1744,7 +1758,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy framework into place.\ncp -r $\n# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\ncp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n";
+			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\ncp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n";
 		};
 		3E9B78641606527600891318 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
