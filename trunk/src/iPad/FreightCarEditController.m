@@ -31,6 +31,7 @@
 #import "AppDelegate.h"
 #import "Cargo.h"
 #import "CarType.h"
+#import "CurlyView.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "FreightCarTableViewController.h"
@@ -66,6 +67,8 @@ enum {
 @property (retain, nonatomic) NSArray *divisions;
 
 @property (nonatomic) int currentSelectionMode;
+
+@property (nonatomic, retain) IBOutlet CurlyView *curlyView;
 @end
 
 @implementation FreightCarEditController
@@ -182,9 +185,16 @@ enum {
 }
 
 // Widens the popover to a larger width that displays the right-hand-side table.
-// TODO(bowdidge): Scroll up so that the table doesn't get cut off by the keyboard.
-- (void) doWidenPopover {
+// Also sets up curves between the button requesting the information and the table
+// to hint what's being selected.
+// TODO(bowdidge): Better done with just some light highlighting under the button?
+- (void) doWidenPopoverFrom: (CGRect) leftSideRect {
+    
     CGRect currentFrame = self.view.frame;
+    self.curlyView.leftRegion = leftSideRect;
+    self.curlyView.rightRegion = self.rightSideSelectionTable.frame;
+    [self.curlyView setNeedsDisplay];
+
     // Stock size is 288x342, widen to 540x342 to show list.
     currentFrame.size.width = 540;
     self.view.frame = currentFrame;
@@ -194,14 +204,14 @@ enum {
 
 // Handles the user pressing the car type in order to select a different value.
 - (IBAction) doPressCarTypeButton: (id) sender {
-    [self doWidenPopover];
+    [self doWidenPopoverFrom: self.carTypeButton.frame];
     self.currentSelectionMode = SelectionViewCarType;
     [self.rightSideSelectionTable reloadData];
 }
 
 // Handles the user pressing the cargo button in order to select a different value.
 - (IBAction) doPressCargoButton: (id) sender {
-    [self doWidenPopover];
+    [self doWidenPopoverFrom: self.currentCargoButton.frame];
     self.currentSelectionMode = SelectionViewCurrentCargo;
     [self.rightSideSelectionTable reloadData];    
 }
@@ -209,7 +219,7 @@ enum {
 // Handles the user pressing the location button to select a different current location
 // for the freight car.
 - (IBAction) doPressLocationButton: (id) sender {
-    [self doWidenPopover];
+    [self doWidenPopoverFrom: self.currentLocationButton.frame];
     self.currentSelectionMode = SelectionViewLocation;
     [self.rightSideSelectionTable reloadData];
     
@@ -218,7 +228,7 @@ enum {
 // Handles the user pressing the division button to select a different home division
 // for the freight car.
 - (IBAction) doPressDivisionButton: (id) sender {
-    [self doWidenPopover];
+    [self doWidenPopoverFrom: self.homeDivisionButton.frame];
     self.currentSelectionMode = SelectionViewDivision;
     [self.rightSideSelectionTable reloadData];
     

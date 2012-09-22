@@ -654,71 +654,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" id="Io6-lX-1je" customClass="CurlyView">
+                                <rect key="frame" x="1" y="0.0" width="539" height="521"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" text="Reporting Marks" id="FyF-qz-gLP">
-                                <rect key="frame" x="141" y="20" width="140" height="30"/>
+                                <rect key="frame" x="134" y="20" width="140" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Cargo:" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="zG3-Om-ptw">
-                                <rect key="frame" x="3" y="93" width="130" height="21"/>
+                                <rect key="frame" x="1" y="93" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Location:" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="5Ps-pX-CyG">
-                                <rect key="frame" x="3" y="179" width="130" height="21"/>
+                                <rect key="frame" x="1" y="179" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Division:" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="tdX-k1-AJg">
-                                <rect key="frame" x="3" y="215" width="130" height="21"/>
+                                <rect key="frame" x="1" y="215" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" text="40" id="D39-sp-TgW">
-                                <rect key="frame" x="141" y="249" width="140" height="30"/>
+                                <rect key="frame" x="134" y="249" width="140" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Length" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="wT1-3u-f9T">
-                                <rect key="frame" x="3" y="253" width="130" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Length:" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="wT1-3u-f9T">
+                                <rect key="frame" x="1" y="253" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Photo:" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="M1a-bJ-qoV">
-                                <rect key="frame" x="3" y="297" width="130" height="21"/>
+                                <rect key="frame" x="1" y="297" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Reporting Marks:" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="JO4-I8-Ni6">
-                                <rect key="frame" x="3" y="24" width="130" height="21"/>
+                                <rect key="frame" x="1" y="24" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" text="Car Type:" textAlignment="right" adjustsFontSizeToFit="NO" autoshrinkMode="none" id="BSP-0w-4Da">
-                                <rect key="frame" x="3" y="59" width="130" height="21"/>
+                                <rect key="frame" x="1" y="59" width="130" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="highlightedColor"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="LCf-8M-9tH">
-                                <rect key="frame" x="141" y="125" width="140" height="44"/>
+                                <rect key="frame" x="134" y="125" width="140" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
                                     <segment title="Loaded"/>
@@ -726,12 +731,12 @@
                                 </segments>
                             </segmentedControl>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="h8b-aK-liF">
-                                <rect key="frame" x="144" y="287" width="79" height="43"/>
+                                <rect key="frame" x="137" y="287" width="79" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.01406464646" green="0.42087360950000002" blue="0.67391304350000003" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i2u-0G-mNl">
-                                <rect key="frame" x="230" y="288" width="51" height="40"/>
+                                <rect key="frame" x="222" y="288" width="39" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Camera" image="camera.jpg">
@@ -746,7 +751,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jhV-cw-3XU">
-                                <rect key="frame" x="141" y="57" width="140" height="26"/>
+                                <rect key="frame" x="134" y="57" width="140" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Car Type">
@@ -761,7 +766,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZaA-Xt-bvR">
-                                <rect key="frame" x="141" y="91" width="140" height="27"/>
+                                <rect key="frame" x="134" y="91" width="140" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Current Cargo">
@@ -804,7 +809,7 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ov4-S7-E0v">
-                                <rect key="frame" x="141" y="176" width="140" height="29"/>
+                                <rect key="frame" x="134" y="176" width="140" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Current Location">
@@ -819,7 +824,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="J4D-99-SzT">
-                                <rect key="frame" x="141" y="212" width="140" height="29"/>
+                                <rect key="frame" x="134" y="212" width="140" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Home Division">
@@ -846,12 +851,14 @@
                         <outlet property="cameraButton" destination="i2u-0G-mNl" id="u6S-pX-cAs"/>
                         <outlet property="carPhotoView" destination="h8b-aK-liF" id="GuR-nU-qi6"/>
                         <outlet property="carTypeButton" destination="jhV-cw-3XU" id="w52-CG-f06"/>
+                        <outlet property="curlyView" destination="Io6-lX-1je" id="Dzh-L6-Obv"/>
                         <outlet property="currentCargoButton" destination="ZaA-Xt-bvR" id="aSN-0X-KMI"/>
                         <outlet property="currentLocationButton" destination="ov4-S7-E0v" id="oTw-F6-FGt"/>
                         <outlet property="homeDivisionButton" destination="J4D-99-SzT" id="pXB-mU-6NQ"/>
                         <outlet property="loadedToggle" destination="LCf-8M-9tH" id="KCg-n7-pdg"/>
                         <outlet property="reportingMarksField" destination="FyF-qz-gLP" id="xUd-UZ-9I1"/>
                         <outlet property="rightSideSelectionTable" destination="Emt-pQ-TWQ" id="yzW-AY-xvs"/>
+                        <outlet property="view" destination="8Mx-YI-Yaj" id="fOv-6i-6rJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Hh-IJ-sEv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1103,8 +1110,12 @@
         <class className="ChooseTemplateViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ChooseTemplateViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="layoutDetailsController" candidateClass="LayoutDetailsViewController"/>
                 <relationship kind="outlet" name="templateTable" candidateClass="UITableView"/>
             </relationships>
+        </class>
+        <class className="CurlyView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurlyView.h"/>
         </class>
         <class className="FreightCarEditController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarEditController.h"/>
@@ -1117,6 +1128,7 @@
                 <relationship kind="outlet" name="cameraButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="carPhotoView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="carTypeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="curlyView" candidateClass="CurlyView"/>
                 <relationship kind="outlet" name="currentCargoButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="currentLocationButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="homeDivisionButton" candidateClass="UIButton"/>
@@ -1159,6 +1171,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LayoutDetailsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="doSelectTemplate:"/>
+                <relationship kind="action" name="templateNameChanged:" candidateClass="NSString"/>
                 <relationship kind="outlet" name="templateButton" candidateClass="UIButton"/>
             </relationships>
         </class>
@@ -1167,6 +1180,8 @@
             <relationships>
                 <relationship kind="action" name="didTouchSwitchList:"/>
                 <relationship kind="action" name="doAdvanceLayout:"/>
+                <relationship kind="action" name="doRegenerateSwitchlists:"/>
+                <relationship kind="action" name="noteRegenerateSwitchlists"/>
                 <relationship kind="action" name="showLayoutDetail:"/>
                 <relationship kind="outlet" name="advanceButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="reportBox" candidateClass="UIView"/>
