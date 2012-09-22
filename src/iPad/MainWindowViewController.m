@@ -257,7 +257,7 @@ float BOX_HEADER = 25.0;
 
 - (void) viewWillAppear {
     if (self.needsSwitchlistRegeneration) {
-        [self doRenegerateSwitchlists: self];
+        [self doRegenerateSwitchlists: self];
         self.needsSwitchlistRegeneration = NO;
     }
 }
