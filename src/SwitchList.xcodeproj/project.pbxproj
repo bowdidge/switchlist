@@ -76,6 +76,7 @@
 		3E43B4DC150741B400AAA92B /* testAdvanceLayoutsMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */; };
 		3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */; };
 		3E540BDD160CE77700D5B759 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BDC160CE77700D5B759 /* TemplateCell.m */; };
+		3E540BE2160D446500D5B759 /* CurlyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BE1160D446500D5B759 /* CurlyView.m */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
@@ -640,6 +641,8 @@
 		3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseTemplateViewController.m; sourceTree = "<group>"; };
 		3E540BDB160CE77600D5B759 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCell.h; sourceTree = "<group>"; };
 		3E540BDC160CE77700D5B759 /* TemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCell.m; sourceTree = "<group>"; };
+		3E540BE0160D446300D5B759 /* CurlyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurlyView.h; sourceTree = "<group>"; };
+		3E540BE1160D446500D5B759 /* CurlyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurlyView.m; sourceTree = "<group>"; };
 		3E57C59112FBD95E00E51008 /* SwitchListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListBaseView.h; sourceTree = "<group>"; };
 		3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseView.m; sourceTree = "<group>"; };
 		3E57C5CB12FBDCC600E51008 /* KaufmanSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaufmanSwitchListView.h; sourceTree = "<group>"; };
@@ -1071,6 +1074,8 @@
 				3E407D7E160693E30037134D /* CargoTableViewController.m */,
 				3E540BD8160CE68400D5B759 /* ChooseTemplateViewController.h */,
 				3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */,
+				3E540BE0160D446300D5B759 /* CurlyView.h */,
+				3E540BE1160D446500D5B759 /* CurlyView.m */,
 				3E407D7F160693E30037134D /* FreightCarEditController.h */,
 				3E407D80160693E30037134D /* FreightCarEditController.m */,
 				3E407D81160693E30037134D /* FreightCarTableCell.h */,
@@ -1817,6 +1822,7 @@
 				3E11BF82160CE279007605D6 /* LayoutDetailsViewController.m in Sources */,
 				3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */,
 				3E540BDD160CE77700D5B759 /* TemplateCell.m in Sources */,
+				3E540BE2160D446500D5B759 /* CurlyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
