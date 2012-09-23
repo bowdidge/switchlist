@@ -35,6 +35,9 @@
 
 - (void) freightCarsChanged: (id) sender;
 
+// Requests edit view be closed.
+- (IBAction) doDismissEditPopover: (id) sender;
+
 @property (retain, nonatomic) NSArray *allFreightCars;
 @property (retain, nonatomic) NSArray *allFreightCarsOnWorkbench;
 @property (retain, nonatomic) IBOutlet UITableView *freightCarTable;

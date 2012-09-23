@@ -41,7 +41,7 @@
 - (IBAction) doPressCargoButton: (id) sender;
 - (IBAction) doPressLocationButton: (id) sender;
 - (IBAction) doPressDivisionButton: (id) sender;
-
+- (IBAction) doSave: (id) sender;
 // Freight car to display.
 @property (nonatomic, retain) FreightCar *freightCar;
 // Controller for small edit window once car has been selected.

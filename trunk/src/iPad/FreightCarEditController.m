@@ -61,6 +61,8 @@ enum {
 @property (retain, nonatomic) IBOutlet UISegmentedControl *loadedToggle;
 @property (retain, nonatomic) IBOutlet UITableView *rightSideSelectionTable;
 
+@property (retain, nonatomic) IBOutlet UINavigationBar *myNavigationBar;
+
 // Cached copies of layout details.
 @property (retain, nonatomic) NSArray *carTypes;
 @property (retain, nonatomic) NSArray *locations;
@@ -126,9 +128,8 @@ enum {
     self.carPhotoView.image = [self imageForFreightCar: self.freightCar];
 }
 
-// Window is about to be closed.  Save out the changes to the current freight car.
-// TODO(bowdidge): Should have explicit save button so possible to cancel without editing.
-- (void) viewWillDisappear: (BOOL) animated {
+// Change the freight car as suggested.
+- (IBAction) doSave: (id) sender {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
 
@@ -178,10 +179,16 @@ enum {
     }
     
     self.carPhotoView.image = nil;
-    [super viewWillDisappear: animated];
     if (hasChanges) {
         [self.myTableController freightCarsChanged: self];
     }
+    [self.myTableController doDismissEditPopover: self];
+}
+
+// Window is about to be closed.  Save out the changes to the current freight car.
+// TODO(bowdidge): Should have explicit save button so possible to cancel without editing.
+- (void) viewWillDisappear: (BOOL) animated {
+    [super viewWillDisappear: animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -324,6 +331,7 @@ enum {
     if (cell == nil) {
         cell = [[SelectionCell alloc] initWithStyle:UITableViewCellStyleDefault
                                       reuseIdentifier:CellIdentifier];
+        [cell autorelease];
     }
     
     CarType *carType = nil;

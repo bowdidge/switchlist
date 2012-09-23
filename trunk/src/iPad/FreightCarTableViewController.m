@@ -40,6 +40,7 @@
 
 @interface FreightCarTableViewController ()
 
+@property (retain, nonatomic) UIPopoverController *myPopoverController;
 @end
 
 @implementation FreightCarTableViewController
@@ -61,6 +62,12 @@
     self.allFreightCarsOnWorkbench = [myLayout allFreightCarsOnWorkbench];
 }
 
+// Notifies the table controller that the table data is invalid.  Called from edit popover.
+- (void) freightCarsChanged: (id) sender {
+    [self regenerateTableData];
+    [self.freightCarTable reloadData];
+}
+
 - (void) viewWillAppear: (BOOL) animate {
     [super viewWillAppear: animate];
     [self regenerateTableData];
@@ -76,6 +83,11 @@
     self.allFreightCarsOnWorkbench = nil;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// Requests edit view be closed.
+- (IBAction) doDismissEditPopover: (id) sender {
+    [self.myPopoverController dismissPopoverAnimated: YES];
 }
 
 #pragma mark - Table view data source
@@ -136,6 +148,7 @@
         cell = [[FreightCarTableCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:CellIdentifier];
+        [cell autorelease];
     }
     
     FreightCar *fc = [self freightCarAtIndexPath: indexPath];
@@ -210,22 +223,17 @@
     
     CGRect cellFrame = [tableView rectForRowAtIndexPath: indexPath];
     
-    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController: freightCarEditVC];
-    freightCarEditVC.myPopoverController = popover;
+    self.myPopoverController = [[[UIPopoverController alloc] initWithContentViewController: freightCarEditVC] autorelease];
+    // Freight car edit popover needs handle to popover to change its size.
+    freightCarEditVC.myPopoverController = self.myPopoverController;
     // Give editor a chance to call us back.
     freightCarEditVC.myTableController = self;
     CGRect cellRect = [tableView convertRect: cellFrame toView: self.view];
     // Move rect to far left so that we try to have the edit popover point to the left.
     cellRect.size.width = 100;
-    [popover presentPopoverFromRect: cellRect
-                             inView: [self view]
-           permittedArrowDirections: UIPopoverArrowDirectionLeft
-                           animated: YES];
+    [self.myPopoverController presentPopoverFromRect: cellRect
+                                              inView: [self view]
+                            permittedArrowDirections: UIPopoverArrowDirectionLeft
+                                            animated: YES];
 }
-
-- (void) freightCarsChanged: (id) sender {
-    [self regenerateTableData];
-    [self.freightCarTable reloadData];
-}
-
 @end

@@ -438,6 +438,13 @@
 			remoteGlobalIDString = 3E9B78041606527600891318;
 			remoteInfo = "Engine Unit Tests";
 		};
+		3EEE4509160EC1A6003A5304 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E9B78041606527600891318;
+			remoteInfo = "Engine Unit Tests";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -1448,6 +1455,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3EEE450A160EC1A6003A5304 /* PBXTargetDependency */,
 			);
 			name = "Switchlist-iPad";
 			productName = "Switchlist-iPad";
@@ -2136,6 +2144,11 @@
 			isa = PBXTargetDependency;
 			target = 3E9B78041606527600891318 /* Engine Unit Tests */;
 			targetProxy = 3E9B793316065AB800891318 /* PBXContainerItemProxy */;
+		};
+		3EEE450A160EC1A6003A5304 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E9B78041606527600891318 /* Engine Unit Tests */;
+			targetProxy = 3EEE4509160EC1A6003A5304 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

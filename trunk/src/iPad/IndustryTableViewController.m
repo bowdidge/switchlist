@@ -84,6 +84,7 @@
         cell = [[IndustryTableCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:CellIdentifier];
+        [cell autorelease];
     }
     
     // Configure the cell...
