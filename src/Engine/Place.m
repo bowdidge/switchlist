@@ -43,8 +43,7 @@
 	[self setName: @"New town"];
 }
 
-- (BOOL)isOffline 
-{
+- (BOOL)isOffline {
     NSNumber * tmpValue;
     
     [self willAccessValueForKey: @"isOffline"];
@@ -88,8 +87,7 @@
 	}
 }
 	
-- (BOOL) isStaging 
-{
+- (BOOL) isStaging {
     NSNumber * tmpValue;
     
     [self willAccessValueForKey: @"isStaging"];
@@ -104,6 +102,17 @@
     [self willChangeValueForKey: @"isStaging"];
     [self setPrimitiveValue: value forKey: @"isStaging"];
     [self didChangeValueForKey: @"isStaging"];
+}
+
+// Returns true if town is on layout (not in staging or offline).
+- (BOOL) isOnLayout {
+    return (![self isStaging] && ![self isOffline]);
+}
+
+// Marks the town as on the layout (not in staging or offline).
+- (void) setIsOnLayout {
+    [self setIsStaging: NO];
+    [self setIsOffline: NO];
 }
 
 - (NSSet*) industries {
