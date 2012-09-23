@@ -32,4 +32,8 @@
 
 // Controller for towns tab.
 @interface TownTableViewController : UITableViewController
+// Notifies table controller that it's time to redraw the list of towns.
+- (void) townsChanged: (id) sender;
+// Requests edit view be closed.
+- (IBAction) doDismissEditPopover: (id) sender;
 @end

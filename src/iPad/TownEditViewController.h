@@ -29,14 +29,14 @@
 #import <UIKit/UIKit.h>
 
 @class Place;
+@class TownTableViewController;
 
 @interface TownEditViewController : UIViewController
 // Town to draw (or change)
 @property (nonatomic, retain)  Place *myTown;
 
 // Reference back to the controller that spawned the TownEditViewController.
-@property (nonatomic,retain) IBOutlet UIViewController *townTableViewController;
+@property (nonatomic,retain) IBOutlet TownTableViewController *townTableViewController;
 
-// Reference to the popover controller that created the window.
-@property (nonatomic,retain) IBOutlet UIPopoverController *myPopoverController;
+@property (nonatomic, retain) IBOutlet UINavigationBar *myNavigationBar;
 @end

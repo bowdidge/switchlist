@@ -28,9 +28,15 @@
 
 #import "TownEditViewController.h"
 
+#import "AppDelegate.h"
+#import "EntireLayout.h"
+#import "Place.h"
+#import "TownTableViewController.h"
+
 @interface TownEditViewController ()
 @property (nonatomic, retain) IBOutlet UITextField *townNameTextField;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *townLocationControl;
+
 @end
 
 @implementation TownEditViewController
@@ -50,15 +56,56 @@
 	// Do any additional setup after loading the view.
 }
 
+// Window is about to load.  Populate the currently selected town's details.
+- (void) viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
+
+    int segmentOn=0;
+    
+    if ([self.myTown isOffline]) {
+        segmentOn = 2;
+    } else if ([self.myTown isStaging]) {
+        segmentOn = 1;
+    }
+    self.townNameTextField.text = [self.myTown name];
+    self.townLocationControl.selectedSegmentIndex = segmentOn;
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+// Commits any changes to the town, and closes the popover.
+- (IBAction) doSave: (id) sender {
+    BOOL hasChanges = NO;
+    if (![self.townNameTextField.text isEqualToString: [self.myTown name]]) {
+        [self.myTown setName: self.townNameTextField.text];
+        hasChanges = YES;
+    }
+    
+    int currentSegment = self.townLocationControl.selectedSegmentIndex;
+
+    if (currentSegment == 2 && ![self.myTown isOffline]) {
+        [self.myTown setIsOffline: YES];
+        hasChanges = YES;
+    } else if (currentSegment == 1 && ![self.myTown isStaging]) {
+        [self.myTown setIsStaging: YES];
+        hasChanges = YES;
+    } else if (currentSegment == 0 && ![self.myTown isOnLayout]) {
+        [self.myTown setIsOnLayout];
+        hasChanges = YES;
+    }
+
+    if (hasChanges) {
+        [self.townTableViewController townsChanged: self];
+    }
+    [self.townTableViewController doDismissEditPopover: (id) sender];
+}
+
 @synthesize townNameTextField;
 @synthesize townLocationControl;
 @synthesize townTableViewController;
-@synthesize myPopoverController;
-
+@synthesize myNavigationBar;
 @end
