@@ -18,23 +18,33 @@
 	STAssertEqualObjects(@"On Layout", [stationA kind], @"");
 	STAssertFalse([stationA isStaging], @"");
 	STAssertFalse([stationA isOffline], @"");
+    STAssertTrue([stationA isOnLayout], @"");
 	
 	[stationA setIsStaging: YES];
 	STAssertEqualObjects(@"Staging", [stationA kind], @"");
 	STAssertTrue([stationA isStaging], @"");
 	STAssertFalse([stationA isOffline], @"");
-	
-	[stationA setIsStaging: NO];
+	STAssertFalse([stationA isOnLayout], @"");
+    
+	[stationA setIsOnLayout];
+	STAssertEqualObjects(@"On Layout", [stationA kind], @"");
+	STAssertFalse([stationA isStaging], @"");
+	STAssertFalse([stationA isOffline], @"");
+    STAssertTrue([stationA isOnLayout], @"");
+
+    [stationA setIsStaging: NO];
 	[stationA setIsOffline: YES];
 	STAssertEqualObjects(@"Offline", [stationA kind], @"");
 	STAssertFalse([stationA isStaging], @"");
 	STAssertTrue([stationA isOffline], @"");
+    STAssertFalse([stationA isOnLayout], @"");
 	
 	[stationA setIsStaging: NO];
 	[stationA setIsOffline: NO];
 	STAssertEqualObjects(@"On Layout", [stationA kind], @"");
 	STAssertFalse([stationA isStaging], @"");
 	STAssertFalse([stationA isOffline], @"");
+    STAssertTrue([stationA isOnLayout], @"");
 }
 
 - (void) testTemplateDirectory {

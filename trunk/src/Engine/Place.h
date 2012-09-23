@@ -48,6 +48,9 @@
 - (BOOL)isStaging;
 - (void)setIsStaging:(BOOL) value;
 
+- (BOOL) isOnLayout;
+- (void) setIsOnLayout;
+
 // Synthesized field that converts the isStaging and isOffline flag
 // into a single string value, and allowing both to be set.
 // Will return either "On Layout", "Staging", or "Offline".
@@ -66,6 +69,8 @@
 - (BOOL) hasYard;
 
 - (BOOL)validateName: (id*) namePtr error:(NSError **)error;
+
+- (NSComparisonResult) compareNames: (Place*) p;
 
 // Create dictionary imitating all HTML accessible fields of object.
 - (NSMutableDictionary*) templateDictionary;
