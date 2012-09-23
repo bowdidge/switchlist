@@ -75,6 +75,7 @@
 // Copies the selected problems to the clipboard as strings, or all problems if
 // none are selected.
 - (IBAction) copy: (id) sender {
+	// TODO(bowdidge): NSPasteboardItem is not available in 10.5, so this code just fails silently.
 	NSPasteboard *pboard = [NSPasteboard generalPasteboard];
 	[pboard clearContents];
 	NSPasteboardItem *pasteboardItem = [[[NSPasteboardItem alloc] init] autorelease];
