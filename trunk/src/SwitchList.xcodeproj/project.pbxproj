@@ -2850,7 +2850,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
@@ -2861,7 +2861,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = (
-					x86_64,
 					i386,
 					ppc,
 				);
@@ -2885,7 +2884,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
@@ -2915,7 +2914,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2925,21 +2924,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = Debug;
 		};
 		3EA5978208DC051800D5A852 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = Release;
 		};
 		3EA5978308DC051800D5A852 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = Default;
 		};
@@ -3051,7 +3050,7 @@
 		3ECA381C15D4C46E0084413B /* App Store */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx10.5;
 			};
 			name = "App Store";
 		};
@@ -3081,7 +3080,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.6;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
