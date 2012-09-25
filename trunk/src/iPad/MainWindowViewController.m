@@ -63,6 +63,9 @@
 
 @implementation MainWindowViewController
 
+- (void) setValue: (id) x forUndefinedKey: (id) y {
+    NSLog(@"%@ %@", x, y);
+}
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

@@ -31,4 +31,10 @@
 #import "AbstractTableViewController.h"
 
 @interface IndustryTableViewController : AbstractTableViewController
+- (void) industriesChanged: (id) sender;
+
+// Requests edit view be closed.
+- (IBAction) doDismissEditPopover: (id) sender;
+
+@property (nonatomic, retain) IBOutlet UIPopoverController *myPopoverController;
 @end

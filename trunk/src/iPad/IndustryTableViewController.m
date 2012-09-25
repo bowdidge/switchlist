@@ -32,26 +32,52 @@
 #import "AppNavigationController.h"
 #import "Cargo.h"
 #import "Industry.h"
+#import "IndustryEditViewController.h"
 #import "IndustryTableCell.h"
 #import "SwitchListColors.h"
 
 @interface IndustryTableViewController ()
 @property (retain, nonatomic) NSArray *allIndustries;
+@property (retain, nonatomic) IBOutlet UITableView *industryTableView;
 @end
 
 @implementation IndustryTableViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    EntireLayout *myLayout = myAppDelegate.entireLayout;
-    allIndustries = [[myLayout allIndustries] copy];
 }
 
+// Gathers freight car data from the entire layout again, reloading if necessary.
+- (void) regenerateTableData {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *myLayout = myAppDelegate.entireLayout;
+    self.allIndustries = [myLayout allIndustries];
+}
+
+// Notifies the table controller that the table data is invalid.  Called from edit popover.
+- (void) industriesChanged: (id) sender {
+    [self regenerateTableData];
+    [self.industryTableView reloadData];
+}
+
+- (void) viewWillAppear: (BOOL) animate {
+    [super viewWillAppear: animate];
+    [self regenerateTableData];
+}
+
+- (void) viewWillDisappear: (BOOL) animate {
+    self.allIndustries = nil;
+    [super viewWillDisappear: animate];
+}
 - (void)didReceiveMemoryWarning {
+    self.allIndustries = nil;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (Industry*) industryAtIndexPath: (NSIndexPath *) indexPath {
+    return [self.allIndustries objectAtIndex: [indexPath row]];
+}
+
 
 #pragma mark - Table view data source
 
@@ -71,8 +97,8 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Add one item for the "Add Industry" cell.
-    return [allIndustries count] + 1;
+    // TODO(bowdidge) Add one item for the "Add Industry" cell.
+    return [allIndustries count];
 }
 
 // Generates cell for particular row.
@@ -92,7 +118,7 @@
     if (row == [self.allIndustries count]) {
         [cell fillInAsAddCell];
     } else {
-        Industry *industry = [allIndustries objectAtIndex: row];
+        Industry *industry = [self industryAtIndexPath: indexPath];
         [cell fillInAsIndustry: industry];
     }
     return cell;
@@ -144,17 +170,39 @@
 }
 */
 
+
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    AppNavigationController *navigationController = (AppNavigationController*)myAppDelegate.window.rootViewController;
-    
+// Handles presses on the table.  When a selection is made in the freight
+// car table, we show a popover for editing the freight car.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    UIViewController *townEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editIndustry"];
-    townEditVC.modalPresentationStyle = UIModalPresentationFormSheet;
-    [navigationController pushViewController: townEditVC animated: YES];
+    IndustryEditViewController *industryEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editIndustry"];
+    Industry *myIndustry = [self industryAtIndexPath: indexPath];
+    if (!myIndustry) {
+        // Create a new industry.
+    }
+    industryEditVC.myIndustry = myIndustry;
+    
+    CGRect cellFrame = [tableView rectForRowAtIndexPath: indexPath];
+    
+    self.myPopoverController = [[[UIPopoverController alloc] initWithContentViewController: industryEditVC] autorelease];
+    // Industry edit popover needs handle to popover to change its size.
+    industryEditVC.myPopoverController = self.myPopoverController;
+    // Give editor a chance to call us back.
+    industryEditVC.myTableController = self;
+    CGRect cellRect = [tableView convertRect: cellFrame toView: self.view];
+    // Move rect to far left so that we try to have the edit popover point to the left.
+    cellRect.size.width = 100;
+    [self.myPopoverController presentPopoverFromRect: cellRect
+                                              inView: [self view]
+                            permittedArrowDirections: UIPopoverArrowDirectionLeft
+                                            animated: YES];
+}
+
+// Requests edit view be closed.
+- (IBAction) doDismissEditPopover: (id) sender {
+    [self.myPopoverController dismissPopoverAnimated: YES];
 }
 
 @synthesize allIndustries;
