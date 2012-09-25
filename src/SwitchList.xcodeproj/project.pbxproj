@@ -88,6 +88,10 @@
 		3E60820413615B680054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
 		3E60820913615B940054DBA1 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E60B66F1318B49C007C094D /* ReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60B66E1318B49C007C094D /* ReportTest.m */; };
+		3E65E56016116C120083ECF0 /* AddCarType.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */; };
+		3E65E56116116C120083ECF0 /* AddCargoRate.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */; };
+		3E65E56216116C120083ECF0 /* AddSidingLength.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */; };
+		3E65E56316116C120083ECF0 /* NoSidingToLatest.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */; };
 		3E6B58A7140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B58A5140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m */; };
 		3E6B59D0140CB1CD006FFDD3 /* builtin-templates in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B59B4140CB1CD006FFDD3 /* builtin-templates */; };
 		3E6BA8F8155266880030AE7D /* layout.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E6BA8F4155266880030AE7D /* layout.css */; };
@@ -1708,6 +1712,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E65E56016116C120083ECF0 /* AddCarType.xcmappingmodel in Resources */,
+				3E65E56116116C120083ECF0 /* AddCargoRate.xcmappingmodel in Resources */,
+				3E65E56216116C120083ECF0 /* AddSidingLength.xcmappingmodel in Resources */,
+				3E65E56316116C120083ECF0 /* NoSidingToLatest.xcmappingmodel in Resources */,
 				3E9B762A160640AD00891318 /* SwitchListEngine.dylib in Resources */,
 				3E1FD9B515CCE78F00568E36 /* icon.icns in Resources */,
 				3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */,
