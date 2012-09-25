@@ -17,6 +17,7 @@
 		3E108C1714049FDA00B77CFE /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E108C1614049FD900B77CFE /* libicucore.A.dylib */; };
 		3E108C1814049FDA00B77CFE /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E108C1614049FD900B77CFE /* libicucore.A.dylib */; };
 		3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
+		3E11BF2216101DF300BE97D6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DD91606945E0037134D /* MainStoryboard.storyboard */; };
 		3E11BF82160CE279007605D6 /* LayoutDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E11BF81160CE279007605D6 /* LayoutDetailsViewController.m */; };
 		3E1FD9B515CCE78F00568E36 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3E1FD9B415CCE78F00568E36 /* icon.icns */; };
 		3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */; };
@@ -73,7 +74,6 @@
 		3E407DD5160694070037134D /* XM.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DC6160694070037134D /* XM.jpg */; };
 		3E407DD6160694070037134D /* yard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DC7160694070037134D /* yard.jpg */; };
 		3E407DDA1606945E0037134D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DD81606945E0037134D /* InfoPlist.strings */; };
-		3E407DDB1606945E0037134D /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DD91606945E0037134D /* MainStoryboard.storyboard */; };
 		3E407DE1160694EF0037134D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E407D5A160693170037134D /* Foundation.framework */; };
 		3E407DE8160694EF0037134D /* SwitchListEngine_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E407DE7160694EF0037134D /* SwitchListEngine_iPad.m */; };
 		3E43B4DC150741B400AAA92B /* testAdvanceLayoutsMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */; };
@@ -251,9 +251,7 @@
 		3EA4884615D84B00008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
 		3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
 		3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4891815D85C7C008A169F /* SuggestedCargoController.m */; };
-		3EAAA70A1606C4BD00C3D7A8 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EAAA7091606C4BD00C3D7A8 /* icon.png */; };
 		3EAAA70E1606C70200C3D7A8 /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
-		3EAAA70F1606C75A00C3D7A8 /* MainStoryboard.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 3E407DD91606945E0037134D /* MainStoryboard.storyboard */; };
 		3EAAA7101606C78700C3D7A8 /* MainStoryboard.storyboard in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DD91606945E0037134D /* MainStoryboard.storyboard */; };
 		3EAAA7141606C7D400C3D7A8 /* camera.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DB9160694070037134D /* camera.jpg */; };
 		3EAAA7151606C7D400C3D7A8 /* cargo.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DBA160694070037134D /* cargo.jpg */; };
@@ -397,6 +395,7 @@
 		3EE33419141B2D890050A5A9 /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
 		3EE380BE133D284F0069C963 /* SwitchRouteDialogControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */; };
 		3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */ = {isa = PBXBuildFile; fileRef = 3EE5ED9D131A1E03009E2C83 /* SwitchList.help */; };
+		3EEE4512160EC3FD003A5304 /* IndustryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE4511160EC3FD003A5304 /* IndustryEditViewController.m */; };
 		3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
 		3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
 		3EFA164509515C1500654CC9 /* Report.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFA164309515C1500654CC9 /* Report.nib */; };
@@ -436,13 +435,6 @@
 			remoteInfo = SwitchListEngine;
 		};
 		3E9B793316065AB800891318 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3E9B78041606527600891318;
-			remoteInfo = "Engine Unit Tests";
-		};
-		3EEE4509160EC1A6003A5304 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 			proxyType = 1;
@@ -797,6 +789,8 @@
 		3EE711361285D4F2006059F4 /* CarTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarTypes.m; path = Engine/CarTypes.m; sourceTree = "<group>"; };
 		3EE711661285D81E006059F4 /* CarTypesTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarTypesTest.h; path = Engine/CarTypesTest.h; sourceTree = "<group>"; };
 		3EE711671285D81E006059F4 /* CarTypesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarTypesTest.m; path = Engine/CarTypesTest.m; sourceTree = "<group>"; };
+		3EEE4510160EC3FD003A5304 /* IndustryEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndustryEditViewController.h; path = iPad/IndustryEditViewController.h; sourceTree = "<group>"; };
+		3EEE4511160EC3FD003A5304 /* IndustryEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndustryEditViewController.m; path = iPad/IndustryEditViewController.m; sourceTree = "<group>"; };
 		3EF294D61312F40700D2C3F6 /* GlobalPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlobalPreferences.h; path = Engine/GlobalPreferences.h; sourceTree = "<group>"; };
 		3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GlobalPreferences.m; path = Engine/GlobalPreferences.m; sourceTree = "<group>"; };
 		3EF7D00F134C13EA00C76407 /* PICLReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PICLReport.h; sourceTree = "<group>"; };
@@ -1118,6 +1112,8 @@
 				3E407D82160693E30037134D /* FreightCarTableCell.m */,
 				3E407D83160693E30037134D /* FreightCarTableViewController.h */,
 				3E407D84160693E30037134D /* FreightCarTableViewController.m */,
+				3EEE4510160EC3FD003A5304 /* IndustryEditViewController.h */,
+				3EEE4511160EC3FD003A5304 /* IndustryEditViewController.m */,
 				3E407D85160693E30037134D /* IndustryTableCell.h */,
 				3E407D86160693E30037134D /* IndustryTableCell.m */,
 				3E407D87160693E30037134D /* IndustryTableViewController.h */,
@@ -1459,7 +1455,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3EEE450A160EC1A6003A5304 /* PBXTargetDependency */,
 			);
 			name = "Switchlist-iPad";
 			productName = "Switchlist-iPad";
@@ -1633,6 +1628,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E11BF2216101DF300BE97D6 /* MainStoryboard.storyboard in Resources */,
 				3EAAA770160708BE00C3D7A8 /* layout.css in Resources */,
 				3EAAA771160708BF00C3D7A8 /* switchlist.css in Resources */,
 				3EAAA772160708BF00C3D7A8 /* cargo-report.html in Resources */,
@@ -1663,8 +1659,6 @@
 				3E407DD5160694070037134D /* XM.jpg in Resources */,
 				3E407DD6160694070037134D /* yard.jpg in Resources */,
 				3E407DDA1606945E0037134D /* InfoPlist.strings in Resources */,
-				3E407DDB1606945E0037134D /* MainStoryboard.storyboard in Resources */,
-				3EAAA70A1606C4BD00C3D7A8 /* icon.png in Resources */,
 				3EAAA7801608226B00C3D7A8 /* Default-Portrait~ipad.png in Resources */,
 				3EAAA7821608235400C3D7A8 /* Default-Landscape~ipad.png in Resources */,
 				3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */,
@@ -1840,7 +1834,6 @@
 				3EAAA73B1606CB9500C3D7A8 /* StringHelpers.m in Sources */,
 				3EAAA73F1606CB9500C3D7A8 /* Yard.m in Sources */,
 				3EAAA7271606CA8E00C3D7A8 /* SwitchListDocument.xcdatamodeld in Sources */,
-				3EAAA70F1606C75A00C3D7A8 /* MainStoryboard.storyboard in Sources */,
 				3E407DA2160693E30037134D /* AbstractTableViewController.m in Sources */,
 				3E407DA3160693E30037134D /* AppDelegate.m in Sources */,
 				3E407DA4160693E30037134D /* AppNavigationController.m in Sources */,
@@ -1871,6 +1864,7 @@
 				3E335E60160D69760097360C /* FileViewController.m in Sources */,
 				3E335E63160D6A050097360C /* FileCell.m in Sources */,
 				3E335E66160DAACD0097360C /* TownEditViewController.m in Sources */,
+				3EEE4512160EC3FD003A5304 /* IndustryEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2152,11 +2146,6 @@
 			isa = PBXTargetDependency;
 			target = 3E9B78041606527600891318 /* Engine Unit Tests */;
 			targetProxy = 3E9B793316065AB800891318 /* PBXContainerItemProxy */;
-		};
-		3EEE450A160EC1A6003A5304 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3E9B78041606527600891318 /* Engine Unit Tests */;
-			targetProxy = 3EEE4509160EC1A6003A5304 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
