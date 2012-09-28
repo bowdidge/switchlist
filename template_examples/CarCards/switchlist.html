@@ -1,0 +1,75 @@
+<!-- Example switchlist template for generating car cards.
+
+  Robert Bowdidge, September 27, 2012.
+  -->
+<html>
+<head>
+<title>Car Cards</title>
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+<link href='switchlist.css' rel='stylesheet' type='text/css'>
+</head>
+<body>
+{% for car in train.allFreightCarsInVisitOrder %}
+  <!-- Add page break every six car cards.  Underbar needed so pagebreak
+       isn't ignored. -->
+  {% cycle " " " " " " " " " " "<p class='pagebreak'>_</p>" %}
+  <!-- Ignore empty cars. -->
+  {% if car.cargo %}
+    <div class="carcard">
+      <div class="half">
+        <div class="title">
+          <div class="alignleft">WAYBILL</div> 
+          <div class="alignright">1</div>
+          <div style="clear: both;"></div>
+        </div>
+        <span class="typed">Ship To:</span>
+        <span class="handwritten">
+          {{car.cargo.source.location.name}} 
+        </span>
+        <br>
+        <span class="typed">Consignee:</span>
+        <span class="handwritten">
+          {{car.cargo.source.name}}
+        </span>
+        <br>
+        <span class="typed">Car:</span>
+        <span class="handwritten">
+          {{car.cargo.carTypeRel.carTypeName}}
+        </span>
+        <br>
+        <span class="typed">Cargo:</span>
+        <span class="handwritten">
+          Empty
+        </span>
+      </div>
+      <div class="upsidedownhalf">
+        <div class="title">
+          <div class="alignleft">WAYBILL</div> 
+          <div class="alignright">2</div>
+          <div style="clear: both;"></div>
+        </div>
+        <span class="typed">Ship To:</span>
+        <span class="handwritten">
+          {{car.cargo.destination.location.name}}
+        </span>
+        <br>
+        <span class="typed">Consignee:</span>
+        <span class="handwritten">
+          {{car.cargo.destination.name}}
+        </span>
+        <br>
+        <span class="typed">Car:</span>
+        <span class="handwritten">
+          {{car.cargo.carTypeRel.carTypeName}}
+        </span>
+        <br>
+        <span class="typed">Cargo:</span>
+        <span class="handwritten">
+          {{car.cargo.cargoDescription}}
+        </span>
+      </div>
+    </div>
+  {% /if %}
+{% /for %}
+</body>
+</html>
