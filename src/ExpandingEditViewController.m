@@ -45,6 +45,15 @@
     return self;
 }
 
+// Window is about to appear for the first time.  Gather data from the layout.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.rightSideSelectionTable setDataSource: self];
+    [self.rightSideSelectionTable setDelegate: self];
+    self.currentArrayToShow = nil;
+    self.currentTitleSelector = NULL;
+}
+
 // Widens the popover to a larger width that displays the right-hand-side table.
 // Also sets up curves between the button requesting the information and the table
 // to hint what's being selected.

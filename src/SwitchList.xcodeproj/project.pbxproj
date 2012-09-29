@@ -89,6 +89,7 @@
 		3E60820413615B680054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
 		3E60820913615B940054DBA1 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E60B66F1318B49C007C094D /* ReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60B66E1318B49C007C094D /* ReportTest.m */; };
+		3E620F011616C20A00959403 /* CargoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E620F001616C20800959403 /* CargoEditViewController.m */; };
 		3E65E56016116C120083ECF0 /* AddCarType.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */; };
 		3E65E56116116C120083ECF0 /* AddCargoRate.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */; };
 		3E65E56216116C120083ECF0 /* AddSidingLength.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */; };
@@ -678,6 +679,8 @@
 		3E60814113614EA30054DBA1 /* TextSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSwitchListView.m; sourceTree = "<group>"; };
 		3E60B66D1318B49C007C094D /* ReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTest.h; sourceTree = "<group>"; };
 		3E60B66E1318B49C007C094D /* ReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTest.m; sourceTree = "<group>"; };
+		3E620EFF1616C20700959403 /* CargoEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CargoEditViewController.h; path = iPad/CargoEditViewController.h; sourceTree = "<group>"; };
+		3E620F001616C20800959403 /* CargoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CargoEditViewController.m; path = iPad/CargoEditViewController.m; sourceTree = "<group>"; };
 		3E62C0F8128E610E00520752 /* YardTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YardTest.h; path = Engine/YardTest.h; sourceTree = "<group>"; };
 		3E62C0F9128E610E00520752 /* YardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YardTest.m; path = Engine/YardTest.m; sourceTree = "<group>"; };
 		3E6B58A4140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Engine/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
@@ -1100,6 +1103,8 @@
 				3E407D79160693E30037134D /* AppNavigationController.h */,
 				3E407D7A160693E30037134D /* AppNavigationController.m */,
 				3E407D7B160693E30037134D /* CargoTableCell.h */,
+				3E620EFF1616C20700959403 /* CargoEditViewController.h */,
+				3E620F001616C20800959403 /* CargoEditViewController.m */,
 				3E407D7C160693E30037134D /* CargoTableCell.m */,
 				3E407D7D160693E30037134D /* CargoTableViewController.h */,
 				3E407D7E160693E30037134D /* CargoTableViewController.m */,
@@ -1875,6 +1880,7 @@
 				3E335E66160DAACD0097360C /* TownEditViewController.m in Sources */,
 				3ED19CD2161023DC00C2C6F3 /* IndustryEditViewController.m in Sources */,
 				3E40AA301612A99F006E4AD9 /* ExpandingEditViewController.m in Sources */,
+				3E620F011616C20A00959403 /* CargoEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

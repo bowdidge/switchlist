@@ -133,6 +133,9 @@
 	return ([[self valueForKeyPath: @"source"] isOffline]);
 }
 
+- (BOOL) isPriority {
+    return [[self priority] intValue] != 0;
+}
 - (BOOL) isDestinationOffline {
 	return ([[self valueForKeyPath: @"destination"] isOffline]);
 }
