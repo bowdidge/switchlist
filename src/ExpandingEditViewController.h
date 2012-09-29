@@ -38,6 +38,10 @@
 
 // Collapses the popover frame and hides the table.
 - (void) doNarrowPopoverFrame;
+
+// Handles selection of a particular row in the right hand table.
+// To be implemented by subclasses.
+- (void) didSelectRowWithIndexPath: (NSIndexPath*) path;
     
 // Table on right side of popover that is alternately exposed and hidden.
 @property (retain, nonatomic) IBOutlet UITableView *rightSideSelectionTable;
@@ -55,5 +59,15 @@
 
 // Navigation bar capping every edit window.
 @property (retain, nonatomic) IBOutlet UINavigationBar *myNavigationBar;
+
+// Current array of data to show and select in the right hand table.
+@property (retain, nonatomic) NSArray *currentArrayToShow;
+
+
+// Selector to call on each data element to get label for cell.
+// TODO(bowdidge): Consider multiple selectors for multiple pieces of information.
+@property (nonatomic) SEL currentTitleSelector;
+
+
 
 @end
