@@ -86,8 +86,8 @@
     static NSString *CellIdentifier = @"fileCell";
     FileCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[FileCell alloc] initWithStyle:UITableViewCellStyleDefault
-                               reuseIdentifier:CellIdentifier];
+        cell = [[[FileCell alloc] initWithStyle:UITableViewCellStyleDefault
+                               reuseIdentifier:CellIdentifier] autorelease];
     }
     
     cell.label.text = [self.allLayouts objectAtIndex: [indexPath row]];
