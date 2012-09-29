@@ -28,15 +28,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ExpandingEditViewController.h"
+
 @class Place;
 @class TownTableViewController;
 
-@interface TownEditViewController : UIViewController
+@interface TownEditViewController : ExpandingEditViewController
 // Town to draw (or change)
 @property (nonatomic, retain)  Place *myTown;
-
-// Reference back to the controller that spawned the TownEditViewController.
-@property (nonatomic,retain) IBOutlet TownTableViewController *townTableViewController;
 
 @property (nonatomic, retain) IBOutlet UINavigationBar *myNavigationBar;
 @end

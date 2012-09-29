@@ -59,9 +59,6 @@ enum {
 @property (retain, nonatomic) IBOutlet UIButton *cameraButton;
 @property (retain, nonatomic) IBOutlet UIImageView *carPhotoView;
 @property (retain, nonatomic) IBOutlet UISegmentedControl *loadedToggle;
-@property (retain, nonatomic) IBOutlet UITableView *rightSideSelectionTable;
-
-@property (retain, nonatomic) IBOutlet UINavigationBar *myNavigationBar;
 
 // Cached copies of layout details.
 @property (retain, nonatomic) NSArray *carTypes;
@@ -71,7 +68,6 @@ enum {
 
 @property (nonatomic) int currentSelectionMode;
 
-@property (nonatomic, retain) IBOutlet CurlyView *curlyView;
 @end
 
 @implementation FreightCarEditController
@@ -79,6 +75,9 @@ enum {
 // Window is about to appear for the first time.  Gather data from the layout.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.popoverSizeCollapsed = 288.0;
+    self.popoverSizeExpanded = 540.0;
+    
     // Do any additional setup after loading the view.
     [self.rightSideSelectionTable setDataSource: self];
     [self.rightSideSelectionTable setDelegate: self];
@@ -123,7 +122,7 @@ enum {
     [self.currentCargoButton setTitle: [[self.freightCar cargo] name] forState: UIControlStateNormal];
     [self.homeDivisionButton setTitle: [self.freightCar homeDivision] forState: UIControlStateNormal];
     [self.currentLocationButton setTitle: [[self.freightCar currentLocation] name] forState: UIControlStateNormal];;
-    [self.loadedToggle setEnabled: YES forSegmentAtIndex: [freightCar isLoaded] ? 0 : 1];
+    [self.loadedToggle setSelectedSegmentIndex: [freightCar isLoaded] ? 0 : 1];
 
     self.carPhotoView.image = [self imageForFreightCar: self.freightCar];
 }
@@ -180,7 +179,7 @@ enum {
     
     self.carPhotoView.image = nil;
     if (hasChanges) {
-        [self.myTableController freightCarsChanged: self];
+        [self.myTableController layoutObjectsChanged: self];
     }
     [self.myTableController doDismissEditPopover: self];
 }
@@ -198,33 +197,6 @@ enum {
 
 // User wants to take a picture of the freight car.
 - (IBAction) doPressCameraButton: (id) sender {
-}
-
-// Widens the popover to a larger width that displays the right-hand-side table.
-// Also sets up curves between the button requesting the information and the table
-// to hint what's being selected.
-// TODO(bowdidge): Better done with just some light highlighting under the button?
-- (void) doWidenPopoverFrom: (CGRect) leftSideRect {
-    
-    CGRect currentFrame = self.view.frame;
-    self.curlyView.leftRegion = leftSideRect;
-    self.curlyView.rightRegion = self.rightSideSelectionTable.frame;
-    [self.curlyView setNeedsDisplay];
-
-    // Stock size is 288x342, widen to 540x342 to show list.
-    currentFrame.size.width = 540;
-    self.view.frame = currentFrame;
-    self.rightSideSelectionTable.hidden = NO;
-    [self.myPopoverController setPopoverContentSize: currentFrame.size animated: YES]; 
-}
-
-// Collapses the popover frame and hides the table.
-- (void) doNarrowPopoverFrame {
-    // Selection table selected.
-    CGRect currentFrame = self.view.frame;
-    // Stock size is 288x342, widen to 540x342 to show list, back to 288 after.
-    currentFrame.size.width = 288;
-    [self.myPopoverController setPopoverContentSize: currentFrame.size animated: YES];
 }
 
 // Handles the user pressing the car type in order to select a different value.
@@ -259,6 +231,8 @@ enum {
     
 }
 
+// TODO(bowdidge): Move selection table into ExpandingEditViewController.
+// Needs way to understand data for each table.
 // Handles the user pressing an item in the right-hand-side selection table.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self doNarrowPopoverFrame];

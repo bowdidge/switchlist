@@ -28,12 +28,13 @@
 
 #import <UIKit/UIKit.h>
 
+#import "ExpandingEditViewController.h"
 #import "FreightCarTableViewController.h"
 
 @class FreightCar;
 
 // Controller for freight car edit window tab.
-@interface FreightCarEditController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface FreightCarEditController : ExpandingEditViewController
 
 // Actions for the different buttons.
 - (IBAction) doPressCameraButton: (id) sender;
@@ -44,8 +45,4 @@
 - (IBAction) doSave: (id) sender;
 // Freight car to display.
 @property (nonatomic, retain) FreightCar *freightCar;
-// Controller for small edit window once car has been selected.
-@property (nonatomic, retain) UIPopoverController *myPopoverController;
-// Reference back to the table controller for the list of freight cars.
-@property (nonatomic, retain) FreightCarTableViewController *myTableController;
 @end

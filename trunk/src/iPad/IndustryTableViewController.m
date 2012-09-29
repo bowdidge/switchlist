@@ -38,7 +38,6 @@
 
 @interface IndustryTableViewController ()
 @property (retain, nonatomic) NSArray *allIndustries;
-@property (retain, nonatomic) IBOutlet UITableView *industryTableView;
 @end
 
 @implementation IndustryTableViewController
@@ -51,12 +50,6 @@
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
     self.allIndustries = [myLayout allIndustries];
-}
-
-// Notifies the table controller that the table data is invalid.  Called from edit popover.
-- (void) industriesChanged: (id) sender {
-    [self regenerateTableData];
-    [self.industryTableView reloadData];
 }
 
 - (void) viewWillAppear: (BOOL) animate {
@@ -176,28 +169,16 @@
 // Handles presses on the table.  When a selection is made in the freight
 // car table, we show a popover for editing the freight car.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    IndustryEditViewController *industryEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editIndustry"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
+    IndustryEditViewController *industryEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editTheIndustry"];
     Industry *myIndustry = [self industryAtIndexPath: indexPath];
     if (!myIndustry) {
         // Create a new industry.
     }
     industryEditVC.myIndustry = myIndustry;
     
-    CGRect cellFrame = [tableView rectForRowAtIndexPath: indexPath];
-    
-    self.myPopoverController = [[[UIPopoverController alloc] initWithContentViewController: industryEditVC] autorelease];
-    // Industry edit popover needs handle to popover to change its size.
-    industryEditVC.myPopoverController = self.myPopoverController;
-    // Give editor a chance to call us back.
-    industryEditVC.myTableController = self;
-    CGRect cellRect = [tableView convertRect: cellFrame toView: self.view];
-    // Move rect to far left so that we try to have the edit popover point to the left.
-    cellRect.size.width = 100;
-    [self.myPopoverController presentPopoverFromRect: cellRect
-                                              inView: [self view]
-                            permittedArrowDirections: UIPopoverArrowDirectionLeft
-                                            animated: YES];
+     [self doRaisePopoverWithEditController: industryEditVC
+                              fromIndexPath: indexPath];
 }
 
 // Requests edit view be closed.
