@@ -586,6 +586,211 @@
             </objects>
             <point key="canvasLocation" x="1388" y="1159"/>
         </scene>
+        <!--Cargo Edit View Controller - Cargo Edit-->
+        <scene sceneID="04j-FV-Qei">
+            <objects>
+                <viewController storyboardIdentifier="editCargo" title="Cargo Edit" id="Won-Xs-9em" customClass="CargoEditViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Je-i5-gwO">
+                        <rect key="frame" x="0.0" y="20" width="540" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="gfp-gj-eSn">
+                                <rect key="frame" x="68" y="285" width="206" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Day"/>
+                                    <segment title="Week"/>
+                                    <segment title="Month"/>
+                                </segments>
+                                <connections>
+                                    <action selector="doPressRateButton:" destination="Won-Xs-9em" eventType="valueChanged" id="91E-KO-Q3C"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Pgz-bh-MrB">
+                                <rect key="frame" x="61" y="201" width="213" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Fixed Rate"/>
+                                    <segment title="Random"/>
+                                </segments>
+                                <connections>
+                                    <action selector="doPressFixedRateButton:" destination="Won-Xs-9em" eventType="valueChanged" id="h39-KZ-JOZ"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rate:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fmE-7C-ldP">
+                                <rect key="frame" x="-4" y="256" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40" borderStyle="roundedRect" minimumFontSize="17" id="E6q-kY-32h">
+                                <rect key="frame" x="134" y="252" width="140" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Per:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RYa-lC-IfN">
+                                <rect key="frame" x="-70" y="296" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wxh-Xe-yIk">
+                                <rect key="frame" x="134" y="166" width="140" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Car type">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doPressCarTypeButton:" destination="Won-Xs-9em" eventType="touchUpInside" id="Tmv-C5-TSh"/>
+                                    <action selector="doPressLocationButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="Spa-ED-QSx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Car Type:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Opi-6M-XnT">
+                                <rect key="frame" x="0.0" y="169" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" id="cpe-0e-w50" customClass="CurlyView">
+                                <rect key="frame" x="0.0" y="0.0" width="540" height="386"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" minimumFontSize="17" id="dbR-5z-Puf">
+                                <rect key="frame" x="134" y="64" width="140" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Destination:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t0F-tb-Udp">
+                                <rect key="frame" x="1" y="137" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fc6-XS-L1G">
+                                <rect key="frame" x="41" y="68" width="90" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Source:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jyZ-es-AF8">
+                                <rect key="frame" x="1" y="103" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RsQ-pK-0vk">
+                                <rect key="frame" x="134" y="100" width="140" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="source">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doPressCarTypeButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="8kc-HR-Wfq"/>
+                                    <action selector="doPressSourceButton:" destination="Won-Xs-9em" eventType="touchUpInside" id="STG-8b-ZRu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aeL-Pd-OAJ">
+                                <rect key="frame" x="134" y="134" width="140" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="destination">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doPressCargoButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="ttR-oX-tcg"/>
+                                    <action selector="doPressDestinationButton:" destination="Won-Xs-9em" eventType="touchUpInside" id="1pJ-2p-pPF"/>
+                                </connections>
+                            </button>
+                            <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fz9-A2-Afw">
+                                <rect key="frame" x="289" y="44" width="252" height="342"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="selectionCell" id="ScV-vH-cnP" customClass="SelectionCell">
+                                        <rect key="frame" x="0.0" y="22" width="252" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="252" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC - Clean boxcar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="byr-67-Pkx">
+                                                    <rect key="frame" x="7" y="11" width="235" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="cellText" destination="byr-67-Pkx" id="PVo-0f-MkP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Won-Xs-9em" id="2K2-uf-nNA"/>
+                                    <outlet property="delegate" destination="Won-Xs-9em" id="SPJ-t9-B90"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" id="7tr-VV-9hr">
+                                <rect key="frame" x="1" y="0.0" width="540" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Edit Cargo" id="Mo5-DL-Kvi">
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="3A9-tG-5Cv">
+                                            <connections>
+                                                <action selector="doSave:" destination="Won-Xs-9em" id="5Qw-6N-PJ1"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="288" height="386"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="carTypeButton" destination="Wxh-Xe-yIk" id="wfM-cf-piJ"/>
+                        <outlet property="curlyView" destination="cpe-0e-w50" id="ZxV-dE-wlr"/>
+                        <outlet property="descriptionField" destination="dbR-5z-Puf" id="QyJ-Ez-pe1"/>
+                        <outlet property="destinationButton" destination="aeL-Pd-OAJ" id="xpn-HM-Ph5"/>
+                        <outlet property="fixedToggle" destination="Pgz-bh-MrB" id="aCm-YZ-1Bj"/>
+                        <outlet property="myNavigationBar" destination="7tr-VV-9hr" id="Ugw-iG-5Gk"/>
+                        <outlet property="rateToggle" destination="gfp-gj-eSn" id="q9E-n7-D9B"/>
+                        <outlet property="rightSideSelectionTable" destination="fz9-A2-Afw" id="LFW-9e-w9C"/>
+                        <outlet property="sourceButton" destination="RsQ-pK-0vk" id="t1v-27-LtL"/>
+                        <outlet property="view" destination="3Je-i5-gwO" id="KYX-88-Fwi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Y9-F2-2S4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1644" y="-4691"/>
+        </scene>
         <!--Cargo Table View Controller - Cargo Tab-->
         <scene sceneID="9ON-lX-JGb">
             <objects>
@@ -648,7 +853,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SmK-0V-ayk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-316" y="-3441"/>
+            <point key="canvasLocation" x="668" y="-4769"/>
         </scene>
         <!--Layout Details View Controller - Layout Details-->
         <scene sceneID="5CK-dh-VbC">
@@ -1333,6 +1538,23 @@
         </class>
         <class className="AppNavigationController" superclassName="UINavigationController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AppNavigationController.h"/>
+        </class>
+        <class className="CargoEditViewController" superclassName="ExpandingEditViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CargoEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doPressCarTypeButton:"/>
+                <relationship kind="action" name="doPressDestinationButton:"/>
+                <relationship kind="action" name="doPressFixedRateButton:"/>
+                <relationship kind="action" name="doPressRateButton:"/>
+                <relationship kind="action" name="doPressSourceButton:"/>
+                <relationship kind="action" name="doSave:"/>
+                <relationship kind="outlet" name="carTypeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="descriptionField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="destinationButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="fixedToggle" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="rateToggle" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="sourceButton" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="CargoTableCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CargoTableCell.h"/>

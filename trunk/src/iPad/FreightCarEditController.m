@@ -78,10 +78,6 @@ enum {
     self.popoverSizeCollapsed = 288.0;
     self.popoverSizeExpanded = 540.0;
     
-    // Do any additional setup after loading the view.
-    [self.rightSideSelectionTable setDataSource: self];
-    [self.rightSideSelectionTable setDelegate: self];
-    
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
     self.carTypes = [myLayout allCarTypes];
@@ -93,8 +89,6 @@ enum {
     self.divisions = [NSArray arrayWithObjects: @"Here", @"SP", @"WP", @"East", @"Midwest", nil];
     
     self.currentSelectionMode = SelectionViewNoContents;
-    self.currentArrayToShow = nil;
-    self.currentTitleSelector = NULL;
 }
 
 // Returns an appropriate image for the provided freight car.

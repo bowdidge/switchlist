@@ -78,6 +78,8 @@ struct CargoRate {
 - (BOOL) isSourceOffline;
 - (BOOL) isDestinationOffline;
 
+- (BOOL) isPriority;
+
 // Returns the text that should appear when hovering over the cargo in a menu.
 - (NSString*) tooltip;
 

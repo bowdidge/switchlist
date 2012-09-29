@@ -79,8 +79,6 @@ enum {
     self.divisions = [NSArray arrayWithObjects: @"Here", @"SP", @"WP", @"East", @"Midwest", nil];
     
     self.currentSelectionMode = SelectionViewNoContents;
-    self.currentArrayToShow = nil;
-    self.currentTitleSelector = NULL;
 }
 
 // Window is about to load.  Populate the currently selected freight car's details.

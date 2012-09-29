@@ -30,6 +30,7 @@
 
 #import "AppDelegate.h"
 #import "Cargo.h"
+#import "CargoEditViewController.h"
 #import "CargoTableCell.h"
 #import "SwitchListColors.h"
 
@@ -54,6 +55,11 @@
 }
 
 #pragma mark - Table view data source
+
+// Returns the cargo object represented by the item on the specific row of the table.
+- (Cargo*) cargoAtIndexPath: (NSIndexPath *)indexPath {
+    return [allCargos objectAtIndex: [indexPath row]];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Cargo views only have one category.
@@ -133,16 +139,26 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+// Handles presses on the table.  When a selection is made in the cargo
+// table, we show a popover for editing the cargo.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
+    CargoEditViewController *cargoEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editCargo"];
+    Cargo *cargo = [self cargoAtIndexPath: indexPath];
+    if (!cargo) {
+        // Create a new freight car.
+        AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+        EntireLayout *myLayout = myAppDelegate.entireLayout;
+        NSManagedObjectContext *moc = [[myLayout workbenchIndustry] managedObjectContext];
+        [NSEntityDescription entityForName: @"Cargo" inManagedObjectContext: moc];
+        cargo = [NSEntityDescription insertNewObjectForEntityForName:@"Cargo"
+                                              inManagedObjectContext: moc];
+        cargo.cargoDescription = @"Stuff";
+    }
+    cargoEditVC.myCargo = cargo;
+    [self doRaisePopoverWithEditController: cargoEditVC
+                             fromIndexPath: indexPath];
 }
+
 
 @end
