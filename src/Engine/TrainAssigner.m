@@ -621,12 +621,14 @@ NSString *NameOrNoValue(NSString* string) {
 			if (randomDoor == 0) {
 				// This is it.
 				// Should add to arriving map here.
+                free(doorAvailableMap);
 				return [NSNumber numberWithInt: i];
 			}
 		}
 	}
 
 	// NSLog(@"Shouldn't get here - should have found one of available doors!");
+    free(doorAvailableMap);
 	return nil;
 }
 

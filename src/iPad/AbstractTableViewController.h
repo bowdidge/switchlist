@@ -28,7 +28,39 @@
 
 #import <UIKit/UIKit.h>
 
-// Behavior common to all the tab views.
+@class ExpandingEditViewController;
+
+// Behavior common to all the table views for different
+// kinds of objects.  Provides a common interface for create
+// the edit popover common to all tables, and the interfaces
+// for noting when the table needs to be regenerated from
+// the backing objects.
 @interface AbstractTableViewController : UITableViewController
+
+// Handles redrawing the table when data objects change.  To be
+// called from EditController when saving changes to object.
+- (void) layoutObjectsChanged: (id) sender;
+
+// Do the actual work to change the data structures filling the
+// table, and triggers a redraw of the table.
+// To be implemented by subclasses.
+- (void) regenerateTableData;
+
+// Raises a popover window for an edit view on the table.
+// evc: EditViewController that controls the edit view
+// indexPath: reference to selected cell to know where to
+// put point of popover.
+- (void) doRaisePopoverWithEditController: (ExpandingEditViewController*) evc
+                              fromIndexPath: (NSIndexPath*) indexPath;
+
+// Closes an existing popover.  To be called from EditController
+// when window is explicitly to be closed (after a save).
+// This code path not called when user touches outside the popover.
+- (IBAction) doDismissEditPopover: (id) sender;
+
+// Reference to currently active popover controller.
+@property (retain, nonatomic) UIPopoverController *myPopoverController;
+// IB outlet pointing to table view for this tab.
+@property (retain, nonatomic) IBOutlet UITableView *myTableView;
 
 @end

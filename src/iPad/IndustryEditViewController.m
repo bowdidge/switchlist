@@ -4,7 +4,27 @@
 //
 //  Created by Robert Bowdidge on 9/22/12.
 //
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met:
+// 1. Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+// 2. Redistributions in binary form must reproduce the above copyright
+//    notice, this list of conditions and the following disclaimer in the
+//    documentation and/or other materials provided with the distribution.
 //
+// THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+// ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+// ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+// FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+// DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+// OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+// HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+// OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+// SUCH DAMAGE.
+ 
 
 #import "IndustryEditViewController.h"
 
@@ -32,16 +52,12 @@ enum {
 @property (retain, nonatomic) IBOutlet UITextField *numberOfDoorsField;
 @property (retain, nonatomic) IBOutlet UITextField *sidingLengthField;
 
-@property (retain, nonatomic) IBOutlet UITableView *rightSideSelectionTable;
-
-@property (retain, nonatomic) IBOutlet UINavigationBar *myNavigationBar;
-@property (retain, nonatomic) IBOutlet CurlyView *curlyView;
-
 // Cached copies of layout details.
 @property (retain, nonatomic) NSArray *towns;
 @property (retain, nonatomic) NSArray *divisions;
 
 @property (nonatomic) int currentSelectionMode;
+
 @end
 
 @implementation IndustryEditViewController
@@ -49,6 +65,9 @@ enum {
 // Window is about to appear for the first time.  Gather data from the layout.
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.popoverSizeCollapsed = 288.0;
+    self.popoverSizeExpanded = 540.0;
+    
     // Do any additional setup after loading the view.
     [self.rightSideSelectionTable setDataSource: self];
     [self.rightSideSelectionTable setDelegate: self];
@@ -68,47 +87,47 @@ enum {
     self.nameField.text = [self.myIndustry name];
     [self.divisionButton setTitle: [self.myIndustry division] forState: UIControlStateNormal];
     [self.townLocationButton setTitle: [[self.myIndustry location] name] forState: UIControlStateNormal];;
-    [self.hasDoorsToggle setEnabled: YES forSegmentAtIndex: [self.myIndustry hasDoors] ? 0 : 1];
-    self.numberOfDoorsField.text = [NSString stringWithFormat: @"%@", [self.myIndustry numberOfDoors]];
-    self.sidingLengthField.text = [NSString stringWithFormat: @"%@", [self.myIndustry sidingLength]];
+    int litSegment = [self.myIndustry hasDoors] ? 0 : 1;
+    [self.hasDoorsToggle setSelectedSegmentIndex: litSegment];
+    
+    // TODO(bowdidge): Gray out field when disabled.
+    // [self.numberOfDoorsField setEnabled: [self.myIndustry hasDoors] ? YES : NO];
+
+    if (litSegment == 1) {
+        NSNumber *numberOfDoors = [self.myIndustry numberOfDoors];
+        if (!numberOfDoors) {
+            self.numberOfDoorsField.text = @"0";
+        } else {
+            self.numberOfDoorsField.text = [NSString stringWithFormat: @"%@", numberOfDoors];
+        }
+    }
+
+    NSNumber *sidingLength = [self.myIndustry sidingLength];
+    if (!sidingLength) {
+        self.sidingLengthField.text = @"0";
+    } else {
+        self.sidingLengthField.text = [NSString stringWithFormat: @"%@", sidingLength];
+    }
 }
 
 // Change the freight car as suggested.
 - (IBAction) doSave: (id) sender {
-    int hasChanges = 0;
-    if (hasChanges) {
-        [self.myTableController industriesChanged: self];
-    }
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *myLayout = myAppDelegate.entireLayout;
+
+    [self.myIndustry setName: self.nameField.text];
+    [self.myIndustry setDivision: self.divisionButton.titleLabel.text];
+    [self.myIndustry setLocation: [myLayout stationWithName: self.townLocationButton.titleLabel.text]];
+    int currentSegment = self.hasDoorsToggle.selectedSegmentIndex;
+    [self.myIndustry setHasDoors: (currentSegment == 0) ? YES : NO];
+
+    [self.myIndustry setNumberOfDoors: [NSNumber numberWithInt: [self.numberOfDoorsField.text intValue]]];
+    [self.myIndustry setSidingLength: [NSNumber numberWithInt: [self.sidingLengthField.text intValue]]];
+
+    [self.myTableController layoutObjectsChanged: self];
     [self.myTableController doDismissEditPopover: self];
 }
 
-// Widens the popover to a larger width that displays the right-hand-side table.
-// Also sets up curves between the button requesting the information and the table
-// to hint what's being selected.
-// TODO(bowdidge): Better done with just some light highlighting under the button?
-// TODO(bowdidge): Abstract this code into a superclass for easier reuse.
-- (void) doWidenPopoverFrom: (CGRect) leftSideRect {
-    
-    CGRect currentFrame = self.view.frame;
-    self.curlyView.leftRegion = leftSideRect;
-    self.curlyView.rightRegion = self.rightSideSelectionTable.frame;
-    [self.curlyView setNeedsDisplay];
-    
-    // Stock size is 288x342, widen to 540x342 to show list.
-    currentFrame.size.width = 540;
-    self.view.frame = currentFrame;
-    self.rightSideSelectionTable.hidden = NO;
-    [self.myPopoverController setPopoverContentSize: currentFrame.size animated: YES];
-}
-
-// Collapses the popover frame and hides the table.
-- (void) doNarrowPopoverFrame {
-    // Selection table selected.
-    CGRect currentFrame = self.view.frame;
-    // Stock size is 288x342, widen to 540x342 to show list, back to 288 after.
-    currentFrame.size.width = 288;
-    [self.myPopoverController setPopoverContentSize: currentFrame.size animated: YES];
-}
 
 // Handles the user pressing the car type in order to select a different value.
 - (IBAction) doPressDivisionButton: (id) sender {
@@ -203,5 +222,5 @@ enum {
     return cell;
 }
 
-
+@synthesize myIndustry;
 @end

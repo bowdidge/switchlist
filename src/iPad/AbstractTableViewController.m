@@ -28,6 +28,8 @@
 
 #import "AbstractTableViewController.h"
 
+#import "ExpandingEditViewController.h"
+
 @interface AbstractTableViewController ()
 
 @end
@@ -49,6 +51,42 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+// Notifies the table controller that the table data is invalid.  Called from edit popover.
+- (void) layoutObjectsChanged: (id) sender {
+    [self regenerateTableData];
+    [self.myTableView reloadData];
+}
+
+// Regenerates the layout data needed by the table.  Overridden by subclasses.
+- (void) regenerateTableData {
+}
+
+// Displays the popover with the content from the
+// ExpandingEditViewController, with the popover's arrow rooted
+// within the specified frame of the selected cell.
+- (void) doRaisePopoverWithEditController: (ExpandingEditViewController*) evc
+                            fromIndexPath: (NSIndexPath*) indexPath {
+    CGRect cellFrame = [self.myTableView rectForRowAtIndexPath: indexPath];
+    // Give editor a chance to call us back.
+    evc.myTableController = self;
+    CGRect cellRect = [self.myTableView convertRect: cellFrame toView: self.view];
+   
+   self.myPopoverController = [[[UIPopoverController alloc] initWithContentViewController: evc] autorelease];
+    // Freight car edit popover needs handle to popover to change its size.
+    // Move rect to far left so that we try to have the edit popover point to the left.
+    cellRect.size.width = 100;
+    [self.myPopoverController presentPopoverFromRect: cellRect
+                                              inView: [self view]
+                            permittedArrowDirections: UIPopoverArrowDirectionLeft
+                                            animated: YES];
+    
+}
+
+// Requests edit view be closed.
+- (IBAction) doDismissEditPopover: (id) sender {
+    [self.myPopoverController dismissPopoverAnimated: YES];
 }
 
 @end

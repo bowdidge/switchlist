@@ -17,7 +17,7 @@
 		3E108C1714049FDA00B77CFE /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E108C1614049FD900B77CFE /* libicucore.A.dylib */; };
 		3E108C1814049FDA00B77CFE /* libicucore.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E108C1614049FD900B77CFE /* libicucore.A.dylib */; };
 		3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
-		3E11BF2216101DF300BE97D6 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DD91606945E0037134D /* MainStoryboard.storyboard */; };
+		3E11BF2216101DF300BE97D6 /* MainStoryboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DD91606945E0037134D /* MainStoryboard1.storyboard */; };
 		3E11BF82160CE279007605D6 /* LayoutDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E11BF81160CE279007605D6 /* LayoutDetailsViewController.m */; };
 		3E1FD9B515CCE78F00568E36 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3E1FD9B415CCE78F00568E36 /* icon.icns */; };
 		3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */; };
@@ -76,6 +76,7 @@
 		3E407DDA1606945E0037134D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DD81606945E0037134D /* InfoPlist.strings */; };
 		3E407DE1160694EF0037134D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E407D5A160693170037134D /* Foundation.framework */; };
 		3E407DE8160694EF0037134D /* SwitchListEngine_iPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E407DE7160694EF0037134D /* SwitchListEngine_iPad.m */; };
+		3E40AA301612A99F006E4AD9 /* ExpandingEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E40AA2F1612A99F006E4AD9 /* ExpandingEditViewController.m */; };
 		3E43B4DC150741B400AAA92B /* testAdvanceLayoutsMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */; };
 		3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */; };
 		3E540BDD160CE77700D5B759 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BDC160CE77700D5B759 /* TemplateCell.m */; };
@@ -252,7 +253,7 @@
 		3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
 		3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4891815D85C7C008A169F /* SuggestedCargoController.m */; };
 		3EAAA70E1606C70200C3D7A8 /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
-		3EAAA7101606C78700C3D7A8 /* MainStoryboard.storyboard in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DD91606945E0037134D /* MainStoryboard.storyboard */; };
+		3EAAA7101606C78700C3D7A8 /* MainStoryboard1.storyboard in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DD91606945E0037134D /* MainStoryboard1.storyboard */; };
 		3EAAA7141606C7D400C3D7A8 /* camera.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DB9160694070037134D /* camera.jpg */; };
 		3EAAA7151606C7D400C3D7A8 /* cargo.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DBA160694070037134D /* cargo.jpg */; };
 		3EAAA7161606C7D400C3D7A8 /* city.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DBB160694070037134D /* city.png */; };
@@ -380,6 +381,7 @@
 		3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
 		3EC3B1821277E4F900C00AD3 /* PrintEverythingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */; };
 		3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
+		3ED19CD2161023DC00C2C6F3 /* IndustryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED19CD1161023DC00C2C6F3 /* IndustryEditViewController.m */; };
 		3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3ED58A6F13A727F500F6E26E /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
 		3ED58A7013A727FF00F6E26E /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
@@ -395,7 +397,6 @@
 		3EE33419141B2D890050A5A9 /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
 		3EE380BE133D284F0069C963 /* SwitchRouteDialogControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */; };
 		3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */ = {isa = PBXBuildFile; fileRef = 3EE5ED9D131A1E03009E2C83 /* SwitchList.help */; };
-		3EEE4512160EC3FD003A5304 /* IndustryEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE4511160EC3FD003A5304 /* IndustryEditViewController.m */; };
 		3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
 		3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
 		3EFA164509515C1500654CC9 /* Report.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFA164309515C1500654CC9 /* Report.nib */; };
@@ -461,7 +462,7 @@
 				3EAAA71C1606C7D400C3D7A8 /* industry.png in CopyFiles */,
 				3EAAA71D1606C7D400C3D7A8 /* RS.jpg in CopyFiles */,
 				3EAAA71E1606C7D400C3D7A8 /* InfoPlist.strings in CopyFiles */,
-				3EAAA7101606C78700C3D7A8 /* MainStoryboard.storyboard in CopyFiles */,
+				3EAAA7101606C78700C3D7A8 /* MainStoryboard1.storyboard in CopyFiles */,
 				3EAAA71F1606C7D400C3D7A8 /* SwitchList for iPad-Info.plist in CopyFiles */,
 				3EAAA7201606C7D400C3D7A8 /* T.jpg in CopyFiles */,
 				3EAAA7211606C7D400C3D7A8 /* train.png in CopyFiles */,
@@ -646,11 +647,13 @@
 		3E407DC6160694070037134D /* XM.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = XM.jpg; path = "resources-iPad/XM.jpg"; sourceTree = "<group>"; };
 		3E407DC7160694070037134D /* yard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = yard.jpg; path = "resources-iPad/yard.jpg"; sourceTree = "<group>"; };
 		3E407DD81606945E0037134D /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = "resources-iPad/InfoPlist.strings"; sourceTree = "<group>"; };
-		3E407DD91606945E0037134D /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = MainStoryboard.storyboard; path = "resources-iPad/MainStoryboard.storyboard"; sourceTree = "<group>"; };
+		3E407DD91606945E0037134D /* MainStoryboard1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard1.storyboard; path = "resources-iPad/MainStoryboard1.storyboard"; sourceTree = "<group>"; };
 		3E407DE0160694EF0037134D /* libSwitchListEngine-iPad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSwitchListEngine-iPad.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E407DE4160694EF0037134D /* SwitchListEngine-iPad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwitchListEngine-iPad-Prefix.pch"; sourceTree = "<group>"; };
 		3E407DE5160694EF0037134D /* SwitchListEngine_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchListEngine_iPad.h; sourceTree = "<group>"; };
 		3E407DE7160694EF0037134D /* SwitchListEngine_iPad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwitchListEngine_iPad.m; sourceTree = "<group>"; };
+		3E40AA2E1612A99F006E4AD9 /* ExpandingEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpandingEditViewController.h; sourceTree = "<group>"; };
+		3E40AA2F1612A99F006E4AD9 /* ExpandingEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpandingEditViewController.m; sourceTree = "<group>"; };
 		3E43B3A515073D1F00AAA92B /* LayoutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LayoutController.m; path = Engine/LayoutController.m; sourceTree = "<group>"; };
 		3E43B49F15073F2300AAA92B /* LayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LayoutController.h; path = Engine/LayoutController.h; sourceTree = "<group>"; };
 		3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testAdvanceLayouts; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -768,6 +771,8 @@
 		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntireLayoutTest.h; path = Engine/EntireLayoutTest.h; sourceTree = "<group>"; };
 		3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EntireLayoutTest.m; path = Engine/EntireLayoutTest.m; sourceTree = "<group>"; };
 		3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-carlist.html"; path = "templates/switchlist-carlist.html"; sourceTree = "<group>"; };
+		3ED19CD0161023DC00C2C6F3 /* IndustryEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndustryEditViewController.h; path = iPad/IndustryEditViewController.h; sourceTree = "<group>"; };
+		3ED19CD1161023DC00C2C6F3 /* IndustryEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndustryEditViewController.m; path = iPad/IndustryEditViewController.m; sourceTree = "<group>"; };
 		3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCargoRate.xcmappingmodel; sourceTree = "<group>"; };
 		3ED482320D715B3600C36741 /* SwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListView.h; sourceTree = "<group>"; };
 		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
@@ -1102,6 +1107,8 @@
 				3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */,
 				3E540BE0160D446300D5B759 /* CurlyView.h */,
 				3E540BE1160D446500D5B759 /* CurlyView.m */,
+				3E40AA2E1612A99F006E4AD9 /* ExpandingEditViewController.h */,
+				3E40AA2F1612A99F006E4AD9 /* ExpandingEditViewController.m */,
 				3E335E61160D6A050097360C /* FileCell.h */,
 				3E335E62160D6A050097360C /* FileCell.m */,
 				3E335E5E160D69750097360C /* FileViewController.h */,
@@ -1116,6 +1123,8 @@
 				3EEE4511160EC3FD003A5304 /* IndustryEditViewController.m */,
 				3E407D85160693E30037134D /* IndustryTableCell.h */,
 				3E407D86160693E30037134D /* IndustryTableCell.m */,
+				3ED19CD0161023DC00C2C6F3 /* IndustryEditViewController.h */,
+				3ED19CD1161023DC00C2C6F3 /* IndustryEditViewController.m */,
 				3E407D87160693E30037134D /* IndustryTableViewController.h */,
 				3E407D88160693E30037134D /* IndustryTableViewController.m */,
 				3E407D89160693E30037134D /* LayoutDetailTabBarController.h */,
@@ -1158,7 +1167,7 @@
 		3E407DB8160693F10037134D /* resources-Ipad */ = {
 			isa = PBXGroup;
 			children = (
-				3E407DD91606945E0037134D /* MainStoryboard.storyboard */,
+				3E407DD91606945E0037134D /* MainStoryboard1.storyboard */,
 				3E37741916082E200023C8B5 /* switchlistButton.png */,
 				3EAAA7091606C4BD00C3D7A8 /* icon.png */,
 				3EAAA7811608235400C3D7A8 /* Default-Landscape~ipad.png */,
@@ -1628,7 +1637,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E11BF2216101DF300BE97D6 /* MainStoryboard.storyboard in Resources */,
+				3E11BF2216101DF300BE97D6 /* MainStoryboard1.storyboard in Resources */,
 				3EAAA770160708BE00C3D7A8 /* layout.css in Resources */,
 				3EAAA771160708BF00C3D7A8 /* switchlist.css in Resources */,
 				3EAAA772160708BF00C3D7A8 /* cargo-report.html in Resources */,
@@ -1864,7 +1873,8 @@
 				3E335E60160D69760097360C /* FileViewController.m in Sources */,
 				3E335E63160D6A050097360C /* FileCell.m in Sources */,
 				3E335E66160DAACD0097360C /* TownEditViewController.m in Sources */,
-				3EEE4512160EC3FD003A5304 /* IndustryEditViewController.m in Sources */,
+				3ED19CD2161023DC00C2C6F3 /* IndustryEditViewController.m in Sources */,
+				3E40AA301612A99F006E4AD9 /* ExpandingEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

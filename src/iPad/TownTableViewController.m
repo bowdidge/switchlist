@@ -42,11 +42,6 @@
 @property (nonatomic, retain) NSArray *townsInStaging;
 @property (nonatomic, retain) NSArray *townsOffline;
 
-// Main table in the view showing all towns.
-@property (nonatomic, retain) IBOutlet UITableView *townsTable;
-// Reference to the popover controller that created the window.
-@property (nonatomic,retain) IBOutlet UIPopoverController *myPopoverController;
-
 @end
 
 @implementation TownTableViewController
@@ -84,18 +79,6 @@
     self.townsOffline = nil;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-// Notifies the table controller that the table data is invalid.  Called from edit popover.
-- (void) townsChanged: (id) sender {
-    [self regenerateTableData];
-    [self.townsTable reloadData];
-}
-
-// Requests that the popover be closed down.  Called from the popover when the
-// save button is pressed.
-- (IBAction) doDismissEditPopover: (id) sender {
-    [self.myPopoverController dismissPopoverAnimated: YES];
 }
 
 #pragma mark - Table view data source
@@ -180,22 +163,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
     TownEditViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"editTown"];
     controller.myTown = [self townAtIndexPath: indexPath];
+    [self doRaisePopoverWithEditController: controller
+                               fromIndexPath: indexPath];
 
-    CGRect cellFrame = [tableView rectForRowAtIndexPath: indexPath];
-
-    self.myPopoverController = [[[UIPopoverController alloc] initWithContentViewController: controller] autorelease];
-    // Give editor a chance to call us back.
-    controller.townTableViewController = self;
-    CGRect cellRect = [tableView convertRect: cellFrame toView: self.view];
-    // Move rect to far left so that we try to have the edit popover point to the left.
-    cellRect.size.width = 100;
-    [self.myPopoverController presentPopoverFromRect: cellRect
-                                              inView: [self view]
-                            permittedArrowDirections: UIPopoverArrowDirectionLeft
-                                            animated: YES];
 }
 
 // Handles editing actions on table - delete or insert.
@@ -215,7 +188,4 @@
 @synthesize townsOnLayout;
 @synthesize townsInStaging;
 @synthesize townsOffline;
-
-@synthesize townsTable;
-@synthesize myPopoverController;
 @end

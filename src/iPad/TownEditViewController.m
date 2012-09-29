@@ -99,13 +99,12 @@
     }
 
     if (hasChanges) {
-        [self.townTableViewController townsChanged: self];
+        [self.myTableController layoutObjectsChanged: self];
     }
-    [self.townTableViewController doDismissEditPopover: (id) sender];
+    [self.myTableController doDismissEditPopover: (id) sender];
 }
 
 @synthesize townNameTextField;
 @synthesize townLocationControl;
-@synthesize townTableViewController;
 @synthesize myNavigationBar;
 @end

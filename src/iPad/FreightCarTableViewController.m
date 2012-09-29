@@ -40,7 +40,6 @@
 
 @interface FreightCarTableViewController ()
 
-@property (retain, nonatomic) UIPopoverController *myPopoverController;
 @end
 
 @implementation FreightCarTableViewController
@@ -62,12 +61,6 @@
     self.allFreightCarsOnWorkbench = [myLayout allFreightCarsOnWorkbench];
 }
 
-// Notifies the table controller that the table data is invalid.  Called from edit popover.
-- (void) freightCarsChanged: (id) sender {
-    [self regenerateTableData];
-    [self.freightCarTable reloadData];
-}
-
 - (void) viewWillAppear: (BOOL) animate {
     [super viewWillAppear: animate];
     [self regenerateTableData];
@@ -83,11 +76,6 @@
     self.allFreightCarsOnWorkbench = nil;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-// Requests edit view be closed.
-- (IBAction) doDismissEditPopover: (id) sender {
-    [self.myPopoverController dismissPopoverAnimated: YES];
 }
 
 #pragma mark - Table view data source
@@ -204,10 +192,8 @@
 // Handles presses on the table.  When a selection is made in the freight
 // car table, we show a popover for editing the freight car.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
     FreightCarEditController *freightCarEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editFreightCar"];
-    //townEditVC.modalPresentationStyle = UIModalPresentationFormSheet;
-    //townEditVC.modalPresentationStyle = UIPopoverArrowDirectionLeft;
     FreightCar *freightCar = [self freightCarAtIndexPath: indexPath];
     if (!freightCar) {
         // Create a new freight car.
@@ -220,20 +206,7 @@
         [freightCar setReportingMarks: @"SP 84712"];
     }
     freightCarEditVC.freightCar = freightCar;
-    
-    CGRect cellFrame = [tableView rectForRowAtIndexPath: indexPath];
-    
-    self.myPopoverController = [[[UIPopoverController alloc] initWithContentViewController: freightCarEditVC] autorelease];
-    // Freight car edit popover needs handle to popover to change its size.
-    freightCarEditVC.myPopoverController = self.myPopoverController;
-    // Give editor a chance to call us back.
-    freightCarEditVC.myTableController = self;
-    CGRect cellRect = [tableView convertRect: cellFrame toView: self.view];
-    // Move rect to far left so that we try to have the edit popover point to the left.
-    cellRect.size.width = 100;
-    [self.myPopoverController presentPopoverFromRect: cellRect
-                                              inView: [self view]
-                            permittedArrowDirections: UIPopoverArrowDirectionLeft
-                                            animated: YES];
+    [self doRaisePopoverWithEditController: freightCarEditVC
+                             fromIndexPath: indexPath];
 }
 @end

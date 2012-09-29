@@ -1,9 +1,8 @@
 //
-//  TownTableViewController.h
-//  SwitchList for iPad
+//  ExpandingEditViewController.h
+//  SwitchList
 //
-//  Created by Robert Bowdidge on 9/8/12.
-//  Copyright (c) 2012 Robert Bowdidge. All rights reserved.
+//  Created by Robert Bowdidge on 9/25/12.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -26,10 +25,35 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
+
 #import <UIKit/UIKit.h>
 
 #import "AbstractTableViewController.h"
+#import "CurlyView.h"
 
-// Controller for towns tab.
-@interface TownTableViewController : AbstractTableViewController
+@interface ExpandingEditViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+
+// Widens the popover to show the selection table on the right side.
+- (void) doWidenPopoverFrom: (CGRect) leftSideRect;
+
+// Collapses the popover frame and hides the table.
+- (void) doNarrowPopoverFrame;
+    
+// Table on right side of popover that is alternately exposed and hidden.
+@property (retain, nonatomic) IBOutlet UITableView *rightSideSelectionTable;
+
+// UIView doing highlighting to tie button to table.
+@property (retain, nonatomic) IBOutlet CurlyView *curlyView;
+
+// Width of popover in unexpanded state.  To be set by subclasses.
+@property (nonatomic) float popoverSizeCollapsed;
+// Width of popover in expanded state. To be set by subclasses.
+@property (nonatomic) float popoverSizeExpanded;
+
+// Reference back to the table controller for the list of industries.
+@property (nonatomic, retain) AbstractTableViewController *myTableController;
+
+// Navigation bar capping every edit window.
+@property (retain, nonatomic) IBOutlet UINavigationBar *myNavigationBar;
+
 @end

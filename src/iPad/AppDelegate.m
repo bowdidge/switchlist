@@ -155,7 +155,7 @@
 - (BOOL) openNewFile: (NSURL*) filename {
     self.currentFilePath = filename;
     self.entireLayout = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
-    self.layoutController = [[LayoutController alloc] initWithEntireLayout: entireLayout];
+    self.layoutController = [[[LayoutController alloc] initWithEntireLayout: entireLayout] autorelease];
     
     if ([[self.entireLayout allCarTypes] count] == 0) {
 		NSDictionary* currentlyUsedCarTypes = [CarTypes populateCarTypesFromLayout: self.entireLayout];
