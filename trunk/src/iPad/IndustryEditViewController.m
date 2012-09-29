@@ -79,6 +79,8 @@ enum {
     self.divisions = [NSArray arrayWithObjects: @"Here", @"SP", @"WP", @"East", @"Midwest", nil];
     
     self.currentSelectionMode = SelectionViewNoContents;
+    self.currentArrayToShow = nil;
+    self.currentTitleSelector = NULL;
 }
 
 // Window is about to load.  Populate the currently selected freight car's details.
@@ -134,6 +136,8 @@ enum {
     // TODO(bowdidge) Use sender instead of explicit button.
     [self doWidenPopoverFrom: self.divisionButton.frame];
     self.currentSelectionMode = SelectionViewDivision;
+    self.currentArrayToShow = self.divisions;
+    self.currentTitleSelector = NULL;
     [self.rightSideSelectionTable reloadData];
 }
 
@@ -141,6 +145,8 @@ enum {
 - (IBAction) doPressTownLocationButton: (id) sender {
     [self doWidenPopoverFrom: self.townLocationButton.frame];
     self.currentSelectionMode = SelectionViewLocation;
+    self.currentArrayToShow = self.towns;
+    self.currentTitleSelector = @selector(name);
     [self.rightSideSelectionTable reloadData];
 }
 
@@ -150,76 +156,31 @@ enum {
     // Dispose of any resources that can be recreated.
 }
 
-// Handles the user pressing an item in the right-hand-side selection table.
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self doNarrowPopoverFrame];
+- (void) didSelectRowWithIndexPath: (NSIndexPath*) indexPath {
     
-    // Selected item.
-    Place *selectedLocation;
-    NSString *currentDivision;
     switch (self.currentSelectionMode) {
         case SelectionViewLocation:
+        {
+            Place *selectedLocation;
             selectedLocation = [self.towns objectAtIndex: [indexPath row]];
             // TODO(bowdidge): Pass actual object.
             [self.townLocationButton setTitle: [selectedLocation name]
-                                        forState: UIControlStateNormal];
+                                     forState: UIControlStateNormal];
             break;
+        }
         case SelectionViewDivision:
+        {
+            NSString *currentDivision;
             currentDivision = [self.divisions objectAtIndex: [indexPath row]];
             // TODO(bowdidge): Pass actual object.
             [self.divisionButton setTitle: currentDivision
-                                     forState: UIControlStateNormal];
+                                 forState: UIControlStateNormal];
             break;
+        }
         default:
             break;
     }
-    
-}
-
-// Returns the number of sections in the selection table on the right hand side of the popover.
-// This is always 1 - there are no divisions in the selection table.
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Three sections: on layout, on workbench, and empty/add.
-    return 1;
-}
-
-// Returns the number of rows in the selection table to the right hand side of
-// the popover.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (self.currentSelectionMode) {
-        case SelectionViewLocation:
-            return self.towns.count;
-        case SelectionViewDivision:
-            return self.divisions.count;
-        default:
-            return 0;
-    }
-    return 0;
-}
-
-// Creates each cell for the selection table.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"selectionCell";
-    
-    SelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[SelectionCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                    reuseIdentifier:CellIdentifier];
-        [cell autorelease];
-    }
-    
-    switch (self.currentSelectionMode) {
-        case SelectionViewLocation:
-            cell.cellText.text = [[self.towns objectAtIndex: [indexPath row]] name];
-            break;
-        case SelectionViewDivision:
-            cell.cellText.text = [self.divisions objectAtIndex: [indexPath row]];
-            break;
-        default:
-            cell.cellText.text = @"";
-            break;
-    }
-    return cell;
+ 
 }
 
 @synthesize myIndustry;

@@ -26,6 +26,7 @@
 // SUCH DAMAGE.
 
 #import "ExpandingEditViewController.h"
+#import "SelectionCell.h"
 
 @class CurlyView;
 
@@ -76,8 +77,53 @@
     [self.myNavigationBar setFrame: CGRectMake(0.0, 0.0, self.popoverSizeCollapsed, 44.0)];
 }
 
+// Handles the user pressing an item in the right-hand-side selection table.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self doNarrowPopoverFrame];
+    [self didSelectRowWithIndexPath: indexPath];
+}
+
+// Returns the number of sections in the selection table on the right hand side of the popover.
+// This is always 1 - there are no divisions in the selection table.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+// Returns the number of rows in the selection table to the right hand side of
+// the popover.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.currentArrayToShow.count;
+}
+
+// Creates each cell for the selection table.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"selectionCell";
+    
+    SelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[SelectionCell alloc] initWithStyle:UITableViewCellStyleDefault
+                                    reuseIdentifier:CellIdentifier];
+        [cell autorelease];
+    }
+    
+    if (self.currentTitleSelector) {
+        cell.cellText.text = [[self.currentArrayToShow objectAtIndex: [indexPath row]] performSelector: self.currentTitleSelector];
+    } else {
+        cell.cellText.text = [self.currentArrayToShow objectAtIndex: [indexPath row]];
+    }
+    return cell;
+}
+
+// Handles selection of a particular row in the right hand table.
+// To be implemented by subclasses.
+// TODO(bowdidge): Put in protocol.
+- (void) didSelectRowWithIndexPath: (NSIndexPath*) path {
+}
+
 
 @synthesize curlyView;
 @synthesize popoverSizeCollapsed;
 @synthesize popoverSizeExpanded;
+@synthesize currentArrayToShow;
+@synthesize currentTitleSelector;
 @end

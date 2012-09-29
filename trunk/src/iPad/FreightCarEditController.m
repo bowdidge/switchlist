@@ -93,6 +93,8 @@ enum {
     self.divisions = [NSArray arrayWithObjects: @"Here", @"SP", @"WP", @"East", @"Midwest", nil];
     
     self.currentSelectionMode = SelectionViewNoContents;
+    self.currentArrayToShow = nil;
+    self.currentTitleSelector = NULL;
 }
 
 // Returns an appropriate image for the provided freight car.
@@ -132,55 +134,36 @@ enum {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
 
-    BOOL hasChanges = NO;
-    if (![self.reportingMarksField.text isEqualToString: [self.freightCar reportingMarks]]) {
-        [self.freightCar setReportingMarks: [self.reportingMarksField.text uppercaseString]];
-        hasChanges = YES;
-    }
-    
-    if ([self.homeDivisionButton.titleLabel.text isEqualToString: [self.freightCar homeDivision]] != NSOrderedSame) {
-        [self.freightCar setHomeDivision: self.homeDivisionButton.titleLabel.text];
-        hasChanges = YES;
-    }
-    
-    if (![self.carTypeButton.titleLabel.text isEqualToString: [[[self freightCar] carTypeRel] carTypeName]]) {
-        for (CarType *ct in self.carTypes) {
-            if ([[ct carTypeName] isEqualToString: self.carTypeButton.titleLabel.text]) {
-                [[self freightCar] setCarTypeRel: ct];
-                hasChanges = YES;
-                break;
-            }
+    [self.freightCar setReportingMarks: [self.reportingMarksField.text uppercaseString]];
+    [self.freightCar setHomeDivision: self.homeDivisionButton.titleLabel.text];
+    for (CarType *ct in self.carTypes) {
+        if ([[ct carTypeName] isEqualToString: self.carTypeButton.titleLabel.text]) {
+            [[self freightCar] setCarTypeRel: ct];
+            break;
         }
     }
     
-    if (![self.currentLocationButton.titleLabel.text isEqualToString: [[[self freightCar] currentLocation] name]]) {
-        for (InduYard *induYard in self.locations) {
-            if ([[induYard name] isEqualToString: self.currentLocationButton.titleLabel.text]) {
-                [[self freightCar] setCurrentLocation: induYard];
-                hasChanges = YES;
-                break;
-            }
+    for (InduYard *induYard in self.locations) {
+        if ([[induYard name] isEqualToString: self.currentLocationButton.titleLabel.text]) {
+            [[self freightCar] setCurrentLocation: induYard];
+            break;
         }
     }
+
     // Location not set?  Put at workbench.
     if (![[self freightCar] currentLocation]) {
         [[self freightCar] setCurrentLocation: [myLayout workbenchIndustry]];
     }
 
-    if (![self.currentCargoButton.titleLabel.text isEqualToString: [[[self freightCar] cargo] name]]) {
-        for (Cargo *cargo in self.cargos) {
-            if ([[cargo name] isEqualToString: self.currentCargoButton.titleLabel.text]) {
-                [[self freightCar] setCargo: cargo];
-                hasChanges = YES;
-                break;
-            }
+    for (Cargo *cargo in self.cargos) {
+        if ([[cargo name] isEqualToString: self.currentCargoButton.titleLabel.text]) {
+            [[self freightCar] setCargo: cargo];
+            break;
         }
     }
     
     self.carPhotoView.image = nil;
-    if (hasChanges) {
-        [self.myTableController layoutObjectsChanged: self];
-    }
+    [self.myTableController layoutObjectsChanged: self];
     [self.myTableController doDismissEditPopover: self];
 }
 
@@ -203,6 +186,8 @@ enum {
 - (IBAction) doPressCarTypeButton: (id) sender {
     [self doWidenPopoverFrom: self.carTypeButton.frame];
     self.currentSelectionMode = SelectionViewCarType;
+    self.currentArrayToShow = self.carTypes;
+    self.currentTitleSelector = @selector(carTypeName);
     [self.rightSideSelectionTable reloadData];
 }
 
@@ -210,7 +195,9 @@ enum {
 - (IBAction) doPressCargoButton: (id) sender {
     [self doWidenPopoverFrom: self.currentCargoButton.frame];
     self.currentSelectionMode = SelectionViewCurrentCargo;
-    [self.rightSideSelectionTable reloadData];    
+    self.currentArrayToShow = self.cargos;
+    self.currentTitleSelector = @selector(name);
+    [self.rightSideSelectionTable reloadData];
 }
 
 // Handles the user pressing the location button to select a different current location
@@ -218,6 +205,8 @@ enum {
 - (IBAction) doPressLocationButton: (id) sender {
     [self doWidenPopoverFrom: self.currentLocationButton.frame];
     self.currentSelectionMode = SelectionViewLocation;
+    self.currentArrayToShow = self.locations;
+    self.currentTitleSelector = @selector(name);
     [self.rightSideSelectionTable reloadData];
     
 }
@@ -227,115 +216,54 @@ enum {
 - (IBAction) doPressDivisionButton: (id) sender {
     [self doWidenPopoverFrom: self.homeDivisionButton.frame];
     self.currentSelectionMode = SelectionViewDivision;
-    [self.rightSideSelectionTable reloadData];
+    self.currentArrayToShow = self.divisions;
+    self.currentTitleSelector = NULL;
+   [self.rightSideSelectionTable reloadData];
     
 }
 
-// TODO(bowdidge): Move selection table into ExpandingEditViewController.
-// Needs way to understand data for each table.
 // Handles the user pressing an item in the right-hand-side selection table.
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self doNarrowPopoverFrame];
-    
-    // Selected item.
-    CarType *selectedCarType;
-    InduYard *currentLocation;
-    Cargo *currentCargo;
-    NSString *currentDivision;
+- (void)didSelectRowWithIndexPath: (NSIndexPath *)indexPath {
     switch (self.currentSelectionMode) {
         case SelectionViewCarType:
+        {
+            CarType *selectedCarType;
             selectedCarType = [self.carTypes objectAtIndex: [indexPath row]];
             [self.carTypeButton setTitle: [selectedCarType carTypeName]
                                 forState: UIControlStateNormal];
             break;
+        }
         case SelectionViewLocation:
+        {
+            InduYard *currentLocation;
             currentLocation = [self.locations objectAtIndex: [indexPath row]];
             // TODO(bowdidge): Pass actual object.
             [self.currentLocationButton setTitle: [currentLocation name]
                                         forState: UIControlStateNormal];
             break;
+        }
         case SelectionViewCurrentCargo:
+        {
+            Cargo *currentCargo;
             currentCargo = [self.cargos objectAtIndex: [indexPath row]];
             // TODO(bowdidge): Pass actual object.
             [self.currentCargoButton setTitle: [currentCargo name]
                                      forState: UIControlStateNormal];
             break;
+        }
         case SelectionViewDivision:
+        {
+            NSString *currentDivision;
             currentDivision = [self.divisions objectAtIndex: [indexPath row]];
             // TODO(bowdidge): Pass actual object.
             [self.homeDivisionButton setTitle: currentDivision
                                      forState: UIControlStateNormal];
             break;
+        }
         default:
             break;
     }
     
-}
-
-// Returns the number of sections in the selection table on the right hand side of the popover.
-// This is always 1 - there are no divisions in the selection table.
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Three sections: on layout, on workbench, and empty/add.
-    return 1;
-}
-
-// Returns the number of rows in the selection table to the right hand side of
-// the popover.
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    switch (self.currentSelectionMode) {
-        case SelectionViewCarType:
-            return self.carTypes.count;
-        case SelectionViewLocation:
-            return self.locations.count;
-        case SelectionViewCurrentCargo:
-            return self.cargos.count;
-        case SelectionViewDivision:
-            return self.divisions.count;
-        default:
-            return 0;
-    }
-    return 0;
-}
-
-// Creates each cell for the selection table.
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"selectionCell";
-    
-    SelectionCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[SelectionCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:CellIdentifier];
-        [cell autorelease];
-    }
-    
-    CarType *carType = nil;
-    InduYard *location = nil;
-    Cargo *cargo = nil;
-    switch (self.currentSelectionMode) {
-        case SelectionViewCarType:
-            carType = [self.carTypes objectAtIndex: [indexPath row]];
-            // Shorter form of description that has a better chance of fitting.
-            cell.cellText.text = [NSString stringWithFormat: @"%@ (%@)", carType.carTypeName, carType.carTypeDescription];
-            break;
-        case SelectionViewLocation:
-            location = [self.locations objectAtIndex: [indexPath row]];
-            cell.cellText.text = [location name];
-            break;
-        case SelectionViewCurrentCargo:
-            // TODO(bowdidge): Deserves two lines.
-            cargo = [self.cargos objectAtIndex: [indexPath row]];
-            // Shorter form of description that has a better chance of fitting.
-            cell.cellText.text = [NSString stringWithFormat: @"%@ (%@->%@)",
-                                  [cargo name], [[cargo source] name], [[cargo destination] name]];
-            break;
-        case SelectionViewDivision:
-            cell.cellText.text = [self.divisions objectAtIndex: [indexPath row]];
-            break;
-        default:
-            cell.cellText.text = @"";
-            break;
-    }
-    return cell;
 }
 
 @synthesize freightCar;
