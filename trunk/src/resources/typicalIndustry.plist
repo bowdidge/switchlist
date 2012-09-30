@@ -1106,6 +1106,8 @@
     <key>IndustryClass</key><string>printing</string>
     <key>Synonyms</key>
     <array>
+      <string>Named Printing</string>
+      <string>printers</string>
       <string>printer</string>
       <string>box and printing</string>
       <string>newspaper</string>
