@@ -47,7 +47,7 @@
 // Cargo description.
 @property (retain) NSString *name;
 // Rate of cars arriving or departing.
-@property (retain) NSNumber *carsPerWeek;
+@property (retain) NSString *carsPerWeek;
 // Preferred industry as source/dest of cargo.
 @property (retain) InduYard *industry;
 // Existing cargo just being shown for context?
