@@ -61,7 +61,7 @@
 	self.isExistingCargo = YES;
 	self.isReceive = shouldReceive;
 	self.industry = (shouldReceive ? [cargo source] : [cargo destination]);
-	self.carsPerWeek = [cargo carsPerWeek];
+	self.carsPerWeek = [[cargo carsPerWeek] stringValue];
 	return self;
 }
 	
@@ -225,7 +225,7 @@
 		if (carsPerWeek < 1) {
 			carsPerWeek = 1;
 		}
-		c.carsPerWeek = [NSNumber numberWithInt: carsPerWeek];
+		c.carsPerWeek = [NSString stringWithFormat: @"%d", carsPerWeek];
 		[newContents addObject: c];
 		proposedCargoCount++;
 	}
@@ -314,15 +314,15 @@
 			[NSEntityDescription entityForName: @"Cargo" inManagedObjectContext: context];
 			Cargo *c1 = [NSEntityDescription insertNewObjectForEntityForName:@"Cargo"
 														 inManagedObjectContext: context];
-			[c1 setCargoDescription: [cargo name]];
-			[c1 setPriority: [NSNumber numberWithBool: NO]];
-			[c1 setCarsPerWeek: [cargo carsPerWeek]];
+			c1.cargoDescription = [cargo name];
+			c1.priority = [NSNumber numberWithBool: NO];
+			c1.carsPerWeek = [NSNumber numberWithInt: [[cargo carsPerWeek] intValue]];
 			if ([cargo isReceive]) {
-				[c1 setSource: [cargo industry]];
-				[c1 setDestination: currentIndustry_];
+				c1.source = [cargo industry];
+				c1.destination = currentIndustry_;
 			} else {
-				[c1 setSource: currentIndustry_];
-				[c1 setDestination: [cargo industry]];
+				c1.source = currentIndustry_;
+				c1.destination = [cargo industry];
 			}
 		}
 	}
