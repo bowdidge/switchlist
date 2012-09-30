@@ -516,7 +516,7 @@ error:
 			// Error during copying.  Warn, and return.
 			alert = [NSAlert alertWithMessageText: @"Problems moving old copy of template out of the way."
 											 defaultButton: @"OK" alternateButton: nil otherButton: nil
-								 informativeTextWithFormat: [NSString stringWithFormat: @"%@.", [error localizedDescription]]];
+								 informativeTextWithFormat: @"%@.", [error localizedDescription]];
 			[alert runModal];
 			return;
 		}
@@ -529,7 +529,7 @@ error:
 	if (copyResult == NO) {
 		NSAlert *alert = [NSAlert alertWithMessageText: @"Problems copying template into place."
 										 defaultButton: @"OK" alternateButton: nil otherButton: nil
-							 informativeTextWithFormat: [NSString stringWithFormat: @"%@.", [error localizedDescription]]];
+							 informativeTextWithFormat:  @"%@.", [error localizedDescription]];
 		[alert runModal];
 		return;
 	}
@@ -540,7 +540,7 @@ error:
 		if (moveResult == NO) {
 			NSAlert *alert = [NSAlert alertWithMessageText: @"New template is in place, but problems deleting old copy of template."
 											 defaultButton: @"OK" alternateButton: nil otherButton: nil
-								 informativeTextWithFormat: [NSString stringWithFormat: @"%@.", [error localizedDescription]]];
+								 informativeTextWithFormat: @"%@.", [error localizedDescription]];
 			[alert runModal];
 			return;
 		}
