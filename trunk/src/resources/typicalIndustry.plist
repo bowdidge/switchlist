@@ -311,6 +311,7 @@
     <key>IndustryClass</key><string>manufacturer</string>
     <key>Synonyms</key>
     <array>
+      <string>works</string>
       <string>manufacturing</string>
       <string>industry</string>
       <string>Mfg.</string>
@@ -789,6 +790,7 @@
     <key>Synonyms</key>
     <array>
       <string>box factory</string>
+      <string>paper box</string>
       <string>Fiberboard</string>
       <string>Cardboard</string>
       <string>Cal Container</string>
@@ -1053,6 +1055,76 @@
     <key>Synonyms</key>
     <array>
       <string>Interchange</string>
+    </array>
+  </dict>
+  <dict>
+    <key>IndustryClass</key><string>appliance factory</string>
+    <key>Synonyms</key>
+    <array>
+      <string>appliances</string>
+      <string>whirlpool</string>
+    </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+	<key>Name</key><string>steel</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>30</integer>
+      </dict>
+      <dict>
+	<key>Name</key><string>appliances</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>70</integer>
+      </dict>
+    </array>
+  </dict>
+  <dict>
+    <key>IndustryClass</key><string>food processing plant</string>
+    <key>Synonyms</key>
+    <array>
+      <string>food plant</string>
+      <string>candy factory</string>
+      <string>cereal plant</string>
+      <string>canned food</string>
+      <string>dry goods</string>
+    </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+	<key>Name</key><string>boxes</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>20</integer>
+      </dict>
+      <dict>
+	<key>Name</key><string>foodstuffs</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>80</integer>
+      </dict>
+    </array>
+  </dict>
+  <dict>
+    <key>IndustryClass</key><string>printing</string>
+    <key>Synonyms</key>
+    <array>
+      <string>printer</string>
+      <string>box and printing</string>
+      <string>newspaper</string>
+      <string>publication</string>
+      <string>web</string>
+      <string>paper</string>
+    </array>
+    <key>Cargo</key>
+    <array>
+      <dict>
+	<key>Name</key><string>newsprint</string>
+	<key>Incoming</key><true/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
+      <dict>
+	<key>Name</key><string>printed matter</string>
+	<key>Incoming</key><false/>
+	<key>Rate</key><integer>50</integer>
+      </dict>
     </array>
   </dict>
 </array>
