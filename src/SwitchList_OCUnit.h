@@ -51,8 +51,8 @@
 #define STAssertContains(contains, container, description, ...) \
 do { \
 @try {\
-NSString *containsvalue = [NSString stringWithString: (contains)]; \
-NSString *containervalue = [NSString stringWithString: (container)]; \
+NSString *containsvalue = (contains); \
+NSString *containervalue = (container); \
 if ([containervalue rangeOfString: containsvalue].location == NSNotFound ) { \
 [self failWithException:([NSException failureInCondition: [NSString stringWithFormat: @"%@ in %@", containsvalue, containervalue] \
 isTrue: false \
@@ -75,8 +75,8 @@ withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
 #define STAssertNotContains(contains, container, description, ...) \
 do { \
 @try {\
-NSString *containsvalue = [NSString stringWithString: (contains)]; \
-NSString *containervalue = [NSString stringWithString: (container)]; \
+NSString *containsvalue = (contains); \
+NSString *containervalue = (container); \
 if ([containervalue rangeOfString: containsvalue].location != NSNotFound ) { \
 [self failWithException:([NSException failureInCondition: [NSString stringWithFormat: @"%@ not in %@", containsvalue, containervalue] \
 isTrue: false \
