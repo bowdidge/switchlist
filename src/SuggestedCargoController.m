@@ -50,16 +50,24 @@
 @synthesize isReceive;
 @synthesize name;
 @synthesize carsPerWeek;
+@synthesize industry;
+@synthesize isExistingCargo;
 
-- (Industry*) industry {
-	return industry;
+// Creates a proposed cargo based on an existing Cargo object.
+- (id) initWithExistingCargo: (Cargo*) cargo isReceive: (BOOL) shouldReceive {
+	[self init];
+	self.name = [cargo cargoDescription];
+	self.isKeep = [NSNumber numberWithBool: NO];
+	self.isExistingCargo = YES;
+	self.isReceive = shouldReceive;
+	self.industry = (shouldReceive ? [cargo source] : [cargo destination]);
+	self.carsPerWeek = [cargo carsPerWeek];
+	return self;
 }
-
-- (void) setIndustry: (Industry*) newIndustry {
-	[industry release];
-	industry = [newIndustry retain];
+	
+- (NSString*) receiveString {
+	return (self.isReceive ? @"Receive" : @"Ship");
 }
-
 @end
 
 @implementation SuggestedCargoController
@@ -78,6 +86,11 @@
 
 - (NSWindow*) window {
 	return window_;
+}
+
+- (void) viewDidUnhide {
+	// Force table to redraw.
+	[self doChangeIndustry: self];
 }
 
 // Callbacks to trigger the reordering of all the popup buttons listing places and other things
@@ -194,27 +207,49 @@
 	NSMutableArray *newContents= [NSMutableArray array];
 	Industry *likelyDestination = [self likelyDestination];
 	
+	int proposedCargoCount = 0;
+	int existingCargoCount = 0;
+	
 	for (NSDictionary *cargo in [industryDict objectForKey: @"Cargo"]) {
 		ProposedCargo *c = [[[ProposedCargo alloc] init] autorelease];
-		[c setName: [cargo objectForKey: @"Name"]];
+		c.name = [cargo objectForKey: @"Name"];
 		// TODO(bowdidge): Consider era.
 		// NSString *era = [cargo objectForKey: @"Era"];
-		[c setIsKeep: [NSNumber numberWithBool: YES]];
-		int isReceive = ([[cargo objectForKey: @"Incoming"] intValue] == 0);
-		NSString *receiveString =  isReceive ? @"Ship" : @"Receive";
-		[c setIsReceive: receiveString];
-		[c setIndustry: likelyDestination];
+		c.isKeep = [NSNumber numberWithBool: YES];
+		c.isReceive = ([[cargo objectForKey: @"Incoming"] intValue] != 0);
+		c.isExistingCargo = NO;
+		c.industry = likelyDestination;
 		int rate = [[cargo objectForKey: @"Rate"] intValue];
 		int totalCarsPerWeek = [desiredCarsPerWeek_ intValue];
 		int carsPerWeek = (totalCarsPerWeek * rate) / 100;
 		if (carsPerWeek < 1) {
 			carsPerWeek = 1;
 		}
-		[c setCarsPerWeek: [NSNumber numberWithInt: carsPerWeek]];
+		c.carsPerWeek = [NSNumber numberWithInt: carsPerWeek];
 		[newContents addObject: c];
+		proposedCargoCount++;
 	}
 
+	// Fill in the existing cargos for context, graying out 
+	for (Cargo *cargo in [currentIndustry_ originatingCargos]) {
+		ProposedCargo *c = [[[ProposedCargo alloc] initWithExistingCargo: cargo isReceive: NO] autorelease];
+		[newContents addObject: c];
+		existingCargoCount++;
+	}
+		
+	for (Cargo *cargo in [currentIndustry_ terminatingCargos]) {
+		ProposedCargo *c = [[[ProposedCargo alloc] initWithExistingCargo: cargo isReceive: YES] autorelease];
+		[newContents addObject: c];
+		existingCargoCount++;
+	}
+	
 	[proposedCargoArrayController_ setContent: newContents];
+	// Hint to the user what the grayed out cargos are by giving an informative message at the bottom.
+	// Get the plural right.
+	NSString *msg = [NSString stringWithFormat: @"%d proposed cargo%s, %d existing cargo%s.",
+					 proposedCargoCount, (proposedCargoCount == 1 ? "" : "s"),
+					 existingCargoCount, (existingCargoCount == 1 ? "" : "s")];
+	[proposedCargoCountMsg_ setStringValue: msg];
 }
 	
 - (IBAction) doChangeCarsPerWeek: (id) sender {
@@ -237,7 +272,7 @@
 
 	int i = [currentIndustryButton_ indexOfSelectedItem];
 	// TODO(bowdidge): Why doesn't this set checkbox, and set center point of menu when opened?
-	currentIndustry_ = [[currentIndustryArrayController_ content] objectAtIndex: i];
+	currentIndustry_ = [[currentIndustryArrayController_ arrangedObjects] objectAtIndex: i];
 	[[currentIndustryButton_ itemAtIndex: i] setState: NSOnState];
 	
 	NSArray *categories = [store_ categoriesForIndustryName: [currentIndustry_ name]];
@@ -291,11 +326,8 @@
 			}
 		}
 	}
-	[window_ close];
+	// Keep window open so user can do other industries.
+	// Change industry to force regenerating table.
+	[self doChangeIndustry: self];
 }
-
-- (IBAction) doCancel: (id) sender {
-	[window_ close];
-}	
-	
 @end
