@@ -648,7 +648,7 @@
 		3E407DC6160694070037134D /* XM.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = XM.jpg; path = "resources-iPad/XM.jpg"; sourceTree = "<group>"; };
 		3E407DC7160694070037134D /* yard.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = yard.jpg; path = "resources-iPad/yard.jpg"; sourceTree = "<group>"; };
 		3E407DD81606945E0037134D /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = "resources-iPad/InfoPlist.strings"; sourceTree = "<group>"; };
-		3E407DD91606945E0037134D /* MainStoryboard1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = MainStoryboard1.storyboard; path = "resources-iPad/MainStoryboard1.storyboard"; sourceTree = "<group>"; };
+		3E407DD91606945E0037134D /* MainStoryboard1.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = MainStoryboard1.storyboard; path = "resources-iPad/MainStoryboard1.storyboard"; sourceTree = "<group>"; };
 		3E407DE0160694EF0037134D /* libSwitchListEngine-iPad.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libSwitchListEngine-iPad.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E407DE4160694EF0037134D /* SwitchListEngine-iPad-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SwitchListEngine-iPad-Prefix.pch"; sourceTree = "<group>"; };
 		3E407DE5160694EF0037134D /* SwitchListEngine_iPad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwitchListEngine_iPad.h; sourceTree = "<group>"; };
@@ -709,6 +709,7 @@
 		3E88AE98127B293E003486E2 /* CargoAssigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CargoAssigner.m; path = Engine/CargoAssigner.m; sourceTree = "<group>"; };
 		3E88AED3127B2DD2003486E2 /* train.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = train.jpg; path = resources/train.jpg; sourceTree = "<group>"; };
 		3E8D889512B4A24000DB580E /* SwitchListDocumentInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListDocumentInterface.h; sourceTree = "<group>"; };
+		3E90293F161795120010BD74 /* pg84.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = pg84.html; path = SwitchList.help/Contents/Resources/English.lproj/pgs/pg84.html; sourceTree = "<group>"; };
 		3E90BF3612792E3F0074F2FA /* NSManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSManagedObjectContext.h; sourceTree = "<group>"; };
 		3E90BF3712792E3F0074F2FA /* NSManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSManagedObjectContext.m; sourceTree = "<group>"; };
 		3E90BFF8127937860074F2FA /* LayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayoutTest.h; path = Engine/LayoutTest.h; sourceTree = "<group>"; };
@@ -988,6 +989,7 @@
 				3EA487BC15D83EA7008A169F /* typicalIndustry.plist */,
 				3E6B59B4140CB1CD006FFDD3 /* builtin-templates */,
 				3E0E27AA13F63AD500488E4D /* network_wireless.jpg */,
+				3E90293F161795120010BD74 /* pg84.html */,
 				3EE5ED9D131A1E03009E2C83 /* SwitchList.help */,
 				3E88AED3127B2DD2003486E2 /* train.jpg */,
 				3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */,
