@@ -36,23 +36,22 @@
 @class TypicalIndustryStore;
 
 // Represents a potential cargo for the current industry.
-@interface ProposedCargo : NSObject {
-	// Value of checkbox whether to create this cargo.
-	NSNumber *isKeep;
-	// Is incoming or outgoing cargo.
-	NSString *isReceive;
-	// Name of cargo.
-	NSString *name;
-	// Rate of cars arriving or departing.
-	NSNumber *carsPerWeek;
-	// Preferred industry as source/dest of cargo.
-	Industry *industry;
-}
+@interface ProposedCargo : NSObject
+// Value of checkbox whether to create this cargo.  NSNumber required
+// for checkbox.
 @property (retain) NSNumber *isKeep;
-@property (retain) NSString *isReceive;
+// Is incoming cargo.
+@property () BOOL isReceive;
+// String value for receive column: either "Receive" or "Ship".
+@property (readonly) NSString *receiveString;
+// Cargo description.
 @property (retain) NSString *name;
+// Rate of cars arriving or departing.
 @property (retain) NSNumber *carsPerWeek;
-@property (retain) Industry *industry;
+// Preferred industry as source/dest of cargo.
+@property (retain) InduYard *industry;
+// Existing cargo just being shown for context?
+@property () BOOL isExistingCargo;
 @end
 
 // Controller for the Cargo Assistant dialog box.
@@ -68,11 +67,12 @@
 	IBOutlet NSArrayController *proposedCargoArrayController_;
 	IBOutlet NSArrayController *currentIndustryArrayController_;
 	IBOutlet NSArrayController *industryColumnArrayController_;
+	IBOutlet NSTextField *proposedCargoCountMsg_;
 	IBOutlet NSWindow *window_;
 	
 	// Current industry selected in Cargo Assistant window.
 	Industry *currentIndustry_;
-	// Object storing the potential cargos.
+	// Object storing the potential cargo database.
 	TypicalIndustryStore *store_;
 }
 // Updates the table to show sample cargos for the provided category number.
@@ -85,8 +85,6 @@
 - (IBAction) doChangeCarsPerWeek: (id) sender;
 // Create button is pressed.
 - (IBAction) doCreate: (id) sender;
-/// Cancel button is pressed.
-- (IBAction) doCancel: (id) sender;
 	
 - (NSWindow*) window;
 
