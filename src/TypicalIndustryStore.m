@@ -84,7 +84,7 @@
 								errorDescription:&errorDesc];
 		
 	if (!result) {
-		NSLog(@"Error reading plist: %@, format: %d", errorDesc, format);
+		NSLog(@"Error reading plist: %@, format: %ld", errorDesc, format);
 		return nil;
 	}
 	return result;
