@@ -327,7 +327,8 @@
         FSRef fsRef;
         CFURLGetFSRef((CFURLRef)fontsURL, &fsRef);
         OSStatus status;
-        // Prepare to switch to CoreText Font Manager - ATSFontActivate* is deprecated.
+        // TODO(bowdidge): Prepare to switch to CoreText Font Manager - ATSFontActivate* is deprecated.
+        // Alternative (CTFontManagerRegisterFontsForURL) is only in 10.6 and greater.
         status = ATSFontActivateFromFileReference(&fsRef, kATSFontContextLocal, kATSFontFormatUnspecified,
                                                   NULL, kATSOptionFlagsDefault, NULL);
         if (status != noErr) {
