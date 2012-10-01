@@ -56,7 +56,14 @@ pushd /tmp/switchlist-read-only/src
 hiutil -C -a SwitchList.help -f SwitchList.help/SwitchList.help.helpindex
 
 xcodebuild -target SwitchList -configuration Release  clean
-xcodebuild -target SwitchList -configuration Release  SYMROOT=/tmp/XcodeBuildProducts OBJROOT=/tmp/XcodeBuildIntermediates DSTROOT=/tmp/SwitchList.dst -target SwitchList -target testAdvanceLayouts
+# Build only for i386, not x86_64 - 64 bit binary works badly on 10.5.
+xcodebuild ARCHS="ppc i386" ONLY_ACTIVE_ARCH=NO  \
+           SYMROOT=/tmp/XcodeBuildProducts \
+           OBJROOT=/tmp/XcodeBuildIntermediates \
+           DSTROOT=/tmp/SwitchList.dst \
+           -configuration Release \
+           -target SwitchList \
+           -target testAdvanceLayouts
 
 if [ $? -ne 0 ]; then
   echo Problems building SwitchList - problems during xcodebuild.
