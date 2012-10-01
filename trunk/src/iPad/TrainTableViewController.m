@@ -23,6 +23,7 @@
 #import "EntireLayout.h"
 #import "ScheduledTrain.h"
 #import "SwitchListColors.h"
+#import "TraineditViewController.h"
 #import "TrainTableCell.h"
 
 @interface TrainTableViewController ()
@@ -39,8 +40,7 @@
  
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
-    // TODO(bowdidge): Why copy?
-    allTrains = [[myLayout allTrains] copy];
+    self.allTrains = [myLayout allTrains];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,6 +48,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (ScheduledTrain*) trainAtIndexPath: (NSIndexPath *) indexPath {
+    return [self.allTrains objectAtIndex: [indexPath row]];
+}
+
 
 #pragma mark - Table view data source
 
@@ -141,16 +146,24 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+// Handles presses on the table.  When a selection is made in the freight
+// car table, we show a popover for editing the freight car.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
+    TrainEditViewController *trainEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editTrain"];
+    ScheduledTrain *myTrain = [self trainAtIndexPath: indexPath];
+    if (!myTrain) {
+        // Create a new industry.
+    }
+    trainEditVC.myTrain = myTrain;
+    
+    [self doRaisePopoverWithEditController: trainEditVC
+                             fromIndexPath: indexPath];
+}
+
+// Requests edit view be closed.
+- (IBAction) doDismissEditPopover: (id) sender {
+    [self.myPopoverController dismissPopoverAnimated: YES];
 }
 
 @synthesize allTrains;
