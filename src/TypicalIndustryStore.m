@@ -133,6 +133,13 @@
 // bound on the quality of lesser matches that will be shown.  The first match will
 // always be shown.
 - (NSArray*) categoriesForIndustryName: (NSString*) industryName threshold: (float) threshold {
+    // TODO(bowdidge): Catch this error higher up, and provide a more
+    // helpful message when trying to get suggested cargos for a null
+    // industry name.
+    if (!industryName) {
+        return [NSArray array];
+    }
+    
 	LSMTextRef textRef = LSMTextCreate(kCFAllocatorDefault,  industryMap_);
 	LSMTextAddWords(textRef, (CFStringRef) industryName, CFLocaleGetSystem(), 0);
 	LSMResultRef result = LSMResultCreate(kCFAllocatorDefault, industryMap_,
