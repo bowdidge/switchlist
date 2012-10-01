@@ -19,6 +19,7 @@
 		3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
 		3E11BF2216101DF300BE97D6 /* MainStoryboard1.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DD91606945E0037134D /* MainStoryboard1.storyboard */; };
 		3E11BF82160CE279007605D6 /* LayoutDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E11BF81160CE279007605D6 /* LayoutDetailsViewController.m */; };
+		3E1C9D2F1618237B00C533B9 /* TrainEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C9D2E1618237B00C533B9 /* TrainEditViewController.m */; };
 		3E1FD9B515CCE78F00568E36 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3E1FD9B415CCE78F00568E36 /* icon.icns */; };
 		3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */; };
 		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
@@ -530,6 +531,8 @@
 		3E1490CD128F07AB001700D0 /* NSMigrationManagerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMigrationManagerCategory.h; sourceTree = "<group>"; };
 		3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRouteDialogController.h; sourceTree = "<group>"; };
 		3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRouteDialogController.m; sourceTree = "<group>"; };
+		3E1C9D2D1618237B00C533B9 /* TrainEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TrainEditViewController.h; path = iPad/TrainEditViewController.h; sourceTree = "<group>"; };
+		3E1C9D2E1618237B00C533B9 /* TrainEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrainEditViewController.m; path = iPad/TrainEditViewController.m; sourceTree = "<group>"; };
 		3E1FD9B415CCE78F00568E36 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = resources/icon.icns; sourceTree = "<group>"; };
 		3E1FD9B615CCEBC800568E36 /* SwitchList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SwitchList.entitlements; sourceTree = "<group>"; };
 		3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -1159,6 +1162,8 @@
 				3E335E65160DAACC0097360C /* TownEditViewController.m */,
 				3E407D98160693E30037134D /* TownTableViewController.h */,
 				3E407D99160693E30037134D /* TownTableViewController.m */,
+				3E1C9D2D1618237B00C533B9 /* TrainEditViewController.h */,
+				3E1C9D2E1618237B00C533B9 /* TrainEditViewController.m */,
 				3E407D9A160693E30037134D /* TrainTableCell.h */,
 				3E407D9B160693E30037134D /* TrainTableCell.m */,
 				3E407D9C160693E30037134D /* TrainTableViewController.h */,
@@ -1883,6 +1888,7 @@
 				3ED19CD2161023DC00C2C6F3 /* IndustryEditViewController.m in Sources */,
 				3E40AA301612A99F006E4AD9 /* ExpandingEditViewController.m in Sources */,
 				3E620F011616C20A00959403 /* CargoEditViewController.m in Sources */,
+				3E1C9D2F1618237B00C533B9 /* TrainEditViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2238,7 +2244,7 @@
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2274,7 +2280,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2305,7 +2311,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2336,7 +2342,7 @@
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2368,7 +2374,7 @@
 				DSTROOT = /tmp/SwitchListEngine_iPad.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2403,7 +2409,7 @@
 				DSTROOT = /tmp/SwitchListEngine_iPad.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2432,7 +2438,7 @@
 				DSTROOT = /tmp/SwitchListEngine_iPad.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2461,7 +2467,7 @@
 				DSTROOT = /tmp/SwitchListEngine_iPad.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2497,6 +2503,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -2519,6 +2526,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				ZERO_LINK = NO;
 			};
@@ -2540,6 +2548,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 			};
 			name = Default;
@@ -2558,13 +2567,14 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
-				INSTALL_PATH = /usr/local/lib;
+				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 				);
 				PRODUCT_NAME = SwitchListEngine;
+				SDKROOT = "";
 				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = Debug;
@@ -2573,11 +2583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					x86_64,
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2586,13 +2592,14 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
-				INSTALL_PATH = /usr/local/lib;
+				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 				);
 				PRODUCT_NAME = SwitchListEngine;
+				SDKROOT = "";
 				SUPPORTED_PLATFORMS = macosx;
 				ZERO_LINK = NO;
 			};
@@ -2602,19 +2609,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
-				INSTALL_PATH = /usr/local/lib;
+				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 				);
 				PRODUCT_NAME = SwitchListEngine;
+				SDKROOT = "";
 				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = "App Store";
@@ -2629,13 +2638,14 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
-				INSTALL_PATH = /usr/local/lib;
+				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
 				);
 				PRODUCT_NAME = SwitchListEngine;
+				SDKROOT = "";
 				SUPPORTED_PLATFORMS = macosx;
 			};
 			name = Default;
@@ -2663,7 +2673,7 @@
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
-				SDKROOT = macosx;
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
@@ -2697,7 +2707,7 @@
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
-				SDKROOT = macosx;
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
@@ -2727,7 +2737,7 @@
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
-				SDKROOT = macosx;
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = octest;
@@ -2755,7 +2765,7 @@
 					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
-				SDKROOT = macosx;
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
 				VALID_ARCHS = i386;
@@ -2781,6 +2791,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = typical_main;
+				SDKROOT = "";
 			};
 			name = Debug;
 		};
@@ -2801,6 +2812,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = typical_main;
+				SDKROOT = "";
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2820,6 +2832,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = typical_main;
+				SDKROOT = "";
 			};
 			name = "App Store";
 		};
@@ -2838,6 +2851,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = typical_main;
+				SDKROOT = "";
 			};
 			name = Default;
 		};
@@ -2865,7 +2879,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
-				SDKROOT = macosx10.6;
+				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
@@ -2875,10 +2889,7 @@
 		3EA5977E08DC051800D5A852 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					i386,
-					ppc,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_IDENTITY = "Don't Code Sign";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
@@ -2899,7 +2910,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
-				SDKROOT = macosx10.6;
+				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
@@ -2929,7 +2940,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.6;
+				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2939,21 +2950,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
-				SDKROOT = macosx10.5;
+				SDKROOT = "";
 			};
 			name = Debug;
 		};
 		3EA5978208DC051800D5A852 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SDKROOT = macosx10.5;
+				SDKROOT = "";
 			};
 			name = Release;
 		};
 		3EA5978308DC051800D5A852 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SDKROOT = macosx10.5;
+				SDKROOT = "";
 			};
 			name = Default;
 		};
@@ -3065,7 +3076,7 @@
 		3ECA381C15D4C46E0084413B /* App Store */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				SDKROOT = macosx10.5;
+				SDKROOT = "";
 			};
 			name = "App Store";
 		};
@@ -3095,7 +3106,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
 				PROVISIONING_PROFILE = "";
-				SDKROOT = macosx10.6;
+				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
@@ -3154,6 +3165,7 @@
 					AppKit,
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
+				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				ZERO_LINK = NO;
 			};
