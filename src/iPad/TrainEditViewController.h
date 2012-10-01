@@ -1,9 +1,8 @@
 //
-//  TrainTableViewController.h
-//  SwitchList for iPad
+//  TrainEditViewController.h
+//  SwitchList
 //
-//  Created by Robert Bowdidge on 9/9/12.
-//  Copyright (c) 2012 Robert Bowdidge. All rights reserved.
+//  Created by Robert Bowdidge on 9/29/12.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -26,10 +25,15 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
+#import "ExpandingEditViewController.h"
 
-#import "AbstractTableViewController.h"
+@class ScheduledTrain;
+@class TrainTableViewController;
 
-// Controls the train tab when editing a layout.
-@interface TrainTableViewController : AbstractTableViewController
+@interface TrainEditViewController : ExpandingEditViewController
+- (IBAction) doPressCarTypesButton: (id) sender;
+- (IBAction) doSave: (id) sender;
+
+@property (nonatomic, retain) ScheduledTrain *myTrain;
+
 @end

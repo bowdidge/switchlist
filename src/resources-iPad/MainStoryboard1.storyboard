@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="kdD-bW-bCa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="11G56" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="kdD-bW-bCa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
@@ -789,7 +789,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Y9-F2-2S4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644" y="-4691"/>
+            <point key="canvasLocation" x="1560" y="-4585"/>
         </scene>
         <!--Cargo Table View Controller - Cargo Tab-->
         <scene sceneID="9ON-lX-JGb">
@@ -1316,7 +1316,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Hh-IJ-sEv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1470" y="-827"/>
+            <point key="canvasLocation" x="1404" y="-977"/>
         </scene>
         <!--Layout Detail Tab Bar Controller-->
         <scene sceneID="44Y-MQ-MEm">
@@ -1441,6 +1441,137 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A5G-rE-z6D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="503" y="-2329"/>
+        </scene>
+        <!--Train Edit View Controller - Edit Train-->
+        <scene sceneID="E7H-Mu-6JA">
+            <objects>
+                <viewController storyboardIdentifier="editTrain" title="Edit Train" modalPresentationStyle="formSheet" id="0Hg-fX-FDF" customClass="TrainEditViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xkn-DB-1G2">
+                        <rect key="frame" x="0.0" y="20" width="768" height="1004"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="RSg-jx-xw2" customClass="CurlyView">
+                                <rect key="frame" x="1" y="44" width="540" height="342"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40" borderStyle="roundedRect" minimumFontSize="17" id="khy-RW-7fa">
+                                <rect key="frame" x="139" y="170" width="140" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Maximum length:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GyK-Ct-8xE">
+                                <rect key="frame" x="1" y="171" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Reporting Marks" borderStyle="roundedRect" minimumFontSize="17" id="jl8-xK-uKN">
+                                <rect key="frame" x="134" y="64" width="140" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Stops:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2nk-8R-jcL">
+                                <rect key="frame" x="1" y="137" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Train Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eaX-9y-YHQ">
+                                <rect key="frame" x="37" y="68" width="94" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Accepts cars:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nFA-Wa-h30">
+                                <rect key="frame" x="1" y="103" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mvK-uM-hi5">
+                                <rect key="frame" x="134" y="102" width="140" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Car Type">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doPressCarTypeButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="hRy-EC-XLd"/>
+                                    <action selector="doPressCarTypesButton:" destination="0Hg-fX-FDF" eventType="touchUpInside" id="eJ8-jg-xeK"/>
+                                </connections>
+                            </button>
+                            <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nh8-oq-9hO">
+                                <rect key="frame" x="289" y="44" width="252" height="342"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="selectionCell" id="hA9-D1-pKN" customClass="SelectionCell">
+                                        <rect key="frame" x="0.0" y="22" width="252" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="252" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC - Clean boxcar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r7l-bw-uIB">
+                                                    <rect key="frame" x="7" y="11" width="235" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <outlet property="cellText" destination="r7l-bw-uIB" id="HKJ-Vk-o2A"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="0Hg-fX-FDF" id="mwa-qy-sc8"/>
+                                    <outlet property="delegate" destination="0Hg-fX-FDF" id="LRI-gU-kpj"/>
+                                </connections>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" id="2g8-77-z4S">
+                                <rect key="frame" x="1" y="0.0" width="540" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Edit Train" id="tQ2-E6-uDV">
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="2S0-Pf-jaT">
+                                            <connections>
+                                                <action selector="doSave:" destination="0Hg-fX-FDF" id="APM-J3-WBz"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="288" height="400"/>
+                    <connections>
+                        <outlet property="carTypesButton" destination="mvK-uM-hi5" id="vPT-Dx-mtA"/>
+                        <outlet property="curlyView" destination="RSg-jx-xw2" id="IOv-Jo-aIh"/>
+                        <outlet property="maximumLengthField" destination="khy-RW-7fa" id="LGX-e1-6yV"/>
+                        <outlet property="nameField" destination="jl8-xK-uKN" id="RdY-o3-CPm"/>
+                        <outlet property="rightSideSelectionTable" destination="nh8-oq-9hO" id="RJX-V4-PZ1"/>
+                        <outlet property="view" destination="Xkn-DB-1G2" id="Da7-Ng-V9T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5ZN-Fc-1z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="-2432"/>
         </scene>
         <!--Yard Table View Controller - Yards-->
         <scene sceneID="3gf-Rt-YLl">
@@ -1729,6 +1860,16 @@
         <class className="TownTableViewController" superclassName="AbstractTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TownTableViewController.h"/>
         </class>
+        <class className="TrainEditViewController" superclassName="ExpandingEditViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doPressCarTypeButton:"/>
+                <relationship kind="action" name="doSave:"/>
+                <relationship kind="outlet" name="carTypesButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="maximumLengthField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
         <class className="TrainTableCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainTableCell.h"/>
             <relationships>
@@ -1738,7 +1879,7 @@
                 <relationship kind="outlet" name="trainName" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="TrainTableViewController" superclassName="UITableViewController">
+        <class className="TrainTableViewController" superclassName="AbstractTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainTableViewController.h"/>
         </class>
         <class className="YardTableCell" superclassName="UITableViewCell">
