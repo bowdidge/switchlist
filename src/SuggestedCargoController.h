@@ -36,22 +36,29 @@
 @class TypicalIndustryStore;
 
 // Represents a potential cargo for the current industry.
-@interface ProposedCargo : NSObject
+@interface ProposedCargo : NSObject {
+    NSNumber *isKeep;
+    BOOL isReceive;
+    NSString *name;
+    NSString *carsPerWeek;
+    InduYard *industry;
+    BOOL isExistingCargo;
+}
 // Value of checkbox whether to create this cargo.  NSNumber required
 // for checkbox.
-@property (retain) NSNumber *isKeep;
+@property (nonatomic, retain) NSNumber *isKeep;
 // Is incoming cargo.
-@property () BOOL isReceive;
+@property (nonatomic) BOOL isReceive;
 // String value for receive column: either "Receive" or "Ship".
-@property (readonly) NSString *receiveString;
+@property (nonatomic, readonly) NSString *receiveString;
 // Cargo description.
-@property (retain) NSString *name;
+@property (nonatomic, retain) NSString *name;
 // Rate of cars arriving or departing.
-@property (retain) NSString *carsPerWeek;
+@property (nonatomic, retain) NSString *carsPerWeek;
 // Preferred industry as source/dest of cargo.
-@property (retain) InduYard *industry;
+@property (nonatomic, retain) InduYard *industry;
 // Existing cargo just being shown for context?
-@property () BOOL isExistingCargo;
+@property (nonatomic) BOOL isExistingCargo;
 @end
 
 // Controller for the Cargo Assistant dialog box.
