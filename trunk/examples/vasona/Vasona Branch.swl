@@ -10,7 +10,7 @@
             <plist version="1.0">
                 <dict>
                     <key>NSPersistenceFrameworkVersion</key>
-                    <integer>251</integer>
+                    <integer>358</integer>
                     <key>NSStoreModelVersionHashes</key>
                     <dict>
                         <key>CarType</key>
@@ -53,7 +53,9 @@
                     <key>NSStoreModelVersionHashesVersion</key>
                     <integer>3</integer>
                     <key>NSStoreModelVersionIdentifiers</key>
-                    <array></array>
+                    <array>
+                        <string></string>
+                    </array>
                 </dict>
             </plist>
         </metadata>
@@ -136,8 +138,8 @@
         <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z206 z230"></relationship>
     </object>
     <object type="LAYOUTINFO" id="z116">
-        <attribute name="layoutpreferences" type="binary">BAtzdHJlYW10eXBlZIHoA4QBQISEhBNOU011dGFibGVEaWN0aW9uYXJ5AISEDE5TRGljdGlvbmFy
-eQCEhAhOU09iamVjdACFhAFpA5KEhIQITlNTdHJpbmcBlYQBKxBTaG93U2lkaW5nTGVuZ3RohpKEhIQITlNOdW1iZXIAhIQHTlNWYWx1ZQCVhAEqhJaWAYaShJeYFERlZmF1bHROdW1iZXJPZkxvYWRzhpKEmZubliyGkoSXmBdTcG90VG9Eb29yc0F0SW5kdXN0cmllc4aSmIY=
+        <attribute name="layoutpreferences" type="binary">YnBsaXN0MDDUAQIDBAUGISJYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgH
+CBUWFxgZGlUkbnVsbNMJCgsMDRFWJGNsYXNzV05TLmtleXNaTlMub2JqZWN0c4AHow4PEIACgAOABKMSExOABYAGgAZfEBREZWZhdWx0TnVtYmVyT2ZMb2Fkc18QF1Nwb3RUb0Rvb3JzQXRJbmR1c3RyaWVzXxAQU2hvd1NpZGluZ0xlbmd0aBAPEAHSGxwdHlokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxlRGljdGlvbmFyeaMdHyBcTlNEaWN0aW9uYXJ5WE5TT2JqZWN0XxAPTlNLZXllZEFyY2hpdmVy0SMkVHJvb3SAAQAIABEAGgAjAC0AMgA3AEAARgBNAFQAXABnAGkAbQBvAHEAcwB3AHkAewB9AJQArgDBAMMAxQDKANUA3gD0APgBBQEOASABIwEoAAAAAAAAAgEAAAAAAAAAJQAAAAAAAAAAAAAAAAAAASo=
 </attribute>
         <attribute name="layoutname" type="string">Southern Pacific - Vasona Branch</attribute>
         <attribute name="currentdate" type="date">-2165365939.22192287445068359375</attribute>
@@ -1176,10 +1178,10 @@ eQCEhAhOU09iamVjdACFhAFpA5KEhIQITlNTdHJpbmcBlYQBKxBTaG93U2lkaW5nTGVuZ3RohpKEhIQI
         <attribute name="name" type="string">San Jose Yard</attribute>
         <attribute name="division" type="string">SP</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z111"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z258 z344 z284 z276 z293 z265 z336 z327 z349 z245 z285 z252 z301 z315 z354 z304 z350 z270 z328 z309 z292 z333 z268 z326 z335 z280 z346 z261 z264 z294 z275 z343 z306 z300 z296 z337 z277 z271 z259 z281 z320 z247 z238 z269 z288 z244 z291 z299 z322 z339 z248 z297 z260 z254 z246 z298 z286"></relationship>
-        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z188 z145 z129 z144 z182 z130 z164 z155 z150 z179"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z358 z163 z158 z172 z160 z162 z119"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z324 z255 z290 z307"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z291 z309 z280 z265 z268 z270 z252 z277 z294 z244 z339 z275 z258 z246 z344 z297 z298 z326 z346 z284 z288 z271 z320 z327 z281 z296 z247 z260 z269 z264 z328 z306 z276 z248 z299 z349 z304 z245 z333 z337 z322 z238 z292 z343 z286 z354 z254 z350 z293 z300 z301 z336 z335 z285 z259 z261 z315"></relationship>
+        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z188 z164 z129 z179 z130 z145 z155 z150 z144 z182"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z162 z163 z119 z158 z160 z172 z358"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z290 z255 z324 z307"></relationship>
     </object>
     <object type="YARD" id="z202">
         <attribute name="acceptsdivisions" type="string">SP</attribute>
@@ -1517,8 +1519,8 @@ eQCEhAhOU09iamVjdACFhAFpA5KEhIQITlNTdHJpbmcBlYQBKxBTaG93U2lkaW5nTGVuZ3RohpKEhIQI
         <attribute name="name" type="string">San Jose Turn</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">480</attribute>
-        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z192 z193 z195 z191 z198 z199 z200"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z307 z255 z269 z291 z339 z324 z264 z290"></relationship>
+        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z199 z195 z191 z198 z192 z193 z200"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z269 z291 z255 z290 z324 z339 z307 z264"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z235">
         <attribute name="stops" type="string">San Jose Yard++\u2600\u2600Campbell++\u2600\u2600Los Gatos++\u2600\u2600Campbell++\u2600\u2600San Jose Yard</attribute>
@@ -1534,7 +1536,7 @@ eQCEhAhOU09iamVjdACFhAFpA5KEhIQITlNTdHJpbmcBlYQBKxBTaG93U2lkaW5nTGVuZ3RohpKEhIQI
         <attribute name="mincarstorun" type="int16">2</attribute>
         <attribute name="maxlength" type="int16">520</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z194 z197"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z300 z248 z344"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z300 z344 z248"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z237">
         <attribute name="stops" type="string">Vasona Jct++\u2600\u2600Vasona Jct</attribute>
