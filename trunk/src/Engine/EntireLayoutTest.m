@@ -582,5 +582,31 @@
 	STAssertNotNil(cars, @"freightCars failed.");
 }
 
+// Tests that a preferences dictionary saved with an NSArchiver can still be read by the current
+// code.
+- (void) testOldPreferencesDictionary {
+	NSDictionary *testDict = [NSDictionary dictionaryWithObject: @"Hello" forKey: @"World"];
+	[entireLayout_ setPreferencesDictionary: [NSArchiver archivedDataWithRootObject: testDict]];
+	NSDictionary *outDict = [entireLayout_ getPreferencesDictionary];
+	STAssertNotNil([outDict objectForKey: @"World"], @"Expected dictionary to have a value for key 'World'");
+}
+
+// Tests that a preferences dictionary saved with an NSKeyedArchiver can be read.
+- (void) testNewPreferencesDictionary {
+	NSDictionary *testDict = [NSDictionary dictionaryWithObject: @"Hello" forKey: @"World"];
+	[entireLayout_ setPreferencesDictionary: [NSKeyedArchiver archivedDataWithRootObject: testDict]];
+	NSDictionary *outDict = [entireLayout_ getPreferencesDictionary];
+	STAssertNotNil([outDict objectForKey: @"World"], @"Expected dictionary to have a value for key 'World'");
+}
+
+// Tests that if the data for an archived preferences dictionary is bogus, getPreferencesDictionary
+// still returns a sane value.
+- (void) testBogusPreferencesDictionary {
+	[entireLayout_ setPreferencesDictionary: [NSData dataWithBytes: "123456" length: 6]];
+	NSDictionary *outDict = [entireLayout_ getPreferencesDictionary];
+	STAssertNil(outDict, @"Expected dictionary from getPreferencesDictionary.");
+	STAssertNil([outDict objectForKey: @"World"], @"Expected dictionary to be empty.");
+}
+
 @end
 

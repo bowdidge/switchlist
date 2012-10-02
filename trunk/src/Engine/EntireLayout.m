@@ -731,6 +731,14 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 	layoutName_ = [layoutName retain];
 }
 
+// For testing only.  Set the raw preferences data.
+- (void) setPreferencesDictionary: (NSData*) prefData {
+	id layoutInfo = [self getLayoutInfo];
+    [layoutInfo setValue: prefData forKey: @"layoutPreferences"];
+	[preferences_ release];
+	preferences_ = nil;
+}
+
 - (NSMutableDictionary*) getPreferencesDictionary { 
 	if (preferences_ != nil) return preferences_;
 	id layoutInfo = [self getLayoutInfo];
@@ -749,7 +757,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 		}
 		
         if (preferences_ == nil) {
-#ifndef TARGET_OS_IPHONE
+#if !defined(TARGET_OS_IPHONE) || !TARGET_OS_IPHONE
             @try {
                 // Try to unarchive with NSUnarchiver.
                 preferences_ = [[NSUnarchiver unarchiveObjectWithData: prefData] retain];
