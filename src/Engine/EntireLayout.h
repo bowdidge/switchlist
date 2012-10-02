@@ -142,6 +142,9 @@ NSString *NormalizeDivisionString(NSString *inString);
 - (NSMutableDictionary*) getPreferencesDictionary;
 - (void) writePreferencesDictionary;
 
+// For testing only.  Set the raw preferences data.
+- (void) setPreferencesDictionary: (NSData*) prefData;
+
 // Creates freight cars based on a string containing car names, and returns the number
 // of cars created.
 - (int) importFreightCarsUsingString: (NSString*) input errors: (NSString**) outErrors;
