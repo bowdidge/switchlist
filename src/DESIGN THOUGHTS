@@ -1,0 +1,7 @@
+Key problem for SwitchList will be rapid data entry.  One possibility is to push all the work off on a Mac, but apps like Bento and Numbers suggest that serious data entry is possible.
+
+Guidelines:
+* Infer as much as possible
+* Hide portions of the interface that are less interesting, such as divisions.  (Is this a problem, can't see whole picture?
+* Each table entry has two details directly editable (name and upper-right attribute); rest of attributes hidden off info icon.
+* GUI - draw line to show towns for train?
