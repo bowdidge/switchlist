@@ -70,7 +70,10 @@ NSString *NormalizeDivisionString(NSString *inString);
 - (NSArray*) allFreightCarsOnWorkbench;
 - (NSArray*) allFreightCarsOnLayout;
 - (NSArray*) allLoadedFreightCarsReportingMarkOrder;
-
+// Returns a list of lengths of freight cars in order of popularity.  Empty lengths 
+// are not counted.
+- (NSArray*) freightCarLengths;
+	
 // Returns one freight car with matching reporting marks, or nil if none exist.
 - (FreightCar*) freightCarWithName: (NSString*) name;
 
@@ -169,4 +172,3 @@ NSString *NormalizeDivisionString(NSString *inString);
 NSInteger sortCarsByCurrentIndustry(FreightCar *a, FreightCar *b, void *context);
 // Sorts cars by the destination town name for each car, then the industry name for each car, then reporting marks.
 NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *context);
-

@@ -42,6 +42,35 @@
 #import "ScheduledTrain.h"
 #import "StringHelpers.h"
 
+// Class for helping compute the popular freight car lengths.
+// Exposed for testing only.
+@interface FreightCarLengthPairs : NSObject {
+	NSNumber *carLength;
+	int occurrences;
+}
+@property (retain) NSNumber *carLength;
+@property () int occurrences;
+@end
+
+@implementation FreightCarLengthPairs
+- (id) initWithCarLength: (NSNumber*) theCarLength {
+	[super init];
+	self.carLength = theCarLength;
+	self.occurrences = 0;
+	return self;
+}
+- (void) incrementOccurrences {
+	self.occurrences++;
+}
+
+- (NSComparisonResult) compare: (FreightCarLengthPairs*) pair {
+	return self.occurrences < pair.occurrences;
+}
+@synthesize carLength;
+@synthesize occurrences;
+@end
+
+
 // Normalize the strings used for division names by removing whitespace, and replacing
 // empty items with nil.
 NSString *NormalizeDivisionString(NSString *inString) {
@@ -398,7 +427,33 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	}
 	return [result objectAtIndex: 0];
 }
+
+
+// Returns a list of lengths of freight cars in order of popularity.  Empty lengths 
+// are not counted.
+- (NSArray*) freightCarLengths {
+	NSArray *allFreightCars = [self allFreightCars];
+	NSMutableDictionary *popularDict = [NSMutableDictionary dictionary];
+	for (FreightCar *fc in allFreightCars) {
+		NSNumber *length = [fc length];
+		if (length != nil) {
+			FreightCarLengthPairs *pair = [popularDict objectForKey: length];
+			if (!pair) {
+				pair = [[FreightCarLengthPairs alloc] initWithCarLength: length];
+				[popularDict setObject: pair forKey: length];
+			}
+			[pair incrementOccurrences];
+		}
+	}
 	
+	NSMutableArray *result = [NSMutableArray array];
+	NSArray *pairs = [[popularDict allValues] sortedArrayUsingSelector: @selector(compare:)];
+	for (FreightCarLengthPairs *pair in pairs) {
+		[result addObject: pair.carLength];
+	}
+	return result;
+}
+			
 
 // Returns an array of all industries that can receive cargo.
 - (NSArray*) allIndustries {
