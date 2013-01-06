@@ -1,0 +1,61 @@
+/* CSS for printing car cards from SwitchList
+   Robert Bowdidge, September 27, 2012.
+ */
+
+/* print a page break every six switchlists */
+p.pagebreak {
+  page-break-before: always;
+}
+
+/* Car card outer div.  Change width and height to
+   match your car card system. */
+div.carcard {
+  width: 2in;
+  height: 3in;
+  float: left;
+  padding: 0.1in;
+  border: thin dotted #e8e8e8; 
+}
+
+/* Top of car card - half of total height. */
+div.half {
+  width: 2in;
+  height: 1.5in;
+}
+
+/* Bottom of car card, rotated. */
+div.upsidedownhalf {
+  -webkit-transform: rotate(180deg);
+  width: 2in;
+  height: 1.5in;
+}
+
+/* WAYBILL title.  Bold. */
+div.title {
+  font-family:  Helvetica;
+  font-weight:  bolder;
+  font-size:  12px;
+}
+
+/* Title, aligned left for WAYBILL text. */
+div.alignleft {
+  float: left;
+}
+
+/* Title, aligned right for which phase of card. */
+div.alignright {
+  float: right;
+}
+
+/* Use handwriting font. */
+span.handwritten {
+  color: DarkBlue;
+  font-family: "Rock Salt";
+  font-size: 10px;
+}
+
+/* Use typed font. */
+span.typed {
+  font-family: Courier;
+  font-size: 14px;
+}
