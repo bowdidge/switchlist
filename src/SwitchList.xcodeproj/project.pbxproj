@@ -241,6 +241,10 @@
 		3E9B793516065B3A00891318 /* SwitchListEngine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
 		3E9B794816065BA600891318 /* WebKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B794716065BA600891318 /* WebKit */; };
 		3E9B794916065BA600891318 /* WebKit in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B794716065BA600891318 /* WebKit */; };
+		3E9D56FB16225C0D007F49EC /* LayoutGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56EE16225616007F49EC /* LayoutGraph.m */; };
+		3E9D56FC16225C17007F49EC /* LayoutGraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56F316225B41007F49EC /* LayoutGraphTest.m */; };
+		3E9D56FE16225C21007F49EC /* LayoutGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56EE16225616007F49EC /* LayoutGraph.m */; };
+		3E9D570116225C3D007F49EC /* LayoutGraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56F316225B41007F49EC /* LayoutGraphTest.m */; };
 		3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */; };
 		3EA4879015D83CE1008A169F /* SwitchListAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4878F15D83CE1008A169F /* SwitchListAppDelegateTest.m */; };
 		3EA4879915D83D73008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
@@ -742,6 +746,10 @@
 		3E9B786A1606527600891318 /* Unit tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9B786B1606527600891318 /* Engine unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Engine unit tests-Info.plist"; sourceTree = "<group>"; };
 		3E9B794716065BA600891318 /* WebKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = WebKit; path = /System/Library/Frameworks/WebKit.framework/WebKit; sourceTree = "<absolute>"; };
+		3E9D56ED16225616007F49EC /* LayoutGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutGraph.h; sourceTree = "<group>"; };
+		3E9D56EE16225616007F49EC /* LayoutGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutGraph.m; sourceTree = "<group>"; };
+		3E9D56F216225B41007F49EC /* LayoutGraphTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutGraphTest.h; sourceTree = "<group>"; };
+		3E9D56F316225B41007F49EC /* LayoutGraphTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutGraphTest.m; sourceTree = "<group>"; };
 		3E9E1F780951605600C5E038 /* IndustryReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryReport.h; sourceTree = "<group>"; };
 		3E9E1F790951605600C5E038 /* IndustryReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryReport.m; sourceTree = "<group>"; };
 		3EA1162213501BC500365DEB /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/SwitchListReportWindow.xib; sourceTree = "<group>"; };
@@ -1316,6 +1324,8 @@
 				3E2CFBE015F1F0C7000A50D9 /* RandomNumberGenerator.m */,
 				3E4D49120D0F48640092D1A3 /* TrainAssigner.h */,
 				3E4D49130D0F48640092D1A3 /* TrainAssigner.m */,
+				3E9D56ED16225616007F49EC /* LayoutGraph.h */,
+				3E9D56EE16225616007F49EC /* LayoutGraph.m */,
 				3E9AF44114F9F2AF00580148 /* TrainSizeVector.h */,
 				3E9AF44214F9F2AF00580148 /* TrainSizeVector.m */,
 			);
@@ -1367,6 +1377,8 @@
 				3E88AD44127A9CFD003486E2 /* IndustryTest.m */,
 				3E90BFF8127937860074F2FA /* LayoutTest.h */,
 				3E90BFF9127937860074F2FA /* LayoutTest.m */,
+				3E9D56F216225B41007F49EC /* LayoutGraphTest.h */,
+				3E9D56F316225B41007F49EC /* LayoutGraphTest.m */,
 				3E362361153A899300A57574 /* PlaceTest.h */,
 				3E362362153A899300A57574 /* PlaceTest.m */,
 				3E90BF3612792E3F0074F2FA /* NSManagedObjectContext.h */,
@@ -2004,6 +2016,7 @@
 				3E9B75F61606402A00891318 /* TrainSizeVector.m in Sources */,
 				3E9B75FA1606402A00891318 /* Yard.m in Sources */,
 				3E9B76E6160645F900891318 /* SwitchListFilters.m in Sources */,
+				3E9D56FE16225C21007F49EC /* LayoutGraph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2030,6 +2043,8 @@
 				3E9B78591606527600891318 /* PlaceTest.m in Sources */,
 				3E9B785A1606527600891318 /* MGTemplateEngineTest.m in Sources */,
 				3E9B785F1606527600891318 /* RandomNumberGeneratorTest.m in Sources */,
+				3E9D56FB16225C0D007F49EC /* LayoutGraph.m in Sources */,
+				3E9D56FC16225C17007F49EC /* LayoutGraphTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2105,6 +2120,7 @@
 				3EFEC5251408515500F9CF15 /* WebServerDelegate.m in Sources */,
 				3EFEC5261408515500F9CF15 /* WebServerDelegateTest.m in Sources */,
 				3EC3B1531277E4E300C00AD3 /* YardReport.m in Sources */,
+				3E9D570116225C3D007F49EC /* LayoutGraphTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
