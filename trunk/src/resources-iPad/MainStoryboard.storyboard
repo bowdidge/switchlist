@@ -1670,16 +1670,16 @@
             </objects>
             <point key="canvasLocation" x="-503" y="1432"/>
         </scene>
-        <!--Yard Location Chooser-->
+        <!--Place Chooser-->
         <scene sceneID="qAe-iP-dvK">
             <objects>
-                <tableViewController storyboardIdentifier="yardLocationPopover" modalPresentationStyle="formSheet" id="67D-ab-Xc4" customClass="YardLocationChooser" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="yardLocationPopover" modalPresentationStyle="formSheet" id="67D-ab-Xc4" customClass="PlaceChooser" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="I29-mp-d9e">
                         <rect key="frame" x="0.0" y="20" width="540" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" id="ukF-2q-Wwi" customClass="YardLocationCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" id="ukF-2q-Wwi" customClass="PlaceChooserCell">
                                 <rect key="frame" x="0.0" y="22" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1725,16 +1725,16 @@
             </objects>
             <point key="canvasLocation" x="360" y="2205"/>
         </scene>
-        <!--Freight Car Kind Chooser-->
+        <!--Car Type Chooser-->
         <scene sceneID="UOQ-2M-AYi">
             <objects>
-                <tableViewController storyboardIdentifier="freightCarKindPopover" modalPresentationStyle="formSheet" id="3El-dk-G21" customClass="FreightCarKindChooser" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="freightCarKindPopover" modalPresentationStyle="formSheet" id="3El-dk-G21" customClass="CarTypeChooser" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iWi-Uj-xjO">
                         <rect key="frame" x="0.0" y="20" width="540" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="freightCarKindCell" id="Wss-UB-nRz" customClass="FreightCarKindCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="freightCarKindCell" id="Wss-UB-nRz" customClass="CarTypeChooserCell">
                                 <rect key="frame" x="0.0" y="22" width="540" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1890,19 +1890,6 @@
                 <relationship kind="outlet" name="reportingMarksField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="FreightCarKindCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarKindCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="checkField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FreightCarKindChooser" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarKindChooser.h"/>
-            <relationships>
-                <relationship kind="outlet" name="myController" candidateClass="FreightCarTableViewController"/>
-            </relationships>
-        </class>
         <class className="FreightCarTableCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarTableCell.h"/>
             <relationships>
@@ -2037,19 +2024,6 @@
         </class>
         <class className="TrainTableViewController" superclassName="AbstractTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainTableViewController.h"/>
-        </class>
-        <class className="YardLocationCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YardLocationCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="checkField" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="YardLocationChooser" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YardLocationChooser.h"/>
-            <relationships>
-                <relationship kind="outlet" name="controller" candidateClass="YardTableViewController"/>
-            </relationships>
         </class>
         <class className="YardTableCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/YardTableCell.h"/>

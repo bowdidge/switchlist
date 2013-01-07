@@ -34,7 +34,7 @@
 #import "Place.h"
 #import "SwitchListColors.h"
 #import "Yard.h"
-#import "YardLocationChooser.h"
+#import "PlaceChooser.h"
 #import "YardTableCell.h"
 
 @interface YardTableViewController ()
@@ -150,8 +150,9 @@
 - (IBAction) doStationPressed: (id) sender {
     YardTableCell *cell = sender;
     CGRect popoverRect = [cell convertRect: cell.yardStation.frame toView: self.view];
-    YardLocationChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"yardLocationPopover" fromRect: popoverRect];
-    chooser.selectedYard = cell.yard;
+    PlaceChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"yardLocationPopover" fromRect: popoverRect];
+    chooser.keyObject = cell.yard;
+    chooser.keyObjectSelection = cell.yard.location;
     chooser.controller = self;
 }
 
@@ -171,11 +172,8 @@
 
 // Handle changing the yard's containing town when a town is selected in the chooser.
 - (void) doCloseChooser: (id) sender {
-    int checkedValue = ((YardLocationChooser*)sender).checkedValue;
-    YardLocationChooser *chooser = (YardLocationChooser*) sender;
-    Yard *selectedYard = chooser.selectedYard;
-    Place *selectedStation = [chooser.allStations objectAtIndex: checkedValue];
-    [selectedYard setLocation: selectedStation];
+    PlaceChooser *chooser = (PlaceChooser*) sender;
+    [(Yard*) chooser.keyObject setLocation: chooser.selectedPlace];
     [self.myPopoverController dismissPopoverAnimated: YES];
     [self.tableView reloadData];
 }

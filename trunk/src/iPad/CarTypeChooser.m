@@ -6,22 +6,22 @@
 //
 //
 
-#import "FreightCarKindChooser.h"
+#import "CarTypeChooser.h"
 
 #import "AppDelegate.h"
 #import "CarType.h"
 #import "EntireLayout.h"
 #import "FreightCarTableViewController.h"
 
-@implementation FreightCarKindCell
+@implementation CarTypeChooserCell
 @synthesize checkField;
 @synthesize label;
 @end
 
-@interface FreightCarKindChooser ()
+@interface CarTypeChooser ()
 @end
 
-@implementation FreightCarKindChooser
+@implementation CarTypeChooser
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -69,12 +69,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"freightCarKindCell";
-    FreightCarKindCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    CarTypeChooserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     int index = [indexPath row];
     CarType *carType = [self.allCarTypes objectAtIndex: index];
     cell.label.text = [NSString stringWithFormat: @"%@ / %@",  carType.carTypeDescription, carType.carTypeName];
-    if (index == 0) {
+    if (carType == self.keyObjectSelection) {
         cell.checkField.text = @"\u2713";
     } else {
         cell.checkField.text = @"";
@@ -126,10 +126,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // TODO(bowdidge): Save response.
-    self.checkedValue = [indexPath row];
+    self.selectedCarType = [self.allCarTypes objectAtIndex: [indexPath row]];
     [self.myController doCloseChooser: self];
 }
 
-@synthesize checkedValue;
+@synthesize selectedCarType;
 @synthesize allCarTypes;
 @end

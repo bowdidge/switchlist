@@ -35,7 +35,7 @@
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "FreightCarEditController.h"
-#import "FreightCarKindChooser.h"
+#import "CarTypeChooser.h"
 #import "FreightCarTableCell.h"
 #import "SwitchListColors.h"
 
@@ -194,8 +194,9 @@
 - (IBAction) doKindPressed: (id) sender {
     FreightCarTableCell *cell = sender;
     CGRect popoverRect = [cell convertRect: cell.freightCarKind.frame toView: self.view];
-    FreightCarKindChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"freightCarKindPopover" fromRect: popoverRect];
-    chooser.selectedFreightCar = cell.freightCar;
+    CarTypeChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"freightCarKindPopover" fromRect: popoverRect];
+    chooser.keyObject = cell.freightCar;
+    chooser.keyObjectSelection = cell.freightCar.carTypeRel;
     chooser.myController = self;
 }
 
@@ -213,10 +214,8 @@
 
 // Called on valid click on the freight car kind chooser.
 - (void) doCloseChooser: (id) sender {
-    FreightCarKindChooser *chooser = (FreightCarKindChooser*) sender;
-    int checkedValue = chooser.checkedValue;
-    CarType *selectedCarType = [chooser.allCarTypes objectAtIndex: checkedValue];
-    chooser.selectedFreightCar.carTypeRel = selectedCarType;
+    CarTypeChooser *chooser = (CarTypeChooser*) sender;
+    chooser.keyObject.carTypeRel = chooser.selectedCarType;
     [self.myPopoverController dismissPopoverAnimated: YES];
     [self.tableView reloadData];
 }

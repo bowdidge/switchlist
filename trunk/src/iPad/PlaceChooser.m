@@ -6,7 +6,7 @@
 //
 //
 
-#import "YardLocationChooser.h"
+#import "PlaceChooser.h"
 
 #import "AppDelegate.h"
 #import "EntireLayout.h"
@@ -14,16 +14,15 @@
 #import "Yard.h"
 #import "YardTableViewController.h"
 
-@implementation YardLocationCell
+@implementation PlaceChooserCell
 @synthesize checkField;
 @synthesize label;
 @end
 
-@interface YardLocationChooser ()
-
+@interface PlaceChooser ()
 @end
 
-@implementation YardLocationChooser
+@implementation PlaceChooser
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -68,11 +67,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"locationCell";
-    YardLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    PlaceChooserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     Place *locationToDraw = [self.allStations objectAtIndex: [indexPath row]];
     cell.label.text = [NSString stringWithFormat: @"At %@", locationToDraw.name];
-    if (self.selectedYard.location == locationToDraw) {
+    if (self.keyObjectSelection == locationToDraw) {
         cell.checkField.text = @"\u2713";
     } else {
         cell.checkField.text = @"";
@@ -124,10 +123,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // TODO(bowdidge): Save response.
-    self.checkedValue = [indexPath row];
+    self.selectedPlace = [self.allStations objectAtIndex: [indexPath row]];
     [self.controller doCloseChooser: self];
 }
 
-@synthesize checkedValue;
+@synthesize selectedPlace;
 @synthesize allStations;
 @end

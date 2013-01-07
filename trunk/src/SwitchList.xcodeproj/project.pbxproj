@@ -107,7 +107,7 @@
 		3E6BA913155267540030AE7D /* switchlist-ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E6BA8F7155266880030AE7D /* switchlist-ipad.css */; };
 		3E6C6EC812F007E200C7A8D1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C6EC712F007E200C7A8D1 /* Credits.html */; };
 		3E71871913B1B30B00ED3840 /* SwitchListBaseViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */; };
-		3E853CEF1699739700F8C59B /* FreightCarKindChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E853CEE1699739600F8C59B /* FreightCarKindChooser.m */; };
+		3E853CEF1699739700F8C59B /* CarTypeChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E853CEE1699739600F8C59B /* CarTypeChooser.m */; };
 		3E87754D15F2D07F00E08413 /* cargo-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E87754C15F2D07F00E08413 /* cargo-report.html */; };
 		3E88AD57127A9E14003486E2 /* CargoReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD56127A9E14003486E2 /* CargoReportTest.m */; };
 		3E88AED4127B2DD2003486E2 /* train.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E88AED3127B2DD2003486E2 /* train.jpg */; };
@@ -405,7 +405,7 @@
 		3EE380BE133D284F0069C963 /* SwitchRouteDialogControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */; };
 		3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */ = {isa = PBXBuildFile; fileRef = 3EE5ED9D131A1E03009E2C83 /* SwitchList.help */; };
 		3EEE0A82161FE3F9007BBE4E /* EditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE0A81161FE3F8007BBE4E /* EditViewController.m */; };
-		3EEE0A8516209488007BBE4E /* YardLocationChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE0A8416209487007BBE4E /* YardLocationChooser.m */; };
+		3EEE0A8516209488007BBE4E /* PlaceChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE0A8416209487007BBE4E /* PlaceChooser.m */; };
 		3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
 		3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
 		3EFA164509515C1500654CC9 /* Report.nib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFA164309515C1500654CC9 /* Report.nib */; };
@@ -710,8 +710,8 @@
 		3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseViewTest.m; sourceTree = "<group>"; };
 		3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCarType.xcmappingmodel; sourceTree = "<group>"; };
 		3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 4.xcdatamodel"; sourceTree = "<group>"; };
-		3E853CED1699739500F8C59B /* FreightCarKindChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FreightCarKindChooser.h; path = iPad/FreightCarKindChooser.h; sourceTree = "<group>"; };
-		3E853CEE1699739600F8C59B /* FreightCarKindChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FreightCarKindChooser.m; path = iPad/FreightCarKindChooser.m; sourceTree = "<group>"; };
+		3E853CED1699739500F8C59B /* CarTypeChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarTypeChooser.h; path = iPad/CarTypeChooser.h; sourceTree = "<group>"; };
+		3E853CEE1699739600F8C59B /* CarTypeChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarTypeChooser.m; path = iPad/CarTypeChooser.m; sourceTree = "<group>"; };
 		3E87754C15F2D07F00E08413 /* cargo-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "cargo-report.html"; path = "templates/cargo-report.html"; sourceTree = "<group>"; };
 		3E88AD43127A9CFD003486E2 /* IndustryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndustryTest.h; path = Engine/IndustryTest.h; sourceTree = "<group>"; };
 		3E88AD44127A9CFD003486E2 /* IndustryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndustryTest.m; path = Engine/IndustryTest.m; sourceTree = "<group>"; };
@@ -816,8 +816,8 @@
 		3EE711671285D81E006059F4 /* CarTypesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarTypesTest.m; path = Engine/CarTypesTest.m; sourceTree = "<group>"; };
 		3EEE0A80161FE3F8007BBE4E /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = iPad/EditViewController.h; sourceTree = "<group>"; };
 		3EEE0A81161FE3F8007BBE4E /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = iPad/EditViewController.m; sourceTree = "<group>"; };
-		3EEE0A8316209486007BBE4E /* YardLocationChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YardLocationChooser.h; path = iPad/YardLocationChooser.h; sourceTree = "<group>"; };
-		3EEE0A8416209487007BBE4E /* YardLocationChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YardLocationChooser.m; path = iPad/YardLocationChooser.m; sourceTree = "<group>"; };
+		3EEE0A8316209486007BBE4E /* PlaceChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceChooser.h; path = iPad/PlaceChooser.h; sourceTree = "<group>"; };
+		3EEE0A8416209487007BBE4E /* PlaceChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceChooser.m; path = iPad/PlaceChooser.m; sourceTree = "<group>"; };
 		3EEE0A86162142B1007BBE4E /* DESIGN THOUGHTS */ = {isa = PBXFileReference; lastKnownFileType = text; path = "DESIGN THOUGHTS"; sourceTree = "<group>"; };
 		3EEE4510160EC3FD003A5304 /* IndustryEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndustryEditViewController.h; path = iPad/IndustryEditViewController.h; sourceTree = "<group>"; };
 		3EEE4511160EC3FD003A5304 /* IndustryEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndustryEditViewController.m; path = iPad/IndustryEditViewController.m; sourceTree = "<group>"; };
@@ -1132,6 +1132,8 @@
 				3E407D7C160693E30037134D /* CargoTableCell.m */,
 				3E407D7D160693E30037134D /* CargoTableViewController.h */,
 				3E407D7E160693E30037134D /* CargoTableViewController.m */,
+				3E853CED1699739500F8C59B /* CarTypeChooser.h */,
+				3E853CEE1699739600F8C59B /* CarTypeChooser.m */,
 				3E540BD8160CE68400D5B759 /* ChooseTemplateViewController.h */,
 				3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */,
 				3E540BE0160D446300D5B759 /* CurlyView.h */,
@@ -1146,8 +1148,6 @@
 				3E335E5F160D69760097360C /* FileViewController.m */,
 				3E407D7F160693E30037134D /* FreightCarEditController.h */,
 				3E407D80160693E30037134D /* FreightCarEditController.m */,
-				3E853CED1699739500F8C59B /* FreightCarKindChooser.h */,
-				3E853CEE1699739600F8C59B /* FreightCarKindChooser.m */,
 				3E407D81160693E30037134D /* FreightCarTableCell.h */,
 				3E407D82160693E30037134D /* FreightCarTableCell.m */,
 				3E407D83160693E30037134D /* FreightCarTableViewController.h */,
@@ -1167,6 +1167,8 @@
 				3E407D8B160693E30037134D /* main.m */,
 				3E407D8C160693E30037134D /* MainWindowViewController.h */,
 				3E407D8D160693E30037134D /* MainWindowViewController.m */,
+				3EEE0A8316209486007BBE4E /* PlaceChooser.h */,
+				3EEE0A8416209487007BBE4E /* PlaceChooser.m */,
 				3E407D8E160693E30037134D /* SelectionCell.h */,
 				3E407D8F160693E30037134D /* SelectionCell.m */,
 				3E407D90160693E30037134D /* SwitchList for iPad-Prefix.pch */,
@@ -1191,8 +1193,6 @@
 				3E407D9B160693E30037134D /* TrainTableCell.m */,
 				3E407D9C160693E30037134D /* TrainTableViewController.h */,
 				3E407D9D160693E30037134D /* TrainTableViewController.m */,
-				3EEE0A8316209486007BBE4E /* YardLocationChooser.h */,
-				3EEE0A8416209487007BBE4E /* YardLocationChooser.m */,
 				3E407D9E160693E30037134D /* YardTableCell.h */,
 				3E407D9F160693E30037134D /* YardTableCell.m */,
 				3E407DA0160693E30037134D /* YardTableViewController.h */,
@@ -1919,8 +1919,8 @@
 				3E620F011616C20A00959403 /* CargoEditViewController.m in Sources */,
 				3E1C9D2F1618237B00C533B9 /* TrainEditViewController.m in Sources */,
 				3EEE0A82161FE3F9007BBE4E /* EditViewController.m in Sources */,
-				3EEE0A8516209488007BBE4E /* YardLocationChooser.m in Sources */,
-				3E853CEF1699739700F8C59B /* FreightCarKindChooser.m in Sources */,
+				3EEE0A8516209488007BBE4E /* PlaceChooser.m in Sources */,
+				3E853CEF1699739700F8C59B /* CarTypeChooser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
