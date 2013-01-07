@@ -28,6 +28,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "YardTableViewController.h"
+
 @class Yard;
 
 @interface YardTableCell : UITableViewCell
@@ -37,8 +39,22 @@
 // Fill in the cell as the "Add..." cell at the bottom of the table.
 - (void) fillInAsAddCell;
 
-@property (nonatomic, retain) IBOutlet UILabel *yardName;
-@property (nonatomic, retain) IBOutlet UILabel *yardKind;
+// Yard object represented by this cell.
+@property (nonatomic, retain) Yard *yard;
+
+// UITextField showing the name of yard.
+// Use UITextField to allow getting events when selected.
+@property (nonatomic, retain) IBOutlet UITextField *yardName;
+
+// Station where the yard sits.
+@property (nonatomic, retain) IBOutlet UITextField *yardStation;
+
+// Description field at bottom of cell summarizing details about
+// the yard.
 @property (nonatomic, retain) IBOutlet UILabel *yardDescription;
+
 @property (nonatomic, retain) IBOutlet UIImageView *yardIcon;
+
+// TableViewController handling changes to the Yard object.
+@property (nonatomic, retain) IBOutlet YardTableViewController *myController;
 @end

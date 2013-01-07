@@ -149,16 +149,13 @@
 // Handles presses on the table.  When a selection is made in the freight
 // car table, we show a popover for editing the freight car.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
-    TrainEditViewController *trainEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editTrain"];
     ScheduledTrain *myTrain = [self trainAtIndexPath: indexPath];
     if (!myTrain) {
         // Create a new industry.
     }
-    trainEditVC.myTrain = myTrain;
-    
-    [self doRaisePopoverWithEditController: trainEditVC
-                             fromIndexPath: indexPath];
+    TrainEditViewController *trainEditVC = [self doRaisePopoverWithStoryboardIdentifier: @"editTrain"
+                                                                          fromIndexPath: indexPath];
+    trainEditVC.train = myTrain;
 }
 
 // Requests edit view be closed.

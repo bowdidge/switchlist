@@ -35,7 +35,7 @@
 
 @interface TownEditViewController : ExpandingEditViewController
 // Town to draw (or change)
-@property (nonatomic, retain)  Place *myTown;
+@property (nonatomic, retain)  Place *town;
 
 @property (nonatomic, retain) IBOutlet UINavigationBar *myNavigationBar;
 @end

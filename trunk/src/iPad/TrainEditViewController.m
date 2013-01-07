@@ -75,10 +75,10 @@ enum {
 // Window is about to load.  Populate the currently selected freight car's details.
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
-    self.nameField.text = [self.myTrain name];
-    [self.carTypesButton setTitle: [self.myTrain acceptedCarTypesString] forState: UIControlStateNormal];
+    self.nameField.text = [self.train name];
+    [self.carTypesButton setTitle: [self.train acceptedCarTypesString] forState: UIControlStateNormal];
     
-    NSNumber *maximumLength = [self.myTrain maxLength];
+    NSNumber *maximumLength = [self.train maxLength];
     if (!maximumLength) {
         self.maximumLengthField.text = @"0";
     } else {
@@ -125,5 +125,5 @@ enum {
     
 }
 
-@synthesize myTrain;
+@synthesize train;
 @end

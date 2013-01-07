@@ -110,9 +110,14 @@ enum {
     return [UIImage imageWithContentsOfFile: imagePath];
 }
 
-// Window is about to load.  Populate the currently selected freight car's details.
+// Window is about to load.
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
+}
+
+- (void) setFreightCar: (FreightCar*) fc {
+    [freightCar release];
+    freightCar = [fc retain];
     self.reportingMarksField.text = [self.freightCar reportingMarks];
     [self.carTypeButton setTitle: [[self.freightCar carTypeRel] carTypeName] forState: UIControlStateNormal];
     [self.currentCargoButton setTitle: [[self.freightCar cargo] name] forState: UIControlStateNormal];

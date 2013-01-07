@@ -30,9 +30,14 @@
 
 #import "AbstractTableViewController.h"
 
+@class FreightCarTableCell;
+
 // Controller for freight car table in freight car tab.
 @interface FreightCarTableViewController : AbstractTableViewController
 
+- (IBAction) doKindPressed: (id) sender;
+- (void) doCloseChooser: (id) sender;
+- (IBAction) noteTableCell: (FreightCarTableCell*) cell changedCarReportingMarks: (NSString*) reportingMarks;
 
 // Requests edit view be closed.
 

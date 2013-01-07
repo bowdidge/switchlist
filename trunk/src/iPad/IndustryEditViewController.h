@@ -38,6 +38,6 @@
 - (IBAction) doPressDivisionButton: (id) sender;
 - (IBAction) doSave: (id) sender;
 
-@property (nonatomic, retain) Industry *myIndustry;
+@property (nonatomic, retain) Industry *industry;
 
 @end

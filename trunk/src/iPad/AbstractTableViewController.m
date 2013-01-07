@@ -63,25 +63,37 @@
 - (void) regenerateTableData {
 }
 
-// Displays the popover with the content from the
-// ExpandingEditViewController, with the popover's arrow rooted
-// within the specified frame of the selected cell.
-- (void) doRaisePopoverWithEditController: (ExpandingEditViewController*) evc
-                            fromIndexPath: (NSIndexPath*) indexPath {
-    CGRect cellFrame = [self.myTableView rectForRowAtIndexPath: indexPath];
+// Raises the requested popover (either an Edit popover or something else), with the popover's arrow rooted
+// within the specified portion of a cell.
+// Returns the view controller for the popover.
+- (id) doRaisePopoverWithStoryboardIdentifier: (NSString*) storyboardIdentifier
+                                     fromRect: (CGRect) cellRect {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
+    EditViewController *popoverVC = [storyboard instantiateViewControllerWithIdentifier: storyboardIdentifier];
+
     // Give editor a chance to call us back.
-    evc.myTableController = self;
-    CGRect cellRect = [self.myTableView convertRect: cellFrame toView: self.view];
+    
+    if ([popoverVC respondsToSelector: @selector(setMyTableController:)]) {
+        popoverVC.myTableController = self;
+    }
    
-   self.myPopoverController = [[[UIPopoverController alloc] initWithContentViewController: evc] autorelease];
+   self.myPopoverController = [[[UIPopoverController alloc] initWithContentViewController: popoverVC] autorelease];
     // Freight car edit popover needs handle to popover to change its size.
     // Move rect to far left so that we try to have the edit popover point to the left.
-    cellRect.size.width = 100;
     [self.myPopoverController presentPopoverFromRect: cellRect
                                               inView: [self view]
-                            permittedArrowDirections: UIPopoverArrowDirectionLeft
+                            permittedArrowDirections: UIPopoverArrowDirectionLeft | UIPopoverArrowDirectionRight
                                             animated: YES];
-    
+    return popoverVC;
+}
+
+// Raises the requested popover, centered on the cell of the table.
+- (id) doRaisePopoverWithStoryboardIdentifier: (NSString*) storyboardIdentifier
+                                fromIndexPath: (NSIndexPath*) indexPath {
+    CGRect cellFrame = [self.myTableView rectForRowAtIndexPath: indexPath];
+    CGRect cellRect = [self.myTableView convertRect: cellFrame toView: self.view];
+    cellRect.size.width = 100;
+    return [self doRaisePopoverWithStoryboardIdentifier: storyboardIdentifier fromRect: cellRect];
 }
 
 // Requests edit view be closed.

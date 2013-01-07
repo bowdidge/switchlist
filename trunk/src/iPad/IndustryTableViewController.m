@@ -169,16 +169,14 @@
 // Handles presses on the table.  When a selection is made in the freight
 // car table, we show a popover for editing the freight car.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
-    IndustryEditViewController *industryEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editTheIndustry"];
     Industry *myIndustry = [self industryAtIndexPath: indexPath];
     if (!myIndustry) {
         // Create a new industry.
     }
-    industryEditVC.myIndustry = myIndustry;
     
-     [self doRaisePopoverWithEditController: industryEditVC
-                              fromIndexPath: indexPath];
+    IndustryEditViewController *industryEditVC = [self doRaisePopoverWithStoryboardIdentifier: @"editTheIndustry"
+                                                                                fromIndexPath: indexPath];
+    industryEditVC.industry = myIndustry;
 }
 
 // Requests edit view be closed.

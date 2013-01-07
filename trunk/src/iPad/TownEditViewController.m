@@ -59,15 +59,19 @@
 // Window is about to load.  Populate the currently selected town's details.
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
+}
 
+- (void) setTown: (Place*) theTown {
+    [town release];
+    town = [theTown retain];
     int segmentOn=0;
     
-    if ([self.myTown isOffline]) {
+    if ([self.town isOffline]) {
         segmentOn = 2;
-    } else if ([self.myTown isStaging]) {
+    } else if ([self.town isStaging]) {
         segmentOn = 1;
     }
-    self.townNameTextField.text = [self.myTown name];
+    self.townNameTextField.text = [self.town name];
     self.townLocationControl.selectedSegmentIndex = segmentOn;
 }
 
@@ -80,21 +84,21 @@
 // Commits any changes to the town, and closes the popover.
 - (IBAction) doSave: (id) sender {
     BOOL hasChanges = NO;
-    if (![self.townNameTextField.text isEqualToString: [self.myTown name]]) {
-        [self.myTown setName: self.townNameTextField.text];
+    if (![self.townNameTextField.text isEqualToString: [self.town name]]) {
+        [self.town setName: self.townNameTextField.text];
         hasChanges = YES;
     }
     
     int currentSegment = self.townLocationControl.selectedSegmentIndex;
 
-    if (currentSegment == 2 && ![self.myTown isOffline]) {
-        [self.myTown setIsOffline: YES];
+    if (currentSegment == 2 && ![self.town isOffline]) {
+        [self.town setIsOffline: YES];
         hasChanges = YES;
-    } else if (currentSegment == 1 && ![self.myTown isStaging]) {
-        [self.myTown setIsStaging: YES];
+    } else if (currentSegment == 1 && ![self.town isStaging]) {
+        [self.town setIsStaging: YES];
         hasChanges = YES;
-    } else if (currentSegment == 0 && ![self.myTown isOnLayout]) {
-        [self.myTown setIsOnLayout];
+    } else if (currentSegment == 0 && ![self.town isOnLayout]) {
+        [self.town setIsOnLayout];
         hasChanges = YES;
     }
 
@@ -104,6 +108,7 @@
     [self.myTableController doDismissEditPopover: (id) sender];
 }
 
+@synthesize town;
 @synthesize townNameTextField;
 @synthesize townLocationControl;
 @synthesize myNavigationBar;

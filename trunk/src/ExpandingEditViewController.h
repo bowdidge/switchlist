@@ -29,9 +29,10 @@
 #import <UIKit/UIKit.h>
 
 #import "AbstractTableViewController.h"
+#import "EditViewController.h"
 #import "CurlyView.h"
 
-@interface ExpandingEditViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@interface ExpandingEditViewController : EditViewController<UITableViewDataSource, UITableViewDelegate>
 
 // Widens the popover to show the selection table on the right side.
 - (void) doWidenPopoverFrom: (CGRect) leftSideRect;
@@ -53,9 +54,6 @@
 @property (nonatomic) float popoverSizeCollapsed;
 // Width of popover in expanded state. To be set by subclasses.
 @property (nonatomic) float popoverSizeExpanded;
-
-// Reference back to the table controller for the list of industries.
-@property (nonatomic, retain) AbstractTableViewController *myTableController;
 
 // Navigation bar capping every edit window.
 @property (retain, nonatomic) IBOutlet UINavigationBar *myNavigationBar;

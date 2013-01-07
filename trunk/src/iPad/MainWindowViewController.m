@@ -282,7 +282,7 @@ float BOX_HEADER = 25.0;
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     AppNavigationController *navigationController = (AppNavigationController*)myAppDelegate.window.rootViewController;
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
     SwitchlistPresentationViewController *presentationVC = [storyboard instantiateViewControllerWithIdentifier:@"presentation"];
 
     [presentationVC setHtmlText: ((SwitchListTouchCatcherView*)sender).switchlistHtml];
@@ -298,7 +298,7 @@ float BOX_HEADER = 25.0;
 
 // Handles press on the gear to show layout details. Raises tab view.
 - (IBAction) showLayoutDetail: (id) sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
     LayoutDetailTabBarController *myTab = [storyboard instantiateViewControllerWithIdentifier:@"layoutDetailTabBar"];
     
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
@@ -343,7 +343,7 @@ float BOX_HEADER = 25.0;
 
 /*
 - (IBAction) doOpenFilePopover: (id) sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
     FileViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"fileView"];
     UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController: controller];
     controller.myPopoverController = popover;

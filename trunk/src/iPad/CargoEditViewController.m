@@ -60,12 +60,17 @@ enum {
 // Window is about to load.  Populate the currently selected freight car's details.
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
-    self.descriptionField.text = [self.myCargo name];
-    [self.sourceButton setTitle: [[self.myCargo source] name] forState: UIControlStateNormal];
-    [self.destinationButton setTitle: [[self.myCargo destination] name] forState: UIControlStateNormal];
-    [self.carTypeButton setTitle: [[self.myCargo carTypeRel]  carTypeName] forState: UIControlStateNormal];;
-    [self.rateToggle setSelectedSegmentIndex: [self.myCargo cargoRate].units];
-    [self.fixedToggle setSelectedSegmentIndex: [self.myCargo isPriority]];
+}
+
+- (void) setCargo: (Cargo*) myCargo {
+    [cargo release];
+    cargo = [myCargo retain];
+    self.descriptionField.text = [self.cargo name];
+    [self.sourceButton setTitle: [[self.cargo source] name] forState: UIControlStateNormal];
+    [self.destinationButton setTitle: [[self.cargo destination] name] forState: UIControlStateNormal];
+    [self.carTypeButton setTitle: [[self.cargo carTypeRel]  carTypeName] forState: UIControlStateNormal];;
+    [self.rateToggle setSelectedSegmentIndex: [self.cargo cargoRate].units];
+    [self.fixedToggle setSelectedSegmentIndex: [self.cargo isPriority]];
 }
 
 // Change the freight car as suggested.
@@ -133,7 +138,7 @@ enum {
 - (void)didSelectRowWithIndexPath: (NSIndexPath *)indexPath {
 }
 
-@synthesize myCargo;
+@synthesize cargo;
 @synthesize currentSelectionMode;
 @synthesize carTypes;
 @synthesize locations;

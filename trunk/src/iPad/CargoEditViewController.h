@@ -21,6 +21,6 @@
 - (IBAction) doSave: (id) sender;
 
 // Cargo to display.
-@property (nonatomic, retain) Cargo *myCargo;
+@property (nonatomic, retain) Cargo *cargo;
 
 @end

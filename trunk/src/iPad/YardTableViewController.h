@@ -30,7 +30,21 @@
 
 #import "AbstractTableViewController.h"
 
-@interface YardTableViewController : UITableViewController
+@class YardTableCell;
+
+// TableViewController for displaying and editing Yard objects.
+@interface YardTableViewController : AbstractTableViewController
+
+// Town containing yard was clicked on.
+- (IBAction) doStationPressed: (id) sender;
+
+// Notification that chooser for choosing new station for yard has closed
+// successfully, and changed value should be saved..
+- (void) doCloseChooser: (id) sender;
+
+// Notification that yard has changed name.
+- (IBAction) noteYardTableCell: (YardTableCell*) cell changedName: (NSString*) newName;
+
 @property (retain, nonatomic) NSArray *allYards;
 
 @end
