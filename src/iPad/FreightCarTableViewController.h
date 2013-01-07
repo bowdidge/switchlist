@@ -36,6 +36,11 @@
 @interface FreightCarTableViewController : AbstractTableViewController
 
 - (IBAction) doKindPressed: (id) sender;
+
+// Handle a touch on a cell's freight car location.  Show a popover
+// to allow selecting a different location.
+- (IBAction) doLocationPressed: (id) sender;
+
 - (void) doCloseChooser: (id) sender;
 - (IBAction) noteTableCell: (FreightCarTableCell*) cell changedCarReportingMarks: (NSString*) reportingMarks;
 
