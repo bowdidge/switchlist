@@ -34,6 +34,6 @@
 - (IBAction) doPressCarTypesButton: (id) sender;
 - (IBAction) doSave: (id) sender;
 
-@property (nonatomic, retain) ScheduledTrain *myTrain;
+@property (nonatomic, retain) ScheduledTrain *train;
 
 @end

@@ -29,10 +29,12 @@
 #import "YardTableViewController.h"
 
 #import "AppDelegate.h"
+#import "EditViewController.h"
 #import "EntireLayout.h"
 #import "Place.h"
 #import "SwitchListColors.h"
 #import "Yard.h"
+#import "YardLocationChooser.h"
 #import "YardTableCell.h"
 
 @interface YardTableViewController ()
@@ -143,18 +145,39 @@
 }
 */
 
+// Handles raising the correct popup when user touches the containing
+// station's name.
+- (IBAction) doStationPressed: (id) sender {
+    YardTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.yardStation.frame toView: self.view];
+    YardLocationChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"yardLocationPopover" fromRect: popoverRect];
+    chooser.selectedYard = cell.yard;
+    chooser.controller = self;
+}
+
+// Handles changing the yard's name when an edit is complete.
+- (IBAction) noteYardTableCell: (YardTableCell*) cell changedName: (NSString*) newName {
+    cell.yard.name = newName;
+    [self.tableView reloadData];
+}
+
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     [detailViewController release];
-     */
+    // TODO(bowdidge): What action on click on row when there's no other details?
+}
+
+// Handle changing the yard's containing town when a town is selected in the chooser.
+- (void) doCloseChooser: (id) sender {
+    int checkedValue = ((YardLocationChooser*)sender).checkedValue;
+    YardLocationChooser *chooser = (YardLocationChooser*) sender;
+    Yard *selectedYard = chooser.selectedYard;
+    Place *selectedStation = [chooser.allStations objectAtIndex: checkedValue];
+    [selectedYard setLocation: selectedStation];
+    [self.myPopoverController dismissPopoverAnimated: YES];
+    [self.tableView reloadData];
 }
 
 @end

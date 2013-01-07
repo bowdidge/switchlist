@@ -35,11 +35,13 @@
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "FreightCarEditController.h"
+#import "FreightCarKindChooser.h"
 #import "FreightCarTableCell.h"
 #import "SwitchListColors.h"
 
 @interface FreightCarTableViewController ()
-
+- (IBAction) doKindPressed: (id) sender;
+- (void) doCloseChooser: (id) sender;
 @end
 
 @implementation FreightCarTableViewController
@@ -187,13 +189,43 @@
 }
 */
 
+// Handle a touch on a cell's freight car kind.  Show a popover
+// to allow selecting a different car kind.
+- (IBAction) doKindPressed: (id) sender {
+    FreightCarTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.freightCarKind.frame toView: self.view];
+    FreightCarKindChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"freightCarKindPopover" fromRect: popoverRect];
+    chooser.selectedFreightCar = cell.freightCar;
+    chooser.myController = self;
+}
+
+// Handle a touch on a cell's freight car location.  Show a popover
+// to allow selecting a different location.
+- (IBAction) doLocationPressed: (id) sender {
+    // TODO(bowdidge): Implement.
+}
+
+// Handle an edit that changed a car's reporting marks.
+- (IBAction) noteTableCell: (FreightCarTableCell*) cell changedCarReportingMarks: (NSString*) reportingMarks {
+    [cell.freightCar setReportingMarks: reportingMarks];
+    [self.tableView reloadData];
+}
+
+// Called on valid click on the freight car kind chooser.
+- (void) doCloseChooser: (id) sender {
+    FreightCarKindChooser *chooser = (FreightCarKindChooser*) sender;
+    int checkedValue = chooser.checkedValue;
+    CarType *selectedCarType = [chooser.allCarTypes objectAtIndex: checkedValue];
+    chooser.selectedFreightCar.carTypeRel = selectedCarType;
+    [self.myPopoverController dismissPopoverAnimated: YES];
+    [self.tableView reloadData];
+}
+
 #pragma mark - Table view delegate
 
 // Handles presses on the table.  When a selection is made in the freight
 // car table, we show a popover for editing the freight car.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
-    FreightCarEditController *freightCarEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editFreightCar"];
     FreightCar *freightCar = [self freightCarAtIndexPath: indexPath];
     if (!freightCar) {
         // Create a new freight car.
@@ -205,8 +237,9 @@
                                                    inManagedObjectContext: moc];
         [freightCar setReportingMarks: @"SP 84712"];
     }
+    FreightCarEditController *freightCarEditVC = [self doRaisePopoverWithStoryboardIdentifier: @"editFreightCar"
+                                                                                fromIndexPath: indexPath];
     freightCarEditVC.freightCar = freightCar;
-    [self doRaisePopoverWithEditController: freightCarEditVC
-                             fromIndexPath: indexPath];
 }
+
 @end

@@ -163,12 +163,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
-    TownEditViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"editTown"];
-    controller.myTown = [self townAtIndexPath: indexPath];
-    [self doRaisePopoverWithEditController: controller
-                               fromIndexPath: indexPath];
-
+    TownEditViewController *controller = [self doRaisePopoverWithStoryboardIdentifier: @"editTown"
+                                                                        fromIndexPath: indexPath];
+    controller.town = [self townAtIndexPath: indexPath];
 }
 
 // Handles editing actions on table - delete or insert.

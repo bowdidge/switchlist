@@ -31,12 +31,14 @@
 #import "Cargo.h"
 #import "CarType.h"
 #import "FreightCar.h"
+#import "FreightCarTableViewController.h"
 
 @implementation FreightCarTableCell
 @synthesize freightCarReportingMarks;
 @synthesize freightCarKind;
 @synthesize freightCarDescription;
 @synthesize freightCarIcon;
+@synthesize myController;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -72,8 +74,9 @@
 }
 
 - (void) fillInAsFreightCar: (FreightCar*) fc {
-    self.freightCarReportingMarks.text = [NSString stringWithFormat: @"%@, currently at %@",
-                                          [fc reportingMarks], [[fc currentLocation] name]];
+    self.freightCar = fc;
+    self.freightCarReportingMarks.text = [fc reportingMarks];
+    self.freightCarLocation.text = [NSString stringWithFormat: @"At %@", [[fc currentLocation] name]];
     self.freightCarKind.text = [[fc carTypeRel] carTypeName];
     // Length xx, currently at xxx.  Will pick up load of xxx."
     self.freightCarDescription.text = [self descriptionForFreightCar: fc];
@@ -102,4 +105,34 @@
     freightCarDescription.text = @"";
     freightCarIcon.hidden = YES;
 }
+
+
+//  Handle clicks on the text fields that are supporting immediate
+// editing.
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField == self.freightCarReportingMarks) {
+        // Mark text as editable.
+        textField.backgroundColor = [UIColor whiteColor];
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    } else if (textField == self.freightCarLocation) {
+        // TODO(bowdidge): Put up list of potential locations here.
+        [self.myController doLocationPressed: self];
+        return NO;
+    } else if (textField == self.freightCarKind) {
+        [self.myController doKindPressed: self];
+        return NO;
+    }
+    return YES;
+}
+
+// Note when editing is complete so changes can be saved.
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if (textField == self.freightCarReportingMarks) {
+        textField.backgroundColor = [UIColor clearColor];
+        textField.borderStyle = UITextBorderStyleNone;
+        [self.myController noteTableCell: self changedCarReportingMarks: textField.text];
+    }
+    return YES;
+}
+
 @end

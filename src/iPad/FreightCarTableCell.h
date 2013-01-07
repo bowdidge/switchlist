@@ -28,6 +28,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "FreightCarTableViewController.h"
+
 @class FreightCar;
 
 // Cell contents for freight car UITableView.
@@ -41,8 +43,26 @@
 // Fills in cell for the Add item.
 - (void) fillInAsAddCell;
 
-@property (nonatomic, retain) IBOutlet UILabel *freightCarReportingMarks;
-@property (nonatomic, retain) IBOutlet UILabel *freightCarKind;
+// Current freight car represented by this cell.
+@property (nonatomic, retain) IBOutlet FreightCar *freightCar;
+
+// UITextField showing the freight car's reporting marks.
+// We use a UITextField so we can edit the label directly and get
+// events when selected.
+@property (nonatomic, retain) IBOutlet UITextField *freightCarReportingMarks;
+
+// UITextField showing the location of the freight car.
+@property (nonatomic, retain) IBOutlet UITextField *freightCarLocation;
+
+// UITextField showing the kind of freight car.
+@property (nonatomic, retain) IBOutlet UITextField *freightCarKind;
+
+// text describing the freight car.
 @property (nonatomic, retain) IBOutlet UILabel *freightCarDescription;
+
+// Cute icon to the left of each table cell.
 @property (nonatomic, retain) IBOutlet UIImageView *freightCarIcon;
+
+// Reference back to the controller processing changes to the cells.
+@property (nonatomic, retain) IBOutlet FreightCarTableViewController *myController;
 @end

@@ -84,17 +84,22 @@ enum {
 // Window is about to load.  Populate the currently selected freight car's details.
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
-    self.nameField.text = [self.myIndustry name];
-    [self.divisionButton setTitle: [self.myIndustry division] forState: UIControlStateNormal];
-    [self.townLocationButton setTitle: [[self.myIndustry location] name] forState: UIControlStateNormal];;
-    int litSegment = [self.myIndustry hasDoors] ? 0 : 1;
+}
+
+- (void) setIndustry: (Industry*) theIndustry {
+    [industry release];
+    industry = [theIndustry retain];
+    self.nameField.text = [self.industry name];
+    [self.divisionButton setTitle: [self.industry division] forState: UIControlStateNormal];
+    [self.townLocationButton setTitle: [[self.industry location] name] forState: UIControlStateNormal];;
+    int litSegment = [self.industry hasDoors] ? 0 : 1;
     [self.hasDoorsToggle setSelectedSegmentIndex: litSegment];
     
     // TODO(bowdidge): Gray out field when disabled.
     // [self.numberOfDoorsField setEnabled: [self.myIndustry hasDoors] ? YES : NO];
 
     if (litSegment == 1) {
-        NSNumber *numberOfDoors = [self.myIndustry numberOfDoors];
+        NSNumber *numberOfDoors = [self.industry numberOfDoors];
         if (!numberOfDoors) {
             self.numberOfDoorsField.text = @"0";
         } else {
@@ -102,7 +107,7 @@ enum {
         }
     }
 
-    NSNumber *sidingLength = [self.myIndustry sidingLength];
+    NSNumber *sidingLength = [self.industry sidingLength];
     if (!sidingLength) {
         self.sidingLengthField.text = @"0";
     } else {
@@ -115,14 +120,14 @@ enum {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
 
-    [self.myIndustry setName: self.nameField.text];
-    [self.myIndustry setDivision: self.divisionButton.titleLabel.text];
-    [self.myIndustry setLocation: [myLayout stationWithName: self.townLocationButton.titleLabel.text]];
+    [self.industry setName: self.nameField.text];
+    [self.industry setDivision: self.divisionButton.titleLabel.text];
+    [self.industry setLocation: [myLayout stationWithName: self.townLocationButton.titleLabel.text]];
     int currentSegment = self.hasDoorsToggle.selectedSegmentIndex;
-    [self.myIndustry setHasDoors: (currentSegment == 0) ? YES : NO];
+    [self.industry setHasDoors: (currentSegment == 0) ? YES : NO];
 
-    [self.myIndustry setNumberOfDoors: [NSNumber numberWithInt: [self.numberOfDoorsField.text intValue]]];
-    [self.myIndustry setSidingLength: [NSNumber numberWithInt: [self.sidingLengthField.text intValue]]];
+    [self.industry setNumberOfDoors: [NSNumber numberWithInt: [self.numberOfDoorsField.text intValue]]];
+    [self.industry setSidingLength: [NSNumber numberWithInt: [self.sidingLengthField.text intValue]]];
 
     [self.myTableController layoutObjectsChanged: self];
     [self.myTableController doDismissEditPopover: self];
@@ -181,5 +186,5 @@ enum {
  
 }
 
-@synthesize myIndustry;
+@synthesize industry;
 @end

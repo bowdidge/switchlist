@@ -142,8 +142,6 @@
 // Handles presses on the table.  When a selection is made in the cargo
 // table, we show a popover for editing the cargo.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard1" bundle:[NSBundle mainBundle]];
-    CargoEditViewController *cargoEditVC = [storyboard instantiateViewControllerWithIdentifier:@"editCargo"];
     Cargo *cargo = [self cargoAtIndexPath: indexPath];
     if (!cargo) {
         // Create a new freight car.
@@ -155,9 +153,9 @@
                                               inManagedObjectContext: moc];
         cargo.cargoDescription = @"Stuff";
     }
-    cargoEditVC.myCargo = cargo;
-    [self doRaisePopoverWithEditController: cargoEditVC
-                             fromIndexPath: indexPath];
+    CargoEditViewController *cargoEditVC = [self doRaisePopoverWithStoryboardIdentifier: @"editCargo"
+                                                                          fromIndexPath: indexPath];
+    cargoEditVC.cargo = cargo;
 }
 
 

@@ -5,3 +5,5 @@ Guidelines:
 * Hide portions of the interface that are less interesting, such as divisions.  (Is this a problem, can't see whole picture?
 * Each table entry has two details directly editable (name and upper-right attribute); rest of attributes hidden off info icon.
 * GUI - draw line to show towns for train?
+
+Descriptive part in italics if not editabe, use bold if there are editable aspects?

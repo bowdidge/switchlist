@@ -32,7 +32,7 @@
 
 // Behavior common to all the table views for different
 // kinds of objects.  Provides a common interface for create
-// the edit popover common to all tables, and the interfaces
+// the complex edit popover common to all tables, and the interfaces
 // for noting when the table needs to be regenerated from
 // the backing objects.
 @interface AbstractTableViewController : UITableViewController
@@ -46,12 +46,22 @@
 // To be implemented by subclasses.
 - (void) regenerateTableData;
 
-// Raises a popover window for an edit view on the table.
-// evc: EditViewController that controls the edit view
+// Raises a popover window for doing an edit that applies to the
+// entire table cell.
+// storyboardIdentifier: identifier for popover to raise.
 // indexPath: reference to selected cell to know where to
 // put point of popover.
-- (void) doRaisePopoverWithEditController: (ExpandingEditViewController*) evc
-                              fromIndexPath: (NSIndexPath*) indexPath;
+// Returns view controller for popover.
+- (id) doRaisePopoverWithStoryboardIdentifier: (NSString*) storyboardIdentifier
+                                fromIndexPath: (NSIndexPath*) indexPath;
+
+// Raises a popover window for doing an edit to one particular field
+// of the table cell.
+// storyboardIdentifier: identifier for the popover to raise.
+// cellRect: area of the cell that is being changed in tableView
+// coordinates.
+- (id) doRaisePopoverWithStoryboardIdentifier: (NSString*) storyboardIdentifier
+                                     fromRect: (CGRect) cellRect;
 
 // Closes an existing popover.  To be called from EditController
 // when window is explicitly to be closed (after a save).
