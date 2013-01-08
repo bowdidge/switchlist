@@ -101,4 +101,8 @@
     [self.myPopoverController dismissPopoverAnimated: YES];
 }
 
+- (void) doCloseChooser: (id) sender {
+}
+
+
 @end

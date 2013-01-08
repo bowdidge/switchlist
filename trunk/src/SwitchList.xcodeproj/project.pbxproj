@@ -357,6 +357,7 @@
 		3EABC3AA16069C4400EBD6C5 /* SwitchListFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC531140851A200F9CF15 /* SwitchListFilters.m */; };
 		3EABC3C316069C5A00EBD6C5 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75BC16063FFD00891318 /* libicucore.dylib */; };
 		3EABC3C416069C5F00EBD6C5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75BF1606400400891318 /* CoreData.framework */; };
+		3EABEAE6169B38150016D751 /* IndustryChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EABEAE5169B38150016D751 /* IndustryChooser.m */; };
 		3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
 		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
 		3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */; };
@@ -777,6 +778,8 @@
 		3EAAA77F1608226A00C3D7A8 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		3EAAA7811608235400C3D7A8 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3EABC36E1606991800EBD6C5 /* CarType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarType.m; path = Engine/CarType.m; sourceTree = "<group>"; };
+		3EABEAE4169B38150016D751 /* IndustryChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryChooser.h; sourceTree = "<group>"; };
+		3EABEAE5169B38150016D751 /* IndustryChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryChooser.m; sourceTree = "<group>"; };
 		3EB0AC0A127BB95000E27063 /* InduYard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InduYard.h; path = Engine/InduYard.h; sourceTree = "<group>"; };
 		3EB0AC0B127BB95000E27063 /* InduYard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InduYard.m; path = Engine/InduYard.m; sourceTree = "<group>"; };
 		3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMigrationManagerCategory.m; sourceTree = "<group>"; };
@@ -1152,6 +1155,8 @@
 				3E407D82160693E30037134D /* FreightCarTableCell.m */,
 				3E407D83160693E30037134D /* FreightCarTableViewController.h */,
 				3E407D84160693E30037134D /* FreightCarTableViewController.m */,
+				3EABEAE4169B38150016D751 /* IndustryChooser.h */,
+				3EABEAE5169B38150016D751 /* IndustryChooser.m */,
 				3EEE4510160EC3FD003A5304 /* IndustryEditViewController.h */,
 				3EEE4511160EC3FD003A5304 /* IndustryEditViewController.m */,
 				3E407D85160693E30037134D /* IndustryTableCell.h */,
@@ -1921,6 +1926,7 @@
 				3EEE0A82161FE3F9007BBE4E /* EditViewController.m in Sources */,
 				3EEE0A8516209488007BBE4E /* PlaceChooser.m in Sources */,
 				3E853CEF1699739700F8C59B /* CarTypeChooser.m in Sources */,
+				3EABEAE6169B38150016D751 /* IndustryChooser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

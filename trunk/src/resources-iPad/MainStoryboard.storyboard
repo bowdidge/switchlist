@@ -227,15 +227,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Packing House at Auzerais St." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xBi-0P-gG5">
-                                                    <rect key="frame" x="102" y="9" width="433" height="21"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Packing House" minimumFontSize="17" id="aCQ-3J-lOy">
+                                                    <rect key="frame" x="102" y="5" width="188" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="9qF-G8-WYI" id="Mga-lG-ecG"/>
+                                                    </connections>
+                                                </textField>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="140' siding" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I38-mx-iKk">
-                                                    <rect key="frame" x="558" y="9" width="190" height="21"/>
+                                                    <rect key="frame" x="607" y="9" width="141" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -252,12 +254,22 @@
                                                     <rect key="frame" x="11" y="9" width="66" height="61"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Auzerais St." minimumFontSize="17" id="cTo-r7-Osc">
+                                                    <rect key="frame" x="298" y="5" width="294" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="9qF-G8-WYI" id="LEf-uD-c9H"/>
+                                                    </connections>
+                                                </textField>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <connections>
                                             <outlet property="industryDescription" destination="wia-bN-f0J" id="hq5-Jz-Eid"/>
-                                            <outlet property="industryName" destination="xBi-0P-gG5" id="u6C-Mu-5dQ"/>
+                                            <outlet property="industryLocation" destination="cTo-r7-Osc" id="rj9-1D-D3S"/>
+                                            <outlet property="industryName" destination="aCQ-3J-lOy" id="mLD-10-smd"/>
                                             <outlet property="industrySidingLength" destination="I38-mx-iKk" id="VAY-Rz-5wO"/>
                                         </connections>
                                     </tableViewCell>
@@ -1068,13 +1080,13 @@
                                                 <outlet property="delegate" destination="OnZ-H7-Eda" id="EXa-aj-Rf4"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="At Drew Cannery" minimumFontSize="17" id="b4V-kW-bRe">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="At the Drew Cannery" minimumFontSize="17" id="b4V-kW-bRe">
                                             <rect key="frame" x="249" y="8" width="356" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
-                                                <outlet property="delegate" destination="OnZ-H7-Eda" id="ckg-Y6-pDw"/>
+                                                <outlet property="delegate" destination="OnZ-H7-Eda" id="Ysw-B8-jIC"/>
                                             </connections>
                                         </textField>
                                     </subviews>
@@ -1084,7 +1096,7 @@
                                     <outlet property="freightCarDescription" destination="BDN-Oh-EaM" id="36e-lc-sZm"/>
                                     <outlet property="freightCarIcon" destination="hKw-QA-diy" id="tPd-m9-j1D"/>
                                     <outlet property="freightCarKind" destination="s28-U3-J0z" id="HeE-0S-muc"/>
-                                    <outlet property="freightCarLocation" destination="b4V-kW-bRe" id="oZb-si-YLB"/>
+                                    <outlet property="freightCarLocation" destination="b4V-kW-bRe" id="6Qm-B5-bZ6"/>
                                     <outlet property="freightCarReportingMarks" destination="eJR-xM-LOQ" id="Njy-Ip-gfQ"/>
                                     <outlet property="myController" destination="B0o-Ip-sXq" id="BmI-TA-5v9"/>
                                 </connections>
@@ -1673,7 +1685,7 @@
         <!--Place Chooser-->
         <scene sceneID="qAe-iP-dvK">
             <objects>
-                <tableViewController storyboardIdentifier="yardLocationPopover" modalPresentationStyle="formSheet" id="67D-ab-Xc4" customClass="PlaceChooser" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="placeChooser" modalPresentationStyle="formSheet" id="67D-ab-Xc4" customClass="PlaceChooser" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="I29-mp-d9e">
                         <rect key="frame" x="0.0" y="20" width="540" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1725,10 +1737,61 @@
             </objects>
             <point key="canvasLocation" x="360" y="2205"/>
         </scene>
+        <!--Industry Chooser-->
+        <scene sceneID="Pff-3J-fbb">
+            <objects>
+                <tableViewController storyboardIdentifier="industryChooser" modalPresentationStyle="formSheet" id="34n-q8-cnP" customClass="IndustryChooser" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="LVK-bo-ytV">
+                        <rect key="frame" x="0.0" y="20" width="540" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="industryChooserCell" id="N12-bh-Eaq" customClass="IndustryChooserCell">
+                                <rect key="frame" x="0.0" y="22" width="540" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Yf-EN-ehZ">
+                                            <rect key="frame" x="20" y="11" width="13" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Industry Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Nz-qa-Jnk">
+                                            <rect key="frame" x="83" y="11" width="442" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="checkField" destination="0Yf-EN-ehZ" id="b9S-nC-bxf"/>
+                                    <outlet property="label" destination="6Nz-qa-Jnk" id="Ghk-TV-afW"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="34n-q8-cnP" id="Nrh-Kc-Gov"/>
+                            <outlet property="delegate" destination="34n-q8-cnP" id="a0v-N0-ZkM"/>
+                        </connections>
+                    </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="400"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Gf-4Y-u2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="385" y="2925"/>
+        </scene>
         <!--Car Type Chooser-->
         <scene sceneID="UOQ-2M-AYi">
             <objects>
-                <tableViewController storyboardIdentifier="freightCarKindPopover" modalPresentationStyle="formSheet" id="3El-dk-G21" customClass="CarTypeChooser" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="carTypeChooser" modalPresentationStyle="formSheet" id="3El-dk-G21" customClass="CarTypeChooser" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iWi-Uj-xjO">
                         <rect key="frame" x="0.0" y="20" width="540" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1794,256 +1857,6 @@
         <image name="train.png" width="512" height="512"/>
         <image name="yard.jpg" width="225" height="225"/>
     </resources>
-    <classes>
-        <class className="AbstractTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AbstractTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doDismissEditPopover:"/>
-                <relationship kind="outlet" name="myTableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="AppNavigationController" superclassName="UINavigationController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AppNavigationController.h"/>
-        </class>
-        <class className="CargoEditViewController" superclassName="ExpandingEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CargoEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doPressCarTypeButton:"/>
-                <relationship kind="action" name="doPressDestinationButton:"/>
-                <relationship kind="action" name="doPressFixedRateButton:"/>
-                <relationship kind="action" name="doPressRateButton:"/>
-                <relationship kind="action" name="doPressSourceButton:"/>
-                <relationship kind="action" name="doSave:"/>
-                <relationship kind="outlet" name="carTypeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="descriptionField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="destinationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="fixedToggle" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="rateToggle" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="sourceButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="CargoTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CargoTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cargoDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cargoIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="cargoKind" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="cargoName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="CargoTableViewController" superclassName="AbstractTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CargoTableViewController.h"/>
-        </class>
-        <class className="ChooseTemplateViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ChooseTemplateViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="layoutDetailsController" candidateClass="LayoutDetailsViewController"/>
-                <relationship kind="outlet" name="templateTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="CurlyView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CurlyView.h"/>
-        </class>
-        <class className="EditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditViewController.h"/>
-        </class>
-        <class className="ExpandingEditViewController" superclassName="EditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ExpandingEditViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="curlyView" candidateClass="CurlyView"/>
-                <relationship kind="outlet" name="myNavigationBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="rightSideSelectionTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="FileCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FileCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="label" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="FileViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FileViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createNewLayout:"/>
-                <relationship kind="outlet" name="addButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="fileTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="myPopoverController" candidateClass="UIPopoverController"/>
-            </relationships>
-        </class>
-        <class className="FreightCarEditController" superclassName="ExpandingEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarEditController.h"/>
-            <relationships>
-                <relationship kind="action" name="doPressCameraButton:"/>
-                <relationship kind="action" name="doPressCarTypeButton:"/>
-                <relationship kind="action" name="doPressCargoButton:"/>
-                <relationship kind="action" name="doPressDivisionButton:"/>
-                <relationship kind="action" name="doPressLocationButton:"/>
-                <relationship kind="action" name="doSave:"/>
-                <relationship kind="outlet" name="cameraButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="carPhotoView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="carTypeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="currentCargoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="currentLocationButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="homeDivisionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loadedToggle" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="reportingMarksField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="FreightCarTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="freightCarDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="freightCarIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="freightCarKind" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="freightCarLocation" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="freightCarReportingMarks" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="myController" candidateClass="FreightCarTableViewController"/>
-            </relationships>
-        </class>
-        <class className="FreightCarTableViewController" superclassName="AbstractTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FreightCarTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doKindPressed:"/>
-            </relationships>
-        </class>
-        <class className="IndustryEditViewController" superclassName="ExpandingEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndustryEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doPressDivisionButton:"/>
-                <relationship kind="action" name="doPressTownLocationButton:"/>
-                <relationship kind="action" name="doSave:"/>
-                <relationship kind="outlet" name="currentCargoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="divisionButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="hasDoorsToggle" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="numberOfDoorsField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="sidingLengthField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="townLocationButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="IndustryTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndustryTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="industryDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="industryIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="industryName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="industrySidingLength" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="IndustryTableViewController" superclassName="AbstractTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/IndustryTableViewController.h"/>
-        </class>
-        <class className="LayoutDetailTabBarController" superclassName="UITabBarController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LayoutDetailTabBarController.h"/>
-        </class>
-        <class className="LayoutDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LayoutDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="templateNameChanged:" candidateClass="NSString"/>
-                <relationship kind="outlet" name="templateButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="MainWindowViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainWindowViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="didTouchSwitchList:"/>
-                <relationship kind="action" name="doAdvanceLayout:"/>
-                <relationship kind="action" name="doRegenerateSwitchlists:"/>
-                <relationship kind="action" name="noteRegenerateSwitchlists"/>
-                <relationship kind="action" name="showLayoutDetail:"/>
-                <relationship kind="outlet" name="advanceButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="fileButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="reportBox" candidateClass="UIView"/>
-                <relationship kind="outlet" name="reportsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="switchlistBox" candidateClass="UIView"/>
-                <relationship kind="outlet" name="switchlistsLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SelectionCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SelectionCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cellText" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="SwitchlistPresentationViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SwitchlistPresentationViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doPrint:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="printButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="webView" candidateClass="UIWebView"/>
-            </relationships>
-        </class>
-        <class className="TemplateCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TemplateCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="templateDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="templateName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TownEditViewController" superclassName="ExpandingEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TownEditViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="myNavigationBar" candidateClass="UINavigationBar"/>
-                <relationship kind="outlet" name="townLocationControl" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="townNameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="TownTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TownTableCell.h"/>
-            <relationships>
-                <relationship kind="action" name="hideIcon:"/>
-                <relationship kind="outlet" name="townDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="townIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="townKind" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="townName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TownTableViewController" superclassName="AbstractTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TownTableViewController.h"/>
-        </class>
-        <class className="TrainEditViewController" superclassName="ExpandingEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doPressCarTypesButton:"/>
-                <relationship kind="action" name="doSave:"/>
-                <relationship kind="outlet" name="carTypesButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="maximumLengthField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="nameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="TrainTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainTableCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="trainDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="trainIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="trainKind" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="trainName" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="TrainTableViewController" superclassName="AbstractTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TrainTableViewController.h"/>
-        </class>
-        <class className="YardTableCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YardTableCell.h"/>
-            <relationships>
-                <relationship kind="action" name="namePressed:"/>
-                <relationship kind="action" name="stationPressed:"/>
-                <relationship kind="outlet" name="myController" candidateClass="YardTableViewController"/>
-                <relationship kind="outlet" name="yardDescription" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="yardIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="yardName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="yardStation" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="YardTableViewController" superclassName="AbstractTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/YardTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doStationPressed:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>
