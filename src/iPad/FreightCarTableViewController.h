@@ -41,7 +41,6 @@
 // to allow selecting a different location.
 - (IBAction) doLocationPressed: (id) sender;
 
-- (void) doCloseChooser: (id) sender;
 - (IBAction) noteTableCell: (FreightCarTableCell*) cell changedCarReportingMarks: (NSString*) reportingMarks;
 
 // Requests edit view be closed.

@@ -68,6 +68,10 @@
 // This code path not called when user touches outside the popover.
 - (IBAction) doDismissEditPopover: (id) sender;
 
+// Closes an existing single-purpose popover.  To be called from Chooser
+// when result has been chosen.
+- (void) doCloseChooser: (id) sender;
+
 // Reference to currently active popover controller.
 @property (retain, nonatomic) UIPopoverController *myPopoverController;
 // IB outlet pointing to table view for this tab.

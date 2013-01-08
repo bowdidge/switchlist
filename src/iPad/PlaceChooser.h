@@ -10,7 +10,7 @@
 
 @class Place;
 @class Yard;
-@class YardTableViewController;
+@class AbstractTableViewController;
 
 @interface PlaceChooserCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *checkField;
@@ -20,7 +20,7 @@
 // Popover for selecting the station where the yard resides.
 @interface PlaceChooser : UITableViewController
 
-@property (retain, nonatomic) IBOutlet YardTableViewController *controller;
+@property (retain, nonatomic) IBOutlet AbstractTableViewController *controller;
 
 // Object having its place set.
 @property (retain, nonatomic) id keyObject;

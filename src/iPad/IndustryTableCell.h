@@ -28,15 +28,25 @@
 
 #import <UIKit/UIKit.h>
 
+@class InduYard;
 @class Industry;
 
-@interface IndustryTableCell : UITableViewCell
+@interface IndustryTableCell : UITableViewCell {
+}
+
 // Fill in cell based on cargo object.
 - (void) fillInAsIndustry: (Industry*) industry;
 // Fill in the cell as the "Add..." cell at the bottom of the table.
 - (void) fillInAsAddCell;
 
-@property (nonatomic, retain) IBOutlet UILabel *industryName;
+// Industry represented by this cell.
+@property (nonatomic, retain) InduYard *myIndustry;
+
+// Name of industry in cell.
+@property (nonatomic, retain) IBOutlet UITextField *industryName;
+
+// Name of place in cell.
+@property (nonatomic, retain) IBOutlet UITextField *industryLocation;
 @property (nonatomic, retain) IBOutlet UILabel *industrySidingLength;
 @property (nonatomic, retain) IBOutlet UILabel *industryDescription;
 @property (nonatomic, retain) IBOutlet UIImageView *industryIcon;

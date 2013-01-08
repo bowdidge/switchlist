@@ -70,7 +70,8 @@
 
 // Fill in cell based on cargo object.
 - (void) fillInAsIndustry: (Industry*) industry {
-    self.industryName.text = [NSString stringWithFormat: @"%@ at %@", [industry name], [[industry location] name]];
+    self.myIndustry = industry;
+    self.industryName.text = [industry name];
     self.industrySidingLength.text = [NSString stringWithFormat: @"%d foot siding", [[industry sidingLength] intValue]];
     self.industryDescription.text = [self descriptionForIndustry: industry];
 }
@@ -83,6 +84,7 @@
     self.industryIcon.hidden = YES;
 }
 
+@synthesize myIndustry;
 @synthesize industryName;
 @synthesize industrySidingLength;
 @synthesize industryDescription;

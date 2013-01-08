@@ -150,7 +150,7 @@
 - (IBAction) doStationPressed: (id) sender {
     YardTableCell *cell = sender;
     CGRect popoverRect = [cell convertRect: cell.yardStation.frame toView: self.view];
-    PlaceChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"yardLocationPopover" fromRect: popoverRect];
+    PlaceChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"placeChooser" fromRect: popoverRect];
     chooser.keyObject = cell.yard;
     chooser.keyObjectSelection = cell.yard.location;
     chooser.controller = self;

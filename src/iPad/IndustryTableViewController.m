@@ -34,6 +34,7 @@
 #import "Industry.h"
 #import "IndustryEditViewController.h"
 #import "IndustryTableCell.h"
+#import "PlaceChooser.h"
 #import "SwitchListColors.h"
 
 @interface IndustryTableViewController ()
@@ -177,6 +178,17 @@
     IndustryEditViewController *industryEditVC = [self doRaisePopoverWithStoryboardIdentifier: @"editTheIndustry"
                                                                                 fromIndexPath: indexPath];
     industryEditVC.industry = myIndustry;
+}
+
+// Handles raising the correct popup when user touches the containing
+// station's name.
+- (IBAction) doStationPressed: (id) sender {
+    IndustryTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.industryLocation.frame toView: self.view];
+    PlaceChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"placeChooser" fromRect: popoverRect];
+    chooser.keyObject = cell.myIndustry;
+    chooser.keyObjectSelection = cell.myIndustry.location;
+    chooser.controller = self;
 }
 
 // Requests edit view be closed.

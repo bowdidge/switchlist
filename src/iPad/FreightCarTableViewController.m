@@ -32,11 +32,12 @@
 #import "AppNavigationController.h"
 #import "Cargo.h"
 #import "CarType.h"
+#import "CarTypeChooser.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "FreightCarEditController.h"
-#import "CarTypeChooser.h"
 #import "FreightCarTableCell.h"
+#import "IndustryChooser.h"
 #import "SwitchListColors.h"
 
 @interface FreightCarTableViewController ()
@@ -194,7 +195,7 @@
 - (IBAction) doKindPressed: (id) sender {
     FreightCarTableCell *cell = sender;
     CGRect popoverRect = [cell convertRect: cell.freightCarKind.frame toView: self.view];
-    CarTypeChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"freightCarKindPopover" fromRect: popoverRect];
+    CarTypeChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"carTypeChooser" fromRect: popoverRect];
     chooser.keyObject = cell.freightCar;
     chooser.keyObjectSelection = cell.freightCar.carTypeRel;
     chooser.myController = self;
@@ -203,7 +204,12 @@
 // Handle a touch on a cell's freight car location.  Show a popover
 // to allow selecting a different location.
 - (IBAction) doLocationPressed: (id) sender {
-    // TODO(bowdidge): Implement.
+    FreightCarTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.freightCarKind.frame toView: self.view];
+    IndustryChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"industryChooser" fromRect: popoverRect];
+    chooser.keyObject = cell.freightCar;
+    chooser.keyObjectSelection = cell.freightCar.currentLocation;
+    chooser.myController = self;
 }
 
 // Handle an edit that changed a car's reporting marks.
@@ -214,10 +220,19 @@
 
 // Called on valid click on the freight car kind chooser.
 - (void) doCloseChooser: (id) sender {
-    CarTypeChooser *chooser = (CarTypeChooser*) sender;
-    chooser.keyObject.carTypeRel = chooser.selectedCarType;
-    [self.myPopoverController dismissPopoverAnimated: YES];
-    [self.tableView reloadData];
+    if ([sender isKindOfClass: [CarTypeChooser class]]) {
+        CarTypeChooser *chooser = (CarTypeChooser*) sender;
+        FreightCar *selectedFreightCar = chooser.keyObject;
+        selectedFreightCar.carTypeRel = chooser.selectedCarType;
+        [self.myPopoverController dismissPopoverAnimated: YES];
+        [self.tableView reloadData];
+    } else if ([sender isKindOfClass: [IndustryChooser class]]) {
+        IndustryChooser *chooser = (IndustryChooser*) sender;
+        FreightCar *selectedFreightCar = chooser.keyObject;
+        selectedFreightCar.currentLocation = chooser.selectedIndustry;
+        [self.myPopoverController dismissPopoverAnimated: YES];
+        [self.tableView reloadData];        
+    }
 }
 
 #pragma mark - Table view delegate
