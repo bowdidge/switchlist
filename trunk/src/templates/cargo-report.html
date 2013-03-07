@@ -117,6 +117,11 @@ CargoReportGenerator.prototype.GenerateTable = function(cargoReportTable) {
       carType = '?';
     }				    
 
+	if (sourceId == "" || destId == "") {
+		// Ignore incomplete or bogus entries.
+		continue;
+	}
+	
     if (this.industryToSourceCarTypeMap[sourceId][carType] == undefined) {
       this.industryToSourceCarTypeMap[sourceId][carType] = 0;
     }
