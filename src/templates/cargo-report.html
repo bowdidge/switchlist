@@ -31,24 +31,24 @@ ul {
 
 /* JSON array describing SwitchList industries. */ 
 RAW_INDUSTRIES = [{% for industry in layout.allIndustries %}
-  { name: "{{industry.name}}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: {{industry.sidingLength}}},{% /for %}
+  { name: "{{industry.name | js_escape_string}}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: {{industry.sidingLength}}},{% /for %}
 ];
 
 /* JSON array describing SwitchList yards. */ 
 RAW_YARDS = [{% for industry in layout.allYards %}
-  { name: "{{industry.name}}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: 0 },{% /for %}
+  { name: "{{industry.name | js_escape_string }}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: 0 },{% /for %}
 ];
 
 /* JSON array describing SwitchList cargos. */ 
 RAW_CARGOS = [{% for cargo in layout.allCargos %}
-  { name: "{{cargo.name}}",     carType: "{{cargo.carType}}", carsPerWeek: {{cargo.carsPerWeek}},
+  { name: "{{cargo.name | js_escape_string}}",     carType: "{{cargo.carType | js_escape_string}}", carsPerWeek: {{cargo.carsPerWeek}},
     source: "{{cargo.source.objectID.URIRepresentation}}", 
     destination: "{{cargo.destination.objectID.URIRepresentation}}"}, {%/for%}
 ];
 
 /* JSON array describing SwitchList car types. */ 
 RAW_CAR_TYPES = [{% for carType in layout.allCarTypes %}
-  { name:"{{carType.carTypeName}}", description:"{{carType.carTypeDescription}}" }, {%/for%}
+  { name:"{{carType.carTypeName | js_escape_string}}", description:"{{carType.carTypeDescription | js_escape_string}}" }, {%/for%}
   { name: "?", description: 'Any'},
 ];
 
