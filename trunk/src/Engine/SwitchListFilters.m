@@ -36,6 +36,8 @@
 
 #define JITTER		@"jitter"
 #define SUM_OF_LENGTHS @"sum_of_lengths"
+// Escape the string for embedding in a JavaScript string.  Convert ' and " to \' and \".
+#define ESCAPE_STRING @"js_escape_string"
 
 @implementation SwitchListFilters
 // Adds whitespace - nbsp, emsp, ensp - randomly at the beginning and end of strings,
@@ -86,9 +88,16 @@
 	return [NSString stringWithFormat: @"%d", sum];
 }
 
+// Escapes quotes and double quotes with \ for JavaScript.
+- (NSString*) escapeJavaScriptString: (NSString*) str {
+	NSString *str1 = [[str stringByReplacingOccurrencesOfString: @"'" withString: @"\\\'"]
+			stringByReplacingOccurrencesOfString: @"\"" withString: @"\\\""];
+	return str1;
+}
+
 - (NSArray *)filters
 {
-	return [NSArray arrayWithObjects: JITTER, SUM_OF_LENGTHS, nil];
+	return [NSArray arrayWithObjects: JITTER, SUM_OF_LENGTHS, ESCAPE_STRING, nil];
 }
 
 - (NSObject *)filterInvoked:(NSString *)filter withArguments:(NSArray *)args onValue:(NSObject *)value {
@@ -96,6 +105,8 @@
 		return [self jitterString: (NSString*) value];
 	} else if ([filter isEqualToString: SUM_OF_LENGTHS]) {
 		return [self sumOfLengths: (NSArray*) value];
+	} else if ([filter isEqualToString: ESCAPE_STRING]) {
+		return [self escapeJavaScriptString: (NSString*) value];
 	}
 	return value;
 }		

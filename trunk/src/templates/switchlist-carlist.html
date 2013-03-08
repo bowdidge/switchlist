@@ -13,10 +13,10 @@
 <link href='layout.css' rel='stylesheet' type='text/css'>
 <link href='layout-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
 <script type='text/javascript'>
-var layoutName='{{ layout.layoutName }}';
-var carDictionary={ {{carLocations}} };
-var industries = [{% for industry in allIndustries%} '{{industry.name}}', {% /for %}];
-var yards = [{% for yard in allYards %} '{{yard.name}}', {% /for %}];
+var layoutName='{{ layout.layoutName | js_escape_string}}';
+var carDictionary={ {{carLocations | js_escape_string}} };
+var industries = [{% for industry in allIndustries%} '{{industry.name | js_escape_string}}', {% /for %}];
+var yards = [{% for yard in allYards %} '{{yard.name | js_escape_string}}', {% /for %}];
 </script>
 <script type="text/javascript">
 function carLocationChanged(object, carName) {
