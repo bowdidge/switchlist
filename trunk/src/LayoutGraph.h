@@ -39,11 +39,24 @@
 
 // Bidirectional edge from/to.
 @interface LayoutEdge : NSObject {
+	LayoutNode *fromNode;
+	LayoutNode *toNode;
+	int occurrences;
 }
 @end
 
 // Node representing a station on the layout.
 @interface LayoutNode : NSObject {
+	Place *station;
+	
+	// Array of all incoming and outgoing edges.
+	NSMutableArray *edges;
+	
+	// Values used for doing walks on the graph.
+	BOOL visited; 
+	
+	// Number of times this node turned up in train stops.
+	int occurrences;
 }
 - (id) initWithPlace: (Place*) place;
 
@@ -54,6 +67,16 @@
 
 // Object representing entire graph for layout.
 @interface LayoutGraph : NSObject {
+	// Map of objectID for Place to LayoutNode for Place.
+	NSMutableDictionary *stationToNodeMap;
+	
+	// Set of LayoutNode starting points in train.  Number of occurrences on the
+	// LayoutNode shows how many trains start at the station.
+	NSSet *starts;
+	
+	// Pointer back to layout object.
+	EntireLayout *entireLayout;
+	
 }
 
 // Create the layout with all existing trains on the layout.
