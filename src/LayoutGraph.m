@@ -36,6 +36,14 @@
 // Container class for storing counts of the number of times trains went from
 // station from to station to.
 @interface AdjacencyPair : NSObject {
+	// Previous station.
+	Place *from;
+	// Next station.
+	Place *to;
+	// Number of trains where the two stations were adjacent in the list of stops.
+	int adjacentCount;
+	// Number of trains where the two stations both appeared in the same list of stops.
+	int alongRouteCount;
 }
 @property (nonatomic, retain) Place *from;
 @property (nonatomic, retain) Place *to;
@@ -47,9 +55,9 @@
 
 @implementation AdjacencyPair 
 // Returns true if this pair represents trips between the stations from and to.
-- (BOOL) isPairFrom: (Place*) from to:(Place*) to {
-	if ((self.from == from && self.to == to) ||
-		(self.from == to && self.to == from)) {
+- (BOOL) isPairFrom: (Place*) fromStation to:(Place*) toStation {
+	if ((self.from == fromStation && self.to == toStation) ||
+		(self.from == toStation && self.to == fromStation)) {
 		return YES;
 	}
 	return NO;
@@ -65,6 +73,7 @@
 // Object storing information on whether two stations are visited by the same train,
 // and visited during consecutive stops.
 @interface AdjacencyTable : NSObject {
+	NSMutableArray *allPairs;
 }
 
 @property (nonatomic, retain) NSMutableArray *allPairs;
