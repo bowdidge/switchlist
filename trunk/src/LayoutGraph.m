@@ -263,7 +263,7 @@ NSInteger compareByCount(id this, id that, void *context) {
 	
 	self.stationToNodeMap = [NSMutableDictionary dictionary];
 	NSMutableSet *allStarts = [NSMutableSet set];
-	AdjacencyTable *table = [[AdjacencyTable alloc] init];
+	AdjacencyTable *table = [[[AdjacencyTable alloc] init] autorelease];
 	
 	NSArray *allStations = [layout allStations];
 	int stationCount = [allStations count];
@@ -356,7 +356,7 @@ NSInteger compareByCount(id this, id that, void *context) {
 			return;
 		}
 	}
-	LayoutEdge *edge = [[LayoutEdge alloc] initEdgeFrom: previousStationNode to: stationNode];
+	LayoutEdge *edge = [[[LayoutEdge alloc] initEdgeFrom: previousStationNode to: stationNode] autorelease];
 	[previousStationNode.edges addObject: edge];
 	[stationNode.edges addObject: edge];
 	// NSLog(@"Adding edge %@", edge);
@@ -384,7 +384,7 @@ NSInteger compareByCount(id this, id that, void *context) {
 - (LayoutNode*) layoutNodeForPlace: (Place*)  station {
 	LayoutNode *stationNode = [self.stationToNodeMap objectForKey: [station objectID]];
 	if (!stationNode) {
-		stationNode = [[LayoutNode alloc] initWithPlace: station];
+		stationNode = [[[LayoutNode alloc] initWithPlace: station] autorelease];
 		[self.stationToNodeMap setObject: stationNode forKey: [station objectID]];
 	}	
 	return stationNode;
