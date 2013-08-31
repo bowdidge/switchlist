@@ -1,0 +1,47 @@
+<HTML>
+<HEAD>
+<TITLE>Current Car Locations</TITLE>
+<LINK REL=StyleSheet HREF="switchlist.css" TYPE="text/css">
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+</HEAD>
+<BODY>
+<div class="report">
+<div class="switch-list-layout-title">
+<p style="padding-bottom: 10px;">
+{{ layout.layoutName }}
+<br>
+CLERK WORKSHEET
+</p>
+</div>
+<table class="switch-list">
+<tr class="switch-list-header">
+<th>Station</th><th>Industry</th><th>Car</th><th>Type</th>
+<th>Source</th><th>Destination</th>
+</tr>
+{% for station in layout.allStationsSortedOrder %}
+  {% for industry in station.allIndustriesSortedOrder %}
+    {% if industry.isRegularIndustry %}
+    {% for car in industry.allFreightCarsSortedOrder %}
+      <tr>
+      <td>{{station.name}}</td>
+      <td>{{industry.name}}</td>
+      <td>{{car.reportingMarks}}</td>
+      <td class="cartype">{{car.carType}}</td>
+      <td>{{car.cargo.source.name}}</td>
+      <td>{% if car.cargo %}
+	   {{car.cargo.destination.name}}
+           {% else %}
+            Return to owner 
+            {% /if %}
+      </td>
+      <tr>
+    {% /for %}
+    {% if industry.allFreightCarsSortedOrder %}
+      <tr></tr>
+     {% /if %}
+     {% /if %}
+  {% /for %}
+{% /for %}
+</div></body>
+</html>

@@ -1,0 +1,9 @@
+SP Narrow MTY
+Robert Bowdidge
+August 30, 2013
+
+This is a modification of the Southern Pacific Narrow template.
+
+It's been tweaked in two ways:
+* It better matches the existing SP Narrow style seen in SwitchList.
+* Empty cars have contents of "MTY" rather than "-".
