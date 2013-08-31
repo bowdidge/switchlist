@@ -1,0 +1,82 @@
+.train-name {
+  color: #ddd;
+  font-family: Oswald;
+  font-size: 10px;
+}
+.switch-list-title {
+	font-family: Oswald;
+	font-size: 14px;
+	text-align:  center;
+}
+
+.switch-list {
+  background-color: #fcffc5;
+  width:  500px;
+}
+
+.switch-list-layout-title {
+	font-family: Oswald;
+	font-size: 11pt;
+	text-align:  center;
+}
+
+.switch-list-instructions {
+  font-family: Oswald;
+  text-align: center;
+  font-size:  10pt;
+}
+
+.switch-list-instructions-filled-in {
+  color: DarkBlue;
+  font-family: "Rock Salt";
+  font-size: 10px;
+}
+
+.switch-list-header TH {
+  border: 2px solid #aaa;
+  color: black;
+  font-family: 'Helvetica';
+  font-size:  10pt;
+}
+.switch-list TD {
+  color: DarkBlue;
+  font-family: "Rock Salt";
+  font-size: 10px;
+}
+ 
+table.switch-list {
+  border-collapse: collapse;
+	border-style: solid;
+	border-width: thin;
+}
+
+.switch-list td { 
+  border: 2px solid #aaa;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* Industry page style to space out reporting marks and car type */
+.indStation td {
+	width: 30%;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+.indIndustry td {
+	width: 30%;
+	font-weight: bold;
+}
+.indMarks td {
+	width: 30%;
+}
+.indType td {
+	width: 10%;
+}
+.indStationStart td {
+	height: 40px;
+}
+.indIndustryStart td {
+}
+
+
+

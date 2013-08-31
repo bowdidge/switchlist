@@ -1,0 +1,46 @@
+<HTML>
+<HEAD>
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
+<link href='switchlist-iphone.css' rel='stylesheet' type='text/css' media='only screen and (max-device-width: 480px)'/>
+<link href='switchlist-ipad.css' rel='stylesheet' type='text/css' media='only screen and (min-device-width: 481px) and (max-device-width: 1024px)'/>
+<link href='switchlist.css' rel='stylesheet' type='text/css' media='all and (min-device-width: 1025px)'>
+<TITLE>Switch List for {{ train.name }}</TITLE>
+</HEAD>
+<BODY>
+<div class="switch-list">
+<div class="train-name">{{train.name}}</div>
+<div class="switch-list-layout-title">{{ layout.layoutName }}</div>
+<div class="switch-list-title">SWITCH LIST</div>
+<div class="switch-list-instructions">
+Train _____ Left _____________ Station, _______ M __________ 19__
+<br>
+Engine_____ Arrd _____________ Station, _______ M __________ 19__
+</div>
+<p>
+<center>
+<TABLE class="switch-list">
+  <TR class="switch-list-header">
+    <TH>Initial</TH>
+    <TH>No</TH>
+    <th>Ld</th>
+    <th>Contents</th>
+    <TH>To</TH>
+    <TH>Origin</TH>
+  </TR>
+  {% for car in train.allFreightCarsInVisitOrder %}
+  <TR>
+	<TD>{{car.initials}}</TD>
+	<TD>{{car.number}}</TD>
+	<TD>{% if car.isLoaded %}X{% else %}{% /if %}</td>
+	<td>{% if car.isLoaded %}{{car.cargo.name}}{% else %}MTY{% /if %}</td>
+	<TD>{{car.nextStop.name}}</td>
+	<TD>{{ car.currentLocation.name}}</td>
+  </tr>
+  {% /for %}
+</TABLE>
+</center>
+</div>
+</HTML>
+	
+
