@@ -609,27 +609,6 @@
 	STAssertEqualsInt(3, [entireLayout_ loadsPerDay], @"Expected 3 loads/day, got %d", [entireLayout_ loadsPerDay]);
 }
 
-- (void) testFreightCarLengthsSimple {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"SP 1"];
-	[fc1 setLength: [NSNumber numberWithInt: 50]];
-	 
-	NSArray *allLengths = [entireLayout_ freightCarLengths];
-	STAssertEqualsInt(1, [allLengths count], @"");
-	STAssertEqualsInt(50, [[allLengths objectAtIndex: 0] intValue], @"");
- }
-
-- (void) testFreightCarLengthsComplex {
-	[[self makeFreightCarWithReportingMarks: @"SP 1"] setLength: [NSNumber numberWithInt: 50]];
-	[[self makeFreightCarWithReportingMarks: @"SP 2"] setLength: [NSNumber numberWithInt: 40]];
-	[[self makeFreightCarWithReportingMarks: @"SP 3"] setLength: [NSNumber numberWithInt: 40]];
-	[self makeFreightCarWithReportingMarks: @"SP 4"];
-	
-	NSArray *allLengths = [entireLayout_ freightCarLengths];
-	STAssertEqualsInt(2, [allLengths count], @"");
-	STAssertEqualsInt(40, [[allLengths objectAtIndex: 0] intValue], @"");
-	STAssertEqualsInt(50, [[allLengths objectAtIndex: 1] intValue], @"");
-}
-
 - (void) testSqlSanity {
 	[self makeThreeStationLayout];
 	Industry *i = [entireLayout_ industryWithName: @"'" withStationName: @"A"];

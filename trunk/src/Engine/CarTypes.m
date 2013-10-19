@@ -33,6 +33,7 @@
 #import <Foundation/Foundation.h>
 
 #import "Cargo.h"
+#import "CarType.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "SCheduledTrain.h"
@@ -108,6 +109,44 @@
 		return NO;
 	}
 	return YES;
+}
+
++ (void) populateCarTypeLengthsFromLayout: (EntireLayout*) layout {
+    for (CarType* carType in [layout allCarTypes]) {
+        if ([carType carTypeLength] != nil) {
+            // Some car types exist.
+            return;
+        }
+    }
+    
+    for (CarType *carType in [layout allCarTypes]) {
+        // Find the length of cars with the car type.  Find the most common length.
+        // This is a workaround for car lengths previously been associating with
+        // individual cars rather than car types.
+        NSMutableDictionary *lengthDict = [NSMutableDictionary dictionary];
+        NSArray *allFreightCars = [layout allFreightCars];
+        for (FreightCar *fc in allFreightCars) {
+            if ([fc carTypeRel] == carType) {
+                NSNumber *count = [lengthDict objectForKey: [fc length]];
+                if (!count) {
+                    count = [NSNumber numberWithInt: 1];
+                } else {
+                    count = [NSNumber numberWithInt: [count intValue]];
+                }
+                [lengthDict setObject: count forKey: [fc length]];
+            }
+        }
+        NSNumber *maxLength = nil;
+        int maxCount = 0;
+        for (NSNumber *length in [lengthDict allKeys]) {
+            int count = [[lengthDict objectForKey: length] intValue];
+            if (count > maxCount) {
+                maxCount = count;
+                maxLength = length;
+            }
+        }
+        [carType setCarTypeLength: maxLength];
+    }
 }
 		
 @end

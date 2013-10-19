@@ -56,6 +56,7 @@ NSString *NormalizeDivisionString(NSString *inString);
 	Industry *workbenchIndustry_;
 	NSMutableDictionary *preferences_;
 	NSMutableDictionary *carTypes_;
+    NSArray *popularFreightCarLengths_;
 };
 
 - (id) initWithMOC: (NSManagedObjectContext*) moc;
@@ -73,7 +74,7 @@ NSString *NormalizeDivisionString(NSString *inString);
 // Returns a list of lengths of freight cars in order of popularity.  Empty lengths 
 // are not counted.
 - (NSArray*) freightCarLengths;
-	
+
 // Returns one freight car with matching reporting marks, or nil if none exist.
 - (FreightCar*) freightCarWithName: (NSString*) name;
 
@@ -172,3 +173,10 @@ NSString *NormalizeDivisionString(NSString *inString);
 NSInteger sortCarsByCurrentIndustry(FreightCar *a, FreightCar *b, void *context);
 // Sorts cars by the destination town name for each car, then the industry name for each car, then reporting marks.
 NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *context);
+
+// Keys declared in model for LayoutInfo.
+NSString *LAYOUT_INFO_LAYOUT_NAME;
+NSString *LAYOUT_INFO_CURRENT_DATE;
+// Dictionary, NSKeyedArchiver-encoded.
+NSString *LAYOUT_INFO_LAYOUT_PREFERENCES;
+
