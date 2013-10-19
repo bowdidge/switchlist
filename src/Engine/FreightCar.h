@@ -64,8 +64,13 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1,FreightCar* s2, voi
 // Car type abbreviation for freight car.
 - (NSString*) carType;
 
+// Set the door at the next industry where the car should go.
 - (NSNumber *)doorToSpot;
 - (void)setDoorToSpot:(NSNumber *)value;
+
+// Set the door that the car is currently located at.
+- (NSNumber *)currentDoor;
+- (void) setCurrentDoor: (NSNumber *) value;
 
 // UNUSED.  Reports should sort the switchlists themselves.
 - (unsigned)positionInTrain;

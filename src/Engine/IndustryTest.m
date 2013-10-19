@@ -96,5 +96,15 @@
 	STAssertEqualsInt(0, [[yard sidingLength] intValue], @"Yard siding length should be nil, not %@.", [yard sidingLength]);
 }
 
+- (void) testIndustryDoors {
+	[self makeThreeStationLayout];
+	Industry *i = [self industryAtStation: @"A"];
+	[i setHasDoors: YES];
+	[i setNumberOfDoors: [NSNumber numberWithInt: 3]];
+	
+	STAssertEqualsInt(3, [[i doorList] count], @"");
+	STAssertEquals([NSNumber numberWithInt: 1], [[i doorList] objectAtIndex: 0], @"");
+	STAssertEquals([NSNumber numberWithInt: 3], [[i doorList] objectAtIndex: 2], @"");
+}	
 
 @end

@@ -50,6 +50,12 @@
 // Is industry, not yard, not in staging or offline.
 - (BOOL) isRegularIndustry;
 
+// Returns true if positions in the industry or yard can be numbered.
+- (BOOL) hasDoors;
+- (NSNumber *)numberOfDoors;
+
+// Returns array of valid door numbers for this industry.  For population of NSPopUpButton.
+- (NSArray*) doorList;
 
 // Returns sidingLength of current object, or 0 if not set or if current object is
 // not an industry with a defined siding length.

@@ -88,6 +88,27 @@
 	return nil;
 }
 
+// Returns true if industry or yard can have cars spotted at specific places.
+- (BOOL) hasDoors { 
+	// By default, yards and industries do not have door assignments.
+	return NO;
+}
+
+- (NSNumber *)numberOfDoors {
+	return [NSNumber numberWithInt: 0];
+}
+
+// Returns array of valid door numbers for this industry.  For population of NSPopUpButton.
+- (NSArray*) doorList {
+	int ct = [[self numberOfDoors] intValue];
+	NSMutableArray *result = [NSMutableArray array];
+	int i;
+	for (i=1; i <= ct; i++) {
+		[result addObject: [NSNumber numberWithInt: i]];
+	}
+	return result;
+}
+		 
 // Sorts freight car reporting marks by railroad, then number.  SP 3941 should appear before SP 10240.
 - (NSArray*) allFreightCarsSortedOrder {
 	return [[[self freightCars] allObjects] sortedArrayUsingFunction: compareReportingMarksAlphabetically context: nil];

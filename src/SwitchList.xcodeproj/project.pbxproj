@@ -33,6 +33,7 @@
 		3E3B3BA5140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BBF140E0B4B00F4F56C /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
+		3E3C2361174743D700F1A04F /* AddCurrentDoor.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C2360174743D700F1A04F /* AddCurrentDoor.xcmappingmodel */; };
 		3E407D59160693170037134D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E407D58160693170037134D /* UIKit.framework */; };
 		3E407D5B160693170037134D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E407D5A160693170037134D /* Foundation.framework */; };
 		3E407D5D160693170037134D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E407D5C160693170037134D /* CoreGraphics.framework */; };
@@ -586,6 +587,8 @@
 		3E3C11DB0A39652F0071D6B4 /* ScheduledTrain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScheduledTrain.m; path = Engine/ScheduledTrain.m; sourceTree = "<group>"; };
 		3E3C11DC0A39652F0071D6B4 /* Cargo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cargo.h; path = Engine/Cargo.h; sourceTree = "<group>"; };
 		3E3C11DD0A39652F0071D6B4 /* Cargo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cargo.m; path = Engine/Cargo.m; sourceTree = "<group>"; };
+		3E3C2093173CCDB200F1A04F /* SwitchListDocument 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 6.xcdatamodel"; sourceTree = "<group>"; };
+		3E3C2360174743D700F1A04F /* AddCurrentDoor.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCurrentDoor.xcmappingmodel; sourceTree = "<group>"; };
 		3E407D56160693170037134D /* Switchlist-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Switchlist-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E407D58160693170037134D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		3E407D5A160693170037134D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -2187,6 +2190,7 @@
 				3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */,
 				3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */,
 				3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */,
+				3E3C2361174743D700F1A04F /* AddCurrentDoor.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3343,12 +3347,14 @@
 				3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */,
 				3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */,
 				3EDD57EC15E5D7ED006E0B5C /* SwitchListDocument 5.xcdatamodel */,
+				3E3C2093173CCDB200F1A04F /* SwitchListDocument 6.xcdatamodel */,
 				3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */,
 				3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */,
 				3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */,
 				3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */,
+				3E3C2360174743D700F1A04F /* AddCurrentDoor.xcmappingmodel */,
 			);
-			currentVersion = 3EDD57EC15E5D7ED006E0B5C /* SwitchListDocument 5.xcdatamodel */;
+			currentVersion = 3E3C2093173CCDB200F1A04F /* SwitchListDocument 6.xcdatamodel */;
 			path = SwitchListDocument.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
