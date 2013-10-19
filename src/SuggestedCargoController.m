@@ -55,7 +55,7 @@
 
 // Creates a proposed cargo based on an existing Cargo object.
 - (id) initWithExistingCargo: (Cargo*) cargo isReceive: (BOOL) shouldReceive {
-	[self init];
+	self = [self init];
 	self.name = [cargo cargoDescription];
 	self.isKeep = [NSNumber numberWithBool: NO];
 	self.isExistingCargo = YES;
@@ -73,7 +73,7 @@
 @implementation SuggestedCargoController
 
 - (id) init {
-	[super init];
+	self = [super init];
 	NSString *industryFile = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/typicalIndustry.plist"];
 	store_ = [[TypicalIndustryStore alloc] initWithIndustryPlistFile: industryFile];
 	return self;

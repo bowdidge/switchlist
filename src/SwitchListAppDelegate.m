@@ -52,7 +52,7 @@
 // Creates a new MyOutlineViewController, using the pointer to the
 // appDelegate to retrieve information about current selections.
 - (id) initWithAppDelegate: (SwitchListAppDelegate*) appDelegate withOutlineView: (NSOutlineView*) view {
-	[super init];
+	self = [super init];
 	// We're retained by appDelegate.
 	appDelegate_ = appDelegate;
 	problemsOutlineView_ = [view retain];
@@ -164,7 +164,7 @@
 
 @implementation SwitchListAppDelegate
 - (id) init {
-	[super init];
+	self = [super init];
 	// Gather the names of the switchlist templates with native support.
 	nameToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
 	[nameToSwitchListClassMap_ setObject: [SwitchListView class] forKey: DEFAULT_SWITCHLIST_TEMPLATE];

@@ -38,7 +38,7 @@
 @implementation SetTrainCarTypesDialogController
 
 - (id) init {
-	[super init];
+	self = [super init];
 	allCarTypes_ = nil;
 	currentCarTypes_ = nil;
 	return self;

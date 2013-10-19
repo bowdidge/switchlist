@@ -106,7 +106,7 @@
 @implementation SwitchListDocument
 - (id)init 
 {
-    [super init];
+    self = [super init];
 	entireLayout_ = nil;
 	layoutController_ = nil;
 	locationIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.location.isOffline == 0 OR self.location.name LIKE \"Workbench\""] retain];

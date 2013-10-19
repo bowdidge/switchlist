@@ -54,7 +54,7 @@
 
 @implementation FreightCarLengthPairs
 - (id) initWithCarLength: (NSNumber*) theCarLength {
-	[super init];
+	self = [super init];
 	self.carLength = theCarLength;
 	self.occurrences = 0;
 	return self;
