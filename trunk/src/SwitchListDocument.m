@@ -231,6 +231,9 @@
 		[enableDoorsButton_ setState: YES];
 	}
 	
+	// Initialize to match the current selection.
+	[self freightCarLocationChanged: self];
+	
 	// Disable the car length controls if the layout preference isn't set.
 	NSNumber *useCarLengths = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI];
 	if (!useCarLengths || [useCarLengths boolValue] == NO) {
@@ -988,9 +991,41 @@
 	}
 }
 
+// Handles changes when the car selection changes, or when the car's location changes.
+- (void) showFreightCarDoorPopup: (id) sender {
+	NSMutableDictionary *layoutPrefs = [entireLayout_ getPreferencesDictionary];
+	NSNumber *useDoors = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_DOORS_UI];
+	BOOL shouldShowDoors = (useDoors && [useDoors boolValue] == YES);
+
+		int selectedRow = [freightCarTable_ selectedRow];
+	
+	// Have the location overlap the door selector when the location does not have a door.
+	if (selectedRow >= [[freightCarArrayController_ arrangedObjects] count]) return;
+	FreightCar *freightCar = [[freightCarArrayController_ arrangedObjects] objectAtIndex: selectedRow];
+	NSRect doorLabelFrame = [doorsLabel_ frame];
+	NSRect doorPopupFrame = [freightCarDoorPopup_ frame];
+	NSRect locationPopupFrame = [freightCarLocationPopup_ frame];
+	int locationPopupWidth;
+	if (shouldShowDoors && [[freightCar currentLocation] hasDoors]) {
+		// Set the popup so it ends just before the "Doors:" label.
+		locationPopupWidth = doorLabelFrame.origin.x - locationPopupFrame.origin.x;
+	} else {
+		locationPopupWidth = doorPopupFrame.origin.x + doorPopupFrame.size.width - locationPopupFrame.origin.x;
+	}
+		
+	locationPopupFrame.size.width = locationPopupWidth;
+	[[freightCarLocationPopup_ animator] setFrame: locationPopupFrame];
+}
+
+- (IBAction) freightCarLocationChanged: (id) sender {
+	[self showFreightCarDoorPopup: sender];
+}
+
 - (void)tableViewSelectionDidChange:(NSNotification *)notification {
-	// Update summary info and re-enable buttons.
-	[self updateSummaryInfo: self];
+	NSTableView *tableView = [notification object];
+	if (tableView == freightCarTable_) {
+		[self showFreightCarDoorPopup: self];
+	}
 }
 
 // Displays tool tips in any cells in tables in SwitchList.
@@ -1015,10 +1050,6 @@
 		}
 	}
     return nil;
-}
-
-- (BOOL) selectionShouldChangeInTableView: (id) a {
-	return YES;
 }
 
 - (void) setDoorsButtonState: (BOOL) shouldBeOn {

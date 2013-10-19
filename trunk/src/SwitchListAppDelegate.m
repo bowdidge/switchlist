@@ -72,6 +72,7 @@
 	return fullString;
 }
 
+
 // Copies the selected problems to the clipboard as strings, or all problems if
 // none are selected.
 - (IBAction) copy: (id) sender {
@@ -453,6 +454,7 @@ error:
 		NSAlert *alert = [NSAlert alertWithMessageText: @"Cannot open example file."
 										 defaultButton: @"OK" alternateButton: nil otherButton: nil
 							 informativeTextWithFormat: @"%@", [error localizedDescription]];
+		NSLog(@"%@", error);
 		[alert runModal];
 		return;
 	}

@@ -47,6 +47,7 @@
 }
 
 - (void) setCar: (FreightCar*) car destinedForIndustry: (Industry*) industry door: (int) doorNumber {
+	[car setDoorToSpot: [NSNumber numberWithInt: doorNumber]];
 	NSMutableArray *industryMap = [self.industryToCarMapping objectForKey: [industry objectID]];
 	if (industryMap == nil) {
 		industryMap = [NSMutableArray array];
@@ -58,7 +59,7 @@
 }
 
 - (int) doorForCar: (const FreightCar*) car {
-	return [[self.carToDoorMapping objectForKey: [car objectID]] intValue];
+	return [[car doorToSpot] intValue];
 }
 
 - (NSArray*) carsAtIndustry: (Industry*) industry {

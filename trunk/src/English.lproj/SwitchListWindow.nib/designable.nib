@@ -12,8 +12,8 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
+			<integer value="6"/>
 			<integer value="5309"/>
-			<integer value="256"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -305,7 +305,6 @@
 												<reference key="NSHScroller" ref="1047853551"/>
 												<reference key="NSContentView" ref="518755731"/>
 												<reference key="NSHeaderClipView" ref="317232389"/>
-												<reference key="NSCornerView" ref="958668592"/>
 												<bytes key="NSScrollAmts">QSAAAEEgAABBmAAAQZgAAA</bytes>
 											</object>
 											<object class="NSButton" id="880796958">
@@ -657,7 +656,7 @@
 											<object class="NSTextField" id="687139529">
 												<reference key="NSNextResponder" ref="462654402"/>
 												<int key="NSvFlags">258</int>
-												<string key="NSFrame">{{133, 69}, {261, 22}}</string>
+												<string key="NSFrame">{{127, 69}, {274, 22}}</string>
 												<reference key="NSSuperview" ref="462654402"/>
 												<reference key="NSNextKeyView" ref="644764970"/>
 												<bool key="NSEnabled">YES</bool>
@@ -785,19 +784,34 @@
 													<reference key="NSTextColor" ref="518000301"/>
 												</object>
 											</object>
-											<object class="NSPopUpButton" id="336894609">
+											<object class="NSTextField" id="371954045">
+												<reference key="NSNextResponder" ref="462654402"/>
+												<int key="NSvFlags">260</int>
+												<string key="NSFrame">{{381, 15}, {43, 17}}</string>
+												<reference key="NSSuperview" ref="462654402"/>
+												<bool key="NSEnabled">YES</bool>
+												<object class="NSTextFieldCell" key="NSCell" id="803575031">
+													<int key="NSCellFlags">67239424</int>
+													<int key="NSCellFlags2">67108864</int>
+													<string key="NSContents">Door:</string>
+													<reference key="NSSupport" ref="347224745"/>
+													<reference key="NSControlView" ref="371954045"/>
+													<reference key="NSBackgroundColor" ref="672327551"/>
+													<reference key="NSTextColor" ref="518000301"/>
+												</object>
+											</object>
+											<object class="NSPopUpButton" id="802012578">
 												<reference key="NSNextResponder" ref="462654402"/>
 												<int key="NSvFlags">258</int>
-												<string key="NSFrame">{{123, 10}, {348, 26}}</string>
+												<string key="NSFrame">{{422, 10}, {50, 26}}</string>
 												<reference key="NSSuperview" ref="462654402"/>
-												<reference key="NSNextKeyView" ref="802106879"/>
 												<int key="NSTag">-1</int>
 												<bool key="NSEnabled">YES</bool>
-												<object class="NSPopUpButtonCell" key="NSCell" id="1027262952">
+												<object class="NSPopUpButtonCell" key="NSCell" id="1023740716">
 													<int key="NSCellFlags">67239488</int>
 													<int key="NSCellFlags2">2048</int>
 													<reference key="NSSupport" ref="378188453"/>
-													<reference key="NSControlView" ref="336894609"/>
+													<reference key="NSControlView" ref="802012578"/>
 													<int key="NSButtonFlags">-2038284033</int>
 													<int key="NSButtonFlags2">1</int>
 													<reference key="NSAlternateImage" ref="378188453"/>
@@ -806,7 +820,7 @@
 													<int key="NSPeriodicInterval">75</int>
 													<nil key="NSMenuItem"/>
 													<bool key="NSMenuItemRespectAlignment">YES</bool>
-													<object class="NSMenu" key="NSMenu" id="414900344">
+													<object class="NSMenu" key="NSMenu" id="286767119">
 														<string key="NSTitle"/>
 														<object class="NSMutableArray" key="NSMenuItems">
 															<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1395,6 +1409,40 @@
 													<bool key="NSUsesItemFromMenu">YES</bool>
 													<bool key="NSAltersState">YES</bool>
 													<int key="NSArrowPosition">2</int>
+												</object>
+											</object>
+											<object class="NSPopUpButton" id="336894609">
+												<reference key="NSNextResponder" ref="462654402"/>
+												<int key="NSvFlags">258</int>
+												<string key="NSFrame">{{123, 10}, {256, 26}}</string>
+												<reference key="NSSuperview" ref="462654402"/>
+												<reference key="NSNextKeyView" ref="802106879"/>
+												<int key="NSTag">-1</int>
+												<bool key="NSEnabled">YES</bool>
+												<object class="NSPopUpButtonCell" key="NSCell" id="1027262952">
+													<int key="NSCellFlags">67239488</int>
+													<int key="NSCellFlags2">2048</int>
+													<reference key="NSSupport" ref="378188453"/>
+													<reference key="NSControlView" ref="336894609"/>
+													<int key="NSButtonFlags">-2038284033</int>
+													<int key="NSButtonFlags2">1</int>
+													<reference key="NSAlternateImage" ref="378188453"/>
+													<string key="NSKeyEquivalent"/>
+													<int key="NSPeriodicDelay">400</int>
+													<int key="NSPeriodicInterval">75</int>
+													<nil key="NSMenuItem"/>
+													<bool key="NSMenuItemRespectAlignment">YES</bool>
+													<object class="NSMenu" key="NSMenu" id="414900344">
+														<string key="NSTitle"/>
+														<object class="NSMutableArray" key="NSMenuItems">
+															<bool key="EncodedWithXMLCoder">YES</bool>
+														</object>
+													</object>
+													<int key="NSSelectedIndex">-1</int>
+													<int key="NSPreferredEdge">3</int>
+													<bool key="NSUsesItemFromMenu">YES</bool>
+													<bool key="NSAltersState">YES</bool>
+													<int key="NSArrowPosition">1</int>
 												</object>
 											</object>
 										</object>
@@ -5197,6 +5245,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>location.description</string>
 					<string>currentLocation.description</string>
 					<string>cargo.tooltip</string>
+					<string>currentLocation.hasDoors</string>
+					<string>currentLocation.currentDoor</string>
+					<string>currentDoor</string>
+					<object class="NSMutableString">
+						<characters key="NS.bytes">currentLocation.doorList</characters>
+					</object>
+					<string>doorToSpot</string>
 				</object>
 				<bool key="NSEditable">YES</bool>
 				<bool key="NSAutomaticallyPreparesContent">YES</bool>
@@ -5365,6 +5420,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>division</string>
 					<string>location</string>
 					<string>freightCars</string>
+					<string>currentLocation.doorList</string>
 				</object>
 				<bool key="NSEditable">YES</bool>
 				<bool key="NSAutomaticallyPreparesContent">YES</bool>
@@ -9985,14 +10041,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">freightCarArrayController_</string>
-						<reference key="source" ref="344813097"/>
-						<reference key="destination" ref="667718978"/>
-					</object>
-					<int key="connectionID">5118</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">townArrayController_</string>
 						<reference key="source" ref="344813097"/>
 						<reference key="destination" ref="667718978"/>
@@ -11771,6 +11819,136 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					</object>
 					<int key="connectionID">5575</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">freightCarDoorPopup_</string>
+						<reference key="source" ref="344813097"/>
+						<reference key="destination" ref="802012578"/>
+					</object>
+					<int key="connectionID">5583</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: selection.currentLocation.hasDoors</string>
+						<reference key="source" ref="802012578"/>
+						<reference key="destination" ref="303395851"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="802012578"/>
+							<reference key="NSDestination" ref="303395851"/>
+							<string key="NSLabel">enabled: selection.currentLocation.hasDoors</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">selection.currentLocation.hasDoors</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">5587</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">content: selection.currentLocation.doorList</string>
+						<reference key="source" ref="802012578"/>
+						<reference key="destination" ref="303395851"/>
+						<object class="NSNibBindingConnector" key="connector" id="1034612986">
+							<reference key="NSSource" ref="802012578"/>
+							<reference key="NSDestination" ref="303395851"/>
+							<string key="NSLabel">content: selection.currentLocation.doorList</string>
+							<string key="NSBinding">content</string>
+							<string key="NSKeyPath">selection.currentLocation.doorList</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSInsertsNullPlaceholder</string>
+								<boolean value="YES" key="NS.object.0"/>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">5595</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentValues: arrangedObjects.name</string>
+						<reference key="source" ref="802012578"/>
+						<reference key="destination" ref="758846542"/>
+						<object class="NSNibBindingConnector" key="connector" id="266640330">
+							<reference key="NSSource" ref="802012578"/>
+							<reference key="NSDestination" ref="758846542"/>
+							<string key="NSLabel">contentValues: arrangedObjects.name</string>
+							<string key="NSBinding">contentValues</string>
+							<string key="NSKeyPath">arrangedObjects.name</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSInsertsNullPlaceholder</string>
+								<boolean value="YES" key="NS.object.0"/>
+							</object>
+							<reference key="NSPreviousConnector" ref="1034612986"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">5596</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedValue: selection.currentDoor</string>
+						<reference key="source" ref="802012578"/>
+						<reference key="destination" ref="303395851"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="802012578"/>
+							<reference key="NSDestination" ref="303395851"/>
+							<string key="NSLabel">selectedValue: selection.currentDoor</string>
+							<string key="NSBinding">selectedValue</string>
+							<string key="NSKeyPath">selection.currentDoor</string>
+							<reference key="NSPreviousConnector" ref="266640330"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">5597</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">toolTip: selection.doorToSpot</string>
+						<reference key="source" ref="802012578"/>
+						<reference key="destination" ref="303395851"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="802012578"/>
+							<reference key="NSDestination" ref="303395851"/>
+							<string key="NSLabel">toolTip: selection.doorToSpot</string>
+							<string key="NSBinding">toolTip</string>
+							<string key="NSKeyPath">selection.doorToSpot</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">5598</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">freightCarArrayController_</string>
+						<reference key="source" ref="344813097"/>
+						<reference key="destination" ref="303395851"/>
+					</object>
+					<int key="connectionID">5600</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">freightCarLocationChanged:</string>
+						<reference key="source" ref="344813097"/>
+						<reference key="destination" ref="336894609"/>
+					</object>
+					<int key="connectionID">5601</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">freightCarLocationChanged:</string>
+						<reference key="source" ref="344813097"/>
+						<reference key="destination" ref="215179976"/>
+					</object>
+					<int key="connectionID">5604</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">doorsLabel_</string>
+						<reference key="source" ref="344813097"/>
+						<reference key="destination" ref="371954045"/>
+					</object>
+					<int key="connectionID">5605</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -11967,7 +12145,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="object" ref="462654402"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="687139529"/>
 							<reference ref="458230565"/>
 							<reference ref="545146972"/>
 							<reference ref="96132245"/>
@@ -11985,6 +12162,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<reference ref="484120837"/>
 							<reference ref="340474954"/>
 							<reference ref="1011588263"/>
+							<reference ref="802012578"/>
+							<reference ref="371954045"/>
+							<reference ref="687139529"/>
 						</object>
 						<reference key="parent" ref="420853657"/>
 					</object>
@@ -15418,6 +15598,43 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 						<reference key="object" ref="1019945883"/>
 						<reference key="parent" ref="60317211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5576</int>
+						<reference key="object" ref="802012578"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="1023740716"/>
+						</object>
+						<reference key="parent" ref="462654402"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5577</int>
+						<reference key="object" ref="1023740716"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="286767119"/>
+						</object>
+						<reference key="parent" ref="802012578"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5578</int>
+						<reference key="object" ref="286767119"/>
+						<reference key="parent" ref="1023740716"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5602</int>
+						<reference key="object" ref="371954045"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="803575031"/>
+						</object>
+						<reference key="parent" ref="462654402"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">5603</int>
+						<reference key="object" ref="803575031"/>
+						<reference key="parent" ref="371954045"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -15483,12 +15700,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>1262.IBPluginDependency</string>
 					<string>1264.IBPluginDependency</string>
 					<string>1265.IBPluginDependency</string>
+					<string>1265.IBViewBoundsToFrameTransform</string>
 					<string>1267.IBPluginDependency</string>
 					<string>1269.IBPluginDependency</string>
 					<string>1270.IBPluginDependency</string>
 					<string>1271.IBPluginDependency</string>
 					<string>1276.IBPluginDependency</string>
+					<string>1276.IBViewBoundsToFrameTransform</string>
 					<string>1277.IBPluginDependency</string>
+					<string>1277.IBViewBoundsToFrameTransform</string>
 					<string>1278.IBPluginDependency</string>
 					<string>1283.IBPluginDependency</string>
 					<string>1283.IBViewBoundsToFrameTransform</string>
@@ -15987,6 +16207,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>5571.IBPluginDependency</string>
 					<string>5571.IBViewBoundsToFrameTransform</string>
 					<string>5572.IBPluginDependency</string>
+					<string>5576.IBPluginDependency</string>
+					<string>5576.IBViewBoundsToFrameTransform</string>
+					<string>5577.IBPluginDependency</string>
+					<string>5578.IBPluginDependency</string>
+					<string>5602.IBPluginDependency</string>
+					<string>5602.IBViewBoundsToFrameTransform</string>
+					<string>5603.IBPluginDependency</string>
 					<string>6.IBPluginDependency</string>
 					<string>927.IBPluginDependency</string>
 					<string>928.IBPluginDependency</string>
@@ -16066,12 +16293,21 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDBQAAwrIAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABAoAAAwfAAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABC9gAAwggAAA</bytes>
+					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<object class="NSAffineTransform">
@@ -16473,9 +16709,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{123, 282}, {700, 527}}</string>
+					<string>{{526, 322}, {700, 527}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{123, 282}, {700, 527}}</string>
+					<string>{{526, 322}, {700, 527}}</string>
 					<boolean value="YES"/>
 					<string>{700, 527}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -16599,6 +16835,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 					</object>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABDSgAAwbAAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<object class="NSAffineTransform">
+						<bytes key="NSTransformStruct">P4AAAL+AAABBYAAAweAAAA</bytes>
+					</object>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -16621,7 +16868,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">5575</int>
+			<int key="maxID">5605</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -16924,10 +17171,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>doSetCarTypes:</string>
 							<string>doSetRoute:</string>
 							<string>doYardReport:</string>
+							<string>freightCarLocationChanged:</string>
 							<string>updateSummaryInfo:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -16977,6 +17226,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>doSetCarTypes:</string>
 							<string>doSetRoute:</string>
 							<string>doYardReport:</string>
+							<string>freightCarLocationChanged:</string>
 							<string>updateSummaryInfo:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -17066,6 +17316,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">freightCarLocationChanged:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">updateSummaryInfo:</string>
 								<string key="candidateClassName">id</string>
 							</object>
@@ -17091,6 +17345,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>datePicker_</string>
 							<string>doorCountField_</string>
 							<string>doorCountLabel_</string>
+							<string>doorNumberArrayController_</string>
+							<string>doorsLabel_</string>
 							<string>enableDoorsButton_</string>
 							<string>enableSidingLengthButton_</string>
 							<string>freightCarArrayController_</string>
@@ -17100,6 +17356,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>freightCarCargoPopup_</string>
 							<string>freightCarController_</string>
 							<string>freightCarCountField_</string>
+							<string>freightCarDoorPopup_</string>
 							<string>freightCarLocationArrayController_</string>
 							<string>freightCarLocationPopup_</string>
 							<string>freightCarTable_</string>
@@ -17160,6 +17417,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>NSDatePicker</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
+							<string>NSArrayController</string>
+							<string>NSTextField</string>
 							<string>NSButton</string>
 							<string>NSButton</string>
 							<string>NSArrayController</string>
@@ -17169,6 +17428,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>NSPopUpButton</string>
 							<string>NSArrayController</string>
 							<string>NSTextField</string>
+							<string>NSPopUpButton</string>
 							<string>NSArrayController</string>
 							<string>NSPopUpButton</string>
 							<string>NSTableView</string>
@@ -17232,6 +17492,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>datePicker_</string>
 							<string>doorCountField_</string>
 							<string>doorCountLabel_</string>
+							<string>doorNumberArrayController_</string>
+							<string>doorsLabel_</string>
 							<string>enableDoorsButton_</string>
 							<string>enableSidingLengthButton_</string>
 							<string>freightCarArrayController_</string>
@@ -17241,6 +17503,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<string>freightCarCargoPopup_</string>
 							<string>freightCarController_</string>
 							<string>freightCarCountField_</string>
+							<string>freightCarDoorPopup_</string>
 							<string>freightCarLocationArrayController_</string>
 							<string>freightCarLocationPopup_</string>
 							<string>freightCarTable_</string>
@@ -17350,6 +17613,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">
+								<string key="name">doorNumberArrayController_</string>
+								<string key="candidateClassName">NSArrayController</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">doorsLabel_</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
 								<string key="name">enableDoorsButton_</string>
 								<string key="candidateClassName">NSButton</string>
 							</object>
@@ -17384,6 +17655,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 							<object class="IBToOneOutletInfo">
 								<string key="name">freightCarCountField_</string>
 								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">freightCarDoorPopup_</string>
+								<string key="candidateClassName">NSPopUpButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">freightCarLocationArrayController_</string>
@@ -18305,10 +18580,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA</b
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
 			<integer value="1050" key="NS.object.0"/>
-		</object>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
-			<integer value="1060" key="NS.object.0"/>
 		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>

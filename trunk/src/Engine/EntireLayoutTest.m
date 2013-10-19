@@ -134,7 +134,7 @@
 	[c1 setSource: [self industryAtStation: @"A"]];
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	[fc1 setCargo: c1];
-	[fc1 setLoaded: NO];
+	[fc1 setIsLoaded: NO];
 
 	// Cars that are empty and unassigned or empty and assigned should appear the same way.
 	STAssertEqualObjects(@"empty", [fc1 cargoDescription], @"");
@@ -144,6 +144,49 @@
 	STAssertEqualObjects(@"Foo", [fc1 cargoDescription], @"");
 }
 
+- (void) testMoveOneStep {
+	[self makeThreeStationLayout];
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"SP1"];
+	
+	Cargo *c1 = [self makeCargo: @"Foo"];
+	[c1 setSource: [self industryAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	[fc1 setCargo: c1];
+	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc1 setIsLoaded: YES];
+	
+	// Cars that are empty and unassigned or empty and assigned should appear the same way.
+	STAssertEqualObjects([self industryAtStation: @"A"], [fc1 currentLocation], @"");
+	
+	[fc1 moveOneStep];
+	STAssertEqualObjects([self industryAtStation: @"B"], [fc1 currentLocation], @"");
+}
+
+- (void) testCurrentDoor {
+	[self makeThreeStationLayout];
+	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"SP1"];
+	[[self industryAtStation: @"A"] setHasDoors: YES];
+	[[self industryAtStation: @"A"] setNumberOfDoors: [NSNumber numberWithInt: 3]];
+	[[self industryAtStation: @"B"] setHasDoors: YES];
+	[[self industryAtStation: @"B"] setNumberOfDoors: [NSNumber numberWithInt: 2]];
+
+	Cargo *c1 = [self makeCargo: @"Foo"];
+	[c1 setSource: [self industryAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"B"]];
+	[fc1 setCargo: c1];
+	[fc1 setDoorToSpot: [NSNumber numberWithInt: 1]];
+	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc1 setCurrentDoor: [NSNumber numberWithInt: 2]];
+	[fc1 setIsLoaded: YES];
+
+	// Cars that are empty and unassigned or empty and assigned should appear the same way.
+	STAssertEqualObjects([self industryAtStation: @"A"], [fc1 currentLocation], @"");
+    STAssertEqualsInt(2, [[fc1 currentDoor] intValue], @"");
+	
+	[fc1 moveOneStep];
+	STAssertEqualObjects([self industryAtStation: @"B"], [fc1 currentLocation], @"");
+	STAssertEqualsInt(1, [[fc1 currentDoor] intValue], @"");
+}
 
 // Make sure the reportingMarks, initials, and number fields work with strange values.
 - (void) testFreightCarNumbers {

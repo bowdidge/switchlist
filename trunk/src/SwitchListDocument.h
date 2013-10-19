@@ -81,7 +81,8 @@
 	IBOutlet NSTableColumn *freightCarCargoColumn_;
 	IBOutlet NSTextField *lengthField_;
 	IBOutlet NSTextField *lengthLabel_;
-	
+	IBOutlet NSPopUpButton *freightCarDoorPopup_;
+	IBOutlet NSTextField *doorsLabel_;
 	
 	// Industries tab
 	IBOutlet NSButton *hasDoorsButton_;
@@ -94,8 +95,9 @@
 	// Access to the various controllers of popups so we can sort their contents (and make it
 	// easier to find particular items.
 	IBOutlet NSPopUpButton *freightCarLocationPopup_;
+
 	IBOutlet NSArrayController *freightCarController_;
-	
+	// Freight car locations.
 	IBOutlet NSArrayController *freightCarLocationArrayController_;
 
 	IBOutlet NSArrayController *industryLocationArrayController_;
@@ -126,6 +128,8 @@
 	// Misc controllers
 	// Car type in freightcar - experimenting only.
 	IBOutlet NSArrayController *carTypeArrayController_;
+	
+	IBOutlet NSArrayController *doorNumberArrayController_;
 	
 	EntireLayout *entireLayout_;
 	LayoutController *layoutController_;
@@ -181,6 +185,8 @@
 - (IBAction) doChangeDoorsState: (id) sender;
 - (IBAction) doChangeRespectSidingLengthsState: (id) sender;
 
+- (IBAction) freightCarLocationChanged: (id) sender;
+
 - (IBAction) doImportCars: (id) sender;
 
 - (IBAction) doCarReport: (id) sender;
@@ -193,12 +199,6 @@
 // Car type table - providing data.
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView;
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row;
-
-// car type table - delegation.
-/* Allows the delegate to provide further setup for 'cell' in 'tableColumn'/'row'. It is not safe to do drawing inside this method, and you should only setup state for 'cell'.
- */ 
-- (BOOL)selectionShouldChangeInTableView:(NSTableView *)tableView;
-
 
 // Returns EntireLayout object so other windows can get access to global layout information.
 - (EntireLayout*) entireLayout;

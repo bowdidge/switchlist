@@ -155,27 +155,39 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
     [self didChangeValueForKey: @"reportingMarks"];
 }
 
-- (NSNumber *)doorToSpot 
-{
+- (NSNumber *)doorToSpot {
     NSNumber * tmpValue;
     
     [self willAccessValueForKey: @"doorToSpot"];
     tmpValue = [self primitiveValueForKey: @"doorToSpot"];
     [self didAccessValueForKey: @"doorToSpot"];
-    
     return tmpValue;
 }
 
-- (void)setDoorToSpot:(NSNumber *)value 
-{
+- (void)setDoorToSpot:(NSNumber *)value {
     [self willChangeValueForKey: @"doorToSpot"];
     [self setPrimitiveValue: value forKey: @"doorToSpot"];
     [self didChangeValueForKey: @"doorToSpot"];
 }
 
+- (NSNumber *)currentDoor {
+    NSNumber * tmpValue;
+    
+    [self willAccessValueForKey: @"currentDoor"];
+    tmpValue = [self primitiveValueForKey: @"currentDoor"];
+    [self didAccessValueForKey: @"currentDoor"];
+    
+    return tmpValue;
+}
+
+- (void)setCurrentDoor:(NSNumber *)value {
+    [self willChangeValueForKey: @"currentDoor"];
+    [self setPrimitiveValue: value forKey: @"currentDoor"];
+    [self didChangeValueForKey: @"currentDoor"];
+}
+
 // Unused.
-- (unsigned)positionInTrain 
-{
+- (unsigned)positionInTrain {
     NSNumber * tmpValue;
     
     [self willAccessValueForKey: @"positionInTrain"];
@@ -185,9 +197,7 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
     return [tmpValue intValue];
 }
 
-
-- (void)setPositionInTrain:(unsigned)value 
-{
+- (void)setPositionInTrain:(unsigned)value {
     [self willChangeValueForKey: @"positionInTrain"];
     [self setPrimitiveValue: [NSNumber numberWithInt: value] forKey: @"positionInTrain"];
     [self didChangeValueForKey: @"positionInTrain"];
@@ -420,8 +430,6 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
     [self didChangeValueForKey: @"currentTrain"];
 }
 
-
-
 - (InduYard *)intermediateDestination 
 {
     id tmpObject;
@@ -484,6 +492,11 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
 		nextIndustry = ([self isLoaded] ? [[self cargo] destination]
 						: [[self cargo] source]);
 		[self setCurrentLocation: nextIndustry];
+		// Update door position.
+
+		if (nextIndustry && [nextIndustry hasDoors]) {
+			[self setCurrentDoor: [self doorToSpot]];
+		}
 	} else {
 		printf("No idea where car %s goes - no intermediate dest or location!\n",[[self reportingMarks] UTF8String]);
 		return false;

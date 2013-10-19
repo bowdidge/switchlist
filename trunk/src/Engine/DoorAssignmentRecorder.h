@@ -34,9 +34,12 @@
 #import "Industry.h"
 
 // Helper class for hiding details of where cars are being assigned, and specifically
-// what doors moving cars are being routed to.  This is completely a hack, using a
-// separate data structure rather than keeping a non-persistent field in the object
-// model.
+// what doors moving cars are being routed to. This information is only used to
+// identify which doors at an industry are reserved.  The freight cars themselves hold
+// the next door assignment.
+//
+// TODO(bowdidge): Consider removing this class, and instead having the TrainAssigner
+// extract the list of cars arriving at doors at the industry from the freight cars.
 
 @interface DoorAssignmentRecorder : NSObject {
 	NSMutableDictionary *industryToCarMapping_;
