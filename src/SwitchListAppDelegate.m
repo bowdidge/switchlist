@@ -324,7 +324,7 @@
 	}
 	
     fontsURL = [NSURL fileURLWithPath:fontsFolder];
-	if (fontsURL) {
+	if (fontsURL != nil) {
         FSRef fsRef;
         CFURLGetFSRef((CFURLRef)fontsURL, &fsRef);
         OSStatus status;
