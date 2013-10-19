@@ -87,7 +87,7 @@
 	return htmlView_;
 }
 
-//  Handle requests from the WebView for additional documents.
+// Handle requests from the WebView for additional documents.
 // Imitate the web interface; don't allow access to files outside the specific template directory, and
 // if the template directory doesn't exist, default to the resources directory for the app bundle so the
 // default html and css files can be used.

@@ -82,7 +82,7 @@
 
 @implementation AdjacencyTable
 - (id) init {
-	[super init];
+	self = [super init];
 	self.allPairs = [NSMutableArray array];
 	return self;
 }
@@ -116,7 +116,7 @@
 
 @implementation LayoutEdge 
 - (id) initEdgeFrom: (LayoutNode*) start to: (LayoutNode*) end {
-	[super init];
+	self = [super init];
 	// TODO(bowdidge): Make edge creation repeatable.
 	if ([start.station.name compare: end.station.name] == NSOrderedAscending) {
 		self.fromNode = start;
@@ -174,7 +174,7 @@
 @implementation LayoutNode
 // Constructs a new LayoutNode for the named station.
 - (id) initWithPlace: (Place*) place {
-	[super init];
+	self = [super init];
 	self.station = place;
 	self.edges = [NSMutableArray array];
 	self.occurrences = 0;
@@ -228,8 +228,8 @@ NSInteger compareByCount(id this, id that, void *context) {
 }
 
 - (NSString*) description {
-	return [NSString stringWithFormat: @"LayoutNode: %@ %d edges", 
-			[self.station name], [self.edges count]];
+	return [NSString stringWithFormat: @"LayoutNode: %@ %ld edges", 
+			[self.station name], (unsigned long)[self.edges count]];
 }
 
 @synthesize station;

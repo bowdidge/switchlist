@@ -36,7 +36,7 @@
 @implementation LayoutGraphTest
 - (void) testSimple {
 	[self makeThreeStationLayout];
-	ScheduledTrain *myTrain = [self makeThreeStationTrain];
+	[self makeThreeStationTrain];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 	
 	STAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
@@ -82,7 +82,7 @@
 	[self makePlaceWithName: @"D"];
 	[self makePlaceWithName: @"E"];
 	// Layout has C between B and E, and D as a branch from C.
-	NSArray *trains = [self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B,E", @"A,B,C,E", @"A,B,C,D", nil]];
+	[self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B,E", @"A,B,C,E", @"A,B,C,D", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 
 	STAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
@@ -100,7 +100,7 @@
 	[self makePlaceWithName: @"D"];
 	[self makePlaceWithName: @"E"];
 	// Layout has C between B and E, and D as a branch from C.
-	NSArray *trains = [self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B,E", @"A,B,C,D,E", nil]];
+	[self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B,E", @"A,B,C,D,E", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 	
 	STAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");

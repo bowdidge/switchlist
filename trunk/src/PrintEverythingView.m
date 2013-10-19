@@ -60,7 +60,7 @@
 
 - (id) initWithFrame: (NSRect) r withDocument: (NSDocument<SwitchListDocumentInterface>*) document 
 	   withViewClass: (Class) preferredClass {
-	[super initWithFrame: r];
+	self = [super initWithFrame: r];
 	document_ = [document retain];	
 	subviews = [[NSMutableArray alloc] init];
 	int pages = 0;

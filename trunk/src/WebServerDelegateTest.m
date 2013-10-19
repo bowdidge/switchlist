@@ -60,7 +60,7 @@
 
 @implementation MockSimpleHTTPServer
 - (id) init {
-	[super init];
+	self = [super init];
 	lastCode = 0;
 	lastHeaders = nil;
 	lastBody = nil;
