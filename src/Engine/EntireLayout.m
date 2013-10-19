@@ -95,6 +95,7 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	workbenchIndustry_ = nil;
 	preferences_ = nil;
 	carTypes_ = nil;
+    popularFreightCarLengths_ = nil;
 	[self initializeWorkbench];
 	return self;
 }
@@ -428,8 +429,7 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	return [result objectAtIndex: 0];
 }
 
-
-// Returns a list of lengths of freight cars in order of popularity.  Empty lengths 
+// Returns a list of lengths of freight cars in order of popularity.  Empty lengths
 // are not counted.
 - (NSArray*) freightCarLengths {
 	NSArray *allFreightCars = [self allFreightCars];
@@ -453,7 +453,47 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	}
 	return result;
 }
-			
+
+// Generates lists of freight car lengths to show in segmented control.
+// Choices should always include the named freight car's length, and three other
+// popular lengths.  If no lengths are available, add 40 and 50 foot as likely choices.
+// TODO(bowdidge): Regenerate list when new lengths are added.
+- (NSArray *)potentialCarLengthsToShowWithFreightCar: (FreightCar*) fc refresh: (BOOL) refresh {
+    // Show several freight car lengths plus current length.
+    
+    if (refresh) {
+        [popularFreightCarLengths_ release];
+        popularFreightCarLengths_ = nil;
+    }
+    if (!popularFreightCarLengths_) {
+        popularFreightCarLengths_ = [[self freightCarLengths] retain];
+    }
+    NSNumber *freightCarLength = fc.length;
+    NSMutableSet *potentialLengthsToShow = [NSMutableSet set];
+    int carsToAdd = 3;
+    if (freightCarLength) {
+        [potentialLengthsToShow addObject: freightCarLength];
+        carsToAdd = 2;
+    }
+    
+    carsToAdd = MIN(carsToAdd, [popularFreightCarLengths_ count]);
+    
+    if (carsToAdd) {
+        [potentialLengthsToShow addObjectsFromArray:
+         [popularFreightCarLengths_ subarrayWithRange: NSMakeRange(0,carsToAdd)]];
+    }
+    // Still not enough cars?  Add more.
+    if ([potentialLengthsToShow count] < 3) {
+        [potentialLengthsToShow addObject: [NSNumber numberWithInt: 40]];
+    }
+    
+    if ([potentialLengthsToShow count] < 3) {
+        [potentialLengthsToShow addObject: [NSNumber numberWithInt: 50]];
+    }
+    
+    return [[potentialLengthsToShow allObjects] sortedArrayUsingSelector: @selector(compare:)];
+}
+
 
 // Returns an array of all industries that can receive cargo.
 - (NSArray*) allIndustries {
@@ -734,6 +774,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 	return [[a reportingMarks] compare: [b reportingMarks]];
 }
 
+// LayoutInfo also contains carTypeLengths, a dictionary of name->length mappings.
 - (id) getLayoutInfo {
 	NSError *error;
 
@@ -746,8 +787,8 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 		// Create one.
 		NSEntityDescription *layoutInfoEntity = [NSEntityDescription entityForName: @"LayoutInfo" inManagedObjectContext: [self managedObjectContext]];
 		NSManagedObject *obj = [[[NSManagedObject alloc] initWithEntity: layoutInfoEntity insertIntoManagedObjectContext: [self managedObjectContext]] autorelease];
-		[obj setValue: [NSDate dateWithTimeIntervalSinceNow: 0] forKey: @"currentDate"];
-		[obj setValue: @"" forKey: @"layoutName"];
+		[obj setValue: [NSDate dateWithTimeIntervalSinceNow: 0] forKey: LAYOUT_INFO_CURRENT_DATE];
+		[obj setValue: @"" forKey: LAYOUT_INFO_LAYOUT_NAME];
 		return obj;
 	} 
 	return [result objectAtIndex: 0];
@@ -758,7 +799,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 
 	id layoutInfo = [self getLayoutInfo];
 	[currentDate_ autorelease];
-	currentDate_ = [[layoutInfo valueForKey: @"currentDate"] retain];
+	currentDate_ = [[layoutInfo valueForKey: LAYOUT_INFO_CURRENT_DATE] retain];
 	if (currentDate_ == nil) 
 		currentDate_ = [[NSDate date] retain];
 	return currentDate_;
@@ -766,7 +807,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 
 - (void) setCurrentDate: (NSDate*) date {
 	id layoutInfo = [self getLayoutInfo];
-	[layoutInfo setValue: date forKey: @"currentDate"];
+	[layoutInfo setValue: date forKey:LAYOUT_INFO_CURRENT_DATE];
 	[currentDate_ autorelease];
 	currentDate_ = [date retain];
 }
@@ -774,14 +815,14 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 - (NSString*) layoutName {
 	if (layoutName_ != nil) return layoutName_;
 	id layoutInfo = [self getLayoutInfo];
-	layoutName_ = [[layoutInfo valueForKey: @"layoutName"] retain];
+	layoutName_ = [[layoutInfo valueForKey: LAYOUT_INFO_LAYOUT_NAME] retain];
 	if (layoutName_ == nil) layoutName_ = @"";
 	return [[layoutName_ retain] autorelease];
 }
 
 - (void) setLayoutName: (NSString*) layoutName {
 	id layoutInfo = [self getLayoutInfo];
-	[layoutInfo setValue: layoutName forKey: @"layoutName"];
+	[layoutInfo setValue: layoutName forKey: LAYOUT_INFO_LAYOUT_NAME];
 	[layoutName_ autorelease];
 	layoutName_ = [layoutName retain];
 }
@@ -789,7 +830,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 // For testing only.  Set the raw preferences data.
 - (void) setPreferencesDictionary: (NSData*) prefData {
 	id layoutInfo = [self getLayoutInfo];
-    [layoutInfo setValue: prefData forKey: @"layoutPreferences"];
+    [layoutInfo setValue: prefData forKey: LAYOUT_INFO_LAYOUT_PREFERENCES];
 	[preferences_ release];
 	preferences_ = nil;
 }
@@ -797,7 +838,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 - (NSMutableDictionary*) getPreferencesDictionary { 
 	if (preferences_ != nil) return preferences_;
 	id layoutInfo = [self getLayoutInfo];
-	NSData *prefData = [layoutInfo valueForKey: @"layoutPreferences"];
+	NSData *prefData = [layoutInfo valueForKey: LAYOUT_INFO_LAYOUT_PREFERENCES];
 	if (prefData == nil) {
 		[preferences_ release];
 		preferences_ = [[NSMutableDictionary alloc] init];
@@ -833,9 +874,9 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 - (void) writePreferencesDictionary {
 	id layoutInfo = [self getLayoutInfo];
 	// In SwitchList-1.1 and before, an NSArchiver was used here.
-	[layoutInfo setValue: [NSKeyedArchiver archivedDataWithRootObject: preferences_] forKey: @"layoutPreferences"];
+	[layoutInfo setValue: [NSKeyedArchiver archivedDataWithRootObject: preferences_] forKey: LAYOUT_INFO_LAYOUT_PREFERENCES];
 
-	[layoutInfo didChangeValueForKey: @"layoutPreferences"];
+	[layoutInfo didChangeValueForKey: LAYOUT_INFO_LAYOUT_PREFERENCES];
 }
 
 // Removes leading and trailing spaces in string.
@@ -915,4 +956,8 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 	}
 	return carsCreated;
 }
+
+NSString *LAYOUT_INFO_LAYOUT_NAME = @"layoutName";
+NSString *LAYOUT_INFO_CURRENT_DATE = @"currentDate";
+NSString *LAYOUT_INFO_LAYOUT_PREFERENCES = @"layoutPreferences";
 @end

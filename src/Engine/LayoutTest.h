@@ -54,6 +54,9 @@
 	
 	// Handy reference to EntireLayout.
 	EntireLayout *entireLayout_;
+    CarType *xmCarType_;
+    CarType *xaCarType_;
+    CarType *tCarType_;
 }
 
 // Handy functions for creating persistent objects.

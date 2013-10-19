@@ -43,6 +43,10 @@
 // dictionary of car types.
 + (NSDictionary*) populateCarTypesFromLayout: (EntireLayout*) layout;
 
+// Searches all cars to guess at likely car lengths, and sets car lengths based
+// on those values.
++ (void) populateCarTypeLengthsFromLayout: (EntireLayout*) layout;
+
 // Returns the dictionary of car types that we provide in all cases.
 + (NSDictionary*) stockCarTypes;
 
