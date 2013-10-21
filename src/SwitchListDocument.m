@@ -662,7 +662,6 @@
 	}
 }
 
-
 // Cancel a train, and reassign its freight cars to other trains when possible.
 - (IBAction) doAnnulTrain: (id) sender {
 	NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
