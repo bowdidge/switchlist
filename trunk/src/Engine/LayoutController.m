@@ -76,9 +76,9 @@
 		[car setCurrentTrain: nil];
 	}
 	
-	TrainAssigner *ta = [[TrainAssigner alloc] initWithLayout: self.entireLayout useDoors: useDoors respectSidingLengths: respectSidingLengths];
+	TrainAssigner *ta = [[TrainAssigner alloc] initWithLayout: self.entireLayout trains: allTrains useDoors: useDoors respectSidingLengths: respectSidingLengths];
 	
-	[ta assignCarsToTrains: allTrains];
+	[ta assignCarsToTrains];
 	self.doorAssignmentRecorder = [ta doorAssignmentRecorder] ;
 	NSArray *errs = [[[ta errors] retain] autorelease];
 	[ta release];

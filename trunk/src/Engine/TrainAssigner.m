@@ -59,7 +59,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 
 @implementation TrainAssigner
 
-- (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths {
+- (id) initWithLayout: (EntireLayout*) mapper trains: (NSArray*) trains useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths {
 	self = [super init];
 	entireLayout_ = [mapper retain];
 	stationReachabilityGraph_ = [[NSMutableDictionary alloc] init];
@@ -69,11 +69,12 @@ BOOL DEBUG_CAR_ASSN = NO;
 	doorAssignmentRecorder_ = nil;
 	arrivingCars_ = [[NSMutableDictionary alloc] init];
 	randomNumberGenerator_ = [[RandomNumberGenerator alloc] init];
+	allTrains_ = [trains retain];
 	return self;
 }
 
-- (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors {
-	return [self initWithLayout: mapper useDoors: useDoors respectSidingLengths: NO];
+- (id) initWithLayout: (EntireLayout*) mapper trains: (NSArray*) trains useDoors: (BOOL) useDoors {
+	return [self initWithLayout: mapper trains: trains useDoors: useDoors respectSidingLengths: NO];
 }
 
 - (void) dealloc {
@@ -83,6 +84,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 	[doorAssignmentRecorder_ release];
 	[arrivingCars_ release];
 	[randomNumberGenerator_ release];
+	[allTrains_ release];
 	[super dealloc];
 }
 
@@ -115,7 +117,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 // stations reachable.
 - (NSMutableDictionary *) createStationReachabilityGraphForCarType: (CarType *) carType  {
   NSMutableDictionary *stationReachabilityGraph = [NSMutableDictionary dictionary];
-	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
+	for (ScheduledTrain *tr in allTrains_) {
 		if ([tr acceptsCarType: carType] == NO) continue;
 		
 		NSArray *stations = [tr stationsInOrder];
@@ -168,7 +170,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 // Returns a train that works the given station and carries the given car.
 // TODO(bowdidge): Make predictable so same train always would get picked?
 - (ScheduledTrain*) trainServingStation: (Place*) start acceptingCar: (FreightCar*) car{
-	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
+	for (ScheduledTrain *tr in allTrains_) {
 		if ([tr acceptsCar: car] == NO) continue;
 		
 		NSArray *stops = [tr stationsInOrder];
@@ -184,7 +186,7 @@ BOOL DEBUG_CAR_ASSN = NO;
 // trains should always be returned in the same order for consistent replay.)
 - (NSArray*) trainsBetweenStation: (Place*) start andStation: (Place*) end acceptingCar: (FreightCar*) car {
 	NSMutableArray *allTrains = [NSMutableArray array];
-	for (ScheduledTrain *tr in [entireLayout_ allTrains]) {
+	for (ScheduledTrain *tr in allTrains_) {
 		if ([tr acceptsCar: car] == NO) continue;
 		
 		NSArray *stops = [tr stationsInOrder];
@@ -669,7 +671,7 @@ NSString *NameOrNoValue(NSString* string) {
 		}
 	}
 	
-	for (ScheduledTrain *train in [entireLayout_ allTrains]) {
+	for (ScheduledTrain *train in allTrains_) {
 		NSArray *allCarsInTrain = [train allFreightCarsInVisitOrder];
 		for (FreightCar *car in allCarsInTrain) {
 			InduYard *currentLocation = [car currentLocation];
@@ -704,7 +706,8 @@ NSString *NameOrNoValue(NSString* string) {
 // Basics of the car assigning problem.  we used to do clever things here trying to figure out
 // for a given train and car whether this was the best train for a car.  That doesn't work because
 // there may be another train that's a better choice.  Now, we find a route, then choose a car.
-- (void) assignCarsToTrains: (NSArray *) trains {
+// TODO(bowdidge): Move trains parameter to constructor.
+- (void) assignCarsToTrains {
 	NSArray *allCars = [entireLayout_ allFreightCarsNotInTrain];
 	NSMutableArray *carsMoved = [NSMutableArray array];
 	
