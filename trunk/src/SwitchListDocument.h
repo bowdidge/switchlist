@@ -151,7 +151,7 @@
 	NSPredicate *placeIsNotOfflineFilter_;
 	
 	IBOutlet SuggestedCargoController *suggestedCargoController_;
-	
+	// Trains currently annulled (not running.  Cars will not be assigned to these trains.
 	NSMutableArray *annulledTrains_;
 }
 

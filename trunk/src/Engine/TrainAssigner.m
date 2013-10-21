@@ -706,7 +706,6 @@ NSString *NameOrNoValue(NSString* string) {
 // Basics of the car assigning problem.  we used to do clever things here trying to figure out
 // for a given train and car whether this was the best train for a car.  That doesn't work because
 // there may be another train that's a better choice.  Now, we find a route, then choose a car.
-// TODO(bowdidge): Move trains parameter to constructor.
 - (void) assignCarsToTrains {
 	NSArray *allCars = [entireLayout_ allFreightCarsNotInTrain];
 	NSMutableArray *carsMoved = [NSMutableArray array];

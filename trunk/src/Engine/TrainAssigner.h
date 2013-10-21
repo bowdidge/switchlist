@@ -103,7 +103,7 @@ typedef enum CarAssignmentResult CarAssignmentResult;
 // For testing only.
 - (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator;
 
-// All trains allowed for scheduling.
+// All trains which may get freight cars.  This list does not include annulled trains.
 NSArray *allTrains_;
 @end
 
