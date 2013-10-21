@@ -112,6 +112,7 @@
 	locationIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.location.isOffline == 0 OR self.location.name LIKE \"Workbench\""] retain];
 	placeIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.isOffline == 0"] retain];
 	trains_ = nil;
+	annulledTrains_ = [[NSMutableArray alloc] init];
     return self;
 }
 
@@ -120,6 +121,7 @@
 	[locationIsNotOfflineFilter_ release];
 	[entireLayout_ release];
 	[layoutController_ release];
+	[annulledTrains_ release];
 	[trains_ release];
 	[super dealloc];
 }
@@ -499,9 +501,18 @@
 	currentDate = [currentDate addTimeInterval: (60 * 60 * 24)];
 	[datePicker_ setDateValue: currentDate];
 	[entireLayout_ setCurrentDate: currentDate];
+	
+	// Clear annulled trains.
+	[annulledTrains_ release];
+	annulledTrains_ = [[NSMutableArray alloc] init];
 }
 
-- (void) assignCarsToTrains: (NSArray*) allTrains {
+- (void) assignCarsToTrains {
+	NSMutableArray *allTrains = [NSMutableArray arrayWithArray: [entireLayout_ allTrains]];
+	for (ScheduledTrain* annulledTrain in annulledTrains_) {
+		[allTrains removeObject: annulledTrain];
+	}
+	
 	NSMutableDictionary *layoutPrefs = [entireLayout_ getPreferencesDictionary];
 	BOOL useDoors = NO;
 	NSNumber *useDoorsPref = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_DOORS_UI];
@@ -586,7 +597,7 @@
 
 // Reassigns cars to trains whenever anything changes.
 - (IBAction) doAssignCars: (id) sender {
-	[self assignCarsToTrains: [entireLayout_ allTrains]];
+	[self assignCarsToTrains];
 	[self updateSummaryInfo: self];
 }
 
@@ -636,28 +647,47 @@
 	[[slwc window] makeKeyAndOrderFront: self];
 }
 
+- (void) adjustAnnulButton: (id) sender {
+	NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
+	if ([selection count] != 1) {
+		// Default to annul for a mix.
+		[annulTrainButton_ setTitle: @"Annul Train"];
+	} else {
+		ScheduledTrain *trainToAnnul = [trains_ objectAtIndex: [selection firstIndex]];
+		if ([annulledTrains_ containsObject: trainToAnnul]) {
+			[annulTrainButton_ setTitle: @"Run Train"];
+		} else {
+			[annulTrainButton_ setTitle: @"Annul Train"];
+		}
+	}
+}
+
+
 // Cancel a train, and reassign its freight cars to other trains when possible.
 - (IBAction) doAnnulTrain: (id) sender {
 	NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
 	NSInteger selRow = [selection firstIndex];
 	
-	NSMutableArray *allTrains = [NSMutableArray arrayWithArray: [entireLayout_ allTrains]];
 	while (selRow != NSNotFound) {
 		// Redistribute the cars to the trains that have yet to run.
 		ScheduledTrain *trainToAnnul = [trains_ objectAtIndex: selRow];
-		[allTrains removeObject: trainToAnnul];
-		NSSet *carsInTrain = [NSSet setWithSet: [trainToAnnul freightCars]];
-		for (FreightCar *car in carsInTrain) {
-			[car removeFromTrain];
+		if ([annulledTrains_ containsObject: trainToAnnul]) {
+			// Un-annul the train.
+			[annulledTrains_ removeObject: trainToAnnul];
+		} else {
+			// TODO(bowdidge): Annul button with multiple selections always goes to Annul.
+			[annulledTrains_ addObject: trainToAnnul];
+			for (FreightCar *fc in [[trainToAnnul freightCars] copy]) {
+				[fc removeFromTrain];
+			}
+			NSLog(@"%@", trainToAnnul);
 		}
 		selRow = [selection indexGreaterThanIndex:selRow];
 	}
-	
-	// and reassign.
-	[self assignCarsToTrains: allTrains];
-	
-	// do something here
+	// Recalculate car assignments with the changed train list.
+	[self assignCarsToTrains];
 	[self updateSummaryInfo: self];
+	[self adjustAnnulButton: self];
 }
 
 // Mark the train as complete, and move all its freight cars to their final location.
@@ -912,15 +942,7 @@
 
 	[generateMoreButton_ setTitle: [NSString stringWithFormat: @"Add %d more loads", [self additionalCarsPerDay]]];
 
-	[overviewTrainTable_ reloadData];
-
-	NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
-	BOOL enableButtons = ([selection count] > 0) ;
-	[makeSwitchlistButton_ setEnabled: enableButtons];
-	[annulTrainButton_ setEnabled: enableButtons];
-	[trainCompletedButton_ setEnabled: enableButtons];
-	[overviewTrainTable_ reloadData];
-	
+	[overviewTrainTable_ reloadData];	
 }
 
 // Table count for train table in Overview tab.  We'll display
@@ -937,13 +959,16 @@
 	if (trains_ == nil) {
 		[self updateAndCacheListOfTrains];
 	}
+	ScheduledTrain *train = [trains_ objectAtIndex: row];
 
 	// TODO(bowdidge): Replace with comparisons to TableColumn objects.
 	if ([[[tableColumn headerCell] title] isEqualToString: @"Name"]) {
-		return [[trains_ objectAtIndex: row] name];
+		return [train name];
 	} else if ([[[tableColumn headerCell] title] isEqualToString: @"cars moved"]) {
-		ScheduledTrain *train = [trains_ objectAtIndex: row];
 		NSSet *cars = [train freightCars];
+		if ([annulledTrains_ containsObject: train]) {
+			return @"annulled";
+		}
 		if (cars != nil) {
 			int carCt = [cars count];
 			return [NSString stringWithFormat: @"%d",carCt];
@@ -1025,6 +1050,16 @@
 	NSTableView *tableView = [notification object];
 	if (tableView == freightCarTable_) {
 		[self showFreightCarDoorPopup: self];
+	} else if (tableView == overviewTrainTable_) {
+		[self adjustAnnulButton: self];
+		// TODO(bowdidge): Move button enabling logic into one place.
+		NSIndexSet *selection = [overviewTrainTable_ selectedRowIndexes];
+		BOOL enableButtons = ([selection count] > 0) ;
+		[makeSwitchlistButton_ setEnabled: enableButtons];
+		[annulTrainButton_ setEnabled: enableButtons];
+		[trainCompletedButton_ setEnabled: enableButtons];
+		[overviewTrainTable_ reloadData];
+		
 	}
 }
 

@@ -151,6 +151,8 @@
 	NSPredicate *placeIsNotOfflineFilter_;
 	
 	IBOutlet SuggestedCargoController *suggestedCargoController_;
+	
+	NSMutableArray *annulledTrains_;
 }
 
 // Returns LayoutController object which actually does the advancing actions.

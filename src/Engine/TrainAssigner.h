@@ -55,10 +55,10 @@
 	NSObject<RandomNumberGeneratorInterface> *randomNumberGenerator_;
 }
 
-- (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths;
-- (id) initWithLayout: (EntireLayout*) mapper useDoors: (BOOL) useDoors;
+- (id) initWithLayout: (EntireLayout*) mapper trains: (NSArray*) trains useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths;
+- (id) initWithLayout: (EntireLayout*) mapper trains: (NSArray*) trains useDoors: (BOOL) useDoors;
 
-- (void) assignCarsToTrains: (NSArray *) trains;
+- (void) assignCarsToTrains;
 
 // Retrieve the DoorAssignmentRecorder used to note which doors specific cars should
 // be spotted at.
@@ -103,5 +103,7 @@ typedef enum CarAssignmentResult CarAssignmentResult;
 // For testing only.
 - (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator;
 
+// All trains allowed for scheduling.
+NSArray *allTrains_;
 @end
 
