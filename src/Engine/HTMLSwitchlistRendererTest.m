@@ -148,8 +148,8 @@
 - (void) testNestedForLoop {
 	// Two stations: A, B
 	// A has two industries, B has none.
-	NSArray *industryA1 = [NSDictionary dictionaryWithObject: @"A1" forKey: @"name"];
-	NSArray *industryA2 = [NSDictionary dictionaryWithObject: @"A2" forKey: @"name"];
+	NSDictionary *industryA1 = [NSDictionary dictionaryWithObject: @"A1" forKey: @"name"];
+	NSDictionary *industryA2 = [NSDictionary dictionaryWithObject: @"A2" forKey: @"name"];
 	NSDictionary *stationA = [NSDictionary dictionaryWithObjectsAndKeys:
 							 @"A", @"stationName",
 							  [NSArray arrayWithObjects: industryA1, industryA2, nil], @"industries",
@@ -169,10 +169,10 @@
 - (void) testNestedTripleForLoop {
 	// Two stations: A, B
 	// A has two industries, B has none.
-	NSArray *industryA1 = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSDictionary *industryA1 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   @"A1", @"industryName", [NSArray arrayWithObject: @"SP 1"], @"cars", nil];
 						   
-	NSArray *industryA2 = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSDictionary *industryA2 = [NSDictionary dictionaryWithObjectsAndKeys:
 							@"A2", @"industryName",
 						   [NSArray array], @"cars", nil];
 	NSDictionary *stationA = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -194,10 +194,10 @@
 - (void) testNestedTripleForLoopWithIf {
 	// Two stations: A, B
 	// A has two industries, B has none.
-	NSArray *industryA1 = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSDictionary *industryA1 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   @"A1", @"name", [NSArray arrayWithObject: @"SP 1"], @"cars", nil];
 	
-	NSArray *industryA2 = [NSDictionary dictionaryWithObjectsAndKeys:
+	NSDictionary *industryA2 = [NSDictionary dictionaryWithObjectsAndKeys:
 						   @"A2", @"name", [NSArray array], @"cars", nil];
 	NSDictionary *stationA = [NSDictionary dictionaryWithObjectsAndKeys:
 							  @"A", @"stationName",
