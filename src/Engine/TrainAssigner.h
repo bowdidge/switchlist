@@ -53,6 +53,9 @@
 	
 	DoorAssignmentRecorder *doorAssignmentRecorder_;
 	NSObject<RandomNumberGeneratorInterface> *randomNumberGenerator_;
+    
+    // All trains which may get freight cars.  This list does not include annulled trains.
+    NSArray *allTrains_;
 }
 
 - (id) initWithLayout: (EntireLayout*) mapper trains: (NSArray*) trains useDoors: (BOOL) useDoors respectSidingLengths: (BOOL) respectSidingLengths;
@@ -102,8 +105,5 @@ typedef enum CarAssignmentResult CarAssignmentResult;
 
 // For testing only.
 - (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator;
-
-// All trains which may get freight cars.  This list does not include annulled trains.
-NSArray *allTrains_;
 @end
 
