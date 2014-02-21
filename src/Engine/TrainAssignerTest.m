@@ -855,6 +855,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	TrainAssigner *assigner = [[TrainAssigner alloc] initWithLayout: entireLayout_ trains: [NSArray arrayWithObject: myTrain_] useDoors: NO];
 	[assigner autorelease];
 	// Should fail because of missing source.
+
 	XCTAssertEqual(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc], @"Incorrectly assigns car with missing source for cargo.");
 	XCTAssertEqualInt(1, [[assigner errors] count], @"Expected one error from train assigner, found %ld", [[assigner errors] count]);
 	XCTAssertContains(@"Cargo 'cargo' does not have source set", [[assigner errors] objectAtIndex: 0],
@@ -877,7 +878,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	XCTAssertEqual(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc2], @"Incorrectly assigns car with missing destination for cargo.");
 	XCTAssertEqualInt(1, [[assigner errors] count], @"Expected one error from train assigner, found %ld", [[assigner errors] count]);
 	XCTAssertContains(@"Cargo 'cargo' does not have destination set", [[assigner errors] objectAtIndex: 0],
-					 @"Wrong error for missing source: found %@", [[assigner errors] objectAtIndex: 0]);
+						 @"Wrong error for missing source: found %@", [[assigner errors] objectAtIndex: 0]);
 	
 }
 	
@@ -901,7 +902,6 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 					 @"Wrong error for missing source");
 	XCTAssertContains(@"Cannot find route for car SP 1 from A to a yard", [[assigner errors] objectAtIndex: 1],
 					 @"Wrong error for missing source");
-	
 }
 
 - (void) testNoCrashWithMissingEndStation {
@@ -998,7 +998,6 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	
 	DoorAssignmentRecorder *doorAssignments = [DoorAssignmentRecorder doorAssignmentRecorder];
 
-	int i;
 	NSNumber *door = [assigner chooseRandomDoorForCar: fc1
 											  inTrain: newTrain
 									  goingToIndustry: newIndustry
@@ -1048,7 +1047,6 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	
 	DoorAssignmentRecorder *doorAssignments = [DoorAssignmentRecorder doorAssignmentRecorder];
 	
-	int i;
 	NSNumber *door = [assigner chooseRandomDoorForCar: fc1
 											  inTrain: newTrain
 									  goingToIndustry: newIndustry
@@ -1505,10 +1503,10 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	int i;
 	for (i=1;i<8;i++) {
 		NSString *townName = [NSString stringWithFormat: @"town-%d", i];
-		Place *p = [self makePlaceWithName: townName];
+		[self makePlaceWithName: townName];
 		[self makeYardAtStation: townName];
 	}
-	Place *p = [self makePlaceWithName: @"town-branch"];
+	[self makePlaceWithName: @"town-branch"];
 				
 	ScheduledTrain *mainTrain  =[self makeTrainWithName: @"stops everywhere"];
 	[mainTrain setStops: @"town-1,town-2,town-3,town-4,town-5,town-6,town-7"];
