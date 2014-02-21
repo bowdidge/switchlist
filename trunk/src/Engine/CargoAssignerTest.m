@@ -73,8 +73,8 @@
 	for (i=0; i<5; i++) {
 		XCTAssertEqual(c1, [cargos objectAtIndex: i], @"%d of 5 cargos not priority", i);
 	}
-	int cargoCount = [cargos count];
-	XCTAssertEqualInt(15, [cargos count], @"Not enough cargos chosen.");
+	NSUInteger cargoCount = [cargos count];
+	XCTAssertEqualInt(15, cargoCount, @"Not enough cargos chosen.");
 	
 	int numberOfC2=0;
 	for (i=0;i<15;i++) {
@@ -133,8 +133,8 @@ int CountOfItemInArray(id item, NSArray* array) {
 	[c3 setRateUnits: [NSNumber numberWithInt: RATE_PER_MONTH]];
 	
 	NSArray *cargos = [cargoAssigner_ cargosForToday: totalCargoChoiceCount];
-	int cargoCount = [cargos count];
-	XCTAssertEqualInt(totalCargoChoiceCount, [cargos count], @"Not enough cargos chosen.");
+	NSUInteger cargoCount = [cargos count];
+	XCTAssertEqualInt(totalCargoChoiceCount, cargoCount, @"Not enough cargos chosen.");
 	
 	XCTAssertEqual(30, CountOfItemInArray(c1, cargos), @"");
 	XCTAssertEqual(4, CountOfItemInArray(c2, cargos), @"");
