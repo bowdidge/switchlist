@@ -257,7 +257,7 @@ NSInteger compareByCount(id this, id that, void *context) {
 @implementation LayoutGraph
 // Creates a new layout graph with the named layout and trains.
 - (id) initWithLayout: (EntireLayout*) layout  {
-	[super init];
+	self = [super init];
 	self.entireLayout = layout;
 	NSArray *trains = [self.entireLayout allTrains];
 	
