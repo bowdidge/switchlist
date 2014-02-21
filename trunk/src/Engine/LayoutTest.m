@@ -145,7 +145,6 @@
 }
 
 - (Yard*) makeYardAtStation: (NSString*) stationName {
-	NSEntityDescription *industryEntity = [NSEntityDescription entityForName: @"Yard" inManagedObjectContext: context_];
 	Yard *yard = [NSEntityDescription insertNewObjectForEntityForName:@"Yard"
 													   inManagedObjectContext: context_];
 	[yard setName: [NSString stringWithFormat: @"%@-yard", stationName]];
