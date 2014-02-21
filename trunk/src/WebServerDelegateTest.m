@@ -223,7 +223,6 @@
 }
 
 - (void) testCarlist {
-	NSDocumentController *sharedDocumentController = [NSDocumentController sharedDocumentController];
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
 	FakeSwitchListDocument *doc = [[[FakeSwitchListDocument alloc] initWithLayout: entireLayout_] autorelease];
