@@ -150,7 +150,7 @@
 													   inManagedObjectContext: context_];
 	[yard setName: [NSString stringWithFormat: @"%@-yard", stationName]];
 	Place *station = [entireLayout_ stationWithName: stationName];
-	STAssertNotNil(station, @"Yard for station %@ not found", stationName);
+	XCTAssertNotNil(station, @"Yard for station %@ not found", stationName);
 	[yard setLocation: station];
 	return yard;
 }
@@ -234,25 +234,25 @@
 	[myTrain setStops: @"A,B,C"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
 	
-	STAssertEqualsInt(3, [[myTrain stationsInOrder] count], @"Wrong number of station stops");
-	STAssertEqualObjects(@"A", [[[myTrain stationsInOrder] objectAtIndex: 0] name], @"A missing");
-	STAssertEqualObjects(@"B", [[[myTrain stationsInOrder] objectAtIndex: 1] name], @"B missing");
-	STAssertEqualObjects(@"C", [[[myTrain stationsInOrder] objectAtIndex: 2] name], @"C missing");
+	XCTAssertEqualInt(3, [[myTrain stationsInOrder] count], @"Wrong number of station stops");
+	XCTAssertEqualObjects(@"A", [[[myTrain stationsInOrder] objectAtIndex: 0] name], @"A missing");
+	XCTAssertEqualObjects(@"B", [[[myTrain stationsInOrder] objectAtIndex: 1] name], @"B missing");
+	XCTAssertEqualObjects(@"C", [[[myTrain stationsInOrder] objectAtIndex: 2] name], @"C missing");
 	
 	FreightCar *fc1 = [self makeFreightCarNamed: FREIGHT_CAR_1_NAME at: @"B" movingFrom: @"B" to: @"C" loaded: YES];
 	FreightCar *fc2 = [self makeFreightCarNamed: FREIGHT_CAR_2_NAME at: @"A" movingFrom: @"A" to: @"B" loaded: YES];
 
 	[myTrain addFreightCarsObject: fc1];
 	[myTrain addFreightCarsObject: fc2];
-	STAssertEqualsInt(2, [[[entireLayout_ trainWithName: @"MyTrain"] freightCars] count], @"Not enough cars in train.");
+	XCTAssertEqualInt(2, [[[entireLayout_ trainWithName: @"MyTrain"] freightCars] count], @"Not enough cars in train.");
 	return myTrain;
 }
 
 - (Yard*) yardAtStation: (NSString*) stationName {
 	InduYard *yard = [entireLayout_ industryWithName: [NSString stringWithFormat: @"%@-yard", stationName]
 									 withStationName: stationName];
-	STAssertNotNil(yard, @"yardAtStation: no yard in %@", stationName);
-	STAssertTrue([yard isYard], @"Yard is not yard");
+	XCTAssertNotNil(yard, @"yardAtStation: no yard in %@", stationName);
+	XCTAssertTrue([yard isYard], @"Yard is not yard");
 	return (Yard*) yard;
 }
 
@@ -260,24 +260,24 @@
 - (Industry*) industryAtStation: (NSString*) stationName {
 	InduYard *industry = [entireLayout_ industryWithName: [NSString stringWithFormat: @"%@-industry", stationName]
 									 withStationName: stationName];
-	STAssertNotNil(industry, @"industryAtStation: no industry in %@", stationName);
-	STAssertFalse([industry isYard], @"Industry is not industry");
+	XCTAssertNotNil(industry, @"industryAtStation: no industry in %@", stationName);
+	XCTAssertFalse([industry isYard], @"Industry is not industry");
 	return (Industry*) industry;
 }
 
 - (void)testThatEnvironmentWorks
 {
-    STAssertNotNil(context_, @"no persistent store");
+    XCTAssertNotNil(context_, @"no persistent store");
 }
 
 - (void) checkRoute: (NSArray*) routeOfPlaces equals: (NSString*) stringOfStops {
 	NSArray *stopNames = [stringOfStops componentsSeparatedByString: @","];
-	STAssertEqualsInt([routeOfPlaces count], [stopNames count], @"Wrong number of stops in route.");
+	XCTAssertEqualInt([routeOfPlaces count], [stopNames count], @"Wrong number of stops in route.");
 	int i;
 	for (i=0;i<[stopNames count];i++) {
 		Place *nthPlace = [routeOfPlaces objectAtIndex: i];
 		NSString *expectedNthStation = [stopNames objectAtIndex: i];
-		STAssertTrue([[nthPlace name] isEqualToString: expectedNthStation],
+		XCTAssertTrue([[nthPlace name] isEqualToString: expectedNthStation],
 					 @"Expected %@ in route but found %@", [nthPlace name], expectedNthStation);
 	}
 }

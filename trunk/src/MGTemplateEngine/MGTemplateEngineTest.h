@@ -6,7 +6,7 @@
 //  Copyright 2012 Robert Bowdidge. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "MGTemplateEngine.h"
 
@@ -18,7 +18,7 @@
 @end
 
 
-@interface MGTemplateEngineTest : SenTestCase {
+@interface MGTemplateEngineTest : XCTestCase {
 	MGTemplateEngine *engine_;
 	TemplateEngineTestDelegate *delegate_;
 }

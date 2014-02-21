@@ -46,8 +46,8 @@
 	NSString *text = [renderer renderSwitchlistForTrain: [[self entireLayout] trainWithName: @"MyTrain"]
 												 layout: [self entireLayout]
 												 iPhone: NO];
-	STAssertNotNil(text, @"Expected renderSwitchListForTrain to return something, but returned nil.");
-	STAssertContains(@"switchlist.css", text, @"%@ does not contain builtin ref", text);
+	XCTAssertNotNil(text, @"Expected renderSwitchListForTrain to return something, but returned nil.");
+	XCTAssertContains(@"switchlist.css", text, @"%@ does not contain builtin ref", text);
 }
 @end
 
@@ -66,27 +66,27 @@
 	
 - (void) testSimpleTemplate {
 	NSString *result = [engine_ processTemplate: @"foo" withVariables: [NSDictionary dictionaryWithObject: @"1" forKey: @"foo"]];
-	STAssertEqualObjects(@"foo", result, @"");
+	XCTAssertEqualObjects(@"foo", result, @"");
 }
 
 - (void) testSimpleIfTemplate {
 	NSString *result = [engine_ processTemplate: @"{% if foo == 1 %}bah{%/if%}" withVariables: [NSDictionary dictionaryWithObject: @"1" forKey: @"foo"]];
-	STAssertEqualObjects(@"bah", result, @"");
+	XCTAssertEqualObjects(@"bah", result, @"If clause not rendered correctly.");
 }
 
 - (void) testSimpleCountTemplate {
 	NSString *result = [engine_ processTemplate: @"{{foo.@count}}" withVariables: [NSDictionary dictionaryWithObject: [NSArray arrayWithObject: @"1"] forKey: @"foo"]];
-	STAssertEqualObjects(@"1", result, @"");
+	XCTAssertEqualObjects(@"1", result, @"");
 }
 
 - (void) failingTestSimpleCountZeroTemplate {
 	NSString *result = [engine_ processTemplate: @"{{foo.@count}}" withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
-	STAssertEqualObjects(@"0", result, @"");
+	XCTAssertEqualObjects(@"0", result, @"");
 }
 
 - (void) testSimpleAssignment {
 	NSString *result = [engine_ processTemplate: @"{% set seq 0 %}{{seq}}" withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
-	STAssertEqualObjects(@"0", result, @"");
+	XCTAssertEqualObjects(@"0", result, @"");
 }
 
 // Tests that the assignment of boo with a mathematical expression
@@ -94,7 +94,7 @@
 - (void) testComplexAssignment {
 	NSString *result = [engine_ processTemplate: @"{% set seq 0 %}{{seq}} {% set boo 1+3 %}{{boo}}"
 								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"seq"]];
-	STAssertEqualObjects(@"0 4", result, @"");
+	XCTAssertEqualObjects(@"0 4", result, @"");
 }
 
 // Tests that references to an invalid variable in an expression is handled without crashing
@@ -102,47 +102,47 @@
 - (void) testReferenceToInvalidVariable {
 	NSString *result = [engine_ processTemplate: @"{% set seq bar+1 %}{{seq}}"
 								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"seq"]];
-	STAssertEqualObjects(@"bar+1", result, @"");
+	XCTAssertEqualObjects(@"bar+1", result, @"");
 }
 
 // Tests that a reassignment of an existing variable works.
 - (void) testReassignment {
 	NSString *result = [engine_ processTemplate: @"{% set seq 0 %}{{seq}} {% set seq seq+1 %}{{seq}}"
 								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"bar"]];
-	STAssertEqualObjects(@"0 1", result, @"");
+	XCTAssertEqualObjects(@"0 1", result, @"");
 }
 
 - (void) failedTestForTo {
 	NSString *result = [engine_ processTemplate: @"{% for 1 to 5 %}1{% for %}"
 								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"loop"]];
-	STAssertEqualObjects(@"11111", result, @"");
+	XCTAssertEqualObjects(@"11111", result, @"");
 }
 
 - (void) testOverrideGlobal {
 	NSString *result = [engine_ processTemplate: @"{% set bar 17 %}{{bar}}"
 								  withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 0] forKey: @"bar"]];
-	STAssertEqualObjects(@"17", result, @"");
+	XCTAssertEqualObjects(@"17", result, @"");
 }
 
 - (void) testArrayCount {
 	NSNumber *count = [[NSArray array] valueForKeyPath: @"@count"];
-	STAssertEquals(0, [count intValue], @"");
+	XCTAssertEqual(0, [count intValue], @"");
 }
 
 - (void) testSimpleIfCountZeroTemplate {
 	NSString *result = [engine_ processTemplate: @"{% if foo.@count != 0 %}not-zero{% else %}zero{%/if%}" withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
-	STAssertEqualObjects(@"zero", result, @"");
+	XCTAssertEqualObjects(@"zero", result, @"");
 }
 
 - (void) testSimpleIfCountZeroDictTemplate {
 	NSDictionary *dict = [NSDictionary dictionaryWithObject: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"myArray"] forKey: @"myKey"];
 	NSString *result = [engine_ processTemplate: @"{% if myKey.myArray.@count != 0 %}not-zero{% else %}zero{%/if%}" withVariables: dict];
-	STAssertEqualObjects(@"zero", result, @"");
+	XCTAssertEqualObjects(@"zero", result, @"");
 }
 - (void) testSimpleIfCountNonZeroDictTemplate {
 	NSDictionary *dict = [NSDictionary dictionaryWithObject: [NSDictionary dictionaryWithObject: [NSArray arrayWithObject: @"a"] forKey: @"myArray"] forKey: @"myKey"];
 	NSString *result = [engine_ processTemplate: @"{% if myKey.myArray.@count != 0 %}not-zero{% else %}zero{%/if%}" withVariables: dict];
-	STAssertEqualObjects(@"not-zero", result, @"");
+	XCTAssertEqualObjects(@"not-zero", result, @"");
 }
 
 - (void) testNestedForLoop {
@@ -163,7 +163,7 @@
 	NSString *result = [engine_ processTemplate: @"{% for station in stations %}{{station.stationName}}:{% for industry in station.industries %} ind:{{industry.name}} EndInd{% /for %} EndSta {% /for %}"
 								  withVariables: vars];
 					
-	STAssertEqualObjects(@"A: ind:A1 EndInd ind:A2 EndInd EndSta B: EndSta ", result, @"");
+	XCTAssertEqualObjects(@"A: ind:A1 EndInd ind:A2 EndInd EndSta B: EndSta ", result, @"");
 }
 
 - (void) testNestedTripleForLoop {
@@ -188,7 +188,7 @@
 	NSString *result = [engine_ processTemplate: @"{% for station in stations %}StartStation {{station.name}}:{% for industry in station.industries %} StartInd:{{industry.industryName}} {% for car in industry.cars %}{{car}}{% /for %}EndInd{%/for %}EndStation{% /for %}"
 								  withVariables: vars];
 	// FIXME - StartStation B: shouldn't be followed by endInd because it shouldn't go through the industry loop.
-	STAssertEqualObjects(@"StartStation A: StartInd:A1 SP 1EndInd StartInd:A2 EndIndEndStationStartStation B:EndStation", result, @"");
+	XCTAssertEqualObjects(@"StartStation A: StartInd:A1 SP 1EndInd StartInd:A2 EndIndEndStationStartStation B:EndStation", result, @"");
 }
 
 - (void) testNestedTripleForLoopWithIf {
@@ -212,7 +212,7 @@
 	NSString *result = [engine_ processTemplate: @"{% for station in stations %}station:{{station.stationName}}:{% for industry in station.industries %}-ind:{{industry.name}}-{% if industry.cars.@count %}{% for car in industry.cars %}.{{car}}.{% /for %}{%/if%}EndInd{%/for %}EndSta{% /for %}"
 								  withVariables: vars];
 	
-	STAssertEqualObjects(@"station:A:-ind:A1-.SP 1.EndInd-ind:A2-EndIndEndStastation:B:EndSta", result, @"");
+	XCTAssertEqualObjects(@"station:A:-ind:A1-.SP 1.EndInd-ind:A2-EndIndEndStastation:B:EndSta", result, @"");
 }
 
 @end

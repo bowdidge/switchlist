@@ -63,7 +63,8 @@
 - (NSObject *)filterInvoked:(NSString *)filter withArguments:(NSArray *)args onValue:(NSObject *)value;
 
 - (NSString*) jitterString: (NSString*) value;
-- (NSString*) sumOfLengths: (NSArray*) value;
+// Only operates on arrays.
+- (NSString*) sumOfLengths: (id) value;
 
 // For predictably testing which way a jittered string will change.
 - (int) getRandomValue: (int) max;

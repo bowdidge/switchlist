@@ -52,10 +52,9 @@
 	SwitchListReport *report = [[[SwitchListReport alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: mockDocument] autorelease];
 	[report setTrain: train];
 	NSString *result = [report contents];
-	STAssertContains(FREIGHT_CAR_1_NAME, result, @"Car entry not found.");
+	XCTAssertContains(FREIGHT_CAR_1_NAME, result, @"Car entry not found.");
 	// TODO(bowdidge): Wrong test. Looking for regexp of industry # number.
-	STAssertNotContains(@"door", result,
-						[NSString stringWithFormat: @"Door indicators should not be set:%@", report]);
+	XCTAssertNotContains(@"door", result, @"Door indicators should not be set:%@", report);
 }
 
 - (void) testReportShowsDoor {
@@ -75,8 +74,7 @@
 							  door: 1];
 
 	NSString *result = [report contents];
-	STAssertContains(FREIGHT_CAR_1_NAME, result, @"Car entry not found.");
-	STAssertContains(@"B-industry #1", result,
-					 [NSString stringWithFormat: @"Door indicators should be set:%@", report]);
+	XCTAssertContains(FREIGHT_CAR_1_NAME, result, @"Car entry not found.");
+	XCTAssertContains(@"B-industry #1", result,@"Door indicators should be set:%@", report);
 }
 @end

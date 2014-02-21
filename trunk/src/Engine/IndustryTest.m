@@ -41,20 +41,20 @@
 	// Make sure we allocate one and only one workbench industry.
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
 	
-	STAssertNotNil([entireLayout workbenchIndustry], @"Workbench industry not defined.");
+	XCTAssertNotNil([entireLayout workbenchIndustry], @"Workbench industry not defined.");
 	
 	Industry *workbenchIndustry = [entireLayout workbenchIndustry];
 
-	STAssertFalse([workbenchIndustry isYard], @"Workbench industry should not be yard.");
-	STAssertEqualObjects([workbenchIndustry name], @"Workbench", @"Name of workbench is not workbench.");
-	STAssertFalse([workbenchIndustry canReceiveCargo], @"Workbench should not receive cargo.");
+	XCTAssertFalse([workbenchIndustry isYard], @"Workbench industry should not be yard.");
+	XCTAssertEqualObjects([workbenchIndustry name], @"Workbench", @"Name of workbench is not workbench.");
+	XCTAssertFalse([workbenchIndustry canReceiveCargo], @"Workbench should not receive cargo.");
 	// Workbench doesn't count as an industry - only stuff receiving cargo.
-    STAssertEqualsInt(0, [[entireLayout allIndustries] count], @"Wrong industry count");
+    XCTAssertEqualInt(0, [[entireLayout allIndustries] count], @"Wrong industry count");
 
 	// Workbench industry must be requested to populate both industry and place.
 	Place *workbench = [entireLayout workbench];
-	STAssertEqualsInt(1, [[workbench industries] count], @"Workbench does not have an industry.");
-	STAssertEqualObjects([[workbench industries] anyObject],
+	XCTAssertEqualInt(1, [[workbench industries] count], @"Workbench does not have an industry.");
+	XCTAssertEqualObjects([[workbench industries] anyObject],
 						 [entireLayout workbenchIndustry], @"Workbench does not have workbench industry.");
 }
 
@@ -62,38 +62,38 @@
 - (void) testIndustryDivision {
 	[self makeThreeStationLayout];
 	Industry *industry = [self industryAtStation: @"A"];
-	STAssertNotNil(industry, @"Search for A-industry");
+	XCTAssertNotNil(industry, @"Search for A-industry");
 	
-	STAssertNil([industry division], @"Check foreign car has foreign division");
+	XCTAssertNil([industry division], @"Check foreign car has foreign division");
 	
 	[industry setDivision: @"BN"];
-	STAssertEqualObjects([industry division], @"BN", @"Check setting home division is permanent.");
+	XCTAssertEqualObjects([industry division], @"BN", @"Check setting home division is permanent.");
 	[industry setDivision: @"Here"];
-	STAssertEqualObjects([industry division], @"Here", @"Check setting home division to Here works.");
+	XCTAssertEqualObjects([industry division], @"Here", @"Check setting home division to Here works.");
 	
 	
 	[industry setDivision: nil];
-	STAssertEqualObjects(nil, [industry division], @"Check setting home division to empty string works.");
+	XCTAssertEqualObjects(nil, [industry division], @"Check setting home division to empty string works.");
 	
 	[industry setDivision: @" "];
-	STAssertEqualObjects(@" ",[industry division], @"Check setting home division to spaces works.");
+	XCTAssertEqualObjects(@" ",[industry division], @"Check setting home division to spaces works.");
 }
 
 - (void) testIndustrySidingLength {
 	[self makeThreeStationLayout];
 	Industry *industry = [self industryAtStation: @"A"];
 	[industry setSidingLength: [NSNumber numberWithInt: 40]];
-	STAssertEqualsInt(40, [[industry sidingLength] intValue], @"Siding length not saved correctly.");
+	XCTAssertEqualInt(40, [[industry sidingLength] intValue], @"Siding length not saved correctly.");
 
 	Industry *industryB = [self industryAtStation: @"B"];
-	STAssertEqualsInt(0, [[industryB sidingLength] intValue], @"Unset siding length should be nil, not %@.", [industryB sidingLength]);
+	XCTAssertEqualInt(0, [[industryB sidingLength] intValue], @"Unset siding length should be nil, not %@.", [industryB sidingLength]);
 }
 
 - (void) testYardSidingLength {
 	[self makeThreeStationLayout];
 	[self makeYardAtStation: @"A"];
 	Yard *yard = [self yardAtStation: @"A"];
-	STAssertEqualsInt(0, [[yard sidingLength] intValue], @"Yard siding length should be nil, not %@.", [yard sidingLength]);
+	XCTAssertEqualInt(0, [[yard sidingLength] intValue], @"Yard siding length should be nil, not %@.", [yard sidingLength]);
 }
 
 - (void) testIndustryDoors {
@@ -102,9 +102,9 @@
 	[i setHasDoors: YES];
 	[i setNumberOfDoors: [NSNumber numberWithInt: 3]];
 	
-	STAssertEqualsInt(3, [[i doorList] count], @"");
-	STAssertEquals([NSNumber numberWithInt: 1], [[i doorList] objectAtIndex: 0], @"");
-	STAssertEquals([NSNumber numberWithInt: 3], [[i doorList] objectAtIndex: 2], @"");
+	XCTAssertEqualInt(3, [[i doorList] count], @"");
+	XCTAssertEqual([NSNumber numberWithInt: 1], [[i doorList] objectAtIndex: 0], @"");
+	XCTAssertEqual([NSNumber numberWithInt: 3], [[i doorList] objectAtIndex: 2], @"");
 }	
 
 @end

@@ -83,31 +83,31 @@
 }
 
 - (void) testLineLength {
-	STAssertEqualsInt(10, [report_ lineLength], @"Line length was %d, not 100", [report_ lineLength]);
+	XCTAssertEqualInt(9, [report_ lineLength], @"Line length was %d, not 9", [report_ lineLength]);
 }
 
 - (void) testCenteredString {
-	STAssertEqualObjects(@"   AAAA", [report_ centeredString: @"AAAA"], @"AAAA not centered, was '%@'.", [report_ centeredString: @"AAAA"]);
-	STAssertEqualObjects(@"    A", [report_ centeredString: @"A"], @"A not centered, was '%@'.", [report_ centeredString: @"A"]);
-	STAssertEqualObjects(@"1234567890", [report_ centeredString: @"1234567890"], @"filling string not centered");
-	STAssertEqualObjects(@"12345678901", [report_ centeredString: @"12345678901"], @"long string not centered");
-	STAssertEqualObjects(@"Generic Report", [report_ centeredString: @"Generic Report"], @"long string not centered.");
+	XCTAssertEqualObjects(@"  AAAA", [report_ centeredString: @"AAAA"], @"AAAA not centered, was '%@'.", [report_ centeredString: @"AAAA"]);
+	XCTAssertEqualObjects(@"    A", [report_ centeredString: @"A"], @"A not centered, was '%@'.", [report_ centeredString: @"A"]);
+	XCTAssertEqualObjects(@"1234567890", [report_ centeredString: @"1234567890"], @"filling string not centered");
+	XCTAssertEqualObjects(@"12345678901", [report_ centeredString: @"12345678901"], @"long string not centered");
+	XCTAssertEqualObjects(@"Generic Report", [report_ centeredString: @"Generic Report"], @"long string not centered.");
 }
 
 - (void) testLayoutName {
-	STAssertEqualObjects(@"My layout", [report_ layoutName], @"");
-	STAssertEqualObjects(@"Generic report", [report_ typeString], @"");
+	XCTAssertEqualObjects(@"My layout", [report_ layoutName], @"");
+	XCTAssertEqualObjects(@"Generic report", [report_ typeString], @"");
 }
 
 - (void) testCurrentDate {
 	// TODO(bowdidge): Consider better testing that the report date is formatted correctly.  Note that the date
 	// gets localized, so the testing code needs to anticipate (or set) the local format.
-	STAssertNotNil([report_ currentDate], @"");
+	XCTAssertNotNil([report_ currentDate], @"");
 }
 
 - (void) testHeader {
 	NSString *header = [report_ headerString];
-	STAssertContains(@"MY LAYOUT", header, @"");
+	XCTAssertContains(@"MY LAYOUT", header, @"");
 }
 
 - (NSString*) nLines: (int) count {

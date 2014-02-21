@@ -37,7 +37,7 @@
 
 @end
 
-@interface TemplateExampleTest : SenTestCase {
+@interface TemplateExampleTest : XCTestCase {
 	MGTemplateEngine *engine_;
 }
 @end

@@ -73,7 +73,7 @@
 	return value;
 }
 
-- (NSString*) sumOfLengths: (NSArray*) value {
+- (NSString*) sumOfLengths: (id) value {
 	int sum = 0;
 
 	if (![value isKindOfClass: [NSArray class]]) {
