@@ -62,6 +62,7 @@
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
 	// Populate industry stuff.
 	Industry *workbenchIndustry = [entireLayout workbenchIndustry];
+    XCTAssertNotNil(workbenchIndustry, @"workbenchIndustry assumed not to be nil.");
 	XCTAssertNotNil([entireLayout workbench], @"Workbench not defined.");
 	Place *workbench = [entireLayout workbench];
 	XCTAssertFalse([workbench isStaging], @"Workbench should not be staging.");
@@ -79,7 +80,8 @@
 	// Make sure the workbench industry is in the workbench place.
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
 	id workbenchIndustry = [entireLayout workbenchIndustry];
-    FreightCar *car1 = [self makeFreightCarWithReportingMarks: @"SP 1"];
+    [self makeFreightCarWithReportingMarks: @"SP 1"];
+
 	FreightCar *car2 = [self makeFreightCarWithReportingMarks: @"SP 2"];
 	[car2 setCurrentLocation: workbenchIndustry];
 	
@@ -91,8 +93,9 @@
 - (void) testFreightCarsOnWorkbench {
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
 	id workbenchIndustry = [entireLayout workbenchIndustry];
-    FreightCar *car1 = [self makeFreightCarWithReportingMarks: @"SP 1"];
-	FreightCar *car2 = [self makeFreightCarWithReportingMarks: @"SP 2"];
+    [self makeFreightCarWithReportingMarks: @"SP 1"];
+
+	 FreightCar *car2 = [self makeFreightCarWithReportingMarks: @"SP 2"];
 	[car2 setCurrentLocation: workbenchIndustry];
 	
 	XCTAssertEqualInt(2, [[entireLayout allFreightCars] count], @"Wrong number of total freight cars");
@@ -105,8 +108,7 @@
 - (void) testFreightCars {
 	// Unit tests for freight cars.
 	// TODO(bowdidge) Move to own section.
-	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
-	id workbenchIndustry = [entireLayout workbenchIndustry];
+	[[EntireLayout alloc] initWithMOC: context_];
 	FreightCar *car1 = [self makeFreightCarWithReportingMarks: @"SP 1"];
 	FreightCar *car2 = [self makeFreightCarWithReportingMarks: @"DRG&W 99999"];
 	FreightCar *car3 = [self makeFreightCarWithReportingMarks: @"UP  2222"];
@@ -287,7 +289,11 @@
 	Place *placeC = [self makePlaceWithName: @"C"];
 	[placeB setIsStaging: YES];
 
-	// Workbench counts as a station.
+    XCTAssertNotNil(placeA);
+	XCTAssertNotNil(placeB);
+    XCTAssertNotNil(placeC);
+    
+    // Workbench counts as a station.
 	XCTAssertEqualInt(4, [[entireLayout allStations] count], @"Wrong number of stations");
 	XCTAssertEqualInt(1, [[entireLayout allStationsInStaging] count], @"Wrong number of stations in staging");
 	XCTAssertEqualInt(1, [[entireLayout allStationNamesInStaging] count], @"Wrong number of station names in staging.");
@@ -327,6 +333,10 @@
 - (void) disableTestStationValidation {
 	Place *placeA = [self makePlaceWithName: @"A"];
 	Place *placeB = [self makePlaceWithName: @""];
+    
+    XCTAssertNotNil(placeA);
+    XCTAssertNotNil(placeB);
+    
 	NSString *proposedNameA = @"A";
 	NSString *proposedNameB = @"B";
 	NSError *error = nil;
@@ -341,7 +351,7 @@
 	// Make sure the workbench industry is in the workbench place.
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
 	Place *placeA = [self makePlaceWithName: @"A"];
-	
+	XCTAssertNotNil(placeA);
 	XCTAssertEqualInt(1, [[entireLayout allIndustries] count], @"Wrong number of industries");
 }
 
