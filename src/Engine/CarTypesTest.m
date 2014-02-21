@@ -46,7 +46,7 @@
 	
 	NSDictionary *stockCars = [CarTypes stockCarTypes];
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-	NSArray *allCars = [entireLayout_ allFreightCars];
+    
 	XCTAssertTrue([CarTypes isValidCarType: @"MyType"], @"MyType not considered valid type");
 	XCTAssertNotNil([carTypes objectForKey: @"MyType"], @"New car type not found");
 	XCTAssertEqual([[stockCars allKeys] count] + 1, [carTypes count], @"Car type count not correct");
@@ -59,7 +59,6 @@
 	
 	NSDictionary *stockCars = [CarTypes stockCarTypes];
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-	NSArray *allCars = [entireLayout_ allFreightCars];
 
 	XCTAssertTrue([CarTypes isValidCarType: @"Any"], @"MyType not considered valid ");
 	XCTAssertNil([carTypes objectForKey: @"Any"], @"New car type not found");
@@ -72,7 +71,6 @@
 	
 	NSDictionary *stockCars = [CarTypes stockCarTypes];
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-	NSArray *allCars = [entireLayout_ allFreightCars];
 	
 	XCTAssertTrue([CarTypes isValidCarType: @"XM"], @"XM not considered valid type");
 	XCTAssertNotNil([carTypes objectForKey: @"XM"], @"New car type not found");
@@ -86,7 +84,6 @@
 	
 	NSDictionary *stockCars = [CarTypes stockCarTypes];
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-	NSArray *allCars = [entireLayout_ allFreightCars];
 	
 	XCTAssertFalse([CarTypes isValidCarType: carTypeToTest], @"Not supposed to be valid");
 	XCTAssertNil([carTypes objectForKey: carTypeToTest], @"New car type not found");
@@ -104,7 +101,6 @@
 
 	NSDictionary *stockCars = [CarTypes stockCarTypes];
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-	NSArray *allCars = [entireLayout_ allFreightCars];
 
 	XCTAssertTrue([CarTypes isValidCarType: @"ACargo"], @"MyType not considered valid type");
 	XCTAssertNotNil([carTypes objectForKey: @"ACargo"], @"New car type not found");
