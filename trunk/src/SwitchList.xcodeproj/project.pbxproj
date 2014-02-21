@@ -110,6 +110,8 @@
 		3E71871913B1B30B00ED3840 /* SwitchListBaseViewTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71870D13B1B17000ED3840 /* SwitchListBaseViewTest.m */; };
 		3E853CEF1699739700F8C59B /* CarTypeChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E853CEE1699739600F8C59B /* CarTypeChooser.m */; };
 		3E87754D15F2D07F00E08413 /* cargo-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E87754C15F2D07F00E08413 /* cargo-report.html */; };
+		3E885B4418B5E9F800159B17 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E885B4318B5E9F800159B17 /* XCTest.framework */; };
+		3E885B4518B5E9FF00159B17 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E885B4318B5E9F800159B17 /* XCTest.framework */; };
 		3E88AD57127A9E14003486E2 /* CargoReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD56127A9E14003486E2 /* CargoReportTest.m */; };
 		3E88AED4127B2DD2003486E2 /* train.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E88AED3127B2DD2003486E2 /* train.jpg */; };
 		3E88AED5127B2DD2003486E2 /* train.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E88AED3127B2DD2003486E2 /* train.jpg */; };
@@ -717,6 +719,7 @@
 		3E853CED1699739500F8C59B /* CarTypeChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarTypeChooser.h; path = iPad/CarTypeChooser.h; sourceTree = "<group>"; };
 		3E853CEE1699739600F8C59B /* CarTypeChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarTypeChooser.m; path = iPad/CarTypeChooser.m; sourceTree = "<group>"; };
 		3E87754C15F2D07F00E08413 /* cargo-report.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "cargo-report.html"; path = "templates/cargo-report.html"; sourceTree = "<group>"; };
+		3E885B4318B5E9F800159B17 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		3E88AD43127A9CFD003486E2 /* IndustryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndustryTest.h; path = Engine/IndustryTest.h; sourceTree = "<group>"; };
 		3E88AD44127A9CFD003486E2 /* IndustryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndustryTest.m; path = Engine/IndustryTest.m; sourceTree = "<group>"; };
 		3E88AD55127A9E14003486E2 /* CargoReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CargoReportTest.h; sourceTree = "<group>"; };
@@ -752,7 +755,7 @@
 		3E9B75B716063FE600891318 /* SwitchListEngine.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = SwitchListEngine.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9B75BC16063FFD00891318 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
 		3E9B75BF1606400400891318 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		3E9B786A1606527600891318 /* Unit tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E9B786A1606527600891318 /* Unit tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9B786B1606527600891318 /* Engine unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Engine unit tests-Info.plist"; sourceTree = "<group>"; };
 		3E9B794716065BA600891318 /* WebKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = WebKit; path = /System/Library/Frameworks/WebKit.framework/WebKit; sourceTree = "<absolute>"; };
 		3E9D56ED16225616007F49EC /* LayoutGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutGraph.h; sourceTree = "<group>"; };
@@ -792,7 +795,7 @@
 		3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CargoAssignerTest.m; path = Engine/CargoAssignerTest.m; sourceTree = "<group>"; };
 		3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = NoSidingToLatest.xcmappingmodel; sourceTree = "<group>"; };
 		3EC1D47D160AEDB700765095 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
-		3EC3B0881277DEFE00C00AD3 /* Unit tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EC3B0881277DEFE00C00AD3 /* Unit tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
 		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntireLayoutTest.h; path = Engine/EntireLayoutTest.h; sourceTree = "<group>"; };
 		3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EntireLayoutTest.m; path = Engine/EntireLayoutTest.m; sourceTree = "<group>"; };
@@ -902,6 +905,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E9B7870160652B200891318 /* SwitchListEngine.dylib in Frameworks */,
+				3E885B4518B5E9FF00159B17 /* XCTest.framework in Frameworks */,
 				3E9B78631606527600891318 /* libicucore.A.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -919,6 +923,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E885B4418B5E9F800159B17 /* XCTest.framework in Frameworks */,
 				3E9B793516065B3A00891318 /* SwitchListEngine.dylib in Frameworks */,
 				3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */,
 				3E108C1714049FDA00B77CFE /* libicucore.A.dylib in Frameworks */,
@@ -964,7 +969,7 @@
 			isa = PBXGroup;
 			children = (
 				8D15AC370486D014006FF6A4 /* SwitchList.app */,
-				3EC3B0881277DEFE00C00AD3 /* Unit tests.octest */,
+				3EC3B0881277DEFE00C00AD3 /* Unit tests.xctest */,
 				3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */,
 			);
 			name = Products;
@@ -1037,6 +1042,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3E885B4318B5E9F800159B17 /* XCTest.framework */,
 				3EAAA7661606CC5400C3D7A8 /* libicucore.dylib */,
 				3E9B794716065BA600891318 /* WebKit */,
 				3E108C1614049FD900B77CFE /* libicucore.A.dylib */,
@@ -1316,7 +1322,7 @@
 			children = (
 				3EA487A415D83E1A008A169F /* typical_main */,
 				3E9B75B716063FE600891318 /* SwitchListEngine.dylib */,
-				3E9B786A1606527600891318 /* Unit tests.octest */,
+				3E9B786A1606527600891318 /* Unit tests.xctest */,
 				3E407D56160693170037134D /* Switchlist-iPad.app */,
 				3E407DE0160694EF0037134D /* libSwitchListEngine-iPad.a */,
 			);
@@ -1576,7 +1582,6 @@
 				3E9B78051606527600891318 /* Resources */,
 				3E9B78111606527600891318 /* Sources */,
 				3E9B78601606527600891318 /* Frameworks */,
-				3E9B78641606527600891318 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1585,7 +1590,7 @@
 			);
 			name = "Engine Unit Tests";
 			productName = "Unit tests";
-			productReference = 3E9B786A1606527600891318 /* Unit tests.octest */;
+			productReference = 3E9B786A1606527600891318 /* Unit tests.xctest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		3EA487A315D83E1A008A169F /* typical_main */ = {
@@ -1611,7 +1616,6 @@
 				3EC3B0831277DEFE00C00AD3 /* Resources */,
 				3EC3B0841277DEFE00C00AD3 /* Sources */,
 				3EC3B0851277DEFE00C00AD3 /* Frameworks */,
-				3EC3B0861277DEFE00C00AD3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1620,7 +1624,7 @@
 			);
 			name = "Unit tests";
 			productName = "Unit tests";
-			productReference = 3EC3B0881277DEFE00C00AD3 /* Unit tests.octest */;
+			productReference = 3EC3B0881277DEFE00C00AD3 /* Unit tests.xctest */;
 			productType = "com.apple.product-type.bundle";
 		};
 		8D15AC270486D014006FF6A4 /* SwitchList */ = {
@@ -1827,32 +1831,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\ncp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n";
-		};
-		3E9B78641606527600891318 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
-		};
-		3EC3B0861277DEFE00C00AD3 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2707,7 +2685,10 @@
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -2726,7 +2707,7 @@
 				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
@@ -2742,7 +2723,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2760,7 +2744,7 @@
 				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2772,7 +2756,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2790,7 +2777,7 @@
 				SDKROOT = "";
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 				ZERO_LINK = NO;
 			};
 			name = "App Store";
@@ -2800,7 +2787,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2819,7 +2809,7 @@
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
 				VALID_ARCHS = i386;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Default;
 		};
@@ -3029,7 +3019,10 @@
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
@@ -3052,7 +3045,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
 		};
@@ -3068,7 +3061,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3090,7 +3086,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -3100,7 +3096,10 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3123,7 +3122,7 @@
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
 				VALID_ARCHS = i386;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 			};
 			name = Default;
 		};
@@ -3174,7 +3173,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3196,7 +3198,7 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				TEST_AFTER_BUILD = YES;
-				WRAPPER_EXTENSION = octest;
+				WRAPPER_EXTENSION = xctest;
 				ZERO_LINK = NO;
 			};
 			name = "App Store";
