@@ -274,9 +274,9 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 0], [NSNumber numberWithInt: 1], nil]];
 	 
 	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObjects: myFreightCar_, fc2, nil]];
-	// Make sure the two cars both get picked.
-    // TODO(bowdidge): Failing randomly.
-	XCTAssertEqualObjects(fc2, [myCarAssigner assignedCarForCargo:myCargo_], @"%@ vs %@", [fc2 reportingMarks], [[myCarAssigner assignedCarForCargo: myCargo_] reportingMarks]);
+        // Make sure the two cars both get picked.
+        // TODO(bowdidge): Failing randomly.
+        XCTAssertEqualObjects(fc2, [myCarAssigner assignedCarForCargo:myCargo_], @"%@ vs %@", [fc2 reportingMarks], [[myCarAssigner assignedCarForCargo: myCargo_] reportingMarks]);
 	XCTAssertEqual(myFreightCar_, [myCarAssigner assignedCarForCargo:myCargo_], @"%@ vs %@", [myFreightCar_ reportingMarks], [[myCarAssigner assignedCarForCargo: myCargo_] reportingMarks]);
 	XCTAssertNil([myCarAssigner assignedCarForCargo:myCargo_], @"");
 }
