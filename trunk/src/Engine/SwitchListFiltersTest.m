@@ -40,7 +40,7 @@
 // Replaces the random number generator value with a fixed set so we can correctly
 // test behavior.
 @implementation SwitchListFilterReplaceRandom 
-- (id) setRandomValues: (int*) randomValues {
+- (void) setRandomValues: (int*) randomValues {
 	currentRandom_ = 0;
 	randomValues_ = randomValues;
 	consumedTooManyValues_ = NO;
