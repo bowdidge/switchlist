@@ -38,7 +38,7 @@
  _{... A variable number of arguments to the format string. Can be absent.}
  "*/
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 /*" Generates a failure when contains does not appear in container. This test is for
  Objective C strings.
@@ -48,53 +48,36 @@
  an empty string but must be present.}
  _{... A variable number of arguments to the format string. Can be absent.}
  "*/
-#define STAssertContains(contains, container, description, ...) \
+#define XCTAssertContains(contains, container, format...) \
 do { \
 @try {\
 NSString *containsvalue = (contains); \
 NSString *containervalue = (container); \
 if ([containervalue rangeOfString: containsvalue].location == NSNotFound ) { \
-[self failWithException:([NSException failureInCondition: [NSString stringWithFormat: @"%@ in %@", containsvalue, containervalue] \
-isTrue: false \
-inFile:[NSString stringWithUTF8String:__FILE__] \
-atLine:__LINE__ \
-withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
+/* TODO(bowdidge): What symbol here? */ \
+_XCTRegisterFailure(_XCTFailureDescription(_XCTAssertion_EqualObjects, 0, @#contains, @#container, containsvalue, containervalue), format); \
 } \
 } \
 @catch (id anException) {\
-[self failWithException:([NSException \
-failureInRaise:[NSString stringWithFormat:@"(%s) in (%s)", #contains, #container] \
-exception:anException \
-inFile:[NSString stringWithUTF8String:__FILE__] \
-atLine:__LINE__ \
-withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
+_XCTRegisterFailure(_XCTFailureDescription(_XCTAssertion_EqualObjects, 1, @#contains, @#container, [anException reason]), format); \
 }\
 } while(0)
 
-
-#define STAssertNotContains(contains, container, description, ...) \
+#define XCTAssertNotContains(contains, container, format...) \
 do { \
 @try {\
 NSString *containsvalue = (contains); \
 NSString *containervalue = (container); \
 if ([containervalue rangeOfString: containsvalue].location != NSNotFound ) { \
-[self failWithException:([NSException failureInCondition: [NSString stringWithFormat: @"%@ not in %@", containsvalue, containervalue] \
-isTrue: false \
-inFile:[NSString stringWithUTF8String:__FILE__] \
-atLine:__LINE__ \
-withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
+_XCTRegisterFailure(_XCTFailureDescription(_XCTAssertion_NotEqualObjects, 0, @#contains, @#container, containsvalue, containervalue), format); \
 } \
 } \
 @catch (id anException) {\
-[self failWithException:([NSException \
-failureInRaise:[NSString stringWithFormat:@"(%s) in (%s)", #contains, #container] \
-exception:anException \
-inFile:[NSString stringWithUTF8String:__FILE__] \
-atLine:__LINE__ \
-withDescription:@"%@", STComposeString(description, ##__VA_ARGS__)])]; \
+_XCTRegisterFailure(_XCTFailureDescription(_XCTAssertion_NotEqualObjects, 1, @#contains, @#container, [anException reason]), format); \
 }\
 } while(0)
 
 // Wrapper to avoid type mismatches.
-#define STAssertEqualsInt(val, expr, ...) STAssertEquals(((NSInteger)val), ((NSInteger)expr), ##__VA_ARGS__)
+#define XCTAssertEqualInt(val, expr, ...) XCTAssertEqual(((NSInteger)val), ((NSInteger)expr), ##__VA_ARGS__)
+
 

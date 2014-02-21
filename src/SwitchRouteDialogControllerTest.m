@@ -71,7 +71,7 @@
 		}
 	}
 	
-	STAssertTrue(numberOfNonOfflineStations == 
+	XCTAssertTrue(numberOfNonOfflineStations == 
 				 [controller_ numberOfRowsInTableView: mockStationTableView_], @"Wrong number of towns displayed");
 }
 
@@ -84,7 +84,7 @@
 							   objectValueForTableColumn: townTableColumn
 													 row: row] string];
 
-	STAssertEqualObjects(townName, generatedTownName, @"Wrong town name for row %d, was %@", row, generatedTownName);
+	XCTAssertEqualObjects(townName, generatedTownName, @"Wrong town name for row %d, was %@", row, generatedTownName);
 }
 
 // Checks that a particular row's values in each column are correct.
@@ -95,7 +95,7 @@
 	NSString *generatedTownName = [[controller_ tableView: mockStopsTableView_
 							   objectValueForTableColumn: townTableColumn
 													 row: row] string];
-	STAssertEqualObjects(townName, generatedTownName, @"Wrong town name for row %d, was %@", row, generatedTownName);
+	XCTAssertEqualObjects(townName, generatedTownName, @"Wrong town name for row %d, was %@", row, generatedTownName);
 }
 
 - (void) testStationNamesCorrect {
@@ -112,8 +112,8 @@
 	[controller_ setTrain:train layout:entireLayout_];
 	
 	NSInteger rowsInStopsTable = [controller_ numberOfRowsInTableView: mockStopsTableView_];
-	STAssertEqualsInt(3, rowsInStopsTable,
-				 @"Wrong number of towns displayed, found %d.", rowsInStopsTable);
+	XCTAssertEqualInt(3, rowsInStopsTable,
+				 @"Wrong number of towns displayed, found %ld.", rowsInStopsTable);
 	[self checkStopsTableRow: 0 townName: @"A"];
 	[self checkStopsTableRow: 1 townName: @"B"];
 	[self checkStopsTableRow: 2 townName: @"C"];

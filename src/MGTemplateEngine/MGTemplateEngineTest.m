@@ -53,117 +53,117 @@
 
 - (void) testSimpleTemplate {
 	NSString *result = [engine_ processTemplate: @"foo" withVariables: [NSDictionary dictionaryWithObject: @"1" forKey: @"foo"]];
-	STAssertEqualObjects(@"foo", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"foo", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testSimpleIfTemplate {
 	NSString *result = [engine_ processTemplate: @"{% if foo == 1 %}bah{%/if%}" withVariables: [NSDictionary dictionaryWithObject: @"1" forKey: @"foo"]];
-	STAssertEqualObjects(@"bah", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"bah", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testErrorIfTemlate {
 	NSString *result = [engine_ processTemplate: @"{% if foo == 1 %}bah" withVariables: [NSDictionary dictionaryWithObject: @"1" forKey: @"foo"]];
-	STAssertEqualObjects(@"Finished processing template, but 1 block was left open (if).", [delegate_ lastError], @"");
-	STAssertEqualObjects(@"bah", result, @"");
+	XCTAssertEqualObjects(@"Finished processing template, but 1 block was left open (if).", [delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"bah", result, @"");
 }
 
 - (void) testInvalidVariable {
 	NSString *result = [engine_ processTemplate: @"{{ hello }}" withVariables: [NSDictionary dictionary]];
-	STAssertEqualObjects(@"", result, @"");
+	XCTAssertEqualObjects(@"", result, @"");
 	// TODO(bowdidge): Fix error.
-	// STAssertEqualObjects(@"\"hello\" is not a valid variable", [delegate_ lastError], @"");
+	// XCTAssertEqualObjects(@"\"hello\" is not a valid variable", [delegate_ lastError], @"");
 }
 
 - (void) testInvalidMarker {
 	NSString *result = [engine_ processTemplate: @"{%hello%}" withVariables: [NSDictionary dictionary]];
-	STAssertEqualObjects(@"", result, @"");
-	STAssertEqualObjects(@"\"hello\" is not a valid marker", [delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"", result, @"");
+	XCTAssertEqualObjects(@"\"hello\" is not a valid marker", [delegate_ lastError], @"");
 }
 
 - (void) testSimpleVariable {
 	NSString *result = [engine_ processTemplate: @"{{ var }}" withVariables: [NSDictionary dictionaryWithObject: @"hello" forKey: @"var"]];
-	STAssertEqualObjects(@"hello", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"hello", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testSimpleVariableNoSpaces {
 	NSString *result = [engine_ processTemplate: @"{{var}}" withVariables: [NSDictionary dictionaryWithObject: @"hello" forKey: @"var"]];
-	STAssertEqualObjects(@"hello", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"hello", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testUppercaseFilter {
 	NSString *result = [engine_ processTemplate: @"{{var|uppercase}}" withVariables: [NSDictionary dictionaryWithObject: @"hello" forKey: @"var"]];
-	STAssertEqualObjects(@"HELLO", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"HELLO", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testConstants {
 	NSString *result = [engine_ processTemplate: @"We also know about {{ YES }} and {{ NO }} or {{ true }} and {{ false }}"
 								   withVariables: [NSDictionary dictionary]];
-	STAssertEqualObjects(@"We also know about 1 and 0 or 1 and 0", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"We also know about 1 and 0 or 1 and 0", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testMath {
 	NSString *result = [engine_ processTemplate: @"Is 1 less than 2? {% if 1 < 2 %} Yes! {% else %} No? {% /if %}"
 								  withVariables: [NSDictionary dictionary]];
-	STAssertEqualObjects(@"Is 1 less than 2?  Yes! ", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"Is 1 less than 2?  Yes! ", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testLiteral {
 	NSString *result = [engine_ processTemplate: @"{% literal %}This text won't be {% now %} interpreted.{% /literal %}"
 								  withVariables: [NSDictionary dictionary]];
-	STAssertEqualObjects(@"This text won't be {% now %} interpreted.", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"This text won't be {% now %} interpreted.", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testSimpleCountTemplate {
 	NSString *result = [engine_ processTemplate: @"{{foo.@count}}" withVariables: [NSDictionary dictionaryWithObject: [NSArray arrayWithObject: @"1"] forKey: @"foo"]];
-	STAssertEqualObjects(@"1", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"1", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) FailingTestSimpleCountZeroTemplate {
 	NSString *result = [engine_ processTemplate: @"{{foo.@count}}" withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
-	STAssertEqualObjects(@"0", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"0", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testArrayCount {
 	NSNumber *count = [[NSArray array] valueForKeyPath: @"@count"];
-	STAssertEquals(0, [count intValue], @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqual(0, [count intValue], @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testSimpleIfCountZeroTemplate {
 	NSString *result = [engine_ processTemplate: @"{% if foo.@count != 0 %}not-zero{% else %}zero{%/if%}" withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
-	STAssertEqualObjects(@"zero", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"zero", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testSimpleIfCountZeroDictTemplate {
 	NSDictionary *dict = [NSDictionary dictionaryWithObject: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"myArray"] forKey: @"myKey"];
 	NSString *result = [engine_ processTemplate: @"{% if myKey.myArray.@count != 0 %}not-zero{% else %}zero{%/if%}" withVariables: dict];
-	STAssertEqualObjects(@"zero", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"zero", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testNestedIf {
 	NSString *result = [engine_ processTemplate: @"{% if false %}level1{% if false}level2{% /if %}level1{% /if %}level0"
 								  withVariables: [NSDictionary dictionaryWithObject: [NSArray array] forKey: @"foo"]];
-	STAssertEqualObjects(@"level0", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"level0", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testSimpleIfCountNonZeroDictTemplate {
 	NSDictionary *dict = [NSDictionary dictionaryWithObject: [NSDictionary dictionaryWithObject: [NSArray arrayWithObject: @"a"] forKey: @"myArray"] forKey: @"myKey"];
 	NSString *result = [engine_ processTemplate: @"{% if myKey.myArray.@count != 0 %}not-zero{% else %}zero{%/if%}" withVariables: dict];
-	STAssertEqualObjects(@"not-zero", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"not-zero", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testNestedForLoop {
@@ -184,8 +184,8 @@
 	NSString *result = [engine_ processTemplate: @"{% for station in stations %}{{station.stationName}}:{% for industry in station.industries %} ind:{{industry.name}} EndInd{% /for %} EndSta {% /for %}"
 								  withVariables: vars];
 	
-	STAssertEqualObjects(@"A: ind:A1 EndInd ind:A2 EndInd EndSta B: EndSta ", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"A: ind:A1 EndInd ind:A2 EndInd EndSta B: EndSta ", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 - (void) testNestedTripleForLoop {
@@ -210,8 +210,8 @@
 	NSString *result = [engine_ processTemplate: @"{% for station in stations %}StartStation {{station.name}}:{% for industry in station.industries %} StartInd:{{industry.industryName}} {% for car in industry.cars %}{{car}}{% /for %}EndInd{%/for %}EndStation{% /for %}"
 								  withVariables: vars];
 	// FIXME - StartStation B: shouldn't be followed by endInd because it shouldn't go through the industry loop.
-	STAssertEqualObjects(@"StartStation A: StartInd:A1 SP 1EndInd StartInd:A2 EndIndEndStationStartStation B:EndStation", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"StartStation A: StartInd:A1 SP 1EndInd StartInd:A2 EndIndEndStationStartStation B:EndStation", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 // TODO(bowdidge): Requires more elaborate stack frames to remember when to disable output.
@@ -220,8 +220,8 @@
 						  [NSArray arrayWithObject: @"asasda"], @"itemArray", nil];
 	NSString *result = [engine_ processTemplate: @"{% for i in itemArray %}{% if true %}A{% for j in emptyArray %}{% if false %}B{% /if %}C {% /for %} D {%/if%} E {% /for %}"
 								  withVariables: vars];
-	STAssertEqualObjects(@"A", result, @"");
-	STAssertNil([delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"A", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
 }
 
 // TODO: Add support for section.
@@ -229,8 +229,8 @@
 	// Not documented, but let's add tests anyway.
 	NSString *result = [engine_ processTemplate: @"{%section%}Hello, World{%/section%}"
 								  withVariables: [NSDictionary dictionary]];
-	STAssertEqualObjects(@"Hello, World", result, @"");
-	STAssertEqualObjects(@"Marker \"/section\" reported that a non-existent block ended", [delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"Hello, World", result, @"");
+	XCTAssertEqualObjects(@"Marker \"/section\" reported that a non-existent block ended", [delegate_ lastError], @"");
 }
 
 // TODO: Add support for section.
@@ -238,8 +238,8 @@
 	// Not documented, but let's add tests anyway.
 	NSString *result = [engine_ processTemplate: @"{%if false%}{%section%}Hello, World{%/section%}{%/if%}"
 								  withVariables: [NSDictionary dictionary]];
-	STAssertEqualObjects(@"", result, @"");
-	STAssertEqualObjects(@"Marker \"/section\" reported that a block ended, but current block was started by \"if\" marker", [delegate_ lastError], @"");
+	XCTAssertEqualObjects(@"", result, @"");
+	XCTAssertEqualObjects(@"Marker \"/section\" reported that a block ended, but current block was started by \"if\" marker", [delegate_ lastError], @"");
 }
 
 @end

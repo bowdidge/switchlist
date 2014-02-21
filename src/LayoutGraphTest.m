@@ -39,12 +39,12 @@
 	[self makeThreeStationTrain];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 	
-	STAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"B"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"B"], @"");
 
-	STAssertFalse([graph edgeExistsFromStationName: @"C" toStationName: @"A"], @"");
-	STAssertFalse([graph edgeExistsFromStationName: @"A" toStationName: @"C"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"C" toStationName: @"A"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"A" toStationName: @"C"], @"");
 }
 
 - (NSArray*) makeTrainsWithRoutes: (NSArray*) array {
@@ -64,17 +64,17 @@
 	NSArray *trains = [self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B", @"D,C", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_ ];
 	
-	STAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"D"], @"");
-	STAssertFalse([graph edgeExistsFromStationName: @"A" toStationName: @"C"], @"");
-	STAssertFalse([graph edgeExistsFromStationName: @"A" toStationName: @"D"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"D"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"A" toStationName: @"C"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"A" toStationName: @"D"], @"");
 	
 	NSArray *stationList = [graph stationsInReasonableOrder];
-	STAssertEqualObjects(@"A", [((LayoutNode*)[stationList objectAtIndex: 0]).station name], @"");
-	STAssertEqualObjects(@"B", [((LayoutNode*)[stationList objectAtIndex: 1]).station name], @"");
+	XCTAssertEqualObjects(@"A", [((LayoutNode*)[stationList objectAtIndex: 0]).station name], @"");
+	XCTAssertEqualObjects(@"B", [((LayoutNode*)[stationList objectAtIndex: 1]).station name], @"");
 	// Second train.
-	STAssertEqualObjects(@"D", [((LayoutNode*)[stationList objectAtIndex: 2]).station name], @"");
-	STAssertEqualObjects(@"C", [((LayoutNode*)[stationList objectAtIndex: 3]).station name], @"");
+	XCTAssertEqualObjects(@"D", [((LayoutNode*)[stationList objectAtIndex: 2]).station name], @"");
+	XCTAssertEqualObjects(@"C", [((LayoutNode*)[stationList objectAtIndex: 3]).station name], @"");
 }
 
 - (void) testAddSkippedStation {
@@ -85,14 +85,14 @@
 	[self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B,E", @"A,B,C,E", @"A,B,C,D", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 
-	STAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
-	STAssertFalse([graph edgeExistsFromStationName: @"B" toStationName: @"E"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"D"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"B" toStationName: @"E"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"D"], @"");
 
-	STAssertFalse([graph edgeExistsFromStationName: @"B" toStationName: @"D"], @"");
-	STAssertFalse([graph edgeExistsFromStationName: @"A" toStationName: @"D"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"B" toStationName: @"D"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"A" toStationName: @"D"], @"");
 }
 
 - (void) testSkipMultipleStations {
@@ -103,12 +103,12 @@
 	[self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B,E", @"A,B,C,D,E", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 	
-	STAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"D"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"D" toStationName: @"E"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"D"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"D" toStationName: @"E"], @"");
 
-	STAssertFalse([graph edgeExistsFromStationName: @"B" toStationName: @"E"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"B" toStationName: @"E"], @"");
 }
 
 - (void) testBranch {
@@ -119,13 +119,13 @@
 	NSArray *trains = [self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B,C,E", @"A,B,C,D", @"D,C,E", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 	
-	STAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"D"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"E"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"B" toStationName: @"C"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"D"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"C" toStationName: @"E"], @"");
 
-	STAssertTrue([graph edgeExistsFromStationName: @"D" toStationName: @"C"], @"");
-	STAssertFalse([graph edgeExistsFromStationName: @"D" toStationName: @"E"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"D" toStationName: @"C"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"D" toStationName: @"E"], @"");
 }
 
 - (void) testWaterside{
@@ -143,19 +143,19 @@
 												   @"East,East Waterside, Waterside,West Waterside,West",
 												   @"Waterside,Branch,Waterside", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
-	STAssertTrue([graph edgeExistsFromStationName: @"Waterside" toStationName: @"Branch"], @"");
-	STAssertFalse([graph edgeExistsFromStationName: @"West" toStationName: @"Branch"], @"");
-	STAssertFalse([graph edgeExistsFromStationName: @"East" toStationName: @"Branch"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"Waterside" toStationName: @"Branch"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"West" toStationName: @"Branch"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"East" toStationName: @"Branch"], @"");
 
 	
 	// TODO(bowdidge): All wrong below.
 	NSArray *stationList = [graph stationsInReasonableOrder];
-	STAssertEqualObjects(@"East", [((LayoutNode*)[stationList objectAtIndex: 0]).station name], @"");
-	STAssertEqualObjects(@"East Waterside", [((LayoutNode*)[stationList objectAtIndex: 1]).station name], @"");
-	STAssertEqualObjects(@"Waterside", [((LayoutNode*)[stationList objectAtIndex: 2]).station name], @"");
-	STAssertEqualObjects(@"Branch", [((LayoutNode*)[stationList objectAtIndex: 3]).station name], @"");
-	STAssertEqualObjects(@"West Waterside", [((LayoutNode*)[stationList objectAtIndex: 4]).station name], @"");
-	STAssertEqualObjects(@"West", [((LayoutNode*)[stationList objectAtIndex: 5]).station name], @"");
+	XCTAssertEqualObjects(@"East", [((LayoutNode*)[stationList objectAtIndex: 0]).station name], @"");
+	XCTAssertEqualObjects(@"East Waterside", [((LayoutNode*)[stationList objectAtIndex: 1]).station name], @"");
+	XCTAssertEqualObjects(@"Waterside", [((LayoutNode*)[stationList objectAtIndex: 2]).station name], @"");
+	XCTAssertEqualObjects(@"Branch", [((LayoutNode*)[stationList objectAtIndex: 3]).station name], @"");
+	XCTAssertEqualObjects(@"West Waterside", [((LayoutNode*)[stationList objectAtIndex: 4]).station name], @"");
+	XCTAssertEqualObjects(@"West", [((LayoutNode*)[stationList objectAtIndex: 5]).station name], @"");
 }
 
 - (void) testVasonaBranch {
@@ -180,33 +180,33 @@
 												   @"SCZ,GLEN,WSJ,SJY,WSJ,GLEN,SCZ", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 	
-	STAssertTrue([graph edgeExistsFromStationName: @"SJY" toStationName: @"WSJ"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"WSJ" toStationName: @"AUZ"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"SJY" toStationName: @"WSJ"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"WSJ" toStationName: @"AUZ"], @"");
 
 	//Not Campbell to San Jose Yard.
-	STAssertFalse([graph edgeExistsFromStationName: @"SJY" toStationName: @"CAMP"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"SJY" toStationName: @"CAMP"], @"");
 
 	// Campbell to Vasona Junction to Los Gatos
-	STAssertTrue([graph edgeExistsFromStationName: @"CAMP" toStationName: @"VJ"], @"");
-	STAssertTrue([graph edgeExistsFromStationName: @"VJ" toStationName: @"LG"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"CAMP" toStationName: @"VJ"], @"");
+	XCTAssertTrue([graph edgeExistsFromStationName: @"VJ" toStationName: @"LG"], @"");
 	
 	// But not Campbell to Los Gatos.
-	STAssertFalse([graph edgeExistsFromStationName: @"CAMP" toStationName: @"LG"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"CAMP" toStationName: @"LG"], @"");
 
 	// Not Glenwood to West San Jose
-	STAssertFalse([graph edgeExistsFromStationName: @"B" toStationName: @"I"], @"");
+	XCTAssertFalse([graph edgeExistsFromStationName: @"B" toStationName: @"I"], @"");
 
 	// TODO(bowdidge): All wrong below.
 	NSArray *stationList = [graph stationsInReasonableOrder];
-	STAssertEqualObjects(@"SJY", [((LayoutNode*)[stationList objectAtIndex: 0]).station name], @"");
-	STAssertEqualObjects(@"WSJ", [((LayoutNode*)[stationList objectAtIndex: 1]).station name], @"");
-	STAssertEqualObjects(@"AUZ", [((LayoutNode*)[stationList objectAtIndex: 2]).station name], @"");
-	STAssertEqualObjects(@"CAMP", [((LayoutNode*)[stationList objectAtIndex: 3]).station name], @"");
-	STAssertEqualObjects(@"VJ", [((LayoutNode*)[stationList objectAtIndex: 4]).station name], @"");
-	STAssertEqualObjects(@"LG", [((LayoutNode*)[stationList objectAtIndex: 5]).station name], @"");
-	STAssertEqualObjects(@"ALMA", [((LayoutNode*)[stationList objectAtIndex: 6]).station name], @"");
-	STAssertEqualObjects(@"WRI", [((LayoutNode*)[stationList objectAtIndex: 7]).station name], @"");
-	STAssertEqualObjects(@"GLEN", [((LayoutNode*)[stationList objectAtIndex: 8]).station name], @"");
-	STAssertEqualObjects(@"SCZ", [((LayoutNode*)[stationList objectAtIndex: 9]).station name], @"");
+	XCTAssertEqualObjects(@"SJY", [((LayoutNode*)[stationList objectAtIndex: 0]).station name], @"");
+	XCTAssertEqualObjects(@"WSJ", [((LayoutNode*)[stationList objectAtIndex: 1]).station name], @"");
+	XCTAssertEqualObjects(@"AUZ", [((LayoutNode*)[stationList objectAtIndex: 2]).station name], @"");
+	XCTAssertEqualObjects(@"CAMP", [((LayoutNode*)[stationList objectAtIndex: 3]).station name], @"");
+	XCTAssertEqualObjects(@"VJ", [((LayoutNode*)[stationList objectAtIndex: 4]).station name], @"");
+	XCTAssertEqualObjects(@"LG", [((LayoutNode*)[stationList objectAtIndex: 5]).station name], @"");
+	XCTAssertEqualObjects(@"ALMA", [((LayoutNode*)[stationList objectAtIndex: 6]).station name], @"");
+	XCTAssertEqualObjects(@"WRI", [((LayoutNode*)[stationList objectAtIndex: 7]).station name], @"");
+	XCTAssertEqualObjects(@"GLEN", [((LayoutNode*)[stationList objectAtIndex: 8]).station name], @"");
+	XCTAssertEqualObjects(@"SCZ", [((LayoutNode*)[stationList objectAtIndex: 9]).station name], @"");
 }
 @end

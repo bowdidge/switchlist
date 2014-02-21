@@ -77,8 +77,8 @@
 	SwitchListFilterReplaceRandom *switchListFilter = [[[SwitchListFilterReplaceRandom alloc] init] autorelease];
 	[switchListFilter setRandomValues: randomValues];
 	
-	STAssertEqualObjects(@"ABC&emsp;", [switchListFilter jitterString: @"ABC"], @"Failed to append emsp");
-	STAssertFalse([switchListFilter consumedTooManyValues], @"Too many calls to random");
+	XCTAssertEqualObjects(@"ABC&emsp;", [switchListFilter jitterString: @"ABC"], @"Failed to append emsp");
+	XCTAssertFalse([switchListFilter consumedTooManyValues], @"Too many calls to random");
 
 }
 
@@ -87,40 +87,40 @@
 	int randomValues[3] = {2, 1, -1};
 	[switchListFilter_ setRandomValues: randomValues];
 	
-	STAssertEqualObjects(@"ABC&ensp;", [switchListFilter_ jitterString: @"ABC"], @"Failed to append ensp");
-	STAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
+	XCTAssertEqualObjects(@"ABC&ensp;", [switchListFilter_ jitterString: @"ABC"], @"Failed to append ensp");
+	XCTAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
 }
 
 - (void) testAppendNbsp {
 	int randomValues[3] = {0, 1, -1};
 	[switchListFilter_ setRandomValues: randomValues];
 	
-	STAssertEqualObjects(@"ABC&nbsp;", [switchListFilter_ jitterString: @"ABC"], @"Failed to append nbsp");
-	STAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
+	XCTAssertEqualObjects(@"ABC&nbsp;", [switchListFilter_ jitterString: @"ABC"], @"Failed to append nbsp");
+	XCTAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
 }
 
 - (void) testPrependEmsp {
 	int randomValues[3] = {1, 0, -1};
 	[switchListFilter_ setRandomValues: randomValues];
 	
-	STAssertEqualObjects(@"&emsp;ABC", [switchListFilter_ jitterString: @"ABC"], @"Failed to prepend emsp");
-	STAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
+	XCTAssertEqualObjects(@"&emsp;ABC", [switchListFilter_ jitterString: @"ABC"], @"Failed to prepend emsp");
+	XCTAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
 }
 
 - (void) testPrependEnsp {
 	int randomValues[3] = {2, 0, -1};
 	[switchListFilter_ setRandomValues: randomValues];
 	
-	STAssertEqualObjects(@"&ensp;ABC", [switchListFilter_ jitterString: @"ABC"], @"Failed to prepend ensp");
-	STAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
+	XCTAssertEqualObjects(@"&ensp;ABC", [switchListFilter_ jitterString: @"ABC"], @"Failed to prepend ensp");
+	XCTAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
 }
 
 - (void) testPrependNbsp {
 	int randomValues[3] = {0, 0, -1};
 	[switchListFilter_ setRandomValues: randomValues];
 	
-	STAssertEqualObjects(@"&nbsp;ABC", [switchListFilter_ jitterString: @"ABC"], @"Failed to prepend nbsp");
-	STAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
+	XCTAssertEqualObjects(@"&nbsp;ABC", [switchListFilter_ jitterString: @"ABC"], @"Failed to prepend nbsp");
+	XCTAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
 }
 
 
@@ -128,30 +128,30 @@
 	int randomValues2[3] = {0, 2, -1};
 	[switchListFilter_ setRandomValues: randomValues2];
 	
-	STAssertEqualObjects(@"A&nbsp; BC", [switchListFilter_ jitterString: @"A BC"], @"Failed to append emsp");
-	STAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
+	XCTAssertEqualObjects(@"A&nbsp; BC", [switchListFilter_ jitterString: @"A BC"], @"Failed to append emsp");
+	XCTAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
 	
 	int randomValues3[3] = {0, 2, -1};
 	[switchListFilter_ setRandomValues: randomValues3];
 	
-	STAssertEqualObjects(@"ABC&nbsp; ", [switchListFilter_ jitterString: @"ABC "], @"Failed to append emsp");
-	STAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
+	XCTAssertEqualObjects(@"ABC&nbsp; ", [switchListFilter_ jitterString: @"ABC "], @"Failed to append emsp");
+	XCTAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
 
 	int randomValues4[3] = {0, 2, -1};
 	[switchListFilter_ setRandomValues: randomValues4];
 	
-	STAssertEqualObjects(@"&nbsp; ABC ", [switchListFilter_ jitterString: @" ABC "], @"Failed to append emsp");
-	STAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
+	XCTAssertEqualObjects(@"&nbsp; ABC ", [switchListFilter_ jitterString: @" ABC "], @"Failed to append emsp");
+	XCTAssertFalse([switchListFilter_ consumedTooManyValues], @"Too many calls to random");
 }
 
 // Make sure a non-array generates a message.
 - (void) testSumOfLengthsBogus {
-	STAssertContains(@"sum_of_lengths only", [switchListFilter_ sumOfLengths: [NSString string]],
+	XCTAssertContains(@"sum_of_lengths only", [switchListFilter_ sumOfLengths: [NSString string]],
 					@"Did not ignore bogus input.");
 }
 
 - (void) testSumOfLengthsEmpty {
-	STAssertEqualObjects(@"0", [switchListFilter_ sumOfLengths: [NSArray array]], 
+	XCTAssertEqualObjects(@"0", [switchListFilter_ sumOfLengths: [NSArray array]], 
 						 @"Length ot correct.");
 }
 
@@ -159,7 +159,7 @@
 	FreightCar *fc = [self makeFreightCarWithReportingMarks: @""];
 	[fc setLength: [NSNumber numberWithInt: 40]];
 	
-	STAssertEqualObjects(@"40", [switchListFilter_ sumOfLengths: [NSArray arrayWithObject: fc]],
+	XCTAssertEqualObjects(@"40", [switchListFilter_ sumOfLengths: [NSArray arrayWithObject: fc]],
 						 @"Failed on single car..");
 }
 
@@ -174,7 +174,7 @@
 	[fc3 setLength: [NSNumber numberWithInt: 35]];
 
 	NSArray *a = [NSArray arrayWithObjects: fc1, fc2, fc3, nil];
-	STAssertEqualObjects(@"125",
+	XCTAssertEqualObjects(@"125",
 						 [switchListFilter_ sumOfLengths: a],
 						 @"Sum not handled correctly.");
 }
@@ -184,7 +184,7 @@
 	[fc1 setLength: [NSNumber numberWithInt: 40]];
 
 	NSArray *a = [NSArray arrayWithObjects: fc1, @"", nil];
-	STAssertEqualObjects(@"40", [switchListFilter_ sumOfLengths: a],
+	XCTAssertEqualObjects(@"40", [switchListFilter_ sumOfLengths: a],
 						 @"Mixed array not handled correctly.");
 }
 
@@ -200,7 +200,7 @@
 	
 	NSArray *a = [NSArray arrayWithObjects: fc1, fc2, fc3, nil];
 	
-	STAssertEqualObjects(@"75", [switchListFilter_ sumOfLengths: a],
+	XCTAssertEqualObjects(@"75", [switchListFilter_ sumOfLengths: a],
 						 @"Wrong length.");
 }
 

@@ -40,8 +40,8 @@
 	CargoReport *cargoReport = [[[CargoReport alloc] initWithDocument: nil
 													   withIndustries: [NSArray array]] autorelease];
 	[cargoReport setObjects: [entireLayout_ allValidCargos]];
-	STAssertEqualObjects([cargoReport typeString], @"Cargo report", @"Report name not correct");
-	STAssertEqualObjects([cargoReport contents], @"No cargos defined", @"Make sure empty report ok");
+	XCTAssertEqualObjects([cargoReport typeString], @"Cargo report", @"Report name not correct");
+	XCTAssertEqualObjects([cargoReport contents], @"No cargos defined", @"Make sure empty report ok");
 }
 
 // Make sure we don't fall over with missing car types.
@@ -49,13 +49,13 @@
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
 	NSArray *allIndustries = [entireLayout_ allIndustries];
-	STAssertEqualsInt(3, [allIndustries count],  @"Not enough industries for test");
+	XCTAssertEqualInt(3, [allIndustries count],  @"Not enough industries for test");
 	CargoReport *cargoReport = [[CargoReport alloc] initWithDocument: nil
 													  withIndustries: [entireLayout_ allIndustries]];
-	STAssertNotNil([entireLayout_ allValidCargos], @"");
+	XCTAssertNotNil([entireLayout_ allValidCargos], @"");
 	[cargoReport setObjects: [entireLayout_ allValidCargos]];
-	STAssertNotNil([cargoReport contents], @"contents should not be empty");
-	STAssertContains(@"A-industry", [cargoReport contents], @"Make sure A-industry appears in report");
+	XCTAssertNotNil([cargoReport contents], @"contents should not be empty");
+	XCTAssertContains(@"A-industry", [cargoReport contents], @"Make sure A-industry appears in report");
 }
 
 // Make sure we don't fall over with missing car types.
@@ -63,7 +63,7 @@
 	[self makeThreeStationLayout];
 	[self makeThreeStationTrain];
 	NSArray *allIndustries = [entireLayout_ allIndustries];
-	STAssertEqualsInt(3, [allIndustries count], @"Not enough industries for test");
+	XCTAssertEqualInt(3, [allIndustries count], @"Not enough industries for test");
 	CargoReport *cargoReport = [[CargoReport alloc] initWithDocument: nil
 													  withIndustries: [entireLayout_ allIndustries]];
 	NSArray *cargos = [entireLayout_ allValidCargos];
@@ -71,8 +71,8 @@
 	[((Cargo*)[cargos objectAtIndex: 1]) setCarTypeRel: [entireLayout_ carTypeForName: @"XA"]];
 	[cargoReport setObjects: [entireLayout_ allValidCargos]];
 	NSString *contents = [cargoReport contents];
-	STAssertNotNil(contents, @"Contents should not be empty.");
-	STAssertContains(@"7/  0", contents, @"Expected 7/0, got %@", contents);
+	XCTAssertNotNil(contents, @"Contents should not be empty.");
+	XCTAssertContains(@"7/  0", contents, @"Expected 7/0, got %@", contents);
 }
 
 

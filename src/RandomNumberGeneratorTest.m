@@ -28,11 +28,11 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 #import "RandomNumberGenerator.h"
 
-@interface RandomNumberGeneratorTest : SenTestCase {
+@interface RandomNumberGeneratorTest : XCTestCase {
 };
 @end
 
@@ -43,20 +43,20 @@
 	int n2 = [generator generateRandomNumber: 100];
 	int n3 = [generator generateRandomNumber: 100];
 	
-	STAssertFalse(n1 == n2 == n3, @"Three numbers should not have been equal.");
-	STAssertTrue(n1 >= 0 && n1 < 100, @"");
-	STAssertTrue(n2 >= 0 && n2 < 100, @"");
-	STAssertTrue(n3 >= 0 && n3 < 100, @"");
+	XCTAssertFalse(n1 == n2 == n3, @"Three numbers should not have been equal.");
+	XCTAssertTrue(n1 >= 0 && n1 < 100, @"");
+	XCTAssertTrue(n2 >= 0 && n2 < 100, @"");
+	XCTAssertTrue(n3 >= 0 && n3 < 100, @"");
 }
 
 - (void) testOddValues {
 	RandomNumberGenerator *generator = [[[RandomNumberGenerator alloc] init] autorelease];
-	STAssertEquals(0, [generator generateRandomNumber: 0], @"");
-	STAssertEquals(0, [generator generateRandomNumber: 1], @"");
+	XCTAssertEqual(0, [generator generateRandomNumber: 0], @"");
+	XCTAssertEqual(0, [generator generateRandomNumber: 1], @"");
 }
 @end
 
-@interface MockRandomNumberGeneratorTest : SenTestCase {
+@interface MockRandomNumberGeneratorTest : XCTestCase {
 };
 @end
 
@@ -65,21 +65,21 @@
 	MockRandomNumberGenerator *generator = [[[MockRandomNumberGenerator alloc] init] autorelease];
 	
 	// Returns 0 before setNumbers:
-	STAssertEquals(-1, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(-1, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(-1, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(-1, [generator generateRandomNumber: 100], @"");
 
 	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 1], [NSNumber numberWithInt: 2], [NSNumber numberWithInt: 3], nil]];
 	
-	STAssertEquals(1, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(2, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(3, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(-1, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(1, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(2, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(3, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(-1, [generator generateRandomNumber: 100], @"");
 
 	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 1], [NSNumber numberWithInt: 2], [NSNumber numberWithInt: 3], nil]];
-	STAssertEquals(1, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(2, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(3, [generator generateRandomNumber: 100], @"");
-	STAssertEquals(-1, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(1, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(2, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(3, [generator generateRandomNumber: 100], @"");
+	XCTAssertEqual(-1, [generator generateRandomNumber: 100], @"");
 	
 }
 
@@ -87,7 +87,7 @@
 	MockRandomNumberGenerator *generator = [[[MockRandomNumberGenerator alloc] init] autorelease];
 	[generator setNumbers: [NSArray arrayWithObjects: [NSNumber numberWithInt: 5], [NSNumber numberWithInt: 3], nil]];
 	
-	STAssertEquals(-1, [generator generateRandomNumber: 5], @"Expected error when next number == max");
-	STAssertEquals(-1, [generator generateRandomNumber: 2], @"Expected error when next number > max");
+	XCTAssertEqual(-1, [generator generateRandomNumber: 5], @"Expected error when next number == max");
+	XCTAssertEqual(-1, [generator generateRandomNumber: 2], @"Expected error when next number > max");
 }
 @end

@@ -29,11 +29,11 @@
 // SUCH DAMAGE.
 
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 @class HTMLSwitchListWindowController;
 
-@interface HTMLSwitchListWindowControllerTest : SenTestCase {
+@interface HTMLSwitchListWindowControllerTest : XCTestCase {
 	// WindowController to test.
 	HTMLSwitchListWindowController *windowController_;
 }

@@ -47,9 +47,9 @@
 	NSDictionary *stockCars = [CarTypes stockCarTypes];
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
 	NSArray *allCars = [entireLayout_ allFreightCars];
-	STAssertTrue([CarTypes isValidCarType: @"MyType"], @"MyType not considered valid type");
-	STAssertNotNil([carTypes objectForKey: @"MyType"], @"New car type not found");
-	STAssertEquals([[stockCars allKeys] count] + 1, [carTypes count], @"Car type count not correct");
+	XCTAssertTrue([CarTypes isValidCarType: @"MyType"], @"MyType not considered valid type");
+	XCTAssertNotNil([carTypes objectForKey: @"MyType"], @"New car type not found");
+	XCTAssertEqual([[stockCars allKeys] count] + 1, [carTypes count], @"Car type count not correct");
 }
 
 // TODO(bowdidge): Special case ANY?
@@ -61,9 +61,9 @@
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
 	NSArray *allCars = [entireLayout_ allFreightCars];
 
-	STAssertTrue([CarTypes isValidCarType: @"Any"], @"MyType not considered valid ");
-	STAssertNil([carTypes objectForKey: @"Any"], @"New car type not found");
-	STAssertEquals([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
+	XCTAssertTrue([CarTypes isValidCarType: @"Any"], @"MyType not considered valid ");
+	XCTAssertNil([carTypes objectForKey: @"Any"], @"New car type not found");
+	XCTAssertEqual([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
 }
 
 - (void) testCarType_DoNotAddExistingType {
@@ -74,9 +74,9 @@
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
 	NSArray *allCars = [entireLayout_ allFreightCars];
 	
-	STAssertTrue([CarTypes isValidCarType: @"XM"], @"XM not considered valid type");
-	STAssertNotNil([carTypes objectForKey: @"XM"], @"New car type not found");
-	STAssertEquals([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
+	XCTAssertTrue([CarTypes isValidCarType: @"XM"], @"XM not considered valid type");
+	XCTAssertNotNil([carTypes objectForKey: @"XM"], @"New car type not found");
+	XCTAssertEqual([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
 }
 
 - (void) testCarType_TestInvalid {
@@ -88,9 +88,9 @@
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
 	NSArray *allCars = [entireLayout_ allFreightCars];
 	
-	STAssertFalse([CarTypes isValidCarType: carTypeToTest], @"Not supposed to be valid");
-	STAssertNil([carTypes objectForKey: carTypeToTest], @"New car type not found");
-	STAssertEquals([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
+	XCTAssertFalse([CarTypes isValidCarType: carTypeToTest], @"Not supposed to be valid");
+	XCTAssertNil([carTypes objectForKey: carTypeToTest], @"New car type not found");
+	XCTAssertEqual([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
 }
 
 
@@ -106,9 +106,9 @@
 	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
 	NSArray *allCars = [entireLayout_ allFreightCars];
 
-	STAssertTrue([CarTypes isValidCarType: @"ACargo"], @"MyType not considered valid type");
-	STAssertNotNil([carTypes objectForKey: @"ACargo"], @"New car type not found");
-	STAssertEquals([[stockCars allKeys] count] + 1, [carTypes count], @"Car type count not correct");
+	XCTAssertTrue([CarTypes isValidCarType: @"ACargo"], @"MyType not considered valid type");
+	XCTAssertNotNil([carTypes objectForKey: @"ACargo"], @"New car type not found");
+	XCTAssertEqual([[stockCars allKeys] count] + 1, [carTypes count], @"Car type count not correct");
 }
 
 - (void) testCargoTextNoCarType {
@@ -118,7 +118,7 @@
 	[c1 setDestination: [self industryAtStation: @"C"]];
 //	[c1 setPrimitiveValue: @"ACargo" forKey: @"carType"];
 	
-	STAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 cars per week", [c1 tooltip], @"");
+	XCTAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 cars per week", [c1 tooltip], @"");
 }
 
 - (void) testCargoTextNoCarLabelType {
@@ -132,7 +132,7 @@
 	[c1 setDestination: [self industryAtStation: @"C"]];
 	[c1 setCarTypeRel: ct];
 	
-	STAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 'X' cars per week", [c1 tooltip], @"");
+	XCTAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 'X' cars per week", [c1 tooltip], @"");
 }
 
 - (void) testCargoTextWithCarLabelType {
@@ -145,7 +145,7 @@
 	[c1 setDestination: [self industryAtStation: @"C"]];
 	[c1 setCarTypeRel: ct];
 	
-	STAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 'X' (extra-big) cars per week", [c1 tooltip], @"");
+	XCTAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 'X' (extra-big) cars per week", [c1 tooltip], @"");
 }
 
 - (void) testCargoTextWithBlankCarLabelType {
@@ -158,7 +158,7 @@
 	[c1 setDestination: [self industryAtStation: @"C"]];
 	[c1 setCarTypeRel: ct];
 	
-	STAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 'X' cars per week", [c1 tooltip], @"");
+	XCTAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 'X' cars per week", [c1 tooltip], @"");
 }
 
 - (void) testCargoTextWithEmptyDestination {
@@ -171,7 +171,7 @@
 	[c1 setDestination: nil];
 	[c1 setCarTypeRel: ct];
 	
-	STAssertEqualObjects(@"cans, sent from B-industry to No Value, 7 'X' cars per week", [c1 tooltip], @"");
+	XCTAssertEqualObjects(@"cans, sent from B-industry to No Value, 7 'X' cars per week", [c1 tooltip], @"");
 }
 
 - (void) testCargoTextWithEmptySource {
@@ -184,7 +184,7 @@
 	[c1 setDestination: [self industryAtStation: @"B"]];
 	[c1 setCarTypeRel: ct];
 	
-	STAssertEqualObjects(@"cans, sent from No Value to B-industry, 7 'X' cars per week", [c1 tooltip], @"");
+	XCTAssertEqualObjects(@"cans, sent from No Value to B-industry, 7 'X' cars per week", [c1 tooltip], @"");
 }
 
 @end

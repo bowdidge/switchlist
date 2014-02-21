@@ -34,6 +34,7 @@
 
 @dynamic carTypeName;
 @dynamic carTypeDescription;
+@dynamic carTypeLength;
 
 - (void)awakeFromInsert {
 	[super awakeFromInsert];

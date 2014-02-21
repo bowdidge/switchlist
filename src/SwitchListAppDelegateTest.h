@@ -6,10 +6,10 @@
 //  Copyright 2011 Robert Bowdidge. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 
-@interface SwitchListAppDelegateTest : SenTestCase {
+@interface SwitchListAppDelegateTest : XCTestCase {
 		
 }
 

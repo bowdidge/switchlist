@@ -45,7 +45,7 @@
 	Cargo *c1 = [self makeCargo: @"a to b"];
 	[c1 setRate: [NSNumber numberWithInt: 3]];
 	[c1 setRateUnits: [NSNumber numberWithInt: RATE_PER_DAY]];
-	STAssertEqualsInt(21, [[c1 carsPerWeek] intValue], @"Expected 21 cars per week.");
+	XCTAssertEqualInt(21, [[c1 carsPerWeek] intValue], @"Expected 21 cars per week.");
 }
 	
 - (void) testFixedRateCargosAlwaysShowUp {
@@ -71,10 +71,10 @@
 	NSArray *cargos = [cargoAssigner_ cargosForToday: 10];
 	int i;
 	for (i=0; i<5; i++) {
-		STAssertEquals(c1, [cargos objectAtIndex: i], @"%d of 5 cargos not priority", i);
+		XCTAssertEqual(c1, [cargos objectAtIndex: i], @"%d of 5 cargos not priority", i);
 	}
 	int cargoCount = [cargos count];
-	STAssertEqualsInt(15, [cargos count], @"Not enough cargos chosen.");
+	XCTAssertEqualInt(15, [cargos count], @"Not enough cargos chosen.");
 	
 	int numberOfC2=0;
 	for (i=0;i<15;i++) {
@@ -82,11 +82,11 @@
 	}
 	
 	// Should be true most of the time.
-	STAssertTrue(numberOfC2 > 2 && numberOfC2 < 8, @"c2 came up %d times - not random enough?", numberOfC2);
+	XCTAssertTrue(numberOfC2 > 2 && numberOfC2 < 8, @"c2 came up %d times - not random enough?", numberOfC2);
 	
 	for (i=5; i < 15; i++) {
 		Cargo *c = [cargos objectAtIndex: i];
-		STAssertTrue(c == c2 || c == c3, @"%dth cargo is not c2 or c3", i);
+		XCTAssertTrue(c == c2 || c == c3, @"%dth cargo is not c2 or c3", i);
 	}
 }
 
@@ -134,11 +134,11 @@ int CountOfItemInArray(id item, NSArray* array) {
 	
 	NSArray *cargos = [cargoAssigner_ cargosForToday: totalCargoChoiceCount];
 	int cargoCount = [cargos count];
-	STAssertEqualsInt(totalCargoChoiceCount, [cargos count], @"Not enough cargos chosen.");
+	XCTAssertEqualInt(totalCargoChoiceCount, [cargos count], @"Not enough cargos chosen.");
 	
-	STAssertEquals(30, CountOfItemInArray(c1, cargos), @"");
-	STAssertEquals(4, CountOfItemInArray(c2, cargos), @"");
-	STAssertEquals(1, CountOfItemInArray(c3, cargos), @"");
+	XCTAssertEqual(30, CountOfItemInArray(c1, cargos), @"");
+	XCTAssertEqual(4, CountOfItemInArray(c2, cargos), @"");
+	XCTAssertEqual(1, CountOfItemInArray(c3, cargos), @"");
 }
 
 - (void) tearDown {

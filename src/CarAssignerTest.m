@@ -67,91 +67,91 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	
 	
 	// Car fc1 should be a find.
-	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"cargo and car with undefined division");
+	XCTAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"cargo and car with undefined division");
 	
 	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: myCargo_], myFreightCar_, @"Find assigned car with incomplete cargo.");
+	XCTAssertEqualObjects([myCarAssigner assignedCarForCargo: myCargo_], myFreightCar_, @"Find assigned car with incomplete cargo.");
 	
 	
 }
 - (void) testCarAssignerCarDivisionsUnset {
 	[myFreightCar_ setHomeDivision: nil];
 	
-	STAssertNil([myFreightCar_ homeDivision], @"Check home division unset for freight car");
-	STAssertNil([[myCargo_ source] division], @"Check cargo source division unset");
-	STAssertNil([[myCargo_ destination] division], @"Check cargo destination division unset");
+	XCTAssertNil([myFreightCar_ homeDivision], @"Check home division unset for freight car");
+	XCTAssertNil([[myCargo_ source] division], @"Check cargo source division unset");
+	XCTAssertNil([[myCargo_ destination] division], @"Check cargo destination division unset");
 	
 	// Everything has no division - should be a good match.
-	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"cargo and car with undefined division");
+	XCTAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"cargo and car with undefined division");
 		
 	[[myCargo_ source] setDivision: @"ATSF"];
 	// Car is undefined, destination is undefined, so we should use it.
-	STAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"undefined division car, source not of this division");
+	XCTAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"undefined division car, source not of this division");
 
 	[[myCargo_ source] setDivision: nil];
 	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is undefined, source is undefined so we should use it.
-	STAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"undefined division car, destination not of this division");
+	XCTAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"undefined division car, destination not of this division");
 
 	[[myCargo_ source] setDivision: @"ATSF"];
 	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is undefined, source and destination not here.
-	STAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"undefined division car, cargo src, dest not of this division");
+	XCTAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"undefined division car, cargo src, dest not of this division");
 }
 
 - (void) testCarAssignerCarForeignDivision {
 	[myFreightCar_ setHomeDivision: @"ATSF"];
 	
-	STAssertEqualObjects([myFreightCar_ homeDivision], @"ATSF", @"Check foreign car has foreign division");
-	STAssertNil([[myCargo_ source] division], @"Check cargo source division unset");
-	STAssertEqualObjects([[myCargo_ destination] division], nil, @"Check cargo destination division unset");
+	XCTAssertEqualObjects([myFreightCar_ homeDivision], @"ATSF", @"Check foreign car has foreign division");
+	XCTAssertNil([[myCargo_ source] division], @"Check cargo source division unset");
+	XCTAssertEqualObjects([[myCargo_ destination] division], nil, @"Check cargo destination division unset");
 
 
 	// Car isn't of this division, but everything else is undefined.  Should be a good match.
-	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, cargo doesn't care");
+	XCTAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, cargo doesn't care");
 	
 	[[myCargo_ source] setDivision: @"ATSF"];
 	// Car is foreign road, source is foreign.  We should use it.
-	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car and source are both same foreign division");
+	XCTAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car and source are both same foreign division");
 
 	// Car isn't of this division, destination is same foreign division, use.
 	[[myCargo_ source] setDivision: nil];
 	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is home-road, source is here so we should use it
-	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car and destination are same division");
+	XCTAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car and destination are same division");
 	
 	[[myCargo_ source] setDivision: @"ATSF"];
 	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is foreign, source and destination same.  Use.
-	STAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"car, source, dest all the same.");
+	XCTAssertTrue([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"car, source, dest all the same.");
 }
 
 - (void) testCarAssignerCarMismatchDivision {
 	[myFreightCar_ setHomeDivision: @"BN"];
 	
-	STAssertEqualObjects([myFreightCar_ homeDivision], @"BN", @"Check foreign car has foreign division");
-	STAssertNil([[myCargo_ source] division], @"Check cargo source division unset");
-	STAssertNil([[myCargo_ destination] division], @"Check cargo destination division unset");
+	XCTAssertEqualObjects([myFreightCar_ homeDivision], @"BN", @"Check foreign car has foreign division");
+	XCTAssertNil([[myCargo_ source] division], @"Check cargo source division unset");
+	XCTAssertNil([[myCargo_ destination] division], @"Check cargo destination division unset");
 	
 	
 	// Car isn't of this division, but everything else doesn't care.  Should be a good match.
-	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, cargo doesn't care");
+	XCTAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, cargo doesn't care");
 	
 	[[myCargo_ source] setDivision: @"ATSF"];
 	// Car is foreign road, source is foreign.  We should use it.
-	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, destination doesn't care.");
+	XCTAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, destination doesn't care.");
 	
 	// Car isn't of this division, destination is same foreign division, use.
 	[[myCargo_ source] setDivision: nil];
 	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is home-road, source is here so we should use it
-	STAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, source doesn't care.");
+	XCTAssertTrue([carAssigner_ cargo: myCargo_ appropriateForCar: myFreightCar_], @"car foreign, source doesn't care.");
 	
 	[[myCargo_ source] setDivision: @"ATSF"];
 	[[myCargo_ destination] setDivision: @"ATSF"];
 	// Car is foreign, source and destination same.  Use.
-	STAssertFalse([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"car is foreign, and source/dest are different division.");
+	XCTAssertFalse([carAssigner_ cargo:myCargo_ appropriateForCar:myFreightCar_], @"car is foreign, and source/dest are different division.");
 }
 
 // Do we correctly just mark the cargo as loaded if the car's already there?
@@ -161,8 +161,8 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 		
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
-	STAssertTrue([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
+	XCTAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	XCTAssertTrue([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
 }
 
 // Do we mark the cargo as loaded if the car's already there and we're in staging?
@@ -174,8 +174,8 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
-	STAssertFalse([myFreightCar_ isLoaded], @"Test cargo should be not marked as loaded because it can be moved.");
+	XCTAssertEqualObjects([myCarAssigner assignedCarForCargo: myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	XCTAssertFalse([myFreightCar_ isLoaded], @"Test cargo should be not marked as loaded because it can be moved.");
 }
 
 // Do we correctly just mark the cargo as loaded if the car's already there and we're in staging?
@@ -187,8 +187,8 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
-	STAssertFalse([myFreightCar_ isLoaded], @"Test cargo is not marked as loaded because it can be moved in staging.");
+	XCTAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	XCTAssertFalse([myFreightCar_ isLoaded], @"Test cargo is not marked as loaded because it can be moved in staging.");
 }
 
 // Do we correctly just mark the cargo as loaded if the car's already there and we're in staging?
@@ -200,8 +200,8 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
-	STAssertFalse([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
+	XCTAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	XCTAssertFalse([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
 }
 
 // Do we correctly just mark the cargo as loaded in C because it's staging and load comes from offline?
@@ -213,8 +213,8 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
-	STAssertTrue([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
+	XCTAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	XCTAssertTrue([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
 }
 
 
@@ -225,8 +225,8 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObject: myFreightCar_]];
 	[myCarAssigner autorelease];
 	
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
-	STAssertFalse([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
+	XCTAssertEqualObjects([myCarAssigner assignedCarForCargo:myCargo_], myFreightCar_, @"Test car is correctly assigned to cargo");
+	XCTAssertFalse([myFreightCar_ isLoaded], @"Test cargo is marked as loaded because we're already there.");
 }
 
 - (void) testHandlesIncompleteCargoSafely {
@@ -236,28 +236,28 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	[myCarAssigner autorelease];
 	Cargo *incompleteCargo = [self makeCargo: @"a to b"];
 	// This shouldn't crash.
-	STAssertTrue([myCarAssigner cargo:incompleteCargo appropriateForCar:myFreightCar_], @"car foreign, cargo doesn't care");
-	STAssertEqualObjects([myCarAssigner assignedCarForCargo: incompleteCargo], myFreightCar_, @"Find assigned car with incomplete cargo.");
-	STAssertNotNil([myFreightCar_ cargo], @"Cargo assigned");
-	STAssertFalse([myFreightCar_ isLoaded], @"Cargo should not be loaded.");
+	XCTAssertTrue([myCarAssigner cargo:incompleteCargo appropriateForCar:myFreightCar_], @"car foreign, cargo doesn't care");
+	XCTAssertEqualObjects([myCarAssigner assignedCarForCargo: incompleteCargo], myFreightCar_, @"Find assigned car with incomplete cargo.");
+	XCTAssertNotNil([myFreightCar_ cargo], @"Cargo assigned");
+	XCTAssertFalse([myFreightCar_ isLoaded], @"Cargo should not be loaded.");
 }
 
 // TODO(bowdidge): Move to freight car test eventually.
 - (void) testFreightCarHomeDivision {
-	STAssertNil([myFreightCar_ homeDivision], @"Check division starts empty.");
+	XCTAssertNil([myFreightCar_ homeDivision], @"Check division starts empty.");
 	
 	[myFreightCar_ setHomeDivision: @"BN"];
-	STAssertEqualObjects([myFreightCar_ homeDivision], @"BN", @"Check home division is settable.");
+	XCTAssertEqualObjects([myFreightCar_ homeDivision], @"BN", @"Check home division is settable.");
 	
 	[myFreightCar_ setHomeDivision: @"Here"];
-	STAssertEqualObjects([myFreightCar_ homeDivision], @"Here", @"Check setting home division to Here works.");
+	XCTAssertEqualObjects([myFreightCar_ homeDivision], @"Here", @"Check setting home division to Here works.");
 
 	
 	[myFreightCar_ setHomeDivision: @""];
-	STAssertNil([myFreightCar_ homeDivision], @"Check setting home division to empty string works.");
+	XCTAssertNil([myFreightCar_ homeDivision], @"Check setting home division to empty string works.");
 
 	[myFreightCar_ setHomeDivision: @" "];
-	STAssertNil([myFreightCar_ homeDivision], @"Check setting home division to spaces works.");
+	XCTAssertNil([myFreightCar_ homeDivision], @"Check setting home division to spaces works.");
 }
 
 - (void) testSameCarNotAssignedEveryTime {
@@ -275,9 +275,10 @@ NSString *FREIGHT_CAR_4 = @"NYC 1";
 	 
 	CarAssigner *myCarAssigner = [[CarAssigner alloc] initWithUnassignedCars: [NSArray arrayWithObjects: myFreightCar_, fc2, nil]];
 	// Make sure the two cars both get picked.
-	STAssertEquals(fc2, [myCarAssigner assignedCarForCargo:myCargo_], @"");
-	STAssertEquals(myFreightCar_, [myCarAssigner assignedCarForCargo:myCargo_], @"");
-	STAssertNil([myCarAssigner assignedCarForCargo:myCargo_], @"");
+    // TODO(bowdidge): Failing randomly.
+	XCTAssertEqualObjects(fc2, [myCarAssigner assignedCarForCargo:myCargo_], @"%@ vs %@", [fc2 reportingMarks], [[myCarAssigner assignedCarForCargo: myCargo_] reportingMarks]);
+	XCTAssertEqual(myFreightCar_, [myCarAssigner assignedCarForCargo:myCargo_], @"%@ vs %@", [myFreightCar_ reportingMarks], [[myCarAssigner assignedCarForCargo: myCargo_] reportingMarks]);
+	XCTAssertNil([myCarAssigner assignedCarForCargo:myCargo_], @"");
 }
 
 @end

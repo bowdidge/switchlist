@@ -50,15 +50,15 @@
 	
 	ScheduledTrain *train = [entireLayout_ trainWithName: @"MyTrain"];
 	// Test raw string is the old form with commas.
-	STAssertEqualObjects(@"A,B,C", [train stops], @"Station stops not as expected.");
+	XCTAssertEqualObjects(@"A,B,C", [train stops], @"Station stops not as expected.");
 	
 	// Test that the parsing code correctly handles the old-style separator.
 	NSArray *stationStops = [train stationsInOrder];
 
-	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in station stop array");
-	STAssertEqualObjects(@"A", [[stationStops objectAtIndex: 0] name], @"station stops array wrong");
-	STAssertEqualObjects(@"B", [[stationStops objectAtIndex: 1] name], @"station stops array wrong");
-	STAssertEqualObjects(@"C", [[stationStops objectAtIndex: 2] name], @"station stops array wrong");
+	XCTAssertEqualInt(3, [stationStops count], @"Wrong number of items in station stop array");
+	XCTAssertEqualObjects(@"A", [[stationStops objectAtIndex: 0] name], @"station stops array wrong");
+	XCTAssertEqualObjects(@"B", [[stationStops objectAtIndex: 1] name], @"station stops array wrong");
+	XCTAssertEqualObjects(@"C", [[stationStops objectAtIndex: 2] name], @"station stops array wrong");
 }
 
 - (void) testNoStationStrings {
@@ -69,7 +69,7 @@
     [train setStops: @""];
 	NSArray *stationStops = [train stationsInOrder];
     
-	STAssertEqualsInt(0, [stationStops count], @"Wrong number of items in station stop array");
+	XCTAssertEqualInt(0, [stationStops count], @"Wrong number of items in station stop array");
 }	
 
 - (void) testStationStringsWithComma {
@@ -81,10 +81,10 @@
 	[train setStationsInOrder: [NSArray arrayWithObjects: p1, p2, p3, nil]];
 
 	NSArray *stationStops = [train stationsInOrder];
-	STAssertEqualsInt(3, [stationStops count], @"Wrong number of items in station stop array");
-	STAssertEqualObjects(p1, [stationStops objectAtIndex: 0], @"station stops array wrong");
-	STAssertEqualObjects(p2, [stationStops objectAtIndex: 1], @"station stops array wrong");
-	STAssertEqualObjects(p3, [stationStops objectAtIndex: 2], @"station stops array wrong");
+	XCTAssertEqualInt(3, [stationStops count], @"Wrong number of items in station stop array");
+	XCTAssertEqualObjects(p1, [stationStops objectAtIndex: 0], @"station stops array wrong");
+	XCTAssertEqualObjects(p2, [stationStops objectAtIndex: 1], @"station stops array wrong");
+	XCTAssertEqualObjects(p3, [stationStops objectAtIndex: 2], @"station stops array wrong");
 }	
 
 // Tests object used for rendering some HTML switchlists.
@@ -93,53 +93,53 @@
 	ScheduledTrain *train = [self makeThreeStationTrain];
 	[train setStops: @"A,B,C,B,A"];
 	NSArray *result = [train trainWorkByStation];
-	STAssertEqualsInt(5, [result count], @"");
+	XCTAssertEqualInt(5, [result count], @"");
 	// TODO(bowdidge): Wrong.
 	NSDictionary *stationA =  [result objectAtIndex: 0];
 
-	STAssertEqualObjects(@"A", [[stationA objectForKey: @"station"] name], @"");
-	STAssertEqualsInt(0, [[stationA objectForKey: @"emptyCount"] intValue], @"");
-	STAssertEqualsInt(1, [[stationA objectForKey: @"loadedCount"] intValue], @"");
-	STAssertEqualsInt(1, [[stationA objectForKey: @"carsToPickUp"] count], @"");
-	STAssertEqualsInt(0, [[stationA objectForKey: @"carsToDropOff"] count], @"");
+	XCTAssertEqualObjects(@"A", [[stationA objectForKey: @"station"] name], @"");
+	XCTAssertEqualInt(0, [[stationA objectForKey: @"emptyCount"] intValue], @"");
+	XCTAssertEqualInt(1, [[stationA objectForKey: @"loadedCount"] intValue], @"");
+	XCTAssertEqualInt(1, [[stationA objectForKey: @"carsToPickUp"] count], @"");
+	XCTAssertEqualInt(0, [[stationA objectForKey: @"carsToDropOff"] count], @"");
 
-	STAssertEqualsInt(1, [[stationA objectForKey: @"industries"] count], @"");
+	XCTAssertEqualInt(1, [[stationA objectForKey: @"industries"] count], @"");
 	NSDictionary *industryA =  [[stationA objectForKey: @"industries"] objectAtIndex: 0];
-	STAssertEqualObjects(@"A-industry", [[industryA objectForKey: @"industry"] name], @"");
-	STAssertEqualsInt(1, [[industryA objectForKey: @"carsToPickUp"] count], @"");
-	STAssertEqualsInt(0, [[industryA objectForKey: @"carsToDropOff"] count], @"");\
+	XCTAssertEqualObjects(@"A-industry", [[industryA objectForKey: @"industry"] name], @"");
+	XCTAssertEqualInt(1, [[industryA objectForKey: @"carsToPickUp"] count], @"");
+	XCTAssertEqualInt(0, [[industryA objectForKey: @"carsToDropOff"] count], @"");\
 	
 	NSDictionary *stationB =  [result objectAtIndex: 1];
-	STAssertEqualObjects(@"B", [[stationB objectForKey: @"station"] name], @"");
-	STAssertEqualsInt(0, [[stationB objectForKey: @"emptyCount"] intValue], @"");
-	STAssertEqualsInt(1, [[stationB objectForKey: @"loadedCount"] intValue], @"");
-	STAssertEqualsInt(1, [[stationB objectForKey: @"carsToPickUp"] count], @"");
-	STAssertEqualsInt(1, [[stationB objectForKey: @"carsToDropOff"] count], @"");
+	XCTAssertEqualObjects(@"B", [[stationB objectForKey: @"station"] name], @"");
+	XCTAssertEqualInt(0, [[stationB objectForKey: @"emptyCount"] intValue], @"");
+	XCTAssertEqualInt(1, [[stationB objectForKey: @"loadedCount"] intValue], @"");
+	XCTAssertEqualInt(1, [[stationB objectForKey: @"carsToPickUp"] count], @"");
+	XCTAssertEqualInt(1, [[stationB objectForKey: @"carsToDropOff"] count], @"");
 
-	STAssertEqualsInt(1, [[stationB objectForKey: @"industries"] count], @"");
+	XCTAssertEqualInt(1, [[stationB objectForKey: @"industries"] count], @"");
 	NSDictionary *industryB =  [[stationB objectForKey: @"industries"] objectAtIndex: 0];
-	STAssertEqualObjects(@"B-industry", [[industryB objectForKey: @"industry"] name], @"");
-	STAssertEqualsInt(1, [[industryB objectForKey: @"carsToPickUp"] count], @"");
-	STAssertEqualsInt(1, [[industryB objectForKey: @"carsToDropOff"] count], @"");\
+	XCTAssertEqualObjects(@"B-industry", [[industryB objectForKey: @"industry"] name], @"");
+	XCTAssertEqualInt(1, [[industryB objectForKey: @"carsToPickUp"] count], @"");
+	XCTAssertEqualInt(1, [[industryB objectForKey: @"carsToDropOff"] count], @"");\
 	
 	NSDictionary *stationC = [result objectAtIndex: 2];
-	STAssertEqualObjects(@"C", [[stationC objectForKey: @"station"] name], @"");
-	STAssertEqualsInt(0, [[stationC objectForKey: @"emptyCount"] intValue], @"");
-	STAssertEqualsInt(0, [[stationC objectForKey: @"loadedCount"] intValue], @"");
-	STAssertEqualsInt(0, [[stationC objectForKey: @"carsToPickUp"] count], @"");
-	STAssertEqualsInt(1, [[stationC objectForKey: @"carsToDropOff"] count], @"");
+	XCTAssertEqualObjects(@"C", [[stationC objectForKey: @"station"] name], @"");
+	XCTAssertEqualInt(0, [[stationC objectForKey: @"emptyCount"] intValue], @"");
+	XCTAssertEqualInt(0, [[stationC objectForKey: @"loadedCount"] intValue], @"");
+	XCTAssertEqualInt(0, [[stationC objectForKey: @"carsToPickUp"] count], @"");
+	XCTAssertEqualInt(1, [[stationC objectForKey: @"carsToDropOff"] count], @"");
 
-	STAssertEqualObjects(@"B", [[[result objectAtIndex: 3] objectForKey: @"station"] name], @"");
-	STAssertEqualsInt(0, [[[result objectAtIndex: 3] objectForKey: @"emptyCount"] intValue], @"");
-	STAssertEqualsInt(0, [[[result objectAtIndex: 3] objectForKey: @"loadedCount"] intValue], @"");
-	STAssertEqualsInt(0, [[[result objectAtIndex: 3] objectForKey: @"carsToPickUp"] count], @"");
-	STAssertEqualsInt(0, [[[result objectAtIndex: 3] objectForKey: @"carsToDropOff"] count], @"");
+	XCTAssertEqualObjects(@"B", [[[result objectAtIndex: 3] objectForKey: @"station"] name], @"");
+	XCTAssertEqualInt(0, [[[result objectAtIndex: 3] objectForKey: @"emptyCount"] intValue], @"");
+	XCTAssertEqualInt(0, [[[result objectAtIndex: 3] objectForKey: @"loadedCount"] intValue], @"");
+	XCTAssertEqualInt(0, [[[result objectAtIndex: 3] objectForKey: @"carsToPickUp"] count], @"");
+	XCTAssertEqualInt(0, [[[result objectAtIndex: 3] objectForKey: @"carsToDropOff"] count], @"");
 
-	STAssertEqualObjects(@"A", [[[result objectAtIndex: 4] objectForKey: @"station"] name], @"");
-	STAssertEqualsInt(0, [[[result objectAtIndex: 4] objectForKey: @"emptyCount"] intValue], @"");
-	STAssertEqualsInt(0, [[[result objectAtIndex: 4] objectForKey: @"loadedCount"] intValue], @"");
-	STAssertEqualsInt(0, [[[result objectAtIndex: 4] objectForKey: @"carsToPickUp"] count], @"");
-	STAssertEqualsInt(0, [[[result objectAtIndex: 4] objectForKey: @"carsToDropOff"] count], @"");
+	XCTAssertEqualObjects(@"A", [[[result objectAtIndex: 4] objectForKey: @"station"] name], @"");
+	XCTAssertEqualInt(0, [[[result objectAtIndex: 4] objectForKey: @"emptyCount"] intValue], @"");
+	XCTAssertEqualInt(0, [[[result objectAtIndex: 4] objectForKey: @"loadedCount"] intValue], @"");
+	XCTAssertEqualInt(0, [[[result objectAtIndex: 4] objectForKey: @"carsToPickUp"] count], @"");
+	XCTAssertEqualInt(0, [[[result objectAtIndex: 4] objectForKey: @"carsToDropOff"] count], @"");
 }
 @end
 
@@ -176,19 +176,19 @@
 	NSArray *work = [train trainWorkByStation];
 	NSDictionary *params = [NSDictionary dictionaryWithObject: work forKey: @"work"];
 	NSString *result = [engine_ processTemplate: switchlistTemplate withVariables:params];
-	STAssertContains(@"station A:", result, @"Missing station name");
-	STAssertContains(@"B: industry B-industry", result, @"Missing industry name");
+	XCTAssertContains(@"station A:", result, @"Missing station name");
+	XCTAssertContains(@"B: industry B-industry", result, @"Missing industry name");
 }
 
 // Make sure the stationsInOrder method correctly uses the cache.
 - (void) testCacheInvalidation {
 	ScheduledTrain *train = [self makeThreeStationTrain];
 	[train setStops: @"A,B,C,B,A"];
-	STAssertEqualsInt(5, [[train stationsInOrder] count], @"");
-	STAssertEqualsInt(5, [[train stationsInOrder] count], @"");
+	XCTAssertEqualInt(5, [[train stationsInOrder] count], @"");
+	XCTAssertEqualInt(5, [[train stationsInOrder] count], @"");
 
 	[train setStops: @"A,B,C"];
-	STAssertEqualsInt(3, [[train stationsInOrder] count], @"");
+	XCTAssertEqualInt(3, [[train stationsInOrder] count], @"");
 	
 	// TODO(bowdidge): Should use mock to prove we're actually retrieving the cached value.
 }

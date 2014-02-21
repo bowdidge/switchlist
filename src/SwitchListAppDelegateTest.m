@@ -23,6 +23,6 @@
 	//	NSHTTPURLResponse *response;
 	//	NSError *error;
 	//    NSData *data = [NSURLConnection sendSynchronousRequest: request returningResponse: &response error: &error];
-	//	STAssertTrue(200 == [response statusCode], @"wrong status");
+	//	XCTAssertTrue(200 == [response statusCode], @"wrong status");
 }		
 @end

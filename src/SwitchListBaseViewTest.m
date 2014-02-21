@@ -38,55 +38,55 @@
 - (void) testSplitStringByDashes {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"AAA ___ AAA"];
-	STAssertEqualsInt(3, [a count], @"Count should have been 3 but was %d", [a count]);
-	STAssertEqualObjects(@"AAA ", [a objectAtIndex: 0], @"");
-	STAssertEqualObjects(@"___", [a objectAtIndex: 1], @"");
-	STAssertEqualObjects(@" AAA", [a objectAtIndex: 2], @"");
+	XCTAssertEqualInt(3, [a count], @"Count should have been 3 but was %ld", [a count]);
+	XCTAssertEqualObjects(@"AAA ", [a objectAtIndex: 0], @"");
+	XCTAssertEqualObjects(@"___", [a objectAtIndex: 1], @"");
+	XCTAssertEqualObjects(@" AAA", [a objectAtIndex: 2], @"");
 }
 
 // TODO(bowdidge): Should be 3, but gets extra space at the end.
 - (void) brokenTestAdjoiningDashes {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"___ ___ "];
-	STAssertEqualsInt(3, [a count], @"Count should have been 3 but was %d for %@", [a count], a);
-	STAssertEqualObjects(@"___", [a objectAtIndex: 0], @"");
-	STAssertEqualObjects(@" ", [a objectAtIndex: 1], @"");
-	STAssertEqualObjects(@"___", [a objectAtIndex: 2], @"");
+	XCTAssertEqualInt(3, [a count], @"Count should have been 3 but was %ld for %@", [a count], a);
+	XCTAssertEqualObjects(@"___", [a objectAtIndex: 0], @"");
+	XCTAssertEqualObjects(@" ", [a objectAtIndex: 1], @"");
+	XCTAssertEqualObjects(@"___", [a objectAtIndex: 2], @"");
 }
 
 - (void) testNoDashes {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"Foo Bar Baz"];
-	STAssertEqualsInt(1, [a count], @"Count should have been 1 but was %d for %@", [a count], a);
-	STAssertEqualObjects(@"Foo Bar Baz", [a objectAtIndex: 0], @"");
+	XCTAssertEqualInt(1, [a count], @"Count should have been 1 but was %ld for %@", [a count], a);
+	XCTAssertEqualObjects(@"Foo Bar Baz", [a objectAtIndex: 0], @"");
 }
 
 - (void) testDashesAtStart {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"____Name"];
-	STAssertEqualsInt(2, [a count], @"Count should have been 2 but was %d for %@", [a count], a);
-	STAssertEqualObjects(@"____", [a objectAtIndex: 0], @"");
-	STAssertEqualObjects(@"Name", [a objectAtIndex: 1], @"");
+	XCTAssertEqualInt(2, [a count], @"Count should have been 2 but was %ld for %@", [a count], a);
+	XCTAssertEqualObjects(@"____", [a objectAtIndex: 0], @"");
+	XCTAssertEqualObjects(@"Name", [a objectAtIndex: 1], @"");
 }
 
 - (void) testDashesAtEnd {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSArray *a = [view splitStringByDashes: @"Name:_______"];
-	STAssertEqualsInt(2, [a count], @"Count should have been 2 but was %d for %@", [a count], a);
-	STAssertEqualObjects(@"Name:", [a objectAtIndex: 0], @"");
-	STAssertEqualObjects(@"_______", [a objectAtIndex: 1], @"");
+	XCTAssertEqualInt(2, [a count], @"Count should have been 2 but was %ld for %@", [a count], a);
+	XCTAssertEqualObjects(@"Name:", [a objectAtIndex: 0], @"");
+	XCTAssertEqualObjects(@"_______", [a objectAtIndex: 1], @"");
 }
 
 - (void) testRandomFunctionary {
 	SwitchListBaseView *view = [[SwitchListBaseView alloc] initWithFrame: NSMakeRect(0,0,400,400) withDocument: nil];
 	NSString *firstString = [view randomFunctionary: 0];
 	// Make sure same answer each time.
-	STAssertEqualObjects(firstString, [view randomFunctionary: 0], @"");
+	XCTAssertEqualObjects(firstString, [view randomFunctionary: 0], @"");
 	// Make sure changed seed returns different value.
-	STAssertFalse([firstString compare: [view randomFunctionary: 1]] == NSOrderedSame, @"");
+	XCTAssertFalse([firstString compare: [view randomFunctionary: 1]] == NSOrderedSame, @"");
 	// Make sure likely seed returns different value.
 	// 540 is likely window size.
-	STAssertFalse([firstString compare: [view randomFunctionary: 720]] == NSOrderedSame,
+	XCTAssertFalse([firstString compare: [view randomFunctionary: 720]] == NSOrderedSame,
 				  @"%@ shouldn't equal %@", firstString, [view randomFunctionary: 540]);
 }
 @end

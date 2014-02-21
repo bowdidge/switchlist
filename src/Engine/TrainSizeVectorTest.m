@@ -63,18 +63,18 @@
 	TrainSizeVector *trainSizeVector = [[[TrainSizeVector alloc] initWithCars: cars
 																		stops: stops_] autorelease];
 	NSArray *changeInLength = [trainSizeVector vector];
-	STAssertEqualsInt(3, [changeInLength count], @"");
+	XCTAssertEqualInt(3, [changeInLength count], @"");
 	// Car1 goes a to b, car2 goes b to c.
-	STAssertEqualsInt(40, [[changeInLength objectAtIndex: 0] changeInLengthAtStop],
+	XCTAssertEqualInt(40, [[changeInLength objectAtIndex: 0] changeInLengthAtStop],
                       @"");
-	STAssertEqualsInt(0, [[changeInLength objectAtIndex: 1] changeInLengthAtStop],
+	XCTAssertEqualInt(0, [[changeInLength objectAtIndex: 1] changeInLengthAtStop],
                       @"");
-	STAssertEqualsInt(-40, [[changeInLength objectAtIndex: 2] changeInLengthAtStop],
+	XCTAssertEqualInt(-40, [[changeInLength objectAtIndex: 2] changeInLengthAtStop],
                       @"");
 	
-	STAssertFalse([trainSizeVector vectorExceedsLength: 80], @"");
-	STAssertFalse([trainSizeVector vectorExceedsLength: 40], @"");
-	STAssertTrue([trainSizeVector vectorExceedsLength: 0], @"");				
+	XCTAssertFalse([trainSizeVector vectorExceedsLength: 80], @"");
+	XCTAssertFalse([trainSizeVector vectorExceedsLength: 40], @"");
+	XCTAssertTrue([trainSizeVector vectorExceedsLength: 0], @"");				
 }
 	 
 - (void) testSimpleUnloaded {
@@ -86,18 +86,18 @@
 	TrainSizeVector *trainSizeVector = [[[TrainSizeVector alloc] initWithCars: cars stops: stops_] autorelease];
     NSArray *changeInLength = [trainSizeVector vector];
 		  
-    STAssertEqualsInt(3, [changeInLength count], @"");
+    XCTAssertEqualInt(3, [changeInLength count], @"");
 	// Car1 goes a to b, car2 goes b to c.
-	STAssertEqualsInt(40, [[changeInLength objectAtIndex: 0] changeInLengthAtStop],
+	XCTAssertEqualInt(40, [[changeInLength objectAtIndex: 0] changeInLengthAtStop],
                       @"");
-	STAssertEqualsInt(0, [[changeInLength objectAtIndex: 1] changeInLengthAtStop],
+	XCTAssertEqualInt(0, [[changeInLength objectAtIndex: 1] changeInLengthAtStop],
                       @"");
-	STAssertEqualsInt(-40, [[changeInLength objectAtIndex: 2] changeInLengthAtStop],
+	XCTAssertEqualInt(-40, [[changeInLength objectAtIndex: 2] changeInLengthAtStop],
                       @"");
 		  
-	STAssertFalse([trainSizeVector vectorExceedsLength: 80], @"");
-	STAssertFalse([trainSizeVector vectorExceedsLength: 40], @"");
-	STAssertTrue([trainSizeVector vectorExceedsLength: 0], @"");				
+	XCTAssertFalse([trainSizeVector vectorExceedsLength: 80], @"");
+	XCTAssertFalse([trainSizeVector vectorExceedsLength: 40], @"");
+	XCTAssertTrue([trainSizeVector vectorExceedsLength: 0], @"");				
 }
 
 - (void) testTrainLengthArrayCorrectlyHandlesCarsNotMovedBetweenTowns {
@@ -114,14 +114,14 @@
 																		stops: stops_] autorelease];
 	NSArray *changeInLength = [trainSizeVector vector];
 	
-	STAssertEqualsInt(3, [changeInLength count], @"change in length array wrong size");
-	STAssertEqualsInt(40, [[changeInLength objectAtIndex: 0] changeInLengthAtStop], @"Wrong change in car count for town A");
-	STAssertEqualsInt(-40, [[changeInLength objectAtIndex: 1] changeInLengthAtStop], @"Wrong change in car count for town B");
-	STAssertEqualsInt(0, [[changeInLength objectAtIndex: 2] changeInLengthAtStop], @"Wrong change in car count for town C");
+	XCTAssertEqualInt(3, [changeInLength count], @"change in length array wrong size");
+	XCTAssertEqualInt(40, [[changeInLength objectAtIndex: 0] changeInLengthAtStop], @"Wrong change in car count for town A");
+	XCTAssertEqualInt(-40, [[changeInLength objectAtIndex: 1] changeInLengthAtStop], @"Wrong change in car count for town B");
+	XCTAssertEqualInt(0, [[changeInLength objectAtIndex: 2] changeInLengthAtStop], @"Wrong change in car count for town C");
 
-	STAssertFalse([trainSizeVector vectorExceedsLength: 80], @"");
-	STAssertFalse([trainSizeVector vectorExceedsLength: 40], @"");
-	STAssertTrue([trainSizeVector vectorExceedsLength: 0], @"");				
+	XCTAssertFalse([trainSizeVector vectorExceedsLength: 80], @"");
+	XCTAssertFalse([trainSizeVector vectorExceedsLength: 40], @"");
+	XCTAssertTrue([trainSizeVector vectorExceedsLength: 0], @"");				
 }
 
 - (void) testCarsNotMovingDoNotAffectTrainLength {
@@ -141,10 +141,10 @@
 	TrainSizeVector *trainSizeVector = [[[TrainSizeVector alloc] initWithCars: cars
 																		stops: stops_] autorelease];
 	NSArray *changeInLength = [trainSizeVector vector];
-	STAssertEqualsInt(3, [changeInLength count], @"change in length array wrong size");
-	STAssertEqualsInt(0, [[changeInLength objectAtIndex: 0] changeInLengthAtStop], @"Wrong change in car cound for town A");
-	STAssertEqualsInt(0, [[changeInLength objectAtIndex: 1] changeInLengthAtStop], @"Wrong change in car cound for town B");
-	STAssertEqualsInt(0, [[changeInLength objectAtIndex: 2] changeInLengthAtStop], @"Wrong change in car cound for town C");
+	XCTAssertEqualInt(3, [changeInLength count], @"change in length array wrong size");
+	XCTAssertEqualInt(0, [[changeInLength objectAtIndex: 0] changeInLengthAtStop], @"Wrong change in car cound for town A");
+	XCTAssertEqualInt(0, [[changeInLength objectAtIndex: 1] changeInLengthAtStop], @"Wrong change in car cound for town B");
+	XCTAssertEqualInt(0, [[changeInLength objectAtIndex: 2] changeInLengthAtStop], @"Wrong change in car cound for town C");
 }
 
 @end
@@ -191,13 +191,13 @@
 	
 	TrainSizeVector *trainVector = [[[TrainSizeVector alloc] initWithCars: cars stops: stops_] autorelease];
 	TrainSizeVector *addedCarVector = [[[TrainSizeVector alloc] initWithCars: addedCarArray stops: stops_] autorelease];
-	STAssertTrue([trainVector vectorExceedsLength: 40], @"Expected train max length greater than 80 but found %@", trainVector);
+	XCTAssertTrue([trainVector vectorExceedsLength: 40], @"Expected train max length greater than 80 but found %@", trainVector);
 	// This fails because b->b not treated as same location.
-	STAssertFalse([trainVector vectorExceedsLength: 80], @"Expected train never longer than 80, but found %@", trainVector);
-	STAssertFalse([addedCarVector vectorExceedsLength: 40], @"");
+	XCTAssertFalse([trainVector vectorExceedsLength: 80], @"Expected train never longer than 80, but found %@", trainVector);
+	XCTAssertFalse([addedCarVector vectorExceedsLength: 40], @"");
 	
 	[addedCarVector addVector: trainVector];
-	STAssertFalse([trainVector vectorExceedsLength: 80], @"Expected maximum length = 80, was %d", [trainVector maximumLength]);
+	XCTAssertFalse([trainVector vectorExceedsLength: 80], @"Expected maximum length = 80, was %d", [trainVector maximumLength]);
 }
 
 - (void) testOutAndBack2 {
@@ -208,7 +208,7 @@
 	
 
 	TrainSizeVector *trainVector = [[[TrainSizeVector alloc] initWithCars: cars stops: stops_] autorelease];
-	STAssertEqualsInt(40, [trainVector maximumLength], @"");
+	XCTAssertEqualInt(40, [trainVector maximumLength], @"");
 }
 
 @end

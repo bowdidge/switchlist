@@ -29,7 +29,7 @@
 // SUCH DAMAGE.
 
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import <CoreData/CoreData.h>
 
 #import "NSManagedObjectContext.h"
@@ -46,7 +46,7 @@
 
 
 // Base class holds test harness code for building up sample layouts in the persistent store.
-@interface LayoutTest : SenTestCase {
+@interface LayoutTest : XCTestCase {
 	NSPersistentStoreCoordinator *coord_;
     NSManagedObjectContext *context_;
     NSManagedObjectModel *model_;

@@ -41,7 +41,7 @@
 	Place *a = [entireLayout_ stationWithName: @"A"];
 	Place *b = [entireLayout_ stationWithName: @"B"];
 
-	STAssertFalse([a hasYard], @"Should not have yard.");
-	STAssertTrue([b hasYard], @"Should have yard.");
+	XCTAssertFalse([a hasYard], @"Should not have yard.");
+	XCTAssertTrue([b hasYard], @"Should have yard.");
 }
 @end

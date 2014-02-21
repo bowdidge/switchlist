@@ -29,10 +29,10 @@
 // SUCH DAMAGE.
 
 #import <Cocoa/Cocoa.h>
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
 
-@interface SwitchListBaseViewTest : SenTestCase {
+@interface SwitchListBaseViewTest : XCTestCase {
 
 }
 

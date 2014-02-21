@@ -85,7 +85,7 @@
 	NSString *fileToRequest = @"/foo.app/Contents/MacOS/SwitchListStyle/foo.css";
 
 	NSURLRequest *actualRequest = [self getRequestedFileNameForFile: fileToRequest withinTemplate: templateFile];
-	STAssertEqualObjects(fileToRequest, [[actualRequest URL] path],
+	XCTAssertEqualObjects(fileToRequest, [[actualRequest URL] path],
 						@"Request should have been passed through unmolested.");
 }
 
@@ -95,23 +95,23 @@
 	NSString *fileToRequest = @"/etc/passwd";
 	
 	// Double-check fileToRequest exists so test fails because of access, not existence.
-	STAssertTrue([[NSFileManager defaultManager] fileExistsAtPath: fileToRequest], @"Test requires /etc/password to exist.");
+	XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath: fileToRequest], @"Test requires /etc/password to exist.");
 	
 	NSURLRequest *actualRequest = [self getRequestedFileNameForFile: templateFile withinTemplate: fileToRequest];
-	STAssertNil(actualRequest, @"Request should have been refused.");
+	XCTAssertNil(actualRequest, @"Request should have been refused.");
 }
 
 - (void) testRequestFileWithNoTemplateDirectory {
 	NSString *cssFile = @"/foo.app/Contents/MacOS/SwitchListStyle/foo.css";
 	NSURLRequest *actualRequest = [self getRequestedFileNameForFile: cssFile withinTemplate: @""];
-	STAssertNil(actualRequest, @"Request should have been refused.");
+	XCTAssertNil(actualRequest, @"Request should have been refused.");
 }
 
 - (void) testRequestFileInSubdirectory {
 	NSString *templateName = @"/MyTemplates/Foo/switchlist.html";
 	NSString *cssFile = @"/MyTemplates/Bar/foo.css";
 	NSURLRequest *actualRequest = [self getRequestedFileNameForFile: cssFile withinTemplate: templateName];
-	STAssertNil(actualRequest, @"Request should have been refused.");
+	XCTAssertNil(actualRequest, @"Request should have been refused.");
 }
 
 @end

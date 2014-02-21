@@ -15,43 +15,43 @@
 @implementation PlaceTest
 - (void) testIsStaging {
 	Place *stationA = [self makePlaceWithName: @"A"];
-	STAssertEqualObjects(@"On Layout", [stationA kind], @"");
-	STAssertFalse([stationA isStaging], @"");
-	STAssertFalse([stationA isOffline], @"");
-    STAssertTrue([stationA isOnLayout], @"");
+	XCTAssertEqualObjects(@"On Layout", [stationA kind], @"");
+	XCTAssertFalse([stationA isStaging], @"");
+	XCTAssertFalse([stationA isOffline], @"");
+    XCTAssertTrue([stationA isOnLayout], @"");
 	
 	[stationA setIsStaging: YES];
-	STAssertEqualObjects(@"Staging", [stationA kind], @"");
-	STAssertTrue([stationA isStaging], @"");
-	STAssertFalse([stationA isOffline], @"");
-	STAssertFalse([stationA isOnLayout], @"");
+	XCTAssertEqualObjects(@"Staging", [stationA kind], @"");
+	XCTAssertTrue([stationA isStaging], @"");
+	XCTAssertFalse([stationA isOffline], @"");
+	XCTAssertFalse([stationA isOnLayout], @"");
     
 	[stationA setIsOnLayout];
-	STAssertEqualObjects(@"On Layout", [stationA kind], @"");
-	STAssertFalse([stationA isStaging], @"");
-	STAssertFalse([stationA isOffline], @"");
-    STAssertTrue([stationA isOnLayout], @"");
+	XCTAssertEqualObjects(@"On Layout", [stationA kind], @"");
+	XCTAssertFalse([stationA isStaging], @"");
+	XCTAssertFalse([stationA isOffline], @"");
+    XCTAssertTrue([stationA isOnLayout], @"");
 
     [stationA setIsStaging: NO];
 	[stationA setIsOffline: YES];
-	STAssertEqualObjects(@"Offline", [stationA kind], @"");
-	STAssertFalse([stationA isStaging], @"");
-	STAssertTrue([stationA isOffline], @"");
-    STAssertFalse([stationA isOnLayout], @"");
+	XCTAssertEqualObjects(@"Offline", [stationA kind], @"");
+	XCTAssertFalse([stationA isStaging], @"");
+	XCTAssertTrue([stationA isOffline], @"");
+    XCTAssertFalse([stationA isOnLayout], @"");
 	
 	[stationA setIsStaging: NO];
 	[stationA setIsOffline: NO];
-	STAssertEqualObjects(@"On Layout", [stationA kind], @"");
-	STAssertFalse([stationA isStaging], @"");
-	STAssertFalse([stationA isOffline], @"");
-    STAssertTrue([stationA isOnLayout], @"");
+	XCTAssertEqualObjects(@"On Layout", [stationA kind], @"");
+	XCTAssertFalse([stationA isStaging], @"");
+	XCTAssertFalse([stationA isOffline], @"");
+    XCTAssertTrue([stationA isOnLayout], @"");
 }
 
 - (void) testTemplateDirectory {
 	Place *stationA = [self makePlaceWithName: @"A"];
 	
 	NSDictionary *templateDictionary = [stationA templateDictionary];
-	STAssertEqualObjects(@"A", [templateDictionary objectForKey: @"name"], @"");
-	STAssertEqualsInt(1, [[templateDictionary objectForKey: @"allIndustriesSortedOrder"] count], @"");
+	XCTAssertEqualObjects(@"A", [templateDictionary objectForKey: @"name"], @"");
+	XCTAssertEqualInt(1, [[templateDictionary objectForKey: @"allIndustriesSortedOrder"] count], @"");
 }
 @end

@@ -137,18 +137,18 @@
 	
 - (void) testSwitchlistIPhoneCss {
 	// TODO(bowdidge): Fails.
-	STAssertNotNil(unitTestBundle_, @"Can't find unit test bundle, so all attempts to access files will fail.");
+	XCTAssertNotNil(unitTestBundle_, @"Can't find unit test bundle, so all attempts to access files will fail.");
 	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist-iphone.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-iphone.css (should be > 200");
+	XCTAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-iphone.css (should be > 200");
 }
 				  
 - (void) testSwitchlistCss {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist.css (should be > 200_>, was %d)",
+	XCTAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist.css (should be > 200_>, was %ld)",
 					[server_->lastBody length]);
 }
 
@@ -156,18 +156,18 @@
 	NSURL *url = [NSURL URLWithString: @"http://localhost/switchlist-ipad.css"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	STAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-ipad.css (should be > 200");
+	XCTAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist-ipad.css (should be > 200");
 }
 
 - (void) testInvalidFile {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/foo.h"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	STAssertEquals(404, server_->lastCode,
-				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
-	STAssertContains(@"Unknown URL: '/foo.h'", server_->lastMessage,
-					 [NSString stringWithFormat: @"Expected string 'Unknown URL: /foo.h', found %@",
-					  server_->lastMessage]);
+	XCTAssertEqual(404, server_->lastCode,
+				   @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage);
+	XCTAssertContains(@"Unknown URL: '/foo.h'", server_->lastMessage,
+					  @"Expected string 'Unknown URL: /foo.h', found %@",
+					  server_->lastMessage);
 }
 
 - (void) testInvalidFileLayoutsOpen {
@@ -176,27 +176,27 @@
 	NSURL *url = [NSURL URLWithString: @"http://localhost/foo.h"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	STAssertEquals(404, server_->lastCode,
-				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
-	STAssertContains(@"Unknown URL: '/foo.h'", server_->lastMessage,
-					 [NSString stringWithFormat: @"Expected string 'Unknown URL: /foo.h', found %@",
-					  server_->lastMessage]);
+	XCTAssertEqual(404, server_->lastCode,
+				   @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage);
+	XCTAssertContains(@"Unknown URL: '/foo.h'", server_->lastMessage,
+					 @"Expected string 'Unknown URL: /foo.h', found %@",
+					  server_->lastMessage);
 }
 
 - (void) testRoot {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	STAssertContains(@"No layouts", server_->lastMessage,
-					 [NSString stringWithFormat: @"Expected %@ in %@", @"No layouts", server_->lastMessage]);
+	XCTAssertContains(@"No layouts", server_->lastMessage,
+					 @"Expected %@ in %@", @"No layouts", server_->lastMessage);
 }
 
 - (void) testNoSuchLayout {
 	NSURL *url = [NSURL URLWithString: @"http://localhost/layout?layout=Nonexistent"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	STAssertEquals(404, server_->lastCode,
-				   [NSString stringWithFormat: @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage]);
+	XCTAssertEqual(404, server_->lastCode,
+				   @"Expected 404, got %d (%@)", server_->lastCode, server_->lastMessage);
 }
 
 - (void) testTwoLayouts {
@@ -211,13 +211,12 @@
 	NSURL *url = [NSURL URLWithString: @"http://localhost/"];
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
-	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
-	STAssertNotNil(server_->lastMessage, @"No message received - switchlist-home.html not loaded.");
+	XCTAssertEqual(200, server_->lastCode, @"Page not loaded.");
+	XCTAssertNotNil(server_->lastMessage, @"No message received - switchlist-home.html not loaded.");
 	// Make sure we have the links to at least one layout.
 	// Because only one layout has a name, only one name shows up.
-	STAssertContains(@"layout?layout=My Layout", server_->lastMessage,
-					 [NSString stringWithFormat: @"Expected %@ in %@", @"layout?layout=My Layout", server_->lastMessage]);
-	STAssertEquals(1, [server_->lastMessage occurrencesOfString: @"layout?layout="],
+	XCTAssertContains(@"layout?layout=My Layout", server_->lastMessage,@"Expected %@ in %@", @"layout?layout=My Layout", server_->lastMessage);
+	XCTAssertEqual(1, [server_->lastMessage occurrencesOfString: @"layout?layout="],
 					@"Wrong number of layouts in layout list, expected 1, found %d", 
 				   [server_->lastMessage occurrencesOfString: @"layout?layout="]);
 	
@@ -229,13 +228,13 @@
 	[self makeThreeStationTrain];
 	FakeSwitchListDocument *doc = [[[FakeSwitchListDocument alloc] initWithLayout: entireLayout_] autorelease];
 	[webServerDelegate_ processRequestForCarListForLayout: (SwitchListDocument*) doc];
-	STAssertEquals(200, server_->lastCode, @"Page not loaded.");
-	STAssertNotNil(server_->lastMessage, @"");
+	XCTAssertEqual(200, server_->lastCode, @"Page not loaded.");
+	XCTAssertNotNil(server_->lastMessage, @"");
 	// Check for industry and freight car names in script portion.
-	STAssertContains(@"'WP 1'", server_->lastMessage, @"");
-	STAssertContains(@"'UP 2'", server_->lastMessage, @"");
-	STAssertContains(@"'A-industry'", server_->lastMessage, @"");
+	XCTAssertContains(@"'WP 1'", server_->lastMessage, @"");
+	XCTAssertContains(@"'UP 2'", server_->lastMessage, @"");
+	XCTAssertContains(@"'A-industry'", server_->lastMessage, @"");
 	// Check car listed in HTML.
-	STAssertContains(@"<td>WP 1</td>", server_->lastMessage, @"");
+	XCTAssertContains(@"<td>WP 1</td>", server_->lastMessage, @"");
 }
 @end

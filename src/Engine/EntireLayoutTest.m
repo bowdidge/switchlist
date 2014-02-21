@@ -51,9 +51,9 @@
 	
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
 	[entireLayout setLayoutName: @"Test"];
-	STAssertEqualObjects([entireLayout layoutName], @"Test", @".  Name does not match.");
+	XCTAssertEqualObjects([entireLayout layoutName], @"Test", @".  Name does not match.");
 	// TODO(bowdidge): For now, just check not-nil as opposed to actually within seconds of now.
-	STAssertNotNil([entireLayout currentDate], @".  Date not equal to today.");
+	XCTAssertNotNil([entireLayout currentDate], @".  Date not equal to today.");
 }
 
 // Checks that the workbench object exists in the layout object once we request it.
@@ -62,12 +62,12 @@
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
 	// Populate industry stuff.
 	Industry *workbenchIndustry = [entireLayout workbenchIndustry];
-	STAssertNotNil([entireLayout workbench], @"Workbench not defined.");
+	XCTAssertNotNil([entireLayout workbench], @"Workbench not defined.");
 	Place *workbench = [entireLayout workbench];
-	STAssertFalse([workbench isStaging], @"Workbench should not be staging.");
-	STAssertTrue([workbench isOffline], @"Workbench should be offline.");
-	STAssertEqualsInt(1, [[entireLayout allStations] count], @"Wrong number of Places");
-	STAssertEqualObjects([workbench name], @"Workbench", @"Name not correct.");
+	XCTAssertFalse([workbench isStaging], @"Workbench should not be staging.");
+	XCTAssertTrue([workbench isOffline], @"Workbench should be offline.");
+	XCTAssertEqualInt(1, [[entireLayout allStations] count], @"Wrong number of Places");
+	XCTAssertEqualObjects([workbench name], @"Workbench", @"Name not correct.");
 }
 
 - (void) testPreferences {
@@ -83,9 +83,9 @@
 	FreightCar *car2 = [self makeFreightCarWithReportingMarks: @"SP 2"];
 	[car2 setCurrentLocation: workbenchIndustry];
 	
-	STAssertEqualsInt(2, [[entireLayout allFreightCars] count], @"Wrong number of total freight cars");
-	STAssertEqualsInt(1, [[entireLayout allAvailableFreightCars] count],  @"Wrong number of available freight cars");
-	STAssertEqualsInt(0, [[entireLayout allReservedFreightCars] count], @"Wrong number of reserved freight cars");
+	XCTAssertEqualInt(2, [[entireLayout allFreightCars] count], @"Wrong number of total freight cars");
+	XCTAssertEqualInt(1, [[entireLayout allAvailableFreightCars] count],  @"Wrong number of available freight cars");
+	XCTAssertEqualInt(0, [[entireLayout allReservedFreightCars] count], @"Wrong number of reserved freight cars");
 }
 
 - (void) testFreightCarsOnWorkbench {
@@ -95,11 +95,11 @@
 	FreightCar *car2 = [self makeFreightCarWithReportingMarks: @"SP 2"];
 	[car2 setCurrentLocation: workbenchIndustry];
 	
-	STAssertEqualsInt(2, [[entireLayout allFreightCars] count], @"Wrong number of total freight cars");
+	XCTAssertEqualInt(2, [[entireLayout allFreightCars] count], @"Wrong number of total freight cars");
 	// Make sure we don't count the car on the workbench as available.
-	STAssertEqualsInt(1, [[entireLayout allAvailableFreightCars] count], @"Wrong number of available freight cars");
+	XCTAssertEqualInt(1, [[entireLayout allAvailableFreightCars] count], @"Wrong number of available freight cars");
 	// Make sure neither car has a cargo.
-	STAssertEqualsInt(0, [[entireLayout allReservedFreightCars] count], @"Wrong number of reserved freight cars");
+	XCTAssertEqualInt(0, [[entireLayout allReservedFreightCars] count], @"Wrong number of reserved freight cars");
 }
 
 - (void) testFreightCars {
@@ -112,17 +112,17 @@
 	FreightCar *car3 = [self makeFreightCarWithReportingMarks: @"UP  2222"];
 	FreightCar *car4 = [self makeFreightCarWithReportingMarks: @"LA2X 9999"];
 	
-	STAssertEqualObjects(@"SP", [car1 initials], @"Car initials should be SP, were %@", [car1 initials]);
-	STAssertEqualObjects(@"1", [car1 number], @"Car number should be 1, was %@", [car1 initials]);
+	XCTAssertEqualObjects(@"SP", [car1 initials], @"Car initials should be SP, were %@", [car1 initials]);
+	XCTAssertEqualObjects(@"1", [car1 number], @"Car number should be 1, was %@", [car1 initials]);
 
-	STAssertEqualObjects(@"DRG&W", [car2 initials], @"Car initials should be DRG&W, were %@", [car2 initials]);
-	STAssertEqualObjects(@"99999", [car2 number], @"Car number should be 99999, was %@", [car2 initials]);
+	XCTAssertEqualObjects(@"DRG&W", [car2 initials], @"Car initials should be DRG&W, were %@", [car2 initials]);
+	XCTAssertEqualObjects(@"99999", [car2 number], @"Car number should be 99999, was %@", [car2 initials]);
 
-	STAssertEqualObjects(@"UP", [car3 initials], @"Car initials should be UP, were %@", [car3 initials]);
-	STAssertEqualObjects(@"2222", [car3 number], @"Car number should be 22222, was %@", [car3 initials]);
+	XCTAssertEqualObjects(@"UP", [car3 initials], @"Car initials should be UP, were %@", [car3 initials]);
+	XCTAssertEqualObjects(@"2222", [car3 number], @"Car number should be 22222, was %@", [car3 initials]);
 
-	STAssertEqualObjects(@"LA2X", [car4 initials], @"Car initials should be LA2X, were %@", [car4 initials]);
-	STAssertEqualObjects(@"9999", [car4 number], @"Car number should be 9999, was %@", [car4 initials]);
+	XCTAssertEqualObjects(@"LA2X", [car4 initials], @"Car initials should be LA2X, were %@", [car4 initials]);
+	XCTAssertEqualObjects(@"9999", [car4 number], @"Car number should be 9999, was %@", [car4 initials]);
 }
 
 - (void) testFreightCarCargos {
@@ -137,11 +137,11 @@
 	[fc1 setIsLoaded: NO];
 
 	// Cars that are empty and unassigned or empty and assigned should appear the same way.
-	STAssertEqualObjects(@"empty", [fc1 cargoDescription], @"");
-	STAssertEqualObjects(@"empty", [fc2 cargoDescription], @"");
+	XCTAssertEqualObjects(@"empty", [fc1 cargoDescription], @"");
+	XCTAssertEqualObjects(@"empty", [fc2 cargoDescription], @"");
 
 	[fc1 setIsLoaded: YES];
-	STAssertEqualObjects(@"Foo", [fc1 cargoDescription], @"");
+	XCTAssertEqualObjects(@"Foo", [fc1 cargoDescription], @"");
 }
 
 - (void) testMoveOneStep {
@@ -156,10 +156,10 @@
 	[fc1 setIsLoaded: YES];
 	
 	// Cars that are empty and unassigned or empty and assigned should appear the same way.
-	STAssertEqualObjects([self industryAtStation: @"A"], [fc1 currentLocation], @"");
+	XCTAssertEqualObjects([self industryAtStation: @"A"], [fc1 currentLocation], @"");
 	
 	[fc1 moveOneStep];
-	STAssertEqualObjects([self industryAtStation: @"B"], [fc1 currentLocation], @"");
+	XCTAssertEqualObjects([self industryAtStation: @"B"], [fc1 currentLocation], @"");
 }
 
 - (void) testCurrentDoor {
@@ -180,50 +180,50 @@
 	[fc1 setIsLoaded: YES];
 
 	// Cars that are empty and unassigned or empty and assigned should appear the same way.
-	STAssertEqualObjects([self industryAtStation: @"A"], [fc1 currentLocation], @"");
-    STAssertEqualsInt(2, [[fc1 currentDoor] intValue], @"");
+	XCTAssertEqualObjects([self industryAtStation: @"A"], [fc1 currentLocation], @"");
+    XCTAssertEqualInt(2, [[fc1 currentDoor] intValue], @"");
 	
 	[fc1 moveOneStep];
-	STAssertEqualObjects([self industryAtStation: @"B"], [fc1 currentLocation], @"");
-	STAssertEqualsInt(1, [[fc1 currentDoor] intValue], @"");
+	XCTAssertEqualObjects([self industryAtStation: @"B"], [fc1 currentLocation], @"");
+	XCTAssertEqualInt(1, [[fc1 currentDoor] intValue], @"");
 }
 
 // Make sure the reportingMarks, initials, and number fields work with strange values.
 - (void) testFreightCarNumbers {
 	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"F&C 123"];
-	STAssertEqualObjects(@"F&C 123", [fc1 reportingMarks], @"Reporting marks don't match.");
-	STAssertEqualObjects(@"F&C", [fc1 initials], @"Initials don't match.");
-	STAssertEqualObjects(@"123", [fc1 number], @"Number doesn't match.");
+	XCTAssertEqualObjects(@"F&C 123", [fc1 reportingMarks], @"Reporting marks don't match.");
+	XCTAssertEqualObjects(@"F&C", [fc1 initials], @"Initials don't match.");
+	XCTAssertEqualObjects(@"123", [fc1 number], @"Number doesn't match.");
 	
 	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: @" F&C 123"];
-	STAssertEqualObjects(@" F&C 123", [fc2 reportingMarks], @"Reporting marks don't match.");
-	STAssertEqualObjects(@"F&C", [fc2 initials], @"Initials don't match.");
-	STAssertEqualObjects(@"123", [fc2 number], @"Number doesn't match.");
+	XCTAssertEqualObjects(@" F&C 123", [fc2 reportingMarks], @"Reporting marks don't match.");
+	XCTAssertEqualObjects(@"F&C", [fc2 initials], @"Initials don't match.");
+	XCTAssertEqualObjects(@"123", [fc2 number], @"Number doesn't match.");
 	
 	FreightCar *fc3 = [self makeFreightCarWithReportingMarks: @"F 1"];
-	STAssertEqualObjects(@"F 1", [fc3 reportingMarks], @"Reporting marks don't match.");
-	STAssertEqualObjects(@"F", [fc3 initials], @"Initials don't match.");
-	STAssertEqualObjects(@"1", [fc3 number], @"Number doesn't match.");
+	XCTAssertEqualObjects(@"F 1", [fc3 reportingMarks], @"Reporting marks don't match.");
+	XCTAssertEqualObjects(@"F", [fc3 initials], @"Initials don't match.");
+	XCTAssertEqualObjects(@"1", [fc3 number], @"Number doesn't match.");
 	
 	FreightCar *fc4 = [self makeFreightCarWithReportingMarks: @"F A 1"];
-	STAssertEqualObjects(@"F A 1", [fc4 reportingMarks], @"Reporting marks don't match.");
-	STAssertEqualObjects(@"F", [fc4 initials], @"Initials don't match.");
-	STAssertEqualObjects(@"A 1", [fc4 number], @"Number doesn't match.");
+	XCTAssertEqualObjects(@"F A 1", [fc4 reportingMarks], @"Reporting marks don't match.");
+	XCTAssertEqualObjects(@"F", [fc4 initials], @"Initials don't match.");
+	XCTAssertEqualObjects(@"A 1", [fc4 number], @"Number doesn't match.");
 	
 	FreightCar *fc5 = [self makeFreightCarWithReportingMarks: @""];
-	STAssertEqualObjects(@"", [fc5 reportingMarks], @"Reporting marks don't match.");
-	STAssertEqualObjects(@"", [fc5 initials], @"Initials don't match.");
-	STAssertEqualObjects(@"", [fc5 number], @"Number doesn't match.");
+	XCTAssertEqualObjects(@"", [fc5 reportingMarks], @"Reporting marks don't match.");
+	XCTAssertEqualObjects(@"", [fc5 initials], @"Initials don't match.");
+	XCTAssertEqualObjects(@"", [fc5 number], @"Number doesn't match.");
 	
 	FreightCar *fc6 = [self makeFreightCarWithReportingMarks: @"FOO"];
-	STAssertEqualObjects(@"FOO", [fc6 reportingMarks], @"Reporting marks don't match.");
-	STAssertEqualObjects(@"FOO", [fc6 initials], @"Initials don't match.");
-	STAssertEqualObjects(@"", [fc6 number], @"Number doesn't match.");
+	XCTAssertEqualObjects(@"FOO", [fc6 reportingMarks], @"Reporting marks don't match.");
+	XCTAssertEqualObjects(@"FOO", [fc6 initials], @"Initials don't match.");
+	XCTAssertEqualObjects(@"", [fc6 number], @"Number doesn't match.");
 	
 	FreightCar *fc7 = [self makeFreightCarWithReportingMarks: @"F&C123"];
-	STAssertEqualObjects(@"F&C123", [fc7 reportingMarks], @"Reporting marks don't match.");
-	STAssertEqualObjects(@"F&C123", [fc7 initials], @"Initials don't match.");
-	STAssertEqualObjects(@"", [fc7 number], @"Number doesn't match.");
+	XCTAssertEqualObjects(@"F&C123", [fc7 reportingMarks], @"Reporting marks don't match.");
+	XCTAssertEqualObjects(@"F&C123", [fc7 initials], @"Initials don't match.");
+	XCTAssertEqualObjects(@"", [fc7 number], @"Number doesn't match.");
 }
 
 - (void) testAllFreightCarsAtDestination {
@@ -237,27 +237,27 @@
 	
 	// fc1 has no cargo.
 	[fc1 setCurrentLocation: [self industryAtStation:@"A"]];
-	STAssertFalse([[entireLayout_ allFreightCarsAtDestination] containsObject: fc1], @"Car without cargo shouldn't be at destination.");
+	XCTAssertFalse([[entireLayout_ allFreightCarsAtDestination] containsObject: fc1], @"Car without cargo shouldn't be at destination.");
 	
 
 	// fc2 has a cargo, but the car isn't at source or dest.
 	[fc2 setCurrentLocation: [self industryAtStation: @"C"]];
 	[fc2 setCargo: c1];
-	STAssertFalse([[entireLayout_ allFreightCarsAtDestination] containsObject: fc2], @"Car not at src or dest not at destination.");
+	XCTAssertFalse([[entireLayout_ allFreightCarsAtDestination] containsObject: fc2], @"Car not at src or dest not at destination.");
 	
 	// fc2 has a cargo, is unloaded, and is at source.
 	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
 	[fc2 setIsLoaded: NO];
-	STAssertTrue([[entireLayout_ allFreightCarsAtDestination] containsObject: fc2], @"Car not at src or dest not at destination.");
+	XCTAssertTrue([[entireLayout_ allFreightCarsAtDestination] containsObject: fc2], @"Car not at src or dest not at destination.");
 
 	// If fc2 is loaded, it's not at the next destination.
 	[fc2 setIsLoaded: YES];
-	STAssertFalse([[entireLayout_ allFreightCarsAtDestination] containsObject: fc2], @"Car not at src or dest not at destination.");
+	XCTAssertFalse([[entireLayout_ allFreightCarsAtDestination] containsObject: fc2], @"Car not at src or dest not at destination.");
 
 	// If fc2 is loaded, it's not at the next destination.
 	[fc2 setIsLoaded: YES];
 	[fc2 setCurrentLocation: [self industryAtStation: @"C"]];
-	STAssertFalse([[entireLayout_ allFreightCarsAtDestination] containsObject: fc2], @"Car not at src or dest not at destination.");
+	XCTAssertFalse([[entireLayout_ allFreightCarsAtDestination] containsObject: fc2], @"Car not at src or dest not at destination.");
 }
 
 - (void) testAllFreightCarsAtDestinationInStaging {
@@ -272,10 +272,10 @@
 	FreightCar *fc2 = [self makeFreightCarWithReportingMarks: @"SP 2"];
 	[myTrain addFreightCarsObject: fc1];
 	
-	STAssertEqualsInt(2, [[entireLayout allFreightCars] count], @"Wrong total number of cars");
-	STAssertEqualsInt(1, [[entireLayout allFreightCarsNotInTrain] count], @"Wrong number of cars not in train");
-	STAssertTrue([[myTrain freightCars] containsObject: fc1], @"freight car 1 should be in train.");
-	STAssertFalse([[myTrain freightCars] containsObject: fc2], @"freight car 2 should not be in train.");
+	XCTAssertEqualInt(2, [[entireLayout allFreightCars] count], @"Wrong total number of cars");
+	XCTAssertEqualInt(1, [[entireLayout allFreightCarsNotInTrain] count], @"Wrong number of cars not in train");
+	XCTAssertTrue([[myTrain freightCars] containsObject: fc1], @"freight car 1 should be in train.");
+	XCTAssertFalse([[myTrain freightCars] containsObject: fc2], @"freight car 2 should not be in train.");
 }
 
 
@@ -288,10 +288,10 @@
 	[placeB setIsStaging: YES];
 
 	// Workbench counts as a station.
-	STAssertEqualsInt(4, [[entireLayout allStations] count], @"Wrong number of stations");
-	STAssertEqualsInt(1, [[entireLayout allStationsInStaging] count], @"Wrong number of stations in staging");
-	STAssertEqualsInt(1, [[entireLayout allStationNamesInStaging] count], @"Wrong number of station names in staging.");
-	STAssertTrue([[entireLayout allStationNamesInStaging] containsObject: @"B"], @"Place A not in all station names in staging.");
+	XCTAssertEqualInt(4, [[entireLayout allStations] count], @"Wrong number of stations");
+	XCTAssertEqualInt(1, [[entireLayout allStationsInStaging] count], @"Wrong number of stations in staging");
+	XCTAssertEqualInt(1, [[entireLayout allStationNamesInStaging] count], @"Wrong number of station names in staging.");
+	XCTAssertTrue([[entireLayout allStationNamesInStaging] containsObject: @"B"], @"Place A not in all station names in staging.");
 }
 
 - (void) testAllOnlineStations {
@@ -307,11 +307,11 @@
 	
 	// Workbench counts as a station.
 	NSArray *allOnlineStations = [entireLayout allOnlineStationsSortedOrder];
-	STAssertEqualsInt(5, [[entireLayout allStations] count], @"Wrong number of stations");
-	STAssertEqualsInt(3, [allOnlineStations count], @"Wrong number of stations online");
-	STAssertEquals(placeA, [allOnlineStations objectAtIndex: 0], @"Expected station A to be first in %@.", allOnlineStations);
-	STAssertEquals(placeAa, [allOnlineStations objectAtIndex: 1], @"Expected station Aa to be second in %@.", allOnlineStations);
-	STAssertEquals(placeC, [allOnlineStations objectAtIndex: 2], @"Expected station C to be third in %@.", allOnlineStations);
+	XCTAssertEqualInt(5, [[entireLayout allStations] count], @"Wrong number of stations");
+	XCTAssertEqualInt(3, [allOnlineStations count], @"Wrong number of stations online");
+	XCTAssertEqual(placeA, [allOnlineStations objectAtIndex: 0], @"Expected station A to be first in %@.", allOnlineStations);
+	XCTAssertEqual(placeAa, [allOnlineStations objectAtIndex: 1], @"Expected station Aa to be second in %@.", allOnlineStations);
+	XCTAssertEqual(placeC, [allOnlineStations objectAtIndex: 2], @"Expected station C to be third in %@.", allOnlineStations);
 }
 
 // Make sure we correctly handle valid and invalid names.
@@ -319,9 +319,9 @@
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
     Place *placeA = [self makePlaceWithName: @"A"];
 	
-	STAssertEqualObjects([entireLayout stationWithName: @"A"], placeA, @"Check existence of A");
-	STAssertNil([entireLayout stationWithName: @"Bogus"], @"Check bogus name rejected");
-	STAssertNil([entireLayout stationWithName: nil], @"Check NULL rejected.");	
+	XCTAssertEqualObjects([entireLayout stationWithName: @"A"], placeA, @"Check existence of A");
+	XCTAssertNil([entireLayout stationWithName: @"Bogus"], @"Check bogus name rejected");
+	XCTAssertNil([entireLayout stationWithName: nil], @"Check NULL rejected.");	
 }
 
 - (void) disableTestStationValidation {
@@ -330,10 +330,10 @@
 	NSString *proposedNameA = @"A";
 	NSString *proposedNameB = @"B";
 	NSError *error = nil;
-	STAssertTrue([placeB validateName: &proposedNameB error:&error], @"B should be legal name for place.");
-	STAssertNil(error, @"Error not nil.");
- 	STAssertFalse([placeB validateName: &proposedNameA error:&error], @"A should not be legal name for place.");
-	STAssertNotNil(error, @"Error should be non-nil");
+	XCTAssertTrue([placeB validateName: &proposedNameB error:&error], @"B should be legal name for place.");
+	XCTAssertNil(error, @"Error not nil.");
+ 	XCTAssertFalse([placeB validateName: &proposedNameA error:&error], @"A should not be legal name for place.");
+	XCTAssertNotNil(error, @"Error should be non-nil");
 }								 
 
 - (void) testAllIndustries {
@@ -342,7 +342,7 @@
 	id entireLayout = [[EntireLayout alloc] initWithMOC: context_];
 	Place *placeA = [self makePlaceWithName: @"A"];
 	
-	STAssertEqualsInt(1, [[entireLayout allIndustries] count], @"Wrong number of industries");
+	XCTAssertEqualInt(1, [[entireLayout allIndustries] count], @"Wrong number of industries");
 }
 
 - (void) testAllCargo {
@@ -353,8 +353,8 @@
 	[c1 setSource: [self industryAtStation: @"B"]];
 	[c1 setDestination: [self industryAtStation: @"C"]];
 	
-	STAssertEqualsInt(1, [[entireLayout allValidCargos] count], @"Wrong number of cargos");
-	STAssertTrue([[entireLayout allValidCargos] containsObject: c1], @"cargo isn't in list.");
+	XCTAssertEqualInt(1, [[entireLayout allValidCargos] count], @"Wrong number of cargos");
+	XCTAssertTrue([[entireLayout allValidCargos] containsObject: c1], @"cargo isn't in list.");
 }
 
 - (void) testAllFixedRateCargo {
@@ -370,8 +370,8 @@
 	[c2 setSource: [self industryAtStation: @"A"]];
 	[c2 setDestination: [self industryAtStation: @"B"]];
 	
-	STAssertEqualsInt(1, [[entireLayout allFixedRateCargos] count], @"Wrong number of cargos");
-	STAssertTrue([[entireLayout allFixedRateCargos] containsObject: c2], @"cargo isn't in list.");
+	XCTAssertEqualInt(1, [[entireLayout allFixedRateCargos] count], @"Wrong number of cargos");
+	XCTAssertTrue([[entireLayout allFixedRateCargos] containsObject: c2], @"cargo isn't in list.");
 }	 
 
 - (void) testAllNonFixedRateCargo {
@@ -387,8 +387,8 @@
 	[c2 setSource: [self industryAtStation: @"A"]];
 	[c2 setDestination: [self industryAtStation: @"B"]];
 	
-	STAssertEqualsInt(1, [[entireLayout allNonFixedRateCargos] count], @"Wrong number of cargos");
-	STAssertTrue([[entireLayout allNonFixedRateCargos] containsObject: c1], @"cargo isn't in list.");
+	XCTAssertEqualInt(1, [[entireLayout allNonFixedRateCargos] count], @"Wrong number of cargos");
+	XCTAssertTrue([[entireLayout allNonFixedRateCargos] containsObject: c1], @"cargo isn't in list.");
 }
 
 // TODO(bowdidge): Move to ScheduledTrainTests?
@@ -398,11 +398,11 @@
 	
 	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
 	NSArray *allCars = [myTrain1 allFreightCarsInVisitOrder];
-	STAssertEqualsInt(2, [allCars count], @"Not enough cars in train.");
+	XCTAssertEqualInt(2, [allCars count], @"Not enough cars in train.");
 	// First A->B car
-	STAssertEqualObjects([[[allCars objectAtIndex: 0] cargo] cargoDescription], @"A to B", @"Cars out of order");
+	XCTAssertEqualObjects([[[allCars objectAtIndex: 0] cargo] cargoDescription], @"A to B", @"Cars out of order");
     // Then B->C Car									
-	STAssertEqualObjects([[[allCars objectAtIndex: 1] cargo] cargoDescription], @"B to C", @"Cars out of order.");
+	XCTAssertEqualObjects([[[allCars objectAtIndex: 1] cargo] cargoDescription], @"B to C", @"Cars out of order.");
 }
 
 - (void) testStationsWithWork {
@@ -420,35 +420,35 @@
 	
 	// Should see fc1 going B to C, and fc2 going A to B.
 
-	STAssertEqualsInt(3, [allStations count], @"Not enough stops.");
+	XCTAssertEqualInt(3, [allStations count], @"Not enough stops.");
 	
 	NSDictionary *stationAData = [allStations objectAtIndex: 0];
 	NSDictionary *stationBData = [allStations objectAtIndex: 1];
 	NSDictionary *stationCData = [allStations objectAtIndex: 2];
 	
-	STAssertEqualObjects(@"A", [stationAData objectForKey: @"name"], @"Station A missing");
- 	STAssertEqualObjects(@"B", [stationBData objectForKey: @"name"], @"Station B missing");
-	STAssertEqualObjects(@"C", [stationCData objectForKey: @"name"], @"Station C missing");
+	XCTAssertEqualObjects(@"A", [stationAData objectForKey: @"name"], @"Station A missing");
+ 	XCTAssertEqualObjects(@"B", [stationBData objectForKey: @"name"], @"Station B missing");
+	XCTAssertEqualObjects(@"C", [stationCData objectForKey: @"name"], @"Station C missing");
 	
-	STAssertEqualsInt(1, [[stationAData objectForKey: @"industries"] count], @"");
+	XCTAssertEqualInt(1, [[stationAData objectForKey: @"industries"] count], @"");
 	NSDictionary *industryAData = [[stationAData objectForKey: @"industries"] objectForKey: @"A-industry"];
 
-	STAssertEqualsInt(1, [[stationBData objectForKey: @"industries"] count], @"");
+	XCTAssertEqualInt(1, [[stationBData objectForKey: @"industries"] count], @"");
 	NSDictionary *industryBData = [[stationBData objectForKey: @"industries"] objectForKey: @"B-industry"];
 
-	STAssertEqualsInt(1, [[stationCData objectForKey: @"industries"] count], @"");
+	XCTAssertEqualInt(1, [[stationCData objectForKey: @"industries"] count], @"");
 	NSDictionary *industryCData = [[stationCData objectForKey: @"industries"] objectForKey: @"C-industry"];
 	
-	STAssertEqualsInt(0, [[industryAData objectForKey: @"carsToDropOff"] count],
-				@"No cars expected to drop off at station A, found %d", [[stationAData objectForKey: @"carsToDropOff"] count]);
-	STAssertEqualsInt(1, [[industryAData objectForKey: @"carsToPickUp"] count],
-				 @"Expected one car to pick up at station A, found %d.", [[stationAData objectForKey: @"carsToPickUp"] count]);
+	XCTAssertEqualInt(0, [[industryAData objectForKey: @"carsToDropOff"] count],
+				@"No cars expected to drop off at station A, found %ld", [[stationAData objectForKey: @"carsToDropOff"] count]);
+	XCTAssertEqualInt(1, [[industryAData objectForKey: @"carsToPickUp"] count],
+				 @"Expected one car to pick up at station A, found %ld.", [[stationAData objectForKey: @"carsToPickUp"] count]);
 
-	STAssertEqualsInt(1, [[industryBData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station B.");
-	STAssertEqualsInt(1, [[industryBData objectForKey: @"carsToPickUp"] count], @"Expected one car to pick up at station B.");
+	XCTAssertEqualInt(1, [[industryBData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station B.");
+	XCTAssertEqualInt(1, [[industryBData objectForKey: @"carsToPickUp"] count], @"Expected one car to pick up at station B.");
 
-	STAssertEqualsInt(1, [[industryCData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station C.");
-	STAssertEqualsInt(0, [[industryCData objectForKey: @"carsToPickUp"] count], @"Expected no cars to pick up at station C.");
+	XCTAssertEqualInt(1, [[industryCData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station C.");
+	XCTAssertEqualInt(0, [[industryCData objectForKey: @"carsToPickUp"] count], @"Expected no cars to pick up at station C.");
 }
 
 - (void) testStationsWithWorkMultipleCars {
@@ -466,27 +466,27 @@
 	
 	// Should see fc1 going B to C, and fc2 going A to B.
 
-	STAssertEqualsInt(2, [allStations count], @"Wrong number of stops, expected 2, found %d", [allStations count]);
+	XCTAssertEqualInt(2, [allStations count], @"Wrong number of stops, expected 2, found %ld", [allStations count]);
 	
 	NSDictionary *stationAData = [allStations objectAtIndex: 0];
 	NSDictionary *stationBData = [allStations objectAtIndex: 1];
 
-	STAssertEqualObjects(@"A", [stationAData objectForKey: @"name"], @"Station A missing");
- 	STAssertEqualObjects(@"B", [stationBData objectForKey: @"name"], @"Station B missing");
+	XCTAssertEqualObjects(@"A", [stationAData objectForKey: @"name"], @"Station A missing");
+ 	XCTAssertEqualObjects(@"B", [stationBData objectForKey: @"name"], @"Station B missing");
 	
-	STAssertEqualsInt(1, [[stationAData objectForKey: @"industries"] count], @"");
+	XCTAssertEqualInt(1, [[stationAData objectForKey: @"industries"] count], @"");
 	NSDictionary *industryAData = [[stationAData objectForKey: @"industries"] objectForKey: @"A-industry"];
 	
-	STAssertEqualsInt(1, [[stationBData objectForKey: @"industries"] count], @"");
+	XCTAssertEqualInt(1, [[stationBData objectForKey: @"industries"] count], @"");
 	NSDictionary *industryBData = [[stationBData objectForKey: @"industries"] objectForKey: @"B-industry"];
 	
-	STAssertEqualsInt(0, [[industryAData objectForKey: @"carsToDropOff"] count],
-				 @"No cars expected to drop off at station A, found %d", [[stationAData objectForKey: @"carsToDropOff"] count]);
-	STAssertEqualsInt(2, [[industryAData objectForKey: @"carsToPickUp"] count],
-				 @"Expected one car to pick up at station A, found %d.", [[stationAData objectForKey: @"carsToPickUp"] count]);
+	XCTAssertEqualInt(0, [[industryAData objectForKey: @"carsToDropOff"] count],
+				 @"No cars expected to drop off at station A, found %ld", [[stationAData objectForKey: @"carsToDropOff"] count]);
+	XCTAssertEqualInt(2, [[industryAData objectForKey: @"carsToPickUp"] count],
+				 @"Expected one car to pick up at station A, found %ld.", [[stationAData objectForKey: @"carsToPickUp"] count]);
 
-	STAssertEqualsInt(2, [[industryBData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station B.");
-	STAssertEqualsInt(0, [[industryBData objectForKey: @"carsToPickUp"] count], @"Expected one car to pick up at station B.");
+	XCTAssertEqualInt(2, [[industryBData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station B.");
+	XCTAssertEqualInt(0, [[industryBData objectForKey: @"carsToPickUp"] count], @"Expected one car to pick up at station B.");
 }
 
 - (void) testStationStops {
@@ -496,12 +496,12 @@
 	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
 	NSArray *stops = [myTrain1 stationsInOrder];
 	
-	STAssertEqualsInt(3, [stops count], @"Incorrect number of stops for train");
-	STAssertEqualObjects([entireLayout_ stationWithName: @"A"],
+	XCTAssertEqualInt(3, [stops count], @"Incorrect number of stops for train");
+	XCTAssertEqualObjects([entireLayout_ stationWithName: @"A"],
 						 [stops objectAtIndex: 0], @"A not first station.");
-	STAssertEqualObjects([entireLayout_ stationWithName: @"B"],
+	XCTAssertEqualObjects([entireLayout_ stationWithName: @"B"],
 						 [stops objectAtIndex: 1], @"B not second station.");
-	STAssertEqualObjects([entireLayout_ stationWithName: @"C"],
+	XCTAssertEqualObjects([entireLayout_ stationWithName: @"C"],
 						 [stops objectAtIndex: 2], @"C not third station.");
 }
 
@@ -516,8 +516,8 @@
 	[myTrain setStops: @"A,B,C"];
 	[self setTrain: myTrain acceptsCarTypes: @"XM"];
 	
-	STAssertTrue([myTrain acceptsCar: fc1], @"Should be accepted");
-	STAssertFalse([myTrain acceptsCar: fc2], @"Should not be accepted");
+	XCTAssertTrue([myTrain acceptsCar: fc1], @"Should be accepted");
+	XCTAssertFalse([myTrain acceptsCar: fc2], @"Should not be accepted");
 }
 
 - (void) testAllFreightCarsInYard {
@@ -526,24 +526,24 @@
 	FreightCar *fc = [self makeFreightCarWithReportingMarks: @"A 1"];
 	[fc setCurrentLocation: [self yardAtStation: @"A"]];
 	NSArray *carsInYard = [entireLayout_ allFreightCarsInYard];
-	STAssertEqualsInt(1, [carsInYard count], @"Incorrect number of cars in yard, found %d", [carsInYard count]);
+	XCTAssertEqualInt(1, [carsInYard count], @"Incorrect number of cars in yard, found %ld", [carsInYard count]);
 }
 
 - (void) testImport {
 	NSString *input = @"SP 1\nSP 2  \n    SP 3\n";
 	NSMutableString *errors = nil;
 	[entireLayout_ importFreightCarsUsingString: input errors: &errors];
-	STAssertEqualsInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %d", [[entireLayout_ allFreightCars] count]);
-	STAssertEqualsInt(0, [errors length], @"No errors expected");
+	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld", [[entireLayout_ allFreightCars] count]);
+	XCTAssertEqualInt(0, [errors length], @"No errors expected");
 }
 
 - (void) testImportBlankLines {
 	NSString *input = @"SP 1\n\n\n\nSP 2  \n    SP 3\n";
 	NSMutableString *errors = nil;
 	[entireLayout_ importFreightCarsUsingString: input errors: &errors];
-	STAssertEqualsInt(0, [errors length], @"No errors expected");
-	STAssertEqualsInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %d (%@)", [[entireLayout_ allFreightCars] count],[entireLayout_ allFreightCars]);
-	STAssertNotNil([self freightCarWithReportingMarks: @"SP 1"], @"Freight car names corrupted.");
+	XCTAssertEqualInt(0, [errors length], @"No errors expected");
+	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld (%@)", [[entireLayout_ allFreightCars] count],[entireLayout_ allFreightCars]);
+	XCTAssertNotNil([self freightCarWithReportingMarks: @"SP 1"], @"Freight car names corrupted.");
 }
 
 // TODO(bowdidge): How far do I want to go with invalid characters?
@@ -553,15 +553,15 @@
 	NSString *input = @"SP 1\007\b\\nSP 2  \n    SP 3\n";
 	NSMutableString *errors = nil;
 	[entireLayout_ importFreightCarsUsingString: input errors: &errors];
-	STAssertEqualsInt(0, [errors length], @"No errors expected");
-	STAssertEqualsInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %d", [[entireLayout_ allFreightCars] count]);
+	XCTAssertEqualInt(0, [errors length], @"No errors expected");
+	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld", [[entireLayout_ allFreightCars] count]);
 }
 
 - (void) checkExistenceOfCar: (NSString*) reportingMarks type: (NSString*) carType {
 	FreightCar *fc = [self freightCarWithReportingMarks: reportingMarks];
-	STAssertNotNil(fc, @"Freight car %@ not found", reportingMarks);	
+	XCTAssertNotNil(fc, @"Freight car %@ not found", reportingMarks);	
 	NSString *actualCarTypeName = [[fc carTypeRel] carTypeName];
-	STAssertEqualObjects(carType, actualCarTypeName,
+	XCTAssertEqualObjects(carType, actualCarTypeName,
 				   @"Expected freight car %@ to have type %@, but had type %@",
 				   reportingMarks, carType, actualCarTypeName);
 }
@@ -570,9 +570,9 @@
 	NSString *input = @"SP 1, XM,\nSP 2, T\nSP    3\nSP 4\tXM\n  SP  5\t MYCARTYPE\t\n";
 	NSMutableString *errors = nil;
 	[entireLayout_ importFreightCarsUsingString: input errors: &errors];
-	STAssertEqualsInt(0, [errors length], @"No errors expected");
+	XCTAssertEqualInt(0, [errors length], @"No errors expected");
 	
-	STAssertEqualsInt(5, [[entireLayout_ allFreightCars] count], @"Expected 4 freight cars, got %d", [[entireLayout_ allFreightCars] count]);
+	XCTAssertEqualInt(5, [[entireLayout_ allFreightCars] count], @"Expected 4 freight cars, got %ld", [[entireLayout_ allFreightCars] count]);
 	
 	[self checkExistenceOfCar: @"SP 1" type: @"XM"];
 	[self checkExistenceOfCar: @"SP 2" type: @"T"];
@@ -580,7 +580,7 @@
 	[self checkExistenceOfCar: @"SP 4" type: @"XM"];
 	[self checkExistenceOfCar: @"SP 5" type: @"MYCARTYPE"];
 	NSString *actualCarTypeDescription = [[[self freightCarWithReportingMarks: @"SP 5"] carTypeRel] carTypeDescription];
-	STAssertEqualObjects(@"", actualCarTypeDescription,
+	XCTAssertEqualObjects(@"", actualCarTypeDescription,
 						 @"Car type description for new car type assumed to be empty but was %@", actualCarTypeDescription);
 }
 
@@ -591,7 +591,7 @@
 	[c1 setDestination: [self industryAtStation: @"C"]];
 	[c1 setCarsPerWeek: [NSNumber numberWithInt: 7]];
 	
-	STAssertEqualsInt(1, [entireLayout_ loadsPerDay], @"Expected 1 load/day, got %d", [entireLayout_ loadsPerDay]);
+	XCTAssertEqualInt(1, [entireLayout_ loadsPerDay], @"Expected 1 load/day, got %d", [entireLayout_ loadsPerDay]);
 }
 
 - (void) testCargoLoadsPerDayFractions {
@@ -606,23 +606,23 @@
 	[c2 setDestination: [self industryAtStation: @"B"]];
 	[c2 setCarsPerMonth: [NSNumber numberWithInt: 49]];
 	
-	STAssertEqualsInt(3, [entireLayout_ loadsPerDay], @"Expected 3 loads/day, got %d", [entireLayout_ loadsPerDay]);
+	XCTAssertEqualInt(3, [entireLayout_ loadsPerDay], @"Expected 3 loads/day, got %d", [entireLayout_ loadsPerDay]);
 }
 
 - (void) testSqlSanity {
 	[self makeThreeStationLayout];
 	Industry *i = [entireLayout_ industryWithName: @"'" withStationName: @"A"];
 	// Make sure it didn't crash, and didn't return anything.
-	STAssertNil(i, @"industryWithName not correctly finding quote");
+	XCTAssertNil(i, @"industryWithName not correctly finding quote");
 	
 	Industry *myIndustry = [self makeIndustryWithName: @"robert's"];
 	[myIndustry setLocation: [entireLayout_ stationWithName: @"A"]];
 	Industry *j = [entireLayout_ industryWithName: @"robert's-industry" withStationName: @"A"];
-	STAssertEquals(j, myIndustry, @"Wrong industry returned.");
+	XCTAssertEqual(j, myIndustry, @"Wrong industry returned.");
 	
 	// Same test for freight cars at industry - just test it doesn't throw.
 	NSSet *cars = [myIndustry freightCars];
-	STAssertNotNil(cars, @"freightCars failed.");
+	XCTAssertNotNil(cars, @"freightCars failed.");
 }
 
 // Tests that a preferences dictionary saved with an NSArchiver can still be read by the current
@@ -631,7 +631,7 @@
 	NSDictionary *testDict = [NSDictionary dictionaryWithObject: @"Hello" forKey: @"World"];
 	[entireLayout_ setPreferencesDictionary: [NSArchiver archivedDataWithRootObject: testDict]];
 	NSDictionary *outDict = [entireLayout_ getPreferencesDictionary];
-	STAssertNotNil([outDict objectForKey: @"World"], @"Expected dictionary to have a value for key 'World'");
+	XCTAssertNotNil([outDict objectForKey: @"World"], @"Expected dictionary to have a value for key 'World'");
 }
 
 // Tests that a preferences dictionary saved with an NSKeyedArchiver can be read.
@@ -639,7 +639,7 @@
 	NSDictionary *testDict = [NSDictionary dictionaryWithObject: @"Hello" forKey: @"World"];
 	[entireLayout_ setPreferencesDictionary: [NSKeyedArchiver archivedDataWithRootObject: testDict]];
 	NSDictionary *outDict = [entireLayout_ getPreferencesDictionary];
-	STAssertNotNil([outDict objectForKey: @"World"], @"Expected dictionary to have a value for key 'World'");
+	XCTAssertNotNil([outDict objectForKey: @"World"], @"Expected dictionary to have a value for key 'World'");
 }
 
 // Tests that if the data for an archived preferences dictionary is bogus, getPreferencesDictionary
@@ -647,8 +647,8 @@
 - (void) testBogusPreferencesDictionary {
 	[entireLayout_ setPreferencesDictionary: [NSData dataWithBytes: "123456" length: 6]];
 	NSDictionary *outDict = [entireLayout_ getPreferencesDictionary];
-	STAssertNil(outDict, @"Expected dictionary from getPreferencesDictionary.");
-	STAssertNil([outDict objectForKey: @"World"], @"Expected dictionary to be empty.");
+	XCTAssertNil(outDict, @"Expected dictionary from getPreferencesDictionary.");
+	XCTAssertNil([outDict objectForKey: @"World"], @"Expected dictionary to be empty.");
 }
 
 @end

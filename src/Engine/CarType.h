@@ -38,5 +38,6 @@
 
 @property (nonatomic, retain) NSString* carTypeName;
 @property(nonatomic, retain) NSString* carTypeDescription;
+@property(nonatomic, retain) NSNumber* carTypeLength;
 
 @end
