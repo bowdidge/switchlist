@@ -61,7 +61,7 @@
 - (void) testTwoRoutes {
 	[self makeThreeStationLayout];
 	[self makePlaceWithName: @"D"];
-	NSArray *trains = [self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B", @"D,C", nil]];
+	[self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B", @"D,C", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_ ];
 	
 	XCTAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
@@ -116,7 +116,7 @@
 	[self makePlaceWithName: @"D"];
 	[self makePlaceWithName: @"E"];
 	// Layout has C between B and E, and D as a branch from C.
-	NSArray *trains = [self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B,C,E", @"A,B,C,D", @"D,C,E", nil]];
+	[self makeTrainsWithRoutes: [NSArray arrayWithObjects: @"A,B,C,E", @"A,B,C,D", @"D,C,E", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 	
 	XCTAssertTrue([graph edgeExistsFromStationName: @"A" toStationName: @"B"], @"");
@@ -138,7 +138,7 @@
 	[self makePlaceWithName: @"East"];
 	[self makePlaceWithName: @"Branch"];
 	
-	NSArray *trains = [self makeTrainsWithRoutes: [NSArray arrayWithObjects:
+	[self makeTrainsWithRoutes: [NSArray arrayWithObjects:
 												   @"West,West Waterside,Waterside,East Waterside,East",
 												   @"East,East Waterside, Waterside,West Waterside,West",
 												   @"Waterside,Branch,Waterside", nil]];
@@ -172,12 +172,12 @@
 	[self makePlaceWithName: @"GLEN"];
 	[self makePlaceWithName: @"SCZ"];
 
-	NSArray *trains = [self makeTrainsWithRoutes: [NSArray arrayWithObjects:
-												   @"SJY,WSJ,AUZ,WSJ,SJY",
-												   @"SJY,CAMP,VJ,LG,VJ,CAMP,SJY",
-												   @"SJY,WSJ,AUZ,CAMP,LG,CAMP,AUZ,WSJ,SJY",
-												   @"SCZ,GLEN,WRI,ALMA,LG,AUZ,SJY,AUZ,LG,ALMA,WRI,GLEN,SCZ",
-												   @"SCZ,GLEN,WSJ,SJY,WSJ,GLEN,SCZ", nil]];
+	[self makeTrainsWithRoutes: [NSArray arrayWithObjects:
+                                 @"SJY,WSJ,AUZ,WSJ,SJY",
+                                 @"SJY,CAMP,VJ,LG,VJ,CAMP,SJY",
+                                 @"SJY,WSJ,AUZ,CAMP,LG,CAMP,AUZ,WSJ,SJY",
+                                 @"SCZ,GLEN,WRI,ALMA,LG,AUZ,SJY,AUZ,LG,ALMA,WRI,GLEN,SCZ",
+                                 @"SCZ,GLEN,WSJ,SJY,WSJ,GLEN,SCZ", nil]];
 	LayoutGraph *graph = [[LayoutGraph alloc] initWithLayout: entireLayout_];
 	
 	XCTAssertTrue([graph edgeExistsFromStationName: @"SJY" toStationName: @"WSJ"], @"");
