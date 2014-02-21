@@ -32,6 +32,14 @@
 
 @class Place;
 
+enum SidingOccupancyRating	{
+    SidingEmpty,
+    SidingQuiet,
+    SidingModerate,
+    SidingBusy,
+    SidingOverloaded
+};
+
 @interface InduYard : NSManagedObject {
 
 }
@@ -64,6 +72,11 @@
 - (NSArray*) allFreightCarsSortedOrder;
 
 - (NSComparisonResult) compareNames: (InduYard*) i;
+
+// Returns the fullness of the siding.
+- (enum SidingOccupancyRating) cargoLoad;
+
+- (id) nameAndLoad;
 
 // Copy fields that are officially part of the HTML template to the dictionary
 // representing an industry.

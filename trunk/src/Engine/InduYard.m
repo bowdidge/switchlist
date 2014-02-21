@@ -30,6 +30,7 @@
 
 #import "InduYard.h"
 
+#import "Cargo.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "StringHelpers.h"
@@ -118,6 +119,35 @@
 	return [[self name] compare: [i name]];
 }
 
+// Returns the fullness of the siding.
+- (enum SidingOccupancyRating) cargoLoad {
+    // How full would the industry be with the current cargos?
+    int sidingLength = [[self sidingLength] intValue];
+    float freightCarFeetPerDay =0.0;
+    
+    for (Cargo *c in [self originatingCargos]) {
+        freightCarFeetPerDay += 40 * [[c carsPerMonth] intValue] / 30.0;
+    }
+    
+    for (Cargo *c in [self terminatingCargos]) {
+        freightCarFeetPerDay += 40 * [[c carsPerMonth] intValue] / 30.0;
+    }
+    
+    // Turn into 0-1 percentage of being full.
+    float occupancyPercent = freightCarFeetPerDay / sidingLength;
+    if (occupancyPercent == 0.0) {
+        return SidingEmpty;
+    } else if (occupancyPercent < 0.2) {
+        return SidingQuiet;
+    } else if (occupancyPercent < 0.5) {
+        return SidingModerate;
+    } else if (occupancyPercent < 0.8) {
+        return SidingBusy;
+    }
+    return SidingOverloaded;
+}
+
+
 // Copy fields that are officially part of the HTML template to the dictionary
 // representing an industry.
 - (NSMutableDictionary*) templateDictionary {
@@ -127,5 +157,34 @@
 	return dict;
 }
 
+- (id) nameAndLoad {
+    // TODO(bowdidge): Cache.
+    if ([self isYard] || [[self sidingLength] intValue] == 0) {
+        return [self name];
+    }
+    NSString *occupancy = SidingOccupancyString([self cargoLoad]);
+    NSString *rawString = [NSString stringWithFormat: @"%@ – %@", [self name], occupancy];
+    return rawString;
+}
+
+NSString* SidingOccupancyString(enum SidingOccupancyRating r) {
+    switch (r) {
+        case SidingEmpty:
+            return @"Empty";
+            break;
+        case SidingQuiet:
+            return @"Quiet";
+            break;
+        case SidingModerate:
+            return @"Moderate";
+            break;
+        case SidingBusy:
+            return @"Busy";
+            break;
+        case SidingOverloaded:
+            return @"Overloaded";
+            break;
+    }
+}
 
 @end
