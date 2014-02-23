@@ -59,6 +59,7 @@ struct CargoRate {
 // rate replaces carsPerMonth.  rate is an NSNumber (integer) representing the number
 // of cars per unit time; rateUnits is 0 for per day, 1 for perWeek, 2 for perMonth.
 @property (nonatomic, retain) NSNumber* rate, *rateUnits;
+@property (nonatomic, retain) NSNumber* unloadingDays;
 
 
 - (NSNumber *)carsPerWeek;
@@ -66,6 +67,9 @@ struct CargoRate {
 
 - (NSNumber*) carsPerMonth;
 - (void)setCarsPerMonth:(NSNumber *)value;
+
+- (NSNumber*) unloadingDays;
+- (void) setUnloadingDays: (NSNumber *) value;
 
 // Returns rate in terms of the unit that the user explicitly chose.
 - (struct CargoRate) cargoRate;

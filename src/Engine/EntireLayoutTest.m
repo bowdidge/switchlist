@@ -37,6 +37,7 @@
 #import "FreightCar.h"
 #import "InduYard.h"
 #import "Industry.h"
+#include "LayoutController.h"
 #import "Place.h"
 #import "ScheduledTrain.h"
 #import "Yard.h"
@@ -491,13 +492,77 @@
 	NSDictionary *industryBData = [[stationBData objectForKey: @"industries"] objectForKey: @"B-industry"];
 	
 	XCTAssertEqualInt(0, [[industryAData objectForKey: @"carsToDropOff"] count],
-				 @"No cars expected to drop off at station A, found %ld", [[stationAData objectForKey: @"carsToDropOff"] count]);
+				 @"No cars expected to drop off at station A, found %d", (int) [[stationAData objectForKey: @"carsToDropOff"] count]);
 	XCTAssertEqualInt(2, [[industryAData objectForKey: @"carsToPickUp"] count],
-				 @"Expected one car to pick up at station A, found %ld.", [[stationAData objectForKey: @"carsToPickUp"] count]);
+				 @"Expected one car to pick up at station A, found %d.", (int) [[stationAData objectForKey: @"carsToPickUp"] count]);
 
 	XCTAssertEqualInt(2, [[industryBData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station B.");
 	XCTAssertEqualInt(0, [[industryBData objectForKey: @"carsToPickUp"] count], @"Expected one car to pick up at station B.");
 }
+
+- (void) testLayoutController {
+	[self makeThreeStationLayout];
+	[self makeThreeStationTrain];
+	FreightCar *fc1 = [self freightCarWithReportingMarks: FREIGHT_CAR_1_NAME];
+	FreightCar *fc2 = [self freightCarWithReportingMarks: FREIGHT_CAR_2_NAME];
+	[fc1 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc1 setIsLoaded: NO];
+    [fc1 setHomeDivision: @"C"];
+	[fc2 setCurrentLocation: [self industryAtStation: @"A"]];
+	[fc2 setIsLoaded: YES];
+    [fc2 setHomeDivision: @"B"];
+    [fc2 setDaysUntilUnloaded: [NSNumber numberWithInt: 2]];
+	
+	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
+	NSArray *allStations = [myTrain1 stationsWithWork];
+	
+    LayoutController *controller = [[LayoutController alloc] initWithEntireLayout: [self entireLayout]];
+   
+    // Cars start at A.
+    XCTAssertEqualObjects([self industryAtStation: @"A"], [fc1 currentLocation]);
+    XCTAssertFalse([fc1 isLoaded]);
+    XCTAssertEqualObjects([self industryAtStation: @"A"], [fc2 currentLocation]);
+    XCTAssertTrue([fc2 isLoaded]);
+    
+    [self advanceEntireLayout:controller];
+
+    // After first move, car fc1 is moved to B for loading.  Car fc2 is moved to B for unloading.
+    XCTAssertEqualObjects([self industryAtStation: @"B"], [fc1 currentLocation], @"Expected fc1 at B, found %@", [[fc1 currentLocation] name]);
+    XCTAssertTrue([fc1 isLoaded]);
+    XCTAssertEqualObjects([self industryAtStation: @"B"], [fc2 currentLocation], @"Expected fc2 at B, found %@", [[fc2 currentLocation] name]);
+    // Still loaded on first day after arrival.
+    XCTAssertTrue([fc2 isLoaded]);
+    XCTAssertEqualInt(1, [[fc2 daysUntilUnloaded] intValue]);
+
+    [self advanceEntireLayout:controller];
+
+    // Car fc1 is now at C, and unloaded.  Car fc2 has been unloaded, and ready to be moved.
+    XCTAssertEqualObjects([self industryAtStation: @"C"], [fc1 currentLocation]);
+    XCTAssertFalse([fc1 isLoaded]);
+    XCTAssertEqualObjects([self industryAtStation: @"B"], [fc2 currentLocation]);
+    // Unloaded on next day.
+    XCTAssertFalse([fc2 isLoaded]);
+
+    [self advanceEntireLayout:controller];
+
+    // fc1 now goes straight to the yard after a day of unloading, and fc2 goes to the yard after two days
+    // of unloading.
+    XCTAssertEqualObjects([self yardAtStation: @"C"], [fc1 currentLocation]);
+    XCTAssertFalse([fc1 isLoaded]);
+    XCTAssertEqualObjects([self yardAtStation: @"B"], [fc2 currentLocation]);
+    XCTAssertFalse([fc2 isLoaded]);
+    XCTAssertEqualInt(0, [[fc2 daysUntilUnloaded] intValue]);
+    
+    [self advanceEntireLayout:controller];
+    
+    // Both cars still unloaded.
+    XCTAssertEqualObjects([self yardAtStation: @"C"], [fc1 currentLocation]);
+    XCTAssertFalse([fc1 isLoaded]);
+    XCTAssertEqualObjects([self yardAtStation: @"B"], [fc2 currentLocation]);
+    XCTAssertFalse([fc2 isLoaded]);
+    XCTAssertEqualInt(0, [[fc2 daysUntilUnloaded] intValue]);
+}
+
 
 - (void) testStationStops {
 	[self makeThreeStationLayout];

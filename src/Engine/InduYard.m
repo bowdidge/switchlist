@@ -130,7 +130,7 @@
     }
     
     for (Cargo *c in [self terminatingCargos]) {
-        freightCarFeetPerDay += 40 * [[c carsPerMonth] intValue] / 30.0;
+        freightCarFeetPerDay += 40 * [[c carsPerMonth] intValue] * [[c unloadingDays] intValue] / 30.0;
     }
     
     // Turn into 0-1 percentage of being full.
@@ -163,14 +163,14 @@
         return [self name];
     }
     NSString *occupancy = SidingOccupancyString([self cargoLoad]);
-    NSString *rawString = [NSString stringWithFormat: @"%@ – %@", [self name], occupancy];
+    NSString *rawString = [NSString stringWithFormat: @"%@ (%@)", [self name], occupancy];
     return rawString;
 }
 
 NSString* SidingOccupancyString(enum SidingOccupancyRating r) {
     switch (r) {
         case SidingEmpty:
-            return @"Empty";
+            return @"Unused";
             break;
         case SidingQuiet:
             return @"Quiet";

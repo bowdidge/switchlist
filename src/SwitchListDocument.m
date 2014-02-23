@@ -281,6 +281,8 @@
 
   [options setObject:[NSNumber numberWithBool:YES] 
         forKey:NSMigratePersistentStoresAutomaticallyOption];
+    [options setObject:[NSNumber numberWithBool:YES]
+                forKey:NSInferMappingModelAutomaticallyOption];
 
   BOOL result = [super configurePersistentStoreCoordinatorForURL:url
                               ofType:fileType

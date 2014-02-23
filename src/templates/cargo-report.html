@@ -31,19 +31,21 @@ ul {
 
 /* JSON array describing SwitchList industries. */ 
 RAW_INDUSTRIES = [{% for industry in layout.allIndustries %}
-  { name: "{{industry.name | js_escape_string}}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: {{industry.sidingLength}}},{% /for %}
+  { name: "{{industry.nameAndLoad | js_escape_string}}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: {{industry.sidingLength}}},{% /for %}
 ];
 
 /* JSON array describing SwitchList yards. */ 
 RAW_YARDS = [{% for industry in layout.allYards %}
-  { name: "{{industry.name | js_escape_string }}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: 0 },{% /for %}
+  { name: "{{industry.nameAndLoad | js_escape_string }}", objectId: "{{industry.objectID.URIRepresentation}}", sidingLength: 0 },{% /for %}
 ];
 
 /* JSON array describing SwitchList cargos. */ 
 RAW_CARGOS = [{% for cargo in layout.allCargos %}
   { name: "{{cargo.name | js_escape_string}}",     carType: "{{cargo.carType | js_escape_string}}", carsPerWeek: {{cargo.carsPerWeek}},
     source: "{{cargo.source.objectID.URIRepresentation}}", 
-    destination: "{{cargo.destination.objectID.URIRepresentation}}"}, {%/for%}
+    destination: "{{cargo.destination.objectID.URIRepresentation}}",
+    unloadingDays: "{{cargo.unloadingDays}}" },
+   {%/for%}
 ];
 
 /* JSON array describing SwitchList car types. */ 
@@ -111,6 +113,7 @@ CargoReportGenerator.prototype.GenerateTable = function(cargoReportTable) {
     var destId = cargo['destination']
     var carType = cargo['carType'];
     var carsPerWeek = cargo['carsPerWeek'];
+    var unloadingDays = cargo['unloadingDays'];
 
     // Cargos without specific car requirements go in '?'.
     if (carType == '') {
@@ -133,7 +136,7 @@ CargoReportGenerator.prototype.GenerateTable = function(cargoReportTable) {
     }
 
     this.industryToSourceCarTypeMap[sourceId][carType] += carsPerWeek;
-    this.industryToDestCarTypeMap[destId][carType] += carsPerWeek;
+    this.industryToDestCarTypeMap[destId][carType] += (carsPerWeek * unloadingDays);
     this.carTypeToCountMap[carType] += carsPerWeek;
   }
 
@@ -328,7 +331,8 @@ traffic.
 </ul>
 <p>
 This table shows the number of CARS IN PER WEEK / CARS OUT PER WEEK for
-each car type and each industry.
+each car type and each industry.  (Cars that take multiple days to unload count extra
+for each day they will be on the siding.)
 </p>
 <p>
 
