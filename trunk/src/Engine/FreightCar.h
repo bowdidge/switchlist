@@ -45,6 +45,7 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1,FreightCar* s2, voi
 {
 }
 @property(nonatomic, retain) CarType* carTypeRel;
+@property(nonatomic, retain) NSNumber* daysUntilUnloaded;
 
 - (BOOL) isLoaded;
 - (void) setIsLoaded: (BOOL) loaded;
@@ -81,6 +82,9 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1,FreightCar* s2, voi
 
 - (InduYard *)currentLocation;
 - (void)setCurrentLocation:(InduYard *)value;
+
+- (NSNumber*) daysUntilUnloaded;
+- (void) setDaysUntilUnloaded: (NSNumber*) value;
 
 // Returns the town holding the current industry for the car.
 - (Place *) currentTown;

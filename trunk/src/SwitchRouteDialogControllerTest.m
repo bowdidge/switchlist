@@ -113,7 +113,7 @@
 	
 	NSInteger rowsInStopsTable = [controller_ numberOfRowsInTableView: mockStopsTableView_];
 	XCTAssertEqualInt(3, rowsInStopsTable,
-				 @"Wrong number of towns displayed, found %ld.", rowsInStopsTable);
+				 @"Wrong number of towns displayed, found %d.", (unsigned) rowsInStopsTable);
 	[self checkStopsTableRow: 0 townName: @"A"];
 	[self checkStopsTableRow: 1 townName: @"B"];
 	[self checkStopsTableRow: 2 townName: @"C"];

@@ -21,6 +21,7 @@
                 <outlet property="cargoDestinationLocationPopup_" destination="1154" id="5111"/>
                 <outlet property="cargoSourceLocationArrayController_" destination="1155" id="5108"/>
                 <outlet property="cargoSourceLocationPopup_" destination="1161" id="5109"/>
+                <outlet property="cargoUnloadTimePopup_" destination="z5R-Bj-gdG" id="XJc-Q1-1kI"/>
                 <outlet property="datePicker_" destination="3905" id="5125"/>
                 <outlet property="doorCountField_" destination="1692" id="5101"/>
                 <outlet property="doorCountLabel_" destination="1691" id="5102"/>
@@ -177,7 +178,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4708">
-                                                <rect key="frame" x="604" y="17" width="15" height="205"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="205"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4710">
@@ -648,7 +649,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4699">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4701">
@@ -1210,7 +1211,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4702">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4704">
@@ -1305,7 +1306,7 @@
                             <tabViewItem label="Yards" identifier="" id="1621">
                                 <view key="view" id="1622">
                                     <rect key="frame" x="10" y="33" width="654" height="465"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="1626">
                                             <rect key="frame" x="-27" y="42" width="159" height="17"/>
@@ -1450,17 +1451,17 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="ycY-p3-ZJx">
-                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4716" id="1655">
-                                                        <rect key="frame" x="0.0" y="0.0" width="603" height="265"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="171.59912109375" minWidth="100" maxWidth="1000" id="1661">
+                                                            <tableColumn width="175.59912109375" minWidth="100" maxWidth="1000" id="1661">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1476,7 +1477,7 @@
                                                                     <binding destination="1623" name="value" keyPath="arrangedObjects.name" id="1660"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="172.7470703125" minWidth="100" maxWidth="1000" id="1669">
+                                                            <tableColumn width="175.7470703125" minWidth="100" maxWidth="1000" id="1669">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Location">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1502,7 +1503,7 @@
                                                                     </binding>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="105.66259765625" minWidth="47" maxWidth="1000" id="1659">
+                                                            <tableColumn width="109.66259765625" minWidth="47" maxWidth="1000" id="1659">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Division">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1518,7 +1519,7 @@
                                                                     <binding destination="1623" name="value" keyPath="arrangedObjects.division" id="1658"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="140.3818359375" minWidth="97" maxWidth="1000" id="1657">
+                                                            <tableColumn width="144.3818359375" minWidth="97" maxWidth="1000" id="1657">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Accepts Divisions">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1540,15 +1541,15 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="4715">
-                                                <rect key="frame" x="1" y="282" width="603" height="16"/>
+                                                <rect key="frame" x="1" y="282" width="618" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4714">
-                                                <rect key="frame" x="604" y="17" width="15" height="265"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4716">
-                                                <rect key="frame" x="0.0" y="0.0" width="603" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -1602,7 +1603,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="1141">
-                                            <rect key="frame" x="6" y="69" width="128" height="17"/>
+                                            <rect key="frame" x="6" y="70" width="128" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                             <textFieldCell key="cell" alignment="right" title="Cargo Description:" id="4603">
                                                 <font key="font" metaFont="system"/>
@@ -1611,7 +1612,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="1142">
-                                            <rect key="frame" x="139" y="69" width="267" height="22"/>
+                                            <rect key="frame" x="139" y="70" width="233" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <textFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" id="4604">
                                                 <font key="font" metaFont="system"/>
@@ -1623,7 +1624,7 @@
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="1144">
-                                            <rect key="frame" x="490" y="16" width="39" height="17"/>
+                                            <rect key="frame" x="502" y="45" width="39" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                             <textFieldCell key="cell" alignment="right" title="Cars" id="4605">
                                                 <font key="font" metaFont="system"/>
@@ -1631,8 +1632,17 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField verticalHuggingPriority="750" id="DnA-lA-po1">
+                                            <rect key="frame" x="431" y="13" width="110" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                            <textFieldCell key="cell" alignment="right" title="Unloads in " id="MdR-9L-urT">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                         <textField verticalHuggingPriority="750" id="1145">
-                                            <rect key="frame" x="464" y="13" width="29" height="22"/>
+                                            <rect key="frame" x="477" y="41" width="29" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                             <textFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" alignment="left" drawsBackground="YES" id="4606">
                                                 <numberFormatter key="formatter" formatterBehavior="10_0" positiveFormat="0" negativeFormat="-0" hasThousandSeparators="NO" thousandSeparator="," id="1146">
@@ -1651,7 +1661,7 @@
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="1148">
-                                            <rect key="frame" x="455" y="44" width="74" height="16"/>
+                                            <rect key="frame" x="467" y="74" width="74" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                             <textFieldCell key="cell" alignment="right" title="Car Type:" id="4607">
                                                 <font key="font" metaFont="system"/>
@@ -1660,7 +1670,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button tag="-1" id="1151">
-                                            <rect key="frame" x="537" y="68" width="92" height="18"/>
+                                            <rect key="frame" x="377" y="44" width="92" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                             <buttonCell key="cell" type="check" title="Fixed Rate:" imagePosition="right" alignment="left" inset="2" id="4609">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -1671,7 +1681,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="1153">
-                                            <rect key="frame" x="39" y="15" width="95" height="17"/>
+                                            <rect key="frame" x="39" y="11" width="95" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                             <textFieldCell key="cell" alignment="right" title="Destination:" id="4610">
                                                 <font key="font" metaFont="system"/>
@@ -1680,7 +1690,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" tag="-1" id="1154">
-                                            <rect key="frame" x="136" y="10" width="273" height="26"/>
+                                            <rect key="frame" x="136" y="6" width="239" height="26"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="4611">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1703,7 +1713,7 @@
                                             </connections>
                                         </popUpButton>
                                         <textField verticalHuggingPriority="750" id="1160">
-                                            <rect key="frame" x="39" y="43" width="95" height="17"/>
+                                            <rect key="frame" x="39" y="45" width="95" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                             <textFieldCell key="cell" alignment="right" title="Source:" id="4612">
                                                 <font key="font" metaFont="system"/>
@@ -1712,7 +1722,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <popUpButton verticalHuggingPriority="750" tag="-1" id="1161">
-                                            <rect key="frame" x="136" y="38" width="273" height="26"/>
+                                            <rect key="frame" x="136" y="38" width="239" height="26"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="border" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="4613">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1735,7 +1745,7 @@
                                             </connections>
                                         </popUpButton>
                                         <textField verticalHuggingPriority="750" id="1165">
-                                            <rect key="frame" x="14" y="107" width="442" height="17"/>
+                                            <rect key="frame" x="15" y="107" width="442" height="17"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <textFieldCell key="cell" alignment="center" title="# out of # cargos, # cargos per day" id="4614">
                                                 <font key="font" metaFont="label"/>
@@ -1799,7 +1809,7 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="122.37353515625" minWidth="100.37353515625" maxWidth="1000" id="1178">
+                                                            <tableColumn width="123.37353515625" minWidth="100.37353515625" maxWidth="1000" id="1178">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Cargo Description">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1815,7 +1825,7 @@
                                                                     <binding destination="1138" name="value" keyPath="arrangedObjects.cargoDescription" id="1177"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="37" minWidth="35" maxWidth="1000" id="1181">
+                                                            <tableColumn width="38" minWidth="35" maxWidth="1000" id="1181">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Rate">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1838,7 +1848,7 @@
                                                                     <binding destination="1138" name="value" keyPath="arrangedObjects.rate" id="5505"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="77" minWidth="75" maxWidth="80" id="5530">
+                                                            <tableColumn width="78" minWidth="75" maxWidth="80" id="5530">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1860,7 +1870,7 @@
                                                                     <binding destination="1138" name="selectedIndex" keyPath="arrangedObjects.rateUnits" id="5549"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="55.42138671875" minWidth="51.42138671875" maxWidth="1000" id="1183">
+                                                            <tableColumn editable="NO" width="56.42138671875" minWidth="51.42138671875" maxWidth="1000" id="1183">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Car Type">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1891,7 +1901,7 @@
                                                                     <binding destination="1138" name="value" keyPath="arrangedObjects.priority" id="1185"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="120.771484375" minWidth="39.771484375" maxWidth="1000" id="1196">
+                                                            <tableColumn width="121.771484375" minWidth="39.771484375" maxWidth="1000" id="1196">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Source">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1917,7 +1927,7 @@
                                                                     <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.source" previousBinding="1194" id="1195"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="137.0478515625" minWidth="65.0478515625" maxWidth="1000" id="1191">
+                                                            <tableColumn width="138.0478515625" minWidth="65.0478515625" maxWidth="1000" id="1191">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Destination">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1953,7 +1963,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4705">
-                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4707">
@@ -2009,7 +2019,7 @@
                                             </connections>
                                         </searchField>
                                         <popUpButton verticalHuggingPriority="750" id="4820">
-                                            <rect key="frame" x="531" y="38" width="109" height="26"/>
+                                            <rect key="frame" x="542" y="68" width="98" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="4823" id="4821">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -2038,7 +2048,7 @@
                                             </connections>
                                         </popUpButton>
                                         <popUpButton verticalHuggingPriority="750" id="5495">
-                                            <rect key="frame" x="530" y="10" width="110" height="26"/>
+                                            <rect key="frame" x="542" y="38" width="98" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="Per Month" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="5550" id="5496">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -2055,13 +2065,32 @@
                                                 <binding destination="1138" name="selectedIndex" keyPath="selection.rateUnits" id="5529"/>
                                             </connections>
                                         </popUpButton>
+                                        <popUpButton verticalHuggingPriority="750" id="z5R-Bj-gdG">
+                                            <rect key="frame" x="541" y="6" width="99" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="2 days" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="f9Q-QF-gKm" id="csU-1q-zLc">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" title="OtherViews" id="ppt-FR-tKt">
+                                                    <items>
+                                                        <menuItem tag="1" hidden="YES" enabled="NO" id="j8w-iX-0iE"/>
+                                                        <menuItem title="1 day" tag="1" id="H6t-dF-zfd"/>
+                                                        <menuItem title="2 days" tag="2" id="f9Q-QF-gKm"/>
+                                                        <menuItem title="3 days" tag="3" id="WBw-W6-QXU"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <binding destination="1138" name="selectedIndex" keyPath="selection.unloadingDays" id="zwp-n1-vN5"/>
+                                            </connections>
+                                        </popUpButton>
                                     </subviews>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Trains" identifier="" id="927">
                                 <view key="view" id="928">
                                     <rect key="frame" x="10" y="33" width="654" height="465"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="1561">
                                             <rect key="frame" x="15" y="25" width="142" height="29"/>
@@ -2167,17 +2196,17 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="MgJ-Xg-tlr">
-                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4713" id="1589">
-                                                        <rect key="frame" x="0.0" y="0.0" width="603" height="265"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="279.59912109375" minWidth="100" maxWidth="1000" id="1599">
+                                                            <tableColumn width="287.59912109375" minWidth="100" maxWidth="1000" id="1599">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2193,7 +2222,7 @@
                                                                     <binding destination="1558" name="value" keyPath="arrangedObjects.name" id="1598"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="316.5849609375" minWidth="109.5849609375" maxWidth="1000" id="1591">
+                                                            <tableColumn editable="NO" width="323.5849609375" minWidth="109.5849609375" maxWidth="1000" id="1591">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Accepted Car Types">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2219,15 +2248,15 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="4712">
-                                                <rect key="frame" x="1" y="282" width="603" height="16"/>
+                                                <rect key="frame" x="1" y="282" width="618" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4711">
-                                                <rect key="frame" x="604" y="17" width="15" height="265"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4713">
-                                                <rect key="frame" x="0.0" y="0.0" width="603" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>

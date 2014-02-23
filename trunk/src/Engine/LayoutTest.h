@@ -40,6 +40,7 @@
 @class EntireLayout;
 @class FreightCar;
 @class Industry;
+@class LayoutController;
 @class ScheduledTrain;
 @class Place;
 @class Yard;
@@ -91,6 +92,9 @@
 // Make train that goes A->B->C.
 - (ScheduledTrain*) makeThreeStationTrain;
 - (Yard*) makeYardAtStation: (NSString*) stationName;
+
+// Advance the layout and all trains, but do not assign new cargos.
+- (void)advanceEntireLayout:(LayoutController *)controller;
 
 - (FreightCar*) freightCarWithReportingMarks: (NSString*) reportingMarks;
 

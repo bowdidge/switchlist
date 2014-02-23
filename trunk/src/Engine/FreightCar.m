@@ -204,6 +204,8 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
 }
 
 @dynamic carTypeRel;
+@dynamic daysUntilUnloaded;
+
 // These two functions are provided free by CoreData,
 // and by not implementing them, we don't need to worry about getting
 // the reverse stuff correct.
@@ -212,24 +214,20 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
 
 - (NSNumber *)length 
 {
-    NSNumber * tmpValue;
-    
     [self willAccessValueForKey: @"length"];
-    tmpValue = [self primitiveValueForKey: @"length"];
+    NSNumber* tmpValue = [self primitiveValueForKey: @"length"];
     [self didAccessValueForKey: @"length"];
     
     return tmpValue;
 }
 
-- (void)setLength:(NSNumber *)value 
-{
+- (void)setLength:(NSNumber *)value {
     [self willChangeValueForKey: @"length"];
     [self setPrimitiveValue: value forKey: @"length"];
     [self didChangeValueForKey: @"length"];
 }
 
-
-- (InduYard *)currentLocation 
+- (InduYard *)currentLocation
 {
     id tmpObject;
     

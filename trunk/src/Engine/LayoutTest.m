@@ -37,6 +37,7 @@
 #import "FreightCar.h"
 #import "InduYard.h"
 #import "Industry.h"
+#import "LayoutController.h"
 #import "Place.h"
 #import "ScheduledTrain.h"
 #import "Yard.h"
@@ -171,6 +172,16 @@
 	EntireLayout *layout = [[EntireLayout alloc] initWithMOC: context];
 	return [layout autorelease];
 }
+
+// Advance the layout and all trains, but do not assign new cargos.
+- (void)advanceEntireLayout:(LayoutController *)controller {
+    [controller assignCarsToTrains: [entireLayout_ allTrains] respectSidingLengths: YES useDoors:YES];
+    for (ScheduledTrain* train in [entireLayout_ allTrains]) {
+        [controller completeTrain: train];
+    }
+    [controller advanceLoads];
+}
+
 // Creates a layout with no freight cars, places, or industries.
 - (void) makeSimpleLayout {
 	[NSEntityDescription entityForName: @"LayoutInfo" inManagedObjectContext: context_];
@@ -224,6 +235,8 @@
 	[fc1 setIsLoaded: loaded];
 	return fc1;
 }
+
+
 // Make three stations, A, B, and C.
 // Each has an industry; B has a yard.
 

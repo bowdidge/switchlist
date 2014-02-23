@@ -361,7 +361,6 @@
 		3EABC3C316069C5A00EBD6C5 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75BC16063FFD00891318 /* libicucore.dylib */; };
 		3EABC3C416069C5F00EBD6C5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75BF1606400400891318 /* CoreData.framework */; };
 		3EABEAE6169B38150016D751 /* IndustryChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EABEAE5169B38150016D751 /* IndustryChooser.m */; };
-		3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0AC0B127BB95000E27063 /* InduYard.m */; };
 		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
 		3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */; };
 		3EC1D47E160AEDB700765095 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC1D47D160AEDB700765095 /* QuartzCore.framework */; };
@@ -386,7 +385,6 @@
 		3EC3B1721277E4F900C00AD3 /* SwitchListReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E917A3E095166FA004647C7 /* SwitchListReport.m */; };
 		3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E917A710951690D004647C7 /* YardReport.m */; };
 		3EC3B1741277E4F900C00AD3 /* CargoReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEF2660952A1000092302C /* CargoReport.m */; };
-		3EC3B1771277E4F900C00AD3 /* Industry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C11D70A39652F0071D6B4 /* Industry.m */; };
 		3EC3B17B1277E4F900C00AD3 /* SwitchRouteDialogController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */; };
 		3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED482330D715B3600C36741 /* SwitchListView.m */; };
 		3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */; };
@@ -823,6 +821,7 @@
 		3EE711361285D4F2006059F4 /* CarTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarTypes.m; path = Engine/CarTypes.m; sourceTree = "<group>"; };
 		3EE711661285D81E006059F4 /* CarTypesTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarTypesTest.h; path = Engine/CarTypesTest.h; sourceTree = "<group>"; };
 		3EE711671285D81E006059F4 /* CarTypesTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarTypesTest.m; path = Engine/CarTypesTest.m; sourceTree = "<group>"; };
+		3EEC03BA18B9D18A0010B77D /* SwitchListDocument 7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SwitchListDocument 7.xcdatamodel"; sourceTree = "<group>"; };
 		3EEE0A80161FE3F8007BBE4E /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditViewController.h; path = iPad/EditViewController.h; sourceTree = "<group>"; };
 		3EEE0A81161FE3F8007BBE4E /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditViewController.m; path = iPad/EditViewController.m; sourceTree = "<group>"; };
 		3EEE0A8316209486007BBE4E /* PlaceChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceChooser.h; path = iPad/PlaceChooser.h; sourceTree = "<group>"; };
@@ -1293,9 +1292,9 @@
 				3EFA162209515AA200654CC9 /* CarReport.h */,
 				3EFA162309515AA200654CC9 /* CarReport.m */,
 				3EFEF2650952A1000092302C /* CargoReport.h */,
+				3EFEF2660952A1000092302C /* CargoReport.m */,
 				3E9E1F780951605600C5E038 /* IndustryReport.h */,
 				3E9E1F790951605600C5E038 /* IndustryReport.m */,
-				3EFEF2660952A1000092302C /* CargoReport.m */,
 				3EFA16080951584A00654CC9 /* Report.h */,
 				3EFA16090951584A00654CC9 /* Report.m */,
 				3E9179800951634B004647C7 /* ReservedCarReport.h */,
@@ -2139,9 +2138,7 @@
 				3EC3B16F1277E4F900C00AD3 /* CarReport.m in Sources */,
 				3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */,
 				3E108C631404A31E00B77CFE /* ICUTemplateMatcher.m in Sources */,
-				3EC3B1771277E4F900C00AD3 /* Industry.m in Sources */,
 				3EC3B1701277E4F900C00AD3 /* IndustryReport.m in Sources */,
-				3EB0AC2E127BBBCA00E27063 /* InduYard.m in Sources */,
 				3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */,
 				8D15AC320486D014006FF6A4 /* main.m in Sources */,
 				3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */,
@@ -3350,13 +3347,14 @@
 				3E8328C114553A2E00A6A662 /* SwitchListDocument 4.xcdatamodel */,
 				3EDD57EC15E5D7ED006E0B5C /* SwitchListDocument 5.xcdatamodel */,
 				3E3C2093173CCDB200F1A04F /* SwitchListDocument 6.xcdatamodel */,
+				3EEC03BA18B9D18A0010B77D /* SwitchListDocument 7.xcdatamodel */,
 				3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */,
 				3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */,
 				3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */,
 				3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */,
 				3E3C2360174743D700F1A04F /* AddCurrentDoor.xcmappingmodel */,
 			);
-			currentVersion = 3E3C2093173CCDB200F1A04F /* SwitchListDocument 6.xcdatamodel */;
+			currentVersion = 3EEC03BA18B9D18A0010B77D /* SwitchListDocument 7.xcdatamodel */;
 			path = SwitchListDocument.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

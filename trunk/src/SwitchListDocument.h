@@ -92,6 +92,10 @@
 	IBOutlet NSTextField *sidingLengthLabel_;	
 	IBOutlet NSTextField *sidingFeetLabel_;	
 	IBOutlet NSTextField *sidingLengthField_;
+    
+    // Cargo tab.
+    IBOutlet NSPopUpButton *cargoUnloadTimePopup_;
+    
 	// Access to the various controllers of popups so we can sort their contents (and make it
 	// easier to find particular items.
 	IBOutlet NSPopUpButton *freightCarLocationPopup_;

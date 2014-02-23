@@ -40,7 +40,7 @@
 @dynamic carTypeRel;
 @dynamic cargoDescription;
 @dynamic source,destination;
-@dynamic rate, rateUnits;
+@dynamic rate, rateUnits, unloadingDays;
 
 - (struct CargoRate) cargoRate {
     struct CargoRate retValue;

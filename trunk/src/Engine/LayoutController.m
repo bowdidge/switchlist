@@ -48,17 +48,25 @@
 	return self;
 }
 
-// Marks unloaded cars as loaded, and loaded as empty.
+// Marks cars arriving at the source as loaded, and loaded as empty.
 - (void) advanceLoads {
 	NSArray *freightCarsToAdvance = [self.entireLayout allFreightCarsAtDestination];
 	FreightCar *car;
 	for (car in freightCarsToAdvance) {
 		if ([car isLoaded] == NO) {
 			[car setIsLoaded: YES];
+            // Remember number of days to unload - this countdown starts only when the train arrives..
+            [car setDaysUntilUnloaded: [[car cargo] unloadingDays]];
 			// cargo stays the same
 		} else {
-			[car setIsLoaded: NO];
-			[car setValue: nil forKey: @"cargo"];
+            int daysUntilUnloaded = [[car daysUntilUnloaded] intValue];
+            daysUntilUnloaded--;
+            [car setDaysUntilUnloaded: [NSNumber numberWithInt: daysUntilUnloaded]];
+            // If the car is in staging, consider it immediately unloaded.
+            if (daysUntilUnloaded < 1 || [[car currentLocation] isStaging]) {
+                [car setIsLoaded: NO];
+                [car setValue: nil forKey: @"cargo"];
+            } 
 		}
 	}
 	
