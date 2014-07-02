@@ -52,10 +52,21 @@
 // Example:
 //   {{ all_incoming_cars | sum_of_lengths }}
 // draws the number for the sum of lengths.
+//
+// js_escape_string: Escape single and double quotes for correct handling
+// in JavaScript.
+//
+// escape_cgi:
+//
+// Replaces characters that would mess up a URL with percent escapes.  For passing train name, layout name, etc. as url to open another page.Takes a string and replaces 
 
 #import <Foundation/Foundation.h>
 
 #import "MGTemplateFilter.h"
+
+@interface NSString(Escaping)
+- (NSString*) stringByEscapingForJavaScript;
+@end
 
 @interface SwitchListFilters : NSObject <MGTemplateFilter> {
 }
@@ -65,6 +76,9 @@
 - (NSString*) jitterString: (NSString*) value;
 // Only operates on arrays.
 - (NSString*) sumOfLengths: (id) value;
+
+- (NSString*) escapeJavaScriptString: (NSString*) str;
+- (NSString*) escapeCGI: (NSString*) value;
 
 // For predictably testing which way a jittered string will change.
 - (int) getRandomValue: (int) max;

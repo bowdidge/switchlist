@@ -215,7 +215,7 @@
 	XCTAssertNotNil(server_->lastMessage, @"No message received - switchlist-home.html not loaded.");
 	// Make sure we have the links to at least one layout.
 	// Because only one layout has a name, only one name shows up.
-	XCTAssertContains(@"layout?layout=My Layout", server_->lastMessage,@"Expected %@ in %@", @"layout?layout=My Layout", server_->lastMessage);
+	XCTAssertContains(@"layout?layout=My%20Layout", server_->lastMessage, @"Expected %@ in %@", @"layout?layout=My Layout", server_->lastMessage);
 	XCTAssertEqual(1, [server_->lastMessage occurrencesOfString: @"layout?layout="],
 					@"Wrong number of layouts in layout list, expected 1, found %d", 
 				   [server_->lastMessage occurrencesOfString: @"layout?layout="]);

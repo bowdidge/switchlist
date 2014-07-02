@@ -155,6 +155,11 @@ NSString *CurrentHostname() {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
 	ScheduledTrain *train = [layout trainWithName: trainName];
+    if (!train) {
+        [server_ replyWithStatusCode: HTTP_NOT_FOUND
+                             message: [NSString stringWithFormat: @"Unknown train: %@", trainName]];
+        return;
+    }
 	[server_ replyWithStatusCode: HTTP_OK
 						 message: [htmlRenderer_ renderSwitchlistForTrain: train layout: layout iPhone: isIPhone]];
 }
@@ -341,11 +346,11 @@ NSString *CurrentHostname() {
 		return;
 	} else {
 		// All these expect a layout to be named.
-		NSString *layout = [query objectForKey: @"layout"];
+		NSString *layout = [[query objectForKey: @"layout"] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 		SwitchListDocument *document = [self layoutWithName: layout];
 		
 		if ([[url path] hasPrefix: @"/completeTrain"]) {
-			NSString *train = [query objectForKey: @"train"];
+			NSString *train = [[query objectForKey: @"train"] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 			if (!document) {
 				[self replyWithNoKnownLayout: layout];
 				return;
@@ -357,8 +362,8 @@ NSString *CurrentHostname() {
 				[self replyWithNoKnownLayout: layout];
 				return;
 			}
-			NSString *car = [query objectForKey: @"car"];
-			NSString *location = [query objectForKey: @"location"];
+			NSString *car = [[query objectForKey: @"car"] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+			NSString *location = [[query objectForKey: @"location"] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 			[self processChangeLocationForLayout: document car: car location: location];
 			return;
 		} else if ([[url path] isEqualToString: @"/carList"]) {
@@ -401,7 +406,7 @@ NSString *CurrentHostname() {
 				[self replyWithNoKnownLayout: layout];
 				return;
 			}
-			NSString *trainName = [query objectForKey: @"train"];
+			NSString *trainName = [[query objectForKey: @"train"] stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 			[self processRequestForLayout: document train: trainName forIPhone: isIPhone];
 		} else if ([[url path] isEqualToString: @"/layout"]) {
 			if (!document) {

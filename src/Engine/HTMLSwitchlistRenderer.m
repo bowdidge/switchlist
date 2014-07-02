@@ -174,7 +174,7 @@
 	NSMutableString *carLocations = [NSMutableString string];
 	NSArray *allFreightCars = [[layout allFreightCarsReportingMarkOrder] sortedArrayUsingSelector: @selector(compareNames:)];
 	for (FreightCar *freightCar in allFreightCars) {
-		[carLocations appendFormat: @"'%@':'%@',", [freightCar reportingMarks], [[freightCar currentLocation] name]];
+		[carLocations appendFormat: @"'%@':'%@',", [[freightCar reportingMarks] stringByEscapingForJavaScript], [[[freightCar currentLocation] name] stringByEscapingForJavaScript]];
 	}
 	NSDictionary *templateDict = [NSDictionary dictionaryWithObjectsAndKeys:
 								  allFreightCars, @"freightCars",
