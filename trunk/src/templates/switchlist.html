@@ -55,7 +55,7 @@ STATION,
 {% if interactive %}
 <p align="right">
 <INPUT TYPE=BUTTON value="Go Back" onclick="location.href='?layout={{layout.layoutName}}'">
-<INPUT TYPE=BUTTON value="Train Finished" onclick="location.href='completeTrain?layout={{layout.layoutName}}&train={{train.name}}'">
+<INPUT TYPE=BUTTON value="Train Finished" onclick="location.href='completeTrain?layout={{layout.layoutName | escape_cgi}}&train={{train.name | escape_cgi}}'">
 </p>
 {% /if %}
 </div>

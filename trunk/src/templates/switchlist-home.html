@@ -19,7 +19,7 @@
 <h1 class="report-layouts">Layouts</h1>
 <ul>
 {% for layoutName in layoutNames %}
-  <li class="report-list"> <A HREF="layout?layout={{layoutName}}">{{layoutName}}</A>
+  <li class="report-list"> <A HREF="layout?layout={{layoutName | escape_cgi}}">{{layoutName}}</A>
 {% /for %}
 </ul>
 </BODY>

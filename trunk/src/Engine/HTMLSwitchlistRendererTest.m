@@ -215,4 +215,20 @@
 	XCTAssertEqualObjects(@"station:A:-ind:A1-.SP 1.EndInd-ind:A2-EndIndEndStastation:B:EndSta", result, @"");
 }
 
+- (void) testCGIEscaping {
+    NSString* trainName = @"#52";
+    
+    NSDictionary* vars = [NSDictionary dictionaryWithObject: trainName forKey: @"trainName"];
+    XCTAssertEqualObjects(@"#52", [engine_ processTemplate: @"{{trainName}}" withVariables: vars]);
+    XCTAssertEqualObjects(@"<a href=\"?train=%2352\">", [engine_ processTemplate: @"<a href=\"?train={{trainName | escape_cgi}}\">" withVariables: vars]);
+}
+
+- (void) testJsEscaping {
+    NSString* industryName = @"Bob's Cannery";
+    
+    NSDictionary* vars = [NSDictionary dictionaryWithObject: industryName forKey: @"industryName"];
+    XCTAssertEqualObjects(@"Bob's Cannery", [engine_ processTemplate: @"{{industryName}}" withVariables: vars]);
+    XCTAssertEqualObjects(@"a = 'Bob\\\'s Cannery';", [engine_ processTemplate: @"a = '{{industryName | js_escape_string}}';" withVariables: vars]);
+}
+
 @end

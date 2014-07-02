@@ -38,6 +38,7 @@
 #define SUM_OF_LENGTHS @"sum_of_lengths"
 // Escape the string for embedding in a JavaScript string.  Convert ' and " to \' and \".
 #define ESCAPE_STRING @"js_escape_string"
+#define ESCAPE_CGI @"escape_cgi"
 
 @implementation SwitchListFilters
 // Adds whitespace - nbsp, emsp, ensp - randomly at the beginning and end of strings,
@@ -90,14 +91,16 @@
 
 // Escapes quotes and double quotes with \ for JavaScript.
 - (NSString*) escapeJavaScriptString: (NSString*) str {
-	NSString *str1 = [[str stringByReplacingOccurrencesOfString: @"'" withString: @"\\\'"]
-			stringByReplacingOccurrencesOfString: @"\"" withString: @"\\\""];
-	return str1;
+    return [str stringByEscapingForJavaScript];
+}
+
+- (NSString*) escapeCGI: (NSString*) str {
+    return [str stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 }
 
 - (NSArray *)filters
 {
-	return [NSArray arrayWithObjects: JITTER, SUM_OF_LENGTHS, ESCAPE_STRING, nil];
+	return [NSArray arrayWithObjects: JITTER, SUM_OF_LENGTHS, ESCAPE_STRING, ESCAPE_CGI, nil];
 }
 
 - (NSObject *)filterInvoked:(NSString *)filter withArguments:(NSArray *)args onValue:(NSObject *)value {
@@ -107,7 +110,18 @@
 		return [self sumOfLengths: (NSArray*) value];
 	} else if ([filter isEqualToString: ESCAPE_STRING]) {
 		return [self escapeJavaScriptString: (NSString*) value];
+	} else if ([filter isEqualToString: ESCAPE_CGI]) {
+		return [self escapeCGI: (NSString*) value];
 	}
 	return value;
 }		
 @end
+
+@implementation NSString(Escaping)
+- (NSString*) stringByEscapingForJavaScript {
+  NSString *str1 = [[self stringByReplacingOccurrencesOfString: @"'" withString: @"\\\'"]
+                  stringByReplacingOccurrencesOfString: @"\"" withString: @"\\\""];
+  return str1;
+}
+@end
+

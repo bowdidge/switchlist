@@ -19,17 +19,17 @@
 <h1 class="report-layouts">Trains and Switchlists</h1>
 <ul>
 {% for train in layout.allTrains %}
-<li class="report-list"><A HREF="switchlist?layout={{layout.layoutName}}&train={{train.name}}">{{train.name}}</A></li>
+<li class="report-list"><A HREF="switchlist?layout={{layout.layoutName | escape_cgi}}&train={{train.name | escape_cgi}}">{{train.name}}</A></li>
 {% /for %}
 </ul>
 
 <h1 class="report-layouts">Reports</h1>
 <ul>
-<li class="report-list"><A HREF="carList?layout={{layout.layoutName}}">Reposition Freight Cars</a>
-<li class="report-list"><A HREF="industryList?layout={{layout.layoutName}}">Industry Car Report</a>
-<li class="report-list"><A HREF="yardReport?layout={{layout.layoutName}}">Yard Report</a>
-<li class="report-list"><A HREF="reservedCarReport?layout={{layout.layoutName}}">Reserved Car Report</a>
-    <li class="report-list"><A HREF="cargoReport?layout={{layout.layoutName}}">Cargo Report</a>
+<li class="report-list"><A HREF="carList?layout={{layout.layoutName | escape_cgi}}">Reposition Freight Cars</a>
+<li class="report-list"><A HREF="industryList?layout={{layout.layoutName escape_cgi}}">Industry Car Report</a>
+<li class="report-list"><A HREF="yardReport?layout={{layout.layoutName | escape_cgi}}">Yard Report</a>
+<li class="report-list"><A HREF="reservedCarReport?layout={{layout.layoutName | escape_cgi\}}">Reserved Car Report</a>
+    <li class="report-list"><A HREF="cargoReport?layout={{layout.layoutName | escape_cgi}}">Cargo Report</a>
 </ul>
 </body>
 </html>
