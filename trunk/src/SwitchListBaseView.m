@@ -31,7 +31,6 @@
 #import "SwitchListBaseView.h"
 
 #import "CarType.h"
-#import "DoorAssignmentRecorder.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "GlobalPreferences.h"
@@ -90,7 +89,6 @@
 - (NSString *) destStringForFreightCar: (FreightCar *) freightCar {
 	NSString *toIndustry, *toTown;
 	BOOL loaded = [freightCar isLoaded];
-	DoorAssignmentRecorder *recorder = [owningDocument_ doorAssignmentRecorder];
 	if ([freightCar intermediateDestination]) {
 		// If freight car's being routed home empty, we use intermediateLocation for next place.
 		toIndustry = [[freightCar intermediateDestination] name];
@@ -103,7 +101,7 @@
 			toIndustry = [freightCar valueForKeyPath: @"cargo.source.name"];
 			toTown = [freightCar valueForKeyPath: @"cargo.source.location.name"];
 		}
-		int doorToSpot = [recorder doorForCar: freightCar];
+		int doorToSpot = [freightCar nextDoor];
 		if (doorToSpot != 0) {
 			toIndustry = [NSString stringWithFormat: @"%@ #%d", toIndustry, doorToSpot];
 		}

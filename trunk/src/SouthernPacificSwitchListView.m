@@ -33,7 +33,6 @@
 #import "SouthernPacificSwitchListView.h"
 
 #import "CarType.h"
-#import "DoorAssignmentRecorder.h"
 #import "EntireLayout.h"
 
 // "Pretty" switchlist imitating the SP-style switchlist shown by Bill Kaufman in his
