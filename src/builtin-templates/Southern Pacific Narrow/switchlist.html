@@ -31,7 +31,9 @@ STATION,
 <TABLE class="switch-list">
   <TR class="switch-list-header">
     <TH>Done</TH>
-    <TH>Car No.</TH>
+    <th>Initial</th>
+    <th>No</th>
+    <th>Load</th>
     <TH>Car Type</TH>
     <TH>From</TH>
     <TH>To</TH>
@@ -39,10 +41,12 @@ STATION,
   {% for car in train.allFreightCarsInVisitOrder %}
   <TR>
     <TD><INPUT TYPE=CHECKBOX NAME=""></TD>
-	<TD>{{car.reportingMarks}}</TD>
-	<TD class="cartype">{{car.carType}}</TD>
+	<TD>{{car.initials}}</TD>
+    <TD>{{car.number}}</TD>
+    <td>{% if car.isLoaded %}X{% /if %}</td>
+    <TD class="cartype">{{car.carType}}</TD>
 	<TD>{{car.currentLocation.location.name}}/{{car.currentLocation.name}}</TD>
-	<TD>{{car.nextStop.location.name}}/{{car.nextStop.name}} {% if car.nextDoor %} #{{car.doorToSpot.intValue}} {% /if %}</td>
+	<TD>{{car.nextStop.location.name}}/{{car.nextStop.name}} {% if car.nextDoor %} #{{car.nextDoor}} {% /if %}</td>
   </tr>
   {% /for %}
 </TABLE>
