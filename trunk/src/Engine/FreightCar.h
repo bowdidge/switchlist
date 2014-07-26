@@ -69,6 +69,8 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1,FreightCar* s2, voi
 - (NSNumber *)doorToSpot;
 - (void)setDoorToSpot:(NSNumber *)value;
 
+// Returns 0 for no door, or a non-zero number if the car is spotted at an industry with door numbers.
+// Intended for templates.
 - (int) thisDoor;
 - (int) nextDoor;
 

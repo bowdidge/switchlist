@@ -156,10 +156,16 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
 }
 
 - (int) thisDoor {
+    if (![[self currentLocation] hasDoors]) {
+        return 0;
+    }
     return [[self currentDoor] intValue];
 }
 
 - (int) nextDoor {
+    if (![[self nextIndustry] hasDoors]) {
+        return 0;
+    }
     return [[self doorToSpot] intValue];
 }
 
