@@ -93,7 +93,7 @@
             <td>{% if car.isLoaded %}X{%/if%}</td>
             <td>{% if car.isLoaded == NO %}X{%/if%}</td>
             <td>{{car.currentLocation.name}}</td>
-            <td></td>
+            <td>Door {% if car.nextDoor %} #{{car.doorToSpot.intValue}} {% /if %}</td>
 	  </tr>
 	{% /for %}
       {% /for %}
