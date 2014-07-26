@@ -91,6 +91,10 @@
 - (void) makeThreeStationLayoutNoYards;
 // Make train that goes A->B->C.
 - (ScheduledTrain*) makeThreeStationTrain;
+
+// Make train that goes A->B, and train from B->C.
+- (NSArray*) makeTwoTrains;
+
 - (Yard*) makeYardAtStation: (NSString*) stationName;
 
 // Advance the layout and all trains, but do not assign new cargos.

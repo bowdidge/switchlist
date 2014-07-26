@@ -669,6 +669,36 @@
 	XCTAssertEqualInt(1, [entireLayout_ loadsPerDay], @"Expected 1 load/day, got %d", [entireLayout_ loadsPerDay]);
 }
 
+- (void) testNextDoorShowsOnlyAtIndustry {
+	[self makeThreeStationLayout];
+    [self makeTwoTrains];
+	[self makeYardAtStation: @"A"];
+    [self makeYardAtStation: @"B"];
+    [[self industryAtStation: @"C"] setHasDoors: YES];
+    [[self industryAtStation: @"C"] setNumberOfDoors: [NSNumber numberWithInt: 5]];
+    
+    Cargo *c1 = [self makeCargo: @"a to c"];
+	[c1 setSource: [self yardAtStation: @"A"]];
+	[c1 setDestination: [self industryAtStation: @"C"]];
+
+	FreightCar *fc = [self makeFreightCarWithReportingMarks: @"A 1"];
+    [fc setCargo: c1];
+	[fc setIsLoaded: YES];
+    [fc setCurrentLocation: [self yardAtStation: @"A"]];
+    [fc setCurrentTrain: [[self entireLayout] trainWithName: @"Train 1"]];
+    [fc setDoorToSpot: [NSNumber numberWithInt: 4]];
+    [fc setIntermediateDestination: [self yardAtStation: @"B"]];
+
+	XCTAssertEqualInt(0, [fc nextDoor], @"Expected no nextDoor, got %ld", (unsigned long) [fc nextDoor]);
+
+    [fc setCurrentLocation: [self yardAtStation: @"B"]];
+    [fc setIntermediateDestination: nil];
+    [fc setCurrentTrain: [[self entireLayout] trainWithName: @"Train 2"]];
+
+	XCTAssertTrue(0 < [fc nextDoor], @"Expected valid nextDoor");
+}
+
+
 - (void) testCargoLoadsPerDayFractions {
 	[self makeThreeStationLayout];
 	Cargo *c1 = [self makeCargo: @"b to c"];
