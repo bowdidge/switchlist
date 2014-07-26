@@ -1048,7 +1048,24 @@
     <key>IndustryClass</key><string>cement and concrete</string>
     <key>Synonyms</key>
     <array>
+        <string>Lehigh Cement</string>
+        <string>Kaiser Cement</string>
+        <string>Redi-Mix</string>
     </array>
+    <key>Cargo</key>
+    <array>
+        <dict>
+            <key>Name</key><string>sand</string>
+            <key>Incoming</key><true/>
+            <key>Rate</key><integer>50</integer>
+        </dict>
+        <dict>
+            <key>Name</key><string>cement</string>
+            <key>Incoming</key><true/>
+            <key>Rate</key><integer>50</integer>
+        </dict>
+    </array>
+
   </dict>
   <dict>
     <key>IndustryClass</key><string>interchange</string>
@@ -1129,5 +1146,57 @@
       </dict>
     </array>
   </dict>
+  <dict>
+      <key>IndustryClass</key><string>auto plant</string>
+      <key>Synonyms</key>
+      <array>
+          <string>NUMMI</string>
+          <string>Ford plant</string>
+          <string>assembly plant</string>
+          <string>Chrysler</string>
+          <string>GM</string>
+          <string>Volkswagen</string>
+          <string>Chevy</string>
+      </array>
+      <key>Cargo</key>
+      <array>
+          <dict>
+              <key>Name</key><string>steel</string>
+              <key>Incoming</key><true/>
+              <key>Rate</key><integer>20</integer>
+          </dict>
+          <dict>
+              <key>Name</key><string>automobiles</string>
+              <key>Incoming</key><false/>
+              <key>Rate</key><integer>40</integer>
+          </dict>
+          <dict>
+              <key>Name</key><string>auto parts</string>
+              <key>Incoming</key><false/>
+              <key>Rate</key><integer>40</integer>
+          </dict>
+     </array>
+  </dict>
+  <dict>
+      <key>IndustryClass</key><string>water treatment plant</string>
+      <key>Synonyms</key>
+      <array>
+          <string>city water</string>
+      </array>
+      <key>Cargo</key>
+      <array>
+          <dict>
+              <key>Name</key><string>chlorine</string>
+              <key>Incoming</key><true/>
+              <key>Rate</key><integer>90</integer>
+          </dict>
+          <dict>
+              <key>Name</key><string>sand</string>
+              <key>Incoming</key><true/>
+              <key>Rate</key><integer>10</integer>
+          </dict>
+      </array>
+  </dict>
+
 </array>
 </plist>
