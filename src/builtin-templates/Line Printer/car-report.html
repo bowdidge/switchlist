@@ -37,7 +37,7 @@ td {
 <tr>
 <td>{{car.reportingMarks}}</td>
 <td>{{car.carType}}</td>
-<td>{{ car.currentLocation.name }} / {{car.currentLocation.location.name }}</td>
+<td>{{ car.currentLocation.name }} / {{car.currentLocation.location.name }} {% if car.thisDoor %} #{{car.thisDoor}} {% /if %}</td>
 <td>{{car.cargo.name}}</td>
 </tr>
 {% /for %}
