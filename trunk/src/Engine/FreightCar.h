@@ -35,7 +35,7 @@
 @class FreightCar;
 @class Place;
 @class Industry;
-@class InduYard;;
+@class InduYard;
 @class ScheduledTrain;
 
 // Compares the two freight car names, and returns order of the two.
@@ -68,6 +68,9 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1,FreightCar* s2, voi
 // Set the door at the next industry where the car should go.
 - (NSNumber *)doorToSpot;
 - (void)setDoorToSpot:(NSNumber *)value;
+
+- (int) thisDoor;
+- (int) nextDoor;
 
 // Set the door that the car is currently located at.
 - (NSNumber *)currentDoor;

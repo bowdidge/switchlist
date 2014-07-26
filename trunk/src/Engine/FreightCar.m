@@ -155,6 +155,15 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
     [self didChangeValueForKey: @"reportingMarks"];
 }
 
+- (int) thisDoor {
+    return [[self currentDoor] intValue];
+}
+
+- (int) nextDoor {
+    return [[self doorToSpot] intValue];
+}
+
+
 - (NSNumber *)doorToSpot {
     NSNumber * tmpValue;
     
