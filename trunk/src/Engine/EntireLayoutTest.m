@@ -451,9 +451,9 @@
 	NSDictionary *industryCData = [[stationCData objectForKey: @"industries"] objectForKey: @"C-industry"];
 	
 	XCTAssertEqualInt(0, [[industryAData objectForKey: @"carsToDropOff"] count],
-				@"No cars expected to drop off at station A, found %ld", [[stationAData objectForKey: @"carsToDropOff"] count]);
+				@"No cars expected to drop off at station A, found %ld", (unsigned long) [[stationAData objectForKey: @"carsToDropOff"] count]);
 	XCTAssertEqualInt(1, [[industryAData objectForKey: @"carsToPickUp"] count],
-				 @"Expected one car to pick up at station A, found %ld.", [[stationAData objectForKey: @"carsToPickUp"] count]);
+				 @"Expected one car to pick up at station A, found %ld.", (unsigned long) [[stationAData objectForKey: @"carsToPickUp"] count]);
 
 	XCTAssertEqualInt(1, [[industryBData objectForKey: @"carsToDropOff"] count], @"Expected one car to drop off at station B.");
 	XCTAssertEqualInt(1, [[industryBData objectForKey: @"carsToPickUp"] count], @"Expected one car to pick up at station B.");
@@ -477,7 +477,7 @@
 	
 	// Should see fc1 going B to C, and fc2 going A to B.
 
-	XCTAssertEqualInt(2, [allStations count], @"Wrong number of stops, expected 2, found %ld", [allStations count]);
+	XCTAssertEqualInt(2, [allStations count], @"Wrong number of stops, expected 2, found %ld", (unsigned long) [allStations count]);
 	
 	NSDictionary *stationAData = [allStations objectAtIndex: 0];
 	NSDictionary *stationBData = [allStations objectAtIndex: 1];
@@ -601,14 +601,14 @@
 	FreightCar *fc = [self makeFreightCarWithReportingMarks: @"A 1"];
 	[fc setCurrentLocation: [self yardAtStation: @"A"]];
 	NSArray *carsInYard = [entireLayout_ allFreightCarsInYard];
-	XCTAssertEqualInt(1, [carsInYard count], @"Incorrect number of cars in yard, found %ld", [carsInYard count]);
+	XCTAssertEqualInt(1, [carsInYard count], @"Incorrect number of cars in yard, found %ld", (unsigned long) [carsInYard count]);
 }
 
 - (void) testImport {
 	NSString *input = @"SP 1\nSP 2  \n    SP 3\n";
 	NSMutableString *errors = nil;
 	[entireLayout_ importFreightCarsUsingString: input errors: &errors];
-	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld", [[entireLayout_ allFreightCars] count]);
+	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld", (unsigned long)[[entireLayout_ allFreightCars] count]);
 	XCTAssertEqualInt(0, [errors length], @"No errors expected");
 }
 
@@ -617,7 +617,7 @@
 	NSMutableString *errors = nil;
 	[entireLayout_ importFreightCarsUsingString: input errors: &errors];
 	XCTAssertEqualInt(0, [errors length], @"No errors expected");
-	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld (%@)", [[entireLayout_ allFreightCars] count],[entireLayout_ allFreightCars]);
+	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld (%@)", (unsigned long) [[entireLayout_ allFreightCars] count],[entireLayout_ allFreightCars]);
 	XCTAssertNotNil([self freightCarWithReportingMarks: @"SP 1"], @"Freight car names corrupted.");
 }
 
@@ -629,7 +629,7 @@
 	NSMutableString *errors = nil;
 	[entireLayout_ importFreightCarsUsingString: input errors: &errors];
 	XCTAssertEqualInt(0, [errors length], @"No errors expected");
-	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld", [[entireLayout_ allFreightCars] count]);
+	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld", (unsigned long) [[entireLayout_ allFreightCars] count]);
 }
 
 - (void) checkExistenceOfCar: (NSString*) reportingMarks type: (NSString*) carType {
@@ -647,7 +647,7 @@
 	[entireLayout_ importFreightCarsUsingString: input errors: &errors];
 	XCTAssertEqualInt(0, [errors length], @"No errors expected");
 	
-	XCTAssertEqualInt(5, [[entireLayout_ allFreightCars] count], @"Expected 4 freight cars, got %ld", [[entireLayout_ allFreightCars] count]);
+	XCTAssertEqualInt(5, [[entireLayout_ allFreightCars] count], @"Expected 4 freight cars, got %ld", (unsigned long) [[entireLayout_ allFreightCars] count]);
 	
 	[self checkExistenceOfCar: @"SP 1" type: @"XM"];
 	[self checkExistenceOfCar: @"SP 2" type: @"T"];
