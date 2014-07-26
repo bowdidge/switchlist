@@ -42,13 +42,13 @@ STATION,
 	<TD>{{car.reportingMarks}}</TD>
 	<TD class="cartype">{{car.carType}}</TD>
 	<TD>{{car.currentLocation.location.name}}/{{car.currentLocation.name}}</TD>
-	<TD>{{car.nextStop.location.name}}/{{car.nextStop.name}}</td>
+	<TD>{{car.nextStop.location.name}}/{{car.nextStop.name}} {% if car.nextDoor %} #{{car.doorToSpot.intValue}} {% /if %}</td>
   </tr>
   {% /for %}
 </TABLE>
 </center>
 <p align="right">
-<INPUT TYPE=BUTTON value="Go Back" onclick="location.href='?layout={{layout.layoutName}}'">
+<INPUT TYPE=BUTTON value="Go Back" onclick="location.href='?layout={{layout.layoutName | escape_cgi}}'">
 <INPUT TYPE=BUTTON value="Train Finished">
 </p>
 </div>
