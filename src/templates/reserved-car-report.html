@@ -22,7 +22,7 @@
 <td>{{ car.currentLocation.name }} / {{car.currentLocation.location.name }}</td>
 <td>{{car.cargo.name}}</td>
 <td>{{car.cargo.source.name}}</td>
-<td>{{car.cargo.destination.name}}</td>
+<td>{{car.cargo.destination.name}} {% if car.nextDoor %} #{{car.doorToSpot}} {% /if %}</td>
 </tr>
 {% /for %}
 </body>
