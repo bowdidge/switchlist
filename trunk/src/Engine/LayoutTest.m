@@ -260,6 +260,22 @@
 	return myTrain;
 }
 
+// Each has an industry; B has a yard.
+
+- (NSArray *) makeTwoTrains {
+	ScheduledTrain *train1 = [self makeTrainWithName: @"Train 1"];
+	
+	[train1 setStops: @"A,B"];
+	[self setTrain: train1 acceptsCarTypes: @"XM"];
+	
+	ScheduledTrain *train2 = [self makeTrainWithName: @"Train 2"];
+	
+	[train2 setStops: @"B,C"];
+	[self setTrain: train2 acceptsCarTypes: @"XM"];
+	return [NSArray arrayWithObjects: train1, train2, nil];
+}
+
+
 - (Yard*) yardAtStation: (NSString*) stationName {
 	InduYard *yard = [entireLayout_ industryWithName: [NSString stringWithFormat: @"%@-yard", stationName]
 									 withStationName: stationName];
