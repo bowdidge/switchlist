@@ -47,7 +47,7 @@ STATION,
 	<TD>{{car.carType | jitter}}</TD>
 	<TD>{{car.currentLocation.location.name | 
 	 }} / {{car.currentLocation.name | jitter}}</TD>
-	<TD>{{car.nextStop.location.name | jitter }} / {{car.nextStop.name | jitter}}</td>
+	<TD>{{car.nextStop.location.name | jitter }} / {{car.nextStop.name | jitter}} {% if car.nextDoor %} #{{car.doorToSpot}} {% /if %}</td>
   </tr>
   {% /for %}
 </TABLE>
