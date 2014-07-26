@@ -31,8 +31,8 @@
 #import <Cocoa/Cocoa.h>
 
 #import "KaufmanSwitchListView.h"
-#import "DoorAssignmentRecorder.h"
 #import "EntireLayout.h"
+#include "InduYard.h"
 #import "ScheduledTrain.h"
 
 //  Pretty switchlist based on the San Francisco Belt Line's
@@ -78,7 +78,7 @@
 // Returns string value of particular cell of table.
 - (NSString*) textForColumn: (int) column row: (int) row {
 	FreightCar *fc = [carsInTrain_ objectAtIndex: row];
-	DoorAssignmentRecorder *door = [owningDocument_ doorAssignmentRecorder];
+    int door = [fc nextDoor];
 	switch (column) {
 		case 0:
 			return [fc initials];
@@ -90,8 +90,8 @@
 			return [[fc nextStop] name];
 		case 4:
 			if (!door) return @"";
-			if ([door doorForCar:fc] == 0) return @"";
-			return [NSString stringWithFormat: @"Door %d", [door doorForCar: fc]];
+			if ([fc nextDoor] == 0) return @"";
+			return [NSString stringWithFormat: @"Door %d", [fc nextDoor]];
 
 	}
 	return @"???";
@@ -251,13 +251,12 @@ NSInteger sortFreightCarByIndustry(const FreightCar *fc1, const FreightCar* fc2,
 }
 
 NSInteger sortFreightCarByDestinationIndustry(const FreightCar *fc1, const FreightCar* fc2, void *context) {
-	DoorAssignmentRecorder *recorder = (DoorAssignmentRecorder*) context;
 	NSComparisonResult result = [[[fc1 nextStop] name] compare: [[fc2 nextStop] name]];
 	if (result != NSOrderedSame) {
 		return result;
 	}
-	int door1 = [recorder doorForCar: fc1];
-	int door2 = [recorder doorForCar: fc2];
+	int door1 = [fc1 nextDoor];
+	int door2 = [fc2 nextDoor];
 	return (door1 - door2);
 }
 
@@ -270,8 +269,7 @@ NSInteger sortFreightCarByDestinationIndustry(const FreightCar *fc1, const Freig
 	NSMutableArray *dropOffCars = [NSMutableArray arrayWithArray: [train_ carsForStation: stationOfInterest]];
 	NSMutableArray *pickUpCars = [NSMutableArray arrayWithArray: [train_ carsAtStation: stationOfInterest]];
 	[pickUpCars sortUsingFunction: &sortFreightCarByIndustry context: 0];
-	[dropOffCars sortUsingFunction: &sortFreightCarByDestinationIndustry
-						   context: [owningDocument_ doorAssignmentRecorder]];
+	[dropOffCars sortUsingFunction: &sortFreightCarByDestinationIndustry  context: 0];
 								
 	[self drawHeaderAtOffset: startHeight];
 	startHeight -= HEADER_HEIGHT;

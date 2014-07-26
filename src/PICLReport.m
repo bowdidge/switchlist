@@ -32,7 +32,6 @@
 #import "PICLReport.h"
 
 
-#import "DoorAssignmentRecorder.h"
 #import "EntireLayout.h"
 #import "GlobalPreferences.h"
 #import "CarType.h"
@@ -54,7 +53,6 @@
 }
 
 - (NSString*) contents {
-	DoorAssignmentRecorder *recorder = [owningDocument_ doorAssignmentRecorder];
 	NSMutableString *piclString = [NSMutableString string];
 	
 	NSArray *stops = [train_ stationsInOrder];
@@ -118,7 +116,7 @@
 				InduYard *toIndustry = [freightCar nextStop];
 				NSString *toIndustryName = [toIndustry name];
 				Place *toTown = [toIndustry location];
-				int doorToSpot = [recorder doorForCar: freightCar];
+				int doorToSpot = [freightCar nextDoor];
 				if (doorToSpot != 0) {
 					toIndustryName = [[NSString stringWithFormat: @"%@ #%d", toIndustryName, doorToSpot] uppercaseString];
 				}

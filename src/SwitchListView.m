@@ -31,7 +31,6 @@
 #import "SwitchListView.h"
 
 #import "CarType.h"
-#import "DoorAssignmentRecorder.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "SwitchListDocumentInterface.h"
