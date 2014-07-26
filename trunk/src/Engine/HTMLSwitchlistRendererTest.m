@@ -49,6 +49,34 @@
 	XCTAssertNotNil(text, @"Expected renderSwitchListForTrain to return something, but returned nil.");
 	XCTAssertContains(@"switchlist.css", text, @"%@ does not contain builtin ref", text);
 }
+
+- (void) testNoEscapeTrainNameInSwitchList {
+	[self makeThreeStationLayout];
+	ScheduledTrain *train = [self makeThreeStationTrain];
+    [train setName: @"Train #52"];
+	
+	NSBundle *bundleForUnitTests = [NSBundle bundleForClass: [self class]];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
+	NSString *text = [renderer renderSwitchlistForTrain: [[self entireLayout] trainWithName: @"Train #52"]
+												 layout: [self entireLayout]
+												 iPhone: NO];
+	XCTAssertNotNil(text, @"Expected renderSwitchListForTrain to escape #.");
+    // Should be in link for train finished.
+	XCTAssertContains(@"Train%20%2352", text, @"%@ contains contain escaped train number.", text);
+}
+
+- (void) testEscapeTrainNameIn {
+	[self makeThreeStationLayout];
+	ScheduledTrain *train = [self makeThreeStationTrain];
+    [train setName: @"Train #52"];
+	
+	NSBundle *bundleForUnitTests = [NSBundle bundleForClass: [self class]];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
+	NSString *text = [renderer renderLayoutPageForLayout: [self entireLayout]];
+	XCTAssertNotNil(text, @"Expected renderSwitchListForTrain to escape #.");
+	XCTAssertContains(@"Train%20%2352", text, @"%@ does not contain escaped train number.", text);
+}
+
 @end
 
 // Minimal tests to ensure MGTemplate is working.
@@ -67,6 +95,11 @@
 - (void) testSimpleTemplate {
 	NSString *result = [engine_ processTemplate: @"foo" withVariables: [NSDictionary dictionaryWithObject: @"1" forKey: @"foo"]];
 	XCTAssertEqualObjects(@"foo", result, @"");
+}
+
+- (void) testRenderNSNumber {
+	NSString *result = [engine_ processTemplate: @"{{foo}}" withVariables: [NSDictionary dictionaryWithObject: [NSNumber numberWithInt: 5] forKey: @"foo"]];
+	XCTAssertEqualObjects(@"5", result, @"");
 }
 
 - (void) testSimpleIfTemplate {
