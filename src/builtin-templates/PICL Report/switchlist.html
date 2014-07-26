@@ -25,7 +25,7 @@ WORK ORDER FOR {{train.name}}
           <td>{{car.reportingMarks }}</td>
           <td>{% if car.isLoaded == 1 %} L {% else %} E {% /if %}</td>
           <td> {{car.nextStop.name}} </td>
-          <td> {{car.nextStop.location.name}} </td>
+          <td> {{car.nextStop.location.name}} {% if car.nextDoor %} #{{car.nextDoor}} {% /if %}</td>
        </tr>
       {% /for %}
       </table>
