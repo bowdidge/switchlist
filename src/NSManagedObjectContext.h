@@ -33,6 +33,8 @@
 
 @interface NSManagedObjectContext (UnitTests)
 
-+ (NSManagedObjectContext *) inMemoryMOCFromBundle:(NSBundle *)appBundle;
+// Create a ManagedObjectContext using the schema in the Unit Tests bundle,
+// and loading the layout from the provided layout file if requested.
++ (NSManagedObjectContext *) inMemoryMOCFromBundle:(NSBundle *)appBundle withFile: (NSURL*) layoutUrl;
 
 @end

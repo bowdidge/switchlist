@@ -48,10 +48,7 @@
 
 // Base class holds test harness code for building up sample layouts in the persistent store.
 @interface LayoutTest : XCTestCase {
-	NSPersistentStoreCoordinator *coord_;
     NSManagedObjectContext *context_;
-    NSManagedObjectModel *model_;
-    NSPersistentStore *store_;
 	
 	// Handy reference to EntireLayout.
 	EntireLayout *entireLayout_;
