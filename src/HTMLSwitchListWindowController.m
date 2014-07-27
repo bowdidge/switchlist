@@ -88,4 +88,14 @@
 	return [htmlController_ htmlView];
 }
 
+
+// Callback required by WebView to load additional resources.
+- (NSURLRequest *)webView:(WebView *)sender
+				 resource:(id)identifier
+          willSendRequest:(NSURLRequest *)request
+         redirectResponse:(NSURLResponse *)redirectResponse
+           fromDataSource:(WebDataSource *)dataSource {
+    return [htmlController_ webView: sender resource: identifier willSendRequest: request redirectResponse: redirectResponse fromDataSource: dataSource];
+}
+
 @end
