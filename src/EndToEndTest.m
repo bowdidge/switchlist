@@ -55,7 +55,9 @@
         
         // TEST HERE FOR VALID HTML
         for (FreightCar* fc in [train freightCars]) {
-            XCTAssertContains([fc reportingMarks], all_html, @"Couldn't find freight car %@ in switchlist %@.", [fc reportingMarks], switchlistStyle);
+            // Can't check together because of non-breaking spaces added for jitter.
+            XCTAssertContains([fc number], all_html, @"Couldn't find freight car %@ in switchlist %@.", [fc reportingMarks], switchlistStyle);
+            XCTAssertContains([fc initials], all_html, @"Couldn't find freight car %@ in switchlist %@.", [fc reportingMarks], switchlistStyle);
         }
         
         // TODO(bowdidge): Load HTML into a WebView to test it can be parsed.
@@ -68,6 +70,7 @@
     int carCount = [[entireLayout_ allFreightCars] count];
     NSArray *allTrains = [entireLayout_ allTrains];
     XCTAssertTrue([allTrains count] > 0, @"No trains found - problems loading.");
+    XCTAssertTrue([[entireLayout_ allFreightCars] count] > 0, @"No freight cars found - problems loading.");
 
     LayoutController *controller = [[LayoutController alloc] initWithEntireLayout: entireLayout_];
     for (int i=0;i<10;i++) {
@@ -77,18 +80,19 @@
         
         NSArray *errs = [controller assignCarsToTrains: allTrains respectSidingLengths: YES useDoors: YES];
         
-        int carsMoved = 0;
-        for (ScheduledTrain *train in allTrains) {
-            carsMoved += [[train freightCars] count];
-            [controller completeTrain: train];
-        }
-        XCTAssertTrue(carsMoved > 0.2 * carCount, @"Insufficient cars moved: expected 0.2 * carCount (%d), got %d", carCount/5 , carsMoved);
 
         [self doTestOneLayout: entireLayout_ switchlistStyle: @"Line Printer"];
         [self doTestOneLayout: entireLayout_ switchlistStyle: @"PICL Report"];
         [self doTestOneLayout: entireLayout_ switchlistStyle: @"Handwritten"];
         [self doTestOneLayout: entireLayout_ switchlistStyle: @"Southern Pacific Narrow"];
         [self doTestOneLayout: entireLayout_ switchlistStyle: @"San Francisco Belt Line B-7"];
+
+        int carsMoved = 0;
+        for (ScheduledTrain *train in allTrains) {
+            carsMoved += [[train freightCars] count];
+            [controller completeTrain: train];
+        }
+        XCTAssertTrue(carsMoved > 0.2 * carCount, @"Insufficient cars moved: expected 0.2 * carCount (%d), got %d", carCount/5 , carsMoved);
     }
     
     [controller release];
