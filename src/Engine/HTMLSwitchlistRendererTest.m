@@ -45,7 +45,7 @@
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
 	NSString *text = [renderer renderSwitchlistForTrain: [[self entireLayout] trainWithName: @"MyTrain"]
 												 layout: [self entireLayout]
-												 iPhone: NO];
+												 iPhone: NO interactive: YES];
 	XCTAssertNotNil(text, @"Expected renderSwitchListForTrain to return something, but returned nil.");
 	XCTAssertContains(@"switchlist.css", text, @"%@ does not contain builtin ref", text);
 }
@@ -59,7 +59,8 @@
 	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
 	NSString *text = [renderer renderSwitchlistForTrain: [[self entireLayout] trainWithName: @"Train #52"]
 												 layout: [self entireLayout]
-												 iPhone: NO];
+												 iPhone: NO
+                                            interactive: YES];
 	XCTAssertNotNil(text, @"Expected renderSwitchListForTrain to escape #.");
     // Should be in link for train finished.
 	XCTAssertContains(@"Train%20%2352", text, @"%@ contains contain escaped train number.", text);

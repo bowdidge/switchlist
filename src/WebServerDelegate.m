@@ -161,7 +161,8 @@ NSString *CurrentHostname() {
         return;
     }
 	[server_ replyWithStatusCode: HTTP_OK
-						 message: [htmlRenderer_ renderSwitchlistForTrain: train layout: layout iPhone: isIPhone]];
+						 message: [htmlRenderer_ renderSwitchlistForTrain: train layout: layout
+                                                                   iPhone: isIPhone interactive: YES]];
 }
 
 

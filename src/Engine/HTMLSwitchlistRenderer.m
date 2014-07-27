@@ -158,14 +158,18 @@
 	return [mainBundle_ pathForResource: @"switchlist-iphone" ofType: @"html"];
 }
 
-- (NSString*) renderSwitchlistForTrain: (ScheduledTrain*) train layout: (EntireLayout*)layout iPhone: (BOOL) isIPhone {
-	NSDictionary *templateDict = [NSDictionary dictionaryWithObjectsAndKeys:
+- (NSString*) renderSwitchlistForTrain: (ScheduledTrain*) train layout: (EntireLayout*)layout iPhone: (BOOL) isIPhone
+                           interactive: (BOOL) isInteractive {
+	NSMutableDictionary *templateDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								  train, @"train", 
 								  [[[train stationsInOrder] objectAtIndex: 0] name], @"firstStation", 
 								  layout, @"layout",
-								  [NSNumber numberWithInt: 1], @"interactive",
 								  nil];
-	NSString *switchlistTemplatePath = (isIPhone ? [self filePathForSwitchlistIPhoneHTML] : [self filePathForSwitchlistHTML]);
+    if (isInteractive) {
+        [templateDict setObject: [NSNumber numberWithInt: 1] forKey: @"interactive"];
+    }
+    NSString *switchlistTemplatePath = (isIPhone ?
+                                        [self filePathForSwitchlistIPhoneHTML] : [self filePathForSwitchlistHTML]);
 	return [engine_ processTemplateInFileAtPath: switchlistTemplatePath
 								  withVariables: templateDict];
 }

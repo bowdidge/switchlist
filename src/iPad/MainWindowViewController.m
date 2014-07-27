@@ -146,7 +146,7 @@ float BOX_HEADER = 25.0;
     }
     SwitchListTouchCatcherView *catcher;
     for (ScheduledTrain *train in [layout allTrains]) {
-        NSString *htmlText = [renderer renderSwitchlistForTrain: train layout: layout iPhone: NO];
+        NSString *htmlText = [renderer renderSwitchlistForTrain: train layout: layout iPhone: NO interactive: YES];
         catcher = [self makeCatcherWithText: htmlText label: [train name] isReport: NO];
         [catcher setTrain: train];
         // Ensure badge redraws.

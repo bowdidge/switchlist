@@ -72,8 +72,12 @@
 // Returns the path to the template with the given name, as found in one of the switchlist template
 // directories.  If none can be found, it uses the copy in the main bundle.
 - (NSString*) filePathForTemplateHtml: (NSString*) template;
-	
-- (NSString *) renderSwitchlistForTrain: (ScheduledTrain*) train layout: (EntireLayout*)layout iPhone: (BOOL) isIPhone;
+
+// Generates the HTML for the requested train's switchlist.  isIphone determines whether the iPhone-specific
+// template should be used.  isInteractive determines whether interactive variable is set in template, enabling
+// any buttons or controls in page.  isInteractive should be 0 for printing.
+- (NSString *) renderSwitchlistForTrain: (ScheduledTrain*) train layout: (EntireLayout*)layout iPhone: (BOOL) isIPhone
+                            interactive: (BOOL) isInteractive;
 - (NSString*) renderCarlistForLayout: (EntireLayout*) layout;
 - (NSString*) renderIndustryListForLayout: (EntireLayout*) layout;
 - (NSString*) renderYardReportForLayout: (EntireLayout*) layout;

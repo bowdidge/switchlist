@@ -39,7 +39,7 @@
 
 @class DoorAssignmentRecorder;
 @class SuggestedCargoController;
-
+@class HTMLSwitchListController;
 @interface SwitchListDocument : NSPersistentDocument<SwitchListDocumentInterface> {
 	IBOutlet NSTextField *freightCarCountField_;
 	IBOutlet NSWindow *switchListWindow_;
@@ -61,6 +61,11 @@
 
 	IBOutlet NSWindow *setRouteSheet_;
 	IBOutlet SwitchRouteDialogController *switchRouteController_;
+    // Controller for rendering HTML into a WebView, then printing that content.  Used for printing
+    // multiple switchlists in a group.  Because the WebView takes some time to render, we wait until the
+    // pageLoaded handler is called before printing.  Keeping the controller object here avoids deallocating
+    // the controller in the pageLoaded handler.
+    HTMLSwitchListController *printingHtmlViewController_;
 
 	// Car type sheet for trains tab.
 	IBOutlet NSWindow *setCarTypesSheet_;
