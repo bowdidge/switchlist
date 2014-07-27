@@ -168,7 +168,6 @@
 	// Gather the names of the switchlist templates with native support.
 	nameToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
 	[nameToSwitchListClassMap_ setObject: [SwitchListView class] forKey: DEFAULT_SWITCHLIST_TEMPLATE];
-	[nameToSwitchListClassMap_ setObject: [SwitchListReport class] forKey: @"Line Printer"];
 	[nameToSwitchListClassMap_ setObject: [KaufmanSwitchListView class] forKey: @"San Francisco Belt Line B-7"];
 	[nameToSwitchListClassMap_ setObject: [SouthernPacificSwitchListView class] forKey: @"Southern Pacific Narrow"];
 	[nameToSwitchListClassMap_ setObject: [PICLReport class] forKey: @"PICL Report"];
