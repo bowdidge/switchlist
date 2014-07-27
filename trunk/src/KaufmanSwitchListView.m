@@ -242,7 +242,7 @@ float HEADER_HEIGHT = 126.0;
 	
 	NSString *datedLine = @"Dated  ________________________  Signed _________________________ By ____________________";
 	[self drawFormLine: datedLine centerX: [self imageableWidth] / 2 centerY: startHeight-94
-			   strings: [NSArray arrayWithObjects: @"", dateString, @"", @"Del Monte Corp.", @"", [self randomFunctionary: startHeight], nil]
+			   strings: [NSArray arrayWithObjects: @"", dateString, @"", @"", @"", [self randomFunctionary: startHeight], nil]
 		  printedAttrs: tinyTimesAttr];
 }
 
