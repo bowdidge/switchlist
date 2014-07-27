@@ -5,12 +5,12 @@
 
 @implementation NSManagedObjectContext (UnitTests)
 
-+ (NSManagedObjectContext *)inMemoryMOCFromBundle:(NSBundle *)appBundle {
++ (NSManagedObjectContext *)inMemoryMOCFromBundle:(NSBundle *)appBundle withFile: (NSURL*) layoutUrl {
 	// get model from app bundle passed into method
 	NSArray *bundleArray = [NSArray arrayWithObject:appBundle];
 	NSAssert([bundleArray count] == (unsigned)1, @"1 object in bundle array");
 	NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:bundleArray];
-	
+    
 	NSPersistentStoreCoordinator *coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model] autorelease];
 	if (coordinator == nil) {
 		NSLog(@"Can't get instance of NSPersistentStoreCoordinator");
@@ -18,10 +18,18 @@
 	}
 	
 	// Add an in-memory persistent store to the coordinator.
-	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];	
+	NSMutableDictionary *options = [NSMutableDictionary dictionary];
+    // Don't change the layout file.
+    [options setObject: [NSNumber numberWithBool:YES] forKey: NSReadOnlyPersistentStoreOption];
+    [options setObject: [NSNumber numberWithBool: YES] forKey: NSMigratePersistentStoresAutomaticallyOption];
+    [options setObject: [NSNumber numberWithBool:YES] forKey: NSInferMappingModelAutomaticallyOption];
 	
+    NSString *storeType = NSXMLStoreType;
+    if (layoutUrl == nil) {
+        storeType = NSInMemoryStoreType;
+    }
 	NSError *addStoreError = nil;
-	if (![coordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:options error:&addStoreError]) {
+	if (![coordinator addPersistentStoreWithType: storeType configuration:nil URL: layoutUrl options:options error:&addStoreError]) {
 		NSLog(@"Error setting up in-memory store unit test: %@ ", addStoreError);
 		return nil;
 	}
