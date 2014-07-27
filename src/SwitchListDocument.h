@@ -108,6 +108,7 @@
 	IBOutlet NSArrayController *freightCarController_;
 	// Freight car locations.
 	IBOutlet NSArrayController *freightCarLocationArrayController_;
+	IBOutlet NSArrayController *freightCarTypeArrayController_;
 
 	IBOutlet NSArrayController *industryLocationArrayController_;
 	IBOutlet NSPopUpButton *industryLocationPopup_;
@@ -116,7 +117,9 @@
 	IBOutlet NSPopUpButton *cargoSourceLocationPopup_;
 	
 	IBOutlet NSArrayController *cargoDestinationLocationArrayController_;
+	IBOutlet NSArrayController *cargoCarTypeArrayController_;
 	IBOutlet NSPopUpButton *cargoDestinationLocationPopup_;
+	IBOutlet NSPopUpButton *cargoCarTypePopup_;
 	
 	IBOutlet NSArrayController *yardLocationArrayController_;
 	IBOutlet NSPopUpButton *yardLocationPopup_;
