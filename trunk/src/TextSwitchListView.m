@@ -206,15 +206,21 @@
 		}
 		lineCount += linesNeeded;
 	}
-	int documentHeight = lineCount * lineHeight;
+    int documentHeight = lineCount * lineHeight;
 
 	// Keep our containing frame at pixel size.
+    //NSRect currentFrame = self.frame;
+	NSRect frame = NSMakeRect(0, 0, [self imageableWidth], documentHeight);
 	NSRect bounds = NSMakeRect(0, 0, [self imageableWidth], documentHeight);
-	[self setFrame: bounds];
-	// TextView is 1-1.
-	[textView_ setFrame: bounds];
+    // TextView is 1-1.
+	[textView_ setFrame: frame];
 	[textView_ setBounds: bounds];
-		
+
+    // Update entire view's frame to match, but keep y position the same so we correctly handle multi-train printing.
+    NSRect selfFrame = [self frame];
+    selfFrame.size = frame.size;
+    [self setFrame: selfFrame];
+
 	NSView *parent = self;
 	while ([parent superview] != nil) {
 		parent = [parent superview];

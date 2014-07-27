@@ -41,6 +41,7 @@
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "GlobalPreferences.h"
+#import "HTMLSwitchListController.h"
 #import "HTMLSwitchListWindowController.h"
 #import "HTMLSwitchlistRenderer.h"
 #import "Industry.h"
@@ -113,7 +114,8 @@
 	placeIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.isOffline == 0"] retain];
 	trains_ = nil;
 	annulledTrains_ = [[NSMutableArray alloc] init];
-    return self;
+    printingHtmlViewController_  = nil;
+   return self;
 }
 
 - (void) dealloc {
@@ -123,6 +125,7 @@
 	[layoutController_ release];
 	[annulledTrains_ release];
 	[trains_ release];
+    [printingHtmlViewController_ release];
 	[super dealloc];
 }
 
@@ -299,16 +302,51 @@
 	
 	SwitchListAppDelegate *appDelegate = (SwitchListAppDelegate*) [[NSApplication sharedApplication] delegate];
 	Class reportClass = [[appDelegate nameToSwitchListClassMap] objectForKey: preferredSwitchlistStyle];
+    NSMutableString* all_html = [NSMutableString string];
+    [all_html appendString: @"<html><body>"];
+    ScheduledTrain* lastTrain = [[entireLayout_ allTrains] lastObject];
+    
 	if (reportClass == nil) {
-		// For now, default to handwritten.
-		// TODO(bowdidge): Add "print all" feature for HTML templates.
-		reportClass = [SwitchListView class];
-	}
-	
-	PrintEverythingView *pev = [[PrintEverythingView alloc] initWithFrame: NSMakeRect(0.0,0.0,100.0,100.0) withDocument: self
-															withViewClass: reportClass];
-    [[NSPrintOperation printOperationWithView:pev] runOperation];
-	[pev autorelease];
+        // Render pages for all switchlists by concatenating the separate HTML pages, and boxing each
+        // in with a div setting the page break attribute.
+        // TODO(bowdidge): If this doesn't work in the long term, consider
+        HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
+        [renderer setTemplate: preferredSwitchlistStyle];
+        NSString *switchlistHtmlFile = [renderer filePathForTemplateHtml: @"switchlist"];
+
+        for (ScheduledTrain* train in [entireLayout_ allTrains]) {
+            NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO interactive: NO];
+            if (train != lastTrain) {
+                [all_html appendString: @"<div class='page' style='page-break-after: always;'>"];
+            } else {
+                [all_html appendString: @"<div class='page'>"];
+            }
+            [all_html appendString: message];
+            [all_html appendString: @"</div>"];
+        }
+
+		if (!printingHtmlViewController_) {
+            printingHtmlViewController_ = [[HTMLSwitchListController alloc] init];
+            WebView *htmlView = [[[WebView alloc] init] autorelease];
+            [printingHtmlViewController_ setWebView: htmlView];
+            [[printingHtmlViewController_ htmlView] setFrameLoadDelegate: self];
+        }
+		[printingHtmlViewController_ drawHTML: all_html  template: switchlistHtmlFile];
+        // Finish the printing in webView:didFinishLoadForFrame: once the HTML has rendered.
+	} else {
+        PrintEverythingView *pev = [[PrintEverythingView alloc] initWithFrame: NSMakeRect(0.0,0.0,100.0,100.0) withDocument: self
+                                                                withViewClass: reportClass];
+        [[NSPrintOperation printOperationWithView:pev] runOperation];
+        [pev autorelease];
+    }
+}
+
+- (void) webView: (WebView*) printView didFinishLoadForFrame: (WebFrame*) frame {
+    NSPrintInfo *printInfo = [NSPrintInfo sharedPrintInfo];
+    
+    NSPrintOperation *printOp = [NSPrintOperation printOperationWithView: [[[printView mainFrame] frameView] documentView] printInfo: printInfo];
+    [printOp setShowsPrintPanel: YES];
+    [printOp runOperation];
 }
 
 - (void) setupSortedArrayController: (NSArrayController *) arrayController
@@ -624,7 +662,7 @@
 		[renderer setTemplate: preferredSwitchlistStyle];
 		NSString *switchlistHtmlFile = [renderer filePathForTemplateHtml: @"switchlist"];
 
-		NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO];
+		NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO interactive: NO];
 		// TODO(bowdidge): Switch this to match/inherit from the SwitchListBaseView so print all works.
 		HTMLSwitchListWindowController *view =[[HTMLSwitchListWindowController alloc] initWithTitle: title];
 		[[view window] makeKeyAndOrderFront: self];

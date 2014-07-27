@@ -2,9 +2,9 @@
 //  HTMLSwitchListView.h
 //  SwitchList
 //
-//  Created by Robert Bowdidge on 8/30/11.
+//  Created by Robert Bowdidge on 7/26/14.
 //
-// Copyright (c)2011 Robert Bowdidge,
+// Copyright (c)2014 Robert Bowdidge,
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
@@ -31,34 +31,39 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 
-@class HTMLSwitchListController;
-
-// Handles setup and actions on the window used to display HTML switchlists.
-@interface HTMLSwitchListWindowController : NSWindowController<NSWindowDelegate> {
-    // Web view displaying the switchlist.
-    IBOutlet WebView *htmlView_;
-    HTMLSwitchListController *htmlController_;
-    // Owning window.
-	IBOutlet NSWindow *window_;
+// Handles management of WebView used for rendering HTML switchlists and other documents.
+@interface HTMLSwitchListController : NSObject {
+	// Web view displaying the switchlist.
+	IBOutlet WebView *htmlView_;
 	// Shared bundle - for mocking.
 	NSBundle *mainBundle_;
 	// Shared file manager - for mocking.
 	NSFileManager *fileManager_;
-	NSString *title_;
 }
 
 // Default constructor.
-- (id) initWithTitle: (NSString*) windowTitle;
+- (id) init;
 
 // For testing - allow injection of an NSBundle and NSFileManager.
-- (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager title: (NSString*) title;
+- (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager;
 // Main routine for naming the HTML to display.
 //   html: raw HTML to display
 //   template: path to html file, used to find related files (css, etc).
 - (void) drawHTML: (NSString*) html template: (NSString*) templateFilePath;
 
-// Allows manipulation of the window containing the HTML.
-- (NSWindow*) window;
+// Set the web view used by the HTMLSwitchListController.
+// The webView is created outside to handle both the case of a webView embedded in an Interface Builder
+// file, and a WebView created on the fly for printing.
+- (void) setWebView: (WebView*) view;
+
 // For testing only.
 - (WebView*) htmlView;
+
+// Callback required by WebView to load additional resources. 
+- (NSURLRequest *)webView:(WebView *)sender
+				 resource:(id)identifier
+		  willSendRequest:(NSURLRequest *)request
+		 redirectResponse:(NSURLResponse *)redirectResponse
+		   fromDataSource:(WebDataSource *)dataSource;
+
 @end

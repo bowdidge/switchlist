@@ -2,9 +2,9 @@
 //  HTMLSwitchListView.m
 //  SwitchList
 //
-//  Created by Robert Bowdidge on 8/30/11.
+//  Created by Robert Bowdidge on 7/26/14.
 //
-// Copyright (c)2011 Robert Bowdidge,
+// Copyright (c)2014 Robert Bowdidge,
 // All rights reserved.
 // 
 // Redistribution and use in source and binary forms, with or without
@@ -28,64 +28,68 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import "HTMLSwitchListWindowController.h"
 #import "HTMLSwitchListController.h"
 
-@implementation HTMLSwitchListWindowController
+@implementation HTMLSwitchListController
 // For testing - allow injection of an NSBundle and NSFileManager.
-- (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager title: (NSString*) title {
+- (id) initWithBundle: (NSBundle*) mainBundle fileManager: (NSFileManager*) fileManager {
 	// TODO(bowdidge): Why doesn't initWithWindowNibName work?
 	self = [super init];
-	title_ = [title retain];
-	// TODO(bowdidge): Moved because of problems with the unit tests.  Move this back to the 
-	// top and figure out why it fails in unit tests.
-    htmlController_ = [[HTMLSwitchListController alloc] initWithBundle: mainBundle fileManager: fileManager];
-    if ([NSBundle loadNibNamed:@"HTMLSwitchListView.nib" owner: self] != YES) {
-		NSLog(@"Problems loading HTMLSwitchListView !\n");
-	}
-    [htmlController_ setWebView:htmlView_];
-	[htmlView_ setResourceLoadDelegate: self];
+	mainBundle_ = [mainBundle retain];
+	fileManager_ = [fileManager retain];
+    htmlView_ = nil;
 	return self;
 }
 
-- (id) initWithTitle: (NSString*) title {
-	return [self initWithBundle: [NSBundle mainBundle] fileManager: [NSFileManager defaultManager] title: title];
+- (id) init {
+	return [self initWithBundle: [NSBundle mainBundle] fileManager: [NSFileManager defaultManager]];
 }
 
 - (void) dealloc {
 	[mainBundle_ release];
 	[fileManager_ release];
-	[title_ release];
+    [htmlView_ release];
 	[super dealloc];
 }
 
+- (void) setWebView: (WebView*) view {
+    [htmlView_ release];
+    htmlView_ = [view retain];
+}
 // Main routine for naming the HTML to display.
 //   html: raw HTML to display
 //   template: path to html file, used to find related files (css, etc).
 - (void) drawHTML: (NSString*) html template: (NSString*) templateFilePath {
-	[htmlController_ drawHTML: html template: templateFilePath];
-}
-
-- (void) awakeFromNib {
-	// Put the controller in the nextResponder chain so printing is supported.
-	[self setNextResponder: [[htmlController_ htmlView] nextResponder]];
-	[window_ setTitle: title_];
-	[htmlView_ setNextResponder: self];
-	[self drawHTML: @"" template: @""];
-}
-
-- (IBAction)printDocument:(id)sender {
-	[[[[[htmlController_ htmlView] mainFrame] frameView] documentView] print: sender];
-}
-
-
-- (NSWindow*) window {
-	return window_;
+	[[htmlView_ mainFrame] loadHTMLString: html baseURL: [NSURL fileURLWithPath: templateFilePath]];
 }
 
 // For testing only.
 - (WebView*) htmlView {
-	return [htmlController_ htmlView];
+	return htmlView_;
 }
 
+// Handle requests from the WebView for additional documents.
+// Imitate the web interface; don't allow access to files outside the specific template directory, and
+// if the template directory doesn't exist, default to the resources directory for the app bundle so the
+// default html and css files can be used.
+- (NSURLRequest *)webView:(WebView *)sender
+				 resource:(id)identifier
+		  willSendRequest:(NSURLRequest *)request
+		 redirectResponse:(NSURLResponse *)redirectResponse
+		   fromDataSource:(WebDataSource *)dataSource {
+	NSURL *requestURL = [request URL];
+	if ([requestURL isFileURL]) {
+		// Note there's no fallback here - a template can only look for dependent files
+		// in the same directory, not in the resources directory or elsewhere.
+		NSString *requestedFile = [requestURL path];
+		// Make sure this is a valid place for the template to look.
+		NSString *templateDir = [[[[dataSource initialRequest] URL] path] stringByDeletingLastPathComponent];
+		NSString *requestDir = [requestedFile stringByDeletingLastPathComponent];
+		if (![templateDir isEqualToString: requestDir]) {
+			// Don't allow the switchlist html to read files other than in its own directory.
+			return nil;
+		}
+	}
+	return request;
+}
 @end
