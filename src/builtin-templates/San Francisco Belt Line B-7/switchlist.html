@@ -6,24 +6,35 @@
 <link href='http://fonts.googleapis.com/css?family=Rock Salt' rel='stylesheet' type='text/css'>
 <link href='switchlist.css' rel='stylesheet' type='text/css'>
 </head>
-<body>
+<script type="text/javascript">
+function OnLoad() {
+  var formNumbers = document.getElementsByClassName("formNumber");
+  for (var i=0; i < formNumbers.length; i++) {
+    var randomHundred =  Math.floor((Math.random() * 100) + 1);
+    formNumbers[i].innerHTML = 16100 + randomHundred;
+  }
+}
+</script>
+<body onload="OnLoad();">
 <div class="switch-list">
+  {% if train.stationsWithWork.@count == 0 %}
+    No work for {{train.name}}.
+  {% /if %}
   {% for station in train.stationsWithWork %}
   
-  <div class="switch-list-page">
-    <div class="train-name">San Jose Cannery Turn</div>
+  <div class="switch-list-page" >
     <div class="switch-list-title">
       <div class="switch-list-title-1">SAFETY FIRST</div>
       <div class="switch-list-title-2">
         <div class="switch-list-title-2l">
           Do Your Part
-	  <br>
-	  Keep Tracks Clear
+	      <br>
+	      Keep Tracks Clear
         </div>
         <div class="switch-list-title-2r">
           Help Prevent Accidents
-	  <br>
-	  Maintain Clearance
+	      <br>
+	      Maintain Clearance
         </div>
       </div>
       <div class="switch-list-title-3">
@@ -34,11 +45,11 @@
           <br>
         </div>
         <div class="switch-list-title-3l2">
-  	  To the Superintendent:
-	  <br>
-	  Please switch the following cars as indicated.
+  	      To the Superintendent:
+	      <br>
+	      Please switch the following cars as indicated.
         </div>
-        <div class="switch-list-title-number">V No. 14611</div>
+        <div class="switch-list-title-number">V No. <span class="formNumber">14611</span></div>
       </div>
       <div class="switch-list-title-4">
         Dated <u> &nbsp;&nbsp;&nbsp;8/4/69&nbsp;&nbsp;&nbsp;</u> By
@@ -47,18 +58,18 @@
     </div>
     <div class="switch-list-section">
       <div class="switch-list-section-title">
-	TAKE OUT from: <span class="handwritten">{{station.name}}</span>
+	    TAKE OUT from: <span class="handwritten">{{station.name}}</span>
       </div>
       <table class="switch-list-table">
-	<tr class="switch-list-header">
-	  <th>Initial</th>
-	  <th>Number</th>
-	  <th>Load</th>
-	  <th>Empty</th>
-	  <th>Deliver To</th>
-	  <th>Remarks</th>
-	</tr>
-	{% for industry in station.industries %}
+	    <tr class="switch-list-header">
+	      <th>Initial</th>
+	      <th>Number</th>
+	      <th>Load</th>
+	      <th>Empty</th>
+	      <th>Deliver To</th>
+	      <th>Remarks</th>
+	    </tr>
+	    {% for industry in station.industries %}
           {% for car in industry.carsToPickUp %}
             <tr class="switch-list-body">
               <td>{{car.initials}}</td>
@@ -67,43 +78,45 @@
               <td>{% if car.isLoaded == NO %}X{%/if%}</td>
               <td>{{car.nextStop.name}}</td>
               <td></td>
-	    </tr>
-	  {% /for %}
-	{% /for %}
+	        </tr>
+          {% /for %}
+	    {% /for %}
       </table>
     </div>
     <div class="switch-list-section">
       <div class="switch-list-section-title">
         SPOT at: <span class="handwritten">{{station.name}}</span>
       </div>
-    <table class="switch-list-table">
-      <tr class="switch-list-header">
-	<th>Initial</th>
-	<th>Number</th>
-	<th>Load</th>
-	<th>Empty</th>
-	<th>Received From</th>
-	<th>Remarks</th>
-      </tr>
-      {% for industry in station.industries %}
-        {% for car in industry.carsToDropOff %}
-          <tr class="switch-list-body">
-            <td>{{car.initials}}</td>
-            <td>{{car.number}}</td>
-            <td>{% if car.isLoaded %}X{%/if%}</td>
-            <td>{% if car.isLoaded == NO %}X{%/if%}</td>
-            <td>{{car.currentLocation.name}}</td>
-            <td>Door {% if car.nextDoor %} #{{car.nextDoor}} {% /if %}</td>
-	  </tr>
-	{% /for %}
-      {% /for %}
-    </table>
+      <table class="switch-list-table">
+        <tr class="switch-list-header">
+          <th>Initial</th>
+          <th>Number</th>
+          <th>Load</th>
+          <th>Empty</th>
+	      <th>Received From</th>
+	      <th>Remarks</th>
+        </tr>
+        {% for industry in station.industries %}
+          {% for car in industry.carsToDropOff %}
+            <tr class="switch-list-body">
+              <td>{{car.initials}}</td>
+              <td>{{car.number}}</td>
+              <td>{% if car.isLoaded %}X{%/if%}</td>
+              <td>{% if car.isLoaded == NO %}X{%/if%}</td>
+              <td>{{car.currentLocation.name}}</td>
+              <td>Door {% if car.nextDoor %} #{{car.nextDoor}} {% /if %}</td>
+            </tr>
+          {% /for %}
+        {% /for %}
+      </table>
+    </div>
     <div class="switch-list-footer">
       Order filed: ____________ am/pm
       Switch wanted: ___________ am/pm
     </div>
-  {% /for %}
   </div>
-</div>
+  {% /for %}
+  <div class="train-name">{{train.name}}</div>
+  </div>
 </body>
 </html>
