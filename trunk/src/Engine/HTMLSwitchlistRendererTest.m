@@ -32,6 +32,7 @@
 #import "HTMLSwitchlistRenderer.h"
 #import "MGTemplateEngine.h"
 #import "ICUTemplateMatcher.h"
+#import "ScheduledTrain.h"
 #import "SwitchListFilters.h"
 
 
