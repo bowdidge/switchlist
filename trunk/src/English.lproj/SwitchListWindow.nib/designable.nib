@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1050" defaultVersion="1050" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SwitchListDocument">
@@ -10,13 +10,14 @@
                 <outlet property="_freightCarCargePopup" destination="1270" id="2790"/>
                 <outlet property="addCarTypeButton_" destination="4746" id="5131"/>
                 <outlet property="annulTrainButton_" destination="1550" id="5081"/>
-                <outlet property="carTypeArrayController_" destination="4768" id="5124"/>
                 <outlet property="carTypeDescriptionTableColumn_" destination="4735" id="5130"/>
-                <outlet property="carTypeTableColumn_" destination="4734" id="5129"/>
+                <outlet property="carTypeTableColumn_" destination="1296" id="s4v-xy-CUb"/>
                 <outlet property="carTypeTable_" destination="4732" id="5128"/>
                 <outlet property="carTypesAcceptedTable_" destination="4909" id="5090"/>
                 <outlet property="carTypesLabel_" destination="4863" id="5093"/>
                 <outlet property="cargoArrayController_" destination="1639" id="5121"/>
+                <outlet property="cargoCarTypeArrayController_" destination="hk4-pW-GqW" id="z1O-nx-3Dk"/>
+                <outlet property="cargoCarTypePopup_" destination="4820" id="Uep-fV-88V"/>
                 <outlet property="cargoDestinationLocationArrayController_" destination="1155" id="5110"/>
                 <outlet property="cargoDestinationLocationPopup_" destination="1154" id="5111"/>
                 <outlet property="cargoSourceLocationArrayController_" destination="1155" id="5108"/>
@@ -39,6 +40,7 @@
                 <outlet property="freightCarLocationArrayController_" destination="1278" id="5105"/>
                 <outlet property="freightCarLocationPopup_" destination="1277" id="5103"/>
                 <outlet property="freightCarTable_" destination="1294" id="5231"/>
+                <outlet property="freightCarTypeArrayController_" destination="Yke-fM-aaS" id="jgp-Ge-ujj"/>
                 <outlet property="generateMoreButton_" destination="5054" id="5085"/>
                 <outlet property="generateTodayLoadsButton_" destination="1491" id="5084"/>
                 <outlet property="hasDoorsButton_" destination="1695" id="5100"/>
@@ -82,7 +84,7 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application"/>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Window">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="5" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="8" y="446" width="700" height="527"/>
@@ -178,7 +180,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4708">
-                                                <rect key="frame" x="603" y="17" width="16" height="205"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="205"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4710">
@@ -517,14 +519,20 @@
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>
-                                                                <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="4669">
+                                                                <popUpButtonCell key="dataCell" type="bevel" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="bezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" id="ihd-dg-nZd">
+                                                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
+                                                                    <menu key="menu" title="OtherViews" id="Mda-b1-aUL">
+                                                                        <items>
+                                                                            <menuItem title="Pop Up" id="kpe-OQ-Ffx"/>
+                                                                        </items>
+                                                                    </menu>
+                                                                </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="1251" name="value" keyPath="arrangedObjects.carTypeRel.carTypeName" id="4843"/>
+                                                                    <binding destination="Yke-fM-aaS" name="content" keyPath="arrangedObjects" id="rAk-Ks-Q6w"/>
+                                                                    <binding destination="Yke-fM-aaS" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="rAk-Ks-Q6w" id="Y8j-cw-lHn"/>
+                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.carTypeRel" previousBinding="Y8j-cw-lHn" id="FjH-JS-pzQ"/>
                                                                 </connections>
                                                             </tableColumn>
                                                             <tableColumn width="60" minWidth="60" maxWidth="100" id="1298">
@@ -649,7 +657,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4699">
-                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4701">
@@ -711,7 +719,7 @@
                                             </connections>
                                         </searchField>
                                         <popUpButton verticalHuggingPriority="750" id="4787">
-                                            <rect key="frame" x="561" y="70" width="80" height="26"/>
+                                            <rect key="frame" x="561" y="66" width="80" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                             <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="4790" id="4788">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -723,22 +731,11 @@
                                                         <menuItem title="Item 3" id="4792"/>
                                                     </items>
                                                 </menu>
-                                                <connections>
-                                                    <binding destination="4768" name="content" keyPath="arrangedObjects" id="4793"/>
-                                                </connections>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="4768" name="content" keyPath="arrangedObjects" id="4806">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="4768" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="4806" id="4807">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="1251" name="selectedObject" keyPath="selection.carTypeRel" previousBinding="4807" id="4812"/>
+                                                <binding destination="Yke-fM-aaS" name="content" keyPath="arrangedObjects" id="9Bk-0N-lXb"/>
+                                                <binding destination="Yke-fM-aaS" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="9Bk-0N-lXb" id="ZHW-7S-qiS"/>
+                                                <binding destination="1251" name="selectedObject" keyPath="selection.carTypeRel" previousBinding="ZHW-7S-qiS" id="yX7-6K-ISF"/>
                                                 <binding destination="1251" name="toolTip" keyPath="selection.carTypeRel.carTypeDescription" id="4829"/>
                                             </connections>
                                         </popUpButton>
@@ -1133,17 +1130,17 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="obl-Hj-lGm">
-                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
+                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4704" id="1717">
-                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="603" height="265"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="280.59912109375" minWidth="200" maxWidth="1000" id="1721">
+                                                            <tableColumn width="275.59912109375" minWidth="200" maxWidth="1000" id="1721">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1159,7 +1156,7 @@
                                                                     <binding destination="1682" name="value" keyPath="arrangedObjects.name" id="1720"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="172" minWidth="140" maxWidth="1000" id="1735">
+                                                            <tableColumn width="167" minWidth="140" maxWidth="1000" id="1735">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Location">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1185,7 +1182,7 @@
                                                                     </binding>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="155.66259765625" minWidth="100" maxWidth="1000" id="1719">
+                                                            <tableColumn width="150.66259765625" minWidth="100" maxWidth="1000" id="1719">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Division">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1207,15 +1204,15 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="4703">
-                                                <rect key="frame" x="1" y="282" width="618" height="16"/>
+                                                <rect key="frame" x="1" y="282" width="603" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4702">
-                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="265"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4704">
-                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="603" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -1545,7 +1542,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4714">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4716">
@@ -1876,14 +1873,20 @@
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                                 </tableHeaderCell>
-                                                                <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="4677">
+                                                                <popUpButtonCell key="dataCell" type="bevel" title="Pop Up" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="bezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" preferredEdge="maxY" selectedItem="ZJo-ff-AMs" id="lNa-nT-kla">
+                                                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                     <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
+                                                                    <menu key="menu" title="OtherViews" id="OmV-jF-wa9">
+                                                                        <items>
+                                                                            <menuItem title="Pop Up" state="on" id="ZJo-ff-AMs"/>
+                                                                        </items>
+                                                                    </menu>
+                                                                </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="1138" name="value" keyPath="arrangedObjects.carTypeRel.carTypeName" id="4845"/>
+                                                                    <binding destination="hk4-pW-GqW" name="content" keyPath="arrangedObjects" id="s2v-Ll-Ahe"/>
+                                                                    <binding destination="hk4-pW-GqW" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="s2v-Ll-Ahe" id="IPh-bB-eKo"/>
+                                                                    <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.carTypeRel" previousBinding="IPh-bB-eKo" id="lnm-rd-cIY"/>
                                                                 </connections>
                                                             </tableColumn>
                                                             <tableColumn width="42" minWidth="45" maxWidth="42" id="1186">
@@ -1963,7 +1966,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4705">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4707">
@@ -2021,29 +2024,21 @@
                                         <popUpButton verticalHuggingPriority="750" id="4820">
                                             <rect key="frame" x="542" y="68" width="98" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="4823" id="4821">
+                                            <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="4821">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="4822">
                                                     <items>
-                                                        <menuItem title="Item 1" state="on" id="4823"/>
+                                                        <menuItem title="Item 1" id="4823"/>
                                                         <menuItem title="Item 2" id="4824"/>
                                                         <menuItem title="Item 3" id="4825"/>
                                                     </items>
                                                 </menu>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="4768" name="content" keyPath="arrangedObjects" id="4834">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="4768" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="4834" id="4836">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="1138" name="selectedObject" keyPath="selection.carTypeRel" previousBinding="4836" id="4839"/>
+                                                <binding destination="hk4-pW-GqW" name="content" keyPath="arrangedObjects" id="3Tl-Jm-RGr"/>
+                                                <binding destination="hk4-pW-GqW" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="3Tl-Jm-RGr" id="C8c-0B-Vr3"/>
+                                                <binding destination="1138" name="selectedObject" keyPath="selection.carTypeRel" previousBinding="C8c-0B-Vr3" id="awx-Fu-gBF"/>
                                                 <binding destination="1138" name="toolTip" keyPath="selection.carTypeRel.carTypeDescription" id="4841"/>
                                             </connections>
                                         </popUpButton>
@@ -2068,14 +2063,14 @@
                                         <popUpButton verticalHuggingPriority="750" id="z5R-Bj-gdG">
                                             <rect key="frame" x="541" y="6" width="99" height="26"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                            <popUpButtonCell key="cell" type="push" title="2 days" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="f9Q-QF-gKm" id="csU-1q-zLc">
+                                            <popUpButtonCell key="cell" type="push" title="2 days" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="2" imageScaling="proportionallyDown" inset="2" selectedItem="f9Q-QF-gKm" id="csU-1q-zLc">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" title="OtherViews" id="ppt-FR-tKt">
                                                     <items>
                                                         <menuItem tag="1" hidden="YES" enabled="NO" id="j8w-iX-0iE"/>
                                                         <menuItem title="1 day" tag="1" id="H6t-dF-zfd"/>
-                                                        <menuItem title="2 days" tag="2" id="f9Q-QF-gKm"/>
+                                                        <menuItem title="2 days" state="on" tag="2" id="f9Q-QF-gKm"/>
                                                         <menuItem title="3 days" tag="3" id="WBw-W6-QXU"/>
                                                     </items>
                                                 </menu>
@@ -2252,7 +2247,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4711">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4713">
@@ -2785,6 +2780,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="1156"/>
             </connections>
         </arrayController>
+        <arrayController mode="entity" entityName="CarType" automaticallyPreparesContent="YES" id="hk4-pW-GqW" userLabel="CargoCarTypeArrayController">
+            <connections>
+                <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="WqT-J7-n20"/>
+            </connections>
+        </arrayController>
         <arrayController mode="entity" entityName="Cargo" automaticallyPreparesContent="YES" id="1271" userLabel="FreightCarCargoArrayController">
             <declaredKeys>
                 <string>priority</string>
@@ -2812,14 +2812,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <binding destination="-2" name="filterPredicate" keyPath="self.locationIsNotOfflineFilter_" id="5133"/>
             </connections>
         </arrayController>
-        <arrayController mode="entity" entityName="CarType" automaticallyPreparesContent="YES" id="4768" userLabel="FreightCarTypeArrayController">
-            <declaredKeys>
-                <string>carTypeName</string>
-                <string>carTypeDescription</string>
-                <string>carTypeRel</string>
-            </declaredKeys>
+        <arrayController mode="entity" entityName="CarType" automaticallyPreparesContent="YES" id="Yke-fM-aaS" userLabel="FreightCarTypeArrayController">
             <connections>
-                <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="4815"/>
+                <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="usT-I5-Ach"/>
             </connections>
         </arrayController>
         <arrayController mode="entity" entityName="Place" automaticallyPreparesContent="YES" id="1340" userLabel="Place Array Controller 12">
@@ -2870,7 +2865,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="1702"/>
             </connections>
         </arrayController>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="1779" userLabel="SetRouteSheet">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="1779" userLabel="SetRouteSheet">
             <windowStyleMask key="styleMask" titled="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="207" y="539" width="480" height="381"/>
@@ -3539,5 +3534,6 @@ Gw
                 <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="5415"/>
             </connections>
         </arrayController>
+        <arrayController id="JXj-gx-Yxk"/>
     </objects>
 </document>

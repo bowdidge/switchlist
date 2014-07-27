@@ -383,6 +383,11 @@
 							   popup: freightCarLocationPopup_
 							   sortField: @"name"];
 							   
+	[self setupSortedArrayController: freightCarTypeArrayController_
+				   rearrangeCallback: @selector(rearrangeFreightCarCarTypeArrayController:)
+							   popup: freightCarCarTypePopup_
+                           sortField: @"carTypeName"];
+    
 	[self setupSortedArrayController: industryLocationArrayController_
 				   rearrangeCallback: @selector(rearrangePlaceArrayController:)
 							   popup: industryLocationPopup_
@@ -398,6 +403,11 @@
 			popup: cargoDestinationLocationPopup_
 			sortField: @"name"];
 			
+	[self setupSortedArrayController: cargoCarTypeArrayController_
+				   rearrangeCallback: @selector(rearrangeCargoCarTypeArrayController:)
+							   popup: cargoCarTypePopup_
+                           sortField: @"carTypeName"];
+    
    [self setupSortedArrayController: freightCarCargoArrayController_
 		rearrangeCallback: @selector(rearrangeFreightCarCargoArrayController:)
 			popup: freightCarCargoPopup_
@@ -432,7 +442,15 @@
 - (void)rearrangeIndustriesArrayController:(NSNotification *)note
 {
     [freightCarLocationArrayController_ rearrangeObjects];
-} 
+}
+
+- (void) rearrangeFreightCarCarTypeArrayController: (NSNotification*) note {
+    [freightCarTypeArrayController_ rearrangeObjects];
+}
+
+- (void) rearrangeCargoCarTypeArrayController: (NSNotification*) note {
+    [cargoCarTypeArrayController_ rearrangeObjects];
+}
 
 - (void)rearrangePlaceArrayController:(NSNotification *)note
 {
