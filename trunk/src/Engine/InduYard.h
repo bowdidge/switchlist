@@ -50,8 +50,11 @@ enum SidingOccupancyRating	{
 @property (nonatomic, retain) NSSet* terminatingCargos;
 
 - (NSSet*) freightCars;
+
 - (BOOL) isOffline;
 - (BOOL) isStaging;
+- (BOOL) isOnline;
+
 // Returns whether this is a valid industry for receiving cargo.  Yards and Workbench don't count.
 - (BOOL) canReceiveCargo;
 - (BOOL) isYard;

@@ -33,6 +33,7 @@
 #import "Cargo.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
+#import "Place.h"
 #import "StringHelpers.h"
 
 
@@ -50,6 +51,10 @@
 
 - (BOOL) isStaging {
 	return [[self location] isStaging];
+}
+
+- (BOOL) isOnline {
+	return [[self location] isOnLayout];
 }
 
 // Returns whether this is a valid industry for receiving cargo.  Yards and Workbench don't count.
