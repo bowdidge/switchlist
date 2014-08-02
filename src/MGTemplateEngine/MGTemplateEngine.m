@@ -594,20 +594,22 @@ but current block was started by \"%@\" marker",
 			}
 			
 			// Prepare result for output, if we have a result.
-			if (val && _outputDisabledCount == 0) {
+			if (_outputDisabledCount == 0) {
 				// Process filter if specified.
 				NSString *filter = [matchInfo objectForKey:MARKER_FILTER_KEY];
 				if (filter) {
 					NSObject <MGTemplateFilter> *filterHandler = [_filters objectForKey:filter];
 					if (filterHandler) {
 						val = [filterHandler filterInvoked:filter 
-											 withArguments:[matchInfo objectForKey:MARKER_FILTER_ARGUMENTS_KEY] onValue:val];
+											 withArguments:[matchInfo objectForKey:MARKER_FILTER_ARGUMENTS_KEY]
+                                                   onValue:val];
 					}
 				}
 				
 				// Output result.
-				[output appendFormat:@"%@", val];
-			} else if ((!val && !isMarker && _outputDisabledCount == 0) || (isMarker && !markerHandler)) {
+				if (val) [output appendFormat:@"%@", val];
+			}
+            if ((!val && !isMarker && _outputDisabledCount == 0) || (isMarker && !markerHandler)) {
 				// Call delegate's error-reporting method, if implemented.
 				[self reportError:[NSString stringWithFormat:@"\"%@\" is not a valid %@", 
 								   matchMarker, (isMarker) ? @"marker" : @"variable"] 
