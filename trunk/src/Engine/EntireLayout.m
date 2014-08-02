@@ -894,7 +894,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 
 // Creates a freight car (and car type, if needed) in the database from cleaned reporting
 // marks and car type.
-- (void) createFreightCar: (NSString *) reportingMarks withCarType: (NSString *) carTypeName  {
+- (FreightCar*) createFreightCar: (NSString *) reportingMarks withCarType: (NSString *) carTypeName  withLength: (NSNumber*) carLength {
 	FreightCar *freightCar = [NSEntityDescription insertNewObjectForEntityForName:@"FreightCar"
 														   inManagedObjectContext: moc_];
 	[freightCar setReportingMarks: reportingMarks];
@@ -907,6 +907,10 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 		[freightCarType setCarTypeDescription: @""];
 	}
 	[freightCar setCarTypeRel: freightCarType];
+    if (carLength) {
+        [freightCar setLength: carLength];
+    }
+    return freightCar;
 }
 
 /**
@@ -920,6 +924,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 	int line = 0;
 	int warningCount = 0;
 	for (NSString *freightCarLine in freightCarLines) {
+        NSNumber* carLengthNumber = nil;
 		line++;
 		NSArray *carComponents = [freightCarLine componentsSeparatedByString: @","];
 		if ([carComponents count] == 1) {
@@ -932,6 +937,13 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 			// Allow extra commas.  Assume second must be car type.
 			freightCarTypeName = [self stringRemovingWhitespace: [carComponents objectAtIndex: 1]];
 		}
+        if ([carComponents count] >= 3) {
+            NSString *carLengthString = [self stringRemovingWhitespace: [carComponents objectAtIndex: 2]];
+            int carLength = atoi([carLengthString UTF8String]);
+            if (carLength != 0) {
+                carLengthNumber = [NSNumber numberWithInt: carLength];
+            }
+        }
 		if ([freightCarNameCleaned length] == 0) {
 			// Ignore blank lines.
 		} else if (false) {
@@ -945,7 +957,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 				// Ignore.
 			}
 		} else {
-			[self createFreightCar: freightCarNameCleaned withCarType: freightCarTypeName];
+			[self createFreightCar: freightCarNameCleaned withCarType: freightCarTypeName withLength: carLengthNumber];
 			carsCreated++;
 		}
 	}

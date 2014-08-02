@@ -632,13 +632,18 @@
 	XCTAssertEqualInt(3, [[entireLayout_ allFreightCars] count], @"Expected 3 freight cars, got %ld", (unsigned long) [[entireLayout_ allFreightCars] count]);
 }
 
-- (void) checkExistenceOfCar: (NSString*) reportingMarks type: (NSString*) carType {
+- (void) checkExistenceOfCar: (NSString*) reportingMarks type: (NSString*) carType length: (NSNumber*) expectedLength {
 	FreightCar *fc = [self freightCarWithReportingMarks: reportingMarks];
 	XCTAssertNotNil(fc, @"Freight car %@ not found", reportingMarks);	
 	NSString *actualCarTypeName = [[fc carTypeRel] carTypeName];
 	XCTAssertEqualObjects(carType, actualCarTypeName,
 				   @"Expected freight car %@ to have type %@, but had type %@",
 				   reportingMarks, carType, actualCarTypeName);
+    if (expectedLength != nil) {
+        XCTAssertEqualObjects(expectedLength, [fc length], @"Expected freight car %@ to have length %@, but had     length %@",
+                    reportingMarks, expectedLength, [fc length]);
+    }
+    
 }
 
 - (void)testImportCarTypes {
@@ -649,14 +654,32 @@
 	
 	XCTAssertEqualInt(5, [[entireLayout_ allFreightCars] count], @"Expected 4 freight cars, got %ld", (unsigned long) [[entireLayout_ allFreightCars] count]);
 	
-	[self checkExistenceOfCar: @"SP 1" type: @"XM"];
-	[self checkExistenceOfCar: @"SP 2" type: @"T"];
-	[self checkExistenceOfCar: @"SP 3" type: nil];
-	[self checkExistenceOfCar: @"SP 4" type: @"XM"];
-	[self checkExistenceOfCar: @"SP 5" type: @"MYCARTYPE"];
+	[self checkExistenceOfCar: @"SP 1" type: @"XM" length: nil];
+	[self checkExistenceOfCar: @"SP 2" type: @"T" length: nil];
+	[self checkExistenceOfCar: @"SP 3" type: nil length: nil];
+	[self checkExistenceOfCar: @"SP 4" type: @"XM" length: nil];
+	[self checkExistenceOfCar: @"SP 5" type: @"MYCARTYPE" length: nil];
 	NSString *actualCarTypeDescription = [[[self freightCarWithReportingMarks: @"SP 5"] carTypeRel] carTypeDescription];
 	XCTAssertEqualObjects(@"", actualCarTypeDescription,
 						 @"Car type description for new car type assumed to be empty but was %@", actualCarTypeDescription);
+}
+
+- (void)testImportLengths {
+	NSString *input = @"SP 1, XM, 50\nSP 2, T, 56\nSP    3\nSP 4\tXM\t 40\n  SP  5\t MYCARTYPE\t36\n";
+	NSMutableString *errors = nil;
+	[entireLayout_ importFreightCarsUsingString: input errors: &errors];
+	XCTAssertEqualInt(0, [errors length], @"No errors expected");
+	
+	XCTAssertEqualInt(5, [[entireLayout_ allFreightCars] count], @"Expected 4 freight cars, got %ld", (unsigned long) [[entireLayout_ allFreightCars] count]);
+	
+	[self checkExistenceOfCar: @"SP 1" type: @"XM" length: [NSNumber numberWithInt: 50]];
+	[self checkExistenceOfCar: @"SP 2" type: @"T" length: [NSNumber numberWithInt: 56]];
+	[self checkExistenceOfCar: @"SP 3" type: nil length: nil];
+	[self checkExistenceOfCar: @"SP 4" type: @"XM" length: [NSNumber numberWithInt: 40]];
+	[self checkExistenceOfCar: @"SP 5" type: @"MYCARTYPE" length: [NSNumber numberWithInt: 36]];
+	NSString *actualCarTypeDescription = [[[self freightCarWithReportingMarks: @"SP 5"] carTypeRel] carTypeDescription];
+	XCTAssertEqualObjects(@"", actualCarTypeDescription,
+                          @"Car type description for new car type assumed to be empty but was %@", actualCarTypeDescription);
 }
 
 - (void) testCargoLoadsPerDay {
