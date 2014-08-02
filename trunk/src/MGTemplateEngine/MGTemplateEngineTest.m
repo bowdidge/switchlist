@@ -100,6 +100,20 @@
 	XCTAssertNil([delegate_ lastError], @"");
 }
 
+// Test that we can set an existing variable.  Note that spaces are not allowed in the expression!
+- (void) testSetter {
+    NSString *template = @"{% set trainLength 10 %}{% for 5 to 10 %}{{trainLength}} {% set trainLength trainLength-1 %}{% /for %}";
+    NSString *result = [engine_ processTemplate: template withVariables: [NSDictionary dictionary]];
+    XCTAssertEqualObjects(@"10 9 8 7 6 5 ", result);
+}
+
+// Test that we can set an existing variable.  Note that spaces are not allowed in the expression!
+- (void) testSetterInIf {
+    NSString *template = @"{% set trainLength 10 %}{% for 5 to 10 %} {{trainLength}} {%if trainLength > 8 %}{% set trainLength trainLength-1 %}{% /if %}{% /for %}";
+    NSString *result = [engine_ processTemplate: template withVariables: [NSDictionary dictionary]];
+    XCTAssertEqualObjects(@" 10  9  8  8  8  8 ", result);
+}
+
 - (void) testConstants {
 	NSString *result = [engine_ processTemplate: @"We also know about {{ YES }} and {{ NO }} or {{ true }} and {{ false }}"
 								   withVariables: [NSDictionary dictionary]];
@@ -111,6 +125,21 @@
 	NSString *result = [engine_ processTemplate: @"Is 1 less than 2? {% if 1 < 2 %} Yes! {% else %} No? {% /if %}"
 								  withVariables: [NSDictionary dictionary]];
 	XCTAssertEqualObjects(@"Is 1 less than 2?  Yes! ", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
+}
+
+- (void) testCompareMatchingStrings {
+	NSString *result = [engine_ processTemplate: @"Is x equalsstring y? {% if x equalsstring y %} Yes? {% else %} No! {% /if %}"
+								  withVariables: [NSDictionary dictionaryWithObjectsAndKeys: @"x", @"x", @"y", @"y", nil]];
+    // TODO(bowdidge): This fails - comparisons only work on numbers.
+	XCTAssertEqualObjects(@"Is x equalsstring y?  No! ", result, @"");
+	XCTAssertNil([delegate_ lastError], @"");
+}
+
+- (void) testCompareDifferentStrings {
+    NSString *result = 	result = [engine_ processTemplate: @"Is x1 equalsstring x2? {% if x1 equalsstring x2 %} Yes! {% else %} No? {% /if %}"
+                        withVariables: [NSDictionary dictionaryWithObjectsAndKeys: @"x", @"x1", @"x", @"x2", nil]];
+	XCTAssertEqualObjects(@"Is x1 equalsstring x2?  Yes! ", result, @"");
 	XCTAssertNil([delegate_ lastError], @"");
 }
 
@@ -240,6 +269,37 @@
 								  withVariables: [NSDictionary dictionary]];
 	XCTAssertEqualObjects(@"", result, @"");
 	XCTAssertEqualObjects(@"Marker \"/section\" reported that a block ended, but current block was started by \"if\" marker", [delegate_ lastError], @"");
+}
+
+- (void) testDefaultIgnored {
+	// Not documented, but let's add tests anyway.
+	NSString *result = [engine_ processTemplate: @"{{value | default: bar}}"
+								  withVariables: [NSDictionary dictionaryWithObject: @"foo" forKey: @"value"]];
+	XCTAssertEqualObjects(@"foo", result, @"");
+	XCTAssertEqualObjects(nil, [delegate_ lastError], @"");
+}
+
+- (void) testDefaultFound {
+	// Not documented, but let's add tests anyway.
+	NSString *result = [engine_ processTemplate: @"{{value | default: bar}}"
+								  withVariables: [NSDictionary dictionaryWithObject: @"" forKey: @"value"]];
+	XCTAssertEqualObjects(@"bar ", result, @"");
+	XCTAssertEqualObjects(nil, [delegate_ lastError], @"");
+}
+
+- (void) testMultiWordDefaultFound {
+	// Not documented, but let's add tests anyway.
+	NSString *result = [engine_ processTemplate: @"{{value | default: 1601 Walnut St. Minneapolis}}"
+								  withVariables: [NSDictionary dictionaryWithObject: @"" forKey: @"value"]];
+	XCTAssertEqualObjects(@"1601 Walnut St. Minneapolis ", result, @"");
+	XCTAssertEqualObjects(nil, [delegate_ lastError], @"");
+}
+- (void) testDefaultWithQuotes {
+	// Not documented, but let's add tests anyway.
+	NSString *result = [engine_ processTemplate: @"{{value | default: \"1601 Walnut St. Minneapolis\"}}"
+								  withVariables: [NSDictionary dictionaryWithObject: @"" forKey: @"value"]];
+	XCTAssertEqualObjects(@"1601 Walnut St. Minneapolis ", result, @"");
+	XCTAssertEqualObjects(nil, [delegate_ lastError], @"");
 }
 
 @end
