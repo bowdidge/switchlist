@@ -385,8 +385,8 @@
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="LAYOUTINFO" id="z129">
-        <attribute name="layoutpreferences" type="binary">BAtzdHJlYW10eXBlZIHoA4QBQISEhBNOU011dGFibGVEaWN0aW9uYXJ5AISEDE5TRGljdGlvbmFy
-eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aShISECE5TTnVtYmVyAISEB05TVmFsdWUAlYQBKoSWlg+Ghg==
+        <attribute name="layoutpreferences" type="binary">YnBsaXN0MDDUAQIDBAUGcnNYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8Q
+JAcIFRYXGBkjJCUmKzAxMjk+P0BHTE1OU1RVWltcYWJjZ2xtblUkbnVsbNMJCgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+AAoADgASjERITgAWABoAJgCNfEBREZWZhdWx0TnVtYmVyT2ZMb2Fkc18QFk9wdGlvbmFsVGVtcGxhdGVQYXJhbXNfEBlTd2l0Y2hMaXN0RGVmYXVsdFRlbXBsYXRlEA/TCQoLGh4UoxscE4AHgAiACaMfICGACoASgB+AI18QG1NhbiBGcmFuY2lzY28gQmVsdCBMaW5lIEItN1tMZXR0ZXJoZWFkMV8QF1NvdXRoZXJuIFBhY2lmaWMgTmFycm930goLJyqiKCmAC4APgA7SCgssKqItLoAMgA2ADl8QD1JhaWxyb2FkX05hbWVfMV8QHFNBTiBGUkFOQ0lTQ08gUE9SVCBBVVRIT1JJVFnSMzQ1NlokY2xhc3NuYW1lWCRjbGFzc2VzXk5TTXV0YWJsZUFycmF5ozU3OFdOU0FycmF5WE5TT2JqZWN00goLOiqiOzyAEIARgA5fEA9SYWlscm9hZF9OYW1lXzJfEBRTVEFURSBCRUxUIFJBSUxST0FEINIKC0EqpEJDREWAE4AWgBmAHIAO0goLSCqiSUqAFIAVgA5dQWRkcmVzc19CbG9ja18QMTE2MSBXZXN0IFRpZGV3YXRlciBBdmUuPGJyPiBNb29zZSBGYWxscyBNTiA1MDEyMCDSCgtPKqJQUYAXgBiADl1Db250YWN0X0Jsb2NrXxBCVGVsLiAyMTMtNTU1LTEyMDM8YnI+IFN0LiBQYXVsOiAzMTAtNzY3LTI2NzYgPGJyPiBGYXggMzEwLTc2Ny0yNjc30goLViqiV1iAGoAbgA5dUmFpbHJvYWRfTmFtZV8QHk1pZC1Db250aW5lbnQgVGVybWluYWwgUmFpbHdhedIKC10qol5fgB2AHoAOXxARUmFpbHJvYWRfU3VidGl0bGVfECFKb2huIERvZSwgIENoYWlybWFuIGFuZCBQcmVzaWRlbnTSCgtkKqFlgCCADtIKC2gqomlqgCGAIoAOXVJhaWxyb2FkX05hbWVfEBpTb3V0aGVybiBQYWNpZmljIFJhaWxyb2FkINIzNG9wXxATTlNNdXRhYmxlRGljdGlvbmFyeaNvcThcTlNEaWN0aW9uYXJ5XxAPTlNLZXllZEFyY2hpdmVy0XR1VHJvb3SAAQAIABEAGgAjAC0AMgA3AF4AZABrAHMAfgCFAIkAiwCNAI8AkwCVAJcAmQCbALIAywDnAOkA8AD0APYA+AD6AP4BAAECAQQBBgEkATABSgFPAVIBVAFWAVgBXQFgAWIBZAFmAXgBlwGcAacBsAG/AcMBywHUAdkB3AHeAeAB4gH0AgsCEAIVAhcCGQIbAh0CHwIkAicCKQIrAi0COwJvAnQCdwJ5AnsCfQKLAtAC1QLYAtoC3ALeAuwDDQMSAxUDFwMZAxsDLwNTA1gDWgNcA14DYwNmA2gDagNsA3oDlwOcA7IDtgPDA9UD2APdAAAAAAAAAgEAAAAAAAAAdgAAAAAAAAAAAAAAAAAAA98=
 </attribute>
         <attribute name="layoutname" type="string">Oakland Repair Depot</attribute>
         <attribute name="currentdate" type="date">356386847.64226800203323364258</attribute>
@@ -442,7 +442,7 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z114 z119 z117 z122"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z117 z122 z114 z119"></relationship>
     </object>
     <object type="YARD" id="z138">
         <attribute name="sidinglength" type="int16">0</attribute>
@@ -457,9 +457,9 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="sidinglength" type="int16">0</attribute>
         <attribute name="name" type="string">Oakland Yard</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z133"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z121 z120 z122"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z122 z120 z121"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z117 z116 z114 z119"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z117 z119 z116 z114"></relationship>
     </object>
 </database>

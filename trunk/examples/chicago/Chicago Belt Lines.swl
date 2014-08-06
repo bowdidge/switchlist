@@ -886,8 +886,8 @@
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="LAYOUTINFO" id="z170">
-        <attribute name="layoutpreferences" type="binary">YnBsaXN0MDDUAQIDBAUIHB1UJHRvcFgkb2JqZWN0c1gkdmVyc2lvblkkYXJjaGl2ZXLRBgdUcm9v
-dIABpQkKExQVVSRudWxs0wsMDQ4QElpOUy5vYmplY3RzV05TLmtleXNWJGNsYXNzoQ+AA6ERgAKABF8QFERlZmF1bHROdW1iZXJPZkxvYWRzEA/SFhcYGVgkY2xhc3Nlc1okY2xhc3NuYW1loxkaG18QE05TTXV0YWJsZURpY3Rpb25hcnlcTlNEaWN0aW9uYXJ5WE5TT2JqZWN0EgABhqBfEA9OU0tleWVkQXJjaGl2ZXIIERYfKDI1OjxCSE9aYmlrbW9xc4qMkZqlqb/M1doAAAAAAAABAQAAAAAAAAAeAAAAAAAAAAAAAAAAAAAA7A==
+        <attribute name="layoutpreferences" type="binary">YnBsaXN0MDDUAQIDBAUGVFVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8Q
+GQcIFRYXGBkhIiMqLzAxOD0+P0RFRktMTVBVJG51bGzTCQoLDBAUV05TLmtleXNaTlMub2JqZWN0c1YkY2xhc3OjDQ4PgAKAA4AEoxESE4AFgAaACIAYXxAURGVmYXVsdE51bWJlck9mTG9hZHNfEBZPcHRpb25hbFRlbXBsYXRlUGFyYW1zXxAZU3dpdGNoTGlzdERlZmF1bHRUZW1wbGF0ZRAP0wkKCxodFKIbE4AHgAiiHh+ACYAXgBhbTGV0dGVyaGVhZDFbUElDTCBSZXBvcnTSCgskKaQlJicogAqADoARgBSADdIKCyspoiwtgAuADIANXUFkZHJlc3NfQmxvY2tfEDExNjEgV2VzdCBUaWRld2F0ZXIgQXZlLjxicj4gTW9vc2UgRmFsbHMgTU4gNTAxMjAg0jIzNDVaJGNsYXNzbmFtZVgkY2xhc3Nlc15OU011dGFibGVBcnJheaM0NjdXTlNBcnJheVhOU09iamVjdNIKCzkpojo7gA+AEIANXUNvbnRhY3RfQmxvY2tfEEJUZWwuIDIxMy01NTUtMTIwMzxicj4gU3QuIFBhdWw6IDMxMC03NjctMjY3NiA8YnI+IEZheCAzMTAtNzY3LTI2NzfSCgtAKaJBQoASgBOADV1SYWlscm9hZF9OYW1lXxAeTWlkLUNvbnRpbmVudCBUZXJtaW5hbCBSYWlsd2F50goLRymiSEmAFYAWgA1fEBFSYWlscm9hZF9TdWJ0aXRsZV8QIUpvaG4gRG9lLCAgQ2hhaXJtYW4gYW5kIFByZXNpZGVudNIKC04poIAN0jIzUVJfEBNOU011dGFibGVEaWN0aW9uYXJ5o1FTN1xOU0RpY3Rpb25hcnlfEA9OU0tleWVkQXJjaGl2ZXLRVldUcm9vdIABAAgAEQAaACMALQAyADcAUwBZAGAAaABzAHoAfgCAAIIAhACIAIoAjACOAJAApwDAANwA3gDlAOgA6gDsAO8A8QDzAPUBAQENARIBFwEZARsBHQEfASEBJgEpASsBLQEvAT0BcQF2AYEBigGZAZ0BpQGuAbMBtgG4AboBvAHKAg8CFAIXAhkCGwIdAisCTAJRAlQCVgJYAloCbgKSApcCmAKaAp8CtQK5AsYC2ALbAuAAAAAAAAACAQAAAAAAAABYAAAAAAAAAAAAAAAAAAAC4g==
 </attribute>
         <attribute name="layoutname" type="string">Chicago Belt Lines</attribute>
         <attribute name="currentdate" type="date">378587267.03417700529098510742</attribute>
@@ -973,7 +973,7 @@ dIABpQkKExQVVSRudWxs0wsMDQ4QElpOUy5vYmplY3RzV05TLmtleXNWJGNsYXNzoQ+AA6ERgAKABF8Q
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z127 z142 z146 z137 z147 z136 z138 z134 z133 z128"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z133 z142 z138 z137 z134 z127 z136 z128 z146 z147"></relationship>
     </object>
     <object type="YARD" id="z185">
         <attribute name="acceptsdivisions" type="string">BOCT</attribute>
@@ -1014,19 +1014,19 @@ dIABpQkKExQVVSRudWxs0wsMDQ4QElpOUy5vYmplY3RzV05TLmtleXNWJGNsYXNzoQ+AA6ERgAKABF8Q
         <attribute name="name" type="string">Clearing Yard</attribute>
         <attribute name="division" type="string">BRC</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z175"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z136 z128"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z128 z136"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z119"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z146 z142 z127"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z142 z146 z127"></relationship>
     </object>
     <object type="YARD" id="z189">
         <attribute name="sidinglength" type="int16">0</attribute>
         <attribute name="name" type="string">Interchange</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z180"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z126 z144 z142 z145 z131 z137 z147 z141 z134"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z142 z144 z137 z141 z131 z134 z126 z145 z147"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z136 z138 z135 z133 z128"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z135 z136 z138 z133 z128"></relationship>
     </object>
     <object type="YARD" id="z190">
         <attribute name="acceptsdivisions" type="string">SF</attribute>

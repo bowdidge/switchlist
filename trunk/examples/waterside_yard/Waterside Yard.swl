@@ -1,4 +1,4 @@
-<?xml version="1.0" standalone="yes"?>
+<?xml version="1.0" standalone="no"?>
 <!DOCTYPE database SYSTEM "file:///System/Library/DTDs/CoreData.dtd">
 
 <database>
@@ -10,7 +10,7 @@
             <plist version="1.0">
                 <dict>
                     <key>NSPersistenceFrameworkVersion</key>
-                    <integer>251</integer>
+                    <integer>481</integer>
                     <key>NSStoreModelVersionHashes</key>
                     <dict>
                         <key>CarType</key>
@@ -19,11 +19,11 @@
 		</data>
                         <key>Cargo</key>
                         <data>
-		XlNVtj1IIUzfb2aSIR9iETdPrgdlrCQ2OUxmzswXC9A=
+		+w3wnyUs43lMmtolZvKu8Fx2HWRthTbkC055tk5Kba8=
 		</data>
                         <key>FreightCar</key>
                         <data>
-		+qbD31B2psgfXVeVrl9nsCioBM1BN+7sQ+frmm8YJnU=
+		vc47I3prTXdN+JishWjEF/xHAXyScG3vhiwjlnCH1iE=
 		</data>
                         <key>InduYard</key>
                         <data>
@@ -53,264 +53,347 @@
                     <key>NSStoreModelVersionHashesVersion</key>
                     <integer>3</integer>
                     <key>NSStoreModelVersionIdentifiers</key>
-                    <array></array>
+                    <array>
+                        <string></string>
+                    </array>
                 </dict>
             </plist>
         </metadata>
     </databaseInfo>
-    <object type="PLACE" id="z102">
-        <attribute name="name" type="string">Workbench</attribute>
-        <attribute name="isoffline" type="bool">1</attribute>
-        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
-        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z129"></relationship>
-    </object>
-    <object type="PLACE" id="z103">
-        <attribute name="name" type="string">Waterside</attribute>
-        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
-        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z126 z131 z130 z132"></relationship>
-    </object>
-    <object type="PLACE" id="z104">
-        <attribute name="name" type="string">Off East</attribute>
-        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
-        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z125"></relationship>
-    </object>
-    <object type="PLACE" id="z105">
-        <attribute name="name" type="string">Off West</attribute>
-        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
-        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z128"></relationship>
-    </object>
-    <object type="PLACE" id="z106">
-        <attribute name="name" type="string">Off Branch</attribute>
-        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
-        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z127"></relationship>
-    </object>
-    <object type="LAYOUTINFO" id="z107">
-        <attribute name="layoutpreferences" type="binary">BAtzdHJlYW10eXBlZIHoA4QBQISEhBNOU011dGFibGVEaWN0aW9uYXJ5AISEDE5TRGljdGlvbmFy
-eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aShISECE5TTnVtYmVyAISEB05TVmFsdWUAlYQBKoSWlg+Ghg==
-</attribute>
-        <attribute name="layoutname" type="string"></attribute>
-        <attribute name="currentdate" type="date">311541522.41102701425552368164</attribute>
-    </object>
-    <object type="CARGO" id="z108">
-        <attribute name="unloadingdays" type="int16">1</attribute>
-        <attribute name="rateunits" type="int16">1</attribute>
-        <attribute name="rate" type="int16">2</attribute>
-        <attribute name="priority" type="bool">0</attribute>
-        <attribute name="currentdoor" type="int16">0</attribute>
-        <attribute name="cargodescription" type="string">machinery</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z131"></relationship>
-        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z125"></relationship>
-        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
-    </object>
-    <object type="CARGO" id="z109">
-        <attribute name="unloadingdays" type="int16">1</attribute>
-        <attribute name="rateunits" type="int16">1</attribute>
-        <attribute name="rate" type="int16">7</attribute>
-        <attribute name="priority" type="bool">0</attribute>
-        <attribute name="currentdoor" type="int16">0</attribute>
-        <attribute name="cargodescription" type="string">freight west</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z125"></relationship>
-        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z128"></relationship>
-        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z141 z143"></relationship>
-    </object>
-    <object type="CARGO" id="z110">
-        <attribute name="unloadingdays" type="int16">1</attribute>
-        <attribute name="rateunits" type="int16">1</attribute>
-        <attribute name="rate" type="int16">4</attribute>
-        <attribute name="priority" type="bool">0</attribute>
-        <attribute name="currentdoor" type="int16">0</attribute>
-        <attribute name="cargodescription" type="string">oil</attribute>
-        <attribute name="cartype" type="string">T</attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z124"></relationship>
-        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z130"></relationship>
-        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z128"></relationship>
-        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z137"></relationship>
-    </object>
-    <object type="CARGO" id="z111">
-        <attribute name="unloadingdays" type="int16">1</attribute>
-        <attribute name="rateunits" type="int16">1</attribute>
-        <attribute name="rate" type="int16">3</attribute>
-        <attribute name="priority" type="bool">0</attribute>
-        <attribute name="currentdoor" type="int16">0</attribute>
-        <attribute name="cargodescription" type="string">coal</attribute>
-        <attribute name="cartype" type="string">H</attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z117"></relationship>
-        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z132"></relationship>
-        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
-        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z139"></relationship>
-    </object>
-    <object type="CARGO" id="z112">
-        <attribute name="unloadingdays" type="int16">1</attribute>
-        <attribute name="rateunits" type="int16">1</attribute>
-        <attribute name="rate" type="int16">7</attribute>
-        <attribute name="priority" type="bool">0</attribute>
-        <attribute name="currentdoor" type="int16">0</attribute>
-        <attribute name="cargodescription" type="string">freight west</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z128"></relationship>
-        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z125"></relationship>
-        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z145 z136"></relationship>
-    </object>
-    <object type="CARGO" id="z113">
-        <attribute name="unloadingdays" type="int16">1</attribute>
-        <attribute name="rateunits" type="int16">1</attribute>
-        <attribute name="rate" type="int16">7</attribute>
-        <attribute name="priority" type="bool">0</attribute>
-        <attribute name="currentdoor" type="int16">0</attribute>
-        <attribute name="cargodescription" type="string">freight to branch</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
-        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z128"></relationship>
-        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z138 z142"></relationship>
-    </object>
-    <object type="CARGO" id="z114">
-        <attribute name="unloadingdays" type="int16">1</attribute>
-        <attribute name="rateunits" type="int16">1</attribute>
-        <attribute name="rate" type="int16">7</attribute>
-        <attribute name="priority" type="bool">0</attribute>
-        <attribute name="currentdoor" type="int16">0</attribute>
-        <attribute name="cargodescription" type="string">freight east</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z125"></relationship>
-        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z128"></relationship>
-        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z144 z140"></relationship>
-    </object>
-    <object type="CARTYPE" id="z115">
-        <attribute name="cartypename" type="string">Any</attribute>
-        <attribute name="cartypedescription" type="string"></attribute>
-        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
-        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
-        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
-    </object>
-    <object type="CARTYPE" id="z116">
-        <attribute name="cartypename" type="string">S</attribute>
-        <attribute name="cartypedescription" type="string">stockcar</attribute>
-        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
-        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
-        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
-    </object>
-    <object type="CARTYPE" id="z117">
-        <attribute name="cartypename" type="string">H</attribute>
-        <attribute name="cartypedescription" type="string"></attribute>
-        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO" idrefs="z111"></relationship>
-        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR" idrefs="z139"></relationship>
-        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
-    </object>
-    <object type="CARTYPE" id="z118">
-        <attribute name="cartypename" type="string">RO</attribute>
-        <attribute name="cartypedescription" type="string">covered hopper</attribute>
-        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
-        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
-        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
-    </object>
-    <object type="CARTYPE" id="z119">
-        <attribute name="cartypename" type="string">RS</attribute>
-        <attribute name="cartypedescription" type="string">refrigerator car (40')</attribute>
-        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
-        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
-        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
-    </object>
-    <object type="CARTYPE" id="z120">
+    <object type="CARTYPE" id="z102">
         <attribute name="cartypename" type="string">FM</attribute>
         <attribute name="cartypedescription" type="string">flatcar</attribute>
         <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
         <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
         <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
     </object>
-    <object type="CARTYPE" id="z121">
-        <attribute name="cartypename" type="string">XM</attribute>
-        <attribute name="cartypedescription" type="string">boxcar (40')</attribute>
-        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO" idrefs="z108 z112 z113 z109 z114"></relationship>
-        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR" idrefs="z136 z138 z140 z141 z143 z142 z144 z145"></relationship>
-        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
-    </object>
-    <object type="CARTYPE" id="z122">
+    <object type="CARTYPE" id="z103">
         <attribute name="cartypename" type="string">G</attribute>
         <attribute name="cartypedescription" type="string">gondola</attribute>
         <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
         <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
         <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
     </object>
-    <object type="CARTYPE" id="z123">
+    <object type="CARTYPE" id="z104">
+        <attribute name="cartypename" type="string">T</attribute>
+        <attribute name="cartypedescription" type="string">tankcar</attribute>
+        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO" idrefs="z113"></relationship>
+        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR" idrefs="z121"></relationship>
+        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
+    </object>
+    <object type="CARTYPE" id="z105">
+        <attribute name="cartypename" type="string">H</attribute>
+        <attribute name="cartypedescription" type="string"></attribute>
+        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO" idrefs="z117"></relationship>
+        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR" idrefs="z119"></relationship>
+        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
+    </object>
+    <object type="CARTYPE" id="z106">
+        <attribute name="cartypename" type="string">RS</attribute>
+        <attribute name="cartypedescription" type="string">refrigerator car (40')</attribute>
+        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
+        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
+        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
+    </object>
+    <object type="CARTYPE" id="z107">
+        <attribute name="cartypename" type="string">Any</attribute>
+        <attribute name="cartypedescription" type="string"></attribute>
+        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
+        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
+        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
+    </object>
+    <object type="CARTYPE" id="z108">
+        <attribute name="cartypename" type="string">XM</attribute>
+        <attribute name="cartypedescription" type="string">boxcar (40')</attribute>
+        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO" idrefs="z116 z114 z118 z115 z112"></relationship>
+        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR" idrefs="z120 z122 z123 z124 z126 z125 z128 z127"></relationship>
+        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
+    </object>
+    <object type="CARTYPE" id="z109">
         <attribute name="cartypename" type="string">XA</attribute>
         <attribute name="cartypedescription" type="string">boxcar (50')</attribute>
         <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
         <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
         <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
     </object>
-    <object type="CARTYPE" id="z124">
-        <attribute name="cartypename" type="string">T</attribute>
-        <attribute name="cartypedescription" type="string">tankcar</attribute>
-        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO" idrefs="z110"></relationship>
-        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR" idrefs="z137"></relationship>
+    <object type="CARTYPE" id="z110">
+        <attribute name="cartypename" type="string">S</attribute>
+        <attribute name="cartypedescription" type="string">stockcar</attribute>
+        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
+        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
         <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
     </object>
-    <object type="YARD" id="z125">
-        <attribute name="sidinglength" type="int16">0</attribute>
-        <attribute name="name" type="string">Off east yard</attribute>
-        <attribute name="division" type="string">east</attribute>
-        <relationship name="location" type="1/1" destination="PLACE" idrefs="z104"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z137 z145 z136"></relationship>
-        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z112 z108"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z114 z109"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
+    <object type="CARTYPE" id="z111">
+        <attribute name="cartypename" type="string">RO</attribute>
+        <attribute name="cartypedescription" type="string">covered hopper</attribute>
+        <relationship name="cargoswithcartypes" type="0/0" destination="CARGO"></relationship>
+        <relationship name="freightcarswithcartype" type="0/0" destination="FREIGHTCAR"></relationship>
+        <relationship name="trainsacceptingcartype" type="0/0" destination="SCHEDULEDTRAIN"></relationship>
     </object>
-    <object type="YARD" id="z126">
-        <attribute name="acceptsdivisions" type="string">all</attribute>
-        <attribute name="sidinglength" type="int16">0</attribute>
-        <attribute name="name" type="string">Waterside Yard</attribute>
-        <attribute name="division" type="string">west</attribute>
-        <relationship name="location" type="1/1" destination="PLACE" idrefs="z103"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z141 z138"></relationship>
-        <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z142"></relationship>
+    <object type="CARGO" id="z112">
+        <attribute name="unloadingdays" type="int16">1</attribute>
+        <attribute name="rateunits" type="int16">1</attribute>
+        <attribute name="rate" type="int16">7</attribute>
+        <attribute name="priority" type="bool">0</attribute>
+        <attribute name="cargodescription" type="string">freight west</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z144"></relationship>
+        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z145"></relationship>
+        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z127 z128"></relationship>
     </object>
-    <object type="YARD" id="z127">
-        <attribute name="sidinglength" type="int16">0</attribute>
-        <attribute name="name" type="string">Off branch yard</attribute>
-        <relationship name="location" type="1/1" destination="PLACE" idrefs="z106"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z139"></relationship>
-        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z111"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z113"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
+    <object type="CARGO" id="z113">
+        <attribute name="unloadingdays" type="int16">1</attribute>
+        <attribute name="rateunits" type="int16">1</attribute>
+        <attribute name="rate" type="int16">4</attribute>
+        <attribute name="priority" type="bool">0</attribute>
+        <attribute name="cargodescription" type="string">oil</attribute>
+        <attribute name="cartype" type="string">T</attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z104"></relationship>
+        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z129"></relationship>
+        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z145"></relationship>
+        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z121"></relationship>
     </object>
-    <object type="YARD" id="z128">
-        <attribute name="sidinglength" type="int16">0</attribute>
-        <attribute name="name" type="string">Off west yard</attribute>
-        <attribute name="division" type="string">west</attribute>
-        <relationship name="location" type="1/1" destination="PLACE" idrefs="z105"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z144 z140 z143 z142"></relationship>
-        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z110 z113 z109 z114"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z112"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
+    <object type="CARGO" id="z114">
+        <attribute name="unloadingdays" type="int16">1</attribute>
+        <attribute name="rateunits" type="int16">1</attribute>
+        <attribute name="rate" type="int16">7</attribute>
+        <attribute name="priority" type="bool">0</attribute>
+        <attribute name="cargodescription" type="string">freight to branch</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z142"></relationship>
+        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z145"></relationship>
+        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z125 z126"></relationship>
+    </object>
+    <object type="CARGO" id="z115">
+        <attribute name="unloadingdays" type="int16">1</attribute>
+        <attribute name="rateunits" type="int16">1</attribute>
+        <attribute name="rate" type="int16">2</attribute>
+        <attribute name="priority" type="bool">0</attribute>
+        <attribute name="cargodescription" type="string">machinery</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z131"></relationship>
+        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z144"></relationship>
+        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
+    </object>
+    <object type="CARGO" id="z116">
+        <attribute name="unloadingdays" type="int16">1</attribute>
+        <attribute name="rateunits" type="int16">1</attribute>
+        <attribute name="rate" type="int16">7</attribute>
+        <attribute name="priority" type="bool">0</attribute>
+        <attribute name="cargodescription" type="string">freight east</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z144"></relationship>
+        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z145"></relationship>
+        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z122 z120"></relationship>
+    </object>
+    <object type="CARGO" id="z117">
+        <attribute name="unloadingdays" type="int16">1</attribute>
+        <attribute name="rateunits" type="int16">1</attribute>
+        <attribute name="rate" type="int16">3</attribute>
+        <attribute name="priority" type="bool">0</attribute>
+        <attribute name="cargodescription" type="string">coal</attribute>
+        <attribute name="cartype" type="string">H</attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z105"></relationship>
+        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z132"></relationship>
+        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z142"></relationship>
+        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z119"></relationship>
+    </object>
+    <object type="CARGO" id="z118">
+        <attribute name="unloadingdays" type="int16">1</attribute>
+        <attribute name="rateunits" type="int16">1</attribute>
+        <attribute name="rate" type="int16">7</attribute>
+        <attribute name="priority" type="bool">0</attribute>
+        <attribute name="cargodescription" type="string">freight west</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="destination" type="1/1" destination="INDUYARD" idrefs="z145"></relationship>
+        <relationship name="source" type="1/1" destination="INDUYARD" idrefs="z144"></relationship>
+        <relationship name="assignedfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z123 z124"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z119">
+        <attribute name="reportingmarks" type="string">C\u2600NW 0010</attribute>
+        <attribute name="positionintrain" type="int16">1</attribute>
+        <attribute name="loaded" type="bool">1</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="homedivision" type="string">east</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">H</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z105"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z117"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z142"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z141"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z120">
+        <attribute name="reportingmarks" type="string">SP 0006</attribute>
+        <attribute name="loaded" type="bool">1</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="homedivision" type="string">west</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z116"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z145"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z140"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z121">
+        <attribute name="reportingmarks" type="string">UTLX 0009</attribute>
+        <attribute name="positionintrain" type="int16">1</attribute>
+        <attribute name="loaded" type="bool">0</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">T</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z104"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z113"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z144"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z139"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z122">
+        <attribute name="reportingmarks" type="string">SP 0005</attribute>
+        <attribute name="loaded" type="bool">1</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="homedivision" type="string">west</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z116"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z145"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z140"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z123">
+        <attribute name="reportingmarks" type="string">NP 0002</attribute>
+        <attribute name="loaded" type="bool">1</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="homedivision" type="string">east</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z118"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z144"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z139"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z124">
+        <attribute name="reportingmarks" type="string">SP 0007</attribute>
+        <attribute name="loaded" type="bool">1</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="homedivision" type="string">west</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z118"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z144"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z139"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z125">
+        <attribute name="reportingmarks" type="string">NYC 0003</attribute>
+        <attribute name="loaded" type="bool">1</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="homedivision" type="string">east</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z114"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z145"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z140"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD" idrefs="z143"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z126">
+        <attribute name="reportingmarks" type="string">GN 0001</attribute>
+        <attribute name="loaded" type="bool">1</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="homedivision" type="string">west</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z114"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z143"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z141"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z127">
+        <attribute name="reportingmarks" type="string">SP 0008</attribute>
+        <attribute name="loaded" type="bool">1</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="homedivision" type="string">west</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z112"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z145"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z140"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    </object>
+    <object type="FREIGHTCAR" id="z128">
+        <attribute name="reportingmarks" type="string">SP 0004</attribute>
+        <attribute name="loaded" type="bool">0</attribute>
+        <attribute name="length" type="int16">40</attribute>
+        <attribute name="homedivision" type="string">west</attribute>
+        <attribute name="doortospot" type="int16">0</attribute>
+        <attribute name="daysuntilunloaded" type="int16">0</attribute>
+        <attribute name="currentdoor" type="int16">0</attribute>
+        <attribute name="cartype" type="string">XM</attribute>
+        <attribute name="cardescription" type="string"></attribute>
+        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z108"></relationship>
+        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z112"></relationship>
+        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z143"></relationship>
+        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z139"></relationship>
+        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
     </object>
     <object type="INDUSTRY" id="z129">
         <attribute name="hasdoors" type="bool">0</attribute>
         <attribute name="sidinglength" type="int16">0</attribute>
-        <attribute name="name" type="string">Workbench</attribute>
-        <relationship name="location" type="1/1" destination="PLACE" idrefs="z102"></relationship>
+        <attribute name="name" type="string">Oil depot</attribute>
+        <attribute name="division" type="string">west</attribute>
+        <relationship name="location" type="1/1" destination="PLACE" idrefs="z135"></relationship>
         <relationship name="freightcars" type="0/0" destination="FREIGHTCAR"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z113"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="INDUSTRY" id="z130">
         <attribute name="hasdoors" type="bool">0</attribute>
         <attribute name="sidinglength" type="int16">0</attribute>
-        <attribute name="name" type="string">Oil depot</attribute>
-        <attribute name="division" type="string">west</attribute>
-        <relationship name="location" type="1/1" destination="PLACE" idrefs="z103"></relationship>
+        <attribute name="name" type="string">Workbench</attribute>
+        <relationship name="location" type="1/1" destination="PLACE" idrefs="z136"></relationship>
         <relationship name="freightcars" type="0/0" destination="FREIGHTCAR"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z110"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="INDUSTRY" id="z131">
@@ -318,10 +401,10 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="sidinglength" type="int16">0</attribute>
         <attribute name="name" type="string">Freight house</attribute>
         <attribute name="division" type="string">west</attribute>
-        <relationship name="location" type="1/1" destination="PLACE" idrefs="z103"></relationship>
+        <relationship name="location" type="1/1" destination="PLACE" idrefs="z135"></relationship>
         <relationship name="freightcars" type="0/0" destination="FREIGHTCAR"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z108"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z115"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="INDUSTRY" id="z132">
@@ -329,165 +412,107 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="sidinglength" type="int16">0</attribute>
         <attribute name="name" type="string">Coal silo</attribute>
         <attribute name="division" type="string">west</attribute>
-        <relationship name="location" type="1/1" destination="PLACE" idrefs="z103"></relationship>
+        <relationship name="location" type="1/1" destination="PLACE" idrefs="z135"></relationship>
         <relationship name="freightcars" type="0/0" destination="FREIGHTCAR"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z111"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z117"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
-    <object type="SCHEDULEDTRAIN" id="z133">
+    <object type="LAYOUTINFO" id="z133">
+        <attribute name="layoutpreferences" type="binary">YnBsaXN0MDDUAQIDBAUGWltYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8Q
+GwcIFRYXGBkjJCUmKTA3PD0+Q0RFSktMUVJTVlUkbnVsbNMJCgsMEBRXTlMua2V5c1pOUy5vYmplY3RzViRjbGFzc6MNDg+AAoADgASjERITgAWABoAJgBpfEBREZWZhdWx0TnVtYmVyT2ZMb2Fkc18QFk9wdGlvbmFsVGVtcGxhdGVQYXJhbXNfEBlTd2l0Y2hMaXN0RGVmYXVsdFRlbXBsYXRlEA/TCQoLGh4UoxscE4AHgAiACaMfICGACoAMgBmAGldXYXliaWxsW0xldHRlcmhlYWQxW0hhbmR3cml0dGVu0goLJyiggAvSKissLVokY2xhc3NuYW1lWCRjbGFzc2VzXk5TTXV0YWJsZUFycmF5oywuL1dOU0FycmF5WE5TT2JqZWN00goLMSikMjM0NYANgBCAE4AWgAvSCgs4KKI5OoAOgA+AC11BZGRyZXNzX0Jsb2NrXxAxMTYxIFdlc3QgVGlkZXdhdGVyIEF2ZS48YnI+IE1vb3NlIEZhbGxzIE1OIDUwMTIwINIKCz8ookBBgBGAEoALXUNvbnRhY3RfQmxvY2tfEEJUZWwuIDIxMy01NTUtMTIwMzxicj4gU3QuIFBhdWw6IDMxMC03NjctMjY3NiA8YnI+IEZheCAzMTAtNzY3LTI2NzfSCgtGKKJHSIAUgBWAC11SYWlscm9hZF9OYW1lXxAeTWlkLUNvbnRpbmVudCBUZXJtaW5hbCBSYWlsd2F50goLTSiiTk+AF4AYgAtfEBFSYWlscm9hZF9TdWJ0aXRsZV8QIUpvaG4gRG9lLCAgQ2hhaXJtYW4gYW5kIFByZXNpZGVudNIKC1QooIAL0iorV1hfEBNOU011dGFibGVEaWN0aW9uYXJ5o1dZL1xOU0RpY3Rpb25hcnlfEA9OU0tleWVkQXJjaGl2ZXLRXF1Ucm9vdIABAAgAEQAaACMALQAyADcAVQBbAGIAagB1AHwAgACCAIQAhgCKAIwAjgCQAJIAqQDCAN4A4ADnAOsA7QDvAPEA9QD3APkA+wD9AQUBEQEdASIBIwElASoBNQE+AU0BUQFZAWIBZwFsAW4BcAFyAXQBdgF7AX4BgAGCAYQBkgHGAcsBzgHQAdIB1AHiAicCLAIvAjECMwI1AkMCZAJpAmwCbgJwAnIChgKqAq8CsAKyArcCzQLRAt4C8ALzAvgAAAAAAAACAQAAAAAAAABeAAAAAAAAAAAAAAAAAAAC+g==
+</attribute>
+        <attribute name="layoutname" type="string">Waterside Yard</attribute>
+        <attribute name="currentdate" type="date">311541522.41102701425552368164</attribute>
+    </object>
+    <object type="PLACE" id="z134">
+        <attribute name="name" type="string">Off Branch</attribute>
+        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
+        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z142"></relationship>
+    </object>
+    <object type="PLACE" id="z135">
+        <attribute name="name" type="string">Waterside</attribute>
+        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
+        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z129 z132 z131 z143"></relationship>
+    </object>
+    <object type="PLACE" id="z136">
+        <attribute name="name" type="string">Workbench</attribute>
+        <attribute name="isoffline" type="bool">1</attribute>
+        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
+        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z130"></relationship>
+    </object>
+    <object type="PLACE" id="z137">
+        <attribute name="name" type="string">Off East</attribute>
+        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
+        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z144"></relationship>
+    </object>
+    <object type="PLACE" id="z138">
+        <attribute name="name" type="string">Off West</attribute>
+        <relationship name="adjacentplaces" type="0/0" destination="PLACE"></relationship>
+        <relationship name="industries" type="0/0" destination="INDUYARD" idrefs="z145"></relationship>
+    </object>
+    <object type="SCHEDULEDTRAIN" id="z139">
         <attribute name="stops" type="string">Off East++\u2600\u2600Waterside++\u2600\u2600Off West</attribute>
         <attribute name="name" type="string">Westbound freight</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z145 z141 z136 z137"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z123 z128 z124 z121"></relationship>
     </object>
-    <object type="SCHEDULEDTRAIN" id="z134">
+    <object type="SCHEDULEDTRAIN" id="z140">
         <attribute name="stops" type="string">Off West++\u2600\u2600Waterside++\u2600\u2600Off East</attribute>
         <attribute name="name" type="string">Eastbound freight</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z142 z144 z140 z143"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z125 z122 z120 z127"></relationship>
     </object>
-    <object type="SCHEDULEDTRAIN" id="z135">
+    <object type="SCHEDULEDTRAIN" id="z141">
         <attribute name="stops" type="string">Waterside++\u2600\u2600Off Branch++\u2600\u2600Waterside</attribute>
         <attribute name="name" type="string">Branch freight</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z139 z138"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z119 z126"></relationship>
     </object>
-    <object type="FREIGHTCAR" id="z136">
-        <attribute name="reportingmarks" type="string">SP 0007</attribute>
-        <attribute name="loaded" type="bool">1</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="homedivision" type="string">west</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z112"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z125"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z133"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    <object type="YARD" id="z142">
+        <attribute name="sidinglength" type="int16">0</attribute>
+        <attribute name="name" type="string">Off branch yard</attribute>
+        <relationship name="location" type="1/1" destination="PLACE" idrefs="z134"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z119"></relationship>
+        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z117"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z114"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
-    <object type="FREIGHTCAR" id="z137">
-        <attribute name="reportingmarks" type="string">UTLX 0009</attribute>
-        <attribute name="positionintrain" type="int16">1</attribute>
-        <attribute name="loaded" type="bool">0</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="cartype" type="string">T</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z124"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z110"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z125"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z133"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    <object type="YARD" id="z143">
+        <attribute name="acceptsdivisions" type="string">all</attribute>
+        <attribute name="sidinglength" type="int16">0</attribute>
+        <attribute name="name" type="string">Waterside Yard</attribute>
+        <attribute name="division" type="string">west</attribute>
+        <relationship name="location" type="1/1" destination="PLACE" idrefs="z135"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z128 z126"></relationship>
+        <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z125"></relationship>
     </object>
-    <object type="FREIGHTCAR" id="z138">
-        <attribute name="reportingmarks" type="string">GN 0001</attribute>
-        <attribute name="loaded" type="bool">1</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="homedivision" type="string">west</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z113"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z126"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z135"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    <object type="YARD" id="z144">
+        <attribute name="sidinglength" type="int16">0</attribute>
+        <attribute name="name" type="string">Off east yard</attribute>
+        <attribute name="division" type="string">east</attribute>
+        <relationship name="location" type="1/1" destination="PLACE" idrefs="z137"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z121 z123 z124"></relationship>
+        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z118 z115"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z116 z112"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
-    <object type="FREIGHTCAR" id="z139">
-        <attribute name="reportingmarks" type="string">C\u2600NW 0010</attribute>
-        <attribute name="positionintrain" type="int16">1</attribute>
-        <attribute name="loaded" type="bool">1</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="homedivision" type="string">east</attribute>
-        <attribute name="cartype" type="string">H</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z117"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z111"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z127"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z135"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
-    </object>
-    <object type="FREIGHTCAR" id="z140">
-        <attribute name="reportingmarks" type="string">SP 0006</attribute>
-        <attribute name="loaded" type="bool">1</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="homedivision" type="string">west</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z114"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z128"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z134"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
-    </object>
-    <object type="FREIGHTCAR" id="z141">
-        <attribute name="reportingmarks" type="string">SP 0004</attribute>
-        <attribute name="loaded" type="bool">0</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="homedivision" type="string">west</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z109"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z126"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z133"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
-    </object>
-    <object type="FREIGHTCAR" id="z142">
-        <attribute name="reportingmarks" type="string">NYC 0003</attribute>
-        <attribute name="loaded" type="bool">1</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="homedivision" type="string">east</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z113"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z128"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z134"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD" idrefs="z126"></relationship>
-    </object>
-    <object type="FREIGHTCAR" id="z143">
-        <attribute name="reportingmarks" type="string">SP 0008</attribute>
-        <attribute name="loaded" type="bool">1</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="homedivision" type="string">west</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z109"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z128"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z134"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
-    </object>
-    <object type="FREIGHTCAR" id="z144">
-        <attribute name="reportingmarks" type="string">SP 0005</attribute>
-        <attribute name="loaded" type="bool">1</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="homedivision" type="string">west</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z114"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z128"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z134"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
-    </object>
-    <object type="FREIGHTCAR" id="z145">
-        <attribute name="reportingmarks" type="string">NP 0002</attribute>
-        <attribute name="loaded" type="bool">1</attribute>
-        <attribute name="length" type="int16">40</attribute>
-        <attribute name="homedivision" type="string">east</attribute>
-        <attribute name="cartype" type="string">XM</attribute>
-        <attribute name="cardescription" type="string"></attribute>
-        <relationship name="cartyperel" type="1/1" destination="CARTYPE" idrefs="z121"></relationship>
-        <relationship name="cargo" type="1/1" destination="CARGO" idrefs="z112"></relationship>
-        <relationship name="currentlocation" type="1/1" destination="INDUYARD" idrefs="z125"></relationship>
-        <relationship name="currenttrain" type="1/1" destination="SCHEDULEDTRAIN" idrefs="z133"></relationship>
-        <relationship name="intermediatedestination" type="1/1" destination="INDUYARD"></relationship>
+    <object type="YARD" id="z145">
+        <attribute name="sidinglength" type="int16">0</attribute>
+        <attribute name="name" type="string">Off west yard</attribute>
+        <attribute name="division" type="string">west</attribute>
+        <relationship name="location" type="1/1" destination="PLACE" idrefs="z138"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z127 z122 z125 z120"></relationship>
+        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z116 z113 z114 z112"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z118"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
 </database>

@@ -445,8 +445,8 @@
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="LAYOUTINFO" id="z135">
-        <attribute name="layoutpreferences" type="binary">BAtzdHJlYW10eXBlZIHoA4QBQISEhBNOU011dGFibGVEaWN0aW9uYXJ5AISEDE5TRGljdGlvbmFy
-eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aShISECE5TTnVtYmVyAISEB05TVmFsdWUAlYQBKoSWlgSGhg==
+        <attribute name="layoutpreferences" type="binary">YnBsaXN0MDDUAQIDBAUGS0xYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8Q
+FgcIExQVFhwdJCkqKzI3ODk+P0BFRkdVJG51bGzTCQoLDA8SV05TLmtleXNaTlMub2JqZWN0c1YkY2xhc3OiDQ6AAoADohARgASABYAVXxAURGVmYXVsdE51bWJlck9mTG9hZHNfEBZPcHRpb25hbFRlbXBsYXRlUGFyYW1zEATTCQoLFxkSoRiABqEagAeAFVtMZXR0ZXJoZWFkMdIKCx4jpB8gISKACIAMgA+AEoAL0goLJSOiJieACYAKgAtdQWRkcmVzc19CbG9ja18QKDEzMzAgTi4gQnJvYWR3YXkgQXZlLjxicj5TdG9ja3RvbiBDYWxpZi7SLC0uL1okY2xhc3NuYW1lWCRjbGFzc2VzXk5TTXV0YWJsZUFycmF5oy4wMVdOU0FycmF5WE5TT2JqZWN00goLMyOiNDWADYAOgAtdQ29udGFjdF9CbG9ja18QIlRlbC4gNTU1LTEyMTI8YnI+VGVsZXg6IFN0b2NrdG9uVEXSCgs6I6I7PIAQgBGAC11SYWlscm9hZF9OYW1lXxAoU3RvY2t0b24sIFRlcm1pbmFsLCBhbmQgRWFzdGVybiBSYWlscm9hZNIKC0EjokJDgBOAFIALXxARUmFpbHJvYWRfU3VidGl0bGVfEC9DYXB0LiBDaGFybGVzIE0uIFdlYmVyLCAgQ2hhaXJtYW4gYW5kIFByZXNpZGVudNIsLUhJXxATTlNNdXRhYmxlRGljdGlvbmFyeaNISjFcTlNEaWN0aW9uYXJ5XxAPTlNLZXllZEFyY2hpdmVy0U1OVHJvb3SAAQAIABEAGgAjAC0AMgA3AFAAVgBdAGUAcAB3AHoAfAB+AIEAgwCFAIcAngC3ALkAwADCAMQAxgDIAMoA1gDbAOAA4gDkAOYA6ADqAO8A8gD0APYA+AEGATEBNgFBAUoBWQFdAWUBbgFzAXYBeAF6AXwBigGvAbQBtwG5AbsBvQHLAfYB+wH+AgACAgIEAhgCSgJPAmUCaQJ2AogCiwKQAAAAAAAAAgEAAAAAAAAATwAAAAAAAAAAAAAAAAAAApI=
 </attribute>
         <attribute name="layoutname" type="string">Stockton Transfer</attribute>
         <attribute name="currentdate" type="date">310413924.80092298984527587891</attribute>
@@ -504,7 +504,7 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z122 z121 z125 z128 z119 z123 z124 z126 z120 z127"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z119 z120 z121 z124 z128 z126 z122 z123 z127 z125"></relationship>
     </object>
     <object type="YARD" id="z145">
         <attribute name="acceptsdivisions" type="string">SP,East</attribute>
@@ -512,10 +512,10 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="name" type="string">SP Interchange</attribute>
         <attribute name="division" type="string">SP</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z137"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z121 z123 z128"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z123 z128 z121"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z125 z119 z120 z122"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z125 z120 z119 z122"></relationship>
     </object>
     <object type="YARD" id="z146">
         <attribute name="acceptsdivisions" type="string">WP</attribute>
@@ -534,7 +534,7 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="name" type="string">Center Yard</attribute>
         <attribute name="division" type="string">Here</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z138"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z127 z125 z120 z124"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z125 z120 z127 z124"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z126 z128 z121"></relationship>
