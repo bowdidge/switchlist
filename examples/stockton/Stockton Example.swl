@@ -309,8 +309,8 @@
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="LAYOUTINFO" id="z126">
-        <attribute name="layoutpreferences" type="binary">BAtzdHJlYW10eXBlZIHoA4QBQISEhBNOU011dGFibGVEaWN0aW9uYXJ5AISEDE5TRGljdGlvbmFy
-eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aShISECE5TTnVtYmVyAISEB05TVmFsdWUAlYQBKoSWlg+Ghg==
+        <attribute name="layoutpreferences" type="binary">YnBsaXN0MDDUAQIDBAUGdHVYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8Q
+JQcIFRYXGBkhIiMqLzAxOD0+P0RFRktMTVRZWltgYWJnaGlub3BVJG51bGzTCQoLDBAUV05TLmtleXNaTlMub2JqZWN0c1YkY2xhc3OjDQ4PgAKAA4AEoxESE4AFgAaACIAkXxAURGVmYXVsdE51bWJlck9mTG9hZHNfEBZPcHRpb25hbFRlbXBsYXRlUGFyYW1zXxAZU3dpdGNoTGlzdERlZmF1bHRUZW1wbGF0ZRAP0wkKCxodFKIbE4AHgAiiHh+ACYAXgCRbTGV0dGVyaGVhZDFfEBNSYWlscm9hZCBMZXR0ZXJoZWFk0goLJCmkJSYnKIAKgA6AEYAUgA3SCgsrKaIsLYALgAyADV1BZGRyZXNzX0Jsb2NrXxAxMTYxIFdlc3QgVGlkZXdhdGVyIEF2ZS48YnI+IE1vb3NlIEZhbGxzIE1OIDUwMTIwINIyMzQ1WiRjbGFzc25hbWVYJGNsYXNzZXNeTlNNdXRhYmxlQXJyYXmjNDY3V05TQXJyYXlYTlNPYmplY3TSCgs5KaI6O4APgBCADV1Db250YWN0X0Jsb2NrXxBCVGVsLiAyMTMtNTU1LTEyMDM8YnI+IFN0LiBQYXVsOiAzMTAtNzY3LTI2NzYgPGJyPiBGYXggMzEwLTc2Ny0yNjc30goLQCmiQUKAEoATgA1dUmFpbHJvYWRfTmFtZV8QHk1pZC1Db250aW5lbnQgVGVybWluYWwgUmFpbHdhedIKC0cpokhJgBWAFoANXxARUmFpbHJvYWRfU3VidGl0bGVfECFKb2huIERvZSwgIENoYWlybWFuIGFuZCBQcmVzaWRlbnTSCgtOKaRPUFFSgBiAG4AegCGADdIKC1UpolZXgBmAGoANXUFkZHJlc3NfQmxvY2tfECMxMzMwIE4uIEJyb2Fkd2F5PGJyPlN0b2NrdG9uIENhbGlmLtIKC1wpol1egByAHYANXUNvbnRhY3RfQmxvY2tfECJUZWwuIDU1NS0xMjEyPGJyPlRlbGV4OiBTdG9ja3RvblRF0goLYymiZGWAH4AggA1dUmFpbHJvYWRfTmFtZV8QKFN0b2NrdG9uLCBUZXJtaW5hbCwgYW5kIEVhc3Rlcm4gUmFpbHJvYWTSCgtqKaJrbIAigCOADV8QEVJhaWxyb2FkX1N1YnRpdGxlXxAvQ2FwdC4gQ2hhcmxlcyBNLiBXZWJlciwgIENoYWlybWFuIGFuZCBQcmVzaWRlbnTSMjNxcl8QE05TTXV0YWJsZURpY3Rpb25hcnmjcXM3XE5TRGljdGlvbmFyeV8QD05TS2V5ZWRBcmNoaXZlctF2d1Ryb290gAEACAARABoAIwAtADIANwBfAGUAbAB0AH8AhgCKAIwAjgCQAJQAlgCYAJoAnACzAMwA6ADqAPEA9AD2APgA+wD9AP8BAQENASMBKAEtAS8BMQEzATUBNwE8AT8BQQFDAUUBUwGHAYwBlwGgAa8BswG7AcQByQHMAc4B0AHSAeACJQIqAi0CLwIxAjMCQQJiAmcCagJsAm4CcAKEAqgCrQKyArQCtgK4AroCvALBAsQCxgLIAsoC2AL+AwMDBgMIAwoDDAMaAz8DRANHA0kDSwNNA1sDhgOLA44DkAOSA5QDqAPaA98D9QP5BAYEGAQbBCAAAAAAAAACAQAAAAAAAAB4AAAAAAAAAAAAAAAAAAAEIg==
 </attribute>
         <attribute name="layoutname" type="string">Stockton Example</attribute>
         <attribute name="currentdate" type="date">313355124.80092298984527587891</attribute>
@@ -374,7 +374,7 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <attribute name="sidinglength" type="int16">0</attribute>
         <attribute name="name" type="string">SP Interchange</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z134"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z116 z120 z117"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z117 z120 z116"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z118"></relationship>
@@ -395,6 +395,6 @@ eQCEhAhOU09iamVjdACFhAFpAZKEhIQITlNTdHJpbmcBlYQBKxREZWZhdWx0TnVtYmVyT2ZMb2Fkc4aS
         <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z119"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z116 z120 z117"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z117 z120 z116"></relationship>
     </object>
 </database>

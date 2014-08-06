@@ -1143,7 +1143,7 @@
         <attribute name="loaded" type="bool">0</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">Mid</attribute>
-        <attribute name="doortospot" type="int16">4</attribute>
+        <attribute name="doortospot" type="int16">5</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">XMC</attribute>
@@ -1255,7 +1255,7 @@
         <attribute name="loaded" type="bool">0</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">Mid</attribute>
-        <attribute name="doortospot" type="int16">5</attribute>
+        <attribute name="doortospot" type="int16">2</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">XMC</attribute>
@@ -1512,7 +1512,7 @@
         <attribute name="loaded" type="bool">1</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">SP</attribute>
-        <attribute name="doortospot" type="int16">3</attribute>
+        <attribute name="doortospot" type="int16">4</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">RS</attribute>
@@ -1704,7 +1704,7 @@
         <attribute name="loaded" type="bool">0</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">SP</attribute>
-        <attribute name="doortospot" type="int16">6</attribute>
+        <attribute name="doortospot" type="int16">8</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">XMC</attribute>
@@ -1720,7 +1720,7 @@
         <attribute name="loaded" type="bool">0</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">East</attribute>
-        <attribute name="doortospot" type="int16">8</attribute>
+        <attribute name="doortospot" type="int16">5</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">XMC</attribute>
@@ -1865,7 +1865,7 @@
         <attribute name="loaded" type="bool">1</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">SP</attribute>
-        <attribute name="doortospot" type="int16">10</attribute>
+        <attribute name="doortospot" type="int16">9</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">RS</attribute>
@@ -1994,7 +1994,7 @@
         <attribute name="loaded" type="bool">0</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">SP</attribute>
-        <attribute name="doortospot" type="int16">2</attribute>
+        <attribute name="doortospot" type="int16">1</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">XMC</attribute>
@@ -2058,7 +2058,7 @@
         <attribute name="loaded" type="bool">0</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">Mid</attribute>
-        <attribute name="doortospot" type="int16">1</attribute>
+        <attribute name="doortospot" type="int16">3</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">XMC</attribute>
@@ -2799,7 +2799,7 @@
         <attribute name="loaded" type="bool">1</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">SP</attribute>
-        <attribute name="doortospot" type="int16">7</attribute>
+        <attribute name="doortospot" type="int16">6</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">RS</attribute>
@@ -2943,7 +2943,7 @@
         <attribute name="loaded" type="bool">0</attribute>
         <attribute name="length" type="int16">40</attribute>
         <attribute name="homedivision" type="string">East</attribute>
-        <attribute name="doortospot" type="int16">1</attribute>
+        <attribute name="doortospot" type="int16">3</attribute>
         <attribute name="daysuntilunloaded" type="int16">0</attribute>
         <attribute name="currentdoor" type="int16">0</attribute>
         <attribute name="cartype" type="string">XMC</attribute>
@@ -3367,8 +3367,8 @@
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR"></relationship>
     </object>
     <object type="LAYOUTINFO" id="z344">
-        <attribute name="layoutpreferences" type="binary">YnBsaXN0MDDUAQIDBAUGISJYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoKgH
-CBUWFxgZGlUkbnVsbNMJCgsMDRFWJGNsYXNzV05TLmtleXNaTlMub2JqZWN0c4AHow4PEIACgAOABKMSExOABYAGgAZfEBREZWZhdWx0TnVtYmVyT2ZMb2Fkc18QF1Nwb3RUb0Rvb3JzQXRJbmR1c3RyaWVzXxAQU2hvd1NpZGluZ0xlbmd0aBAPEAHSGxwdHlokY2xhc3NuYW1lWCRjbGFzc2VzXxATTlNNdXRhYmxlRGljdGlvbmFyeaMdHyBcTlNEaWN0aW9uYXJ5WE5TT2JqZWN0XxAPTlNLZXllZEFyY2hpdmVy0SMkVHJvb3SAAQAIABEAGgAjAC0AMgA3AEAARgBNAFQAXABnAGkAbQBvAHEAcwB3AHkAewB9AJQArgDBAMMAxQDKANUA3gD0APgBBQEOASABIwEoAAAAAAAAAgEAAAAAAAAAJQAAAAAAAAAAAAAAAAAAASo=
+        <attribute name="layoutpreferences" type="binary">YnBsaXN0MDDUAQIDBAUGW1xYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK8Q
+HAcIGRobHB0eHyAhKSoxNjc4P0RFRktMTVJTVFdVJG51bGzTCQoLDBIYV05TLmtleXNaTlMub2JqZWN0c1YkY2xhc3OlDQ4PEBGAAoADgASABYAGpRMUFRQXgAeACIAJgAiACoAbXxAURGVmYXVsdE51bWJlck9mTG9hZHNfEBBTaG93U2lkaW5nTGVuZ3RoXxAZU3dpdGNoTGlzdERlZmF1bHRUZW1wbGF0ZV8QF1Nwb3RUb0Rvb3JzQXRJbmR1c3RyaWVzXxAWT3B0aW9uYWxUZW1wbGF0ZVBhcmFtcxAPEAFbSGFuZHdyaXR0ZW7TCQoLIiUYoiMVgAuACaImJ4AMgBqAG1tMZXR0ZXJoZWFkMdIKCyswpCwtLi+ADYARgBSAF4AQ0goLMjCiMzSADoAPgBBdQWRkcmVzc19CbG9ja18QMTE2MSBXZXN0IFRpZGV3YXRlciBBdmUuPGJyPiBNb29zZSBGYWxscyBNTiA1MDEyMCDSOTo7PFokY2xhc3NuYW1lWCRjbGFzc2VzXk5TTXV0YWJsZUFycmF5ozs9PldOU0FycmF5WE5TT2JqZWN00goLQDCiQUKAEoATgBBdQ29udGFjdF9CbG9ja18QQlRlbC4gMjEzLTU1NS0xMjAzPGJyPiBTdC4gUGF1bDogMzEwLTc2Ny0yNjc2IDxicj4gRmF4IDMxMC03NjctMjY3N9IKC0cwokhJgBWAFoAQXVJhaWxyb2FkX05hbWVfEB5NaWQtQ29udGluZW50IFRlcm1pbmFsIFJhaWx3YXnSCgtOMKJPUIAYgBmAEF8QEVJhaWxyb2FkX1N1YnRpdGxlXxAhSm9obiBEb2UsICBDaGFpcm1hbiBhbmQgUHJlc2lkZW500goLVTCggBDSOTpYWV8QE05TTXV0YWJsZURpY3Rpb25hcnmjWFo+XE5TRGljdGlvbmFyeV8QD05TS2V5ZWRBcmNoaXZlctFdXlRyb290gAEACAARABoAIwAtADIANwBWAFwAYwBrAHYAfQCDAIUAhwCJAIsAjQCTAJUAlwCZAJsAnQCfALYAyQDlAP8BGAEaARwBKAEvATIBNAE2ATkBOwE9AT8BSwFQAVUBVwFZAVsBXQFfAWQBZwFpAWsBbQF7Aa8BtAG/AcgB1wHbAeMB7AHxAfQB9gH4AfoCCAJNAlICVQJXAlkCWwJpAooCjwKSApQClgKYAqwC0ALVAtYC2ALdAvMC9wMEAxYDGQMeAAAAAAAAAgEAAAAAAAAAXwAAAAAAAAAAAAAAAAAAAyA=
 </attribute>
         <attribute name="layoutname" type="string">Southern Pacific - Vasona Branch</attribute>
         <attribute name="currentdate" type="date">-2165020339.22192287445068359375</attribute>
@@ -3460,8 +3460,8 @@ CBUWFxgZGlUkbnVsbNMJCgsMDRFWJGNsYXNzV05TLmtleXNaTlMub2JqZWN0c4AHow4PEIACgAOABKMS
         <attribute name="name" type="string">San Jose Turn</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">480</attribute>
-        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z111 z110 z109 z107 z104 z102 z103"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z199 z306 z272 z302 z226 z265 z313 z273 z259 z204 z225 z305 z239 z220 z253 z269 z264"></relationship>
+        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z110 z109 z107 z104 z102 z103 z111"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z273 z199 z269 z239 z253 z313 z220 z265 z305 z226 z225 z302 z204 z272 z259 z306 z264"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z361">
         <attribute name="stops" type="string">San Jose Yard++\u2600\u2600West San Jose++\u2600\u2600Auzerais St.++\u2600\u2600West San Jose++\u2600\u2600San Jose Yard</attribute>
@@ -3469,7 +3469,7 @@ CBUWFxgZGlUkbnVsbNMJCgsMDRFWJGNsYXNzV05TLmtleXNaTlMub2JqZWN0c4AHow4PEIACgAOABKMS
         <attribute name="mincarstorun" type="int16">2</attribute>
         <attribute name="maxlength" type="int16">520</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z105 z108"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z298 z276 z260 z270 z240 z208 z289 z201 z224 z192 z300 z231 z262 z244 z307 z193 z195 z230 z284 z238 z249 z271 z248 z243 z202"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z193 z298 z300 z248 z262 z284 z270 z307 z192 z271 z289 z230 z260 z244 z202 z224 z249 z208 z195 z276 z231 z243 z201 z238 z240"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z362">
         <attribute name="stops" type="string">San Jose Yard++\u2600\u2600Campbell++\u2600\u2600Los Gatos++\u2600\u2600Campbell++\u2600\u2600San Jose Yard</attribute>
@@ -3477,15 +3477,15 @@ CBUWFxgZGlUkbnVsbNMJCgsMDRFWJGNsYXNzV05TLmtleXNaTlMub2JqZWN0c4AHow4PEIACgAOABKMS
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">480</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z105 z108"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z303 z280 z268 z297 z194 z236 z205 z218 z245 z287 z252 z209 z191 z254 z213 z197 z212"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z287 z268 z245 z280 z212 z218 z303 z197 z191 z213 z205 z254 z236 z209 z194 z252 z297"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z363">
         <attribute name="stops" type="string">Santa Cruz++\u2600\u2600Glenwood++\u2600\u2600Wrights++\u2600\u2600Alma++\u2600\u2600Moody Gulch++\u2600\u2600San Jose Yard++\u2600\u2600Moody Gulch++\u2600\u2600Alma++\u2600\u2600Wrights++\u2600\u2600Glenwood++\u2600\u2600Santa Cruz</attribute>
         <attribute name="name" type="string">Santa Cruz Turn</attribute>
         <attribute name="mincarstorun" type="int16">6</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
-        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z108 z111 z110 z109 z107 z104 z102 z103"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z207 z237 z233 z293 z210 z219 z278 z196 z274 z251 z291 z301 z214"></relationship>
+        <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z110 z109 z107 z104 z102 z103 z108 z111"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z219 z301 z210 z291 z293 z251 z233 z274 z237 z196 z207 z214 z278"></relationship>
     </object>
     <object type="SCHEDULEDTRAIN" id="z364">
         <attribute name="stops" type="string">Vasona Jct++\u2600\u2600Vasona Jct</attribute>
@@ -3501,7 +3501,7 @@ CBUWFxgZGlUkbnVsbNMJCgsMDRFWJGNsYXNzV05TLmtleXNaTlMub2JqZWN0c4AHow4PEIACgAOABKMS
         <attribute name="mincarstorun" type="int16">4</attribute>
         <attribute name="maxlength" type="int16">400</attribute>
         <relationship name="acceptedcartypesrel" type="0/0" destination="CARTYPE" idrefs="z106"></relationship>
-        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z290 z286 z282 z222 z267 z294 z312 z229 z242 z200 z216"></relationship>
+        <relationship name="freightcars" type="0/100" destination="FREIGHTCAR" idrefs="z216 z222 z229 z290 z294 z200 z282 z267 z242 z286 z312"></relationship>
     </object>
     <object type="YARD" id="z366">
         <attribute name="acceptsdivisions" type="string">SP</attribute>
@@ -3509,9 +3509,9 @@ CBUWFxgZGlUkbnVsbNMJCgsMDRFWJGNsYXNzV05TLmtleXNaTlMub2JqZWN0c4AHow4PEIACgAOABKMS
         <attribute name="name" type="string">Santa Cruz Yard</attribute>
         <attribute name="division" type="string">SP</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z351"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z232 z255 z286 z211 z267 z227 z312 z242 z309"></relationship>
-        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z177 z149 z158 z115 z186 z161"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z179 z145 z148"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z242 z309 z227 z255 z211 z232 z267 z286 z312"></relationship>
+        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z186 z177 z149 z158 z115 z161"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z145 z148 z179"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z233"></relationship>
     </object>
     <object type="YARD" id="z367">
@@ -3531,7 +3531,7 @@ CBUWFxgZGlUkbnVsbNMJCgsMDRFWJGNsYXNzV05TLmtleXNaTlMub2JqZWN0c4AHow4PEIACgAOABKMS
         <attribute name="name" type="string">WP Interchange</attribute>
         <attribute name="division" type="string">WP</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z358"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z283 z310 z238"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z238 z283 z310"></relationship>
         <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z134 z118 z171"></relationship>
         <relationship name="terminatingcargos" type="0/0" destination="CARGO"></relationship>
         <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z300 z192"></relationship>
@@ -3542,9 +3542,9 @@ CBUWFxgZGlUkbnVsbNMJCgsMDRFWJGNsYXNzV05TLmtleXNaTlMub2JqZWN0c4AHow4PEIACgAOABKMS
         <attribute name="name" type="string">San Jose Yard</attribute>
         <attribute name="division" type="string">SP</attribute>
         <relationship name="location" type="1/1" destination="PLACE" idrefs="z346"></relationship>
-        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z269 z280 z202 z203 z302 z223 z210 z239 z197 z305 z190 z297 z228 z247 z307 z259 z313 z279 z200 z301 z293 z206 z230 z298 z229 z215 z311 z265 z217 z256 z250 z237 z214 z246 z260 z218 z226 z220 z240 z264 z234 z248 z209 z198 z195 z252 z235"></relationship>
-        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z146 z165 z166 z180 z176 z112 z163 z169 z150 z185"></relationship>
-        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z119 z135 z160 z122 z140 z129 z133 z115 z182"></relationship>
-        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z236 z268 z249 z254 z199 z270 z303 z306 z205 z289 z266 z287 z201 z224 z208 z273 z212 z262 z244 z193 z251 z191 z196 z245 z284 z225 z194 z271 z253 z276 z243"></relationship>
+        <relationship name="freightcars" type="0/0" destination="FREIGHTCAR" idrefs="z228 z252 z203 z239 z293 z259 z280 z264 z248 z218 z190 z311 z197 z301 z226 z230 z223 z297 z202 z214 z246 z313 z198 z235 z250 z220 z298 z247 z209 z307 z215 z269 z229 z210 z260 z302 z217 z256 z195 z206 z200 z279 z240 z265 z234 z305 z237"></relationship>
+        <relationship name="originatingcargos" type="0/0" destination="CARGO" idrefs="z150 z166 z165 z146 z169 z163 z176 z112 z185 z180"></relationship>
+        <relationship name="terminatingcargos" type="0/0" destination="CARGO" idrefs="z160 z133 z122 z129 z115 z182 z135 z140 z119"></relationship>
+        <relationship name="transitingfreightcars" type="0/0" destination="FREIGHTCAR" idrefs="z266 z236 z193 z212 z306 z262 z273 z284 z270 z194 z199 z303 z196 z225 z289 z271 z191 z244 z253 z224 z287 z249 z208 z205 z276 z268 z251 z254 z201 z243 z245"></relationship>
     </object>
 </database>
