@@ -143,7 +143,7 @@ NSString *CurrentHostname() {
 // Change the default switchlist template to the named one.
 // If templateName is Handwritten or is nil, then use the default template.
 - (void) setTemplate: (NSString*) templateName {
-	[htmlRenderer_ setTemplate: templateName];
+    // No longer used.
 }
 
 - (void) processError: (NSURL *) badURL {
@@ -155,6 +155,8 @@ NSString *CurrentHostname() {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
 	ScheduledTrain *train = [layout trainWithName: trainName];
+	[htmlRenderer_ setTemplate: [document preferredSwitchListStyle]];
+    [htmlRenderer_ setOptionalSettings: [document optionalFieldKeyValues]];
     if (!train) {
         [server_ replyWithStatusCode: HTTP_NOT_FOUND
                              message: [NSString stringWithFormat: @"Unknown train: %@", trainName]];

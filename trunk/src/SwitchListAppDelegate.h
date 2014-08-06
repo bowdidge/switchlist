@@ -96,9 +96,6 @@
 	BOOL applicationHasStarted_;
 	BOOL shouldShowSplashScreen_;
 	
-	// Map from SwitchList template name to appropriate SwitchListView class.
-	NSMutableDictionary *nameToSwitchListClassMap_;
-	
 	// Keep central file manager for easier stubbing.
 	NSFileManager *defaultFileManager_;
 	
@@ -107,7 +104,6 @@
 
 - (NSWindow*) reportWindow;
 - (NSTextView*) reportTextView;
-- (IBAction) switchListFormatPreferenceChanged: (id) sender;
 - (IBAction) webServerPreferenceChanged: (id) sender;
 
 - (IBAction) webServerRunStatusChanged: (id) sender;
@@ -128,29 +124,9 @@
 
 - (SwitchListDocument*) currentDocument;
 
-// List of the names of valid switchlist HTML templates either found in the 
-// user's SwitchList application support folder, or in the SwitchList bundle.
-// Any of these names are valid for switchlists either in the web or native interface.
-- (NSArray*) validTemplateNames;
-
 // Manual approaches for testing.
 - (void) startWebServer;
 - (void) stopWebServer;
 
-// Map from SwitchList template name to appropriate SwitchListView class.
-// Template names without native drawing support are unmapped.
-- (NSDictionary*) nameToSwitchListClassMap;
 @end
-
-// Used in preference panels, in defaults.  Stored in default  SwitchListDefaultStyle
-enum SwitchListStyle {
-	Undefined=0,
-	PrettySwitchListStyle=1,
-	OldSwitchListStyle=2,
-	PickUpDropOffSwitchListStyle=3,
-	SouthernPacificSwitchListStyle=4,
-	PICLReportStyle=5,
-	SanFranciscoBeltLineB7Style=6
-};
-
 

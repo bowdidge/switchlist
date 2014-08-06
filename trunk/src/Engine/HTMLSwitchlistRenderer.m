@@ -39,6 +39,7 @@
 #import "Industry.h"
 #import "MGTemplateEngine.h"
 #import "NSFileManager+DirectoryLocations.h"
+#import "RegexKitLite.h"
 #import "ScheduledTrain.h"
 #import "SwitchListFilters.h"
 
@@ -54,6 +55,7 @@
 	engine_ = [[MGTemplateEngine alloc] init];
 	[engine_ setMatcher: [ICUTemplateMatcher matcherWithTemplateEngine: engine_]];
 	[engine_ loadFilter: [[[SwitchListFilters alloc] init] autorelease]];
+    optionalSettings_ = [[NSArray alloc] init];
 	return self;
 }
 
@@ -61,6 +63,7 @@
 	[engine_ release];
 	[templateDirectory_ release];
 	[mainBundle_ release];
+    [optionalSettings_ release];
 	[super dealloc];
 }
 
@@ -132,8 +135,44 @@
 	return [mainBundle_ pathForResource: template ofType: @"html"];
 }
 
+// Returns the list of optional variable present in the template.  These are used for custom appearances that
+// should default to a sane value - for example, printing "Mid-Continent Terminal Railway" unless OPTIONS_NAME appears.
+// The regex matches with:
+// var anything = {{OPTIONS_NAME | default: Mid-Continent Terminal Railway}};
+// Returns a mutable array of pairs of [option name, option default value].
+- (NSArray*) optionalSettingsForTemplateWithContents: (NSString*) stringContents {
+    NSArray *raw_results = [stringContents componentsMatchedByRegex: @"\\{OPTIONAL_\\w+\\s*\\|\\s*default\\s*:.*?\\}"];
+    NSMutableArray* results = [NSMutableArray array];
+    for (NSString* raw_result in raw_results) {
+        NSArray* individual_results = [raw_result captureComponentsMatchedByRegex: @"OPTIONAL_(\\w+)\\s*\\|\\s*default\\s*:\\s*(.*?)\\}"];
+        NSLog(@"%@", individual_results);
+        if ([individual_results count] == 3) {
+            [results addObject: [NSMutableArray arrayWithObjects: [individual_results objectAtIndex: 1] , [individual_results objectAtIndex: 2], nil]];
+        }
+    }
+    return results;
+}
+
+
+- (NSArray*) optionalSettingsForTemplateHtml: (NSString*) template {
+    NSString* filePath = [self filePathForTemplateHtml: template];
+	NSData *contents = [NSData dataWithContentsOfURL: [NSURL fileURLWithPath: filePath]];;
+	
+	if (contents == nil) {
+        return [NSArray array];
+    }
+
+	NSString * stringContents = [[NSString alloc] initWithBytes: [contents bytes] length: [contents length] encoding: NSUTF8StringEncoding];
+	return [self optionalSettingsForTemplateWithContents: stringContents];
+}
+
 - (NSString*) filePathForSwitchlistHTML {
 	return [self filePathForTemplateHtml: @"switchlist"];
+}
+
+- (void) setOptionalSettings: (NSArray*) optionalSettings {
+    [optionalSettings_ release];
+    optionalSettings_ = [optionalSettings retain];
 }
 
 // Returns the path to the iPhone-specific HTML file for the current template.
@@ -162,9 +201,15 @@
                            interactive: (BOOL) isInteractive {
 	NSMutableDictionary *templateDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								  train, @"train", 
-								  [[[train stationsInOrder] objectAtIndex: 0] name], @"firstStation", 
+								  [[train stationsInOrder] objectAtIndex: 0], @"firstStation",
+                                  [[train stationsInOrder] lastObject], @"lastStation",
 								  layout, @"layout",
 								  nil];
+    // Copy in custom settings as parameters for the template..
+    for (NSArray* optionalPair in optionalSettings_) {
+        [templateDict setObject: [optionalPair objectAtIndex: 1] forKey: [NSString stringWithFormat: @"OPTIONAL_%@", [optionalPair objectAtIndex: 0]]];
+    }
+    
     if (isInteractive) {
         [templateDict setObject: [NSNumber numberWithInt: 1] forKey: @"interactive"];
     }

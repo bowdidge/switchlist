@@ -84,6 +84,18 @@
 	[NSApp endSheet: trainCarTypesDialogWindow_];
 }
 
+- (IBAction) selectAll: (id) sender {
+    [currentCarTypes_ release];
+    currentCarTypes_ = [[NSMutableSet setWithArray: allCarTypes_] retain];
+    [trainCarTypesTable_ reloadData];
+}
+
+- (IBAction) selectNone: (id) sender {
+    [currentCarTypes_ release];
+    currentCarTypes_ = [[NSMutableSet set] retain];
+    [trainCarTypesTable_ reloadData];
+}
+
 // Data sources for the table of car types.
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
 	return [allCarTypes_ count];

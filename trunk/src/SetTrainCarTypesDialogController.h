@@ -43,6 +43,9 @@
 	IBOutlet NSTableColumn *carTypeNameColumn_;
 	IBOutlet NSTableColumn *carTypeDescriptionColumn_;
 
+    IBOutlet NSButton *selectAllButton_;
+    IBOutlet NSButton *selectNoneButton_;
+    
 	IBOutlet NSTextField *_sheetTitle;
 
 	EntireLayout *entireLayout_;
@@ -57,6 +60,10 @@
 // Sets up the current train and layout for populating the dialog controller.
 // Call before displaying the dialog.
 - (void) setTrain: (ScheduledTrain*) tr layout: (EntireLayout*) layout;
+
+// Convenience buttons for selecting all car types, and no car types.
+- (IBAction) selectAll: (id) sender;
+- (IBAction) selectNone: (id) sender;
 
 // Actions for the OK/Cancel buttons in the dialog.
 - (IBAction) cancel: (id) sender;

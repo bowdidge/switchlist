@@ -28,6 +28,8 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
+#import <Foundation/Foundation.h>
+
 #import "SwitchListDocument.h"
 
 #import "CarAssigner.h"
@@ -47,6 +49,7 @@
 #import "Industry.h"
 #import "IndustryReport.h"
 #import "KaufmanSwitchListView.h"
+#import "NSFileManager+DirectoryLocations.h"
 #import "Place.h"
 #import "PICLReport.h"
 #import "PrintEverythingView.h"
@@ -58,6 +61,7 @@
 #import "SwitchListReport.h"
 #import "SwitchListView.h"
 #import "SwitchListReportWindowController.h"
+#import "SwitchListStyleTabController.h"
 #import "TrainAssigner.h"
 #import "Yard.h"
 #import "YardReport.h"
@@ -115,7 +119,15 @@
 	trains_ = nil;
 	annulledTrains_ = [[NSMutableArray alloc] init];
     printingHtmlViewController_  = nil;
-   return self;
+    
+    // Gather the names of the switchlist templates with native support.
+	nameToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
+	[nameToSwitchListClassMap_ setObject: [SwitchListView class] forKey: DEFAULT_SWITCHLIST_TEMPLATE];
+	[nameToSwitchListClassMap_ setObject: [KaufmanSwitchListView class] forKey: @"San Francisco Belt Line B-7"];
+	[nameToSwitchListClassMap_ setObject: [SouthernPacificSwitchListView class] forKey: @"Southern Pacific Narrow"];
+	[nameToSwitchListClassMap_ setObject: [PICLReport class] forKey: @"PICL Report"];
+    
+    return self;
 }
 
 - (void) dealloc {
@@ -131,6 +143,10 @@
 
 - (LayoutController*) layoutController { 
 	return layoutController_;
+}
+
+- (NSDictionary*) nameToSwitchListClassMap {
+	return nameToSwitchListClassMap_;
 }
 
 // Examines the current layout database, and changes all model objects to use
@@ -257,11 +273,15 @@
 	// Set up the panel.
 	[datePicker_ setDateValue: [entireLayout_ currentDate]];
 	[layoutNameField_ setStringValue: [entireLayout_ layoutName]];
-	
+
 	// If we need to upgrade, do so.
 	[self updateLayoutToUseCarTypeObjects];
 	[self updateTrainsToUseNewSeparator];
 	
+    // Puts the switchlist template names in the pop-up in sorted order,
+    // rescanning the template directories.
+    [switchListStyleTabController_ reloadSwitchlistTemplateNames];
+
 	[self doAssignCars: self];
 }
 
@@ -296,12 +316,126 @@
   return result;
 }
 
+// Returns true if a directory named "name" exists in the specified directory,
+// and if "name" contains a switchlist.html file suggesting it's a real template.
+- (BOOL) isSwitchlistTemplate: (NSString*) name inDirectory: (NSString*) directory {
+	BOOL isDirectory = NO;
+	if (![[NSFileManager defaultManager] fileExistsAtPath: [directory stringByAppendingPathComponent: name]
+								   isDirectory: &isDirectory] || isDirectory == NO) {
+		return NO;
+	}
+	// Does a switchlist.html directory exist there?
+	if ([[NSFileManager defaultManager] fileExistsAtPath: [[directory stringByAppendingPathComponent: name]
+												stringByAppendingPathComponent: @"switchlist.html"]]) {
+		return YES;
+	}
+	return NO;
+}
+
+// Return the list of valid template names that exist.
+// TODO(bowdidge): Cache result for a short time.
+- (NSArray*) validTemplateNames {
+	// Handwritten is always valid - uses defaults.
+	NSMutableArray *result = [NSMutableArray arrayWithObject: DEFAULT_SWITCHLIST_TEMPLATE];
+    
+	NSError *error;
+	// First find templates in application support directory.
+	NSString *applicationSupportDirectory = [[NSFileManager defaultManager] applicationSupportDirectory];
+	NSArray *filesInApplicationSupportDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: applicationSupportDirectory
+                                                                                                      error: &error];
+	for (NSString *file in filesInApplicationSupportDirectory) {
+		if ([self isSwitchlistTemplate: file inDirectory: applicationSupportDirectory]) {
+			[result addObject: file];
+		}
+	}
+	
+	// Next, find templates in the bundle directory.  User templates with the same name win.
+	NSString *resourcesDirectory = [[NSBundle mainBundle] resourcePath];
+	NSArray *filesInResourcesDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: resourcesDirectory
+                                                                                             error: &error];
+	for (NSString *file in filesInResourcesDirectory) {
+		if ([self isSwitchlistTemplate: file inDirectory: resourcesDirectory]) {
+			if ([result containsObject: file] == NO) {
+				[result addObject: file];
+			}
+		}
+	}
+	return [result sortedArrayUsingSelector: @selector(compare:)];
+}
+
+- (NSString*) preferredSwitchListStyle {
+    // First, try to get from regular preferences.
+	NSMutableDictionary *layoutPrefs = [[self entireLayout] getPreferencesDictionary];
+    NSString *preferredSwitchListStyle = [layoutPrefs objectForKey: LAYOUT_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+    // Fall back on global preference for now.
+    if (!preferredSwitchListStyle) {
+        preferredSwitchListStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+    }
+
+    if (![[self validTemplateNames] containsObject: preferredSwitchListStyle]) {
+        return DEFAULT_SWITCHLIST_TEMPLATE;
+    }
+    
+    return preferredSwitchListStyle;
+}
+
+- (void) setPreferredSwitchListStyle: (NSString*) styleName {
+	NSMutableDictionary *layoutPrefs = [[self entireLayout] getPreferencesDictionary];
+    [layoutPrefs setObject: styleName forKey: LAYOUT_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+    [entireLayout_ writePreferencesDictionary];
+}
+
+// Returns an array of (option name, value) pairs for custom options for the current switchlist style, or nil if
+// no preferences are saved.
+- (NSArray*) optionalFieldKeyValues {
+    NSMutableDictionary *layoutPrefs = [[self entireLayout] getPreferencesDictionary];
+    NSMutableDictionary *preferredSwitchListStyle = [layoutPrefs objectForKey: LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS];
+    
+    NSArray* options = [preferredSwitchListStyle objectForKey: [self preferredSwitchListStyle]];
+    if (!options) {
+        return nil;
+    }
+    if (![options isKindOfClass: [NSArray class]]) {
+        // Corrupt.
+        return nil;
+    }
+    NSAssert([options isKindOfClass: [NSArray class]], @"Should be array.");
+    return options;
+}
+
+// Returns an array of (option name, value) pairs for custom options for the current switchlist style, or nil if
+// no preferences are saved.
+- (void) setOptionalFieldKeyValues: (NSArray*) options {
+    NSAssert([options isKindOfClass: [NSArray class]], @"Should be array.");
+    NSMutableDictionary *layoutPrefs = [[self entireLayout] getPreferencesDictionary];
+    NSMutableDictionary *allOptions = [layoutPrefs objectForKey: LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS];
+    if (!allOptions) {
+        allOptions = [NSMutableDictionary dictionary];
+        [layoutPrefs setObject: allOptions forKey: LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS];
+    }
+
+    // Sanity check before we save.
+    for (NSArray *option in options) {
+        if (![option isKindOfClass: [NSArray class]] ||
+            [option count] != 2 ||
+            ![[option objectAtIndex: 0] isKindOfClass: [NSString class]] ||
+            ![[option objectAtIndex: 1] isKindOfClass: [NSString class]]) {
+            NSLog(@"Malformed options: %@.  Not saving.", options);
+            return;
+        }
+    }
+
+    [allOptions setObject: options forKey: [self preferredSwitchListStyle]];
+    NSLog(@"Writing out optional field key values %@", [layoutPrefs objectForKey: LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS]);
+	[entireLayout_ writePreferencesDictionary];
+}
+
+
 // Prints switchlists for all trains on the layout that have work.
 - (IBAction)printDocument:(id)sender {
-	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	NSString *preferredSwitchlistStyle = [self preferredSwitchListStyle];
 	
-	SwitchListAppDelegate *appDelegate = (SwitchListAppDelegate*) [[NSApplication sharedApplication] delegate];
-	Class reportClass = [[appDelegate nameToSwitchListClassMap] objectForKey: preferredSwitchlistStyle];
+	Class reportClass = [[self nameToSwitchListClassMap] objectForKey: preferredSwitchlistStyle];
     NSMutableString* all_html = [NSMutableString string];
     [all_html appendString: @"<html><body>"];
     ScheduledTrain* lastTrain = [[entireLayout_ allTrains] lastObject];
@@ -312,6 +446,7 @@
         // TODO(bowdidge): If this doesn't work in the long term, consider
         HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
         [renderer setTemplate: preferredSwitchlistStyle];
+        [renderer setOptionalSettings: [switchListStyleTabController_ optionalFieldKeyValues]];
         NSString *switchlistHtmlFile = [renderer filePathForTemplateHtml: @"switchlist"];
 
         for (ScheduledTrain* train in [entireLayout_ allTrains]) {
@@ -667,17 +802,20 @@
 	}
 	NSInteger selRow = [selection firstIndex];
 	ScheduledTrain *train = [trains_ objectAtIndex: selRow];
+    [self doGenerateSwitchListForTrain: train];
+}
 	
+- (void) doGenerateSwitchListForTrain: (ScheduledTrain*) train {
 	SwitchListBaseView *switchListView;
-	SwitchListAppDelegate *appDelegate = (SwitchListAppDelegate*) [[NSApplication sharedApplication] delegate];
-	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
-	Class reportClass = [[appDelegate nameToSwitchListClassMap] objectForKey: preferredSwitchlistStyle];
+	NSString *preferredSwitchlistStyle = [self preferredSwitchListStyle];
+	Class reportClass = [[self nameToSwitchListClassMap] objectForKey: preferredSwitchlistStyle];
 									   
 	if (reportClass == nil) {
 		// There's no native way of drawing this, so fall back on the HTML version.
 		NSString *title = [NSString stringWithFormat: @"Switch list for %@", [train name]];
 		HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
 		[renderer setTemplate: preferredSwitchlistStyle];
+        [renderer setOptionalSettings: [switchListStyleTabController_ optionalFieldKeyValues]];
 		NSString *switchlistHtmlFile = [renderer filePathForTemplateHtml: @"switchlist"];
 
 		NSString *message = [renderer renderSwitchlistForTrain:train layout:[self entireLayout] iPhone: NO interactive: NO];
@@ -737,7 +875,6 @@
 			for (FreightCar *fc in [[trainToAnnul freightCars] copy]) {
 				[fc removeFromTrain];
 			}
-			NSLog(@"%@", trainToAnnul);
 		}
 		selRow = [selection indexGreaterThanIndex:selRow];
 	}
@@ -891,7 +1028,7 @@
 	
 - (IBAction) doCarReport: (id) sender {
 	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
-	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	NSString *preferredSwitchlistStyle = [self preferredSwitchListStyle];
 	[renderer setTemplate: preferredSwitchlistStyle];
 	NSString *carReport = [renderer filePathForTemplateHtml: @"car-report"];
 	NSString *message = [renderer renderReport: @"car-report"
@@ -906,7 +1043,7 @@
 
 - (IBAction) doIndustryReport: (id) sender {
 	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
-	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	NSString *preferredSwitchlistStyle = [self preferredSwitchListStyle];
 	[renderer setTemplate: preferredSwitchlistStyle];
 	NSString *industryHtml = [renderer filePathForTemplateHtml: @"industry-report"];
 	NSString *message = [renderer renderReport: @"industry-report"
@@ -921,7 +1058,7 @@
 // Generates the cargo report from the HTML version.
 - (IBAction) doCargoReport: (id) sender {
 	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
-	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	NSString *preferredSwitchlistStyle = [self preferredSwitchListStyle];
 	[renderer setTemplate: preferredSwitchlistStyle];
 	NSString *industryHtml = [renderer filePathForTemplateHtml: @"cargo-report"];
 	NSString *message = [renderer renderReport: @"cargo-report"
@@ -934,8 +1071,8 @@
 }
 
 - (IBAction) doReservedCarReport: (id) sender {
-	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
-	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
+	NSString *preferredSwitchlistStyle = [self preferredSwitchListStyle];
 	[renderer setTemplate: preferredSwitchlistStyle];
 	NSString *reservedCarReport = [renderer filePathForTemplateHtml: @"reserved-car-report"];
 	NSString *message = [renderer renderReport: @"reserved-car-report"
@@ -950,8 +1087,8 @@
 // For each yard or staging yard, print out the list of cars in each yard and the train
 // that will be taking each car.
 - (IBAction) doYardReport: (id) sender {
-	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]];
-	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
+	HTMLSwitchlistRenderer *renderer = [[[HTMLSwitchlistRenderer alloc] initWithBundle: [NSBundle mainBundle]] autorelease];
+	NSString *preferredSwitchlistStyle = [self preferredSwitchListStyle];
 	[renderer setTemplate: preferredSwitchlistStyle];
 	NSString *yardHtml = [renderer filePathForTemplateHtml: @"yard-report"];
 	NSString *message = [renderer renderReport: @"yard-report"
@@ -1184,3 +1321,5 @@
 NSString *LAYOUT_PREFS_SHOW_DOORS_UI = @"SpotToDoorsAtIndustries";
 NSString *LAYOUT_PREFS_DEFAULT_NUM_LOADS = @"DefaultNumberOfLoads";
 NSString *LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI = @"ShowSidingLength";
+NSString *LAYOUT_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE = @"SwitchListDefaultTemplate";
+NSString *LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS = @"OptionalTemplateParams";

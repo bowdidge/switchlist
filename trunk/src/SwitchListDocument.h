@@ -30,6 +30,8 @@
 
 #import <Cocoa/Cocoa.h>
 #import <AppKit/NSPersistentDocument.h>
+#import <WebKit/WebView.h>
+
 #import "EntireLayout.h"
 #import "LayoutController.h"
 #import "SwitchListDocumentInterface.h"
@@ -40,6 +42,8 @@
 @class DoorAssignmentRecorder;
 @class SuggestedCargoController;
 @class HTMLSwitchListController;
+@class SwitchListStyleTabController;
+
 @interface SwitchListDocument : NSPersistentDocument<SwitchListDocumentInterface> {
 	IBOutlet NSTextField *freightCarCountField_;
 	IBOutlet NSWindow *switchListWindow_;
@@ -138,7 +142,6 @@
 	IBOutlet NSArrayController *yardArrayController_;
 	
 	// Misc controllers
-	// Car type in freightcar - experimenting only.
 	IBOutlet NSArrayController *carTypeArrayController_;
 	
 	IBOutlet NSArrayController *doorNumberArrayController_;
@@ -158,6 +161,9 @@
 	IBOutlet NSButton *addCarTypeButton_;
 	IBOutlet NSButton *removeCarTypeButton_;
 	
+    // Style tab
+    IBOutlet SwitchListStyleTabController *switchListStyleTabController_;
+    
 	// Filters to limit what appears in popups.
 	NSPredicate *locationIsNotOfflineFilter_;
 	NSPredicate *placeIsNotOfflineFilter_;
@@ -165,6 +171,10 @@
 	IBOutlet SuggestedCargoController *suggestedCargoController_;
 	// Trains currently annulled (not running.  Cars will not be assigned to these trains.
 	NSMutableArray *annulledTrains_;
+
+	// Map from SwitchList template name to appropriate SwitchListView class.
+	NSMutableDictionary *nameToSwitchListClassMap_;
+	
 }
 
 // Returns LayoutController object which actually does the advancing actions.
@@ -176,6 +186,8 @@
 - (IBAction) doAddMoreCars: (id) sender;
 	
 - (IBAction) doGenerateSwitchList: (id) sender;
+- (void) doGenerateSwitchListForTrain: (ScheduledTrain*) train;
+
 - (IBAction) doAnnulTrain: (id) sender;
 - (IBAction) doCompleteTrain: (id) sender;
 /**
@@ -226,10 +238,26 @@
 
 // Brings up the Help page for something in the layouts panel.
 // Triggered by Help icon next to the "doors" and "siding limit options."
-- (IBAction) doLayoutHelpPressed: (id) sender;	
-@end 
+- (IBAction) doLayoutHelpPressed: (id) sender;
+
+- (NSString*) preferredSwitchListStyle;
+- (void) setPreferredSwitchListStyle: (NSString*) styleName;
+
+    // Optional values for this template.
+- (NSArray*) optionalFieldKeyValues;
+- (void) setOptionalFieldKeyValues: (NSArray*) options;
+- (NSArray*) validTemplateNames;
+
+- (void) doGenerateSwitchListForTrain: (ScheduledTrain*) train;
+
+// Map from SwitchList template name to appropriate SwitchListView class.
+// Template names without native drawing support are unmapped.
+- (NSDictionary*) nameToSwitchListClassMap;
+@end
 
 // Settings for the preferences dictionary.
 extern NSString *LAYOUT_PREFS_SHOW_DOORS_UI;
 extern NSString *LAYOUT_PREFS_DEFAULT_NUM_LOADS;
 extern NSString *LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI;
+extern NSString *LAYOUT_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE;
+extern NSString *LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS;

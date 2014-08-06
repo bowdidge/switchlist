@@ -35,7 +35,7 @@
 
 @implementation SwitchListReportWindowController
 - (id) initWithWindowNibName: (NSString*) nibName withView: (SwitchListBaseView*) view withDocument: (SwitchListDocument*) owningDocument {	
-	[super initWithWindowNibName: nibName];
+	self = [super initWithWindowNibName: nibName];
 	view_ = [view retain];
 	float margin = 10.0;
 	// TODO(bowdidge): Fix.  The view gets sized larger than the view in the window, and so always is partially obscured.

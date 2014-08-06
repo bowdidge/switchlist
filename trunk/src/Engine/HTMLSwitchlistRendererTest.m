@@ -79,6 +79,63 @@
 	XCTAssertContains(@"Train%20%2352", text, @"%@ does not contain escaped train number.", text);
 }
 
+- (void) testOptionExtractingWithUndefinedDefault {
+	NSBundle *bundleForUnitTests = [NSBundle bundleForClass: [self class]];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
+    [renderer setTemplate: @"Line Printer"];
+
+    NSArray* results = [renderer optionalSettingsForTemplateWithContents: @"{{OPTIONAL_RAILROAD_NAME | default: Bob}}"];
+    XCTAssertEqualInt(1, [results count], @"");
+    XCTAssertEqualObjects(@"RAILROAD_NAME", [[results objectAtIndex: 0] objectAtIndex: 0], @"");
+    XCTAssertEqualObjects(@"Bob", [[results objectAtIndex: 0] objectAtIndex: 1], @"");
+}
+
+- (void) testOptionExtractingWithNoSpaces{
+	NSBundle *bundleForUnitTests = [NSBundle bundleForClass: [self class]];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
+    [renderer setTemplate: @"Line Printer"];
+    
+    NSArray* results = [renderer optionalSettingsForTemplateWithContents: @"{{OPTIONAL_Railroad_Name|default: Bob}}"];
+    XCTAssertEqualInt(1, [results count], @"");
+    XCTAssertEqualObjects(@"Railroad_Name", [[results objectAtIndex: 0] objectAtIndex: 0], @"");
+    XCTAssertEqualObjects(@"Bob", [[results objectAtIndex: 0] objectAtIndex: 1], @"");
+}
+
+- (void) testOptionExtractingWithBadOptionalString {
+	NSBundle *bundleForUnitTests = [NSBundle bundleForClass: [self class]];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
+    [renderer setTemplate: @"Line Printer"];
+    
+    NSArray* results = [renderer optionalSettingsForTemplateWithContents: @"{{OPTIONAL-RailroadName|default: Bob}}"];
+    XCTAssertEqualInt(0, [results count], @"");
+}
+
+- (void) testExtractMultipleOptions {
+	NSBundle *bundleForUnitTests = [NSBundle bundleForClass: [self class]];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
+    [renderer setTemplate: @"Line Printer"];
+    
+    NSArray* results = [renderer optionalSettingsForTemplateWithContents: @"{{OPTIONAL_Railroad_Name|default: Bob}} \n {{OPTIONAL_Letterhead_1 | default: Foobar building 16200}}"];
+    XCTAssertEqualInt(2, [results count], @"");
+    XCTAssertEqualObjects(@"Railroad_Name", [[results objectAtIndex: 0] objectAtIndex: 0], @"");
+    XCTAssertEqualObjects(@"Bob", [[results objectAtIndex: 0] objectAtIndex: 1], @"");
+    XCTAssertEqualObjects(@"Letterhead_1", [[results objectAtIndex: 1] objectAtIndex: 0], @"");
+    XCTAssertEqualObjects(@"Foobar building 16200", [[results objectAtIndex: 1] objectAtIndex: 1], @"");
+}
+
+- (void) testExtractMultipleSameItemTwice {
+	NSBundle *bundleForUnitTests = [NSBundle bundleForClass: [self class]];
+	HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
+    [renderer setTemplate: @"Line Printer"];
+    
+    NSArray* results = [renderer optionalSettingsForTemplateWithContents: @"{{OPTIONAL_Railroad_Name|default: Mary}} {{OPTIONAL_Railroad_Address|default: Joe}}"];
+    XCTAssertEqualInt(2, [results count], @"");
+    XCTAssertEqualObjects(@"Railroad_Name", [[results objectAtIndex: 0] objectAtIndex: 0], @"");
+    XCTAssertEqualObjects(@"Mary", [[results objectAtIndex: 0] objectAtIndex: 1], @"");
+    XCTAssertEqualObjects(@"Railroad_Address", [[results objectAtIndex: 1] objectAtIndex: 0], @"");
+    XCTAssertEqualObjects(@"Joe", [[results objectAtIndex: 1] objectAtIndex: 1], @"");
+}
+
 @end
 
 // Minimal tests to ensure MGTemplate is working.
@@ -265,5 +322,7 @@
     XCTAssertEqualObjects(@"Bob's Cannery", [engine_ processTemplate: @"{{industryName}}" withVariables: vars]);
     XCTAssertEqualObjects(@"a = 'Bob\\\'s Cannery';", [engine_ processTemplate: @"a = '{{industryName | js_escape_string}}';" withVariables: vars]);
 }
+
+
 
 @end
