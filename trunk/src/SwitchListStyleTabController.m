@@ -68,11 +68,11 @@
     [styleNameToDescriptionMap_ setObject: @"" forKey: DEFAULT_SWITCHLIST_TEMPLATE];
  	[styleNameToDescriptionMap_ setObject: @"The original style, designed for easy reading in dark garages."
                                   forKey: DEFAULT_SWITCHLIST_TEMPLATE];
-    [styleNameToDescriptionMap_ setObject: @"Switchlists that look like they came from a 1980's dot matrix printer." forKey: @"Line Printer"];
-    [styleNameToDescriptionMap_ setObject: @"The ``Work Order'' format is based off the PICL-style reports used by most modern era (post-1980) railroad. PICL, or Perpetual Inventory of Car Locations, refers to a computer software program that lists the standing of cars in order on each track."
+    [styleNameToDescriptionMap_ setObject: @"Switchlists that look like they came from a 1970's dot matrix printer." forKey: @"Line Printer"];
+    [styleNameToDescriptionMap_ setObject: @"1980's PICL-style work order format used by most modern era (post-1980) railroads."
                                     forKey: @"PICL Report"];
 	[styleNameToDescriptionMap_ setObject: @"Typed up each morning by the company manager (a two-finger typist) on a sheet of the company letterhead, this style captures the switching focus of many modern short lines." forKey: @"Railroad Letterhead"];
-	[styleNameToDescriptionMap_ setObject: @"On the SF Belt Line, each industry provided its own switchlist, which were given to the crews." forKey: @"San Francisco Belt Line B-7"];
+	[styleNameToDescriptionMap_ setObject: @"On the San Francisco Belt Line, each industry requested car movements on a B-7 form.  They submitted these to the office, which gave the forms to the crew as switchlists." forKey: @"San Francisco Belt Line B-7"];
 	[styleNameToDescriptionMap_ setObject: @"Borrowed from actual railroad switchlists, this form explicitly lists the contents of each car, and places the origin to the right of the To field, just like on the prototype." forKey: @"Southern Pacific Narrow"];
 	[styleNameToDescriptionMap_ setObject: @"Specially designed for the Brio set." forKey: @"Thomas"];
 	[styleNameToDescriptionMap_ setObject: @"Generate realistic waybills, just like real conductors would have carried.  Print and cut out for best effect." forKey: @"Waybill"];
