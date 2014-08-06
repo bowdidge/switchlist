@@ -46,6 +46,8 @@
 	MGTemplateEngine *engine_;
 	// Directory containing user's preferred set of switchlist templates.
 	NSString* templateDirectory_;
+    // Array of pairs of [option name,
+    NSArray* optionalSettings_;
 }
 
 // Create a new HTMLSwitchlistRenderer.
@@ -64,6 +66,20 @@
 - (void) setTemplate: (NSString*) templateName;	
 - (NSString *) filePathForSwitchlistHTML;
 - (NSString *) filePathForSwitchlistIPhoneHTML;
+
+// Returns the list of optional variable present in the template.  These are used for custom appearances that
+// should default to a sane value - for example, printing "Mid-Continent Terminal Railway" unless OPTIONS_NAME appears.
+// The regex matches with:
+// var anything = {{OPTIONAL_NAME | default: Mid-Continent Terminal Railway}};
+// Returns a mutable array of pairs of [option name, option default value].
+- (NSArray*) optionalSettingsForTemplateHtml: (NSString*) template;
+
+// Returns the list of optional settings in the template HTML provided as a string.
+// Returns a mutable array of pairs of [option_name (with OPTIONAL_ strripped), default value].
+- (NSArray*) optionalSettingsForTemplateWithContents: (NSString*) templateContents;
+
+// Set the optional settings as a list of pairs of (setting, custom value.
+- (void) setOptionalSettings: (NSArray*) optionalSettings;
 
 // Returns the path to the named file, either in the current template directory
 // or in the main bundle.  Error if in neither.

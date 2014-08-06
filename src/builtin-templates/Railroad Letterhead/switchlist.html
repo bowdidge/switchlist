@@ -1,0 +1,200 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!-- Contributed by Glyn Thomas. -->
+<html>
+<head>
+<style>
+<!--
+p,li,td {
+  font-family: Arial;
+  font-size: 10pt;
+}
+
+td.small {
+  font-family: Arial;
+  font-size: 6pt;
+}
+
+h1 {
+  font-family: Times-Roman;
+  font-size: 15pt;
+  text-decoration: underline;
+}
+
+/* Color any tags with class "reportingMarks" red. */
+.reportingMarks {
+  color: red;
+}
+
+#letterhead {
+    width: 100%;
+    margin: 10px;
+    text-align: center;
+}
+
+#leftAddressBlock {
+  margin-top: 10px;
+  width: 20%;
+  float: left;
+}
+
+#rightAddressBlock {
+  margin-top: 10px;
+  width: 20%;
+  float: right;
+}
+    
+.clear {
+  clear: both;
+}
+-->
+</style>
+</head>
+<script type="text/javascript"> 
+stationCount=1;
+
+function RailroadColor(reportingMarks)
+{
+   var color = "brown";
+
+   if (reportingMarks.substring(0,3) == "CNJ") color="green";
+   if (reportingMarks.substring(0,4) == "RBOX") color="yellow";
+   if (reportingMarks.substring(0,4) == "LVRR") color="red";
+   if (reportingMarks.substring(0,3) == "PRR") color="brown";
+   if (reportingMarks.substring(0,2) == "IC") color="orange";
+   if (reportingMarks.substring(0,4) == "DUPX") color="white";
+   if (reportingMarks.substring(0,3) == "WLO") color="blue";
+   if (reportingMarks.substring(0,3) == "CSX") color="blue";
+   if (reportingMarks.substring(0,2) == "NS") color="black";
+   if (reportingMarks.substring(0,2) == "WC") color="gray";
+   if (reportingMarks.substring(0,3) == "GTW") color="blue";
+
+   return(color);
+}
+function OnLoad() {
+  var all_color_fields = document.getElementsByClassName("railroadColor");
+  for (var i=0; i < all_color_fields.length; i++) {
+    var color_field = all_color_fields[i];
+    var reporting_marks = color_field.innerHTML;
+    var color = RailroadColor(reporting_marks);
+    color_field.style.color = color;
+  }
+}
+</script>
+<body onload="OnLoad();">
+
+{% set trainLengthFeet 0 %}
+{% set trainLength 0 %}
+<div id="letterhead">
+<div id="leftAddressBlock">
+  {{OPTIONAL_Address_Block | default: 161 West Tidewater Ave.<br> Moose Falls MN 50120 }}
+</div>
+<div id="rightAddressBlock">
+  {{OPTIONAL_Contact_Block | default: Tel. 213-555-1203<br> St. Paul: 310-767-2676 <br> Fax 310-767-2677}}
+</div>
+<center>
+  <h1>{{OPTIONAL_Railroad_Name | default: Mid-Continent Terminal Railway}}</h1>
+
+  {{OPTIONAL_Railroad_Subtitle | default: John Doe,  Chairman and President}}
+</center>
+</div>
+<div class="clear"></div>
+<hr>
+<br>
+<p>Manifest for train ({{train.name}})</p>
+{% set stationCount 0 %}
+<p>Valid {% now | date_format: "MM/dd/yyyy HH:mm" %}
+{% for station in train.stationsWithWork %}
+  {% set stationCount stationCount+1%}
+  <p>Scheduled work at {{station.name}}
+  <span class="Apple-converted-space"> </span></p>
+  <table>
+  {% for industry in station.industries %}
+    {% set trainLength trainLength+industry.carsToPickUp.@count %}
+    {% for car in industry.carsToPickUp %}
+      {% set trainLengthFeet trainLengthFeet+car.length %}
+      <tr>
+        <td>[ &emsp; ]</td>
+        <td>Pick Up</td>
+        <td>{{car.carType}}</td>
+        <td><span class="railroadColor">{{car.reportingMarks}}</span></td>
+        <td>
+          {%if car.isLoaded %}
+            {{car.cargo.name}}
+          {% else %}
+            **EMPTY**
+          {% /if %}
+        </td>
+        <td>from {{car.currentLocation.name}}</td>
+      </tr>
+    {% /for %}
+  {% /for %}
+
+  <!-- Don't drop off cars for first station - there shouldn't be any unless the train returns here, and if so we'll process those separately. -->
+  {% if stationCount == 1 %}
+  &nbsp;
+  {% else %}
+    {% for industry in station.industries %}
+      {% set trainLength trainLength-industry.carsToDropOff.@count %}
+      {% for car in industry.carsToDropOff %}
+        {% set trainLengthFeet trainLengthFeet-car.length %}
+        <tr>
+          <td>[ &emsp; ]</td>
+          <td>Set Out</td>
+          <td>{{car.carType}}</td>
+          <td><span class="railroadColor">{{car.reportingMarks}}</span></td>
+          <td>
+            {%if car.isLoaded %}
+              {{car.cargo.name}}
+            {% else %}
+              **EMPTY**
+            {% /if %}
+          </td>
+          <td>to {{car.nextStop.name}}</td>
+          <td>
+            {% if car.nextDoor %} door {{car.nextDoor}} {% /if %}
+          </td>
+        </tr>
+      {% /for %}
+    {% /for %}
+  {% /if %}
+
+  </table>
+  <p>
+    Train departs {{station.name}}
+    with  {{trainLength}}
+    cars, {{trainLengthFeet}} feet
+  </p>
+{% /for %}
+
+<!-- Special case for dropping off cars at terminating station. -->
+{% if firstStation.name equalsstring lastStation.name %}
+  <p>Scheduled work at {{lastStation.name}}</p>
+  <table>
+    {% for car in train.allFreightCarsInVisitOrder %}
+      {% if car.nextStop.location.name equalsstring lastStation.name %}
+        {% set trainLength trainLength-1 %}
+        {% set trainLengthFeet trainLengthFeet-car.length %}
+        <tr>
+          <td>[ &emsp; ]</td>
+          <td>Set Out</td>
+          <td>{{car.carType}}</td>
+          <td><span class="railroadColor">{{car.reportingMarks}}</span></td>
+          <td>
+            {% if car.isLoaded %}
+              {{car.cargo.name}}
+            {% else %}
+              **EMPTY**
+            {% /if %}
+          </td>
+          <td>to {{car.nextStop.location.name}} vs {{lastStation.name}}</td>
+          <td>
+            {% if car.nextDoor %} door {{car.nextDoor}} {% /if %}
+          </td>
+        </tr>
+      {% /if %}
+    {% /for %}
+  </table>
+{% /if %}
+<p>Train terminates.</p>
+</body>
+</html>

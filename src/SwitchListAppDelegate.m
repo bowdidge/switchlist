@@ -165,13 +165,6 @@
 @implementation SwitchListAppDelegate
 - (id) init {
 	self = [super init];
-	// Gather the names of the switchlist templates with native support.
-	nameToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
-	[nameToSwitchListClassMap_ setObject: [SwitchListView class] forKey: DEFAULT_SWITCHLIST_TEMPLATE];
-	[nameToSwitchListClassMap_ setObject: [KaufmanSwitchListView class] forKey: @"San Francisco Belt Line B-7"];
-	[nameToSwitchListClassMap_ setObject: [SouthernPacificSwitchListView class] forKey: @"Southern Pacific Narrow"];
-	[nameToSwitchListClassMap_ setObject: [PICLReport class] forKey: @"PICL Report"];
-
 	defaultFileManager_ = [[NSFileManager defaultManager] retain];
 	problems_ = [[NSMutableArray alloc] init];
 	outlineDelegate_ = nil;
@@ -184,10 +177,6 @@
 	[problems_ release];
 	[outlineDelegate_ release];
  	[super dealloc];
-}
-
-- (NSDictionary*) nameToSwitchListClassMap {
-	return nameToSwitchListClassMap_;
 }
 
 // Either by user control or 
@@ -261,49 +250,6 @@
 	}
 }
 
-// Creates a new template name default if one isn't found in the user's defaults.
-// Uses the enum-based default style to choose a value.
-// Only needed to give SwitchList users before 0.7.4 a better experience.
-- (void) convertSwitchListStylePreferenceIfNeeded {
-	// Change default.
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSNumber *defaultStyleNumber = [defaults objectForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_STYLE];
-	NSString *defaultTemplate = [defaults objectForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
-	if (defaultStyleNumber != nil && defaultTemplate == nil) {
-		// Upgrade to using template name.
-		int preference = [defaultStyleNumber integerValue];
-		NSString *templateName = nil;
-		switch (preference) {
-			case 1:
-				// Classic handwritten switchlist.
-				templateName = DEFAULT_SWITCHLIST_TEMPLATE; // Handwritten
-				break;
-			case 2:
-				// Original computer-generated switchlist.
-				templateName = @"LinePrinter";
-				break;
-			case 3:
-			case 6:
-				// B7 and pick up / drop off switchlist.
-				templateName = @"San Francisco Belt Line B-7";
-				break;
-			case 4:
-				templateName = @"Southern Pacific Narrow";
-				break;
-			case 5:
-				templateName = @"PICL Report";
-				break;
-		}
-		if (templateName) {
-			[defaults setObject: templateName forKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
-			// Don't erase old preference.
-		}
-	} else if (defaultTemplate == nil) {
-		// Set some value in template just to make sure a value exists.
-		[defaults setObject: DEFAULT_SWITCHLIST_TEMPLATE forKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
-	}
-}
-
 // Load all fonts from the Application bundle.  Generate an error if the fonts in the array fontnames
 // are not present.
 - (BOOL)loadLocalFonts:(NSError **)err requiredFonts:(NSArray *)fontnames {
@@ -359,19 +305,6 @@ error:
 	
 }
 
-// Puts the switchlist template names in the pop-up in sorted order,
-// rescanning the template directories.
-- (void) reloadSwitchlistTemplateNames {
-	int pos=0;
-	[switchListStyleButton_ removeAllItems];
-	for (NSString *templateName in [self validTemplateNames]) {
-		[switchListStyleButton_ insertItemWithTitle: templateName atIndex: pos++];
-	}
-	NSString *preferredSwitchlistStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
-	[switchListStyleButton_ selectItemWithTitle: preferredSwitchlistStyle];
-	[webController_ setTemplate: preferredSwitchlistStyle]; 
-}	
-
 - (void) awakeFromNib {
 	[problems_ addObject: @"No problems."];
 	MyOutlineDelegate *myOutlineDelegate = [[[MyOutlineDelegate alloc] initWithAppDelegate: self
@@ -397,10 +330,6 @@ error:
 		[webServerStatusPanel_ orderOut: self];
 		[self setWebServerRunStatus: NO];
 	}
-	
-	[self convertSwitchListStylePreferenceIfNeeded];
-
-	[self reloadSwitchlistTemplateNames];
 	
 	// Fill in the Examples menu.
 	NSString *bundleRoot = [[NSBundle mainBundle] resourcePath];
@@ -548,7 +477,6 @@ error:
 		}
 	}
 	// Success. Return.
-	[self reloadSwitchlistTemplateNames];
 	return;
 }
 
@@ -641,7 +569,7 @@ error:
 	}
 }
 
-// Brings up the Help page for something in the prefences dialog. 
+// Brings up the Help page for Preferences dialog.
 // Triggered by Help icon in preferences dialog.
 // TODO(bowdidge): Rename to match generic use.
 - (IBAction) switchListStyleHelpPressed: (id) sender {
@@ -649,50 +577,4 @@ error:
 	[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListPreferencesHelp" inBook: locBookName];
 }
 
-// Returns true if a directory named "name" exists in the specified directory,
-// and if "name" contains a switchlist.html file suggesting it's a real template.
-- (BOOL) isSwitchlistTemplate: (NSString*) name inDirectory: (NSString*) directory {
-	BOOL isDirectory = NO;
-	if (![defaultFileManager_ fileExistsAtPath: [directory stringByAppendingPathComponent: name]
-								   isDirectory: &isDirectory] || isDirectory == NO) {
-		return NO;
-	}
-	// Does a switchlist.html directory exist there?
-	if ([defaultFileManager_ fileExistsAtPath: [[directory stringByAppendingPathComponent: name] 
-												stringByAppendingPathComponent: @"switchlist.html"]]) {
-		return YES;
-	}
-	return NO;
-}
-
-// Return the list of 
-- (NSArray*) validTemplateNames {
-	// Handwritten is always valid - uses defaults.
-	NSMutableArray *result = [NSMutableArray arrayWithObject: DEFAULT_SWITCHLIST_TEMPLATE];
-
-	NSError *error;
-	// First find templates in application support directory.
-	NSString *applicationSupportDirectory = [defaultFileManager_ applicationSupportDirectory];
-	NSArray *filesInApplicationSupportDirectory = [defaultFileManager_ contentsOfDirectoryAtPath: applicationSupportDirectory
-																						   error: &error];
-	for (NSString *file in filesInApplicationSupportDirectory) {
-		if ([self isSwitchlistTemplate: file inDirectory: applicationSupportDirectory]) {
-			[result addObject: file];
-		}
-	}
-	
-	// Next, find templates in the bundle directory.  User templates with the same name win.
-	NSString *resourcesDirectory = [[NSBundle mainBundle] resourcePath];
-	NSArray *filesInResourcesDirectory = [defaultFileManager_ contentsOfDirectoryAtPath: resourcesDirectory
-																				  error: &error];
-	for (NSString *file in filesInResourcesDirectory) {
-		if ([self isSwitchlistTemplate: file inDirectory: resourcesDirectory]) {
-			if ([result containsObject: file] == NO) {
-				[result addObject: file];
-			}
-		}
-	}
-	return [result sortedArrayUsingSelector: @selector(compare:)];
-}
-	
 @end

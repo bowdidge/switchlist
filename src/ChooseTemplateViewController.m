@@ -71,6 +71,9 @@ NSString *TEMPLATE_IS_CUSTOM_KEY = @"customTemplate";
     [self.allTemplates addObject: [self templateDictWithName: @"PICL Report"
                                             description: @"1980's era computer generated list."
                                                isCustom: NO]];
+    [self.allTemplates addObject: [self templateDictWithName: @"Railroad Letterhead"
+                                                 description: @"Typed up each morning by the manager, a two-finger typist."
+                                                    isCustom: NO]];
     [self.allTemplates addObject: [self templateDictWithName: @"San Francisco Belt Line B-7"
                                             description: @"Per-industry documents."
                                                isCustom: NO]];

@@ -36,6 +36,7 @@
 		3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BBF140E0B4B00F4F56C /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
 		3E3C2361174743D700F1A04F /* AddCurrentDoor.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3E3C2360174743D700F1A04F /* AddCurrentDoor.xcmappingmodel */; };
+		3E3E971E198D62B70061550C /* SwitchListStyleTabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3E971D198D62B70061550C /* SwitchListStyleTabController.m */; };
 		3E407D59160693170037134D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E407D58160693170037134D /* UIKit.framework */; };
 		3E407D5B160693170037134D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E407D5A160693170037134D /* Foundation.framework */; };
 		3E407D5D160693170037134D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E407D5C160693170037134D /* CoreGraphics.framework */; };
@@ -402,6 +403,7 @@
 		3ED58A7013A727FF00F6E26E /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
 		3ED58A7113A7280D00F6E26E /* SwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED482330D715B3600C36741 /* SwitchListView.m */; };
 		3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
+		3EDC3C831990C1C700C05231 /* ClickCatchingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC3C821990C1C700C05231 /* ClickCatchingView.m */; };
 		3EDCB51015D71EFC000419A9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7788DA0506752A1600599AAD /* CoreData.framework */; };
 		3EDCB59015D71F0E000419A9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */; };
 		3EE19374145C924000CB614D /* car-report.html in Resources */ = {isa = PBXBuildFile; fileRef = 3EE19373145C924000CB614D /* car-report.html */; };
@@ -597,6 +599,8 @@
 		3E3C11DD0A39652F0071D6B4 /* Cargo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cargo.m; path = Engine/Cargo.m; sourceTree = "<group>"; };
 		3E3C2093173CCDB200F1A04F /* SwitchListDocument 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 6.xcdatamodel"; sourceTree = "<group>"; };
 		3E3C2360174743D700F1A04F /* AddCurrentDoor.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCurrentDoor.xcmappingmodel; sourceTree = "<group>"; };
+		3E3E971C198D62B70061550C /* SwitchListStyleTabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListStyleTabController.h; sourceTree = "<group>"; };
+		3E3E971D198D62B70061550C /* SwitchListStyleTabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListStyleTabController.m; sourceTree = "<group>"; };
 		3E407D56160693170037134D /* Switchlist-iPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Switchlist-iPad.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E407D58160693170037134D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		3E407D5A160693170037134D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -816,6 +820,8 @@
 		3ED482330D715B3600C36741 /* SwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListView.m; sourceTree = "<group>"; };
 		3ED697D8130139C100DA9074 /* SouthernPacificSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SouthernPacificSwitchListView.h; sourceTree = "<group>"; };
 		3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SouthernPacificSwitchListView.m; sourceTree = "<group>"; };
+		3EDC3C811990C1C700C05231 /* ClickCatchingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickCatchingView.h; sourceTree = "<group>"; };
+		3EDC3C821990C1C700C05231 /* ClickCatchingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickCatchingView.m; sourceTree = "<group>"; };
 		3EDD57EC15E5D7ED006E0B5C /* SwitchListDocument 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 5.xcdatamodel"; sourceTree = "<group>"; };
 		3EE0B6811573446E00281B33 /* MGTemplateEngineTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MGTemplateEngineTest.h; path = MGTemplateEngine/MGTemplateEngineTest.h; sourceTree = "<group>"; };
 		3EE0B6821573446E00281B33 /* MGTemplateEngineTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MGTemplateEngineTest.m; path = MGTemplateEngine/MGTemplateEngineTest.m; sourceTree = "<group>"; };
@@ -1382,6 +1388,8 @@
 		3EBAC6DB127B3853001F3FC7 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3EDC3C811990C1C700C05231 /* ClickCatchingView.h */,
+				3EDC3C821990C1C700C05231 /* ClickCatchingView.m */,
 				3EF294D61312F40700D2C3F6 /* GlobalPreferences.h */,
 				3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */,
 				3E1490CD128F07AB001700D0 /* NSMigrationManagerCategory.h */,
@@ -1395,6 +1403,8 @@
 				3E6F69970D71E4D6000BBFF0 /* SwitchListReportWindowController.m */,
 				3E258CAD12873D8000D233DB /* SetTrainCarTypesDialogController.h */,
 				3E258CAE12873D8000D233DB /* SetTrainCarTypesDialogController.m */,
+				3E3E971C198D62B70061550C /* SwitchListStyleTabController.h */,
+				3E3E971D198D62B70061550C /* SwitchListStyleTabController.m */,
 				3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */,
 				3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */,
 			);
@@ -2182,8 +2192,10 @@
 				3EC3B16E1277E4F900C00AD3 /* Report.m in Sources */,
 				3EC3B1711277E4F900C00AD3 /* ReservedCarReport.m in Sources */,
 				3E258CAF12873D8000D233DB /* SetTrainCarTypesDialogController.m in Sources */,
+				3E3E971E198D62B70061550C /* SwitchListStyleTabController.m in Sources */,
 				3E95843A12986D7D00A10258 /* SimpleHTTPConnection.m in Sources */,
 				3E95843B12986D7D00A10258 /* SimpleHTTPServer.m in Sources */,
+				3EDC3C831990C1C700C05231 /* ClickCatchingView.m in Sources */,
 				3ED697DA130139C100DA9074 /* SouthernPacificSwitchListView.m in Sources */,
 				3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */,
 				3EC3B16C1277E4F900C00AD3 /* SwitchListAppDelegate.m in Sources */,

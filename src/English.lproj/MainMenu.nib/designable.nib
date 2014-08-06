@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1050" defaultVersion="1050" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -356,7 +356,6 @@
                 <outlet property="splashScreenDocumentName_" destination="360" id="393"/>
                 <outlet property="splashScreenOpenButton_" destination="375" id="392"/>
                 <outlet property="splashWindow_" destination="330" id="387"/>
-                <outlet property="switchListStyleButton_" destination="395" id="403"/>
                 <outlet property="webAccessAddressMessage_" destination="418" id="423"/>
                 <outlet property="webAccessCheckBox_" destination="413" id="421"/>
                 <outlet property="webAccessStatusMessage_" destination="467" id="469"/>
@@ -364,7 +363,7 @@
                 <outlet property="webServerVisibleCheckBox_" destination="362" id="466"/>
             </connections>
         </customObject>
-        <window title="Report Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="214" userLabel="Report Window">
+        <window title="Report Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="214" userLabel="Report Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="156" y="433" width="480" height="360"/>
@@ -386,10 +385,10 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="478" height="359"/>
-                                    <size key="maxSize" width="478" height="10000000"/>
+                                    <size key="maxSize" width="480" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="478" height="359"/>
-                                    <size key="maxSize" width="478" height="10000000"/>
+                                    <size key="maxSize" width="480" height="10000000"/>
                                     <connections>
                                         <outlet property="delegate" destination="-2" id="224"/>
                                     </connections>
@@ -409,7 +408,7 @@
                 </subviews>
             </view>
         </window>
-        <window title="About" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="249" userLabel="about">
+        <window title="About" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="249" userLabel="about">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="139" y="579" width="480" height="284"/>
@@ -436,17 +435,8 @@
                             <rect key="frame" x="1" y="1" width="408" height="107"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <textField verticalHuggingPriority="750" id="260">
-                                    <rect key="frame" x="80" y="80" width="259" height="17"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <textFieldCell key="cell" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Preferred format for printed switch lists:" id="312">
-                                        <font key="font" metaFont="system"/>
-                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                    </textFieldCell>
-                                </textField>
                                 <button id="362">
-                                    <rect key="frame" x="81" y="12" width="326" height="18"/>
+                                    <rect key="frame" x="66" y="46" width="326" height="18"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="check" title="Display Web Server Control Panel" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="363">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -456,22 +446,6 @@
                                         </connections>
                                     </buttonCell>
                                 </button>
-                                <popUpButton verticalHuggingPriority="750" id="395">
-                                    <rect key="frame" x="92" y="48" width="247" height="26"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <popUpButtonCell key="cell" type="push" title="Switch lists" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="400" id="396">
-                                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" metaFont="system"/>
-                                        <menu key="menu" title="OtherViews" id="397">
-                                            <items>
-                                                <menuItem title="Switch lists" state="on" id="400"/>
-                                            </items>
-                                        </menu>
-                                    </popUpButtonCell>
-                                    <connections>
-                                        <action selector="switchListFormatPreferenceChanged:" target="212" id="402"/>
-                                    </connections>
-                                </popUpButton>
                             </subviews>
                         </view>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -537,8 +511,8 @@
                             <rect key="frame" x="1" y="217" width="478" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="37" horizontal="NO" id="317">
-                            <rect key="frame" x="463" y="17" width="16" height="216"/>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="317">
+                            <rect key="frame" x="464" y="17" width="15" height="216"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="319">
