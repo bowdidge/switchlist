@@ -91,10 +91,11 @@
 }
 
 - (void) setCarTypesAcceptedRel: (NSSet*) currentCarTypes {
-	[self willChangeValueForKey: @"carTypesAcceptedRel"];
+    // Announce change to acceptedCarTypesString so UI will pick up the change.
+	[self willChangeValueForKey: @"acceptedCarTypesRel"];
 	[self willChangeValueForKey: @"acceptedCarTypesString"];
-	[self setPrimitiveValue: currentCarTypes forKey: @"carTypesAcceptedRel"];
-	[self didChangeValueForKey: @"carTypesAcceptedRel"];
+	[self setPrimitiveValue: currentCarTypes forKey: @"acceptedCarTypesRel"];
+	[self didChangeValueForKey: @"acceptedCarTypesRel"];
 	[self didChangeValueForKey: @"acceptedCarTypesString"];
 }
 
