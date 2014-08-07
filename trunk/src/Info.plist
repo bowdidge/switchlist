@@ -12,7 +12,7 @@
 				<string>swl</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>/Volumes/Home/bowdidge/Programming projects/SwitchList/switchlistNewIcon.icns</string>
+			<string>layout</string>
 			<key>CFBundleTypeMIMETypes</key>
 			<array>
 				<string>text/xml</string>
