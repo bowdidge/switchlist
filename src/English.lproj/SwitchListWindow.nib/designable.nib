@@ -391,17 +391,18 @@
                                                 <menu key="menu" id="1326"/>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="1271" name="content" keyPath="arrangedObjects" id="1273">
+                                                <binding destination="1271" name="content" keyPath="arrangedObjects" id="7IR-vO-bdu">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                        <string key="NSNullPlaceholder">Unassigned</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="1271" name="contentValues" keyPath="arrangedObjects.cargoDescription" previousBinding="7IR-vO-bdu" id="Mbm-UM-v6G">
                                                     <dictionary key="options">
                                                         <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="1271" name="contentValues" keyPath="arrangedObjects.cargoDescription" previousBinding="1273" id="1274">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="1251" name="selectedObject" keyPath="selection.cargo" previousBinding="1274" id="1275"/>
+                                                <binding destination="1251" name="selectedObject" keyPath="selection.cargo" previousBinding="Mbm-UM-v6G" id="0j2-V0-3AD"/>
                                                 <binding destination="1251" name="toolTip" keyPath="selection.cargo.tooltip" id="5230"/>
                                             </connections>
                                         </popUpButton>
@@ -539,9 +540,13 @@
                                                                 </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="Yke-fM-aaS" name="content" keyPath="arrangedObjects" id="rAk-Ks-Q6w"/>
-                                                                    <binding destination="Yke-fM-aaS" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="rAk-Ks-Q6w" id="Y8j-cw-lHn"/>
-                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.carTypeRel" previousBinding="Y8j-cw-lHn" id="FjH-JS-pzQ"/>
+                                                                    <binding destination="Yke-fM-aaS" name="content" keyPath="arrangedObjects" id="4bb-6c-svN">
+                                                                        <dictionary key="options">
+                                                                            <string key="NSNullPlaceholder">Any</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="Yke-fM-aaS" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="4bb-6c-svN" id="JRY-4s-Fl9"/>
+                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.carTypeRel" previousBinding="JRY-4s-Fl9" id="UOa-zo-Ikx"/>
                                                                 </connections>
                                                             </tableColumn>
                                                             <tableColumn width="60" minWidth="60" maxWidth="100" id="1298">
@@ -611,17 +616,18 @@
                                                                 </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="1271" name="content" keyPath="arrangedObjects" id="1308">
+                                                                    <binding destination="1271" name="content" keyPath="arrangedObjects" id="Bw2-4v-XoN">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                                            <string key="NSNullPlaceholder">Unassigned</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="1271" name="contentValues" keyPath="arrangedObjects.cargoDescription" previousBinding="Bw2-4v-XoN" id="41s-N1-jTn">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.cargo" previousBinding="1309" id="1310"/>
-                                                                    <binding destination="1271" name="contentValues" keyPath="arrangedObjects.cargoDescription" previousBinding="1308" id="1309">
-                                                                        <dictionary key="options">
-                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                                        </dictionary>
-                                                                    </binding>
+                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.cargo" previousBinding="41s-N1-jTn" id="sqT-hS-mkW"/>
                                                                 </connections>
                                                             </tableColumn>
                                                             <tableColumn width="129.26025390625" minWidth="93.19775390625" maxWidth="1000" id="1316">
@@ -640,17 +646,18 @@
                                                                 </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="1278" name="content" keyPath="arrangedObjects" id="1313">
+                                                                    <binding destination="1278" name="content" keyPath="arrangedObjects" id="DPD-Vn-UCY">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                                            <string key="NSNullPlaceholder">No Location</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="1278" name="contentValues" keyPath="arrangedObjects.name" previousBinding="DPD-Vn-UCY" id="9oI-xV-Ak2">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.currentLocation" previousBinding="1314" id="1315"/>
-                                                                    <binding destination="1278" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1313" id="1314">
-                                                                        <dictionary key="options">
-                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                                        </dictionary>
-                                                                    </binding>
+                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.currentLocation" previousBinding="9oI-xV-Ak2" id="bt7-ai-0f1"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -742,9 +749,9 @@
                                                 </menu>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="Yke-fM-aaS" name="content" keyPath="arrangedObjects" id="9Bk-0N-lXb"/>
-                                                <binding destination="Yke-fM-aaS" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="9Bk-0N-lXb" id="ZHW-7S-qiS"/>
-                                                <binding destination="1251" name="selectedObject" keyPath="selection.carTypeRel" previousBinding="ZHW-7S-qiS" id="yX7-6K-ISF"/>
+                                                <binding destination="Yke-fM-aaS" name="content" keyPath="arrangedObjects" id="46R-RV-3Zc"/>
+                                                <binding destination="Yke-fM-aaS" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="46R-RV-3Zc" id="82z-3x-d0c"/>
+                                                <binding destination="1251" name="selectedObject" keyPath="selection.carTypeRel" previousBinding="82z-3x-d0c" id="oBo-d2-pTQ"/>
                                                 <binding destination="1251" name="toolTip" keyPath="selection.carTypeRel.carTypeDescription" id="4829"/>
                                             </connections>
                                         </popUpButton>
@@ -758,17 +765,18 @@
                                             </popUpButtonCell>
                                             <connections>
                                                 <action selector="freightCarLocationChanged:" target="-2" id="5601"/>
-                                                <binding destination="1278" name="content" keyPath="arrangedObjects" id="1280">
+                                                <binding destination="1278" name="content" keyPath="arrangedObjects" id="wQ6-UZ-Rt7">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                        <string key="NSNullPlaceholder">No Location</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="1278" name="contentValues" keyPath="arrangedObjects.name" previousBinding="wQ6-UZ-Rt7" id="jGC-9i-XCi">
                                                     <dictionary key="options">
                                                         <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="1278" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1280" id="1281">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="1251" name="selectedObject" keyPath="selection.currentLocation" previousBinding="1281" id="1282"/>
+                                                <binding destination="1251" name="selectedObject" keyPath="selection.currentLocation" previousBinding="jGC-9i-XCi" id="0lJ-UU-ryN"/>
                                                 <binding destination="1251" name="toolTip" keyPath="selection.currentLocation.description" id="5033"/>
                                             </connections>
                                         </popUpButton>
@@ -854,17 +862,17 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="Zwx-Mr-hLi">
-                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
+                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4698" id="1124">
-                                                        <rect key="frame" x="0.0" y="0.0" width="603" height="265"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="457" minWidth="200" maxWidth="1000" id="1126">
+                                                            <tableColumn width="472" minWidth="200" maxWidth="1000" id="1126">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -911,15 +919,15 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="4697">
-                                                <rect key="frame" x="1" y="282" width="603" height="16"/>
+                                                <rect key="frame" x="1" y="282" width="618" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4696">
-                                                <rect key="frame" x="604" y="17" width="15" height="265"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4698">
-                                                <rect key="frame" x="0.0" y="0.0" width="603" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -1077,17 +1085,18 @@
                                                 <menu key="menu" id="1743"/>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="1701" name="content" keyPath="arrangedObjects" id="1703">
+                                                <binding destination="1701" name="content" keyPath="arrangedObjects" id="48t-HG-9z9">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                        <string key="NSNullPlaceholder">No Location</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="1701" name="contentValues" keyPath="arrangedObjects.name" previousBinding="48t-HG-9z9" id="Vft-af-5U0">
                                                     <dictionary key="options">
                                                         <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="1701" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1703" id="1704">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="1682" name="selectedObject" keyPath="selection.location" previousBinding="1704" id="1705"/>
+                                                <binding destination="1682" name="selectedObject" keyPath="selection.location" previousBinding="Vft-af-5U0" id="tk1-eZ-yfM"/>
                                             </connections>
                                         </popUpButton>
                                         <textField verticalHuggingPriority="750" id="1706">
@@ -1139,17 +1148,17 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="obl-Hj-lGm">
-                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
+                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4704" id="1717">
-                                                        <rect key="frame" x="0.0" y="0.0" width="603" height="265"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="275.59912109375" minWidth="200" maxWidth="1000" id="1721">
+                                                            <tableColumn width="280.59912109375" minWidth="200" maxWidth="1000" id="1721">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1165,7 +1174,7 @@
                                                                     <binding destination="1682" name="value" keyPath="arrangedObjects.name" id="1720"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="167" minWidth="140" maxWidth="1000" id="1735">
+                                                            <tableColumn width="172" minWidth="140" maxWidth="1000" id="1735">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Location">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1178,20 +1187,21 @@
                                                                 </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="1701" name="content" keyPath="arrangedObjects" id="1732">
+                                                                    <binding destination="1701" name="content" keyPath="arrangedObjects" id="IVh-tj-eQB">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                                            <string key="NSNullPlaceholder">No Location</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="1701" name="contentValues" keyPath="arrangedObjects.name" previousBinding="IVh-tj-eQB" id="dSb-F3-iFa">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1682" name="selectedObject" keyPath="arrangedObjects.location" previousBinding="1733" id="1734"/>
-                                                                    <binding destination="1701" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1732" id="1733">
-                                                                        <dictionary key="options">
-                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                                        </dictionary>
-                                                                    </binding>
+                                                                    <binding destination="1682" name="selectedObject" keyPath="arrangedObjects.location" previousBinding="dSb-F3-iFa" id="wlN-Vt-4yF"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="150.66259765625" minWidth="100" maxWidth="1000" id="1719">
+                                                            <tableColumn width="155.66259765625" minWidth="100" maxWidth="1000" id="1719">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Division">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1213,15 +1223,15 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="4703">
-                                                <rect key="frame" x="1" y="282" width="603" height="16"/>
+                                                <rect key="frame" x="1" y="282" width="618" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4702">
-                                                <rect key="frame" x="604" y="17" width="15" height="265"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4704">
-                                                <rect key="frame" x="0.0" y="0.0" width="603" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -1395,17 +1405,18 @@
                                                 <menu key="menu" id="1677"/>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="1639" name="content" keyPath="arrangedObjects" id="1641">
+                                                <binding destination="1639" name="content" keyPath="arrangedObjects" id="1hP-j9-XYo">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                        <string key="NSNullPlaceholder">No Location</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="1639" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1hP-j9-XYo" id="uQv-YK-Mty">
                                                     <dictionary key="options">
                                                         <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="1639" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1641" id="1642">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="1623" name="selectedObject" keyPath="selection.location" previousBinding="1642" id="1643"/>
+                                                <binding destination="1623" name="selectedObject" keyPath="selection.location" previousBinding="uQv-YK-Mty" id="i7I-Vu-Jd2"/>
                                             </connections>
                                         </popUpButton>
                                         <textField verticalHuggingPriority="750" id="1644">
@@ -1457,17 +1468,17 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="ycY-p3-ZJx">
-                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
+                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4716" id="1655">
-                                                        <rect key="frame" x="0.0" y="0.0" width="603" height="265"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="171.59912109375" minWidth="100" maxWidth="1000" id="1661">
+                                                            <tableColumn width="175.59912109375" minWidth="100" maxWidth="1000" id="1661">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1483,7 +1494,7 @@
                                                                     <binding destination="1623" name="value" keyPath="arrangedObjects.name" id="1660"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="168.7470703125" minWidth="100" maxWidth="1000" id="1669">
+                                                            <tableColumn width="172.7470703125" minWidth="100" maxWidth="1000" id="1669">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Location">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1496,20 +1507,21 @@
                                                                 </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="1639" name="content" keyPath="arrangedObjects" id="1666">
+                                                                    <binding destination="1639" name="content" keyPath="arrangedObjects" id="Q3N-0p-ioi">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                                            <string key="NSNullPlaceholder">No Location</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="1639" name="contentValues" keyPath="arrangedObjects.name" previousBinding="Q3N-0p-ioi" id="kHq-i2-INz">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1623" name="selectedObject" keyPath="arrangedObjects.location" previousBinding="1667" id="1668"/>
-                                                                    <binding destination="1639" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1666" id="1667">
-                                                                        <dictionary key="options">
-                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                                        </dictionary>
-                                                                    </binding>
+                                                                    <binding destination="1623" name="selectedObject" keyPath="arrangedObjects.location" previousBinding="kHq-i2-INz" id="Uen-RG-MS3"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="105.66259765625" minWidth="47" maxWidth="1000" id="1659">
+                                                            <tableColumn width="109.66259765625" minWidth="47" maxWidth="1000" id="1659">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Division">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1525,7 +1537,7 @@
                                                                     <binding destination="1623" name="value" keyPath="arrangedObjects.division" id="1658"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="144.3818359375" minWidth="97" maxWidth="1000" id="1657">
+                                                            <tableColumn width="147.3818359375" minWidth="97" maxWidth="1000" id="1657">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Accepts Divisions">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1547,15 +1559,15 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="4715">
-                                                <rect key="frame" x="1" y="282" width="603" height="16"/>
+                                                <rect key="frame" x="1" y="282" width="618" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4714">
-                                                <rect key="frame" x="604" y="17" width="15" height="265"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4716">
-                                                <rect key="frame" x="0.0" y="0.0" width="603" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -1704,17 +1716,18 @@
                                                 <menu key="menu" id="1208"/>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="1155" name="content" keyPath="arrangedObjects" id="1157">
+                                                <binding destination="1155" name="content" keyPath="arrangedObjects" id="aWm-eL-e3q">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                        <string key="NSNullPlaceholder">No Location</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="1155" name="contentValues" keyPath="arrangedObjects.nameAndLoad" previousBinding="aWm-eL-e3q" id="2iK-cA-bKO">
                                                     <dictionary key="options">
                                                         <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="1155" name="contentValues" keyPath="arrangedObjects.nameAndLoad" previousBinding="1157" id="nP8-59-K8u">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="1138" name="selectedObject" keyPath="selection.destination" previousBinding="nP8-59-K8u" id="1jx-oT-wde"/>
+                                                <binding destination="1138" name="selectedObject" keyPath="selection.destination" previousBinding="2iK-cA-bKO" id="MKO-LL-ieG"/>
                                                 <binding destination="1138" name="toolTip" keyPath="selection.destination.description" id="5032"/>
                                             </connections>
                                         </popUpButton>
@@ -1736,17 +1749,18 @@
                                                 <menu key="menu" id="1205"/>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="1155" name="content" keyPath="arrangedObjects" id="1162">
+                                                <binding destination="1155" name="content" keyPath="arrangedObjects" id="mc3-SJ-axb">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                        <string key="NSNullPlaceholder">No Location</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="1155" name="contentValues" keyPath="arrangedObjects.nameAndLoad" previousBinding="mc3-SJ-axb" id="wRJ-5r-KtK">
                                                     <dictionary key="options">
                                                         <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="1155" name="contentValues" keyPath="arrangedObjects.nameAndLoad" previousBinding="1162" id="H3D-nv-1E6">
-                                                    <dictionary key="options">
-                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="1138" name="selectedObject" keyPath="selection.source" previousBinding="H3D-nv-1E6" id="4G1-zO-Bpe"/>
+                                                <binding destination="1138" name="selectedObject" keyPath="selection.source" previousBinding="wRJ-5r-KtK" id="J2P-hG-1a2"/>
                                                 <binding destination="1138" name="toolTip" keyPath="selection.source.description" id="5031"/>
                                             </connections>
                                         </popUpButton>
@@ -1893,9 +1907,18 @@
                                                                 </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="hk4-pW-GqW" name="content" keyPath="arrangedObjects" id="s2v-Ll-Ahe"/>
-                                                                    <binding destination="hk4-pW-GqW" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="s2v-Ll-Ahe" id="IPh-bB-eKo"/>
-                                                                    <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.carTypeRel" previousBinding="IPh-bB-eKo" id="lnm-rd-cIY"/>
+                                                                    <binding destination="hk4-pW-GqW" name="content" keyPath="arrangedObjects" id="yH8-n7-ohC">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                                            <string key="NSNullPlaceholder">Any</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="hk4-pW-GqW" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="yH8-n7-ohC" id="Y38-PA-6Nf">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.carTypeRel" previousBinding="Y38-PA-6Nf" id="3Td-Oj-qkF"/>
                                                                 </connections>
                                                             </tableColumn>
                                                             <tableColumn width="42" minWidth="45" maxWidth="42" id="1186">
@@ -1926,17 +1949,18 @@
                                                                 </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="1155" name="content" keyPath="arrangedObjects" id="1193">
+                                                                    <binding destination="1155" name="content" keyPath="arrangedObjects" id="XfU-eG-8hR">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                                            <string key="NSNullPlaceholder">No Location</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="1155" name="contentValues" keyPath="arrangedObjects.name" previousBinding="XfU-eG-8hR" id="Beu-1m-dOM">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1155" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1193" id="1194">
-                                                                        <dictionary key="options">
-                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                                        </dictionary>
-                                                                    </binding>
-                                                                    <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.source" previousBinding="1194" id="1195"/>
+                                                                    <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.source" previousBinding="Beu-1m-dOM" id="Fml-UU-bi6"/>
                                                                 </connections>
                                                             </tableColumn>
                                                             <tableColumn width="138.0478515625" minWidth="65.0478515625" maxWidth="1000" id="1191">
@@ -1952,17 +1976,18 @@
                                                                 </popUpButtonCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="1155" name="content" keyPath="arrangedObjects" id="1188">
+                                                                    <binding destination="1155" name="content" keyPath="arrangedObjects" id="56j-Xm-LO2">
+                                                                        <dictionary key="options">
+                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                                            <string key="NSNullPlaceholder">No Location</string>
+                                                                        </dictionary>
+                                                                    </binding>
+                                                                    <binding destination="1155" name="contentValues" keyPath="arrangedObjects.name" previousBinding="56j-Xm-LO2" id="71g-fq-hY2">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.destination" previousBinding="1189" id="1190"/>
-                                                                    <binding destination="1155" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1188" id="1189">
-                                                                        <dictionary key="options">
-                                                                            <bool key="NSInsertsNullPlaceholder" value="YES"/>
-                                                                        </dictionary>
-                                                                    </binding>
+                                                                    <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.destination" previousBinding="71g-fq-hY2" id="7nv-4T-hac"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -1979,7 +2004,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4707">
-                                                <rect key="frame" x="0.0" y="0.0" width="606" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -2045,9 +2070,18 @@
                                                 </menu>
                                             </popUpButtonCell>
                                             <connections>
-                                                <binding destination="hk4-pW-GqW" name="content" keyPath="arrangedObjects" id="3Tl-Jm-RGr"/>
-                                                <binding destination="hk4-pW-GqW" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="3Tl-Jm-RGr" id="C8c-0B-Vr3"/>
-                                                <binding destination="1138" name="selectedObject" keyPath="selection.carTypeRel" previousBinding="C8c-0B-Vr3" id="awx-Fu-gBF"/>
+                                                <binding destination="hk4-pW-GqW" name="content" keyPath="arrangedObjects" id="UkQ-Q4-ZQ5">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                        <string key="NSNullPlaceholder">Any</string>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="hk4-pW-GqW" name="contentValues" keyPath="arrangedObjects.carTypeName" previousBinding="UkQ-Q4-ZQ5" id="dgN-eh-wju">
+                                                    <dictionary key="options">
+                                                        <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="1138" name="selectedObject" keyPath="selection.carTypeRel" previousBinding="dgN-eh-wju" id="Xz2-P1-jqw"/>
                                                 <binding destination="1138" name="toolTip" keyPath="selection.carTypeRel.carTypeDescription" id="4841"/>
                                             </connections>
                                         </popUpButton>
@@ -2200,17 +2234,17 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="MgJ-Xg-tlr">
-                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
+                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4713" id="1589">
-                                                        <rect key="frame" x="0.0" y="0.0" width="603" height="265"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="279.59912109375" minWidth="100" maxWidth="1000" id="1599">
+                                                            <tableColumn width="287.59912109375" minWidth="100" maxWidth="1000" id="1599">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2226,7 +2260,7 @@
                                                                     <binding destination="1558" name="value" keyPath="arrangedObjects.name" id="1598"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="316.5849609375" minWidth="109.5849609375" maxWidth="1000" id="1591">
+                                                            <tableColumn editable="NO" width="323.5849609375" minWidth="109.5849609375" maxWidth="1000" id="1591">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Accepted Car Types">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2252,15 +2286,15 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="4712">
-                                                <rect key="frame" x="1" y="282" width="603" height="16"/>
+                                                <rect key="frame" x="1" y="282" width="618" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4711">
-                                                <rect key="frame" x="604" y="17" width="15" height="265"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4713">
-                                                <rect key="frame" x="0.0" y="0.0" width="603" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -2472,10 +2506,10 @@
                                             <font key="titleFont" metaFont="smallSystemBold"/>
                                         </box>
                                         <box autoresizesSubviews="NO" title="Freight Car Types" borderType="line" id="4990">
-                                            <rect key="frame" x="6" y="11.999998303092273" width="642" height="298"/>
+                                            <rect key="frame" x="6" y="11.99999575773063" width="642" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <view key="contentView">
-                                                <rect key="frame" x="1" y="1.0000016969077272" width="640" height="282"/>
+                                                <rect key="frame" x="1" y="1" width="640" height="282"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="4729">
