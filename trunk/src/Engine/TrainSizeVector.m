@@ -178,7 +178,7 @@
 }
 
 - (id) initWithTrain: (ScheduledTrain*) train {
-	return [self initWithCars: [[train freightCars] allObjects] stops: [train stationsInOrder]];
+	return [self initWithCars: [train.freightCars allObjects] stops: [train stationsInOrder]];
 }
 
 // Creates a new TrainSizeVector with only a single car but with

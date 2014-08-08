@@ -110,7 +110,7 @@ BOOL TestLayout(NSString *layoutName, BOOL verbose) {
 		
 		int carsMoved = 0;
 		for (ScheduledTrain *train in allTrains) {
-			carsMoved += [[train freightCars] count];
+			carsMoved += [train.freightCars count];
 			[controller completeTrain: train];
 		}
 		if (carsMoved < 0.2 * carCount) {

@@ -24,7 +24,6 @@
     layoutFileName_ = @"Bogus";
 }
 - (void) setUp {
-    NSLog(@"%@", [[NSBundle bundleForClass: [self class]] resourcePath]);
     NSURL* layoutUrl = [[NSBundle bundleForClass: [self class]] URLForResource: layoutFileName_ withExtension: @"swl"];
 	context_ = [[NSManagedObjectContext inMemoryMOCFromBundle: [NSBundle bundleForClass: [self class]] withFile: layoutUrl] retain];
 	entireLayout_ = [[EntireLayout alloc] initWithMOC: context_];
@@ -54,7 +53,7 @@
         XCTAssertContains([train name], all_html);
         
         // TEST HERE FOR VALID HTML
-        for (FreightCar* fc in [train freightCars]) {
+        for (FreightCar* fc in train.freightCars) {
             // Can't check together because of non-breaking spaces added for jitter.
             XCTAssertContains([fc number], all_html, @"Couldn't find freight car %@ in switchlist %@.", [fc reportingMarks], switchlistStyle);
             XCTAssertContains([fc initials], all_html, @"Couldn't find freight car %@ in switchlist %@.", [fc reportingMarks], switchlistStyle);
@@ -89,7 +88,7 @@
 
         int carsMoved = 0;
         for (ScheduledTrain *train in allTrains) {
-            carsMoved += [[train freightCars] count];
+            carsMoved += [train.freightCars count];
             [controller completeTrain: train];
         }
         XCTAssertTrue(carsMoved > 0.2 * carCount, @"Insufficient cars moved: expected 0.2 * carCount (%d), got %d", carCount/5 , carsMoved);
