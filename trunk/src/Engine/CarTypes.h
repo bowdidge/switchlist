@@ -53,6 +53,11 @@
 // Returns the car type names only.
 + (NSArray*) stockCarTypeArray;
 
+// Returns human-readable string describing the cars accepted by a train.
+// Uses human terms: "no car types", "all car types", "all but x".
++ (NSString*) acceptedCarTypesString: (NSSet*) acceptedCarTypes;
+
+
 // Returns true if the provided string is a valid car type string.
 // For now, this only means that it's only made up of alphanumeric characters.
 // "Any" and "" return false - this is only for determining whether to create

@@ -36,7 +36,7 @@
 #import "CarType.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
-#import "SCheduledTrain.h"
+#import "ScheduledTrain.h"
 
 @implementation CarTypes
 // Populates a dictionary of car types by analyzing the current layout to see what's
@@ -53,38 +53,56 @@
 	[carTypes setObject: @"gondola" forKey: @"G"];
 	[carTypes setObject: @"stockcar" forKey: @"S"];
 	[carTypes setObject: @"covered hopper" forKey: @"RO"];
-	
-	// Find all others mentioned.
-	NSArray *allFreightCars = [layout allFreightCars];
-	FreightCar *fc;
-	for (fc in allFreightCars) {
-		NSString *fcType = [fc primitiveValueForKey: @"carType"];
-		// Ignore empty strings.
-		if ([CarTypes isValidCarType: fcType] &&
-			[carTypes objectForKey: fcType] == nil) {
-			[carTypes setObject: @"" forKey: fcType];
-		}
-	}
-	
-	for (Cargo *c in [layout allValidCargos]) {
-		NSString *carType = [c primitiveValueForKey: @"carType"];
-		if ([CarTypes isValidCarType: carType] &&
-			[carTypes objectForKey: carType] == nil) {
-			[carTypes setObject: @"" forKey: carType];
-		}
-	}
 
-	for (ScheduledTrain *train in [layout allTrains]) {
-		NSString *carTypesAccepted = [train primitiveValueForKey: @"acceptedCarTypes"];
-		NSArray *types = [carTypesAccepted componentsSeparatedByString: @","];
-		for (NSString *type in types) {
-			if ([CarTypes isValidCarType: type] &&
-				[carTypes objectForKey: type] == nil) {
-				[carTypes setObject: @"" forKey: type];
-			}
-		}
-	}
-		return carTypes;
+    return carTypes;
+}
+
+// Returns a string containing the comma-separated types of
+// car types picked up by this train.
++ (NSString*) acceptedCarTypesString: (NSSet*) acceptedCarTypes {
+    CarType* singleCarType = [acceptedCarTypes anyObject];
+
+    // None is functionally the same as all.
+    if ([acceptedCarTypes count] == 0) {
+        return @"Accepts all car types";
+    }
+
+    NSError *error;
+    NSEntityDescription *ent = [NSEntityDescription entityForName: @"CarType" inManagedObjectContext: [singleCarType managedObjectContext]];
+    NSFetchRequest * req  = [[[NSFetchRequest alloc] init] autorelease];
+    [req setEntity: ent];
+    NSSortDescriptor *ind1 = [[[NSSortDescriptor alloc] initWithKey: @"carTypeName" ascending: YES] autorelease];
+    NSMutableArray *sortDescs = [NSMutableArray arrayWithObject: ind1];
+    [req setSortDescriptors: sortDescs];
+    
+    NSArray *allCarTypes = [[singleCarType managedObjectContext] executeFetchRequest: req error:&error];
+    
+    if ([acceptedCarTypes count] == 0 || [acceptedCarTypes count] == [allCarTypes count]) {
+        return @"Accepts all car types";
+    }
+    
+    // Decide whether what we have, or what we don't have, is smaller.
+    int carTypeCount = [allCarTypes count];
+    if ([acceptedCarTypes count] < carTypeCount * 0.6) {
+        // Show list of accepted car types.
+        NSMutableArray* allCarTypeStrings = [NSMutableArray array];
+        for (CarType* carType in allCarTypes) {
+            if ([acceptedCarTypes containsObject: carType]) {
+                [allCarTypeStrings addObject: [carType carTypeName]];
+            }
+        }
+        return [allCarTypeStrings componentsJoinedByString: @", "];
+    }
+    
+    // All but.
+    NSMutableArray *nonCarTypeStrings = [NSMutableArray array];
+    for (CarType* carType in allCarTypes) {
+        if (![acceptedCarTypes containsObject: carType]) {
+            [nonCarTypeStrings addObject: [carType carTypeName]];
+        }
+    }
+    
+    return [NSMutableString stringWithFormat: @"All car types but %@", [nonCarTypeStrings componentsJoinedByString: @", "]];
 }
 
 // Returns the list of car types that we provide in all cases.

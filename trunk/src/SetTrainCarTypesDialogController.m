@@ -60,7 +60,7 @@
 	allCarTypes_ = [[NSMutableArray alloc] initWithArray: [entireLayout_ allCarTypes]];
 	[allCarTypes_ sortUsingSelector: @selector(compare:)];
 
-	NSSet *officialCarTypes = [trainToChange_ acceptedCarTypesRel];
+	NSSet *officialCarTypes = trainToChange_.acceptedCarTypesRel;
 	if ([officialCarTypes count] == 0) {
 		currentCarTypes_ = [[NSMutableSet alloc] initWithArray: allCarTypes_];
 	} else {
@@ -73,9 +73,9 @@
 - (IBAction) done: (id) sender {
 	// If all are selected, mark as none.
 	if ([currentCarTypes_ count] == [allCarTypes_ count]) {
-		[trainToChange_ setCarTypesAcceptedRel: [NSSet set]];
+		trainToChange_.acceptedCarTypesRel = [NSSet set];
 	} else {
-		[trainToChange_ setCarTypesAcceptedRel: currentCarTypes_];
+		trainToChange_.acceptedCarTypesRel = currentCarTypes_;
 	}
 	[NSApp endSheet: trainCarTypesDialogWindow_];
 }
