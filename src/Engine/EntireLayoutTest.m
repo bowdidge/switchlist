@@ -277,8 +277,8 @@
 	
 	XCTAssertEqualInt(2, [[entireLayout allFreightCars] count], @"Wrong total number of cars");
 	XCTAssertEqualInt(1, [[entireLayout allFreightCarsNotInTrain] count], @"Wrong number of cars not in train");
-	XCTAssertTrue([[myTrain freightCars] containsObject: fc1], @"freight car 1 should be in train.");
-	XCTAssertFalse([[myTrain freightCars] containsObject: fc2], @"freight car 2 should not be in train.");
+	XCTAssertTrue([myTrain.freightCars containsObject: fc1], @"freight car 1 should be in train.");
+	XCTAssertFalse([myTrain.freightCars containsObject: fc2], @"freight car 2 should not be in train.");
 }
 
 

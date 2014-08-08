@@ -124,7 +124,7 @@
 - (ScheduledTrain*) sampleTrain {
     ScheduledTrain *sampleTrain = nil;
     for (ScheduledTrain *train in [[document_ entireLayout] allTrains]) {
-        if ([[train freightCars] count] > [[sampleTrain freightCars] count]) {
+        if ([train.freightCars count] > [sampleTrain.freightCars count]) {
             sampleTrain = train;
         }
     }

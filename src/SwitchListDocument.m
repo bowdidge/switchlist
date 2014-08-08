@@ -405,7 +405,6 @@
     }
 
     [allOptions setObject: options forKey: [self preferredSwitchListStyle]];
-    NSLog(@"Writing out optional field key values %@", [layoutPrefs objectForKey: LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS]);
 	[entireLayout_ writePreferencesDictionary];
 }
 
@@ -851,7 +850,7 @@
 		} else {
 			// TODO(bowdidge): Annul button with multiple selections always goes to Annul.
 			[annulledTrains_ addObject: trainToAnnul];
-			for (FreightCar *fc in [[trainToAnnul freightCars] copy]) {
+			for (FreightCar *fc in [trainToAnnul.freightCars copy]) {
 				[fc removeFromTrain];
 			}
 		}
@@ -1138,7 +1137,7 @@
 	if ([[[tableColumn headerCell] title] isEqualToString: @"Name"]) {
 		return [train name];
 	} else if ([[[tableColumn headerCell] title] isEqualToString: @"cars moved"]) {
-		NSSet *cars = [train freightCars];
+		NSSet *cars = train.freightCars;
 		if ([annulledTrains_ containsObject: train]) {
 			return @"annulled";
 		}

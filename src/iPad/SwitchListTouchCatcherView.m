@@ -52,7 +52,7 @@ float SWITCHLIST_TOUCH_CATCHER_VIEW_WIDTH = 120.0;
 // to switch.
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    int carCount = [[train freightCars] count];
+    int carCount = [train.freightCars count];
     BOOL isEmptyTrain = (carCount == 0);
     
     // Empty train icons should be slightly washed out.

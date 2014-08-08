@@ -139,7 +139,7 @@
 
 // Moves all cars in the train to their final location.
 - (void) completeTrain: (ScheduledTrain *) train  {
-	NSSet *carMvmts = [NSSet setWithSet: [train freightCars]];
+	NSSet *carMvmts = [NSSet setWithSet: train.freightCars];
 	for (FreightCar *car in carMvmts) {
 		if (![car moveOneStep]) {
 			// Problem occurred - silently fail.

@@ -41,7 +41,7 @@
 @implementation ScheduledTrain 
 
 @dynamic acceptedCarTypesRel;
-@synthesize freightCars;
+@dynamic freightCars;
 
 // Code run the first time an object is created. 
 // Make sure any initial values are sane.
@@ -92,7 +92,7 @@
 }
 
 - (BOOL) containsCar: (FreightCar*) car {
-	return [[self primitiveValueForKey: @"freightCars"] containsObject: car];
+	return [self.freightCars containsObject: car];
 }
 
 - (NSString *)name {
@@ -137,7 +137,7 @@
 }
 
 - (TrainSizeVector*) trainSizeVector {
-	return [[[TrainSizeVector alloc] initWithCars: [[self freightCars] allObjects]
+	return [[[TrainSizeVector alloc] initWithCars: [self.freightCars allObjects]
                                            stops: [self stationsInOrder]] autorelease];
 }
 
@@ -264,7 +264,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 // Cars in this train currently at the named station.
 - (NSArray*) carsAtStation: (Place *) station   {
 	NSMutableArray *carsAtStation  = [NSMutableArray array];
-	for (FreightCar *f in [self freightCars]) {
+	for (FreightCar *f in self.freightCars) {
 		if ([f currentTown] == station) {
 			[carsAtStation addObject: f];
 		}
@@ -277,7 +277,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 // Cars in this train that will go to the named station.
 - (NSArray*) carsForStation: (Place *) station   {
 	NSMutableArray *carsForStation  = [NSMutableArray array];
-	for (FreightCar *f in [self freightCars]) {
+	for (FreightCar *f in self.freightCars) {
 		if ([[f nextStop] location] == station)  {
 			[carsForStation addObject: f];
 		}
@@ -307,7 +307,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	NSMutableArray *stationsVisited = [NSMutableArray array];
 	NSMutableArray *sortedList = [NSMutableArray array];
 	
-	NSSet *cars = [self freightCars];
+	NSSet *cars = self.freightCars;
 	
 	NSArray *stationStops = [self stationsInOrder];
 	for (Place *station in stationStops) {
