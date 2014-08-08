@@ -144,9 +144,9 @@
     NSArray *raw_results = [stringContents componentsMatchedByRegex: @"\\{OPTIONAL_\\w+\\s*\\|\\s*default\\s*:.*?\\}"];
     NSMutableArray* results = [NSMutableArray array];
     for (NSString* raw_result in raw_results) {
+        // Matches OPTIONAL_[word]  |   default  :  [word]  }
         NSArray* individual_results = [raw_result captureComponentsMatchedByRegex: @"OPTIONAL_(\\w+)\\s*\\|\\s*default\\s*:\\s*(.*?)\\}"];
-        NSLog(@"%@", individual_results);
-        if ([individual_results count] == 3) {
+         if ([individual_results count] == 3) {
             [results addObject: [NSMutableArray arrayWithObjects: [individual_results objectAtIndex: 1] , [individual_results objectAtIndex: 2], nil]];
         }
     }
