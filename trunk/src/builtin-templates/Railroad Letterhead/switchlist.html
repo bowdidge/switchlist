@@ -61,7 +61,8 @@ function RailroadColor(reportingMarks)
    if (reportingMarks.substring(0,4) == "LVRR") color="red";
    if (reportingMarks.substring(0,3) == "PRR") color="brown";
    if (reportingMarks.substring(0,2) == "IC") color="orange";
-   if (reportingMarks.substring(0,4) == "DUPX") color="white";
+   // White won't be visible.
+   if (reportingMarks.substring(0,4) == "DUPX") color="black";
    if (reportingMarks.substring(0,3) == "WLO") color="blue";
    if (reportingMarks.substring(0,3) == "CSX") color="blue";
    if (reportingMarks.substring(0,2) == "NS") color="black";
