@@ -377,6 +377,11 @@
     return options;
 }
 
+- (void) templatesChanged: (id) sender {
+    [switchListStyleTabController_ reloadSwitchlistTemplateNames];
+}
+
+
 // Returns an array of (option name, value) pairs for custom options for the current switchlist style, or nil if
 // no preferences are saved.
 - (void) setOptionalFieldKeyValues: (NSArray*) options {

@@ -242,6 +242,8 @@
 
 - (NSString*) preferredSwitchListStyle;
 - (void) setPreferredSwitchListStyle: (NSString*) styleName;
+// Called when list of templates on disk has changed, usually after the addition of a new template.
+- (void) templatesChanged: (id) sender;
 
     // Optional values for this template.
 - (NSArray*) optionalFieldKeyValues;

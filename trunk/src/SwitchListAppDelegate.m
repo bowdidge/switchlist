@@ -43,6 +43,7 @@
 #import "PICLReport.h"
 #import "ReservedCarReport.h"
 #import "SouthernPacificSwitchListView.h"
+#import "SwitchListDocument.h"
 #import "SwitchListReport.h"
 #import "SwitchListView.h"
 #import "WebServerDelegate.h"
@@ -401,12 +402,82 @@ error:
 	return;
 }
 
+- (void)announceTemplatesChanged {
+    // Warn all documents that a template was added.
+    NSDocumentController *documentController = [NSDocumentController sharedDocumentController];
+    for (NSDocument *doc in [documentController documents]) {
+        SwitchListDocument *switchListDocument = (SwitchListDocument*)(doc);
+        [switchListDocument templatesChanged: self];
+    }
+}
+
+// Install the named template from the named directory into SwitchList.
+// Returns true if succeeds.
+- (bool)doInstallTemplate:(NSString *)templateName fromDirectory:(NSString *)selectedDirectory error:(NSError *)error {
+    NSAlert *alert;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+	NSString *oldCopyOfDirectory = nil;
+	
+	// Check to make sure the template doesn't already exist, and warn if so.
+	NSString *userTemplateDirectory = [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: templateName];
+    
+	if ([fileManager fileExistsAtPath: userTemplateDirectory]) {
+		NSString *overwriteWarning = [NSString stringWithFormat: @"A template named '%@' has already been installed.  Overwrite?", templateName];
+		alert = [NSAlert alertWithMessageText: overwriteWarning
+								defaultButton: @"OK" alternateButton: @"Cancel" otherButton: nil
+					informativeTextWithFormat: @""];
+		int overwriteWarningResult = [alert runModal];
+		if (overwriteWarningResult != NSOKButton) {
+			// User doesn't want to overwrite. Cancel.
+			return false;
+		}
+		
+		// User wants to overwrite.  Move old copy aside.
+		NSString *existingDirectory = [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: templateName];
+		oldCopyOfDirectory = [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: [NSString stringWithFormat: @"%@.old", templateName]];
+		int moveResult = [fileManager moveItemAtPath: existingDirectory toPath: oldCopyOfDirectory error: &error];
+		if (moveResult == NO) {
+			// Error during copying.  Warn, and return.
+			alert = [NSAlert alertWithMessageText: @"Problems moving old copy of template out of the way."
+                                    defaultButton: @"OK" alternateButton: nil otherButton: nil
+                        informativeTextWithFormat: @"%@.", [error localizedDescription]];
+			[alert runModal];
+			return false;
+		}
+	}
+    
+	// Copy the template directory into the application support directory.
+	int copyResult = [fileManager copyItemAtPath: selectedDirectory 
+										  toPath: [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: templateName]
+										   error: &error];
+	if (copyResult == NO) {
+		NSAlert *alert = [NSAlert alertWithMessageText: @"Problems copying template into place."
+										 defaultButton: @"OK" alternateButton: nil otherButton: nil
+							 informativeTextWithFormat:  @"%@.", [error localizedDescription]];
+		[alert runModal];
+		return false;
+	}
+	
+	// Delete old copy if it exists.
+	if (oldCopyOfDirectory) {
+		int moveResult = [fileManager removeItemAtPath: oldCopyOfDirectory error: &error];
+		if (moveResult == NO) {
+			NSAlert *alert = [NSAlert alertWithMessageText: @"New template is in place, but problems deleting old copy of template."
+											 defaultButton: @"OK" alternateButton: nil otherButton: nil
+								 informativeTextWithFormat: @"%@.", [error localizedDescription]];
+			[alert runModal];
+			return true;
+		}
+	}
+    return true;
+}
+
 // Copies a template file into the correct application specific directory for the application.
 // Simplifies installing new templates, and avoids problems of cryptic paths that differ between
 // app store and non-app store version.
 - (IBAction) doImportTemplate: (id) sender {
 	NSError *error;
-	NSAlert *alert;
 	NSOpenPanel *panel = [NSOpenPanel openPanel];
 	[panel setCanChooseFiles: NO];
 	[panel setCanChooseDirectories: YES];
@@ -419,64 +490,14 @@ error:
 		return;
 	}
 
-	NSFileManager *fileManager = [NSFileManager defaultManager];
 	NSString *selectedDirectory = [panel filename];
 	NSString *templateName = [selectedDirectory lastPathComponent];
-		
-	NSString *oldCopyOfDirectory = nil;
-	
-	// Check to make sure the template doesn't already exist, and warn if so.
-	NSString *userTemplateDirectory = [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: templateName];
 
-	if ([fileManager fileExistsAtPath: userTemplateDirectory]) {
-		NSString *overwriteWarning = [NSString stringWithFormat: @"A template named '%@' has already been installed.  Overwrite?", templateName];
-		alert = [NSAlert alertWithMessageText: overwriteWarning
-								defaultButton: @"OK" alternateButton: @"Cancel" otherButton: nil
-					informativeTextWithFormat: @""];
-		int overwriteWarningResult = [alert runModal];
-		if (overwriteWarningResult != NSOKButton) {
-			// User doesn't want to overwrite. Cancel.
-			return;
-		}
-		
-		// User wants to overwrite.  Move old copy aside.
-		NSString *existingDirectory = [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: templateName];
-		oldCopyOfDirectory = [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: [NSString stringWithFormat: @"%@.old", templateName]];
-		int moveResult = [fileManager moveItemAtPath: existingDirectory toPath: oldCopyOfDirectory error: &error];
-		if (moveResult == NO) {
-			// Error during copying.  Warn, and return.
-			alert = [NSAlert alertWithMessageText: @"Problems moving old copy of template out of the way."
-											 defaultButton: @"OK" alternateButton: nil otherButton: nil
-								 informativeTextWithFormat: @"%@.", [error localizedDescription]];
-			[alert runModal];
-			return;
-		}
-	}
-
-	// Copy the template directory into the application support directory.
-	int copyResult = [fileManager copyItemAtPath: selectedDirectory 
-										  toPath: [[fileManager applicationSupportDirectory] stringByAppendingPathComponent: templateName]
-										   error: &error];
-	if (copyResult == NO) {
-		NSAlert *alert = [NSAlert alertWithMessageText: @"Problems copying template into place."
-										 defaultButton: @"OK" alternateButton: nil otherButton: nil
-							 informativeTextWithFormat:  @"%@.", [error localizedDescription]];
-		[alert runModal];
-		return;
-	}
-	
-	// Delete old copy if it exists.
-	if (oldCopyOfDirectory) {
-		int moveResult = [fileManager removeItemAtPath: oldCopyOfDirectory error: &error];
-		if (moveResult == NO) {
-			NSAlert *alert = [NSAlert alertWithMessageText: @"New template is in place, but problems deleting old copy of template."
-											 defaultButton: @"OK" alternateButton: nil otherButton: nil
-								 informativeTextWithFormat: @"%@.", [error localizedDescription]];
-			[alert runModal];
-			return;
-		}
-	}
-	// Success. Return.
+	if (![self doInstallTemplate:templateName fromDirectory:selectedDirectory error:error]) {
+        return;
+    }
+    
+    [self announceTemplatesChanged];
 	return;
 }
 
