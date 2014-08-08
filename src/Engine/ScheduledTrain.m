@@ -41,7 +41,7 @@
 @implementation ScheduledTrain 
 
 @dynamic acceptedCarTypesRel;
-@dynamic freightCars;
+@synthesize freightCars;
 
 // Code run the first time an object is created. 
 // Make sure any initial values are sane.
@@ -71,36 +71,8 @@
     [self didChangeValueForKey: @"maxLength"];
 }
 
-// Returns a string containing the comma-separated types of
-// car types picked up by this train.  This is treated
-// like a valid property and marked as invalid so parts of the 
-// UI will re-query it.
-- (NSString*) acceptedCarTypesString {
-	NSArray *carTypes = [self primitiveValueForKey: @"acceptedCarTypesRel"];
-    NSMutableArray *carTypeNames = [NSMutableArray array];
-	for (CarType *ct in carTypes) {
-		[carTypeNames addObject: [ct carTypeName]];
-	}
-	[carTypeNames sortUsingSelector: @selector(compare:)];
-	
-	if ([carTypeNames count] == 0) {
-		return @"All car types";
-	}
-	
-	return [carTypeNames componentsJoinedByString: @", "];
-}
-
-- (void) setCarTypesAcceptedRel: (NSSet*) currentCarTypes {
-    // Announce change to acceptedCarTypesString so UI will pick up the change.
-	[self willChangeValueForKey: @"acceptedCarTypesRel"];
-	[self willChangeValueForKey: @"acceptedCarTypesString"];
-	[self setPrimitiveValue: currentCarTypes forKey: @"acceptedCarTypesRel"];
-	[self didChangeValueForKey: @"acceptedCarTypesRel"];
-	[self didChangeValueForKey: @"acceptedCarTypesString"];
-}
-
 - (BOOL) acceptsCarType: (CarType*) carType {
-	NSSet *acceptedCarTypes = [self valueForKey: @"acceptedCarTypesRel"];
+	NSSet *acceptedCarTypes = self.acceptedCarTypesRel;
 	// No car types = all car types.
 	if ([acceptedCarTypes count] == 0) return YES;
 	
@@ -113,10 +85,10 @@
 /* Would this train accept this kind of car? */
 - (BOOL) acceptsCar: (FreightCar*) car {
 	if ([car carTypeRel] == nil) return YES;
-	if ([[self valueForKey: @"acceptedCarTypesRel"] count] == 0) return YES;
+	if ([self.acceptedCarTypesRel count] == 0) return YES;
 	// Removed explicit check for "any".
 	
-	return ([[self valueForKey: @"acceptedCarTypesRel"] containsObject: [car carTypeRel]]);
+	return ([self.acceptedCarTypesRel containsObject: [car carTypeRel]]);
 }
 
 - (BOOL) containsCar: (FreightCar*) car {
@@ -435,7 +407,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	}
 
 	// Run through all freight cars being handled, and insert them in the dictionary.
-	for (FreightCar *fc in freightCars) {
+	for (FreightCar *fc in self.freightCars) {
 		InduYard *start = [fc currentLocation];
 		Place *startPlace = [start location];
 		InduYard *end = [fc nextStop];

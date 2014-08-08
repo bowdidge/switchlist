@@ -39,19 +39,6 @@
 
 @implementation CarTypesTest
 
-- (void) testFreightCarValueSet {
-	//CarType *ct = [self makeCarType: @"MyType"];
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"AAAA 1111"];
-	[fc1 setPrimitiveValue: @"MyType" forKey: @"carType"];
-	
-	NSDictionary *stockCars = [CarTypes stockCarTypes];
-	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-    
-	XCTAssertTrue([CarTypes isValidCarType: @"MyType"], @"MyType not considered valid type");
-	XCTAssertNotNil([carTypes objectForKey: @"MyType"], @"New car type not found");
-	XCTAssertEqual([[stockCars allKeys] count] + 1, [carTypes count], @"Car type count not correct");
-}
-
 // TODO(bowdidge): Special case ANY?
 - (void) testCarTypeAny {
 	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"AAAA 1111"];
@@ -90,29 +77,11 @@
 	XCTAssertEqual([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
 }
 
-
-
-- (void) testCargoCarType {
-	[self makeThreeStationLayout];
-	Cargo *c1 = [self makeCargo: @"b to c"];
-	[c1 setSource: [self industryAtStation: @"B"]];
-	[c1 setDestination: [self industryAtStation: @"C"]];
-	[c1 setPrimitiveValue: @"ACargo" forKey: @"carType"];
-
-	NSDictionary *stockCars = [CarTypes stockCarTypes];
-	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-
-	XCTAssertTrue([CarTypes isValidCarType: @"ACargo"], @"MyType not considered valid type");
-	XCTAssertNotNil([carTypes objectForKey: @"ACargo"], @"New car type not found");
-	XCTAssertEqual([[stockCars allKeys] count] + 1, [carTypes count], @"Car type count not correct");
-}
-
 - (void) testCargoTextNoCarType {
 	[self makeThreeStationLayout];
 	Cargo *c1 = [self makeCargo: @"cans"];
 	[c1 setSource: [self industryAtStation: @"B"]];
 	[c1 setDestination: [self industryAtStation: @"C"]];
-//	[c1 setPrimitiveValue: @"ACargo" forKey: @"carType"];
 	
 	XCTAssertEqualObjects(@"cans, sent from B-industry to C-industry, 7 cars per week", [c1 tooltip], @"");
 }
@@ -181,6 +150,28 @@
 	[c1 setCarTypeRel: ct];
 	
 	XCTAssertEqualObjects(@"cans, sent from No Value to B-industry, 7 'X' cars per week", [c1 tooltip], @"");
+}
+
+- (void) testCarTypesString {
+    CarType *ct = [self makeCarType: @"X"];
+    NSSet *cars = [NSSet setWithObject: ct];
+    XCTAssertEqualObjects(@"X", [CarTypes acceptedCarTypesString: cars]);
+
+    cars = [NSSet set];
+    XCTAssertEqualObjects(@"Accepts all car types", [CarTypes acceptedCarTypesString: cars]);
+    
+    cars = [NSSet setWithArray: [entireLayout_ allCarTypes]];
+    XCTAssertEqualObjects(@"Accepts all car types", [CarTypes acceptedCarTypesString: cars]);
+    
+    NSMutableSet* most_cars = [NSMutableSet setWithArray: [entireLayout_ allCarTypes]];
+    ct = [most_cars anyObject];
+    [most_cars removeObject: ct];
+    NSString* carTypeString = [CarTypes acceptedCarTypesString: most_cars];
+    XCTAssertTrue([carTypeString rangeOfString: @"All car types but"].location == 0, @"Expected 'accepts all cars but', but got '%@'", carTypeString);
+    XCTAssertTrue([carTypeString rangeOfString: [ct carTypeName]].length != 0, @"Expected car name, but got '%@'", carTypeString);
+    
+    
+    
 }
 
 @end

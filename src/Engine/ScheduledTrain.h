@@ -55,13 +55,6 @@
 
 - (BOOL) acceptsCarType: (CarType*) carType;
 
-// Returns a comma-separated string listing the car types that this
-// train will accept.  Parts of the UI explicitly watch this as
-// if it were a variable.
-- (NSString*) acceptedCarTypesString;
-- (void) setCarTypesAcceptedRel: (NSSet*) currentCarTypes;
-
-
 /* Would this train accept this kind of car? */
 - (BOOL) acceptsCar: (FreightCar*) car;
 - (BOOL) containsCar: (FreightCar*) car;

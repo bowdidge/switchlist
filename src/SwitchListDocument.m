@@ -104,6 +104,28 @@
 	return [NSNumber numberWithInt: curSum / 7];
 }
 @end
+@interface TrainCarTypesStringTransformer: NSValueTransformer {}
+@end
+
+@implementation TrainCarTypesStringTransformer
+// Returns an NSNumber to the Cocoa Bindings.
++ (Class)transformedValueClass {
+    return [NSString class];
+}
+
++ (BOOL)allowsReverseTransformation {
+    return NO;
+}
+
+// Adds up all the carsPerMonth and divides by thirty to calculate the
+// preferred loads per day.
+// This code should match the loadsPerDay calculation in SwitchListDocument.
+- (id)transformedValue:(id)value {
+    // TODO(bowdidge) Won't detect changes.
+    return [CarTypes acceptedCarTypesString: value];
+}
+@end
+
 
 /**
  * Controller object for the main document. 
@@ -149,55 +171,6 @@
 	return nameToSwitchListClassMap_;
 }
 
-// Examines the current layout database, and changes all model objects to use
-// the new relationship-based CarType rather than the string based approach.
-// Searches the existing database for all car types used.
-// Only needed for going from v2 to v3 of the file format, and only runs if no
-// CarType objects exist.
-- (void) updateLayoutToUseCarTypeObjects {
-	if ([[entireLayout_ allCarTypes] count] == 0) {
-		// No car types - set up default.
-		NSDictionary* currentlyUsedCarTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-		for (NSString *carTypeName in currentlyUsedCarTypes) {
-			CarType *carType = [NSEntityDescription insertNewObjectForEntityForName:@"CarType"
-															 inManagedObjectContext: [self managedObjectContext]];
-			[carType setCarTypeName: carTypeName];
-			[carType setCarTypeDescription: [currentlyUsedCarTypes objectForKey: carTypeName]];
-		}
-		
-		NSMutableDictionary *nameToCarTypeMap = [NSMutableDictionary dictionary];
-		NSArray *allCarTypes = [entireLayout_ allCarTypes];
-		for (CarType *ct in allCarTypes) {
-			[nameToCarTypeMap setObject: ct forKey: [ct carTypeName]];
-		}
-		 
-		// If there weren't any car types, then the file still has the old ones.  Update.
-		NSArray *allFreightCars = [entireLayout_ allFreightCars];
-		for (FreightCar *fc in allFreightCars) {
-			[fc setCarTypeRel: [nameToCarTypeMap objectForKey: [fc primitiveValueForKey: @"carType"]]];
-		}
-		
-		NSArray *allCargos = [entireLayout_ allCargos];
-		for (Cargo *cargo in allCargos) {
-			[cargo setCarTypeRel: [nameToCarTypeMap objectForKey: [cargo primitiveValueForKey: @"carType"]]];
-		}
-		
-		NSArray *allTrains = [entireLayout_ allTrains];
-		for (ScheduledTrain *train in allTrains) {
-			NSString *carTypesAccepted = [train primitiveValueForKey: @"acceptedCarTypes"];
-			NSArray *types = [carTypesAccepted componentsSeparatedByString: @","];
-			NSMutableSet *carTypes = [NSMutableSet set];
-			for (NSString *type in types) {
-				// Ignore Any.
-				if ([type isEqualToString: @"Any"]) continue;
-
-				CarType *ct = [nameToCarTypeMap objectForKey: type];
-				[carTypes addObject: ct];
-			}
-			[train setPrimitiveValue: carTypes forKey: @"acceptedCarTypesRel"];
-		}
-	}
-}	
 
 // Converts the train stop string in all trains from the old comma-based separator to the
 // newer approach that will allow commas in place names.  If it looks like the stops has
@@ -218,6 +191,8 @@
 		[train setStationsInOrder: [train stationsInOrder]];
 	}
 }
+
+// For each train, find any cases where acceptedCarTypesRel == nil, and replace with all.
 
 - (void) awakeFromNib {
 	entireLayout_ = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
@@ -275,7 +250,6 @@
 	[layoutNameField_ setStringValue: [entireLayout_ layoutName]];
 
 	// If we need to upgrade, do so.
-	[self updateLayoutToUseCarTypeObjects];
 	[self updateTrainsToUseNewSeparator];
 	
     // Puts the switchlist template names in the pop-up in sorted order,

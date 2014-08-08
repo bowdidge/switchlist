@@ -189,7 +189,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4708">
-                                                <rect key="frame" x="603" y="17" width="16" height="205"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="205"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4710">
@@ -497,11 +497,11 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="bF0-lu-TQV">
-                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
+                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4701" id="1294">
-                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="603" height="265"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -622,12 +622,12 @@
                                                                             <string key="NSNullPlaceholder">Unassigned</string>
                                                                         </dictionary>
                                                                     </binding>
+                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.cargo" previousBinding="41s-N1-jTn" id="sqT-hS-mkW"/>
                                                                     <binding destination="1271" name="contentValues" keyPath="arrangedObjects.cargoDescription" previousBinding="Bw2-4v-XoN" id="41s-N1-jTn">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.cargo" previousBinding="41s-N1-jTn" id="sqT-hS-mkW"/>
                                                                 </connections>
                                                             </tableColumn>
                                                             <tableColumn width="129.26025390625" minWidth="93.19775390625" maxWidth="1000" id="1316">
@@ -652,12 +652,12 @@
                                                                             <string key="NSNullPlaceholder">No Location</string>
                                                                         </dictionary>
                                                                     </binding>
+                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.currentLocation" previousBinding="9oI-xV-Ak2" id="bt7-ai-0f1"/>
                                                                     <binding destination="1278" name="contentValues" keyPath="arrangedObjects.name" previousBinding="DPD-Vn-UCY" id="9oI-xV-Ak2">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1251" name="selectedObject" keyPath="arrangedObjects.currentLocation" previousBinding="9oI-xV-Ak2" id="bt7-ai-0f1"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -669,15 +669,15 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="4700">
-                                                <rect key="frame" x="1" y="282" width="618" height="16"/>
+                                                <rect key="frame" x="1" y="282" width="603" height="16"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4699">
-                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="265"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4701">
-                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="603" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -923,7 +923,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4696">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4698">
@@ -1193,12 +1193,12 @@
                                                                             <string key="NSNullPlaceholder">No Location</string>
                                                                         </dictionary>
                                                                     </binding>
+                                                                    <binding destination="1682" name="selectedObject" keyPath="arrangedObjects.location" previousBinding="dSb-F3-iFa" id="wlN-Vt-4yF"/>
                                                                     <binding destination="1701" name="contentValues" keyPath="arrangedObjects.name" previousBinding="IVh-tj-eQB" id="dSb-F3-iFa">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1682" name="selectedObject" keyPath="arrangedObjects.location" previousBinding="dSb-F3-iFa" id="wlN-Vt-4yF"/>
                                                                 </connections>
                                                             </tableColumn>
                                                             <tableColumn width="155.66259765625" minWidth="100" maxWidth="1000" id="1719">
@@ -1227,7 +1227,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4702">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4704">
@@ -1513,12 +1513,12 @@
                                                                             <string key="NSNullPlaceholder">No Location</string>
                                                                         </dictionary>
                                                                     </binding>
+                                                                    <binding destination="1623" name="selectedObject" keyPath="arrangedObjects.location" previousBinding="kHq-i2-INz" id="Uen-RG-MS3"/>
                                                                     <binding destination="1639" name="contentValues" keyPath="arrangedObjects.name" previousBinding="Q3N-0p-ioi" id="kHq-i2-INz">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1623" name="selectedObject" keyPath="arrangedObjects.location" previousBinding="kHq-i2-INz" id="Uen-RG-MS3"/>
                                                                 </connections>
                                                             </tableColumn>
                                                             <tableColumn width="109.66259765625" minWidth="47" maxWidth="1000" id="1659">
@@ -1563,7 +1563,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4714">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4716">
@@ -1819,17 +1819,17 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="T6B-Qj-5pU">
-                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
+                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4707" id="1176">
-                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="606" height="265"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="123.37353515625" minWidth="100.37353515625" maxWidth="1000" id="1178">
+                                                            <tableColumn width="121.37353515625" minWidth="100.37353515625" maxWidth="1000" id="1178">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Cargo Description">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1845,7 +1845,7 @@
                                                                     <binding destination="1138" name="value" keyPath="arrangedObjects.cargoDescription" id="1177"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="38" minWidth="35" maxWidth="1000" id="1181">
+                                                            <tableColumn width="36" minWidth="35" maxWidth="1000" id="1181">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Rate">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1868,7 +1868,7 @@
                                                                     <binding destination="1138" name="value" keyPath="arrangedObjects.rate" id="5505"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="78" minWidth="75" maxWidth="80" id="5530">
+                                                            <tableColumn width="76" minWidth="75" maxWidth="80" id="5530">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1890,7 +1890,7 @@
                                                                     <binding destination="1138" name="selectedIndex" keyPath="arrangedObjects.rateUnits" id="5549"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="56.42138671875" minWidth="51.42138671875" maxWidth="1000" id="1183">
+                                                            <tableColumn editable="NO" width="54.42138671875" minWidth="51.42138671875" maxWidth="1000" id="1183">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Car Type">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1936,7 +1936,7 @@
                                                                     <binding destination="1138" name="value" keyPath="arrangedObjects.priority" id="1185"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="121.771484375" minWidth="39.771484375" maxWidth="1000" id="1196">
+                                                            <tableColumn width="119.771484375" minWidth="39.771484375" maxWidth="1000" id="1196">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Source">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1963,7 +1963,7 @@
                                                                     <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.source" previousBinding="Beu-1m-dOM" id="Fml-UU-bi6"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="138.0478515625" minWidth="65.0478515625" maxWidth="1000" id="1191">
+                                                            <tableColumn width="136.0478515625" minWidth="65.0478515625" maxWidth="1000" id="1191">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Destination">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1982,12 +1982,12 @@
                                                                             <string key="NSNullPlaceholder">No Location</string>
                                                                         </dictionary>
                                                                     </binding>
+                                                                    <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.destination" previousBinding="71g-fq-hY2" id="7nv-4T-hac"/>
                                                                     <binding destination="1155" name="contentValues" keyPath="arrangedObjects.name" previousBinding="56j-Xm-LO2" id="71g-fq-hY2">
                                                                         <dictionary key="options">
                                                                             <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                                         </dictionary>
                                                                     </binding>
-                                                                    <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.destination" previousBinding="71g-fq-hY2" id="7nv-4T-hac"/>
                                                                 </connections>
                                                             </tableColumn>
                                                         </tableColumns>
@@ -2000,11 +2000,11 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4705">
-                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4707">
-                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="606" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -2273,9 +2273,10 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <connections>
-                                                                    <binding destination="1558" name="value" keyPath="arrangedObjects.acceptedCarTypesString" id="4946">
+                                                                    <binding destination="1558" name="value" keyPath="arrangedObjects.acceptedCarTypesRel" id="Nm8-OU-Vgh">
                                                                         <dictionary key="options">
                                                                             <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                                            <string key="NSValueTransformerName">TrainCarTypesStringTransformer</string>
                                                                         </dictionary>
                                                                     </binding>
                                                                 </connections>
@@ -2290,7 +2291,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4711">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4713">
@@ -2384,13 +2385,17 @@
                                         <textField verticalHuggingPriority="750" id="4863">
                                             <rect key="frame" x="159" y="31" width="291" height="23"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES"/>
-                                            <textFieldCell key="cell" lineBreakMode="charWrapping" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="XM, XMC, F, T" id="4864">
+                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="XM, XMC, F, T" id="4864">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="1558" name="value" keyPath="selection.acceptedCarTypesString" id="4901"/>
+                                                <binding destination="1558" name="value" keyPath="selection.acceptedCarTypesRel" id="PI1-7m-Y0n">
+                                                    <dictionary key="options">
+                                                        <string key="NSValueTransformerName">TrainCarTypesStringTransformer</string>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" id="4993">
@@ -2509,7 +2514,7 @@
                                             <rect key="frame" x="6" y="11.99999575773063" width="642" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <view key="contentView">
-                                                <rect key="frame" x="1" y="1" width="640" height="282"/>
+                                                <rect key="frame" x="1" y="1.0000042422693696" width="640" height="282"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="4729">
@@ -3056,17 +3061,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="20" y="80" width="176" height="233"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" id="RQu-v7-gb3">
-                            <rect key="frame" x="1" y="17" width="174" height="215"/>
+                            <rect key="frame" x="1" y="17" width="159" height="199"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="4719" id="1782">
-                                    <rect key="frame" x="0.0" y="0.0" width="174" height="215"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="159" height="199"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="name" editable="NO" width="171" minWidth="40" maxWidth="1000" id="1784">
+                                        <tableColumn identifier="name" editable="NO" width="156" minWidth="40" maxWidth="1000" id="1784">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -3088,15 +3093,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="4718">
-                            <rect key="frame" x="1" y="216" width="174" height="16"/>
+                            <rect key="frame" x="1" y="216" width="159" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4717">
-                            <rect key="frame" x="160" y="17" width="15" height="215"/>
+                            <rect key="frame" x="160" y="17" width="15" height="199"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="4719">
-                            <rect key="frame" x="0.0" y="0.0" width="174" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="159" height="17"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>
@@ -3104,17 +3109,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <rect key="frame" x="284" y="80" width="176" height="233"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <clipView key="contentView" id="TEJ-ip-V1d">
-                            <rect key="frame" x="1" y="17" width="174" height="215"/>
+                            <rect key="frame" x="1" y="17" width="159" height="199"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" headerView="4722" id="1786">
-                                    <rect key="frame" x="0.0" y="0.0" width="174" height="215"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="159" height="199"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn editable="NO" width="171" minWidth="40" maxWidth="1000" id="1788">
+                                        <tableColumn editable="NO" width="156" minWidth="40" maxWidth="1000" id="1788">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -3136,15 +3141,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="4721">
-                            <rect key="frame" x="1" y="216" width="174" height="16"/>
+                            <rect key="frame" x="1" y="216" width="159" height="16"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="0.1990521252155304" horizontal="NO" id="4720">
-                            <rect key="frame" x="160" y="17" width="15" height="215"/>
+                            <rect key="frame" x="160" y="17" width="15" height="199"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="4722">
-                            <rect key="frame" x="0.0" y="0.0" width="174" height="17"/>
+                            <rect key="frame" x="0.0" y="0.0" width="159" height="17"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </tableHeaderView>
                     </scrollView>

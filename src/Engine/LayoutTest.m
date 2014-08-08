@@ -88,7 +88,7 @@
 			[carTypesSet addObject: foundCarType];
 		}
 	}
-	[st setCarTypesAcceptedRel: carTypesSet];
+	st.acceptedCarTypesRel = carTypesSet;
 }
 
 // Creates a persistent freight car in the current managed object context.
