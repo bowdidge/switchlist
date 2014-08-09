@@ -220,8 +220,9 @@ float HEADER_HEIGHT = 126.0;
 	NSFont *condensedSansSerif = [sharedFontManager convertFont: [NSFont fontWithName:@"Futura" size: 12.0] 
 													toHaveTrait: NSCondensedFontMask | NSBoldFontMask];
 
+    NSString* railroadName1 = [self optionWithName: @"Railroad_Name_1" alternate: @"SAN FRANCISCO PORT AUTHORITY"];
 	NSDictionary *strangeCapsAttr = [NSDictionary dictionaryWithObject: condensedSansSerif  forKey: NSFontAttributeName];
-	[self drawCenteredString: @"SAN FRANCISCO PORT AUTHORITY"
+	[self drawCenteredString: railroadName1
 					 centerY: startHeight-38
 					 centerX: [self imageableWidth] / 4
 				  attributes: strangeCapsAttr];

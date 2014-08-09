@@ -449,6 +449,7 @@
 	} else {
         PrintEverythingView *pev = [[PrintEverythingView alloc] initWithFrame: NSMakeRect(0.0,0.0,100.0,100.0) withDocument: self
                                                                 withViewClass: reportClass];
+        [pev setOptionalSettings: [switchListStyleTabController_ optionalFieldKeyValues]];
         [[NSPrintOperation printOperationWithView:pev] runOperation];
         [pev autorelease];
     }
@@ -809,6 +810,7 @@
 	NSRect reportRect = [printInfo imageablePageBounds];
 	switchListView = [[reportClass alloc] initWithFrame: NSMakeRect(20.0, 20.0, reportRect.size.width, reportRect.size.height)
 										   withDocument: self];
+    [switchListView setOptionalSettings: [switchListStyleTabController_ optionalFieldKeyValues]];
 	// These three not needed for non-text.
 	[switchListView setTrain: train];
 	
