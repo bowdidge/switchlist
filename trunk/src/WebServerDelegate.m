@@ -214,7 +214,7 @@ NSString *CurrentHostname() {
 	}
 	[[document layoutController] completeTrain: train];
 	[server_ replyWithStatusCode: HTTP_OK message: [NSString stringWithFormat: @"Train %@ marked completed!", trainName]];
-	
+    [document updateSummaryInfo: self];
 }
 
 // Given parameters to changeCarLocation, updates database.
@@ -235,6 +235,7 @@ NSString *CurrentHostname() {
 	}
 	
 	[fc setCurrentLocation: location];
+    [document updateSummaryInfo: self];
 	[server_ replyWithStatusCode: HTTP_OK
 						 message: @"OK"];
 }	
