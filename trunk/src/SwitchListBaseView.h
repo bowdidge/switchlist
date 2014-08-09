@@ -76,6 +76,7 @@
 
 	// Each document gets a random number exactly once so values don't change per redraw.
 	int randomValue_;
+    NSArray *optionalSettings_;
 }
 
 // Initial frame size indicates the initial page size.
@@ -170,5 +171,10 @@
 
 // Testing only.
 - (NSArray*) splitStringByDashes: (NSString*) input;
+
+// Set the optional settings as a list of pairs of (setting, custom value.
+- (void) setOptionalSettings: (NSArray*) optionalSettings;
+// Returns the setting with the specified name, or alternate if no such value exists.
+- (NSString*) optionWithName: (NSString*) optionName alternate: (NSString*) alternate;
 
 @end

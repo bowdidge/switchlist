@@ -131,6 +131,7 @@
 	imageableHeight_ = frameRect.size.height;
 	
 	randomValue_ = random();
+    optionalSettings_ = nil;
 	return self;
 }
 
@@ -138,6 +139,7 @@
 	[train_ release];
 	[carsInTrain_ release];
 	[owningDocument_ release];
+    [optionalSettings_ release];
 	[super dealloc];
 }
 
@@ -529,6 +531,24 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 					  nil];
 	int rnd = (randomValue_ + seed) % [names count];
 	return [names objectAtIndex: rnd];
+}
+
+// Set the optional settings as a list of pairs of (setting, custom value.
+- (void) setOptionalSettings: (NSArray*) optionalSettings {
+    [optionalSettings_ release];
+    optionalSettings_ = optionalSettings;
+}
+
+- (NSString*) optionWithName: (NSString*) optionName alternate: (NSString*) alternate {
+    for (int i=0; i<[optionalSettings_ count]; i++) {
+        NSArray* pair = [optionalSettings_ objectAtIndex: i];
+        NSString* key = [pair objectAtIndex: 0];
+        NSString* value = [pair objectAtIndex: 1];
+        if ([key isEqualToString: optionName]) {
+            return value;
+        }
+    }
+    return alternate;
 }
 
 @end

@@ -164,7 +164,8 @@
 	NSDictionary *title1Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: [self headerTextFontSize]]  forKey: NSFontAttributeName];
 	NSDictionary *title2Attrs = [NSDictionary dictionaryWithObject: [self titleFontForSize: [self headerTitleFontSize]]  forKey: NSFontAttributeName];
 	
-	[self drawCenteredString: [[owningDocument_ entireLayout] layoutName] centerY: topOfHeader centerX: [self imageableWidth]/2 attributes: title1Attrs];
+    NSString* railroadName1 = [self optionWithName: @"Railroad_Name" alternate: @"Southern Pacific"];
+	[self drawCenteredString: railroadName1 centerY: topOfHeader centerX: [self imageableWidth]/2 attributes: title1Attrs];
 	[self drawCenteredString: @"SWITCH LIST" centerY: topOfHeader - 20 centerX: [self imageableWidth]/2  attributes: title2Attrs];
 	
 	NSString *line1 = [NSString stringWithFormat: @"Train _________ Left _________________ station, __________M _______________ %@____", centuryString];

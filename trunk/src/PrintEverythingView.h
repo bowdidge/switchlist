@@ -42,6 +42,7 @@
 	NSObject<SwitchListDocumentInterface> *document_;
 	float imageableWidth_;
 	float imageableHeight_;
+    NSArray *optionalSettings_;
 }
 
 // Creates a SwitchListBaseView with a default frame (only provided by convention), a pointer to the
@@ -49,4 +50,8 @@
 // used to generate the switchlist for each train.
 - (id) initWithFrame: (NSRect) r withDocument: (NSDocument<SwitchListDocumentInterface>*) document
 	   withViewClass: (Class) preferredViewClass;
+// Set the optional settings as a list of pairs of (setting, custom value.
+- (void) setOptionalSettings: (NSArray*) optionalSettings;
+// Returns the setting with the specified name, or alternate if no such value exists.
+- (NSString*) optionWithName: (NSString*) optionName alternate: (NSString*) alternate;
 @end

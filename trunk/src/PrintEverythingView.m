@@ -93,7 +93,7 @@
 	NSRect lastViewFrame = [[subviews lastObject] frame];
 	[self setFrame: NSMakeRect(0.0, 0.0, lastViewFrame.size.width, offsetY)];
 	[self setSubviews: subviews];
-
+    optionalSettings_ = nil;
 	return self;
 }
 
@@ -103,6 +103,18 @@
 - (void) dealloc {
 	[subviews release];
 	[document_ release];
+    [optionalSettings_ release];
 	[super dealloc];
 }
+
+// Set the optional settings as a list of pairs of (setting, custom value.
+- (void) setOptionalSettings: (NSArray*) optionalSettings {
+    [optionalSettings_ release];
+    optionalSettings_ = optionalSettings;
+}
+
+- (NSString*) optionWithName: (NSString*) optionName alternate: (NSString*) alternate {
+    return alternate;
+}
+
 @end
