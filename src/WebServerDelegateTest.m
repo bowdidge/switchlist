@@ -38,6 +38,7 @@
 #import "HTMLSwitchlistRenderer.h"
 #import "FreightCar.h"
 #import "Industry.h"
+#import "LayoutController.h"
 #import "StringHelpers.h"
 #import "SwitchListDocument.h"
 #import "WebServerDelegate.h"
@@ -236,4 +237,24 @@
 	// Check car listed in HTML.
 	XCTAssertContains(@"<td>WP 1</td>", server_->lastMessage, @"");
 }
+
+- (void) testTrainCompleted {
+	[self makeThreeStationLayout];
+	ScheduledTrain *train = [self makeThreeStationTrain];
+	FakeSwitchListDocument *doc = [[[FakeSwitchListDocument alloc] initWithLayout: [self entireLayout]] autorelease];
+    XCTAssertFalse([doc summaryInfoUpdated]);
+    XCTAssertEqualObjects(@"A-industry", [[[self freightCarWithReportingMarks: @"UP 2"] currentLocation] name]);
+
+	[webServerDelegate_ processCompleteTrain: [train name] forLayout: (SwitchListDocument*) doc];
+
+    XCTAssertTrue([doc summaryInfoUpdated]);
+    XCTAssertEqual(200, server_->lastCode, @"Page not loaded.");
+	XCTAssertNotNil(server_->lastMessage, @"");
+	// Check for industry and freight car names in script portion.
+    NSLog(@"%@", server_->lastMessage);
+	XCTAssertContains([train name], server_->lastMessage, @"");
+    XCTAssertContains(@"completed", server_->lastMessage, @"");
+    XCTAssertEqualObjects(@"B-industry", [[[self freightCarWithReportingMarks: @"UP 2"] currentLocation] name]);
+}
+
 @end

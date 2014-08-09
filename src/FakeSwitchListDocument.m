@@ -33,15 +33,18 @@
 
 #import "DoorAssignmentRecorder.h"
 
-@implementation FakeSwitchListDocument 
+@implementation FakeSwitchListDocument
 - (id) initWithLayout: (EntireLayout*) entireLayout {
 	self = [super init];
 	layout = [entireLayout retain];
 	recorder = [[DoorAssignmentRecorder alloc] init];
+    summaryInfoUpdated_ = NO;
+    layoutController_ = [[LayoutController alloc] initWithEntireLayout: layout];
 	return self;
 }
 
 - (void) dealloc {
+    [layoutController_ release];
 	[layout release];
 	[recorder release];
 	[super dealloc];
@@ -65,4 +68,17 @@
 - (id) printInfo {
     return nil;
 }
+
+- (id) layoutController {
+    return layoutController_;
+}
+
+- (void) updateSummaryInfo: (id) sender {
+    summaryInfoUpdated_ = YES;
+}
+
+- (BOOL) summaryInfoUpdated {
+    return summaryInfoUpdated_;
+}
+
 @end

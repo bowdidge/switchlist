@@ -59,5 +59,8 @@ extern NSString *CurrentHostname();
 
 // For testing.
 - (void) processRequestForCarListForLayout: (SwitchListDocument*) document;
+// Marks the given train as completed, and moves cars to final locations.
+- (void) processCompleteTrain: (NSString*) trainName forLayout: (SwitchListDocument*) document;
+
 
 @end

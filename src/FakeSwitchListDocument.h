@@ -31,16 +31,23 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "LayoutController.h"
 #import "SwitchListDocumentInterface.h"
+
 @class EntireLayout;
 @class DoorAssignmentRecorder;
 
 @interface FakeSwitchListDocument : NSDocument<SwitchListDocumentInterface> {
 	EntireLayout *layout;
 	DoorAssignmentRecorder *recorder;
+    BOOL summaryInfoUpdated_;
+    LayoutController *layoutController_;
 }
 - (id) initWithLayout: (EntireLayout*) layout;
 - (EntireLayout*) entireLayout;
 - (DoorAssignmentRecorder*) doorAssignmentRecorder;
+- (id) layoutController;
+- (void) updateSummaryInfo: (id) sender;
+- (BOOL) summaryInfoUpdated;
 @end
 

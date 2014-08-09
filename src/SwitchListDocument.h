@@ -195,6 +195,11 @@
  */
 - (void) createAndAssignNewCargos: (int) loadsToAdd;
 
+/**
+ * Updates the text on the Overview panel showing how many cars are on the layout,
+ * and how many have loads.  This gives the user an idea of whether to press the "generate more
+ * loads" button.
+ */
 - (IBAction) updateSummaryInfo: (id) sender;
 
 // scorched earth on loads -- for debugging, mainly.
