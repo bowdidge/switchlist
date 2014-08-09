@@ -49,7 +49,6 @@
 	[super awakeFromInsert];
 	if ([self name]== nil) {
 		[self setName: @"New train"];
-		// [self setAcceptedCarTypes: @"Any"];
 	}
 }
 
