@@ -95,6 +95,7 @@
 		3E60820913615B940054DBA1 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E60B66F1318B49C007C094D /* ReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60B66E1318B49C007C094D /* ReportTest.m */; };
 		3E620F011616C20A00959403 /* CargoEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E620F001616C20800959403 /* CargoEditViewController.m */; };
+		3E651EDA1996F91B000AD418 /* layout.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 3E651ED91996F91B000AD418 /* layout.iconset */; };
 		3E65E56016116C120083ECF0 /* AddCarType.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3E7B6EA61287C9F60069FF31 /* AddCarType.xcmappingmodel */; };
 		3E65E56116116C120083ECF0 /* AddCargoRate.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */; };
 		3E65E56216116C120083ECF0 /* AddSidingLength.xcmappingmodel in Resources */ = {isa = PBXBuildFile; fileRef = 3E983483145A79CF00E1C2A6 /* AddSidingLength.xcmappingmodel */; };
@@ -369,9 +370,7 @@
 		3EABC3C416069C5F00EBD6C5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75BF1606400400891318 /* CoreData.framework */; };
 		3EABEAE6169B38150016D751 /* IndustryChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EABEAE5169B38150016D751 /* IndustryChooser.m */; };
 		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
-		3EB78AE9199337BD00476758 /* layout.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EB78AE8199337BD00476758 /* layout.icns */; };
 		3EB78AEB199337E800476758 /* layout.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EB78AEA199337E800476758 /* layout.icns */; };
-		3EB78AED199337F200476758 /* icon_512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB78AEC199337F200476758 /* icon_512x512.png */; };
 		3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */; };
 		3EC1D47E160AEDB700765095 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC1D47D160AEDB700765095 /* QuartzCore.framework */; };
 		3EC3B0931277DF6600C00AD3 /* EntireLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */; };
@@ -712,6 +711,7 @@
 		3E620F001616C20800959403 /* CargoEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CargoEditViewController.m; path = iPad/CargoEditViewController.m; sourceTree = "<group>"; };
 		3E62C0F8128E610E00520752 /* YardTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YardTest.h; path = Engine/YardTest.h; sourceTree = "<group>"; };
 		3E62C0F9128E610E00520752 /* YardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YardTest.m; path = Engine/YardTest.m; sourceTree = "<group>"; };
+		3E651ED91996F91B000AD418 /* layout.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = layout.iconset; path = resources/layout.iconset; sourceTree = "<group>"; };
 		3E6B58A4140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Engine/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		3E6B58A5140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Engine/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		3E6B59B4140CB1CD006FFDD3 /* builtin-templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "builtin-templates"; sourceTree = "<group>"; };
@@ -809,9 +809,7 @@
 		3EB507BC13243F2600D85B59 /* StringHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringHelpers.m; path = Engine/StringHelpers.m; sourceTree = "<group>"; };
 		3EB677B6130E4B460012DE1D /* CargoAssignerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CargoAssignerTest.h; path = Engine/CargoAssignerTest.h; sourceTree = "<group>"; };
 		3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CargoAssignerTest.m; path = Engine/CargoAssignerTest.m; sourceTree = "<group>"; };
-		3EB78AE8199337BD00476758 /* layout.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = layout.icns; path = resources/layout.icns; sourceTree = "<group>"; };
 		3EB78AEA199337E800476758 /* layout.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = layout.icns; path = resources/layout.icns; sourceTree = "<group>"; };
-		3EB78AEC199337F200476758 /* icon_512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_512x512.png; path = resources/layout.iconset/icon_512x512.png; sourceTree = "<group>"; };
 		3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = NoSidingToLatest.xcmappingmodel; sourceTree = "<group>"; };
 		3EC1D47D160AEDB700765095 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		3EC3B0881277DEFE00C00AD3 /* Unit tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1002,9 +1000,6 @@
 		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				3EB78AEC199337F200476758 /* icon_512x512.png */,
-				3EB78AEA199337E800476758 /* layout.icns */,
-				3EB78AE8199337BD00476758 /* layout.icns */,
 				3EC1D47D160AEDB700765095 /* QuartzCore.framework */,
 				3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */,
 				3E917A130951659A004647C7 /* Reports */,
@@ -1047,6 +1042,7 @@
 				3E0C52461524299D0036AAE7 /* RockSalt.ttf */,
 				3EA487BC15D83EA7008A169F /* typicalIndustry.plist */,
 				3E6B59B4140CB1CD006FFDD3 /* builtin-templates */,
+				3EB78AEA199337E800476758 /* layout.icns */,
 				3E0E27AA13F63AD500488E4D /* network_wireless.jpg */,
 				3E90293F161795120010BD74 /* pg84.html */,
 				3EE5ED9D131A1E03009E2C83 /* SwitchList.help */,
@@ -1056,6 +1052,7 @@
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
 				2A37F4B4FDCFA73011CA2CEA /* SwitchListWindow.nib */,
 				8D15AC360486D014006FF6A4 /* Info.plist */,
+				3E651ED91996F91B000AD418 /* layout.iconset */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				3EFA164309515C1500654CC9 /* Report.nib */,
 				3E6C6EC712F007E200C7A8D1 /* Credits.html */,
@@ -1806,7 +1803,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E65E56016116C120083ECF0 /* AddCarType.xcmappingmodel in Resources */,
-				3EB78AED199337F200476758 /* icon_512x512.png in Resources */,
 				3E65E56116116C120083ECF0 /* AddCargoRate.xcmappingmodel in Resources */,
 				3E65E56216116C120083ECF0 /* AddSidingLength.xcmappingmodel in Resources */,
 				3E65E56316116C120083ECF0 /* NoSidingToLatest.xcmappingmodel in Resources */,
@@ -1830,11 +1826,11 @@
 				3E6B59D0140CB1CD006FFDD3 /* builtin-templates in Resources */,
 				3EE19374145C924000CB614D /* car-report.html in Resources */,
 				3EE19379145C925200CB614D /* industry-report.html in Resources */,
-				3EB78AE9199337BD00476758 /* layout.icns in Resources */,
 				3EE1937A145C925200CB614D /* reserved-car-report.html in Resources */,
 				3EE1943C145CCD6500CB614D /* yard-report.html in Resources */,
 				3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */,
 				3E6BA8F8155266880030AE7D /* layout.css in Resources */,
+				3E651EDA1996F91B000AD418 /* layout.iconset in Resources */,
 				3E6BA8F9155266880030AE7D /* switchlist.css in Resources */,
 				3E6BA8FA155266880030AE7D /* switchlist-iphone.css in Resources */,
 				3E6BA8FB155266880030AE7D /* switchlist-ipad.css in Resources */,
