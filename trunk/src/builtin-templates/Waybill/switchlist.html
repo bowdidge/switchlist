@@ -1,0 +1,532 @@
+<!-- Example switchlist template for generating waybills
+     in the Tony Thompson style.
+
+  This file is an HTML template for the SwitchList program,
+  http://www.vasonabranch.com/railroad/switchlist.html
+  
+  To use, create the directory ~/Library/Application Support/SwitchList/Waybill
+  and copy this file into it. 
+
+  Robert Bowdidge, April 9, 2012.
+  -->
+<html>
+<head>
+<title>Waybill</title>
+</style>
+<script type="text/javascript">
+// Variables for Customization
+// All the contents here are for details that can be customized for your
+// railroad to change the titles of waybills and make the routing
+// fields more realistic.  Change these to match your layout.
+
+// Each waybill has a banner title at the top naming the railroad that
+// was responsible for the origin of the load.
+// For any cars on your layout, add an "INITIALS": "LONGNAME", line
+// below.
+var initialsToRailroadArray = {
+  "ACL": "Atlantic Coast Line",
+  "ATSF":"Santa Fe Railway",
+  "C&O": "Chesapeake and Ohio Railroad",
+  "CB&Q": "Chicago, Burlington and Quincy Railroad",
+  "DRGW": "Denver and Rio Grande Railroad",
+  "D&RGW": "Denver and Rio Grande Railroad",
+  "FEC": "Florida East Coast Railroad",
+  "L&N":"Louisville and Nashville Railway Co.",
+  "NWP":"Northwestern Pacific Railroad",
+  "NP":"Northern Pacific",
+  "NYC":"New York Central",
+  "PENN":"Pennsylvania Railroad<br>New York, NY",
+  "PFE":"Pacific Fruit Express, Inc.",
+  "P&LE":"Pittsburgh and Lake Erie",
+  "PRR": "Pennsylvania Railroad",
+  "PENN": "Pennsylvania Railroad",
+  "SAL":"Seaboard Air Line",
+  "SHPX":"Shippers Tank Car Corp.",
+  "SOO": "The Soo Line",
+  "SP":"Southern Pacific Railroad",
+  "SP&S":"Seattle, Portland, and Spokane Railroad",
+  "TNO": "Texas and New Orleans",
+  "T&NO": "Texas and New Orleans",
+  "UTLX":"Union Tank Car Line, Inc.<br>Pittsburgh PA",
+  "WP":"Western Pacific Company<br>San Francisco, CA",
+};
+
+// Whether to show anything in the routing box. 
+var SHOW_ROUTING = true;
+
+// For any car heading home (usually unloaded), specify a realistic
+// routing based on the car's initials.  I'm not sure if there was a
+// standard for routing symbols; choosing something close to airport
+// initials or abbreviations for towns is probably accurate enough.
+// If the railroad does not appear here, then the "routingFromOffline"
+// will suggest a routing that would have gotten the car from any
+// offline location.
+var routingHome = {
+  'ATSF': 'OAK',
+  'CB&Q': 'SLC-CHY-DEN',
+  'CEI': 'SLC-CHI',
+  'DOWX': 'LA-ELP-HOU',
+  'L&N' : 'LA-ELP-HOU',
+  'NWP' : 'SF-SAU',
+  'NP' : 'OAK-PORT',
+  'NYC': 'OAK-SLC-CHI',
+  'PENN' : 'OAK-SLC-CHI',
+  'PFE' : 'OAK',
+  'P&LE': 'OAK-SLC-CHI-CLE',
+  'RI': 'LA-TUC',
+  'SAL': 'LA-ELP-HOU-BIR',
+  'SHPX': 'LA',
+  'SP': 'SJ',
+  'SP&S': 'OAK-SAC-PORT',
+  'TNO': 'LA',
+  'UTLX': 'OAK',
+  'WP': '',
+};
+
+// For any loaded car coming here (usually loaded), specify a realistic
+// routing based on the car's initials.  If a railroad isn't listed here,
+// then a choice will be made from the "routingFromOffline" variable below.
+var routingHere = {
+  'ATSF': 'ABQ-LA-Richmond',
+  'L&N' : 'HOU-ELP-LA-SJ',
+  'NWP' : 'SAU-SF',
+  'NP' : 'PORT-OA-SJK',
+  'NYC': 'CHI-SLC-OAK-SJ',
+  'PENN' : 'CHI-SLC-OAK-SJ',
+  'PFE' : 'OAK-SJ',
+  'P&LE': 'CLE-CHI-SLC-OAK-SJ',
+  'SAL': 'BIR-HOU-ELP-LA-SJ',
+  'SHPX': 'LA-SJ',
+  'SP': '',
+  'SP&S': 'PORT-SAC-OAK-SJ',
+  'UTLX': 'OAK-SJ',
+  'WP': '',
+};
+
+// For any car arriving on the railroad where routingHere had no
+// suggestion, choose a routing based on the offline location where
+// the car came from, or the staging yard that the car is coming from.
+// Names should be the INDUSTRY or YARD name.
+var routingFromOffline = {
+  'East Coast': 'NYC-SYR-CHI-SLC-OAK',
+  'Midwest': 'KC-TUC-LA-SJ',
+  'West Coast': 'SAC-SJ',
+  'San Jose Yard': 'LA-SJ',
+  'Santa Cruz Yard': 'LA-WVJ-SC',
+};
+
+// For any car leaving the railroad where routingHome had no suggestion,
+// choose a routing based on the offline location where the car is going, or
+// the staging yard where the car will end up.
+// Names should be the INDUSTRY or YARD name.
+var routingToOffline = {
+  'East Coast': 'OAK-SLC-CHI-PIT-BAL',
+  'Midwest': 'SLC-NP-STL',
+  'West Coast': 'SJ-SAC',
+  'San Jose Yard': 'SJ-FRE',
+  'Santa Cruz Yard': 'SCZ-WVJ-LA',
+};
+//
+// End of customization.
+//
+</script>
+<style>
+body { font-family: Arial, Helvetica, sans-serif; 
+       font-size:10; }
+div.waybill {
+  width: 400px;
+  height: 380px;
+  page-break-inside:avoid;
+  border: 1px solid black;
+}
+
+tr {valign:top;}
+td { font-size: 10; valign:top;}
+table { border-collapse: collapse; 
+        width: 100%;
+      }
+span.typed {
+  font-family: Courier;
+  font-size: 14px;
+}
+tr.lineAbove {
+  border-top:solid 1px;
+  height: 40px;
+  vertical-align:top;
+}
+tr.shortLineAbove {
+  border-top:solid 1px;
+}
+td.lineRight {
+  vertical-align: top;
+  border-right:solid 1px;
+}
+div.rightItem {
+  width: 80%;
+  float: left;
+}
+div.rightEntry {
+  width: 20%;
+  float: left;
+}
+span.roman {
+  font-family: "Times New Roman", Times, serif;
+   font-size:18;
+}
+</style>
+<script type="text/javascript">
+/**
+ *  Routing:
+ * 
+ * If car is unloaded, and destined to be online, then it's probably
+ * coming from neasrby one way or another.  Leave the routing blank.
+ *
+ * If car is loaded, and destined to be online, then routing is from
+ * the source.  If the source is also online, then no routing.
+ * If the source is from nearby, then choose some simple routing.
+ * If source is foreign, make a choice based on where that is.
+ *
+ * If car is unloaded, has a cargo,  and destined offline, it's going to
+ * be loaded.  Choose a routing based on the source of the cargo.
+ * 
+ * If the car is unloaded, does not have a cargo, and is destined offline,
+ * can't happen.
+ *
+ * If car is unloaded, does not have a cargo, and is destined for staging,
+ * choose a routing based on initials.
+ * 
+ * if car is unloaded, has a cargo, and is desgined online, then the source
+ * is probably local because it's an empty.
+ *
+ * If the car is unloaded, has a cargo, and is destined offline, then it's
+ * likely routing home.  Choose routing based on initials.
+ */
+
+function ChooseRoute(hints) {
+  var isLoaded = hints[0];
+  var hasCargo = hints[1];
+  // Is next destination online?
+  var isSourceOnline = hints[2];
+  var isDestinationOnline = hints[3];
+  var initials = hints[4];
+  var source = hints[5];
+  var destination = hints[6];
+  var newRoute = "";
+  if (isLoaded == 1) {
+    if (isDestinationOnline == 0) {
+      newRoute = routingToOffline[destination];
+    } else {
+      // Heading in.
+      newRoute = routingFromOffline[source];
+    }
+  } else {
+    if (isDestinationOnline ==0) {
+      // Going out.
+      if (initials in routingHome) {
+        newRoute = routingHome[initials];
+      } else {
+        newRoute = routingToOffline[destination];
+      }
+    } else {
+      // Coming in.
+      if (initials in routingHere) {
+        newRoute = routingHere[initials];
+      } else {
+        newRoute = routingFromOffline[initials];
+      }
+    }
+  }
+
+  if (newRoute == undefined) {
+`    newRoute = ""
+  }  
+  return newRoute;
+}
+
+/**
+ * Run through all the 'route' spans and replace the source station name
+ * with a likely route from the source station to this layout.
+ */
+function OnLoad() {
+  // TODO(bowdidge): This requires some rethinking.
+  // There's four possible states:
+  // 1: Car has a cargo, and is not yet loaded, and will load on the
+  // railroad.  Routing would be the routing from the other railroad to
+  // whereever the car is now.
+  // 2: Car has a cargo and is loaded. If destination is on the railroad,
+  // then 
+  // that means it's going to do 
+  var routes = document.getElementsByClassName("routeLoaded");
+  for (var i=0;i<routes.length;i++) {
+    var route = routes[i];
+    var hints = route.innerHTML.split(',');
+    route.innerHTML = ChooseRoute(hints)
+  }
+
+  var routes = document.getElementsByClassName("routeEmpty");
+  for (var i=0;i<routes.length;i++) {
+    var route = routes[i];
+    var hints = route.innerHTML.split(',');
+    route.innerHTML = ChooseRoute(hints)
+  }
+
+  // Replace the railroadName span with the actual name of the
+  // railroad that handled the initial handling of the car.
+  // TODO(bowdidge): Should only do this for incoming loads where the
+  // sender was offline. Otherwise, SP would be the biller. -->
+  var railroads = document.getElementsByClassName("railroadName");
+  for (var i=0;i<railroads.length;i++) {
+    var initialSpan = railroads[i]
+    var initials = initialSpan.firstChild.data;
+    var railroadName = initialsToRailroadArray[initials];
+    if (!railroadName) {
+      railroadName = "Southern Pacific Company";
+    }
+    initialSpan.innerHTML = railroadName;
+  }
+}
+
+</script>
+</head>
+<body onload="OnLoad()">
+<div id="1">
+<!-- Leave in as a place for JavaScript to send errors. -->
+</div>
+{% for car in train.allFreightCarsInVisitOrder %}
+{% if car.cargo and car.isLoaded %}
+<div class="waybill" style="color:Linen;">
+<table border="0" style="text-align: center;">
+<tr>
+  <td>721</td>
+  <!-- Put the car's initials in the place where the name of the railroad
+       should go, and let JavaScript at load time replace the initials with
+       the full name of the railroad. -->
+  <td class="railroadName">{{car.initials}}</td>
+  <td>721</td>
+</tr>
+<tr>
+  <td></td>
+  <td>
+    <span class="roman">FREIGHT WAYBILL</span>
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td colspan="3">
+    <span style="font-size: 10;">
+    TO BE USED FOR SINGLE CONSIGNMENTS,
+    CARLOAD, and LESS CARLOAD
+    </span>
+  </td>
+</tr>
+</table>
+<table>
+<tr class="lineAbove">
+  <td class="lineRight">INITIALS</br>
+  <span class="typed">{{car.initials}}</span>
+  </td>
+  <td>NUMBER<br>
+    <span class="typed">{{car.number}}</span>
+  </td>
+</tr>
+<tr class="lineAbove">
+  <td class="lineRight">TO STATION     STATE<br>
+  <span class="typed">{{car.nextStop.location.name}}</span>
+  </td>
+  <td>FROM     STATION STATE<br>
+    <span class="typed">{{car.cargo.source.location.name}}</span>
+  </td>
+</tr>
+<tr class="lineAbove">
+  <td class="lineRight">CONSIGNEE AND ADDRESS<br>
+    <span class="typed">{{car.nextStop.name}}</span>
+  </td>
+  <td>SHIPPER<br>
+    <span class="typed">{{car.cargo.source.name}}</span>
+  </td>
+</tr>
+<tr class="lineAbove">
+  <td class="lineRight" rowspan="3">
+    ROUTE<br>
+    <!-- Stuff the cargo's originating town into the ROUTE field,
+         and then let some JavaScript convert that to a more realistic
+         sequence of railroads or places. -->
+    <span class="typed"><span class="routeLoaded">{% if car.isLoaded%}1{%else%}0{%/if%},{%if car.cargo %}1{%else%}0{%/if%},{{car.cargo.source.isOnline}},{{car.cargo.destination.isOnline}},{{car.initials}},{{car.cargo.source.name}},{{car.cargo.destination.name}}</span></span>
+  </td>
+  <td style="border-top:solid 1px;">
+    <div class="rightItem">
+      AAR CLASS OF<br>
+      CAR ORDERED
+    </div>
+    <div class="rightEntry">
+      <span class="typed" style="text-align: right;">{{car.carTypeRel.carTypeName}}</span>
+    </div>
+ </td>
+</tr>
+<tr>
+  <td style="border-top:solid 1px;">
+    <div class="rightItem">
+     LENGTH/CAPY OF<br>
+     CAR ORDERED
+    </div>
+    <div class="rightEntry">
+      <span class="typed">{{car.length}}'</span>
+    </div>
+  </td>
+</tr>
+<tr>
+  <td style="border-top:solid 1px;">
+    <div class="rightItem">
+      WEIGHED<br>
+      <span style="font-size:9px;">E=Estimated S=Shipper's Tested Weights<br>
+      R=Railroad Scale	T=Tariff Classification</span>
+    </div>
+    <div class="rightEntry">
+      <span class="typed">R</span>
+    </div>
+  </td>
+</tr>
+<tr class="shortLineAbove">
+  <td>NO. PKGS.</td>
+  <td>
+    DESCRIPTION OF ARTICLES
+  </td>
+</tr>
+<tr class="lineAbove">
+  <td valign="top">
+    <span class="typed">1 car</span>
+  </td>
+  <td>
+    <span class="typed">{{car.cargo.name}}</span>
+  </td>
+<tr class="lineAbove">
+  <td colspan="2">
+    <span style="font-size: 10px;">
+    ON C.L. TRAFFIC-INSTRUCTIONS<br>
+    Regarding Icing, Ventilation, Etc.)<br>
+    & EXCEPTIONS
+    </div>x
+  </td>
+</tr>
+<tr style="height: 40px;">
+</tr>
+</table>
+</div>
+{% else %}
+<div class="waybill" style="background: #fff380;">
+<center>
+Southern Pacific Company
+<br>
+<span style="font-size:20pt; font-weight:bold;">EMPTY CAR BILL</span>
+</center>
+<table>
+<tr class="lineAbove">
+  <td class="lineRight">CAR INITIAL<br>
+  <span class="typed">{{car.initials}}</span>
+  </td>
+  <td>CAR NUMBER<br>
+    <span class="typed">{{car.number}}</span>
+  </td>
+</tr>
+<tr class="lineAbove">
+  <td class="lineRight">
+    AAR CLASS OF<br>
+    CAR ORDERED<br>
+    <span class="typed">{{car.carTypeRel.carTypeName}}</span>
+  </td>
+  <td>
+    LENGTH/CAPY OF<br>
+    CAR ORDERED<br>
+    <span class="typed">{{car.length}}</span>
+  </td>
+</tr>
+<tr class="lineAbove">
+  <td colspan="2" style="text-align:center">
+   <span style="font-size: 14pt;">FOR HOME</span><br>
+  </td>
+</tr>
+{% if car.hasCargo == 1 %}
+<tr>
+  <td>
+    Billed from
+  </td>
+</tr>
+<tr>
+  <td>
+    To or Via
+  </td>
+</tr>
+<tr class="lineAbove">
+  <td colspan="2" style="text-align:center;">
+   <span style="font-size: 14pt;">FOR LOADING</span>
+  </td>
+</tr>
+<tr>
+  <td style="width: 30%">Billed from</td>
+  <td style="width: 70%">
+    <SPAN class="typed">{{car.currentLocation.location.name}}</span>
+  </td>
+</tr>
+<tr>
+  <td style="width: 30%"> To</td>
+  <td style="width: 70%">
+    <SPAN class="typed">{{car.nextStop.location.name}}</span>
+  </td>
+</tr>
+<tr>
+  <td style="width: 30%">Shipper</td>
+  <td style="width: 70%">
+    <SPAN class="typed">{{car.nextStop.name}}</span>
+    Spot
+  </td>
+</tr>
+{% else %}
+<tr>
+  <td style="width:30%">Billed from</td>
+  <td style="width:70%">
+    <SPAN class="typed">{{car.currentLocation.location.name}}</span>
+  </td>
+</tr>
+<tr>
+  <td style="width:30%">
+    To or Via
+  </td>
+  <td style="width:70%">
+    <span class="typed"><span class="routeEmpty">{% if car.isLoaded%}1{%else%}0{%/if%},{%if car.cargo %}1{%else%}0{%/if%},{{car.cargo.source.isOnline}},{%if car.nextIndustry.isOnline%}1{%else%}0{%/if%},{{car.initials}},,{{car.nextIndustry.name}}</span></span>
+ </td>
+</tr>
+<tr class="lineAbove">
+  <td colspan="2" style="text-align:center;">
+   <span style="font-size: 14pt;">FOR LOADING</span>
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    Billed from
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    To
+  </td>
+</tr>
+<tr>
+  <td colspan="2">
+    Shipper
+    Spot
+  </td>
+</tr>
+{% /if %}
+</table>
+<hr>
+<center>
+INSTRUCTIONS-This form must accompany all empty foreign cars and must
+be used in billing private line cars under General Order Ten.
+</center>
+</div>
+{% /if %}
+<!-- add white space -->
+<br>
+{% /for %}
+</body>
+</html>
