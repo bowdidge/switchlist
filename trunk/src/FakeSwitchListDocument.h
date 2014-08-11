@@ -42,6 +42,7 @@
 	DoorAssignmentRecorder *recorder;
     BOOL summaryInfoUpdated_;
     LayoutController *layoutController_;
+    NSString* preferredTemplate_;
 }
 - (id) initWithLayout: (EntireLayout*) layout;
 - (EntireLayout*) entireLayout;
@@ -49,5 +50,11 @@
 - (id) layoutController;
 - (void) updateSummaryInfo: (id) sender;
 - (BOOL) summaryInfoUpdated;
+
+// Set and retrieve name of switchlist template being used.
+- (NSString*) preferredSwitchListStyle;
+- (void) setPreferredSwitchListStyle: (NSString*) preferredTemplate;
+
+- (NSArray*) optionalFieldKeyValues;
 @end
 

@@ -32,7 +32,7 @@
 #import <Cocoa/Cocoa.h>
 
 #import "MGTemplateEngine/MGTemplateEngine.h"
-
+#import "SwitchListDocumentInterface.h"
 @class EntireLayout;
 @class HTMLSwitchlistRenderer;
 @class SimpleHTTPConnection;
@@ -55,10 +55,11 @@ extern NSString *CurrentHostname();
 - (void) processURL: (NSURL*) url connection: (SimpleHTTPConnection*) conn userAgent: (NSString*) userAgent;
 // For mocking.
 - (id) initWithServer: (SimpleHTTPServer*) server withBundle: (NSBundle*) mainBundle withRenderer: (HTMLSwitchlistRenderer*) renderer;
-- (void) setTemplate: (NSString*) templateName;	
 
 // For testing.
-- (void) processRequestForCarListForLayout: (SwitchListDocument*) document;
+- (void) processRequestForCarListForLayout: (NSDocument<SwitchListDocumentInterface>*) document;
+- (void) processRequestForIndustryListForLayout: (NSDocument<SwitchListDocumentInterface>*) document;
+- (void) processRequestForLayout: (NSDocument<SwitchListDocumentInterface>*) document train: (NSString*) trainName forIPhone: (BOOL) isIPhone;
 // Marks the given train as completed, and moves cars to final locations.
 - (void) processCompleteTrain: (NSString*) trainName forLayout: (SwitchListDocument*) document;
 

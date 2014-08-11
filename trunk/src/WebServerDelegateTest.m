@@ -238,6 +238,34 @@
 	XCTAssertContains(@"<td>WP 1</td>", server_->lastMessage, @"");
 }
 
+- (void) testSwitchListIndustryListUsesTemplate {
+	[self makeThreeStationLayout];
+	[self makeThreeStationTrain];
+	FakeSwitchListDocument *doc = [[[FakeSwitchListDocument alloc] initWithLayout: entireLayout_] autorelease];
+    [doc setPreferredSwitchListStyle: @"Line Printer"];
+    
+	[webServerDelegate_ processRequestForIndustryListForLayout: (SwitchListDocument*) doc];
+	XCTAssertEqual(200, server_->lastCode, @"Page not loaded.");
+	XCTAssertNotNil(server_->lastMessage, @"Expected server to return something, got nil.");
+	// Line printer uses the title CAR LOCATIONS WORKSHEET.  The default doesn't.
+	XCTAssertContains(@"CAR LOCATIONS WORKSHEET", server_->lastMessage, @"");
+}
+
+
+- (void) testSwitchListUsesTemplate {
+	[self makeThreeStationLayout];
+	ScheduledTrain *train = [self makeThreeStationTrain];
+	FakeSwitchListDocument *doc = [[[FakeSwitchListDocument alloc] initWithLayout: entireLayout_] autorelease];
+    [doc setPreferredSwitchListStyle: @"Line Printer"];
+    
+	[webServerDelegate_ processRequestForLayout: doc train: [train name] forIPhone: NO];
+	XCTAssertEqual(200, server_->lastCode, @"Page not loaded.");
+	XCTAssertNotNil(server_->lastMessage, @"Expected server to return something, got nil.");
+	// Look for representative string in the Line Printer template.  Fragile, sorry.
+	XCTAssertContains(@"<div class=\"switch-list-title\">SWITCH LIST</div>", server_->lastMessage, @"");
+}
+
+
 - (void) testTrainCompleted {
 	[self makeThreeStationLayout];
 	ScheduledTrain *train = [self makeThreeStationTrain];

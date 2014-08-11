@@ -140,22 +140,27 @@ NSString *CurrentHostname() {
 	[server_ stopResponding];
 }
 
-// Change the default switchlist template to the named one.
-// If templateName is Handwritten or is nil, then use the default template.
-- (void) setTemplate: (NSString*) templateName {
-    // No longer used.
-}
-
 - (void) processError: (NSURL *) badURL {
 	[server_ replyWithStatusCode: HTTP_NOT_FOUND
 						message: [NSString stringWithFormat: @"Unknown URL %@", [badURL path]]];
 }
 
-- (void) processRequestForLayout: (SwitchListDocument*) document train: (NSString*) trainName forIPhone: (BOOL) isIPhone {
+- (void) updatePreferredTemplateForDocument: (SwitchListDocument*) document {
+    // Hack.  We should be setting this per-request, but other files in the template (css,
+    // images, etc) would be searched in the built-in default files.
+    // Instead, assume only one document at a time would
+    // ever be using the web interface - not a big stretch - and remember the last
+    // document and template.
+    if (document) {
+        [htmlRenderer_ setTemplate: [document preferredSwitchListStyle]];
+    }
+}
+
+- (void) processRequestForLayout: (NSDocument<SwitchListDocumentInterface>*) document train: (NSString*) trainName forIPhone: (BOOL) isIPhone {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
+    [self updatePreferredTemplateForDocument: document];
 	ScheduledTrain *train = [layout trainWithName: trainName];
-	[htmlRenderer_ setTemplate: [document preferredSwitchListStyle]];
     [htmlRenderer_ setOptionalSettings: [document optionalFieldKeyValues]];
     if (!train) {
         [server_ replyWithStatusCode: HTTP_NOT_FOUND
@@ -169,44 +174,53 @@ NSString *CurrentHostname() {
 
 
 // Generates HTML response for the car list for the names layout.
-- (void) processRequestForCarListForLayout: (SwitchListDocument*) document {
+- (void) processRequestForCarListForLayout: (NSDocument<SwitchListDocumentInterface>*) document {
 	// TODO(bowdidge): Current document is nil whenever not active.
 	EntireLayout *layout = [document entireLayout];
+    [self updatePreferredTemplateForDocument: document];
 
 	NSString *message = [htmlRenderer_ renderCarlistForLayout: layout];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
 // Returns HTML for industry list, showing the cars at each industry 
-- (void) processRequestForIndustryListForLayout: (SwitchListDocument*) document {
+- (void) processRequestForIndustryListForLayout: (NSDocument<SwitchListDocumentInterface>*) document {
 	EntireLayout *layout = [document entireLayout];
+    [self updatePreferredTemplateForDocument: document];
+
 	NSString *message = [htmlRenderer_ renderIndustryListForLayout: layout];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
 // Returns HTML for yard report.
-- (void) processRequestForYardReportForLayout: (SwitchListDocument*) document {
+- (void) processRequestForYardReportForLayout: (NSDocument<SwitchListDocumentInterface>*) document {
 	EntireLayout *layout = [document entireLayout];
-	NSString *message = [htmlRenderer_ renderYardReportForLayout: layout];
+    [self updatePreferredTemplateForDocument: document];
+
+    NSString *message = [htmlRenderer_ renderYardReportForLayout: layout];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
 // Returns HTML for reserved car report.
-- (void) processRequestForReservedCarReportForLayout: (SwitchListDocument*) document {
+- (void) processRequestForReservedCarReportForLayout: (NSDocument<SwitchListDocumentInterface>*) document {
 	EntireLayout *layout = [document entireLayout];
+    [self updatePreferredTemplateForDocument: document];
+
 	NSString *message = [htmlRenderer_ renderReservedCarReportForLayout: layout];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
 // Returns HTML for cargo report.
-- (void) processRequestForCargoReportForLayout: (SwitchListDocument*) document {
+- (void) processRequestForCargoReportForLayout: (NSDocument<SwitchListDocumentInterface>*) document {
 	EntireLayout *layout = [document entireLayout];
+    [self updatePreferredTemplateForDocument: document];
+
 	NSString *message = [htmlRenderer_ renderCargoReportForLayout: layout];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
 
 // Marks the given train as completed, and moves cars to final locations.
-- (void) processCompleteTrain: (NSString*) trainName forLayout: (SwitchListDocument*) document {
+- (void) processCompleteTrain: (NSString*) trainName forLayout: (NSDocument<SwitchListDocumentInterface>*) document {
 	ScheduledTrain *train  = [[document entireLayout] trainWithName: trainName];
 	if (!train) {
 		[server_ replyWithStatusCode: HTTP_OK message: [NSString stringWithFormat: @"Unknown train %@", trainName]];
@@ -218,7 +232,7 @@ NSString *CurrentHostname() {
 }
 
 // Given parameters to changeCarLocation, updates database.
-- (void) processChangeLocationForLayout: (SwitchListDocument*) document car: (NSString*) carName location: (NSString*) locationName {
+- (void) processChangeLocationForLayout: (NSDocument<SwitchListDocumentInterface>*) document car: (NSString*) carName location: (NSString*) locationName {
 	carName = [carName stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
 	EntireLayout *entireLayout = [document entireLayout];
 	FreightCar *fc = [entireLayout freightCarWithName: carName];
@@ -240,7 +254,7 @@ NSString *CurrentHostname() {
 						 message: @"OK"];
 }	
 	
-- (void) processRequestForLayout: (SwitchListDocument*) document {
+- (void) processRequestForLayout: (NSDocument<SwitchListDocumentInterface>*) document {
 	NSString *message = [htmlRenderer_ renderLayoutPageForLayout: [document entireLayout]];
 	[server_ replyWithStatusCode: HTTP_OK message: message];
 }
@@ -421,6 +435,8 @@ NSString *CurrentHostname() {
 		}
 	}
 	
+    // TODO(bowdidge): Find way to identify which layout the file should be served from, and thus what template to use.
+    // For now, defaults to previous template.
 	[self processRequestForFile: [url path]];
 }
 
