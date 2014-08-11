@@ -94,7 +94,7 @@
 	}
 	
 	// Next, check in the app itself.
-	NSString *resourceTemplateDirectory = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: templateName];
+	NSString *resourceTemplateDirectory = [[mainBundle_ resourcePath] stringByAppendingPathComponent: templateName];
 	
 	if ([[NSFileManager defaultManager] fileExistsAtPath: resourceTemplateDirectory]) {
 		[templateDirectory_ release];
