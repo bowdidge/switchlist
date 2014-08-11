@@ -145,7 +145,7 @@ NSString *CurrentHostname() {
 						message: [NSString stringWithFormat: @"Unknown URL %@", [badURL path]]];
 }
 
-- (void) updatePreferredTemplateForDocument: (SwitchListDocument*) document {
+- (void) updatePreferredTemplateForDocument: (NSDocument<SwitchListDocumentInterface>*) document {
     // Hack.  We should be setting this per-request, but other files in the template (css,
     // images, etc) would be searched in the built-in default files.
     // Instead, assume only one document at a time would

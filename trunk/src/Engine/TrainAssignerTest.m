@@ -857,7 +857,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	// Should fail because of missing source.
 
 	XCTAssertEqual(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc], @"Incorrectly assigns car with missing source for cargo.");
-	XCTAssertEqualInt(1, [[assigner errors] count], @"Expected one error from train assigner, found %ld", [[assigner errors] count]);
+	XCTAssertEqualInt(1, [[assigner errors] count], @"Expected one error from train assigner, found %ld", (unsigned long) [[assigner errors] count]);
 	XCTAssertContains(@"Cargo 'cargo' does not have source set", [[assigner errors] objectAtIndex: 0],
 					 @"Wrong error for missing source");
 }
@@ -876,7 +876,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	TrainAssigner *assigner = [[[TrainAssigner alloc] initWithLayout: entireLayout_ trains: [NSArray arrayWithObject: myTrain_] useDoors: NO] autorelease];
 	// Should fail because of missing destination.
 	XCTAssertEqual(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc2], @"Incorrectly assigns car with missing destination for cargo.");
-	XCTAssertEqualInt(1, [[assigner errors] count], @"Expected one error from train assigner, found %ld", [[assigner errors] count]);
+	XCTAssertEqualInt(1, [[assigner errors] count], @"Expected one error from train assigner, found %ld", (unsigned long) [[assigner errors] count]);
 	XCTAssertContains(@"Cargo 'cargo' does not have destination set", [[assigner errors] objectAtIndex: 0],
 						 @"Wrong error for missing source: found %@", [[assigner errors] objectAtIndex: 0]);
 	
@@ -897,7 +897,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	// Should fail because of missing destination.
 	XCTAssertEqual(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
 	
-	XCTAssertEqualInt(2, [[assigner errors] count], @"Expected two errors from train assigner, found %ld", [[assigner errors] count]);
+	XCTAssertEqualInt(2, [[assigner errors] count], @"Expected two errors from train assigner, found %ld", (unsigned long) [[assigner errors] count]);
 	XCTAssertContains(@"'Yard without Town-yard' does not have its town set", [[assigner errors] objectAtIndex: 0],
 					 @"Wrong error for missing source");
 	XCTAssertContains(@"Cannot find route for car SP 1 from A to a yard", [[assigner errors] objectAtIndex: 1],
@@ -923,7 +923,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	TrainAssigner *assigner = [[[TrainAssigner alloc] initWithLayout: entireLayout_ trains: [NSArray arrayWithObject: myTrain_] useDoors: NO] autorelease];
 	// Should fail because of missing destination.
 	XCTAssertEqual(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
-	XCTAssertEqualInt(2, [[assigner errors] count], @"Expected two errors from train assigner, found %ld", [[assigner errors] count]);
+	XCTAssertEqualInt(2, [[assigner errors] count], @"Expected two errors from train assigner, found %ld", (unsigned long) [[assigner errors] count]);
 	XCTAssertContains(@"does not have its town set", [[assigner errors] objectAtIndex: 0],
 					 @"Wrong error for missing source, found %@", [[assigner errors] objectAtIndex: 0]);
 	XCTAssertContains(@"Cannot find route to get car SP 1 from A to 'No Value'", [[assigner errors] objectAtIndex: 1],
@@ -951,7 +951,7 @@ NSString *FREIGHT_CAR_2 = @"UP 2";
 	// Should fail because of missing destination.
 	XCTAssertEqual(CarAssignmentRoutingProblem, [assigner assignCarToTrain: fc1], @"assignCarToTrain for non-existent industry did not fail.");
 	
-	XCTAssertEqualInt(2, [[assigner errors] count], @"Expected two errors from train assigner, found %ld", [[assigner errors] count]);
+	XCTAssertEqualInt(2, [[assigner errors] count], @"Expected two errors from train assigner, found %ld", (unsigned long) [[assigner errors] count]);
 
 	XCTAssertContains(@"does not have its town set", [[assigner errors] objectAtIndex: 0],
 					 @"Wrong error for missing source: %@", [[assigner errors] objectAtIndex: 0]);

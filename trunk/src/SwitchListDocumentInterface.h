@@ -28,8 +28,9 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-@class EntireLayout;
 @class DoorAssignmentRecorder;
+@class EntireLayout;
+@class LayoutController;
 
 // Expected interface between reports and the owning document.
 @protocol SwitchListDocumentInterface
@@ -41,4 +42,11 @@
 // For accessing current document's printing configuration.
 - (id) printInfo;
 
+// For notifying doc to redo Overview tab.
+- (void) updateSummaryInfo: (id) sender;
+
+// For testing switchlist styles.
+- (NSString*) preferredSwitchListStyle;
+- (NSArray*) optionalFieldKeyValues;
+- (LayoutController*) layoutController;
 @end

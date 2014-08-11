@@ -150,7 +150,7 @@
 	[webServerDelegate_ processURL: url connection: nil userAgent: nil];
 	
 	XCTAssertTrue(200 < [server_->lastBody length], @"Not enough bytes in switchlist.css (should be > 200_>, was %ld)",
-					[server_->lastBody length]);
+					(unsigned long) [server_->lastBody length]);
 }
 
 - (void) testSwitchlistIpadCss {

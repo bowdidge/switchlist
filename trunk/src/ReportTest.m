@@ -66,6 +66,20 @@
 - (id) printInfo {
     return nil;
 }
+
+- (void) updateSummaryInfo: (id) sender {
+}
+
+- (NSArray*) optionalFieldKeyValues {
+    return [NSArray array];
+}
+
+- (NSString*) preferredSwitchListStyle {
+    return nil;
+}
+- (LayoutController*) layoutController {
+    return nil;
+}
 @end
 
 @implementation ReportTest
