@@ -40,6 +40,7 @@
 	recorder = [[DoorAssignmentRecorder alloc] init];
     summaryInfoUpdated_ = NO;
     layoutController_ = [[LayoutController alloc] initWithEntireLayout: layout];
+    preferredTemplate_ = nil;
 	return self;
 }
 
@@ -47,6 +48,7 @@
     [layoutController_ release];
 	[layout release];
 	[recorder release];
+    [preferredTemplate_ release];
 	[super dealloc];
 }
 
@@ -79,6 +81,19 @@
 
 - (BOOL) summaryInfoUpdated {
     return summaryInfoUpdated_;
+}
+
+- (NSString*) preferredSwitchListStyle {
+    return preferredTemplate_;
+}
+
+- (void) setPreferredSwitchListStyle: (NSString*) preferredTemplate {
+    [preferredTemplate_ release];
+    preferredTemplate_ = [preferredTemplate retain];
+}
+
+- (NSArray*) optionalFieldKeyValues {
+    return [NSArray array];
 }
 
 @end
