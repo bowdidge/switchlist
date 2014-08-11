@@ -535,12 +535,6 @@ error:
 	SwitchListDocument *currentDocument = [winc document];
 	return currentDocument;
 }
-- (IBAction) switchListFormatPreferenceChanged: (id) sender {
-	int selection = [sender indexOfSelectedItem];
-	NSString *preferredReportName = [sender itemTitleAtIndex: selection];
-	[[NSUserDefaults standardUserDefaults] setObject: preferredReportName forKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
-	[webController_ setTemplate: preferredReportName]; 
-}
 
 - (IBAction) webServerPreferenceChanged: (id) sender {
 	bool newValue = [sender state];
