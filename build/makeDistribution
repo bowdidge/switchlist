@@ -61,7 +61,7 @@ xcodebuild ARCHS="ppc i386" ONLY_ACTIVE_ARCH=NO  \
            SYMROOT=/tmp/XcodeBuildProducts \
            OBJROOT=/tmp/XcodeBuildIntermediates \
            DSTROOT=/tmp/SwitchList.dst \
-           -configuration Release \
+           -configuration App\ Store \
            -target SwitchList \
            -target testAdvanceLayouts
 
