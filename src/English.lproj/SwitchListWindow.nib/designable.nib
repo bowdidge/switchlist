@@ -189,7 +189,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4708">
-                                                <rect key="frame" x="603" y="17" width="16" height="205"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="205"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4710">
@@ -673,7 +673,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4699">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4701">
@@ -923,7 +923,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4696">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4698">
@@ -1227,7 +1227,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4702">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4704">
@@ -1563,7 +1563,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4714">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4716">
@@ -1819,17 +1819,17 @@
                                             <rect key="frame" x="17" y="136" width="620" height="299"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="T6B-Qj-5pU">
-                                                <rect key="frame" x="1" y="17" width="618" height="281"/>
+                                                <rect key="frame" x="1" y="17" width="603" height="265"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" autosaveColumns="NO" headerView="4707" id="1176">
-                                                        <rect key="frame" x="0.0" y="0.0" width="618" height="281"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="606" height="265"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn width="123.37353515625" minWidth="100.37353515625" maxWidth="1000" id="1178">
+                                                            <tableColumn width="121.37353515625" minWidth="100.37353515625" maxWidth="1000" id="1178">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Cargo Description">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1845,7 +1845,7 @@
                                                                     <binding destination="1138" name="value" keyPath="arrangedObjects.cargoDescription" id="1177"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="38" minWidth="35" maxWidth="1000" id="1181">
+                                                            <tableColumn width="36" minWidth="35" maxWidth="1000" id="1181">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Rate">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1868,7 +1868,7 @@
                                                                     <binding destination="1138" name="value" keyPath="arrangedObjects.rate" id="5505"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="78" minWidth="75" maxWidth="80" id="5530">
+                                                            <tableColumn width="76" minWidth="75" maxWidth="80" id="5530">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1890,7 +1890,7 @@
                                                                     <binding destination="1138" name="selectedIndex" keyPath="arrangedObjects.rateUnits" id="5549"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="56.42138671875" minWidth="51.42138671875" maxWidth="1000" id="1183">
+                                                            <tableColumn editable="NO" width="54.42138671875" minWidth="51.42138671875" maxWidth="1000" id="1183">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Car Type">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1936,7 +1936,7 @@
                                                                     <binding destination="1138" name="value" keyPath="arrangedObjects.priority" id="1185"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="121.771484375" minWidth="39.771484375" maxWidth="1000" id="1196">
+                                                            <tableColumn width="119.771484375" minWidth="39.771484375" maxWidth="1000" id="1196">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Source">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1963,7 +1963,7 @@
                                                                     <binding destination="1138" name="selectedObject" keyPath="arrangedObjects.source" previousBinding="Beu-1m-dOM" id="Fml-UU-bi6"/>
                                                                 </connections>
                                                             </tableColumn>
-                                                            <tableColumn width="138.0478515625" minWidth="65.0478515625" maxWidth="1000" id="1191">
+                                                            <tableColumn width="136.0478515625" minWidth="65.0478515625" maxWidth="1000" id="1191">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Destination">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2000,11 +2000,11 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4705">
-                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
+                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4707">
-                                                <rect key="frame" x="0.0" y="0.0" width="618" height="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="606" height="17"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
@@ -2291,7 +2291,7 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="4711">
-                                                <rect key="frame" x="603" y="17" width="16" height="281"/>
+                                                <rect key="frame" x="604" y="17" width="15" height="281"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
                                             <tableHeaderView key="headerView" id="4713">
@@ -2514,7 +2514,7 @@
                                             <rect key="frame" x="6" y="11.999991939687987" width="642" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <view key="contentView">
-                                                <rect key="frame" x="1" y="1" width="640" height="282"/>
+                                                <rect key="frame" x="1" y="1.0000080603120125" width="640" height="282"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="4729">
@@ -2703,7 +2703,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </textField>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="trt-h0-sKf">
                                             <rect key="frame" x="17" y="74" width="353" height="208"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <clipView key="contentView" id="Dce-jz-17O">
                                                 <rect key="frame" x="1" y="17" width="351" height="190"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2765,7 +2765,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </scrollView>
                                         <webView id="iTs-nL-4QW">
                                             <rect key="frame" x="392" y="74" width="245" height="343"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                             <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
                                                 <nil key="identifier"/>
                                             </webPreferences>
@@ -2787,14 +2787,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </button>
                                         <customView id="DVX-q1-m66" customClass="ClickCatchingView">
                                             <rect key="frame" x="392" y="74" width="245" height="343"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                             <connections>
                                                 <outlet property="catcherController_" destination="BcI-aB-SCq" id="GWk-m6-tcu"/>
                                             </connections>
                                         </customView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="0rO-Vn-8u9">
                                             <rect key="frame" x="15" y="300" width="357" height="81"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="HbS-Jx-DFO">
                                                 <font key="font" metaFont="cellTitle"/>
                                                 <string key="title">Typed up each morning by the manager (a two-finger typist) on a sheet of the company's letterhead, this style captures the switching focus of many short lines.</string>

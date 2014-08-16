@@ -7,6 +7,8 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeName</key>
+			<string>SwitchList layout file</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>swl</string>
@@ -48,11 +50,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.9.4</string>
+	<string>1.3</string>
 	<key>CFBundleSignature</key>
 	<string>swl9</string>
 	<key>CFBundleVersion</key>
-	<string>23</string>
+	<string>24</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.entertainment</string>
 	<key>NSMainNibFile</key>

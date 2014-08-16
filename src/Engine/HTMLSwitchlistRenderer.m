@@ -162,7 +162,7 @@
         return [NSArray array];
     }
 
-	NSString * stringContents = [[NSString alloc] initWithBytes: [contents bytes] length: [contents length] encoding: NSUTF8StringEncoding];
+	NSString * stringContents = [[[NSString alloc] initWithBytes: [contents bytes] length: [contents length] encoding: NSUTF8StringEncoding] autorelease];
 	return [self optionalSettingsForTemplateWithContents: stringContents];
 }
 
