@@ -32,6 +32,8 @@ random rate ("fixed rate" checkbox), what freight car type can carry the cargo,
 and the number of freight cars per day, week, or month that should be generated.
 Any of these settings can be changed at any time.
 <p>
+<h2>Sources and Destinations</h2>
+<p>
 Cargo sources and destinations can be any industry listed in the Industries tab.
 Industries can be real industries on real sidings on the layout, or can be imaginary industries
 somewhere off the layout.  A car destined for an industry located either in a town listed as "staging"
@@ -49,9 +51,13 @@ Sources and destinations also indicate how full a particular siding can be.  You
 If a particular source or destination is marked as "Busy" or "Overloaded", be careful about creating more
 cargos, or consider whether you can cut the number of cars currently being sent.
 <p>
+<h2>Freight Car Type</h2>
+<p>
 Each cargo may only be carried by one type of freight car.  If you want the
 same cargo to be carried by multiple cars ("both 40' and 50' boxcars"),
 consider creating separate cargos for each car type.
+<p>
+<h2>Unloading Time</h2>
 <p>
 The unloading rate setting allows you to adjust how fast cars carrying a cargo can unload that cargo and dash off for their next job.
 Normally, the unloading rate is 1 day - any car arriving in the current operating session
@@ -59,6 +65,8 @@ will leave in the next operating session.
 The unloading rate makes operations more challenging by forcing crews to move and replace cars staying behind as they drop off or pick up other cars.
 Your layout will appear more like a real railroad.
 This setting can also clog up your layout or cut the number of cars your crews get to move, so use it cautiously.
+<p>
+<h2>Car Rate</h2>
 <p>
 The rate setting decides how often the cargo should appear
 on the layout. Cargo rates can be set in terms of the number of cars per day, per week, or per
@@ -75,6 +83,7 @@ and three in the next session.  That randomness ensures that no two
 operating sessions should appear the same.
 If SwitchList chooses a particular cargo but none of the freight cars
 needed are available, then the cargo is ignored.
+</p>
 <p>
 Specifically, SwitchList assigns cargos by first sweeping through the list of fixed rate cargos and putting
 the appropriate number of each into the collection of today's cargos.
