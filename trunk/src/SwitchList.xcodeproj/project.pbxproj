@@ -1690,6 +1690,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0450;
+				TargetAttributes = {
+					3E9B75B616063FE600891318 = {
+						DevelopmentTeam = PRKJWD6X23;
+					};
+					8D15AC270486D014006FF6A4 = {
+						DevelopmentTeam = PRKJWD6X23;
+					};
+				};
 			};
 			buildConfigurationList = 3EA5978008DC051800D5A852 /* Build configuration list for PBXProject "SwitchList" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2635,6 +2643,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -2651,6 +2661,7 @@
 					Foundation,
 				);
 				PRODUCT_NAME = SwitchListEngine;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				SUPPORTED_PLATFORMS = macosx;
 			};
@@ -2665,6 +2676,8 @@
 					x86_64,
 					ppc,
 				);
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2680,6 +2693,7 @@
 					Foundation,
 				);
 				PRODUCT_NAME = SwitchListEngine;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				SUPPORTED_PLATFORMS = macosx;
 				ZERO_LINK = NO;
@@ -2691,6 +2705,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2704,6 +2720,7 @@
 					Foundation,
 				);
 				PRODUCT_NAME = SwitchListEngine;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				SUPPORTED_PLATFORMS = macosx;
 			};
@@ -2713,6 +2730,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -2726,6 +2745,7 @@
 					Foundation,
 				);
 				PRODUCT_NAME = SwitchListEngine;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				SUPPORTED_PLATFORMS = macosx;
 			};
@@ -2952,6 +2972,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -2972,6 +2994,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -2987,7 +3010,8 @@
 					ppc,
 					i386,
 				);
-				CODE_SIGN_IDENTITY = "Don't Code Sign";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3007,6 +3031,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PRODUCT_NAME = SwitchList;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = "";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -3018,7 +3043,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SwitchList.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -3054,6 +3080,7 @@
 		3EA5978208DC051800D5A852 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
 				SDKROOT = "";
 			};
 			name = Release;
@@ -3191,7 +3218,8 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				CODE_SIGN_ENTITLEMENTS = SwitchList.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";

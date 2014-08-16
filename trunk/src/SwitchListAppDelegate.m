@@ -299,7 +299,7 @@ error:
 	if (err != NULL) {
 		NSString *localizedMessage = NSLocalizedString(errorMessage, @"");
 		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedMessage forKey:NSLocalizedDescriptionKey];
-		*err = [[NSError alloc] initWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo];
+		*err = [[[NSError alloc] initWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo] autorelease];
 	}
 	
 	return NO;
@@ -413,7 +413,8 @@ error:
 
 // Install the named template from the named directory into SwitchList.
 // Returns true if succeeds.
-- (bool)doInstallTemplate:(NSString *)templateName fromDirectory:(NSString *)selectedDirectory error:(NSError *)error {
+- (bool)doInstallTemplate:(NSString *)templateName fromDirectory:(NSString *)selectedDirectory {
+    NSError *error;
     NSAlert *alert;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -477,7 +478,6 @@ error:
 // Simplifies installing new templates, and avoids problems of cryptic paths that differ between
 // app store and non-app store version.
 - (IBAction) doImportTemplate: (id) sender {
-	NSError *error;
 	NSOpenPanel *panel = [NSOpenPanel openPanel];
 	[panel setCanChooseFiles: NO];
 	[panel setCanChooseDirectories: YES];
@@ -493,7 +493,7 @@ error:
 	NSString *selectedDirectory = [panel filename];
 	NSString *templateName = [selectedDirectory lastPathComponent];
 
-	if (![self doInstallTemplate:templateName fromDirectory:selectedDirectory error:error]) {
+	if (![self doInstallTemplate:templateName fromDirectory:selectedDirectory]) {
         return;
     }
     

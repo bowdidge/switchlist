@@ -389,7 +389,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 // TODO: Better done this way, or should I just be generating JSON and let all the work be done in JavaScript?
 - (NSArray*) stationsWithWork {
 	// TODO(bowdidge): Use TrainSizeVector instead.
-	NSArray *freightCars = [self allFreightCarsInVisitOrder];
+	[self allFreightCarsInVisitOrder];
 	NSMutableArray *result = [NSMutableArray array];
 	
 	// Create temp objects for all stations, remove at end.
