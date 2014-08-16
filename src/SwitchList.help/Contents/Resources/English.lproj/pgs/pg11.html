@@ -13,22 +13,101 @@
 </div>
 <div id="leftspace">
 <p>
-I designed SwitchList for my own layout - a layout that fits in half a garage that is very much a very large switching layout.  Other, similar layouts should
-find SwitchList just right.  If your layout is smaller and focused on switching,
-does not have a large, busy yard, or has few timetable-based freights,
-you may also find it useful.
+There's a few nice switchlist generation programs available for
+home computers.  Most were designed for large layouts and clubs, and
+require lots of work to set up.
+
+SwitchList wants to be different.  It's designed to give people
+with smaller layouts an easy way to begin operations.  Although SwitchList
+might be useful for larger layouts, making life easier for small layout
+owners is our primary goal.
+
+So is SwitchList right for your layout?
+
+<h2>Shelf Layout With Fiddle Yard?</h2>
+If you have a small shelf layout with only a fiddle yard or interchange
+track, SwitchList will work fine.  Treat your interchange track like a
+staging yard.  When you prepare a train to depart from the staging yard,
+set the assigned cars on the interchange track, print a switchlist, and 
+bring the train onto the visible layout.  When the train finishes, put the
+cars away and prepare for tomorrow's session which will have a random
+and different set of cars and industries to switch.
+
+<h2>Layout With Staging Yards and No On-Layout Yard?</h2>
+You'll have a great time with SwitchList on this kind of layout.
+Before each session, set up each train in staging to match the switchlists.
+During the session, pull the trains out of staging, and switch industries.
+On return, you're done.  Tomorrow's session will involve different cars
+and different train lengths.
 <p>
-Although SwitchList could work for layouts with large yards,
-the current yard reports are probably insufficient to help a yard crew
-know how to sort and organize cars in the yard.
+See the <a href="pg81">Vasona Branch example layout</a> or
+<a href="pg80.html">Stockton example layout</a> to see how these kinds of
+layouts can be set up.
+
+<h2>Layouts with Staging Yards and On-Layout Yard</h2>
+SwitchList isn't as helpful when you have a layout requiring significant
+switching.  SwitchList's main constraint is that you aren't required to
+specify the order that trains arrive and leave, so it can be hard to
+predict what cars might come from an earlier train and be switched to a later
+train.
 <p>
-Similarly, although SwitchList can handle through trains stopping at a
-yard, SwitchList would not easily handle cases where cars need to be
-switched between through trains.
+One way to work around this is to break your operating session into two
+halves.  Imagine you've got a staging yard Alpha, an on-layout yard Bravo,
+and an industry at Charlie.
+You can set up trains that go from Alpha to Bravo, and trains that go from
+Bravo to Charlie.  Now, you can take a car from Alpha to Bravo on one train,
+and from Bravo to Charlie on the second.
+<p>
+SwitchList, as it is today, doesn't work well for this model because it
+wants each car to be handled once during an operating session.
+To make this work in SwitchList, you could break your operating session
+into a first half and second half.  At the end of the first session, press
+the "Start New Session" button in the overview tab to end the session and
+create new cars and cargos.  Cars that had come from A to B and are now in
+the yard will be re-assigned to the train from B to C for final delivery.
+Your yard crew will need to sort cars and makeup trains before trains can
+depart.
+<p>
+See the <a href="pg81.html">Waterside Yard example layout</a> and
+<a href="pg83.html">Oakland Repair Depot example layouts</a>
+to see how these kinds of
+layouts can be set up.
+
+<h2>Layouts with Large On-Layout Yards</h2>
+If you have a very large On-Layout Yard that does classification, you
+probably don't want SwitchList or another switchlist generator because
+most switchlist generators won't let you sort the yard based on anything
+other than strict instructions.
+<p>
+For such layouts, I find <a href="http://www.tulsanmra.org/resources/DRS_CardCards.pdf">Car Cards</a> a better approach.  With Car Cards, you use a paper
+card to represent each freight car.  When you assign a cargo to that car,
+you paperclip a separate paper describing the load, the source, and the
+destination.  For large layouts, Car Cards can be really handy because
+a switch crew can simply grab a yard track full of cars, check out their
+next destinations on the car card, and sort the cars into trains.  When
+they're done sorting, they make the cars into a train and give the
+cards to the crew that will switch the cars.  If the yard's switch crew
+works too slow, that's ok too - the train can leave with whatever cars
+are sorted.
 <p>
 If you have ideas on how to make SwitchList more useful for larger layouts,
 drop me a note.
 <p>
+<hr><p><h2>Related Topics:</h2></p>
+<A HREF="pg51.html">Detail: Divisions for cars and industries</a> for
+more details on how a freight car's "Home Division" affects the assigning
+of cars to cargos.
+<p>
+<a href="pg25.html">User Interface: Towns Tab</a> for hints on
+deciding what counts as a town.
+<p>
+<a href="pg80.html">Vasona Branch example layout</a>
+<p>
+<a href="pg81.html">Stockton example layout</a>
+<p>
+<a href="pg82.html">Waterside Yard example layout</a>
+<p>
+<a href="pg83.html">Oakland Repair Yard example layout</a>.
 </div>
 </body>
 </html>
