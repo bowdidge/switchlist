@@ -141,6 +141,7 @@
 	trains_ = nil;
 	annulledTrains_ = [[NSMutableArray alloc] init];
     printingHtmlViewController_  = nil;
+    preferredSwitchListStyle_ = nil;
     self.theTemplateCache = [[[TemplateCache alloc] init] autorelease];
     
     // Gather the names of the switchlist templates with native support.
@@ -161,6 +162,7 @@
 	[annulledTrains_ release];
 	[trains_ release];
     [printingHtmlViewController_ release];
+    [preferredSwitchListStyle_ release];
 	[super dealloc];
 }
 
@@ -292,6 +294,8 @@
 }
 
 - (NSString*) preferredSwitchListStyle {
+    if (preferredSwitchListStyle_) return preferredSwitchListStyle_;
+    
     // First, try to get from regular preferences.
 	NSMutableDictionary *layoutPrefs = [[self entireLayout] getPreferencesDictionary];
     NSString *preferredSwitchListStyle = [layoutPrefs objectForKey: LAYOUT_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
@@ -301,16 +305,19 @@
     }
 
     if (![[self.theTemplateCache validTemplateNames] containsObject: preferredSwitchListStyle]) {
-        return DEFAULT_SWITCHLIST_TEMPLATE;
+        preferredSwitchListStyle = DEFAULT_SWITCHLIST_TEMPLATE;
     }
     
-    return preferredSwitchListStyle;
+    preferredSwitchListStyle_ = [preferredSwitchListStyle retain];
+    return preferredSwitchListStyle_;
 }
 
 - (void) setPreferredSwitchListStyle: (NSString*) styleName {
 	NSMutableDictionary *layoutPrefs = [[self entireLayout] getPreferencesDictionary];
     [layoutPrefs setObject: styleName forKey: LAYOUT_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
     [entireLayout_ writePreferencesDictionary];
+    [preferredSwitchListStyle_ release];
+    preferredSwitchListStyle_ = [styleName retain];
 }
 
 // Returns an array of (option name, value) pairs for custom options for the current switchlist style, or nil if

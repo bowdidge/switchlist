@@ -175,7 +175,8 @@
 
 	// Map from SwitchList template name to appropriate SwitchListView class.
 	NSMutableDictionary *nameToSwitchListClassMap_;
-	
+    // Cached value.
+	NSString *preferredSwitchListStyle_;
 }
 
 // Cache for looking up what templates exist.
