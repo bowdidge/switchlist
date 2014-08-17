@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="kdD-bW-bCa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="kdD-bW-bCa">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--App Navigation Controller-->
@@ -42,7 +42,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GqT-aF-qZw">
-                                        <rect key="frame" x="78" y="13" width="41" height="42"/>
+                                        <rect key="frame" x="231" y="13" width="41" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" none="YES" link="YES" image="YES"/>
@@ -63,6 +63,18 @@
                                         <connections>
                                             <segue destination="aK7-Mz-XBc" kind="popover" identifier="fileSegue" popoverAnchorView="Gxd-rH-AYX" id="Mfq-N8-wUF">
                                                 <popoverArrowDirection key="popoverArrowDirection" left="YES"/>
+                                            </segue>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ugL-CQ-CnO">
+                                        <rect key="frame" x="98" y="12" width="50" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Style">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="nUh-7q-u7i" kind="popover" popoverAnchorView="ugL-CQ-CnO" id="zKA-Z3-cJu">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
                                     </button>
@@ -107,6 +119,7 @@
                         <outlet property="fileButton" destination="Gxd-rH-AYX" id="R7t-fD-8PO"/>
                         <outlet property="reportBox" destination="eJo-75-TPP" id="eBc-Lx-lWW"/>
                         <outlet property="reportsLabel" destination="nHf-Qh-jpF" id="2P8-Ym-4ps"/>
+                        <outlet property="styleButton" destination="ugL-CQ-CnO" id="Sw3-t1-sre"/>
                         <outlet property="switchlistBox" destination="xoM-9k-aCG" id="ej0-Tz-WSO"/>
                         <outlet property="switchlistsLabel" destination="8sC-YB-9G5" id="ZDg-hT-Lxm"/>
                         <outlet property="view" destination="whc-ZW-t0d" id="8Kh-8R-zno"/>
@@ -184,7 +197,59 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4o5-Do-m2g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2856" y="558"/>
+            <point key="canvasLocation" x="-3672" y="607"/>
+        </scene>
+        <!--Style View Controller-->
+        <scene sceneID="bPo-N4-lQd">
+            <objects>
+                <viewController modalPresentationStyle="formSheet" id="nUh-7q-u7i" customClass="StyleViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZAR-E6-vic">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="47" sectionHeaderHeight="22" sectionFooterHeight="22" id="oeI-FU-PLA">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="styleCell" rowHeight="47" id="nh4-si-hGc" customClass="FileCell">
+                                        <rect key="frame" x="0.0" y="22" width="768" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nh4-si-hGc" id="TVu-8J-fHk">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="46"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Style name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6yj-px-Ql3">
+                                                    <rect key="frame" x="20" y="13" width="332" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="6yj-px-Ql3" id="YnB-Co-qec"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="nUh-7q-u7i" id="s0y-4a-fC5"/>
+                                    <outlet property="delegate" destination="nUh-7q-u7i" id="WE1-pa-VRo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="400" height="400"/>
+                    <connections>
+                        <outlet property="styleTable" destination="oeI-FU-PLA" id="HJ7-7F-KyE"/>
+                        <outlet property="view" destination="ZAR-E6-vic" id="nIp-C1-mif"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bWV-BF-2IV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3098" y="550"/>
         </scene>
         <!--Industry Table View Controller - Industries-->
         <scene sceneID="cuc-3l-U6v">
@@ -773,7 +838,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cargoCell" rowHeight="80" id="x82-76-Rqc" customClass="CargoTableCell">
-                                <rect key="frame" x="0.0" y="22" width="768" height="80"/>
+                                <rect key="frame" x="0.0" y="86" width="768" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x82-76-Rqc" id="kta-i0-5yn">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
@@ -993,7 +1058,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="freightCarCell" rowHeight="80" id="OnZ-H7-Eda" customClass="FreightCarTableCell">
-                                <rect key="frame" x="0.0" y="22" width="768" height="80"/>
+                                <rect key="frame" x="0.0" y="86" width="768" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OnZ-H7-Eda" id="BCL-Du-SGf">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
@@ -1256,6 +1321,7 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="540" height="620"/>
                     <connections>
                         <outlet property="cameraButton" destination="i2u-0G-mNl" id="u6S-pX-cAs"/>
                         <outlet property="carPhotoView" destination="h8b-aK-liF" id="GuR-nU-qi6"/>
@@ -1341,7 +1407,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="trainCell" rowHeight="80" id="1sK-ne-rhM" customClass="TrainTableCell">
-                                <rect key="frame" x="0.0" y="22" width="768" height="80"/>
+                                <rect key="frame" x="0.0" y="86" width="768" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1sK-ne-rhM" id="mGa-Ru-6Wi">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
@@ -1534,7 +1600,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="yardCell" rowHeight="80" id="EtT-qP-nom" customClass="YardTableCell">
-                                <rect key="frame" x="0.0" y="22" width="768" height="80"/>
+                                <rect key="frame" x="0.0" y="86" width="768" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EtT-qP-nom" id="7N4-qb-USE">
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>

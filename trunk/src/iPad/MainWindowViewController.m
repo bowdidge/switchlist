@@ -50,6 +50,9 @@
 // File button.
 @property (nonatomic, retain) IBOutlet UIButton *fileButton;
 
+// Style button - for selecting different styles.
+@property (nonatomic, retain) IBOutlet UIButton *styleButton;
+
 // Array of all miniature reports being shown.
 @property (nonatomic, retain) NSMutableDictionary *trainNameToCatcher;
 

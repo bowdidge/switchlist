@@ -141,6 +141,7 @@
 	trains_ = nil;
 	annulledTrains_ = [[NSMutableArray alloc] init];
     printingHtmlViewController_  = nil;
+    self.theTemplateCache = [[[TemplateCache alloc] init] autorelease];
     
     // Gather the names of the switchlist templates with native support.
 	nameToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
@@ -290,53 +291,6 @@
   return result;
 }
 
-// Returns true if a directory named "name" exists in the specified directory,
-// and if "name" contains a switchlist.html file suggesting it's a real template.
-- (BOOL) isSwitchlistTemplate: (NSString*) name inDirectory: (NSString*) directory {
-	BOOL isDirectory = NO;
-	if (![[NSFileManager defaultManager] fileExistsAtPath: [directory stringByAppendingPathComponent: name]
-								   isDirectory: &isDirectory] || isDirectory == NO) {
-		return NO;
-	}
-	// Does a switchlist.html directory exist there?
-	if ([[NSFileManager defaultManager] fileExistsAtPath: [[directory stringByAppendingPathComponent: name]
-												stringByAppendingPathComponent: @"switchlist.html"]]) {
-		return YES;
-	}
-	return NO;
-}
-
-// Return the list of valid template names that exist.
-// TODO(bowdidge): Cache result for a short time.
-- (NSArray*) validTemplateNames {
-	// Handwritten is always valid - uses defaults.
-	NSMutableArray *result = [NSMutableArray arrayWithObject: DEFAULT_SWITCHLIST_TEMPLATE];
-    
-	NSError *error;
-	// First find templates in application support directory.
-	NSString *applicationSupportDirectory = [[NSFileManager defaultManager] applicationSupportDirectory];
-	NSArray *filesInApplicationSupportDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: applicationSupportDirectory
-                                                                                                      error: &error];
-	for (NSString *file in filesInApplicationSupportDirectory) {
-		if ([self isSwitchlistTemplate: file inDirectory: applicationSupportDirectory]) {
-			[result addObject: file];
-		}
-	}
-	
-	// Next, find templates in the bundle directory.  User templates with the same name win.
-	NSString *resourcesDirectory = [[NSBundle mainBundle] resourcePath];
-	NSArray *filesInResourcesDirectory = [[NSFileManager defaultManager] contentsOfDirectoryAtPath: resourcesDirectory
-                                                                                             error: &error];
-	for (NSString *file in filesInResourcesDirectory) {
-		if ([self isSwitchlistTemplate: file inDirectory: resourcesDirectory]) {
-			if ([result containsObject: file] == NO) {
-				[result addObject: file];
-			}
-		}
-	}
-	return [result sortedArrayUsingSelector: @selector(compare:)];
-}
-
 - (NSString*) preferredSwitchListStyle {
     // First, try to get from regular preferences.
 	NSMutableDictionary *layoutPrefs = [[self entireLayout] getPreferencesDictionary];
@@ -346,7 +300,7 @@
         preferredSwitchListStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
     }
 
-    if (![[self validTemplateNames] containsObject: preferredSwitchListStyle]) {
+    if (![[self.theTemplateCache validTemplateNames] containsObject: preferredSwitchListStyle]) {
         return DEFAULT_SWITCHLIST_TEMPLATE;
     }
     
@@ -1296,6 +1250,7 @@
 	[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListLayoutHelp" inBook: locBookName];
 }
 
+@synthesize theTemplateCache;
 @end
 
 NSString *LAYOUT_PREFS_SHOW_DOORS_UI = @"SpotToDoorsAtIndustries";

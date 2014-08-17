@@ -38,6 +38,7 @@
 #import "SwitchRouteDialogController.h"
 #import "SuggestedCargoController.h"
 #import "SetTrainCarTypesDialogController.h"
+#import "TemplateCache.h"
 
 @class DoorAssignmentRecorder;
 @class SuggestedCargoController;
@@ -148,7 +149,7 @@
 	
 	EntireLayout *entireLayout_;
 	LayoutController *layoutController_;
-	
+
 	// Layout info 
 	IBOutlet NSDatePicker *datePicker_;
 	IBOutlet NSTextField *layoutNameField_;
@@ -176,6 +177,9 @@
 	NSMutableDictionary *nameToSwitchListClassMap_;
 	
 }
+
+// Cache for looking up what templates exist.
+@property(retain, nonatomic) TemplateCache* theTemplateCache;
 
 // Returns LayoutController object which actually does the advancing actions.
 - (LayoutController*) layoutController;
@@ -253,7 +257,6 @@
     // Optional values for this template.
 - (NSArray*) optionalFieldKeyValues;
 - (void) setOptionalFieldKeyValues: (NSArray*) options;
-- (NSArray*) validTemplateNames;
 
 - (void) doGenerateSwitchListForTrain: (ScheduledTrain*) train;
 

@@ -1,9 +1,8 @@
 //
-//  EndToEndTest.h
+//  TemplateCache.h
 //  SwitchList
 //
-//  Created by bowdidge on 7/27/14.
-//
+//  Created by bowdidge on 8/16/14.
 //
 // Copyright (c)2014 Robert Bowdidge,
 // All rights reserved.
@@ -29,16 +28,18 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import "LayoutTest.h"
-#import <CoreData/NSPersistentStore.h>
+#import <Foundation/Foundation.h>
 
-// Test harness for doing end-to-end checks that the sample layouts can advance correctly,
-// and that switchlists can render correctly.
-// This is an abstract superclass; the subclasses should set layoutFileName_ and write a test that calls
-// doTestLayout.
-@interface EndToEndTest : LayoutTest {
-    // Prefix only.
-    NSString* layoutFileName_;
-}
-- (void) doTestLayout;
+@interface TemplateCache : NSObject {
+};
+
+- (id) init;
+// For testing.
+- (id) initWithFileManager: (NSFileManager*) fileManager;
+
+// Return the list of valid template names that exist.  List should be updated as efficiently as possible, so this should be cheap to call.
+- (NSArray*) validTemplateNames;
+
+@property(retain,nonatomic) NSFileManager* theFileManager;
+
 @end

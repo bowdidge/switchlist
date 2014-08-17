@@ -372,6 +372,11 @@
 		3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */; };
 		3EC0ACD9199FF60300ABD0E5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EC0ACDC199FF60300ABD0E5 /* MainStoryboard.storyboard */; };
 		3EC0ACDA199FF60300ABD0E5 /* MainStoryboard.storyboard in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EC0ACDC199FF60300ABD0E5 /* MainStoryboard.storyboard */; };
+		3EC0ACDF199FFA9F00ABD0E5 /* StyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0ACDE199FFA9F00ABD0E5 /* StyleViewController.m */; };
+		3EC0ACE219A042C500ABD0E5 /* TemplateCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EC0ACE019A042C500ABD0E5 /* TemplateCache.h */; };
+		3EC0ACE319A042C500ABD0E5 /* TemplateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0ACE119A042C500ABD0E5 /* TemplateCache.m */; };
+		3EC0ACE419A042C500ABD0E5 /* TemplateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0ACE119A042C500ABD0E5 /* TemplateCache.m */; };
+		3EC0ACE719A045B600ABD0E5 /* TemplateCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0ACE619A045B600ABD0E5 /* TemplateCacheTest.m */; };
 		3EC1D47E160AEDB700765095 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC1D47D160AEDB700765095 /* QuartzCore.framework */; };
 		3EC3B0931277DF6600C00AD3 /* EntireLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */; };
 		3EC3B1441277E4E300C00AD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; };
@@ -811,6 +816,12 @@
 		3EB78AEA199337E800476758 /* layout.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = layout.icns; path = resources/layout.icns; sourceTree = "<group>"; };
 		3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = NoSidingToLatest.xcmappingmodel; sourceTree = "<group>"; };
 		3EC0ACDB199FF60300ABD0E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		3EC0ACDD199FFA9F00ABD0E5 /* StyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleViewController.h; path = iPad/StyleViewController.h; sourceTree = "<group>"; };
+		3EC0ACDE199FFA9F00ABD0E5 /* StyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleViewController.m; path = iPad/StyleViewController.m; sourceTree = "<group>"; };
+		3EC0ACE019A042C500ABD0E5 /* TemplateCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TemplateCache.h; path = Engine/TemplateCache.h; sourceTree = "<group>"; };
+		3EC0ACE119A042C500ABD0E5 /* TemplateCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TemplateCache.m; path = Engine/TemplateCache.m; sourceTree = "<group>"; };
+		3EC0ACE519A045B600ABD0E5 /* TemplateCacheTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCacheTest.h; sourceTree = "<group>"; };
+		3EC0ACE619A045B600ABD0E5 /* TemplateCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCacheTest.m; sourceTree = "<group>"; };
 		3EC1D47D160AEDB700765095 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		3EC3B0881277DEFE00C00AD3 /* Unit tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
@@ -1211,6 +1222,8 @@
 				3EEE0A8416209487007BBE4E /* PlaceChooser.m */,
 				3E407D8E160693E30037134D /* SelectionCell.h */,
 				3E407D8F160693E30037134D /* SelectionCell.m */,
+				3EC0ACDD199FFA9F00ABD0E5 /* StyleViewController.h */,
+				3EC0ACDE199FFA9F00ABD0E5 /* StyleViewController.m */,
 				3E407D90160693E30037134D /* SwitchList for iPad-Prefix.pch */,
 				3E37741D160847000023C8B5 /* SwitchListColors.h */,
 				3E37741E160847000023C8B5 /* SwitchListColors.m */,
@@ -1413,6 +1426,8 @@
 				3E3E971D198D62B70061550C /* SwitchListStyleTabController.m */,
 				3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */,
 				3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */,
+				3EC0ACE019A042C500ABD0E5 /* TemplateCache.h */,
+				3EC0ACE119A042C500ABD0E5 /* TemplateCache.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -1428,6 +1443,8 @@
 				3E2D059D127B6022000035DC /* CarAssignerTest.m */,
 				3EB677B6130E4B460012DE1D /* CargoAssignerTest.h */,
 				3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */,
+				3E6F19371985A0EB007AA710 /* EndToEndTest.h */,
+				3E6F19381985A0EB007AA710 /* EndToEndTest.m */,
 				3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */,
 				3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */,
 				3EFEC55B1408535600F9CF15 /* FakeSwitchListDocument.h */,
@@ -1462,8 +1479,8 @@
 				3EE380BC133D284F0069C963 /* SwitchRouteDialogControllerTest.h */,
 				3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */,
 				3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */,
-				3E6F19371985A0EB007AA710 /* EndToEndTest.h */,
-				3E6F19381985A0EB007AA710 /* EndToEndTest.m */,
+				3EC0ACE519A045B600ABD0E5 /* TemplateCacheTest.h */,
+				3EC0ACE619A045B600ABD0E5 /* TemplateCacheTest.m */,
 				3E90C06B12793F510074F2FA /* TrainAssignerTest.h */,
 				3E90C06C12793F510074F2FA /* TrainAssignerTest.m */,
 				3EA4883915D846F7008A169F /* TypicalIndustryStoreTest.h */,
@@ -1534,6 +1551,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EC0ACE219A042C500ABD0E5 /* TemplateCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1927,6 +1945,7 @@
 				3EAAA7351606CB9500C3D7A8 /* InduYard.m in Sources */,
 				3EAAA7371606CB9500C3D7A8 /* Place.m in Sources */,
 				3EAAA7391606CB9500C3D7A8 /* ScheduledTrain.m in Sources */,
+				3EC0ACDF199FFA9F00ABD0E5 /* StyleViewController.m in Sources */,
 				3EAAA73B1606CB9500C3D7A8 /* StringHelpers.m in Sources */,
 				3EAAA73F1606CB9500C3D7A8 /* Yard.m in Sources */,
 				3EAAA7271606CA8E00C3D7A8 /* SwitchListDocument.xcdatamodeld in Sources */,
@@ -1938,6 +1957,7 @@
 				3E407DA7160693E30037134D /* FreightCarEditController.m in Sources */,
 				3E407DA8160693E30037134D /* FreightCarTableCell.m in Sources */,
 				3E407DA9160693E30037134D /* FreightCarTableViewController.m in Sources */,
+				3EC0ACE419A042C500ABD0E5 /* TemplateCache.m in Sources */,
 				3E407DAA160693E30037134D /* IndustryTableCell.m in Sources */,
 				3E407DAB160693E30037134D /* IndustryTableViewController.m in Sources */,
 				3E407DAC160693E30037134D /* LayoutDetailTabBarController.m in Sources */,
@@ -2076,6 +2096,7 @@
 				3E9B75DC1606402A00891318 /* NSMigrationManagerCategory.m in Sources */,
 				3E9B75DE1606402A00891318 /* Place.m in Sources */,
 				3E9B75E01606402A00891318 /* RandomNumberGenerator.m in Sources */,
+				3EC0ACE319A042C500ABD0E5 /* TemplateCache.m in Sources */,
 				3E9B76C31606447D00891318 /* RegexKitLite.m in Sources */,
 				3E9B75E41606402A00891318 /* ScheduledTrain.m in Sources */,
 				3E9B75E91606402A00891318 /* StringHelpers.m in Sources */,
@@ -2190,6 +2211,7 @@
 				3EFEC5251408515500F9CF15 /* WebServerDelegate.m in Sources */,
 				3EFEC5261408515500F9CF15 /* WebServerDelegateTest.m in Sources */,
 				3EC3B1531277E4E300C00AD3 /* YardReport.m in Sources */,
+				3EC0ACE719A045B600ABD0E5 /* TemplateCacheTest.m in Sources */,
 				3E9D570116225C3D007F49EC /* LayoutGraphTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

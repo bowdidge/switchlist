@@ -107,7 +107,7 @@
 - (void) reloadSwitchlistTemplateNames {
 	int pos=0;
 	[switchListStyleButton_ removeAllItems];
-	for (NSString *templateName in [document_ validTemplateNames]) {
+	for (NSString *templateName in [document_.theTemplateCache validTemplateNames]) {
 		[switchListStyleButton_ insertItemWithTitle: templateName atIndex: pos++];
 	}
     

@@ -1,8 +1,8 @@
 //
-//  EndToEndTest.h
+//  StyleViewController.h
 //  SwitchList
 //
-//  Created by bowdidge on 7/27/14.
+//  Created by bowdidge on 8/16/14.
 //
 //
 // Copyright (c)2014 Robert Bowdidge,
@@ -29,16 +29,16 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import "LayoutTest.h"
-#import <CoreData/NSPersistentStore.h>
+#import <UIKit/UIKit.h>
 
-// Test harness for doing end-to-end checks that the sample layouts can advance correctly,
-// and that switchlists can render correctly.
-// This is an abstract superclass; the subclasses should set layoutFileName_ and write a test that calls
-// doTestLayout.
-@interface EndToEndTest : LayoutTest {
-    // Prefix only.
-    NSString* layoutFileName_;
-}
-- (void) doTestLayout;
+#import "TemplateCache.h"
+
+@interface StyleViewController : UIViewController
+
+@property(nonatomic, retain) IBOutlet UITableView *styleTable;
+
+@property(nonatomic, retain) IBOutlet UIPopoverController *myPopoverController;
+
+// Cache of what template names exist.
+@property(nonatomic, retain) TemplateCache* theTemplateCache;
 @end
