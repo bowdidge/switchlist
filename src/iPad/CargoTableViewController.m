@@ -81,7 +81,7 @@
     static NSString *CellIdentifier = @"cargoCell";
     CargoTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     if (row == [self.allCargos count]) {
         [cell fillInAsAddCell];
     } else {

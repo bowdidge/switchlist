@@ -14,9 +14,9 @@
 - (NSMutableArray *)deepMutableCopy;
 {
     NSMutableArray *newArray;
-    unsigned int index, count;
+    int index, count;
 	
-    count = [self count];
+    count = (int) [self count];
     newArray = [[NSMutableArray allocWithZone:[self zone]] initWithCapacity:count];
     for (index = 0; index < count; index++) {
         id anObject;

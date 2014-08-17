@@ -341,21 +341,11 @@ float BOX_HEADER = 25.0;
     if ([segue.identifier isEqualToString:@"fileSegue"]) {
         FileViewController *fileController = segue.destinationViewController;
         fileController.myPopoverController = ((UIStoryboardPopoverSegue*)segue).popoverController;
+    } else if ([segue.identifier isEqualToString:@"styleSegue"]) {
+        FileViewController *fileController = segue.destinationViewController;
+        fileController.myPopoverController = ((UIStoryboardPopoverSegue*)segue).popoverController;
     }
 }
-
-/*
-- (IBAction) doOpenFilePopover: (id) sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    FileViewController *controller = [storyboard instantiateViewControllerWithIdentifier:@"fileView"];
-    UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController: controller];
-    controller.myPopoverController = popover;
-    [popover presentPopoverFromRect: [self.fileButton frame]
-                             inView: [self view]
-           permittedArrowDirections: UIPopoverArrowDirectionLeft
-                           animated: YES];
-
-}*/
 
 @synthesize switchlistBox;
 @synthesize reportBox;

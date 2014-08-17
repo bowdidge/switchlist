@@ -61,9 +61,9 @@
 	if ([substring length] == 0) {
 		return 0;
 	}
-	int oldLength = [self length];
+	int oldLength = (int) [self length];
 	NSString *substringRemoved = [self stringByReplacingOccurrencesOfString: substring withString: @""];
-	int newLength = [substringRemoved length];
+	int newLength = (int) [substringRemoved length];
 	return (oldLength - newLength) / [substring length];
 }
 @end

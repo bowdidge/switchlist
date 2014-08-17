@@ -88,7 +88,7 @@
     YardTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     
     if (row == [self.allYards count]) {
         [cell fillInAsAddCell];

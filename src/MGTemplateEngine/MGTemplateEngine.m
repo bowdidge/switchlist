@@ -287,7 +287,7 @@
 		}
 	} else {
 		// Try iterative checking for array indices.
-		int numKeys = [dotBits count];
+		NSInteger numKeys = [dotBits count];
 		if (numKeys > 1) { // otherwise no point in checking
 			NSObject *thisParent = currObj;
 			NSString *thisKey = nil;
@@ -622,10 +622,10 @@ but current block was started by \"%@\" marker",
 			}
 			
 			// Check to see if there are open blocks left over.
-			int openBlocks = [_openBlocksStack count];
+			int openBlocks = (int) [_openBlocksStack count];
 			if (openBlocks > 0) {
-				NSString *errMsg = [NSString stringWithFormat:@"Finished processing template, but %d %@ left open (%@).", 
-									openBlocks, 
+				NSString *errMsg = [NSString stringWithFormat:@"Finished processing template, but %d %@ left open (%@).",
+									openBlocks,
 									(openBlocks == 1) ? @"block was" : @"blocks were", 
 									[[_openBlocksStack valueForKeyPath:BLOCK_NAME_KEY] componentsJoinedByString:@", "]];
 				[self reportError:errMsg code:6 continuing:YES];

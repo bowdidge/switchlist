@@ -72,7 +72,7 @@
     static NSString *CellIdentifier = @"industryChooserCell";
     IndustryChooserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    int index = [indexPath row];
+    NSInteger index = [indexPath row];
     Industry *industry = [self.allIndustries objectAtIndex: index];
     cell.label.text = [NSString stringWithFormat: @"%@ at %@", industry.name, industry.location.name];
     if (industry == self.keyObjectSelection) {

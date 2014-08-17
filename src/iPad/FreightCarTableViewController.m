@@ -112,11 +112,11 @@
 }
 
 - (FreightCar*) freightCarAtIndexPath: (NSIndexPath *) indexPath {
-    int section = [indexPath section];
+    NSInteger section = [indexPath section];
     if (section != 0 && section != 1) {
         return nil;
     }
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     if (section == 0) {
         return [allFreightCars objectAtIndex: row];
     } else {

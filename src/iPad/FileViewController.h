@@ -35,5 +35,6 @@
 @property(nonatomic, retain) IBOutlet UITableView *fileTable;
 @property(nonatomic, retain) IBOutlet UIButton *addButton;
 
+// Set in [MainViewController prepareForSegue:]
 @property(nonatomic, retain) IBOutlet UIPopoverController *myPopoverController;
 @end

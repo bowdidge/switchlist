@@ -99,7 +99,7 @@
 			NSArray *markerComponents = [self argumentsFromString:markerString];
 			if (markerComponents && [markerComponents count] > 0) {
 				[markerInfo setObject:[markerComponents objectAtIndex:0] forKey:MARKER_NAME_KEY];
-				int count = [markerComponents count];
+				NSInteger count = [markerComponents count];
 				if (count > 1) {
 					[markerInfo setObject:[markerComponents subarrayWithRange:NSMakeRange(1, count - 1)] 
 								   forKey:MARKER_ARGUMENTS_KEY];
@@ -130,7 +130,7 @@
 				NSArray *filterComponents = [self argumentsFromString:filterString];
 				if (filterComponents && [filterComponents count] > 0) {
 					[markerInfo setObject:[filterComponents objectAtIndex:0] forKey:MARKER_FILTER_KEY];
-					int count = [filterComponents count];
+					NSInteger count = [filterComponents count];
 					if (count > 1) {
 						[markerInfo setObject:[filterComponents subarrayWithRange:NSMakeRange(1, count - 1)] 
 									   forKey:MARKER_FILTER_ARGUMENTS_KEY];

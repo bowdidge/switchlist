@@ -108,7 +108,7 @@
     }
     
     // Configure the cell...
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     if (row == [self.allIndustries count]) {
         [cell fillInAsAddCell];
     } else {

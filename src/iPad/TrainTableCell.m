@@ -28,6 +28,7 @@
 
 #import "TrainTableCell.h"
 
+#import "CarTypes.h"
 #import "ScheduledTrain.h"
 
 @implementation TrainTableCell
@@ -53,7 +54,7 @@
     self.trainName.text = [train name];
     NSArray *stations = [train stationsInOrder];
     self.trainDescription.text = [NSString stringWithFormat: @"From %@ to %@.", [[stations objectAtIndex: 0] name],[[stations lastObject] name]];
-    self.trainKind.text = [NSString stringWithFormat: @"Handles %@ cars.", [train acceptedCarTypesString]];
+    self.trainKind.text = [NSString stringWithFormat: @"Handles %@ cars.", [CarTypes acceptedCarTypesString: [train acceptedCarTypesRel]]];
     self.trainIcon.hidden = NO;
 }
 

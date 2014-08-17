@@ -470,7 +470,7 @@ NSString *NormalizeDivisionString(NSString *inString) {
     }
     NSNumber *freightCarLength = fc.length;
     NSMutableSet *potentialLengthsToShow = [NSMutableSet set];
-    int carsToAdd = 3;
+    NSInteger carsToAdd = 3;
     if (freightCarLength) {
         [potentialLengthsToShow addObject: freightCarLength];
         carsToAdd = 2;

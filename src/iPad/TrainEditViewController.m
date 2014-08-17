@@ -28,6 +28,7 @@
 #import "TrainEditViewController.h"
 
 #import "AppDelegate.h"
+#import "CarTypes.h"
 #import "CurlyView.h"
 #import "EntireLayout.h"
 #import "ScheduledTrain.h"
@@ -76,7 +77,7 @@ enum {
 - (void) viewWillAppear: (BOOL) animated {
     [super viewWillAppear: animated];
     self.nameField.text = [self.train name];
-    [self.carTypesButton setTitle: [self.train acceptedCarTypesString] forState: UIControlStateNormal];
+    [self.carTypesButton setTitle: [CarTypes acceptedCarTypesString: [train acceptedCarTypesRel]] forState: UIControlStateNormal];
     
     NSNumber *maximumLength = [self.train maxLength];
     if (!maximumLength) {

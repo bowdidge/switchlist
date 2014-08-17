@@ -31,6 +31,8 @@
 
 #import "AppDelegate.h"
 #import "FileCell.h"
+#import "MainWindowViewController.h"
+#import "StyleTableViewCell.h"
 #import "TemplateCache.h"
 
 
@@ -43,16 +45,15 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        self.theTemplateCache = [[[TemplateCache alloc] init] autorelease];
-    }
+    // Custom initialization
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.theTemplateCache = [[[TemplateCache alloc] init] autorelease];
+    NSLog(@"%@", self.theTemplateCache);
 
 	// Do any additional setup after loading the view.
 }
@@ -75,15 +76,21 @@
 
 // Returns contents of the cell for the specified row and section.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     static NSString *CellIdentifier = @"styleCell";
     NSArray* validTemplateNames = [self.theTemplateCache validTemplateNames];
-    FileCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    StyleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
-        cell = [[[FileCell alloc] initWithStyle:UITableViewCellStyleDefault
+        cell = [[[StyleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                 reuseIdentifier:CellIdentifier] autorelease];
     }
     NSInteger row = [indexPath indexAtPosition: 0];
     cell.label.text = [validTemplateNames objectAtIndex: row];;
+    if ([cell.label.text isEqualToString: myAppDelegate.preferredTemplateStyle]) {
+        cell.currentSelectionIndicator.text = @"+";
+    } else {
+        cell.currentSelectionIndicator.text = @"";
+    }
     return cell;
 }
 
@@ -108,6 +115,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // TODO(bowdidge): Change selection.
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    NSArray* validTemplateNames = [self.theTemplateCache validTemplateNames];
+    int selectionIndex = (int) [indexPath indexAtPosition: 0];
+    if (selectionIndex >= 0 && selectionIndex < validTemplateNames.count) {
+        myAppDelegate.preferredTemplateStyle = [validTemplateNames objectAtIndex: selectionIndex];
+        [myAppDelegate.mainWindowViewController noteRegenerateSwitchlists];
+    }
+    [self.myPopoverController dismissPopoverAnimated: YES];
 }
 
 @synthesize styleTable;
