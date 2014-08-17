@@ -1015,6 +1015,7 @@
 				3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */,
 				3E917A130951659A004647C7 /* Reports */,
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
+				3EC0ACE919A0553000ABD0E5 /* Switchlist Infrastructure */,
 				3EBAC6D6127B382A001F3FC7 /* Algorithm */,
 				3E95843512986D7D00A10258 /* SimpleHttpServer */,
 				3EFEC5291408515E00F9CF15 /* Web Interface */,
@@ -1320,10 +1321,6 @@
 				3ED482330D715B3600C36741 /* SwitchListView.m */,
 				3E60814013614EA30054DBA1 /* TextSwitchListView.h */,
 				3E60814113614EA30054DBA1 /* TextSwitchListView.m */,
-				3E07D41D19843B7E00736EB0 /* HTMLSwitchListController.h */,
-				3E07D41E19843B7E00736EB0 /* HTMLSwitchListController.m */,
-				3E3B3BA3140E09D700F4F56C /* HTMLSwitchListWindowController.h */,
-				3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */,
 			);
 			name = "Switchlist styles";
 			sourceTree = "<group>";
@@ -1426,10 +1423,21 @@
 				3E3E971D198D62B70061550C /* SwitchListStyleTabController.m */,
 				3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */,
 				3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		3EC0ACE919A0553000ABD0E5 /* Switchlist Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				3E07D41D19843B7E00736EB0 /* HTMLSwitchListController.h */,
+				3E07D41E19843B7E00736EB0 /* HTMLSwitchListController.m */,
+				3E3B3BA3140E09D700F4F56C /* HTMLSwitchListWindowController.h */,
+				3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */,
 				3EC0ACE019A042C500ABD0E5 /* TemplateCache.h */,
 				3EC0ACE119A042C500ABD0E5 /* TemplateCache.m */,
 			);
-			name = UI;
+			name = "Switchlist Infrastructure";
 			sourceTree = "<group>";
 		};
 		3EC3B1D31277E7BB00C00AD3 /* Unit tests */ = {

@@ -68,9 +68,12 @@
 }
 
 // Return the list of valid template names that exist.
-// TODO(bowdidge): Cache result for a short time.
+// TODO(bowdidge): Cache results, and be careful about checking file modification dates to avoid polling too much.
 - (NSArray*) validTemplateNames {
 	// Handwritten is always valid - uses defaults.
+    static int i = 0;
+    i++;
+    NSLog(@"%d times through validTemplateNames.", i);
 	NSMutableArray *result = [NSMutableArray arrayWithObject: DEFAULT_SWITCHLIST_TEMPLATE];
     
 	NSError *error;
