@@ -369,6 +369,7 @@
 		3EABEAE6169B38150016D751 /* IndustryChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EABEAE5169B38150016D751 /* IndustryChooser.m */; };
 		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
 		3EB78AEB199337E800476758 /* layout.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EB78AEA199337E800476758 /* layout.icns */; };
+		3EB7BBD219A11DC7004C202F /* StyleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7BBD119A11DC7004C202F /* StyleTableViewCell.m */; };
 		3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */; };
 		3EC0ACD9199FF60300ABD0E5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EC0ACDC199FF60300ABD0E5 /* MainStoryboard.storyboard */; };
 		3EC0ACDA199FF60300ABD0E5 /* MainStoryboard.storyboard in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3EC0ACDC199FF60300ABD0E5 /* MainStoryboard.storyboard */; };
@@ -814,6 +815,8 @@
 		3EB677B6130E4B460012DE1D /* CargoAssignerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CargoAssignerTest.h; path = Engine/CargoAssignerTest.h; sourceTree = "<group>"; };
 		3EB677B7130E4B460012DE1D /* CargoAssignerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CargoAssignerTest.m; path = Engine/CargoAssignerTest.m; sourceTree = "<group>"; };
 		3EB78AEA199337E800476758 /* layout.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = layout.icns; path = resources/layout.icns; sourceTree = "<group>"; };
+		3EB7BBD019A11DC7004C202F /* StyleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleTableViewCell.h; path = iPad/StyleTableViewCell.h; sourceTree = "<group>"; };
+		3EB7BBD119A11DC7004C202F /* StyleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleTableViewCell.m; path = iPad/StyleTableViewCell.m; sourceTree = "<group>"; };
 		3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = NoSidingToLatest.xcmappingmodel; sourceTree = "<group>"; };
 		3EC0ACDB199FF60300ABD0E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3EC0ACDD199FFA9F00ABD0E5 /* StyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleViewController.h; path = iPad/StyleViewController.h; sourceTree = "<group>"; };
@@ -1223,6 +1226,8 @@
 				3EEE0A8416209487007BBE4E /* PlaceChooser.m */,
 				3E407D8E160693E30037134D /* SelectionCell.h */,
 				3E407D8F160693E30037134D /* SelectionCell.m */,
+				3EB7BBD019A11DC7004C202F /* StyleTableViewCell.h */,
+				3EB7BBD119A11DC7004C202F /* StyleTableViewCell.m */,
 				3EC0ACDD199FFA9F00ABD0E5 /* StyleViewController.h */,
 				3EC0ACDE199FFA9F00ABD0E5 /* StyleViewController.m */,
 				3E407D90160693E30037134D /* SwitchList for iPad-Prefix.pch */,
@@ -1971,6 +1976,7 @@
 				3E407DAC160693E30037134D /* LayoutDetailTabBarController.m in Sources */,
 				3E407DAD160693E30037134D /* main.m in Sources */,
 				3E407DAE160693E30037134D /* MainWindowViewController.m in Sources */,
+				3EB7BBD219A11DC7004C202F /* StyleTableViewCell.m in Sources */,
 				3E407DAF160693E30037134D /* SelectionCell.m in Sources */,
 				3E407DB0160693E30037134D /* SwitchlistPresentationViewController.m in Sources */,
 				3E407DB1160693E30037134D /* SwitchListTouchCatcherView.m in Sources */,

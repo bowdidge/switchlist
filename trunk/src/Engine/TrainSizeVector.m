@@ -97,8 +97,8 @@
 @implementation TrainSizeVector
 
 - (void) addCars: (NSArray*) cars stops: (NSArray*) stationStops {
-	int stationCount = [stationStops count];
-	int i,j;
+	NSInteger stationCount = [stationStops count];
+	NSInteger i,j;
 	
 	for (FreightCar *car in cars) {
 		Place *currentStationForCar = [car currentTown];
@@ -189,7 +189,7 @@
 
 	self = [super init];
 	
-	int vectorLength = [stops count];
+	NSInteger vectorLength = [stops count];
 	stopsVector_ = [[NSMutableArray alloc] init];
 	for (i=0; i<vectorLength; i++) {
 		Place *currentPlace = [stops objectAtIndex: i];
@@ -206,8 +206,8 @@
 		return;
 	}
 	
-	int count = [stopsVector_ count];
-	int i;
+	NSInteger count = [stopsVector_ count];
+	NSInteger i;
 	for (i=0; i<count; i++) {
 		Stop *stop = [stopsVector_ objectAtIndex: i];
 		Stop *otherStop = [otherVector->stopsVector_ objectAtIndex: i];
@@ -226,7 +226,7 @@
 	int currentLength = 0;
 	int maximumLength = 0;
 	int i = 0;
-	int count = [stopsVector_ count];
+	NSInteger count = [stopsVector_ count];
 	for (i=0;i<count; i++) {
 		Stop *change = [stopsVector_ objectAtIndex: i];
 		currentLength += [change changeInLengthAtStop];

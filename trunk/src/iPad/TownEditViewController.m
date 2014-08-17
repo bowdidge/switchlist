@@ -89,7 +89,7 @@
         hasChanges = YES;
     }
     
-    int currentSegment = self.townLocationControl.selectedSegmentIndex;
+    NSInteger currentSegment = self.townLocationControl.selectedSegmentIndex;
 
     if (currentSegment == 2 && ![self.town isOffline]) {
         [self.town setIsOffline: YES];

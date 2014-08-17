@@ -87,7 +87,7 @@
     }
     
     // Configure the cell...
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     if (row == [allTrains count]) {
         [cell fillInAsAddCell];
     } else {

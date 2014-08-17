@@ -52,7 +52,7 @@ float SWITCHLIST_TOUCH_CATCHER_VIEW_WIDTH = 120.0;
 // to switch.
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
-    int carCount = [train.freightCars count];
+    NSInteger carCount = [train.freightCars count];
     BOOL isEmptyTrain = (carCount == 0);
     
     // Empty train icons should be slightly washed out.
@@ -83,7 +83,7 @@ float SWITCHLIST_TOUCH_CATCHER_VIEW_WIDTH = 120.0;
         // Only badges for trains.
         NSString *carCountString = nil;
         if (carCount != 0) {
-            carCountString = [NSString stringWithFormat: @"%d", carCount];
+            carCountString = [NSString stringWithFormat: @"%d", (int) carCount];
         } else {
             // Check symbol.
             carCountString = @"\u2713";

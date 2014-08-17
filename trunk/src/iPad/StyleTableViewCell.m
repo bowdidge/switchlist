@@ -1,12 +1,9 @@
 //
-//  StyleViewController.h
+//  FileCell.m
 //  SwitchList
 //
-//  Created by bowdidge on 8/16/14.
-//
-//
-// Copyright (c)2014 Robert Bowdidge,
-// All rights reserved.
+//  Created by Robert Bowdidge on 8/14/14.
+//  Copyright (c) 2012 Robert Bowdidge. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -29,17 +26,27 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
+#import "StyleTableViewCell.h"
 
-#import "TemplateCache.h"
+@implementation StyleTableViewCell
 
-@interface StyleViewController : UIViewController
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
-@property(nonatomic, retain) IBOutlet UITableView *styleTable;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    [super setSelected:selected animated:animated];
+    
+    // Configure the view for the selected state
+}
 
-// Set in [MainViewController prepareForSegue:]
-@property(nonatomic, retain) IBOutlet UIPopoverController *myPopoverController;
-
-// Cache of what template names exist.
-@property(nonatomic, retain) TemplateCache* theTemplateCache;
+@synthesize label;
+@synthesize imageView;
+@synthesize currentSelectionIndicator;
 @end

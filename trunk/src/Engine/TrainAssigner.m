@@ -121,8 +121,8 @@ BOOL DEBUG_CAR_ASSN = NO;
 		if ([tr acceptsCarType: carType] == NO) continue;
 		
 		NSArray *stations = [tr stationsInOrder];
-		int ct = [stations count];
-		int i;
+		NSInteger ct = [stations count];
+		NSInteger i;
 		for (i=0;i<ct-1;i++) {
 			Place *startStation = [stations objectAtIndex: i];
 			NSMutableArray *stationsReachable = [stationReachabilityGraph objectForKey: [startStation objectID]];
@@ -193,8 +193,8 @@ BOOL DEBUG_CAR_ASSN = NO;
 		NSInteger startIndex = [stops indexOfObject: start];
 		if (startIndex == NSNotFound) continue;
 		
-		int searchRangeStart = startIndex+1;
-		int searchLength=  [stops count] - searchRangeStart ;
+		NSInteger searchRangeStart = startIndex+1;
+		NSInteger searchLength=  [stops count] - searchRangeStart ;
 		NSInteger endIndex = [stops indexOfObject: end inRange: NSMakeRange(searchRangeStart, searchLength)];
 		
 		if ((endIndex != NSNotFound) && (startIndex < endIndex)) {

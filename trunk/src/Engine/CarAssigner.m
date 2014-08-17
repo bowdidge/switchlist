@@ -44,7 +44,7 @@
 	NSMutableArray *remainingItems = [NSMutableArray arrayWithArray: self];
 	NSMutableArray *result = [NSMutableArray array];
 	int i;
-	for (i=[remainingItems count]; i>0; i--) {
+	for (i= (int) [remainingItems count]; i>0; i--) {
 		int itemToRemove = [generator generateRandomNumber: i];
 		id object = [remainingItems objectAtIndex: itemToRemove];
 		[remainingItems removeObjectAtIndex: itemToRemove];

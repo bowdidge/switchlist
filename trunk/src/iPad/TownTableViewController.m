@@ -116,8 +116,8 @@
 
 // Returns place object represented in table view at the given row and section.
 - (Place*) townAtIndexPath: (NSIndexPath*) indexPath {
-    int section = indexPath.section;
-    int row = indexPath.row;
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     if (section == 0) {
         return [self.townsOnLayout objectAtIndex: row];
     } else if (section == 1) {

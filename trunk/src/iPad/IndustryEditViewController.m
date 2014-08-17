@@ -123,7 +123,7 @@ enum {
     [self.industry setName: self.nameField.text];
     [self.industry setDivision: self.divisionButton.titleLabel.text];
     [self.industry setLocation: [myLayout stationWithName: self.townLocationButton.titleLabel.text]];
-    int currentSegment = self.hasDoorsToggle.selectedSegmentIndex;
+    NSInteger currentSegment = self.hasDoorsToggle.selectedSegmentIndex;
     [self.industry setHasDoors: (currentSegment == 0) ? YES : NO];
 
     [self.industry setNumberOfDoors: [NSNumber numberWithInt: [self.numberOfDoorsField.text intValue]]];

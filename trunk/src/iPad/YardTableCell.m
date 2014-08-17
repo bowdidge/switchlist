@@ -61,7 +61,7 @@
     }
     self.yardDescription.text = [NSString stringWithFormat: @"%@, %d cars in yard, %d trains originate here.",
                                  locationKind,
-                                 [[yard freightCars] count], 3];
+                                 (int) [[yard freightCars] count], 3];
 }
 
 // Fill in the cell as the "Add..." cell at the bottom of the table.

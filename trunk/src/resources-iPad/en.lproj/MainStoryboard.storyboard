@@ -73,7 +73,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="nUh-7q-u7i" kind="popover" popoverAnchorView="ugL-CQ-CnO" id="zKA-Z3-cJu">
+                                            <segue destination="nUh-7q-u7i" kind="popover" identifier="styleSegue" popoverAnchorView="ugL-CQ-CnO" id="zKA-Z3-cJu">
                                                 <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                             </segue>
                                         </connections>
@@ -202,7 +202,7 @@
         <!--Style View Controller-->
         <scene sceneID="bPo-N4-lQd">
             <objects>
-                <viewController modalPresentationStyle="formSheet" id="nUh-7q-u7i" customClass="StyleViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="styleView" wantsFullScreenLayout="YES" modalPresentationStyle="formSheet" id="nUh-7q-u7i" customClass="StyleViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZAR-E6-vic">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -212,7 +212,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="styleCell" rowHeight="47" id="nh4-si-hGc" customClass="FileCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="styleCell" rowHeight="47" id="nh4-si-hGc" customClass="StyleTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="768" height="47"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nh4-si-hGc" id="TVu-8J-fHk">
@@ -220,7 +220,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Style name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6yj-px-Ql3">
-                                                    <rect key="frame" x="20" y="13" width="332" height="21"/>
+                                                    <rect key="frame" x="57" y="12" width="332" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Check" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XJh-cf-RAo">
+                                                    <rect key="frame" x="20" y="12" width="29" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -229,7 +236,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="label" destination="6yj-px-Ql3" id="YnB-Co-qec"/>
+                                            <outlet property="currentSelectionIndicator" destination="XJh-cf-RAo" id="5Kk-E8-Afk"/>
+                                            <outlet property="label" destination="6yj-px-Ql3" id="vy2-6f-Fb1"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

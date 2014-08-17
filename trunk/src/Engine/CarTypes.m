@@ -82,7 +82,7 @@
     }
     
     // Decide whether what we have, or what we don't have, is smaller.
-    int carTypeCount = [allCarTypes count];
+    NSInteger carTypeCount = [allCarTypes count];
     if ([acceptedCarTypes count] < carTypeCount * 0.6) {
         // Show list of accepted car types.
         NSMutableArray* allCarTypeStrings = [NSMutableArray array];

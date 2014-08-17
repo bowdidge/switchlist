@@ -71,7 +71,7 @@
     static NSString *CellIdentifier = @"freightCarKindCell";
     CarTypeChooserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    int index = [indexPath row];
+    NSInteger index = [indexPath row];
     CarType *carType = [self.allCarTypes objectAtIndex: index];
     cell.label.text = [NSString stringWithFormat: @"%@ / %@",  carType.carTypeDescription, carType.carTypeName];
     if (carType == self.keyObjectSelection) {

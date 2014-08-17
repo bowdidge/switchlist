@@ -48,9 +48,9 @@
 }
 
 - (NSString*) descriptionForTown: (Place*) p {
-    int industryCount = p.industries.count;
-    int yardCount = p.yards.count;
-    int freightCarCount= p.freightCarsAtStation.count;
+    NSInteger industryCount = p.industries.count;
+    NSInteger yardCount = p.yards.count;
+    NSInteger freightCarCount= p.freightCarsAtStation.count;
     
     if (industryCount == 0 && yardCount == 0 && freightCarCount == 0) {
         return @"Not much more than a wide spot in the road.";
@@ -58,7 +58,7 @@
     
     NSMutableArray *response = [NSMutableArray array];
     if (industryCount != 0) {
-        [response addObject: [NSString stringWithFormat: @"%d industries", industryCount]];
+        [response addObject: [NSString stringWithFormat: @"%d industries", (int) industryCount]];
     }
     if (yardCount == 1) {
         [response addObject: @"has yard"];
@@ -67,7 +67,7 @@
     }
                                 
     if (freightCarCount != 0) {
-        [response addObject: [NSString stringWithFormat: @"%d freight cars in town", freightCarCount]];
+        [response addObject: [NSString stringWithFormat: @"%d freight cars in town", (int) freightCarCount]];
     }
     
     NSString *responseString = [NSString stringWithFormat: @"%@.", [response componentsJoinedByString: @", "]];

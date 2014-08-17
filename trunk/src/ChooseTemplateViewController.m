@@ -112,7 +112,7 @@ NSString *TEMPLATE_IS_CUSTOM_KEY = @"customTemplate";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"templateCell";
     TemplateCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    int row = [indexPath row];
+    NSInteger row = [indexPath row];
     if ([indexPath section] == 1) {
         NSDictionary *template = [self.allCustomTemplates objectAtIndex: row];
         cell.templateName.text = [template objectForKey: TEMPLATE_NAME_KEY];
@@ -127,8 +127,8 @@ NSString *TEMPLATE_IS_CUSTOM_KEY = @"customTemplate";
 
 // Handles the user pressing an item in the right-hand-side selection table.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    int row = [indexPath row];
-    int section = [indexPath section];
+    NSInteger row = [indexPath row];
+    NSInteger section = [indexPath section];
     NSString *name;
     if (section == 0) {
         name = [[self.allTemplates objectAtIndex: row] objectForKey: TEMPLATE_NAME_KEY];

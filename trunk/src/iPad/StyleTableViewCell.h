@@ -1,12 +1,9 @@
 //
-//  StyleViewController.h
+//  FileCell.h
 //  SwitchList
 //
-//  Created by bowdidge on 8/16/14.
-//
-//
-// Copyright (c)2014 Robert Bowdidge,
-// All rights reserved.
+//  Created by Robert Bowdidge on 8/17/14.
+//  Copyright (c) 2014 Robert Bowdidge. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -31,15 +28,9 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TemplateCache.h"
+@interface StyleTableViewCell: UITableViewCell
+@property (nonatomic, retain) IBOutlet UILabel *label;
+@property (nonatomic, retain) IBOutlet UIImageView *imageView;
+@property (nonatomic, retain) IBOutlet UILabel *currentSelectionIndicator;
 
-@interface StyleViewController : UIViewController
-
-@property(nonatomic, retain) IBOutlet UITableView *styleTable;
-
-// Set in [MainViewController prepareForSegue:]
-@property(nonatomic, retain) IBOutlet UIPopoverController *myPopoverController;
-
-// Cache of what template names exist.
-@property(nonatomic, retain) TemplateCache* theTemplateCache;
 @end
