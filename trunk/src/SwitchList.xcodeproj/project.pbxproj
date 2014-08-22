@@ -269,6 +269,9 @@
 		3EA4884615D84B00008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
 		3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
 		3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4891815D85C7C008A169F /* SuggestedCargoController.m */; };
+		3EAA8F5616D0B09500521AD5 /* UILayoutGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA8F5516D0B09500521AD5 /* UILayoutGraphViewController.m */; };
+		3EAA8F5916D0B17900521AD5 /* LayoutGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA8F5816D0B17900521AD5 /* LayoutGraphView.m */; };
+		3EAA8F5A16D0B49700521AD5 /* LayoutGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56EE16225616007F49EC /* LayoutGraph.m */; };
 		3EAAA70E1606C70200C3D7A8 /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
 		3EAAA7141606C7D400C3D7A8 /* camera.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DB9160694070037134D /* camera.jpg */; };
 		3EAAA7151606C7D400C3D7A8 /* cargo.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E407DBA160694070037134D /* cargo.jpg */; };
@@ -800,6 +803,10 @@
 		3EA4891815D85C7C008A169F /* SuggestedCargoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCargoController.m; sourceTree = "<group>"; };
 		3EA80AF90E426FDF009C223A /* PrintEverythingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintEverythingView.h; sourceTree = "<group>"; };
 		3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintEverythingView.m; sourceTree = "<group>"; };
+		3EAA8F5416D0B09500521AD5 /* UILayoutGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutGraphViewController.h; sourceTree = "<group>"; };
+		3EAA8F5516D0B09500521AD5 /* UILayoutGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILayoutGraphViewController.m; sourceTree = "<group>"; };
+		3EAA8F5716D0B17900521AD5 /* LayoutGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutGraphView.h; sourceTree = "<group>"; };
+		3EAA8F5816D0B17900521AD5 /* LayoutGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutGraphView.m; sourceTree = "<group>"; };
 		3EAAA7091606C4BD00C3D7A8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3EAAA7661606CC5400C3D7A8 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
 		3EAAA77F1608226A00C3D7A8 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
@@ -1219,6 +1226,8 @@
 				3E407D8A160693E30037134D /* LayoutDetailTabBarController.m */,
 				3E11BF80160CE279007605D6 /* LayoutDetailsViewController.h */,
 				3E11BF81160CE279007605D6 /* LayoutDetailsViewController.m */,
+				3EAA8F5716D0B17900521AD5 /* LayoutGraphView.h */,
+				3EAA8F5816D0B17900521AD5 /* LayoutGraphView.m */,
 				3E407D8B160693E30037134D /* main.m */,
 				3E407D8C160693E30037134D /* MainWindowViewController.h */,
 				3E407D8D160693E30037134D /* MainWindowViewController.m */,
@@ -1252,6 +1261,8 @@
 				3E407D9B160693E30037134D /* TrainTableCell.m */,
 				3E407D9C160693E30037134D /* TrainTableViewController.h */,
 				3E407D9D160693E30037134D /* TrainTableViewController.m */,
+				3EAA8F5416D0B09500521AD5 /* UILayoutGraphViewController.h */,
+				3EAA8F5516D0B09500521AD5 /* UILayoutGraphViewController.m */,
 				3E407D9E160693E30037134D /* YardTableCell.h */,
 				3E407D9F160693E30037134D /* YardTableCell.m */,
 				3E407DA0160693E30037134D /* YardTableViewController.h */,
@@ -2002,6 +2013,9 @@
 				3EEE0A8516209488007BBE4E /* PlaceChooser.m in Sources */,
 				3E853CEF1699739700F8C59B /* CarTypeChooser.m in Sources */,
 				3EABEAE6169B38150016D751 /* IndustryChooser.m in Sources */,
+				3EAA8F5616D0B09500521AD5 /* UILayoutGraphViewController.m in Sources */,
+				3EAA8F5916D0B17900521AD5 /* LayoutGraphView.m in Sources */,
+				3EAA8F5A16D0B49700521AD5 /* LayoutGraph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
