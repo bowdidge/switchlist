@@ -413,7 +413,7 @@
 	_outputDisabledCount = 0;
 	[templateContents release];
 	templateContents = [templateString retain];
-	_templateLength = [templateString length];
+	_templateLength = (int) [templateString length];
 	[_templateVariables release];
 	_templateVariables = [variables deepMutableCopy];
 	remainingRange = NSMakeRange(0, [templateString length]);

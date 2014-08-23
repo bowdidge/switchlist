@@ -114,8 +114,8 @@ const float MAX_LINGER_INTERVAL = 0.6;
         int currentIndex = 1;
         while (currentIndex < [current_selected_stops_ count]) {
             LayoutNode *currNode = [current_selected_stops_ objectAtIndex: currentIndex];
-            int prevPos = [all_stations_display_order_ indexOfObject: prevNode];
-            int currPos = [all_stations_display_order_ indexOfObject: currNode];
+            NSInteger prevPos = [all_stations_display_order_ indexOfObject: prevNode];
+            NSInteger currPos = [all_stations_display_order_ indexOfObject: currNode];
             // Draw line from prev to current.
             [self drawLineX: STATION_LEFT + STATION_WIDTH / 2 Y: prevPos * STATION_SEPARATOR_Y + STATION_START_Y
                         toX: STATION_LEFT + STATION_WIDTH / 2 Y: currPos * STATION_SEPARATOR_Y + STATION_START_Y];

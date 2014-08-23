@@ -193,8 +193,8 @@
 }
 
 NSInteger compareByCount(id this, id that, void *context) {
-	int thisCount = [this count];
-	int thatCount = [that count];
+	NSInteger thisCount = [this count];
+	NSInteger thatCount = [that count];
 	if (thisCount == thatCount) {
 		return NSOrderedSame;
 	} else if (thisCount < thatCount) {
@@ -266,7 +266,7 @@ NSInteger compareByCount(id this, id that, void *context) {
 	AdjacencyTable *table = [[[AdjacencyTable alloc] init] autorelease];
 	
 	NSArray *allStations = [layout allStations];
-	int stationCount = [allStations count];
+	NSInteger stationCount = [allStations count];
 	int i, j;
 	for (i=0; i < stationCount; i++) {
 		for (j=i; j < stationCount; j++) {
@@ -282,8 +282,8 @@ NSInteger compareByCount(id this, id that, void *context) {
 				}
 				// TODO(bowdidge): Check for multiple.
 				if ([allStops containsObject: from] && [allStops containsObject: to]) {
-					int fromIndex = [allStops indexOfObject: from];
-					int toIndex = [allStops indexOfObject: to];
+					NSInteger fromIndex = [allStops indexOfObject: from];
+					NSInteger toIndex = [allStops indexOfObject: to];
 					if (fromIndex == toIndex + 1 || fromIndex == toIndex - 1) {
 						adjacent++;
 					}
