@@ -81,34 +81,6 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.75577445649999997" green="0.75076388869999999" blue="0.63411898359999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" id="xoM-9k-aCG">
-                                <rect key="frame" x="247" y="166" width="384" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Box 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8sC-YB-9G5">
-                                        <rect key="frame" x="8" y="0.0" width="308" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
-                            <view contentMode="scaleToFill" id="eJo-75-TPP">
-                                <rect key="frame" x="247" y="264" width="384" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Box 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nHf-Qh-jpF">
-                                        <rect key="frame" x="8" y="0.0" width="308" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.81685207199999998" green="0.79517975441254352" blue="0.70507705516056296" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -117,11 +89,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="fileButton" destination="Gxd-rH-AYX" id="R7t-fD-8PO"/>
-                        <outlet property="reportBox" destination="eJo-75-TPP" id="eBc-Lx-lWW"/>
-                        <outlet property="reportsLabel" destination="nHf-Qh-jpF" id="2P8-Ym-4ps"/>
                         <outlet property="styleButton" destination="ugL-CQ-CnO" id="Sw3-t1-sre"/>
-                        <outlet property="switchlistBox" destination="xoM-9k-aCG" id="ej0-Tz-WSO"/>
-                        <outlet property="switchlistsLabel" destination="8sC-YB-9G5" id="ZDg-hT-Lxm"/>
                         <outlet property="view" destination="whc-ZW-t0d" id="8Kh-8R-zno"/>
                         <segue destination="xI8-1f-HdB" kind="push" identifier="presentation" id="9jn-Ll-g5D"/>
                         <segue destination="fVO-Ss-3j2" kind="push" identifier="detail" id="6KB-hi-vdR"/>
