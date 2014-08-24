@@ -49,20 +49,29 @@
     // Configure the view for the selected state
 }
 
+- (NSString*) cargoDescriptionForIndustry: (Industry*) i {
+    NSMutableString *description = [NSMutableString string];
+    NSSet *outCargos = [i originatingCargos];
+    NSSet *inCargos = [i terminatingCargos];
+    if ([outCargos count] != 0) {
+        [description appendFormat: @"Receives %@. ", [[outCargos anyObject] cargoDescription]];
+    }
+    if ([inCargos count] != 0) {
+        [description appendFormat: @"Ships %@. ", [[inCargos anyObject] cargoDescription]];
+    }
+    if ([outCargos count] == 0 && [inCargos count] == 0) {
+        [description appendFormat: @"No cargos arriving or leaving. "];
+    }
+    return description;
+}
+
 // Creates description string for industry cell.
 // Form is "Receives x, y, sends z.  Doors for spotting."
 // TODO(bowdidge): List only common cargos so list doesn't become too large.
 - (NSString*) descriptionForIndustry: (Industry*) i {
     // Receives x,y, sends z.  Doors for spotting."
-    NSSet *outCargos = [i originatingCargos];
-    NSSet *inCargos = [i terminatingCargos];
     NSMutableString *description = [NSMutableString string];
-    if ([outCargos count] != 0) {
-        [description appendFormat: @"receives %@, ", [[outCargos anyObject] cargoDescription]];
-    }
-    if ([inCargos count] != 0) {
-        [description appendFormat: @"ships %@, ", [[inCargos anyObject] cargoDescription]];
-    }
+    [description appendString: [self cargoDescriptionForIndustry: i]];
     if ([i hasDoors]) {
         [description appendString: @"Spot at specific doors."];
     }
@@ -81,11 +90,11 @@
     self.sidingLength.text = [NSString stringWithFormat: @"%d", [[industry sidingLength] intValue]];
     [self.hasDoorsControl setSelectedSegmentIndex: [industry hasDoors] ? 0 : 1];
     if (industry.hasDoors) {
-        self.numberOfDoors.text = [NSString stringWithFormat: @"%d", (int) [industry numberOfDoors]];
+        self.numberOfDoorsField.text = [NSString stringWithFormat: @"%d", (int) [[industry numberOfDoors] intValue]];
     } else {
-        self.numberOfDoors.text = @"";
+        self.numberOfDoorsField.text = @"";
     }
-    self.cargos.text = @"Lots of cargos!";
+    self.cargos.text = [self cargoDescriptionForIndustry: industry];;
 }
 
 // Fill in the cell as the "Add..." cell at the bottom of the table.
@@ -96,20 +105,72 @@
     self.industryIcon.hidden = YES;
 }
 
+// Called when the "spot at specific doors" switch changes state.
+- (void) doorSwitchChanged: (id) sender {
+    bool notHasDoors = (bool) self.hasDoorsControl.selectedSegmentIndex;
+    if (notHasDoors) {
+        self.myIndustry.hasDoors = [NSNumber numberWithBool: NO];
+    } else {
+        self.myIndustry.hasDoors = [NSNumber numberWithBool: YES];
+    }
+    // Regenerate text.
+    [self fillInAsIndustry: self.myIndustry];
+}
+
 // Handle clicks on the text fields that are supporting immediate editing.  Either make the text
 // editable, or raise the correct popover to permit selection.
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == self.divisionName) {
-        // Mark text as editable.
-        textField.backgroundColor = [UIColor whiteColor];
-        textField.borderStyle = UITextBorderStyleRoundedRect;
-    } else if (textField == self.townName ) {
+    if (textField == self.townName) {
         // TODO(bowdidge): Put up list of potential locations here.
         [self.myController doStationPressed: self];
         return NO;
     }
+    
+    // Treat as text field.
+    textField.backgroundColor = [UIColor whiteColor];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    
     return YES;
 }
+
+// Note when editing is complete so that changes can be saved.  For now, only watch for changes to the
+// reporting marks so that we can resort the table.
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if (textField == self.townName) {
+        // Handled in doX.
+        return YES;
+    }
+    
+    textField.backgroundColor = [UIColor clearColor];
+    textField.borderStyle = UITextBorderStyleNone;
+    // TODO(bowdidge): Warn about changes to alphabetic order?
+    // [self.myController noteTableCell: self changedCarReportingMarks: textField.text];
+    
+    NSString *newValue = textField.text;
+    if (textField == self.industryName) {
+        self.myIndustry.name = newValue;
+    } else if (textField == self.divisionName) {
+        self.myIndustry.division = newValue;
+    } else if (textField == self.numberOfDoorsField) {
+        NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *numberOfDoors = [f numberFromString: textField.text];
+        self.myIndustry.numberOfDoors = numberOfDoors;
+    } else if (textField == self.sidingLength) {
+        NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *sidingLength = [f numberFromString: textField.text];
+        self.myIndustry.sidingLength = sidingLength;
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField endEditing: YES];
+    return YES;
+}
+
 
 @synthesize myIndustry;
 @synthesize industryName;
@@ -120,7 +181,7 @@
 @synthesize townName;
 @synthesize divisionName;
 @synthesize hasDoorsControl;
-@synthesize numberOfDoors;
+@synthesize numberOfDoorsField;
 @synthesize cargos;
 @synthesize cargoHelpButton;
 

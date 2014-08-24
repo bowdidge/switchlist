@@ -70,9 +70,9 @@
         return @"unassigned";
     }
     if ([fc isLoaded]) {
-        return [NSString stringWithFormat: @"loaded with %@", [[fc cargo] cargoDescription]];
+        return [NSString stringWithFormat: @"loaded with %@ for %@", [[fc cargo] cargoDescription], [[[fc cargo] destination] name]];
     }
-    return [NSString stringWithFormat: @"will be loaded with %@", [[fc cargo] cargoDescription]];
+    return [NSString stringWithFormat: @"will be loaded with %@ at %@", [[fc cargo] cargoDescription], [[[fc cargo] source] name]];
 }
 
 // Generates the description string for a freight car cell.  This only appears in the
@@ -85,9 +85,6 @@
     
     [description appendFormat: @"%@", [self cargoDescriptionForFreightCar: fc]];
 
-    if ([fc cargo]) {
-        [description appendFormat: @", destination is %@", [[[fc cargo] destination] name]];
-    }
    return description;
 }
 
@@ -129,7 +126,7 @@
 }
 
 - (IBAction) doChangeLoadedState: (id) sender {
-    NSNumber *notLoaded = self.loadedToggle.selectedSegmentIndex;
+    bool notLoaded = (bool) self.loadedToggle.selectedSegmentIndex;
     if (notLoaded) {
         self.freightCar.loaded = [NSNumber numberWithBool: NO];
     } else {

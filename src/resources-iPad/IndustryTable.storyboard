@@ -100,15 +100,6 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Auzerais St." minimumFontSize="17" id="5If-mY-Kde">
-                                            <rect key="frame" x="331" y="11" width="294" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="MXg-Vo-AcQ" id="it8-i3-qlE"/>
-                                            </connections>
-                                        </textField>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="dFe-Yh-SIm">
                                             <rect key="frame" x="244" y="89" width="73" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -116,12 +107,15 @@
                                                 <segment title="Yes"/>
                                                 <segment title="No"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="doorSwitchChanged:" destination="MXg-Vo-AcQ" eventType="valueChanged" id="agZ-fJ-s45"/>
+                                            </connections>
                                         </segmentedControl>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" minimumFontSize="17" id="GRL-Hx-ZAq">
                                             <rect key="frame" x="485" y="87" width="119" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             <connections>
                                                 <outlet property="delegate" destination="MXg-Vo-AcQ" id="1vn-yC-dl6"/>
                                             </connections>
@@ -176,7 +170,7 @@
                                             <rect key="frame" x="239" y="57" width="303" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             <connections>
                                                 <outlet property="delegate" destination="MXg-Vo-AcQ" id="Doc-2Z-5Iu"/>
                                             </connections>
@@ -195,10 +189,9 @@
                                     <outlet property="divisionName" destination="ebp-76-GZB" id="gx6-bP-D72"/>
                                     <outlet property="hasDoorsControl" destination="dFe-Yh-SIm" id="mtQ-Nc-1jh"/>
                                     <outlet property="industryIcon" destination="daF-ZH-OWa" id="Ume-3G-cS0"/>
-                                    <outlet property="industryLocation" destination="5If-mY-Kde" id="Do3-YO-4x6"/>
                                     <outlet property="industryName" destination="uAN-CO-PMe" id="e0w-ii-oQi"/>
                                     <outlet property="myController" destination="HiU-sQ-AIm" id="MHm-4e-CBD"/>
-                                    <outlet property="numberOfDoors" destination="GRL-Hx-ZAq" id="EXl-YM-ilx"/>
+                                    <outlet property="numberOfDoorsField" destination="GRL-Hx-ZAq" id="lmo-oQ-49B"/>
                                     <outlet property="sidingLength" destination="0Aw-mQ-wd2" id="mGa-1z-ls1"/>
                                     <outlet property="townName" destination="isz-aY-hV0" id="H4Q-dy-B2Z"/>
                                 </connections>

@@ -219,6 +219,15 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }
 
+- (NSArray*) allCargosForCarType: (CarType*) carType {
+    NSEntityDescription *ent = [NSEntityDescription entityForName: @"Cargo" inManagedObjectContext: [self managedObjectContext]];
+	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
+	[req2 setEntity: ent];
+	[req2 setPredicate: [NSPredicate predicateWithFormat: @"(carTypeRel.carTypeName LIKE %@) OR (carTypeRel == nil)", carType.carTypeName]];
+	NSError *error;
+	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
+}
+
 // returns array of managed objects representing cargo stuff.
 - (NSArray*) allValidCargos {
 	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Cargo" inManagedObjectContext: [self managedObjectContext]];

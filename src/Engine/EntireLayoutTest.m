@@ -402,6 +402,39 @@
 	XCTAssertTrue([[entireLayout allNonFixedRateCargos] containsObject: c1], @"cargo isn't in list.");
 }
 
+- (void) testAllCargosForCarType {
+	EntireLayout *entireLayout = [[EntireLayout alloc] initWithMOC: context_];
+	[self makeThreeStationLayout];
+
+	Cargo *c1 = [self makeCargo: @"b to c"];
+	[c1 setSource: [self industryAtStation: @"B"]];
+	[c1 setDestination: [self industryAtStation: @"C"]];
+	// No car type.  Should match both.
+    
+	Cargo *c2 = [self makeCargo: @"a to b"];
+	[c2 setPriority: [NSNumber numberWithBool: YES]];
+	[c2 setSource: [self industryAtStation: @"A"]];
+	[c2 setDestination: [self industryAtStation: @"B"]];
+    [c2 setCarTypeRel: [entireLayout carTypeForName: @"XA"]];
+    
+ 	Cargo *c3 = [self makeCargo: @"a to c"];
+	[c3 setPriority: [NSNumber numberWithBool: YES]];
+	[c3 setSource: [self industryAtStation: @"A"]];
+	[c3 setDestination: [self industryAtStation: @"B"]];
+    [c3 setCarTypeRel: [entireLayout carTypeForName: @"XM"]];
+    
+    NSArray* cargosWithCarTypeXA = [entireLayout allCargosForCarType: [entireLayout carTypeForName: @"XA"]];
+   	XCTAssertEqualInt(2, [cargosWithCarTypeXA count], @"Wrong number of cargos");
+	XCTAssertTrue([cargosWithCarTypeXA containsObject: c1], @"cargo isn't in list.");
+	XCTAssertTrue([cargosWithCarTypeXA containsObject: c2], @"cargo isn't in list.");
+
+    NSArray* cargosWithCarTypeXM = [entireLayout allCargosForCarType: [entireLayout carTypeForName: @"XM"]];
+   	XCTAssertEqualInt(2, [cargosWithCarTypeXM count], @"Wrong number of cargos");
+	XCTAssertTrue([cargosWithCarTypeXM containsObject: c1], @"cargo isn't in list.");
+	XCTAssertTrue([cargosWithCarTypeXM containsObject: c3], @"cargo isn't in list.");
+}
+
+
 // TODO(bowdidge): Move to ScheduledTrainTests?
 - (void) testAllCarsInTrainSortedInVisitOrder {
 	[self makeThreeStationLayout];

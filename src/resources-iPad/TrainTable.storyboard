@@ -90,14 +90,14 @@
                                             <rect key="frame" x="232" y="89" width="104" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             <connections>
                                                 <outlet property="delegate" destination="vgw-s9-iMv" id="5NA-Hx-FpA"/>
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="San Jose, Campbell, Los Gatos and return" minimumFontSize="17" id="dMC-7l-ofU">
-                                            <rect key="frame" x="232" y="30" width="332" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="232" y="30" width="478" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
@@ -123,13 +123,13 @@
                                             </connections>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z6d-V5-cCZ">
-                                            <rect key="frame" x="580" y="30" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="718" y="30" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Set">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="XvW-em-7Hn" kind="push" id="Gyd-aP-7FA"/>
+                                                <segue destination="XvW-em-7Hn" kind="push" identifier="graphSegue" id="Gyd-aP-7FA"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -161,16 +161,27 @@
         <scene sceneID="UJT-6i-BK2">
             <objects>
                 <viewController id="XvW-em-7Hn" customClass="LayoutGraphViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="yNe-Pt-DfQ" customClass="LayoutGraphView">
+                    <view key="view" contentMode="scaleToFill" id="kHR-CH-mxO">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="nul-yb-Eji" customClass="LayoutGraphView">
+                                <rect key="frame" x="0.0" y="65" width="768" height="959"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="VXl-P1-qY1"/>
+                    <connections>
+                        <outlet property="graphView" destination="nul-yb-Eji" id="uLN-Oo-7nY"/>
+                        <outlet property="view" destination="kHR-CH-mxO" id="yyu-fv-3Ta"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TTU-mV-FPQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-903" y="-1103"/>
+            <point key="canvasLocation" x="-904" y="-1098"/>
         </scene>
     </scenes>
     <resources>

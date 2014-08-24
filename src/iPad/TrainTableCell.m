@@ -53,10 +53,10 @@
 - (void) fillInAsTrain: (ScheduledTrain*) train {
     self.train = train;
     self.trainName.text = [train name];
-    NSArray *stations = [train stationsInOrder];
-    self.trainDescription.text = [NSString stringWithFormat: @"From %@ to %@.", [[stations objectAtIndex: 0] name],[[stations lastObject] name]];
+    self.trainDescription.text = [self.train niceListOfStationsString];
     self.trainKind.text = [CarTypes acceptedCarTypesString: [train acceptedCarTypesRel]];
     self.trainIcon.hidden = NO;
+    self.stops.text = [self.train niceListOfStationsString];
 }
 
 // Fill in the cell as the "Add..." cell at the bottom of the table.
@@ -70,28 +70,50 @@
 // Handle clicks on the text fields that are supporting immediate editing.  Either make the text
 // editable, or raise the correct popover to permit selection.
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == self.stops) {
-        // Mark text as editable.
-        textField.backgroundColor = [UIColor whiteColor];
-        textField.borderStyle = UITextBorderStyleRoundedRect;
-    } else if (textField == self.carsAccepted) {
-        // TODO(bowdidge): Consider better UI.
+    if (textField == self.carsAccepted) {
         //[self.myController doCarTypePressed: self];
         return NO;
+    } else if (textField == self.stops) {
+        // Run graph
+        return NO;
     }
+    
+    // Treat as text field.
+    textField.backgroundColor = [UIColor whiteColor];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    
     return YES;
 }
 
 // Note when editing is complete so that changes can be saved.  For now, only watch for changes to the
 // reporting marks so that we can resort the table.
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    if (textField == self.trainName) {
-        textField.backgroundColor = [UIColor clearColor];
-        textField.borderStyle = UITextBorderStyleNone;
-        self.train.name = textField.text;
-        // Reorder.
-        // [self.myController.tableView reloadData];
+    if (textField == self.carsAccepted ||
+        textField == self.stops) {
+        // should have already been handled..
+        return YES;
     }
+    
+    textField.backgroundColor = [UIColor clearColor];
+    textField.borderStyle = UITextBorderStyleNone;
+    // TODO(bowdidge): Warn about changes to alphabetic order?
+    // [self.myController noteTableCell: self changedCarReportingMarks: textField.text];
+    
+    NSString *newValue = textField.text;
+    if (textField == self.trainName) {
+        self.train.name = newValue;
+    } else if (textField == self.maximumLength) {
+        NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *maxLength = [f numberFromString: textField.text];
+        self.train.maxLength = maxLength;
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField endEditing: YES];
     return YES;
 }
 

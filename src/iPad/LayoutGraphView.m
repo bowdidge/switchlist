@@ -37,6 +37,7 @@
 #import "AppDelegate.h"
 #import "LayoutGraph.h"
 #import "Place.h"
+#import "ScheduledTrain.h"
 
 const int STATION_SEPARATOR_Y = 70;
 const int STATION_START_Y = 100;
@@ -59,15 +60,26 @@ const float MAX_LINGER_INTERVAL = 0.6;
 
     self.backgroundColor = [UIColor redColor];
 
-    current_selected_stops_ = [[NSMutableArray alloc] init];
+    self.currentSelectedStops = [NSMutableArray array];
     graph_initialized_ = NO;
     
     return self;
 }
 
 - (void) dealloc {
-    [current_selected_stops_ release];
     [super dealloc];
+}
+
+- (void) setCurrentTrain:(ScheduledTrain *)train {
+    NSArray* placeStops = [train stationsInOrder];
+    [self initializeGraphIfNeeded];
+    NSMutableArray *layoutNodeStops = [NSMutableArray array];
+    for (Place *station in placeStops) {
+        LayoutNode *node = [layout_graph_ layoutNodeForStation: [station name]];
+        [layoutNodeStops addObject: node];
+    }
+    self.currentSelectedStops = layoutNodeStops;
+    [self setNeedsDisplay];
 }
 
 // Build up the graph of routes between stations, and come up with a decent ordering
@@ -109,11 +121,11 @@ const float MAX_LINGER_INTERVAL = 0.6;
     [self initializeGraphIfNeeded];
     CGContextRef context = UIGraphicsGetCurrentContext();
 
-    if ([current_selected_stops_ count] > 1) {
-        LayoutNode *prevNode = [current_selected_stops_ objectAtIndex: 0];
+    if ([self.currentSelectedStops count] > 1) {
+        LayoutNode *prevNode = [self.currentSelectedStops objectAtIndex: 0];
         int currentIndex = 1;
-        while (currentIndex < [current_selected_stops_ count]) {
-            LayoutNode *currNode = [current_selected_stops_ objectAtIndex: currentIndex];
+        while (currentIndex < [self.currentSelectedStops count]) {
+            LayoutNode *currNode = [self.currentSelectedStops objectAtIndex: currentIndex];
             NSInteger prevPos = [all_stations_display_order_ indexOfObject: prevNode];
             NSInteger currPos = [all_stations_display_order_ indexOfObject: currNode];
             // Draw line from prev to current.
@@ -173,9 +185,8 @@ const float MAX_LINGER_INTERVAL = 0.6;
     lastStationIndexTouched_ = [self isTouchedNodeX: touchPoint.x Y: touchPoint.y];
 
     if (lastStationIndexTouched_ != -1) {
-        [current_selected_stops_ release];
         NSLog(@"lastTouch %d", lastStationIndexTouched_);
-        current_selected_stops_ = [[NSMutableArray arrayWithObject: [all_stations_display_order_ objectAtIndex: lastStationIndexTouched_]] retain];
+        self.currentSelectedStops = [NSMutableArray arrayWithObject: [all_stations_display_order_ objectAtIndex: lastStationIndexTouched_]];
         LayoutNode *n = [all_stations_display_order_ objectAtIndex: lastStationIndexTouched_];
         NSLog(@"Start new route at %@", [n.station name]);
     }
@@ -187,7 +198,7 @@ const float MAX_LINGER_INTERVAL = 0.6;
     NSDictionary *userDict = [timer userInfo];
     LayoutNode *currStationNode = [userDict objectForKey: @"node"];
     int nodeTouched = [[userDict objectForKey: @"nodeTouched"] intValue];
-    [current_selected_stops_ addObject: currStationNode];
+    [self.currentSelectedStops addObject: currStationNode];
     NSLog(@"Appending to route: %@", currStationNode.station.name);
     lastStationIndexTouched_ = nodeTouched;
     [self setNeedsDisplay];
@@ -216,7 +227,7 @@ const float MAX_LINGER_INTERVAL = 0.6;
     } else {
         // Avoid dups.
         LayoutNode *currNode = [all_stations_display_order_ objectAtIndex: isNodeTouched];
-        LayoutNode *prevNode = [current_selected_stops_ lastObject];
+        LayoutNode *prevNode = [self.currentSelectedStops lastObject];
         
         NSLog(@"Station is %@, last is %@", currNode.station.name,prevNode.station.name);
         // If we're not on the station we started on, and we're not on one that we're waiting for a linger on.
@@ -244,7 +255,7 @@ const float MAX_LINGER_INTERVAL = 0.6;
     performing_drag_ = NO;
     lastStationIndexTouched_ = -1;
     NSLog(@"Route done!");
-    for (LayoutNode *node in current_selected_stops_) {
+    for (LayoutNode *node in self.currentSelectedStops) {
         NSLog(@"Station: %@", node.station.name);
     }
     // Lingering?  Count last location as a valid stop.
