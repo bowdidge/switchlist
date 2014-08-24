@@ -30,5 +30,10 @@
 
 #import "AbstractTableViewController.h"
 
-@interface IndustryTableViewController : AbstractTableViewController
+@interface IndustryTableViewController : AbstractTableViewController {
+};
+
+- (IBAction) doStationPressed: (id) sender;
+
+// Index of currently-expanded cell.
 @end

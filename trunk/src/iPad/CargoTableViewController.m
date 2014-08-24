@@ -30,7 +30,6 @@
 
 #import "AppDelegate.h"
 #import "Cargo.h"
-#import "CargoEditViewController.h"
 #import "CargoTableCell.h"
 #import "SwitchListColors.h"
 
@@ -47,6 +46,8 @@
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
     allCargos = [[myLayout allCargos] copy];
+    self.storyboardName = @"CargoTable";
+    self.title = @"Cargos";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,8 +79,20 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"cargoCell";
-    CargoTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *cellIdentifier;
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        cellIdentifier = @"extendedCargoCell";
+    } else {
+        cellIdentifier = @"cargoCell";
+    }
+    CargoTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[CargoTableCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:cellIdentifier];
+        [cell autorelease];
+    }
+    
 
     NSInteger row = [indexPath row];
     if (row == [self.allCargos count]) {
@@ -139,9 +152,25 @@
 
 #pragma mark - Table view delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        return 160.0;
+    }
+    return 80.0;
+}
+
+
 // Handles presses on the table.  When a selection is made in the cargo
 // table, we show a popover for editing the cargo.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        [self.tableView beginUpdates];
+        self.expandedCellPath = nil;
+        [self.tableView endUpdates];
+        [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        return;
+    }
+    
     Cargo *cargo = [self cargoAtIndexPath: indexPath];
     if (!cargo) {
         // Create a new freight car.
@@ -153,9 +182,13 @@
                                               inManagedObjectContext: moc];
         cargo.cargoDescription = @"Stuff";
     }
-    CargoEditViewController *cargoEditVC = [self doRaisePopoverWithStoryboardIdentifier: @"editCargo"
-                                                                          fromIndexPath: indexPath];
-    cargoEditVC.cargo = cargo;
+
+    [self.tableView beginUpdates];
+    NSIndexPath *oldPath = [self.expandedCellPath retain];
+    self.expandedCellPath = indexPath;
+    [self.tableView endUpdates];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, oldPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [oldPath release];
 }
 
 

@@ -77,4 +77,10 @@
 // IB outlet pointing to table view for this tab.
 @property (retain, nonatomic) IBOutlet UITableView *myTableView;
 
+// Where to load related views from.
+@property (retain, nonatomic) NSString *storyboardName;
+
+// Index of currently-expanded cell.
+@property (nonatomic, retain) NSIndexPath *expandedCellPath;
+
 @end

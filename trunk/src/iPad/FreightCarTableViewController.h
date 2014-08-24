@@ -35,12 +35,16 @@
 // Controller for freight car table in freight car tab.
 @interface FreightCarTableViewController : AbstractTableViewController
 
-- (IBAction) doKindPressed: (id) sender;
 
-// Handle a touch on a cell's freight car location.  Show a popover
-// to allow selecting a different location.
+// Handle presses on a cell's freight car location, type, or cargo.  Show a popover to allow selecting one item.
+- (IBAction) doCarTypePressed: (id) sender;
 - (IBAction) doLocationPressed: (id) sender;
+- (IBAction) doCargoPressed: (id) sender;
 
+// Reload all data from railroad again.
+- (void) regenerateTableData;
+
+// Handle changes to items that require resorting the table.
 - (IBAction) noteTableCell: (FreightCarTableCell*) cell changedCarReportingMarks: (NSString*) reportingMarks;
 
 // Requests edit view be closed.

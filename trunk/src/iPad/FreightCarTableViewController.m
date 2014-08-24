@@ -31,17 +31,16 @@
 #import "AppDelegate.h"
 #import "AppNavigationController.h"
 #import "Cargo.h"
+#import "CargoChooser.h"
 #import "CarType.h"
 #import "CarTypeChooser.h"
 #import "EntireLayout.h"
 #import "FreightCar.h"
-#import "FreightCarEditController.h"
 #import "FreightCarTableCell.h"
 #import "IndustryChooser.h"
 #import "SwitchListColors.h"
 
 @interface FreightCarTableViewController ()
-- (IBAction) doKindPressed: (id) sender;
 - (void) doCloseChooser: (id) sender;
 @end
 
@@ -54,6 +53,8 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.storyboardName = @"FreightCarTable";
+    self.title = @"Freight Cars";
 }
 
 // Gathers freight car data from the entire layout again, reloading if necessary.
@@ -81,6 +82,63 @@
     // Dispose of any resources that can be recreated.
 }
 
+// Handle a touch on a cell's freight car kind.  Show a popover
+// to allow selecting a different car kind.
+- (IBAction) doCarTypePressed: (id) sender {
+    FreightCarTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.detailedCarType.frame toView: self.view];
+    CarTypeChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"carTypeChooser" fromRect: popoverRect];
+    chooser.keyObject = cell.freightCar;
+    chooser.keyObjectSelection = cell.freightCar.carTypeRel;
+    chooser.myController = self;
+}
+
+// Handle a touch on a cell's freight car kind.  Show a popover
+// to allow selecting a different car kind.
+- (IBAction) doCargoPressed: (id) sender {
+    FreightCarTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.cargoField.frame toView: self.view];
+    // TODO(bowdidge): Limit choices to cargos for this car, or cargos without a car type, or the car's current contents.
+    CargoChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"cargoChooser" fromRect: popoverRect];
+    chooser.keyObject = cell.freightCar;
+    chooser.keyObjectSelection = cell.freightCar.cargo;
+    chooser.myController = self;
+}
+
+// Handle a touch on a cell's freight car location.  Show a popover
+// to allow selecting a different location.
+- (IBAction) doLocationPressed: (id) sender {
+    FreightCarTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.shortCarType.frame toView: self.view];
+    IndustryChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"industryChooser" fromRect: popoverRect];
+    chooser.keyObject = cell.freightCar;
+    chooser.keyObjectSelection = cell.freightCar.currentLocation;
+    chooser.myController = self;
+}
+
+// Handle an edit that changed a car's reporting marks.
+- (IBAction) noteTableCell: (FreightCarTableCell*) cell changedCarReportingMarks: (NSString*) reportingMarks {
+    [cell.freightCar setReportingMarks: reportingMarks];
+    [self.tableView reloadData];
+}
+
+// Called on valid click on the freight car kind chooser.
+- (void) doCloseChooser: (id) sender {
+    if ([sender isKindOfClass: [CarTypeChooser class]]) {
+        CarTypeChooser *chooser = (CarTypeChooser*) sender;
+        FreightCar *selectedFreightCar = chooser.keyObject;
+        selectedFreightCar.carTypeRel = chooser.selectedCarType;
+        [self.myPopoverController dismissPopoverAnimated: YES];
+        [self.tableView reloadData];
+    } else if ([sender isKindOfClass: [IndustryChooser class]]) {
+        IndustryChooser *chooser = (IndustryChooser*) sender;
+        FreightCar *selectedFreightCar = chooser.keyObject;
+        selectedFreightCar.currentLocation = chooser.selectedIndustry;
+        [self.myPopoverController dismissPopoverAnimated: YES];
+        [self.tableView reloadData];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -88,10 +146,14 @@
     return 3;
 }
 
+const int CARS_ON_LAYOUT_SECTION = 1;
+const int CARS_AT_WORKBENCH_SECTION = 2;
+const int NEW_CARS_SECTION = 0;
+
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
+    if (section == CARS_ON_LAYOUT_SECTION) {
       return @"Freight cars on layout";
-    } else if (section == 1){
+    } else if (section == CARS_ON_LAYOUT_SECTION){
         return @"Freight cars at workbench";
     } else {
         // Empty/add.  Won't show as title, but makes processing cells easier.
@@ -102,9 +164,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     // Add one for "Add freight car".
-    if (section == 0) {
+    if (section == CARS_ON_LAYOUT_SECTION) {
         return [self.allFreightCars count];
-    } else if (section == 1) {
+    } else if (section == CARS_ON_LAYOUT_SECTION) {
         return [self.allFreightCarsOnWorkbench count];
     } else {
         return 1;
@@ -113,32 +175,38 @@
 
 - (FreightCar*) freightCarAtIndexPath: (NSIndexPath *) indexPath {
     NSInteger section = [indexPath section];
-    if (section != 0 && section != 1) {
+    if (section == NEW_CARS_SECTION) {
         return nil;
     }
     NSInteger row = [indexPath row];
-    if (section == 0) {
+    if (section == CARS_ON_LAYOUT_SECTION) {
         return [allFreightCars objectAtIndex: row];
-    } else {
+    } else if (section == CARS_ON_LAYOUT_SECTION){
         return [allFreightCarsOnWorkbench objectAtIndex: row];
     }
+    
+    return nil;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row % 2 == 1) {
-        // Alternate colors get a slight gray.
-        cell.backgroundColor = [SwitchListColors switchListLightBeige];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        return 180.0;
     }
+    return 80.0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifier = @"freightCarCell";
-    
-    FreightCarTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *cellIdentifier;
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        cellIdentifier = @"extendedFreightCarCell";
+    } else {
+        cellIdentifier = @"freightCarCell";
+    }
+    FreightCarTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[FreightCarTableCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:CellIdentifier];
+                reuseIdentifier:cellIdentifier];
         [cell autorelease];
     }
     
@@ -160,9 +228,9 @@
     return YES;
 }
 
+
 // Handles editing actions on table - delete or insert.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         FreightCar *freightCarToDelete = [self freightCarAtIndexPath: indexPath];
         [[freightCarToDelete managedObjectContext] deleteObject: freightCarToDelete];
@@ -190,56 +258,19 @@
 }
 */
 
-// Handle a touch on a cell's freight car kind.  Show a popover
-// to allow selecting a different car kind.
-- (IBAction) doKindPressed: (id) sender {
-    FreightCarTableCell *cell = sender;
-    CGRect popoverRect = [cell convertRect: cell.freightCarKind.frame toView: self.view];
-    CarTypeChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"carTypeChooser" fromRect: popoverRect];
-    chooser.keyObject = cell.freightCar;
-    chooser.keyObjectSelection = cell.freightCar.carTypeRel;
-    chooser.myController = self;
-}
-
-// Handle a touch on a cell's freight car location.  Show a popover
-// to allow selecting a different location.
-- (IBAction) doLocationPressed: (id) sender {
-    FreightCarTableCell *cell = sender;
-    CGRect popoverRect = [cell convertRect: cell.freightCarKind.frame toView: self.view];
-    IndustryChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"industryChooser" fromRect: popoverRect];
-    chooser.keyObject = cell.freightCar;
-    chooser.keyObjectSelection = cell.freightCar.currentLocation;
-    chooser.myController = self;
-}
-
-// Handle an edit that changed a car's reporting marks.
-- (IBAction) noteTableCell: (FreightCarTableCell*) cell changedCarReportingMarks: (NSString*) reportingMarks {
-    [cell.freightCar setReportingMarks: reportingMarks];
-    [self.tableView reloadData];
-}
-
-// Called on valid click on the freight car kind chooser.
-- (void) doCloseChooser: (id) sender {
-    if ([sender isKindOfClass: [CarTypeChooser class]]) {
-        CarTypeChooser *chooser = (CarTypeChooser*) sender;
-        FreightCar *selectedFreightCar = chooser.keyObject;
-        selectedFreightCar.carTypeRel = chooser.selectedCarType;
-        [self.myPopoverController dismissPopoverAnimated: YES];
-        [self.tableView reloadData];
-    } else if ([sender isKindOfClass: [IndustryChooser class]]) {
-        IndustryChooser *chooser = (IndustryChooser*) sender;
-        FreightCar *selectedFreightCar = chooser.keyObject;
-        selectedFreightCar.currentLocation = chooser.selectedIndustry;
-        [self.myPopoverController dismissPopoverAnimated: YES];
-        [self.tableView reloadData];        
-    }
-}
-
 #pragma mark - Table view delegate
 
 // Handles presses on the table.  When a selection is made in the freight
 // car table, we show a popover for editing the freight car.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        [self.tableView beginUpdates];
+        self.expandedCellPath = nil;
+        [self.tableView endUpdates];
+        [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        return;
+    }
+    
     FreightCar *freightCar = [self freightCarAtIndexPath: indexPath];
     if (!freightCar) {
         // Create a new freight car.
@@ -251,9 +282,13 @@
                                                    inManagedObjectContext: moc];
         [freightCar setReportingMarks: @"SP 84712"];
     }
-    FreightCarEditController *freightCarEditVC = [self doRaisePopoverWithStoryboardIdentifier: @"editFreightCar"
-                                                                                fromIndexPath: indexPath];
-    freightCarEditVC.freightCar = freightCar;
+
+    [self.tableView beginUpdates];
+    NSIndexPath *oldPath = [self.expandedCellPath retain];
+    self.expandedCellPath = indexPath;
+    [self.tableView endUpdates];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, oldPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [oldPath release];
 }
 
 @end

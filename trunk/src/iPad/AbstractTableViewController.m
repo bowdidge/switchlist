@@ -28,8 +28,6 @@
 
 #import "AbstractTableViewController.h"
 
-#import "ExpandingEditViewController.h"
-
 @interface AbstractTableViewController ()
 
 @end
@@ -68,13 +66,23 @@
 // Returns the view controller for the popover.
 - (id) doRaisePopoverWithStoryboardIdentifier: (NSString*) storyboardIdentifier
                                      fromRect: (CGRect) cellRect {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    EditViewController *popoverVC = [storyboard instantiateViewControllerWithIdentifier: storyboardIdentifier];
+    
+    UIStoryboard *storyboard;
+    // The choosers used by more than one table view are stored in the main storyboard.
+    if ([storyboardIdentifier isEqualToString: @"placeChooser"] ||
+        [storyboardIdentifier isEqualToString: @"industryChooser"] ||
+        [storyboardIdentifier isEqualToString: @"cargoChooser"] ||
+        [storyboardIdentifier isEqualToString: @"carTypeChooser"]) {
+        storyboard = [UIStoryboard storyboardWithName: @"MainStoryboard" bundle:[NSBundle mainBundle]];
+    } else {
+        storyboard = [UIStoryboard storyboardWithName: self.storyboardName bundle:[NSBundle mainBundle]];
+    }
+    id popoverVC = [storyboard instantiateViewControllerWithIdentifier: storyboardIdentifier];
 
     // Give editor a chance to call us back.
     
     if ([popoverVC respondsToSelector: @selector(setMyTableController:)]) {
-        popoverVC.myTableController = self;
+        [popoverVC setMyTableController: self];
     }
    
    self.myPopoverController = [[[UIPopoverController alloc] initWithContentViewController: popoverVC] autorelease];
@@ -104,5 +112,5 @@
 - (void) doCloseChooser: (id) sender {
 }
 
-
+@synthesize expandedCellPath;
 @end

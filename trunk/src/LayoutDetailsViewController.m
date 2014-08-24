@@ -37,6 +37,10 @@
 
 @implementation LayoutDetailsViewController
 
+- (void) viewDidLoad {
+    self.title = @"Layout Settings";
+}
+
 - (void) viewWillAppear: (BOOL) animated {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     NSString *templateName = myAppDelegate.preferredTemplateStyle;

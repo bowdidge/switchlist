@@ -33,15 +33,22 @@
 @class FreightCar;
 
 // Cell contents for freight car UITableView.
-// Each freight car cell contains reporting marks in the upper left,
+// This same table view cell is used for both the short and detailed versions of the cell.
+
+// Each short freight car cell contains reporting marks in the upper left,
 // a short kind in the upper right, and a one line description
 // at the bottom.  A useful icon goes to the left.
+//
+// Each detailed cell has fields for each particular value on a freight car.
 @interface FreightCarTableCell : UITableViewCell
 
 // Fills in all values for the cell based on the freight car object.
 - (void) fillInAsFreightCar: (FreightCar*) freightCar;
+
 // Fills in cell for the Add item.
 - (void) fillInAsAddCell;
+
+- (IBAction) doChangeLoadedState: (id) sender;
 
 // Current freight car represented by this cell.
 @property (nonatomic, retain) IBOutlet FreightCar *freightCar;
@@ -52,16 +59,33 @@
 @property (nonatomic, retain) IBOutlet UITextField *freightCarReportingMarks;
 
 // UITextField showing the location of the freight car.
-@property (nonatomic, retain) IBOutlet UITextField *freightCarLocation;
+@property (nonatomic, retain) IBOutlet UITextField *shortLocation;
 
 // UITextField showing the kind of freight car.
-@property (nonatomic, retain) IBOutlet UITextField *freightCarKind;
-
-// text describing the freight car.
-@property (nonatomic, retain) IBOutlet UILabel *freightCarDescription;
+@property (nonatomic, retain) IBOutlet UITextField *shortCarType;
 
 // Cute icon to the left of each table cell.
 @property (nonatomic, retain) IBOutlet UIImageView *freightCarIcon;
+
+
+// For small version only.
+
+// text describing the freight car.
+@property (nonatomic, retain) IBOutlet UILabel *descriptionSummary;
+
+// For extended version only.
+// Long version of car's location.
+@property (nonatomic, retain) IBOutlet UITextField *longLocation;
+// Field for changing division.
+@property (nonatomic, retain) IBOutlet UITextField *carDivisionField;
+// Long description of assigned cargo.
+@property (nonatomic, retain) IBOutlet UITextField *cargoField;
+// Field for adjusting car length.
+@property (nonatomic, retain) IBOutlet UITextField *carLengthField;
+// Detailed description of car type.
+@property (nonatomic, retain) IBOutlet UITextField *detailedCarType;
+// Loaded/unloaded segmented control.
+@property (nonatomic, retain) IBOutlet UISegmentedControl *loadedToggle;
 
 // Reference back to the controller processing changes to the cells.
 @property (nonatomic, retain) IBOutlet FreightCarTableViewController *myController;

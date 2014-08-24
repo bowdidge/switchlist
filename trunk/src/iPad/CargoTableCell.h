@@ -39,8 +39,20 @@
 // Fill in the cell as the "Add..." cell at the bottom of the table.
 - (void) fillInAsAddCell;
 
-@property (nonatomic, retain) IBOutlet UILabel *cargoName;
-@property (nonatomic, retain) IBOutlet UILabel *cargoKind;
-@property (nonatomic, retain) IBOutlet UILabel *cargoDescription;
+// In both kinds of cells
 @property (nonatomic, retain) IBOutlet UIImageView *cargoIcon;
+@property (nonatomic, retain) IBOutlet UILabel *cargoName;
+
+// In short cell only.
+@property (nonatomic, retain) IBOutlet UILabel *cargoDescription;
+@property (nonatomic, retain) IBOutlet UILabel *cargoRateLabel;
+
+// In extended cell only.
+@property (nonatomic, retain) IBOutlet UITextField *source;
+@property (nonatomic, retain) IBOutlet UITextField *destination;
+@property (nonatomic, retain) IBOutlet UITextField *carType;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *fixedRateControl;
+@property (nonatomic, retain) IBOutlet UITextField *carRate;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *carTimeUnit;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *unloadingTimeControl;
 @end

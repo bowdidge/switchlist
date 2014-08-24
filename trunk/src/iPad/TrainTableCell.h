@@ -29,6 +29,7 @@
 #import <UIKit/UIKit.h>
 
 @class ScheduledTrain;
+@class TrainTableViewController;
 
 // View data for the train cell items
 @interface TrainTableCell : UITableViewCell
@@ -38,8 +39,21 @@
 // Fill in the cell as the "Add..." cell at the bottom of the table.
 - (void) fillInAsAddCell;
 
-@property (nonatomic, retain) IBOutlet UILabel *trainName;
+@property (nonatomic, retain) ScheduledTrain *train;
+// In simple and extended cells.
+@property (nonatomic, retain) IBOutlet UITextField *trainName;
+@property (nonatomic, retain) IBOutlet UIImageView *trainIcon;
+
+// In simple cells only.
 @property (nonatomic, retain) IBOutlet UILabel *trainKind;
 @property (nonatomic, retain) IBOutlet UILabel *trainDescription;
-@property (nonatomic, retain) IBOutlet UIImageView *trainIcon;
+
+// In extended cells only.
+@property (nonatomic, retain) IBOutlet UITextField *stops;
+@property (nonatomic, retain) IBOutlet UITextField *maximumLength;
+@property (nonatomic, retain) IBOutlet UITextField *carsAccepted;
+
+// Reference back to the controller processing changes to the cells.
+@property (nonatomic, retain) IBOutlet TrainTableViewController *myController;
+
 @end

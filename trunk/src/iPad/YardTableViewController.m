@@ -29,12 +29,11 @@
 #import "YardTableViewController.h"
 
 #import "AppDelegate.h"
-#import "EditViewController.h"
 #import "EntireLayout.h"
 #import "Place.h"
+#import "PlaceChooser.h"
 #import "SwitchListColors.h"
 #import "Yard.h"
-#import "PlaceChooser.h"
 #import "YardTableCell.h"
 
 @interface YardTableViewController ()
@@ -47,6 +46,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.storyboardName = @"YardTable";
+    self.title = @"Yards";
 
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
@@ -84,10 +86,21 @@
 // Returns the cell at the specified row and section.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"yardCell";
-    YardTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *cellIdentifier;
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        cellIdentifier = @"extendedYardCell";
+    } else {
+        cellIdentifier = @"yardCell";
+    }
+    YardTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[YardTableCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:cellIdentifier];
+        [cell autorelease];
+    }
     
-    // Configure the cell...
+    // Configure the cell.
     NSInteger row = [indexPath row];
     
     if (row == [self.allYards count]) {

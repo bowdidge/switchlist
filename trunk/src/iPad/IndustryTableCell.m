@@ -30,6 +30,7 @@
 
 #import "Cargo.h"
 #import "Industry.h"
+#import "IndustryTableViewController.h"
 
 @implementation IndustryTableCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -74,6 +75,12 @@
     self.industryName.text = [industry name];
     self.industrySidingLength.text = [NSString stringWithFormat: @"%d foot siding", [[industry sidingLength] intValue]];
     self.industryDescription.text = [self descriptionForIndustry: industry];
+
+    self.townName.text = [[industry location] name];
+    self.divisionName.text = [industry division];
+    [self.hasDoorsControl setSelectedSegmentIndex: [industry hasDoors] ? 0 : 1];
+    self.numberOfDoors.text = [NSString stringWithFormat: @"%d", (int) [industry numberOfDoors]];
+    self.cargos.text = @"Lots of cargos!";
 }
 
 // Fill in the cell as the "Add..." cell at the bottom of the table.
@@ -84,9 +91,32 @@
     self.industryIcon.hidden = YES;
 }
 
+// Handle clicks on the text fields that are supporting immediate editing.  Either make the text
+// editable, or raise the correct popover to permit selection.
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField == self.divisionName) {
+        // Mark text as editable.
+        textField.backgroundColor = [UIColor whiteColor];
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    } else if (textField == self.townName ) {
+        // TODO(bowdidge): Put up list of potential locations here.
+        [self.myController doStationPressed: self];
+        return NO;
+    }
+    return YES;
+}
+
 @synthesize myIndustry;
 @synthesize industryName;
 @synthesize industrySidingLength;
 @synthesize industryDescription;
 @synthesize industryIcon;
+
+@synthesize townName;
+@synthesize divisionName;
+@synthesize hasDoorsControl;
+@synthesize numberOfDoors;
+@synthesize cargos;
+@synthesize cargoHelpButton;
+
 @end

@@ -29,6 +29,8 @@
 #import "CargoTableCell.h"
 
 #import "Cargo.h"
+#import "CarType.h"
+#import "Industry.h"
 
 @implementation CargoTableCell
 
@@ -36,26 +38,36 @@
 - (void) fillInAsCargo: (Cargo*) cargo {
     NSArray *RATE_UNITS_LABEL_ARRAY = [NSArray arrayWithObjects: @"day", @"week", @"month", nil];
     struct CargoRate rate = [cargo cargoRate];
+
     self.cargoName.text = [cargo name];
+    self.cargoDescription.text = [cargo description];
     
     NSMutableString *kindString = [NSMutableString stringWithFormat: @"%d cars per %@",
                                    rate.rate, [RATE_UNITS_LABEL_ARRAY objectAtIndex: rate.units]];
     [kindString appendFormat: @", %@", [cargo carType]];
-    self.cargoKind.text = kindString;
-    self.cargoDescription.text = [cargo description];
+    self.cargoRateLabel.text = kindString;
     cargoIcon.hidden = NO;
+    
+    self.source.text = cargo.source.name;
+    self.destination.text = cargo.destination.name;
+    self.carType.text = [NSString stringWithFormat: @"%@ (%@)", cargo.carTypeRel.carTypeName, cargo.carTypeRel.carTypeDescription];
+    [self.fixedRateControl setSelectedSegmentIndex: cargo.isPriority ? 0 : 1];
+    self.carRate.text = [NSString stringWithFormat: @"%d", rate.rate];
+    [self.carTimeUnit setSelectedSegmentIndex: rate.units];
+    // TODO(bowdidge): Fix to 1,2,3.
+    [self.unloadingTimeControl setSelectedSegmentIndex: cargo.unloadingDays.intValue - 1];
 }
 
 // Fills in all values for the cell based on the cargo object.
 - (void) fillInAsAddCell {
-    cargoName.text = @"Add Cargo";
-    cargoKind.text = @"";
-    cargoDescription.text = @"";
-    cargoIcon.hidden = YES;
+    self.cargoName.text = @"Add Cargo";
+    self.cargoRateLabel.text = @"";
+    self.cargoDescription.text = @"";
+    self.cargoIcon.hidden = YES;
 }
 
 @synthesize cargoName;
-@synthesize cargoKind;
+@synthesize cargoRateLabel;
 @synthesize cargoDescription;
 @synthesize cargoIcon;
 @end
