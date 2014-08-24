@@ -54,6 +54,9 @@
                                     <segment title="Yes"/>
                                     <segment title="No"/>
                                 </segments>
+                                <connections>
+                                    <action selector="specificDoorsSwitchChanged:" destination="lSz-W1-DMs" eventType="valueChanged" id="F6H-c6-VGQ"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="1YH-Kx-sCG">
                                 <rect key="frame" x="258" y="440" width="95" height="29"/>
@@ -62,6 +65,9 @@
                                     <segment title="Yes"/>
                                     <segment title="No"/>
                                 </segments>
+                                <connections>
+                                    <action selector="limitTrainLengthSwitchChanged:" destination="lSz-W1-DMs" eventType="valueChanged" id="kQT-5p-80b"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Preferred switchlist style: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VpT-Rv-D9e">
                                 <rect key="frame" x="59" y="500" width="226" height="21"/>
@@ -136,13 +142,19 @@ AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
 </mutableData>
                                 </timeZone>
+                                <connections>
+                                    <action selector="dateChanged:" destination="lSz-W1-DMs" eventType="valueChanged" id="X0N-iq-JlS"/>
+                                </connections>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="6gX-Yi-DwD"/>
                     <connections>
+                        <outlet property="datePicker" destination="Z3U-kx-uwa" id="sv5-BH-lv9"/>
+                        <outlet property="limitTrainLengthsControl" destination="1YH-Kx-sCG" id="dAd-bY-57J"/>
                         <outlet property="templateButton" destination="fzk-ak-bgV" id="UkQ-UO-SDV"/>
+                        <outlet property="useDoorsControl" destination="5tg-yg-EdD" id="jYL-PF-WAv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0qZ-P8-hox" userLabel="First Responder" sceneMemberID="firstResponder"/>

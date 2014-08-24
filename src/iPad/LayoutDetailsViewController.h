@@ -31,5 +31,13 @@
 
 // Handles any action needed when the current preferred switchlist template is changed.
 - (IBAction) templateNameChanged: (NSString*) templateName;
-    
+
+- (IBAction) layoutNameChanged: (id) sender;
+- (IBAction) dateChanged: (id) sender;
+- (IBAction) specificDoorsSwitchChanged: (id) sender;
+- (IBAction) limitTrainLengthSwitchChanged: (id) sender;
+
+@property (nonatomic, retain) IBOutlet UIDatePicker* datePicker;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *useDoorsControl;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *limitTrainLengthsControl;
 @end
