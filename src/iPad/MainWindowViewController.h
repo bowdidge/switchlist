@@ -31,11 +31,9 @@
 
 @interface MainWindowViewController : UIViewController
 
+
 // Handles press on one of the switchlist forms.
 - (IBAction) didTouchSwitchList: (id) sender;
-
-// Handles press on layout detail gear.
-- (IBAction) showLayoutDetail: (id) sender;
 
 // Handles press on advance layout button.
 - (IBAction) doAdvanceLayout: (id) sender;
@@ -45,6 +43,13 @@
 
 // Warn that switchlists need regenerating on next load of main page.
 - (IBAction) noteRegenerateSwitchlists;
+
+- (IBAction) raiseFreightCarView: (id) sender;
+- (IBAction) raiseIndustryView: (id) sender;
+- (IBAction) raiseTownView: (id) sender;
+- (IBAction) raiseTrainView: (id) sender;
+- (IBAction) raiseCargoView: (id) sender;
+
 
 // NSView and labels used for grouping switchlists and reports.
 // By doing these as views, it's easy to animate their resizing.

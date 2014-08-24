@@ -14,7 +14,8 @@
 
 @interface CarTypeChooserCell : UITableViewCell
 @property (retain, nonatomic) IBOutlet UILabel *checkField;
-@property (retain, nonatomic) IBOutlet UILabel *label;
+@property (retain, nonatomic) IBOutlet UILabel *carTypeName;
+@property (retain, nonatomic) IBOutlet UILabel *carTypeDescription;
 @end
 
 // Popover for selecting a car type.

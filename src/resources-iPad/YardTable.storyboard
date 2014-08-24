@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13E28" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="aDw-HL-fds">
+    <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <scenes>
+        <!--Yard Table View Controller-->
+        <scene sceneID="Mje-EW-Een">
+            <objects>
+                <viewController storyboardIdentifier="yardTableView" id="aDw-HL-fds" customClass="YardTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="fzF-FD-Zsy">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="yardCell" rowHeight="80" id="yRs-a5-B25" customClass="YardTableCell">
+                                <rect key="frame" x="0.0" y="86" width="768" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yRs-a5-B25" id="5L7-R0-nm7">
+                                    <rect key="frame" x="0.0" y="0.0" width="735" height="79"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="42 freight cars in yard, 3 trains originate, 3 trains terminate." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RT0-AD-lIQ">
+                                            <rect key="frame" x="91" y="38" width="657" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="yard.jpg" id="jWx-AA-PLg">
+                                            <rect key="frame" x="12" y="7" width="63" height="65"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="San Jose Yard" minimumFontSize="17" id="dzJ-hf-Qk9">
+                                            <rect key="frame" x="83" y="5" width="311" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="namePressed:" destination="yRs-a5-B25" eventType="touchDown" id="bbu-HE-ExI"/>
+                                                <outlet property="delegate" destination="yRs-a5-B25" id="Yig-pV-DDv"/>
+                                            </connections>
+                                        </textField>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pottersville" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ke7-1I-Jyk">
+                                            <rect key="frame" x="402" y="9" width="333" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myController" destination="aDw-HL-fds" id="Xbb-Ss-Etj"/>
+                                    <outlet property="yardDescription" destination="RT0-AD-lIQ" id="0Tp-tA-iKP"/>
+                                    <outlet property="yardIcon" destination="jWx-AA-PLg" id="zRG-XG-znO"/>
+                                    <outlet property="yardName" destination="dzJ-hf-Qk9" id="hxb-8I-xBD"/>
+                                    <outlet property="yardStationLabel" destination="Ke7-1I-Jyk" id="Nxk-Ji-amE"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="extendedYardCell" rowHeight="120" id="ip3-ur-uUV" customClass="YardTableCell">
+                                <rect key="frame" x="0.0" y="166" width="768" height="120"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ip3-ur-uUV" id="vFE-AX-qUW">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="119"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="42 freight cars in yard, 3 trains originate, 3 trains terminate." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ja9-bh-f4t">
+                                            <rect key="frame" x="91" y="38" width="657" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="yard.jpg" id="cru-2s-qUC">
+                                            <rect key="frame" x="12" y="7" width="63" height="65"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="San Jose Yard" minimumFontSize="17" id="xsS-wb-RNb">
+                                            <rect key="frame" x="83" y="5" width="345" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <action selector="namePressed:" destination="ip3-ur-uUV" eventType="touchDown" id="eZM-gj-YW3"/>
+                                                <outlet property="delegate" destination="ip3-ur-uUV" id="QUQ-W8-LG1"/>
+                                            </connections>
+                                        </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pottersville" minimumFontSize="17" id="ux0-Zd-Y0q">
+                                            <rect key="frame" x="247" y="63" width="501" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="ip3-ur-uUV" id="Phi-Be-5WQ"/>
+                                            </connections>
+                                        </textField>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location of Yard:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sFj-du-e0R">
+                                            <rect key="frame" x="20" y="67" width="219" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="myController" destination="aDw-HL-fds" id="TtU-ry-Gw0"/>
+                                    <outlet property="yardDescription" destination="Ja9-bh-f4t" id="Sfh-md-tEi"/>
+                                    <outlet property="yardIcon" destination="cru-2s-qUC" id="jX3-II-Gsp"/>
+                                    <outlet property="yardName" destination="xsS-wb-RNb" id="0dq-1K-xEU"/>
+                                    <outlet property="yardStation" destination="ux0-Zd-Y0q" id="TZQ-Hs-Vb8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aDw-HL-fds" id="YW1-Fi-kBm"/>
+                            <outlet property="delegate" destination="aDw-HL-fds" id="K0y-OQ-rqh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="KeQ-TI-y5v"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="myTableView" destination="fzF-FD-Zsy" id="hzd-o7-yc5"/>
+                        <outlet property="view" destination="fzF-FD-Zsy" id="drT-ka-bKp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Av-QO-Kap" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wgr-0X-esI">
+                    <rect key="frame" x="0.0" y="0.0" width="72" height="37"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Print">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </objects>
+            <point key="canvasLocation" x="-1623" y="-3750"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="yard.jpg" width="225" height="225"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination"/>
+    </simulatedMetricsContainer>
+</document>

@@ -33,7 +33,6 @@
 #import "EntireLayout.h"
 #import "Place.h"
 #import "SwitchListColors.h"
-#import "TownEditViewController.h"
 #import "TownTableCell.h"
 
 @interface TownTableViewController ()
@@ -70,6 +69,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self regenerateTableData];
+    self.storyboardName = @"TownTable";
+    self.title = @"Towns";
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,11 +134,18 @@
     if (!self.townsOnLayout) {
         [self regenerateTableData];
     }
-    static NSString *CellIdentifier = @"townCell";
-    TownTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (!cell) {
-        cell = [[TownTableCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                    reuseIdentifier:CellIdentifier];
+    
+    NSString *cellIdentifier;
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        cellIdentifier = @"townExtendedCell";
+    } else {
+        cellIdentifier = @"townCell";
+    }
+    TownTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[TownTableCell alloc]
+                initWithStyle:UITableViewCellStyleDefault
+                reuseIdentifier:cellIdentifier];
         [cell autorelease];
     }
     
@@ -159,13 +167,35 @@
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        return 120.0;
+    }
+    return 80.0;
+}
 
-    TownEditViewController *controller = [self doRaisePopoverWithStoryboardIdentifier: @"editTown"
-                                                                        fromIndexPath: indexPath];
-    controller.town = [self townAtIndexPath: indexPath];
+// Handles presses on the table.  When a selection is made in the freight
+// car table, we show a popover for editing the freight car.
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        [self.tableView beginUpdates];
+        self.expandedCellPath = nil;
+        [self.tableView endUpdates];
+        [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        return;
+    }
+    
+    Place *myTown = [self townAtIndexPath: indexPath];
+    if (!myTown) {
+        // Create a new industry.
+    }
+    
+    [self.tableView beginUpdates];
+    NSIndexPath *oldPath = [self.expandedCellPath retain];
+    self.expandedCellPath = indexPath;
+    [self.tableView endUpdates];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, oldPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [oldPath release];
 }
 
 // Handles editing actions on table - delete or insert.

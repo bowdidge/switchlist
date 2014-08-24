@@ -20,10 +20,10 @@
 #import "TrainTableViewController.h"
 
 #import "AppDelegate.h"
+#import "CarTypeChooser.h"
 #import "EntireLayout.h"
 #import "ScheduledTrain.h"
 #import "SwitchListColors.h"
-#import "TraineditViewController.h"
 #import "TrainTableCell.h"
 
 @interface TrainTableViewController ()
@@ -34,7 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.storyboardName = @"TrainTable";
+    self.title = @"Trains";
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -49,10 +51,26 @@
     // Dispose of any resources that can be recreated.
 }
 
+// Returns nil if out of range.
 - (ScheduledTrain*) trainAtIndexPath: (NSIndexPath *) indexPath {
+    NSInteger row = [indexPath row];
+    if (row < 0 || row > [self.allTrains count]) {
+        return nil;
+    }
     return [self.allTrains objectAtIndex: [indexPath row]];
 }
 
+// Handle a touch on a cell's freight car kind.  Show a popover
+// to allow selecting a different car kind.
+- (IBAction) doCarTypePressed: (id) sender {
+    TrainTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.carsAccepted.frame toView: self.view];
+    CarTypeChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"carTypeChooser" fromRect: popoverRect];
+    chooser.keyObject = cell.train;
+    // TODO(bowdidge): Should be all car types accepted by train.
+    chooser.keyObjectSelection = nil;
+    chooser.myController = self;
+}
 
 #pragma mark - Table view data source
 
@@ -77,13 +95,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"trainCell";
-    
-    TrainTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *cellIdentifier;
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        cellIdentifier = @"trainExtendedCell";
+    } else {
+        cellIdentifier = @"trainCell";
+    }
+    TrainTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[TrainTableCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:CellIdentifier];
+                reuseIdentifier:cellIdentifier];
+        [cell autorelease];
     }
     
     // Configure the cell...
@@ -146,16 +169,35 @@
 
 #pragma mark - Table view delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        return 140.0;
+    }
+    return 80.0;
+}
+
 // Handles presses on the table.  When a selection is made in the freight
 // car table, we show a popover for editing the freight car.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        [self.tableView beginUpdates];
+        self.expandedCellPath = nil;
+        [self.tableView endUpdates];
+        [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        return;
+    }
+
     ScheduledTrain *myTrain = [self trainAtIndexPath: indexPath];
     if (!myTrain) {
         // Create a new industry.
     }
-    TrainEditViewController *trainEditVC = [self doRaisePopoverWithStoryboardIdentifier: @"editTrain"
-                                                                          fromIndexPath: indexPath];
-    trainEditVC.train = myTrain;
+    
+    [self.tableView beginUpdates];
+    NSIndexPath *oldPath = [self.expandedCellPath retain];
+    self.expandedCellPath = indexPath;
+    [self.tableView endUpdates];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, oldPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [oldPath release];
 }
 
 // Requests edit view be closed.

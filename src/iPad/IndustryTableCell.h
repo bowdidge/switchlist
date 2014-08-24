@@ -30,6 +30,7 @@
 
 @class InduYard;
 @class Industry;
+@class IndustryTableViewController;
 
 @interface IndustryTableCell : UITableViewCell {
 }
@@ -42,13 +43,24 @@
 // Industry represented by this cell.
 @property (nonatomic, retain) InduYard *myIndustry;
 
-// Name of industry in cell.
+// Information in all cells
 @property (nonatomic, retain) IBOutlet UITextField *industryName;
-
-// Name of place in cell.
 @property (nonatomic, retain) IBOutlet UITextField *industryLocation;
 @property (nonatomic, retain) IBOutlet UILabel *industrySidingLength;
-@property (nonatomic, retain) IBOutlet UILabel *industryDescription;
 @property (nonatomic, retain) IBOutlet UIImageView *industryIcon;
+
+// Information only in short row.
+@property (nonatomic, retain) IBOutlet UILabel *industryDescription;
+
+// Information in detailed row.
+@property (nonatomic, retain) IBOutlet UITextField *townName;
+@property (nonatomic, retain) IBOutlet UITextField *divisionName;
+@property (nonatomic, retain) IBOutlet UISegmentedControl *hasDoorsControl;
+@property (nonatomic, retain) IBOutlet UITextField *numberOfDoors;
+@property (nonatomic, retain) IBOutlet UITextField *cargos;
+@property (nonatomic, retain) IBOutlet UIButton *cargoHelpButton;
+
+// Reference back to the controller processing changes to the cells.
+@property (nonatomic, retain) IBOutlet IndustryTableViewController *myController;
 
 @end

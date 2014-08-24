@@ -38,9 +38,13 @@
 // Fill in the cell as the "Add..." cell at the bottom of the table.
 - (void) fillInAsAddCell;
 
-@property (nonatomic, retain) IBOutlet UILabel *townName;
+@property (nonatomic, retain) IBOutlet UITextField *townName;
 @property (nonatomic, retain) IBOutlet UILabel *townKind;
 @property (nonatomic, retain) IBOutlet UILabel *townDescription;
 @property (nonatomic, retain) IBOutlet UIImageView *townIcon;
+
+// Detail view only.
+@property (nonatomic, retain) IBOutlet UISegmentedControl *stagingControl;
+
 - (IBAction) hideIcon: (BOOL) value;
 @end

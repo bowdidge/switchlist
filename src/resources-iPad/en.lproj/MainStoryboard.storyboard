@@ -17,7 +17,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="thC-0M-RFc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3719" y="-682"/>
+            <point key="canvasLocation" x="-4844" y="-890"/>
         </scene>
         <!--Main Window View Controller - Home-->
         <scene sceneID="gKH-nz-XPh">
@@ -41,21 +41,18 @@
                                             <action selector="doAdvanceLayout:" destination="gjO-1d-dV8" eventType="touchUpInside" id="hoY-HK-yXY"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="GqT-aF-qZw">
-                                        <rect key="frame" x="231" y="13" width="41" height="42"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tUe-ax-8bs">
+                                        <rect key="frame" x="10" y="22" width="77" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <accessibility key="accessibilityConfiguration">
-                                            <accessibilityTraits key="traits" none="YES" link="YES" image="YES"/>
+                                            <accessibilityTraits key="traits" none="YES" button="YES" image="YES"/>
                                         </accessibility>
-                                        <state key="normal" image="gear.png">
+                                        <state key="normal" image="reveal-icon.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <connections>
-                                            <action selector="showLayoutDetail:" destination="gjO-1d-dV8" eventType="touchUpInside" id="se8-MF-J8m"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Gxd-rH-AYX">
-                                        <rect key="frame" x="20" y="12" width="50" height="44"/>
+                                        <rect key="frame" x="70" y="12" width="50" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="File">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -66,38 +63,94 @@
                                             </segue>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ugL-CQ-CnO">
-                                        <rect key="frame" x="98" y="12" width="50" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Style">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="nUh-7q-u7i" kind="popover" identifier="styleSegue" popoverAnchorView="ugL-CQ-CnO" id="zKA-Z3-cJu">
-                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                            </segue>
-                                        </connections>
-                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.75577445649999997" green="0.75076388869999999" blue="0.63411898359999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZbS-un-OJo">
+                                <rect key="frame" x="671" y="674" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Freight Car">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="raiseFreightCarView:" destination="gjO-1d-dV8" eventType="touchUpInside" id="Vqa-Vt-nXI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KaR-MC-vvg">
+                                <rect key="frame" x="689" y="712" width="56" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Industry">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="raiseIndustryView:" destination="gjO-1d-dV8" eventType="touchUpInside" id="ZnB-5C-g8q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wq2-vQ-sr3">
+                                <rect key="frame" x="709" y="750" width="36" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Town">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="raiseTownView:" destination="gjO-1d-dV8" eventType="touchUpInside" id="awT-kr-pcs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PrO-8m-Nhg">
+                                <rect key="frame" x="714" y="788" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Yard">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="raiseYardView:" destination="gjO-1d-dV8" eventType="touchUpInside" id="AFL-Xv-cIl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9GR-el-N3d">
+                                <rect key="frame" x="704" y="826" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Trains">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="raiseTrainView:" destination="gjO-1d-dV8" eventType="touchUpInside" id="zLc-oo-UDL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aId-j1-sfO">
+                                <rect key="frame" x="706" y="864" width="42" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cargo">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="raiseCargoView:" destination="gjO-1d-dV8" eventType="touchUpInside" id="L3L-WU-O7u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hyg-4n-MVy">
+                                <rect key="frame" x="701" y="902" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Layout">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="raiseLayoutView:" destination="gjO-1d-dV8" eventType="touchUpInside" id="Ssi-tX-tMd"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.81685207199999998" green="0.79517975441254352" blue="0.70507705516056296" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="IqX-jp-ceR">
                         <barButtonItem key="backBarButtonItem" title="Back" id="NND-8E-Cil"/>
                     </navigationItem>
                     <connections>
                         <outlet property="fileButton" destination="Gxd-rH-AYX" id="R7t-fD-8PO"/>
-                        <outlet property="styleButton" destination="ugL-CQ-CnO" id="Sw3-t1-sre"/>
                         <outlet property="view" destination="whc-ZW-t0d" id="8Kh-8R-zno"/>
                         <segue destination="xI8-1f-HdB" kind="push" identifier="presentation" id="9jn-Ll-g5D"/>
-                        <segue destination="fVO-Ss-3j2" kind="push" identifier="detail" id="6KB-hi-vdR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AA7-yn-sMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2770" y="-682"/>
+            <point key="canvasLocation" x="-3900" y="-848"/>
         </scene>
         <!--File View Controller - File-->
         <scene sceneID="6Fn-sZ-dYL">
@@ -165,1181 +218,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4o5-Do-m2g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3672" y="607"/>
-        </scene>
-        <!--Style View Controller-->
-        <scene sceneID="bPo-N4-lQd">
-            <objects>
-                <viewController storyboardIdentifier="styleView" wantsFullScreenLayout="YES" modalPresentationStyle="formSheet" id="nUh-7q-u7i" customClass="StyleViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZAR-E6-vic">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="47" sectionHeaderHeight="22" sectionFooterHeight="22" id="oeI-FU-PLA">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="styleCell" rowHeight="47" id="nh4-si-hGc" customClass="StyleTableViewCell">
-                                        <rect key="frame" x="0.0" y="22" width="768" height="47"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nh4-si-hGc" id="TVu-8J-fHk">
-                                            <rect key="frame" x="0.0" y="0.0" width="768" height="46"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Style name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6yj-px-Ql3">
-                                                    <rect key="frame" x="57" y="12" width="332" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Check" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XJh-cf-RAo">
-                                                    <rect key="frame" x="20" y="12" width="29" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="currentSelectionIndicator" destination="XJh-cf-RAo" id="5Kk-E8-Afk"/>
-                                            <outlet property="label" destination="6yj-px-Ql3" id="vy2-6f-Fb1"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="nUh-7q-u7i" id="s0y-4a-fC5"/>
-                                    <outlet property="delegate" destination="nUh-7q-u7i" id="WE1-pa-VRo"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="400" height="400"/>
-                    <connections>
-                        <outlet property="styleTable" destination="oeI-FU-PLA" id="HJ7-7F-KyE"/>
-                        <outlet property="view" destination="ZAR-E6-vic" id="nIp-C1-mif"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bWV-BF-2IV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3098" y="550"/>
-        </scene>
-        <!--Industry Table View Controller - Industries-->
-        <scene sceneID="cuc-3l-U6v">
-            <objects>
-                <viewController title="Industries" useStoryboardIdentifierAsRestorationIdentifier="YES" id="s3D-SQ-zOC" customClass="IndustryTableViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7Gq-jH-gZc">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="8lg-Gt-4WS">
-                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="industryCell" rowHeight="80" id="9qF-G8-WYI" customClass="IndustryTableCell">
-                                        <rect key="frame" x="0.0" y="86" width="768" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9qF-G8-WYI" id="fA5-Xx-wF7">
-                                            <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Packing House" minimumFontSize="17" id="aCQ-3J-lOy">
-                                                    <rect key="frame" x="102" y="5" width="188" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="9qF-G8-WYI" id="Mga-lG-ecG"/>
-                                                    </connections>
-                                                </textField>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="140' siding" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I38-mx-iKk">
-                                                    <rect key="frame" x="607" y="9" width="141" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Receives cans, ships dried fruit.  Has specific doors for spotting." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wia-bN-f0J">
-                                                    <rect key="frame" x="102" y="40" width="646" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="industry.png" id="vYI-Qi-h8d">
-                                                    <rect key="frame" x="11" y="9" width="66" height="61"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Auzerais St." minimumFontSize="17" id="cTo-r7-Osc">
-                                                    <rect key="frame" x="298" y="5" width="294" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="9qF-G8-WYI" id="LEf-uD-c9H"/>
-                                                    </connections>
-                                                </textField>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="industryDescription" destination="wia-bN-f0J" id="hq5-Jz-Eid"/>
-                                            <outlet property="industryLocation" destination="cTo-r7-Osc" id="rj9-1D-D3S"/>
-                                            <outlet property="industryName" destination="aCQ-3J-lOy" id="mLD-10-smd"/>
-                                            <outlet property="industrySidingLength" destination="I38-mx-iKk" id="VAY-Rz-5wO"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Industries" id="MWZ-4L-ym3"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="myTableView" destination="8lg-Gt-4WS" id="sMj-Lw-WDk"/>
-                        <outlet property="view" destination="8lg-Gt-4WS" id="7Ol-3u-7DG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="U3h-xF-TDp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="603" y="-21"/>
-        </scene>
-        <!--Industry Edit View Controller - Edit Industry-->
-        <scene sceneID="P0k-3d-8WN">
-            <objects>
-                <viewController storyboardIdentifier="editTheIndustry" title="Edit Industry" modalPresentationStyle="formSheet" id="x5P-f5-qS8" customClass="IndustryEditViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="PiJ-LS-dhH">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" id="ah5-3s-BM1" customClass="CurlyView">
-                                <rect key="frame" x="0.0" y="0.0" width="540" height="386"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="hea-1t-E9D">
-                                <rect key="frame" x="133" y="174" width="140" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Yes"/>
-                                    <segment title="No"/>
-                                </segments>
-                            </segmentedControl>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Spot at doors:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mfu-yN-B1S">
-                                <rect key="frame" x="6" y="185" width="124" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="# of doors:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0Wk-3f-jCy">
-                                <rect key="frame" x="3" y="234" width="122" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Number of doors:" borderStyle="roundedRect" minimumFontSize="17" id="HCi-x5-0fI">
-                                <rect key="frame" x="133" y="230" width="140" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" minimumFontSize="17" id="Rd3-bK-jJW">
-                                <rect key="frame" x="133" y="64" width="140" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ye3-0T-26F">
-                                <rect key="frame" x="79" y="68" width="51" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Fii-sP-gKY">
-                                <rect key="frame" x="288" y="44" width="252" height="342"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="C2E-d2-e7p" customClass="CurlyView">
-                                    <rect key="frame" x="0.0" y="66" width="252" height="521"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="selectionCell" id="SQr-Mh-vW2" customClass="SelectionCell">
-                                        <rect key="frame" x="0.0" y="22" width="252" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SQr-Mh-vW2" id="OWa-rQ-fM0">
-                                            <rect key="frame" x="0.0" y="0.0" width="252" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC - Clean boxcar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xxc-U9-9VS">
-                                                    <rect key="frame" x="7" y="11" width="235" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="cellText" destination="xxc-U9-9VS" id="HoW-NO-02U"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="In Town:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IqF-Gc-SZY">
-                                <rect key="frame" x="0.0" y="104" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jXH-YL-4gi">
-                                <rect key="frame" x="133" y="102" width="140" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Current Location">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressLocationButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="yBL-TX-xKF"/>
-                                    <action selector="doPressTownLocationButton:" destination="x5P-f5-qS8" eventType="touchUpInside" id="231-Ke-T5Y"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Division:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SDP-zk-a9f">
-                                <rect key="frame" x="0.0" y="140" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Rcz-sj-lXu">
-                                <rect key="frame" x="133" y="138" width="140" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Home Division">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressDivisionButton:" destination="x5P-f5-qS8" eventType="touchUpInside" id="Huw-4U-pjk"/>
-                                    <action selector="doPressDivisionButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="bTT-V9-foG"/>
-                                </connections>
-                            </button>
-                            <navigationBar contentMode="scaleToFill" id="4eN-h7-Bb6">
-                                <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Edit Industry" id="Qm8-ih-pif">
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="RIs-72-7Ud">
-                                            <connections>
-                                                <action selector="doSave:" destination="x5P-f5-qS8" id="0ij-li-n6S"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="rPD-lF-1zZ"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="288" height="400"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="curlyView" destination="ah5-3s-BM1" id="lgm-Rb-puc"/>
-                        <outlet property="divisionButton" destination="Rcz-sj-lXu" id="hVF-sZ-S0i"/>
-                        <outlet property="hasDoorsToggle" destination="hea-1t-E9D" id="9Y3-kd-xVC"/>
-                        <outlet property="myNavigationBar" destination="4eN-h7-Bb6" id="K6v-YJ-5ZS"/>
-                        <outlet property="nameField" destination="Rd3-bK-jJW" id="d7j-xH-cZA"/>
-                        <outlet property="numberOfDoorsField" destination="HCi-x5-0fI" id="HYm-66-VJB"/>
-                        <outlet property="rightSideSelectionTable" destination="Fii-sP-gKY" id="igo-2f-tBG"/>
-                        <outlet property="townLocationButton" destination="jXH-YL-4gi" id="D58-Gk-lmJ"/>
-                        <outlet property="view" destination="PiJ-LS-dhH" id="K18-vh-XwR"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YX3-KC-BjE" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1487" y="75"/>
-        </scene>
-        <!--Town Table View Controller - Towns-->
-        <scene sceneID="syg-3y-kfK">
-            <objects>
-                <viewController title="Towns" id="zwp-Dt-tu6" customClass="TownTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="75" sectionHeaderHeight="22" sectionFooterHeight="22" id="VHg-WR-UfF">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="townCell" rowHeight="75" id="mGp-hs-9bf" customClass="TownTableCell">
-                                <rect key="frame" x="0.0" y="86" width="768" height="75"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mGp-hs-9bf" id="fxQ-3N-MX4">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="74"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="San Jose Yard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s03-4s-lQW">
-                                            <rect key="frame" x="92" y="10" width="498" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Six industries, one yard, seventeen cars currently in town." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4ux-gT-B1b">
-                                            <rect key="frame" x="92" y="39" width="656" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="On Layout" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3fW-6x-3GC">
-                                            <rect key="frame" x="610" y="10" width="138" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="city.png" id="Ssk-Ed-sdH">
-                                            <rect key="frame" x="6" y="0.0" width="78" height="74"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="townDescription" destination="4ux-gT-B1b" id="mqD-kS-7cw"/>
-                                    <outlet property="townIcon" destination="Ssk-Ed-sdH" id="6bV-ik-o3J"/>
-                                    <outlet property="townKind" destination="3fW-6x-3GC" id="4un-6Y-iDJ"/>
-                                    <outlet property="townName" destination="s03-4s-lQW" id="1PP-0j-FeK"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="zwp-Dt-tu6" id="yW3-rH-C4Z"/>
-                            <outlet property="delegate" destination="zwp-Dt-tu6" id="qN0-Fy-5jb"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Towns" id="EVo-It-8ne"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="myTableView" destination="VHg-WR-UfF" id="6hz-xF-9yl"/>
-                        <outlet property="view" destination="VHg-WR-UfF" id="Qez-Vh-SHL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mks-fP-YoZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="557" y="1055"/>
-        </scene>
-        <!--Town Edit View Controller - Edit Town-->
-        <scene sceneID="ibb-OU-o0z">
-            <objects>
-                <viewController storyboardIdentifier="editTown" autoresizesArchivedViewToFullSize="NO" title="Edit Town" modalPresentationStyle="formSheet" id="CdR-cK-SCI" customClass="TownEditViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="center" id="g9V-NY-JFM">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3dM-ON-HHw">
-                                <rect key="frame" x="234" y="136" width="0.0" height="0.0"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Town name" borderStyle="roundedRect" minimumFontSize="17" id="0de-c9-Nbd">
-                                <rect key="frame" x="137" y="55" width="311" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="s8h-0Y-hP8">
-                                <rect key="frame" x="137" y="96" width="311" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="On Layout"/>
-                                    <segment title="Staging"/>
-                                    <segment title="Imaginary"/>
-                                </segments>
-                            </segmentedControl>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Town name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KXp-Tl-af2">
-                                <rect key="frame" x="7" y="55" width="114" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tcp-QB-yCk">
-                                <rect key="frame" x="7" y="107" width="114" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <navigationBar contentMode="scaleToFill" id="I07-HT-4cT">
-                                <rect key="frame" x="0.0" y="0.0" width="540" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Edit Town" id="DNz-1a-Vp8">
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="V3j-mq-iwq">
-                                            <connections>
-                                                <action selector="doSave:" destination="CdR-cK-SCI" id="V9g-rF-ktu"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="CGG-99-0fz"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="480" height="188"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="myNavigationBar" destination="I07-HT-4cT" id="0s2-Kc-EdF"/>
-                        <outlet property="townLocationControl" destination="s8h-0Y-hP8" id="mFi-gA-cEq"/>
-                        <outlet property="townNameTextField" destination="0de-c9-Nbd" id="l89-b1-Tjo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RZj-7l-V2M" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1388" y="1159"/>
-        </scene>
-        <!--Cargo Edit View Controller - Cargo Edit-->
-        <scene sceneID="04j-FV-Qei">
-            <objects>
-                <viewController storyboardIdentifier="editCargo" title="Cargo Edit" id="Won-Xs-9em" customClass="CargoEditViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3Je-i5-gwO">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="gfp-gj-eSn">
-                                <rect key="frame" x="68" y="285" width="206" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Day"/>
-                                    <segment title="Week"/>
-                                    <segment title="Month"/>
-                                </segments>
-                                <connections>
-                                    <action selector="doPressRateButton:" destination="Won-Xs-9em" eventType="valueChanged" id="91E-KO-Q3C"/>
-                                </connections>
-                            </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Pgz-bh-MrB">
-                                <rect key="frame" x="61" y="201" width="213" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Fixed Rate"/>
-                                    <segment title="Random"/>
-                                </segments>
-                                <connections>
-                                    <action selector="doPressFixedRateButton:" destination="Won-Xs-9em" eventType="valueChanged" id="h39-KZ-JOZ"/>
-                                </connections>
-                            </segmentedControl>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Rate:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fmE-7C-ldP">
-                                <rect key="frame" x="-4" y="256" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40" borderStyle="roundedRect" minimumFontSize="17" id="E6q-kY-32h">
-                                <rect key="frame" x="134" y="252" width="140" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Per:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RYa-lC-IfN">
-                                <rect key="frame" x="-70" y="296" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wxh-Xe-yIk">
-                                <rect key="frame" x="134" y="166" width="140" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Car type">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressCarTypeButton:" destination="Won-Xs-9em" eventType="touchUpInside" id="Tmv-C5-TSh"/>
-                                    <action selector="doPressLocationButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="Spa-ED-QSx"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Car Type:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Opi-6M-XnT">
-                                <rect key="frame" x="0.0" y="169" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" id="cpe-0e-w50" customClass="CurlyView">
-                                <rect key="frame" x="0.0" y="0.0" width="540" height="386"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" minimumFontSize="17" id="dbR-5z-Puf">
-                                <rect key="frame" x="134" y="64" width="140" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Destination:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t0F-tb-Udp">
-                                <rect key="frame" x="1" y="137" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Description:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fc6-XS-L1G">
-                                <rect key="frame" x="41" y="68" width="90" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Source:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jyZ-es-AF8">
-                                <rect key="frame" x="1" y="103" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RsQ-pK-0vk">
-                                <rect key="frame" x="134" y="100" width="140" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="source">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressCarTypeButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="8kc-HR-Wfq"/>
-                                    <action selector="doPressSourceButton:" destination="Won-Xs-9em" eventType="touchUpInside" id="STG-8b-ZRu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aeL-Pd-OAJ">
-                                <rect key="frame" x="134" y="134" width="140" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="destination">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressCargoButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="ttR-oX-tcg"/>
-                                    <action selector="doPressDestinationButton:" destination="Won-Xs-9em" eventType="touchUpInside" id="1pJ-2p-pPF"/>
-                                </connections>
-                            </button>
-                            <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="fz9-A2-Afw">
-                                <rect key="frame" x="289" y="44" width="252" height="342"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="selectionCell" id="ScV-vH-cnP" customClass="SelectionCell">
-                                        <rect key="frame" x="0.0" y="22" width="252" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ScV-vH-cnP" id="lLR-BU-ndG">
-                                            <rect key="frame" x="0.0" y="0.0" width="252" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC - Clean boxcar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="byr-67-Pkx">
-                                                    <rect key="frame" x="7" y="11" width="235" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="cellText" destination="byr-67-Pkx" id="PVo-0f-MkP"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="Won-Xs-9em" id="2K2-uf-nNA"/>
-                                    <outlet property="delegate" destination="Won-Xs-9em" id="SPJ-t9-B90"/>
-                                </connections>
-                            </tableView>
-                            <navigationBar contentMode="scaleToFill" id="7tr-VV-9hr">
-                                <rect key="frame" x="1" y="0.0" width="540" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Edit Cargo" id="Mo5-DL-Kvi">
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="3A9-tG-5Cv">
-                                            <connections>
-                                                <action selector="doSave:" destination="Won-Xs-9em" id="5Qw-6N-PJ1"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="288" height="386"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="carTypeButton" destination="Wxh-Xe-yIk" id="wfM-cf-piJ"/>
-                        <outlet property="curlyView" destination="cpe-0e-w50" id="ZxV-dE-wlr"/>
-                        <outlet property="descriptionField" destination="dbR-5z-Puf" id="QyJ-Ez-pe1"/>
-                        <outlet property="destinationButton" destination="aeL-Pd-OAJ" id="xpn-HM-Ph5"/>
-                        <outlet property="fixedToggle" destination="Pgz-bh-MrB" id="aCm-YZ-1Bj"/>
-                        <outlet property="myNavigationBar" destination="7tr-VV-9hr" id="Ugw-iG-5Gk"/>
-                        <outlet property="rateToggle" destination="gfp-gj-eSn" id="q9E-n7-D9B"/>
-                        <outlet property="rightSideSelectionTable" destination="fz9-A2-Afw" id="LFW-9e-w9C"/>
-                        <outlet property="sourceButton" destination="RsQ-pK-0vk" id="t1v-27-LtL"/>
-                        <outlet property="view" destination="3Je-i5-gwO" id="KYX-88-Fwi"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Y9-F2-2S4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1560" y="-4585"/>
-        </scene>
-        <!--Cargo Table View Controller - Cargo Tab-->
-        <scene sceneID="9ON-lX-JGb">
-            <objects>
-                <viewController title="Cargo Tab" id="qcA-WA-aKA" customClass="CargoTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="cLk-zu-5Mb">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="cargoCell" rowHeight="80" id="x82-76-Rqc" customClass="CargoTableCell">
-                                <rect key="frame" x="0.0" y="86" width="768" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x82-76-Rqc" id="kta-i0-5yn">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fresh fruit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JPP-3U-tLj">
-                                            <rect key="frame" x="80" y="6" width="370" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Source: Drew Cannery, Campbell; destination: San Jose Yard." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6lg-8S-gdm">
-                                            <rect key="frame" x="80" y="38" width="675" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="3 cars / week, XM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Tf-Yr-LhP">
-                                            <rect key="frame" x="481" y="6" width="274" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="cargo.jpg" id="eNb-43-nyS">
-                                            <rect key="frame" x="6" y="7" width="66" height="65"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="cargoDescription" destination="6lg-8S-gdm" id="n6w-uG-53t"/>
-                                    <outlet property="cargoIcon" destination="eNb-43-nyS" id="7h7-rZ-fMW"/>
-                                    <outlet property="cargoKind" destination="1Tf-Yr-LhP" id="4fr-8e-GWE"/>
-                                    <outlet property="cargoName" destination="JPP-3U-tLj" id="3Ss-TP-iss"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Cargos" id="QLZ-bm-mMs"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="myTableView" destination="cLk-zu-5Mb" id="d2R-ZU-aOn"/>
-                        <outlet property="view" destination="cLk-zu-5Mb" id="aNH-Hg-E6C"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="SmK-0V-ayk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="668" y="-4769"/>
-        </scene>
-        <!--Layout Details View Controller - Layout Details-->
-        <scene sceneID="5CK-dh-VbC">
-            <objects>
-                <viewController title="Layout Details" id="B8w-o8-RYz" customClass="LayoutDetailsViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="acP-dL-Jz9">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Layout name:" borderStyle="roundedRect" minimumFontSize="17" id="cEC-sp-iOx">
-                                <rect key="frame" x="256" y="66" width="462" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Spot at specific doors?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tGZ-FZ-NOH">
-                                <rect key="frame" x="19" y="167" width="226" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Layout name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="s3i-gW-yhb">
-                                <rect key="frame" x="20" y="70" width="228" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Date:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IrT-pO-4WC">
-                                <rect key="frame" x="18" y="113" width="228" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Limit train length?" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aKp-gQ-EHw">
-                                <rect key="frame" x="18" y="224" width="226" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Tt0-fO-HF3">
-                                <rect key="frame" x="256" y="156" width="95" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Yes"/>
-                                    <segment title="No"/>
-                                </segments>
-                            </segmentedControl>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="5az-wG-uYW">
-                                <rect key="frame" x="256" y="213" width="95" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Yes"/>
-                                    <segment title="No"/>
-                                </segments>
-                            </segmentedControl>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Preferred switchlist style: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kAA-yp-tfD">
-                                <rect key="frame" x="57" y="273" width="226" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CtP-xg-jEl">
-                                <rect key="frame" x="256" y="110" width="256" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="June 21, 1932">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SlI-7l-Rl2">
-                                <rect key="frame" x="256" y="270" width="256" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Handwritten">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="prC-Y9-A6Y" kind="popover" identifier="templateSegue" popoverAnchorView="SlI-7l-Rl2" id="50U-FN-r04">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.81685207199999998" green="0.79517975439999999" blue="0.70507705519999997" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Layout" id="GfY-Yl-3xD"/>
-                    <connections>
-                        <outlet property="templateButton" destination="SlI-7l-Rl2" id="y4e-yT-Br4"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9oL-Mh-WE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="697" y="-3575"/>
-        </scene>
-        <!--Choose Template View Controller - Choose template-->
-        <scene sceneID="6p9-pK-yjL">
-            <objects>
-                <viewController storyboardIdentifier="chooseTemplate" title="Choose template" modalPresentationStyle="formSheet" id="prC-Y9-A6Y" customClass="ChooseTemplateViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LOt-eh-tlP">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="B9T-0a-IoO">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="templateCell" id="l8q-zU-WjP" customClass="TemplateCell">
-                                        <rect key="frame" x="0.0" y="22" width="300" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l8q-zU-WjP" id="Ys3-WG-sec">
-                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Handwritten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0j1-6u-FHZ">
-                                                    <rect key="frame" x="24" y="0.0" width="260" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="mid 20th century pen and ink" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LFH-x3-QWi">
-                                                    <rect key="frame" x="24" y="19" width="260" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="templateDescription" destination="LFH-x3-QWi" id="sT7-3D-vS6"/>
-                                            <outlet property="templateName" destination="0j1-6u-FHZ" id="6tn-3F-QjI"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="prC-Y9-A6Y" id="kc8-bf-3Xq"/>
-                                    <outlet property="delegate" destination="prC-Y9-A6Y" id="D2p-SX-DUb"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="300" height="400"/>
-                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <connections>
-                        <outlet property="templateTable" destination="B9T-0a-IoO" id="0HZ-03-Esl"/>
-                        <outlet property="view" destination="LOt-eh-tlP" id="kyY-fJ-BTr"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="cmG-Cf-ulb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1652" y="-3560"/>
-        </scene>
-        <!--Freight Car Table View Controller - Freight Car-->
-        <scene sceneID="YWy-2g-QEh">
-            <objects>
-                <viewController title="Freight Car" id="B0o-Ip-sXq" customClass="FreightCarTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="jLG-sv-mpi">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="freightCarCell" rowHeight="80" id="OnZ-H7-Eda" customClass="FreightCarTableCell">
-                                <rect key="frame" x="0.0" y="86" width="768" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OnZ-H7-Eda" id="BCL-Du-SGf">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Length: 35', will be loaded with fresh fruit.  Destination is East Coast." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BDN-Oh-EaM">
-                                            <rect key="frame" x="79" y="41" width="677" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="freightCar.jpg" id="hKw-QA-diy">
-                                            <rect key="frame" x="7" y="8" width="64" height="64"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Boxcar / XM" textAlignment="right" minimumFontSize="17" id="s28-U3-J0z">
-                                            <rect key="frame" x="613" y="4" width="149" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="OnZ-H7-Eda" id="Dsr-3l-d1t"/>
-                                            </connections>
-                                        </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CMWX 1025" minimumFontSize="17" id="eJR-xM-LOQ">
-                                            <rect key="frame" x="79" y="8" width="162" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="OnZ-H7-Eda" id="EXa-aj-Rf4"/>
-                                            </connections>
-                                        </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="At the Drew Cannery" minimumFontSize="17" id="b4V-kW-bRe">
-                                            <rect key="frame" x="249" y="8" width="356" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="OnZ-H7-Eda" id="Ysw-B8-jIC"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="freightCarDescription" destination="BDN-Oh-EaM" id="36e-lc-sZm"/>
-                                    <outlet property="freightCarIcon" destination="hKw-QA-diy" id="tPd-m9-j1D"/>
-                                    <outlet property="freightCarKind" destination="s28-U3-J0z" id="HeE-0S-muc"/>
-                                    <outlet property="freightCarLocation" destination="b4V-kW-bRe" id="6Qm-B5-bZ6"/>
-                                    <outlet property="freightCarReportingMarks" destination="eJR-xM-LOQ" id="Njy-Ip-gfQ"/>
-                                    <outlet property="myController" destination="B0o-Ip-sXq" id="BmI-TA-5v9"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Freight Cars" id="6d7-4t-986"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="myTableView" destination="jLG-sv-mpi" id="d5x-db-1IU"/>
-                        <outlet property="view" destination="jLG-sv-mpi" id="dN2-B5-3lH"/>
-                        <segue destination="uzh-WE-pkZ" kind="push" identifier="editFreightCar" id="Mc0-b0-wze"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jwX-AK-6dP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="531" y="-1158"/>
-        </scene>
-        <!--Freight Car Edit Controller - Freight Car Edit-->
-        <scene sceneID="AVq-vj-t9u">
-            <objects>
-                <viewController storyboardIdentifier="editFreightCar" title="Freight Car Edit" id="uzh-WE-pkZ" customClass="FreightCarEditController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8Mx-YI-Yaj">
-                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" id="Io6-lX-1je" customClass="CurlyView">
-                                <rect key="frame" x="0.0" y="0.0" width="541" height="386"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Reporting Marks" borderStyle="roundedRect" minimumFontSize="17" id="FyF-qz-gLP">
-                                <rect key="frame" x="134" y="64" width="140" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" keyboardType="namePhonePad"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Cargo:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zG3-Om-ptw">
-                                <rect key="frame" x="1" y="137" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Location:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Ps-pX-CyG">
-                                <rect key="frame" x="1" y="223" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Division:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tdX-k1-AJg">
-                                <rect key="frame" x="1" y="259" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40" borderStyle="roundedRect" minimumFontSize="17" id="D39-sp-TgW">
-                                <rect key="frame" x="134" y="293" width="140" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Length:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wT1-3u-f9T">
-                                <rect key="frame" x="1" y="297" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Photo:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="M1a-bJ-qoV">
-                                <rect key="frame" x="1" y="341" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Reporting Marks:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JO4-I8-Ni6">
-                                <rect key="frame" x="1" y="68" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Car Type:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BSP-0w-4Da">
-                                <rect key="frame" x="1" y="103" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="LCf-8M-9tH">
-                                <rect key="frame" x="134" y="169" width="140" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Loaded"/>
-                                    <segment title="Empty"/>
-                                </segments>
-                            </segmentedControl>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="h8b-aK-liF">
-                                <rect key="frame" x="137" y="331" width="79" height="43"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.01406464646" green="0.42087360950000002" blue="0.67391304350000003" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="i2u-0G-mNl">
-                                <rect key="frame" x="222" y="332" width="39" height="40"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Camera" image="camera.jpg">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressCameraButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="Dy7-X5-JWn"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jhV-cw-3XU">
-                                <rect key="frame" x="134" y="101" width="140" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Car Type">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressCarTypeButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="iwO-XI-aVk"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZaA-Xt-bvR">
-                                <rect key="frame" x="134" y="135" width="140" height="27"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Current Cargo">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressCargoButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="ju5-FN-rDb"/>
-                                </connections>
-                            </button>
-                            <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Emt-pQ-TWQ">
-                                <rect key="frame" x="289" y="44" width="252" height="342"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="selectionCell" id="haT-tu-elg" customClass="SelectionCell">
-                                        <rect key="frame" x="0.0" y="22" width="252" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="haT-tu-elg" id="aBa-ze-qNf">
-                                            <rect key="frame" x="0.0" y="0.0" width="252" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC - Clean boxcar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mpD-sl-n3A">
-                                                    <rect key="frame" x="7" y="11" width="235" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="cellText" destination="mpD-sl-n3A" id="50P-VX-kkD"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ov4-S7-E0v">
-                                <rect key="frame" x="134" y="220" width="140" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Current Location">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressLocationButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="oMZ-py-98X"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="J4D-99-SzT">
-                                <rect key="frame" x="134" y="256" width="140" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Home Division">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressDivisionButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="E4o-IT-ioX"/>
-                                </connections>
-                            </button>
-                            <navigationBar contentMode="scaleToFill" id="R60-UN-IXK">
-                                <rect key="frame" x="1" y="0.0" width="540" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Edit Freight Car" id="DTv-qz-xMR">
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="Zoh-dN-taL">
-                                            <connections>
-                                                <action selector="doSave:" destination="uzh-WE-pkZ" id="0b9-sq-gQJ"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="k8H-sm-iRY"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="288" height="386"/>
-                    <nil key="simulatedStatusBarMetrics"/>
-                    <nil key="simulatedTopBarMetrics"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="540" height="620"/>
-                    <connections>
-                        <outlet property="cameraButton" destination="i2u-0G-mNl" id="u6S-pX-cAs"/>
-                        <outlet property="carPhotoView" destination="h8b-aK-liF" id="GuR-nU-qi6"/>
-                        <outlet property="carTypeButton" destination="jhV-cw-3XU" id="w52-CG-f06"/>
-                        <outlet property="curlyView" destination="Io6-lX-1je" id="Dzh-L6-Obv"/>
-                        <outlet property="currentCargoButton" destination="ZaA-Xt-bvR" id="aSN-0X-KMI"/>
-                        <outlet property="currentLocationButton" destination="ov4-S7-E0v" id="oTw-F6-FGt"/>
-                        <outlet property="homeDivisionButton" destination="J4D-99-SzT" id="pXB-mU-6NQ"/>
-                        <outlet property="loadedToggle" destination="LCf-8M-9tH" id="KCg-n7-pdg"/>
-                        <outlet property="reportingMarksField" destination="FyF-qz-gLP" id="xUd-UZ-9I1"/>
-                        <outlet property="rightSideSelectionTable" destination="Emt-pQ-TWQ" id="yzW-AY-xvs"/>
-                        <outlet property="view" destination="8Mx-YI-Yaj" id="fOv-6i-6rJ"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Hh-IJ-sEv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1404" y="-977"/>
-        </scene>
-        <!--Layout Detail Tab Bar Controller-->
-        <scene sceneID="44Y-MQ-MEm">
-            <objects>
-                <tabBarController storyboardIdentifier="layoutDetailTabBar" definesPresentationContext="YES" id="fVO-Ss-3j2" customClass="LayoutDetailTabBarController" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="f6E-9a-cGd"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="YVu-mD-eni">
-                        <rect key="frame" x="129" y="330" width="163" height="49"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="B0o-Ip-sXq" kind="relationship" relationship="viewControllers" id="Pd1-KU-dda"/>
-                        <segue destination="s3D-SQ-zOC" kind="relationship" relationship="viewControllers" id="aBr-sH-oeC"/>
-                        <segue destination="zwp-Dt-tu6" kind="relationship" relationship="viewControllers" id="dex-St-WBN"/>
-                        <segue destination="B8w-o8-RYz" kind="relationship" relationship="viewControllers" id="BfJ-CU-WwM"/>
-                        <segue destination="qcA-WA-aKA" kind="relationship" relationship="viewControllers" id="1ZL-gw-iJh"/>
-                        <segue destination="giH-MR-mwz" kind="relationship" relationship="viewControllers" id="sMH-LO-nPQ"/>
-                        <segue destination="oUX-Gc-pLt" kind="relationship" relationship="viewControllers" id="r8k-2v-C7E"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uC6-Pz-qqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1373" y="-717"/>
+            <point key="canvasLocation" x="-2832" y="-132"/>
         </scene>
         <!--Switchlist Presentation View Controller-->
         <scene sceneID="4RK-rh-im4">
@@ -1371,276 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAa-EH-EfE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1669" y="607"/>
-        </scene>
-        <!--Train Table View Controller - Trains Tab-->
-        <scene sceneID="u8V-vL-5Qc">
-            <objects>
-                <tableViewController title="Trains Tab" id="giH-MR-mwz" customClass="TrainTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="tun-Oj-PYf">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="trainCell" rowHeight="80" id="1sK-ne-rhM" customClass="TrainTableCell">
-                                <rect key="frame" x="0.0" y="86" width="768" height="80"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1sK-ne-rhM" id="mGa-Ru-6Wi">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="train.png" id="ZGh-cp-fUN">
-                                            <rect key="frame" x="7" y="6" width="64" height="64"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Campbell Cannery Turn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XgO-bc-nav">
-                                            <rect key="frame" x="96" y="6" width="322" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="San Jose Yard to Los Gatos and return." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jXy-Jj-DmR">
-                                            <rect key="frame" x="96" y="38" width="652" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Handles XM, XMC, RS cars." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WVa-Kd-9SH">
-                                            <rect key="frame" x="537" y="6" width="215" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="trainDescription" destination="jXy-Jj-DmR" id="uT0-Ti-CZo"/>
-                                    <outlet property="trainIcon" destination="ZGh-cp-fUN" id="JdC-eE-uox"/>
-                                    <outlet property="trainKind" destination="WVa-Kd-9SH" id="Y3J-Zm-jym"/>
-                                    <outlet property="trainName" destination="XgO-bc-nav" id="5h0-Np-iEJ"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="giH-MR-mwz" id="DIe-fV-SZ4"/>
-                            <outlet property="delegate" destination="giH-MR-mwz" id="9m9-w6-9U6"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Trains" id="SNi-VI-sjE"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="view" destination="tun-Oj-PYf" id="tSn-UF-Oph"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A5G-rE-z6D" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="503" y="-2329"/>
-        </scene>
-        <!--Train Edit View Controller - Edit Train-->
-        <scene sceneID="E7H-Mu-6JA">
-            <objects>
-                <viewController storyboardIdentifier="editTrain" title="Edit Train" modalPresentationStyle="formSheet" id="0Hg-fX-FDF" customClass="TrainEditViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Xkn-DB-1G2">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" id="RSg-jx-xw2" customClass="CurlyView">
-                                <rect key="frame" x="1" y="44" width="540" height="342"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </view>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="40" borderStyle="roundedRect" minimumFontSize="17" id="khy-RW-7fa">
-                                <rect key="frame" x="139" y="170" width="140" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Maximum length:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GyK-Ct-8xE">
-                                <rect key="frame" x="1" y="171" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Reporting Marks" borderStyle="roundedRect" minimumFontSize="17" id="jl8-xK-uKN">
-                                <rect key="frame" x="134" y="64" width="140" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Stops:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2nk-8R-jcL">
-                                <rect key="frame" x="1" y="137" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Train Name:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="eaX-9y-YHQ">
-                                <rect key="frame" x="37" y="68" width="94" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Accepts cars:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nFA-Wa-h30">
-                                <rect key="frame" x="1" y="103" width="130" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mvK-uM-hi5">
-                                <rect key="frame" x="134" y="102" width="140" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="Car Type">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doPressCarTypeButton:" destination="uzh-WE-pkZ" eventType="touchUpInside" id="hRy-EC-XLd"/>
-                                    <action selector="doPressCarTypesButton:" destination="0Hg-fX-FDF" eventType="touchUpInside" id="eJ8-jg-xeK"/>
-                                </connections>
-                            </button>
-                            <tableView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="nh8-oq-9hO">
-                                <rect key="frame" x="289" y="44" width="252" height="342"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="selectionCell" id="hA9-D1-pKN" customClass="SelectionCell">
-                                        <rect key="frame" x="0.0" y="22" width="252" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hA9-D1-pKN" id="fqr-tC-y5h">
-                                            <rect key="frame" x="0.0" y="0.0" width="252" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC - Clean boxcar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r7l-bw-uIB">
-                                                    <rect key="frame" x="7" y="11" width="235" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="cellText" destination="r7l-bw-uIB" id="HKJ-Vk-o2A"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="0Hg-fX-FDF" id="mwa-qy-sc8"/>
-                                    <outlet property="delegate" destination="0Hg-fX-FDF" id="LRI-gU-kpj"/>
-                                </connections>
-                            </tableView>
-                            <navigationBar contentMode="scaleToFill" id="2g8-77-z4S">
-                                <rect key="frame" x="1" y="0.0" width="540" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Edit Train" id="tQ2-E6-uDV">
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="2S0-Pf-jaT">
-                                            <connections>
-                                                <action selector="doSave:" destination="0Hg-fX-FDF" id="APM-J3-WBz"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <value key="contentSizeForViewInPopover" type="size" width="288" height="400"/>
-                    <connections>
-                        <outlet property="carTypesButton" destination="mvK-uM-hi5" id="vPT-Dx-mtA"/>
-                        <outlet property="curlyView" destination="RSg-jx-xw2" id="IOv-Jo-aIh"/>
-                        <outlet property="maximumLengthField" destination="khy-RW-7fa" id="LGX-e1-6yV"/>
-                        <outlet property="nameField" destination="jl8-xK-uKN" id="RdY-o3-CPm"/>
-                        <outlet property="rightSideSelectionTable" destination="nh8-oq-9hO" id="RJX-V4-PZ1"/>
-                        <outlet property="view" destination="Xkn-DB-1G2" id="Da7-Ng-V9T"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5ZN-Fc-1z1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1436" y="-2432"/>
-        </scene>
-        <!--Yard Table View Controller - Yards-->
-        <scene sceneID="3gf-Rt-YLl">
-            <objects>
-                <viewController id="oUX-Gc-pLt" customClass="YardTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="mRL-Zm-OTJ">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="yardCell" rowHeight="80" id="EtT-qP-nom" customClass="YardTableCell">
-                                <rect key="frame" x="0.0" y="86" width="768" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EtT-qP-nom" id="7N4-qb-USE">
-                                    <rect key="frame" x="0.0" y="0.0" width="768" height="79"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="42 freight cars in yard, 3 trains originate, 3 trains terminate." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QXM-E5-m8d">
-                                            <rect key="frame" x="91" y="38" width="657" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="yard.jpg" id="CIn-QR-XLT">
-                                            <rect key="frame" x="12" y="7" width="63" height="65"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="San Jose Yard" minimumFontSize="17" id="4gV-d0-f5L">
-                                            <rect key="frame" x="83" y="5" width="345" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <action selector="namePressed:" destination="EtT-qP-nom" eventType="touchDown" id="479-C2-Myb"/>
-                                                <outlet property="delegate" destination="EtT-qP-nom" id="2D1-sc-Jbx"/>
-                                            </connections>
-                                        </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pottersville" textAlignment="right" minimumFontSize="17" id="Inj-5w-hVT">
-                                            <rect key="frame" x="453" y="5" width="295" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="EtT-qP-nom" id="IVT-ys-WjN"/>
-                                            </connections>
-                                        </textField>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="myController" destination="oUX-Gc-pLt" id="Bkh-t6-had"/>
-                                    <outlet property="yardDescription" destination="QXM-E5-m8d" id="zZW-cx-1zA"/>
-                                    <outlet property="yardIcon" destination="CIn-QR-XLT" id="twY-gq-g5h"/>
-                                    <outlet property="yardName" destination="4gV-d0-f5L" id="MGL-kr-iNF"/>
-                                    <outlet property="yardStation" destination="Inj-5w-hVT" id="oaC-w0-U9F"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Yards" id="MYU-vR-tVJ"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="myTableView" destination="mRL-Zm-OTJ" id="UvP-Si-kJj"/>
-                        <outlet property="view" destination="mRL-Zm-OTJ" id="02g-l9-PsU"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="imb-TJ-qKB" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mb2-Fe-VQR">
-                    <rect key="frame" x="0.0" y="0.0" width="72" height="37"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="Print">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
-            </objects>
-            <point key="canvasLocation" x="-503" y="1432"/>
+            <point key="canvasLocation" x="-2914" y="375"/>
         </scene>
         <!--Place Chooser-->
         <scene sceneID="qAe-iP-dvK">
@@ -1694,7 +304,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D2j-gP-II6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="360" y="2205"/>
+            <point key="canvasLocation" x="-4816" y="-1727"/>
         </scene>
         <!--Industry Chooser-->
         <scene sceneID="Pff-3J-fbb">
@@ -1744,7 +354,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Gf-4Y-u2H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="385" y="2925"/>
+            <point key="canvasLocation" x="-4244" y="-1727"/>
         </scene>
         <!--Car Type Chooser-->
         <scene sceneID="UOQ-2M-AYi">
@@ -1762,8 +372,15 @@
                                     <rect key="frame" x="0.0" y="0.0" width="540" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zfI-P0-neo">
-                                            <rect key="frame" x="64" y="11" width="461" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="zfI-P0-neo">
+                                            <rect key="frame" x="41" y="11" width="52" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="N9I-3v-9IT">
+                                            <rect key="frame" x="89" y="11" width="431" height="21"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1779,8 +396,9 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="carTypeDescription" destination="N9I-3v-9IT" id="sPY-ia-uid"/>
+                                    <outlet property="carTypeName" destination="zfI-P0-neo" id="Xom-I1-fhg"/>
                                     <outlet property="checkField" destination="Idz-R5-04T" id="Wr9-BJ-8xZ"/>
-                                    <outlet property="label" destination="zfI-P0-neo" id="xC7-Wm-BYj"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1791,6 +409,9 @@
                     </tableView>
                     <value key="contentSizeForViewInPopover" type="size" width="300" height="400"/>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="view" destination="iWi-Uj-xjO" id="TeD-Jl-0Mk"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bfI-hx-W0p" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="XMC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GMt-gI-42c">
@@ -1801,18 +422,73 @@
                     <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </label>
             </objects>
-            <point key="canvasLocation" x="1127" y="2286"/>
+            <point key="canvasLocation" x="-3672" y="-1727"/>
+        </scene>
+        <!--Cargo Chooser-->
+        <scene sceneID="7CA-mj-VnH">
+            <objects>
+                <tableViewController storyboardIdentifier="cargoChooser" modalPresentationStyle="formSheet" id="MpU-Rf-37h" customClass="CargoChooser" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="683-JT-6uu">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cargoCell" rowHeight="50" id="Z9I-zu-X9l" customClass="CargoChooserCell">
+                                <rect key="frame" x="0.0" y="22" width="540" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Z9I-zu-X9l" id="ilV-OA-MnP">
+                                    <rect key="frame" x="0.0" y="0.0" width="540" height="49"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="swan wing feathers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aj7-A8-jb4">
+                                            <rect key="frame" x="42" y="0.0" width="478" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="from x to y" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dxM-k1-kie">
+                                            <rect key="frame" x="42" y="20" width="478" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="check" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Oni-na-hOf">
+                                            <rect key="frame" x="11" y="14" width="39" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="cargoName" destination="aj7-A8-jb4" id="WgH-RW-hyB"/>
+                                    <outlet property="cargoPath" destination="dxM-k1-kie" id="65F-qm-3f9"/>
+                                    <outlet property="checkField" destination="Oni-na-hOf" id="Q2T-iM-pZj"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="MpU-Rf-37h" id="pzi-DY-OEq"/>
+                            <outlet property="delegate" destination="MpU-Rf-37h" id="ssB-sG-eXx"/>
+                        </connections>
+                    </tableView>
+                    <value key="contentSizeForViewInPopover" type="size" width="300" height="400"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="view" destination="683-JT-6uu" id="4qX-F8-gtq"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bap-uE-j5p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3114" y="-1727"/>
         </scene>
     </scenes>
     <resources>
-        <image name="camera.jpg" width="64" height="64"/>
-        <image name="cargo.jpg" width="139" height="125"/>
-        <image name="city.png" width="454" height="454"/>
-        <image name="freightCar.jpg" width="147" height="148"/>
-        <image name="gear.png" width="200" height="200"/>
-        <image name="industry.png" width="256" height="256"/>
-        <image name="train.png" width="512" height="512"/>
-        <image name="yard.jpg" width="225" height="225"/>
+        <image name="reveal-icon.png" width="22" height="17"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

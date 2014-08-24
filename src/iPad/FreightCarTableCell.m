@@ -32,13 +32,24 @@
 #import "CarType.h"
 #import "FreightCar.h"
 #import "FreightCarTableViewController.h"
+#import "Industry.h"
+#import "Place.h"
 
 @implementation FreightCarTableCell
 @synthesize freightCarReportingMarks;
-@synthesize freightCarKind;
-@synthesize freightCarDescription;
+
+@synthesize shortCarType;
+@synthesize descriptionSummary;
 @synthesize freightCarIcon;
 @synthesize myController;
+
+@synthesize carDivisionField;
+@synthesize cargoField;
+@synthesize detailedCarType;
+@synthesize loadedToggle;
+@synthesize carLengthField;
+@synthesize longLocation;
+
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -54,84 +65,147 @@
     // Configure the view for the selected state
 }
 
-// Generates the description string for a freight car cell.
+- (NSString*) cargoDescriptionForFreightCar: (FreightCar*) fc {
+    if (![fc cargo]) {
+        return @"empty";
+    }
+    if ([fc isLoaded]) {
+        return [NSString stringWithFormat: @"loaded with %@", [[fc cargo] cargoDescription]];
+    }
+    return [NSString stringWithFormat: @"will be loaded with %@", [[fc cargo] cargoDescription]];
+}
+
+// Generates the description string for a freight car cell.  This only appears in the
+// short version.
 - (NSString*) descriptionForFreightCar: (FreightCar*) fc {
     NSMutableString *description = [NSMutableString string];
     if ([fc length]) {
         [description appendFormat: @"%@, length %d feet, ", [[fc carTypeRel] carTypeDescription], [[fc length] intValue]];
     }
-    if (![fc cargo]) {
-        [description appendString: @"empty, "];
-    } else {
-        if ([fc isLoaded]) {
-            [description appendFormat: @"loaded with %@, ", [[fc cargo] cargoDescription]];
-        } else {
-            [description appendFormat: @"will be loaded with %@, ", [[fc cargo] cargoDescription]];
-        }
-        [description appendFormat: @"destination is %@", [[[fc cargo] destination] name]];
+    
+    [description appendFormat: @"%@", [self cargoDescriptionForFreightCar: fc]];
+
+    if ([fc cargo]) {
+        [description appendFormat: @", destination is %@", [[[fc cargo] destination] name]];
     }
-    return description;
+   return description;
 }
 
+// Fill in the current cell based on the details for the named freight car.
 - (void) fillInAsFreightCar: (FreightCar*) fc {
     self.freightCar = fc;
     self.freightCarReportingMarks.text = [fc reportingMarks];
-    self.freightCarLocation.text = [NSString stringWithFormat: @"At %@", [[fc currentLocation] name]];
-    self.freightCarKind.text = [[fc carTypeRel] carTypeName];
+    self.shortLocation.text = [NSString stringWithFormat: @"At %@", [[fc currentLocation] name]];
+    self.shortCarType.text = [[fc carTypeRel] carTypeName];
+
+    self.longLocation.text = [NSString stringWithFormat: @"At %@ in %@", [[fc currentLocation] name], [[[fc currentLocation] location] name]];
+    self.carDivisionField.text = [fc homeDivision];
+    self.cargoField.text = [self cargoDescriptionForFreightCar: fc];
+    self.carLengthField.text = [NSString stringWithFormat: @"%d", [[fc length] intValue]];
+    self.detailedCarType.text = [NSString stringWithFormat: @"%@ (%@)", [[fc carTypeRel] carTypeDescription], [[fc carTypeRel] carTypeName]];
+    [self.loadedToggle setSelectedSegmentIndex: [fc isLoaded] ? 0 : 1];
+    
+
     // Length xx, currently at xxx.  Will pick up load of xxx."
-    self.freightCarDescription.text = [self descriptionForFreightCar: fc];
+    self.descriptionSummary.text = [self descriptionForFreightCar: fc];
     NSString *carType = [[fc carTypeRel] carTypeName];
     NSString *imagePath = nil;
     if ([carType isEqualToString: @"T"]) {
         imagePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"T.jpg"];
-    } else if ([carType isEqualToString: @"F"]) {
+    } else if ([carType isEqualToString: @"F"] || [carType isEqualToString: @"FM"]) {
         imagePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"F.jpg"];
     } else if ([carType isEqualToString: @"RS"]) {
         imagePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"RS.jpg"];
     } else if ([carType isEqualToString: @"XM"]) {
         imagePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"XM.jpg"];
+    } else if ([carType isEqualToString: @"XMC"]) {
+        imagePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent: @"XM.jpg"];
     }
     if (imagePath) {
         // crashes ipad.
-        //self.freightCarIcon.image = [UIImage imageWithContentsOfFile: imagePath];
+        self.freightCarIcon.image = [UIImage imageWithContentsOfFile: imagePath];
     }
 
+}
+
+- (IBAction) doChangeLoadedState: (id) sender {
+    NSNumber *notLoaded = self.loadedToggle.selectedSegmentIndex;
+    if (notLoaded) {
+        self.freightCar.loaded = [NSNumber numberWithBool: NO];
+    } else {
+        self.freightCar.loaded = [NSNumber numberWithBool: YES];
+    }
+    // Regenerate text.
+    [self fillInAsFreightCar: self.freightCar];
 }
 
 // Mark the cell as the "add" cell at the bottom of the list.
 - (void) fillInAsAddCell {
-    freightCarReportingMarks.text = @"Add Freight Car";
-    freightCarKind.text = @"";
-    freightCarDescription.text = @"";
-    freightCarIcon.hidden = YES;
+    self.freightCarReportingMarks.text = @"Add Freight Car";
+    self.shortLocation.text = @"";
+    self.shortCarType.text = @"";
+    self.descriptionSummary.text = @"";
+    self.freightCarIcon.hidden = YES;
 }
 
 
-//  Handle clicks on the text fields that are supporting immediate
-// editing.
+// Handle clicks on the text fields that are supporting immediate editing.  Either make the text
+// editable, or raise the correct popover to permit selection.
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == self.freightCarReportingMarks) {
-        // Mark text as editable.
-        textField.backgroundColor = [UIColor whiteColor];
-        textField.borderStyle = UITextBorderStyleRoundedRect;
-    } else if (textField == self.freightCarLocation) {
+    if (textField == self.shortLocation || textField == self.longLocation) {
         // TODO(bowdidge): Put up list of potential locations here.
         [self.myController doLocationPressed: self];
         return NO;
-    } else if (textField == self.freightCarKind) {
-        [self.myController doKindPressed: self];
+    } else if (textField == self.shortCarType || textField == self.detailedCarType) {
+        [self.myController doCarTypePressed: self];
+        return NO;
+    } else if (textField == self.cargoField) {
+        // TODO(bowdidge): Put up list of potential locations here.
+        [self.myController doCargoPressed: self];
         return NO;
     }
+    
+    // Treat as text field.
+    textField.backgroundColor = [UIColor whiteColor];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+
     return YES;
 }
 
-// Note when editing is complete so changes can be saved.
+// Note when editing is complete so that changes can be saved.  For now, only watch for changes to the
+// reporting marks so that we can resort the table.
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    if (textField == self.freightCarReportingMarks) {
-        textField.backgroundColor = [UIColor clearColor];
-        textField.borderStyle = UITextBorderStyleNone;
-        [self.myController noteTableCell: self changedCarReportingMarks: textField.text];
+    if (textField == self.shortLocation ||
+        textField == self.longLocation ||
+        textField == self.shortCarType ||
+        textField == self.detailedCarType ||
+        textField == self.cargoField) {
+        // Handled in doX.
+        return YES;
     }
+
+    textField.backgroundColor = [UIColor clearColor];
+    textField.borderStyle = UITextBorderStyleNone;
+    // TODO(bowdidge): Warn about changes to alphabetic order?
+    // [self.myController noteTableCell: self changedCarReportingMarks: textField.text];
+    
+    NSString *newValue = textField.text;
+    if (textField == self.freightCarReportingMarks) {
+        self.freightCar.reportingMarks = newValue;
+    } else if (textField == self.carDivisionField) {
+        self.freightCar.homeDivision = newValue;
+    } else if (textField == self.carLengthField) {
+        NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
+        [f setNumberStyle:NSNumberFormatterDecimalStyle];
+        NSNumber *carLength = [f numberFromString: textField.text];
+        self.freightCar.length = carLength;
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField endEditing: YES];
     return YES;
 }
 

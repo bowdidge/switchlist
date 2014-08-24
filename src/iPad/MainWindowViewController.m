@@ -33,15 +33,20 @@
 
 #import "AppDelegate.h"
 #import "AppNavigationController.h"
+#import "CargoTableViewController.h"
 #import "EntireLayout.h"
 #import "FileViewController.h"
+#import "FreightCarTableViewController.h"
 #import "HTMLSwitchlistRenderer.h"
-#import "LayoutDetailTabBarController.h"
+#import "IndustryTableViewController.h"
+#import "LayoutDetailsViewController.h"
 #import "ScheduledTrain.h"
 #import "SwitchListColors.h"
 #import "SwitchlistPresentationViewController.h"
 #import "SwitchListTouchCatcherView.h"
-
+#import "TownTableViewController.h"
+#import "TrainTableViewController.h"
+#import "YardTableViewController.h"
 
 @interface MainWindowViewController ()
 // Advance layout button.
@@ -238,6 +243,7 @@ float BOX_HEADER = 25.0;
 	// Do any additional setup after loading the view.
     [super viewDidLoad];
 
+    self.title = @"Operate";
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     myAppDelegate.mainWindowViewController = self;
     
@@ -299,17 +305,6 @@ float BOX_HEADER = 25.0;
     //[[self navigationController] pushViewController: nil animated: YES];
 }
 
-// Handles press on the gear to show layout details. Raises tab view.
-- (IBAction) showLayoutDetail: (id) sender {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:[NSBundle mainBundle]];
-    LayoutDetailTabBarController *myTab = [storyboard instantiateViewControllerWithIdentifier:@"layoutDetailTabBar"];
-    
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    AppNavigationController *navigationController = (AppNavigationController*)myAppDelegate.window.rootViewController;
-    [navigationController pushViewController: myTab animated:YES];
-
-}
-
 // Trigger regeneration of all HTML for all trains, and create new trains.
 // To be done whenever something affecting switchlists change.
 - (IBAction) doRegenerateSwitchlists: (id) sender {
@@ -341,11 +336,58 @@ float BOX_HEADER = 25.0;
     if ([segue.identifier isEqualToString:@"fileSegue"]) {
         FileViewController *fileController = segue.destinationViewController;
         fileController.myPopoverController = ((UIStoryboardPopoverSegue*)segue).popoverController;
-    } else if ([segue.identifier isEqualToString:@"styleSegue"]) {
-        FileViewController *fileController = segue.destinationViewController;
-        fileController.myPopoverController = ((UIStoryboardPopoverSegue*)segue).popoverController;
     }
 }
+
+- (IBAction) raiseFreightCarView: (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"FreightCarTable" bundle:[NSBundle mainBundle]];
+    FreightCarTableViewController *freightCarController = [storyboard instantiateViewControllerWithIdentifier:@"freightCarTableView"];
+    UINavigationController *navigationController = (UINavigationController*) [self navigationController];
+    [navigationController pushViewController: freightCarController animated:YES];
+}
+
+- (IBAction) raiseIndustryView: (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"IndustryTable" bundle:[NSBundle mainBundle]];
+    IndustryTableViewController *freightCarController = [storyboard instantiateViewControllerWithIdentifier:@"industryTableView"];
+    UINavigationController *navigationController = (UINavigationController*) [self navigationController];
+    [navigationController pushViewController: freightCarController animated:YES];
+}
+
+- (IBAction) raiseTownView: (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"TownTable" bundle:[NSBundle mainBundle]];
+    TownTableViewController *townController = [storyboard instantiateViewControllerWithIdentifier:@"townTableView"];
+    UINavigationController *navigationController = (UINavigationController*) [self navigationController];
+    [navigationController pushViewController: townController animated:YES];
+}
+
+- (IBAction) raiseTrainView: (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"TrainTable" bundle:[NSBundle mainBundle]];
+    TrainTableViewController *trainController = [storyboard instantiateViewControllerWithIdentifier:@"trainTableView"];
+    UINavigationController *navigationController = (UINavigationController*) [self navigationController];
+    [navigationController pushViewController: trainController animated:YES];
+}
+
+- (IBAction) raiseCargoView: (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"CargoTable" bundle:[NSBundle mainBundle]];
+    CargoTableViewController *cargoController = [storyboard instantiateViewControllerWithIdentifier:@"cargoTableView"];
+    UINavigationController *navigationController = (UINavigationController*) [self navigationController];
+    [navigationController pushViewController: cargoController animated:YES];
+}
+
+- (IBAction) raiseYardView: (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"YardTable" bundle:[NSBundle mainBundle]];
+    YardTableViewController *yardController = [storyboard instantiateViewControllerWithIdentifier:@"yardTableView"];
+    UINavigationController *navigationController = (UINavigationController*) [self navigationController];
+    [navigationController pushViewController: yardController animated:YES];
+}
+
+- (IBAction) raiseLayoutView: (id) sender {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"LayoutTable" bundle:[NSBundle mainBundle]];
+    LayoutDetailsViewController *viewController = [storyboard instantiateViewControllerWithIdentifier:@"layoutDetailsView"];
+    UINavigationController *navigationController = (UINavigationController*) [self navigationController];
+    [navigationController pushViewController: viewController animated:YES];
+}
+
 
 @synthesize switchlistBox;
 @synthesize reportBox;

@@ -51,6 +51,7 @@
 
 // Fills in cell based on ScheduledTrain object.
 - (void) fillInAsTrain: (ScheduledTrain*) train {
+    self.train = train;
     self.trainName.text = [train name];
     NSArray *stations = [train stationsInOrder];
     self.trainDescription.text = [NSString stringWithFormat: @"From %@ to %@.", [[stations objectAtIndex: 0] name],[[stations lastObject] name]];
@@ -64,6 +65,34 @@
     self.trainKind.text = @"";
     self.trainDescription.text = @"";
     self.trainIcon.hidden = YES;
+}
+
+// Handle clicks on the text fields that are supporting immediate editing.  Either make the text
+// editable, or raise the correct popover to permit selection.
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    if (textField == self.stops) {
+        // Mark text as editable.
+        textField.backgroundColor = [UIColor whiteColor];
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    } else if (textField == self.carsAccepted) {
+        // TODO(bowdidge): Consider better UI.
+        //[self.myController doCarTypePressed: self];
+        return NO;
+    }
+    return YES;
+}
+
+// Note when editing is complete so that changes can be saved.  For now, only watch for changes to the
+// reporting marks so that we can resort the table.
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    if (textField == self.trainName) {
+        textField.backgroundColor = [UIColor clearColor];
+        textField.borderStyle = UITextBorderStyleNone;
+        self.train.name = textField.text;
+        // Reorder.
+        // [self.myController.tableView reloadData];
+    }
+    return YES;
 }
 
 @synthesize trainName;

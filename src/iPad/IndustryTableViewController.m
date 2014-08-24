@@ -32,7 +32,6 @@
 #import "AppNavigationController.h"
 #import "Cargo.h"
 #import "Industry.h"
-#import "IndustryEditViewController.h"
 #import "IndustryTableCell.h"
 #import "PlaceChooser.h"
 #import "SwitchListColors.h"
@@ -44,6 +43,8 @@
 @implementation IndustryTableViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.storyboardName = @"IndustryTable";
+    self.title = @"Industries";
 }
 
 // Gathers freight car data from the entire layout again, reloading if necessary.
@@ -98,12 +99,18 @@
 // Generates cell for particular row.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"industryCell";
-    IndustryTableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    NSString *cellIdentifier;
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        cellIdentifier = @"cellExtendedIndustry";
+    } else {
+        cellIdentifier = @"cellIndustry";
+    }
+
+    IndustryTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[IndustryTableCell alloc]
                 initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:CellIdentifier];
+                reuseIdentifier:cellIdentifier];
         [cell autorelease];
     }
     
@@ -167,17 +174,35 @@
 
 #pragma mark - Table view delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        return 180.0;
+    }
+    return 80.0;
+}
+
 // Handles presses on the table.  When a selection is made in the freight
 // car table, we show a popover for editing the freight car.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        [self.tableView beginUpdates];
+        self.expandedCellPath = nil;
+        [self.tableView endUpdates];
+        [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        return;
+    }
+    
     Industry *myIndustry = [self industryAtIndexPath: indexPath];
     if (!myIndustry) {
         // Create a new industry.
     }
     
-    IndustryEditViewController *industryEditVC = [self doRaisePopoverWithStoryboardIdentifier: @"editTheIndustry"
-                                                                                fromIndexPath: indexPath];
-    industryEditVC.industry = myIndustry;
+    [self.tableView beginUpdates];
+    NSIndexPath *oldPath = [self.expandedCellPath retain];
+    self.expandedCellPath = indexPath;
+    [self.tableView endUpdates];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, oldPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [oldPath release];
 }
 
 // Handles raising the correct popup when user touches the containing

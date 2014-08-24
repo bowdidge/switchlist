@@ -42,18 +42,20 @@
 // Yard object represented by this cell.
 @property (nonatomic, retain) Yard *yard;
 
-// UITextField showing the name of yard.
-// Use UITextField to allow getting events when selected.
+// fields in both versions of cell.
 @property (nonatomic, retain) IBOutlet UITextField *yardName;
-
-// Station where the yard sits.
-@property (nonatomic, retain) IBOutlet UITextField *yardStation;
-
+@property (nonatomic, retain) IBOutlet UIImageView *yardIcon;
 // Description field at bottom of cell summarizing details about
 // the yard.
 @property (nonatomic, retain) IBOutlet UILabel *yardDescription;
 
-@property (nonatomic, retain) IBOutlet UIImageView *yardIcon;
+// Fields only in the short version.
+@property (nonatomic, retain) IBOutlet UILabel *yardStationLabel;
+
+// Fields only in long version.
+@property (nonatomic, retain) IBOutlet UITextField *yardStation;
+
+
 
 // TableViewController handling changes to the Yard object.
 @property (nonatomic, retain) IBOutlet YardTableViewController *myController;

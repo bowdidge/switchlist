@@ -1,8 +1,10 @@
 //
-//  CurlyView.h
+//  CargoChooser.h
 //  SwitchList
 //
-//  Created by Robert Bowdidge on 9/21/12.
+//  Created by bowdidge on 8/23/14.
+//
+//  Copyright (c) 2014 Robert Bowdidge. All rights reserved.
 //
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
@@ -27,12 +29,32 @@
 
 #import <UIKit/UIKit.h>
 
-// Creates curved highlighting to associate a particular button in an edit
-// popover with the contents of the table.
-@interface CurlyView : UIView
+@class Cargo;
+@class FreightCar;
+@class AbstractTableViewController;
 
-// Rectangle on the left to be highlighted.
-@property (nonatomic) CGRect leftRegion;
-// Rectangle on the right to be highlighted.
-@property (nonatomic) CGRect rightRegion;
+@interface CargoChooserCell : UITableViewCell
+@property (retain, nonatomic) IBOutlet UILabel *checkField;
+@property (retain, nonatomic) IBOutlet UILabel *cargoName;
+@property (retain, nonatomic) IBOutlet UILabel *cargoPath;
+@end
+
+// Popover for selecting a car type.
+@interface CargoChooser : UITableViewController
+
+// Reference back to the view controller listing all freight cars,
+// which is responsible for changing the freight car.
+@property (retain, nonatomic) IBOutlet AbstractTableViewController *myController;
+
+// Index of item selected.
+@property (retain, nonatomic) Cargo *selectedCargo;
+
+// Freight car being manipulated.  Used for remembering the current selection.
+@property (retain, nonatomic) id keyObject;
+
+// Value to mark as the currently enabled selection.
+@property (retain, nonatomic) Cargo *keyObjectSelection;
+
+// List of all cargos to display.
+@property (retain, nonatomic) NSArray *allCargos;
 @end
