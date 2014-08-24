@@ -90,7 +90,7 @@
                                             <rect key="frame" x="79" y="8" width="162" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                             <connections>
                                                 <outlet property="delegate" destination="5yz-zg-wez" id="gs5-lX-ITY"/>
                                             </connections>
