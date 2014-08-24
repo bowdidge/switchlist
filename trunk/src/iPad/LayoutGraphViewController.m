@@ -6,8 +6,8 @@
 //
 //
 
-#import "UILayoutGraphViewController.h"
+#import "LayoutGraphViewController.h"
 
-@implementation UILayoutGraphViewController
+@implementation LayoutGraphViewController
 
 @end

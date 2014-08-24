@@ -270,7 +270,7 @@
 		3EA4884615D84B00008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
 		3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
 		3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4891815D85C7C008A169F /* SuggestedCargoController.m */; };
-		3EAA8F5616D0B09500521AD5 /* UILayoutGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA8F5516D0B09500521AD5 /* UILayoutGraphViewController.m */; };
+		3EAA8F5616D0B09500521AD5 /* LayoutGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA8F5516D0B09500521AD5 /* LayoutGraphViewController.m */; };
 		3EAA8F5916D0B17900521AD5 /* LayoutGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA8F5816D0B17900521AD5 /* LayoutGraphView.m */; };
 		3EAA8F5A16D0B49700521AD5 /* LayoutGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56EE16225616007F49EC /* LayoutGraph.m */; };
 		3EAAA70E1606C70200C3D7A8 /* CarTypes.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE711361285D4F2006059F4 /* CarTypes.m */; };
@@ -791,8 +791,8 @@
 		3EA4891815D85C7C008A169F /* SuggestedCargoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCargoController.m; sourceTree = "<group>"; };
 		3EA80AF90E426FDF009C223A /* PrintEverythingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintEverythingView.h; sourceTree = "<group>"; };
 		3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintEverythingView.m; sourceTree = "<group>"; };
-		3EAA8F5416D0B09500521AD5 /* UILayoutGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILayoutGraphViewController.h; path = iPad/UILayoutGraphViewController.h; sourceTree = "<group>"; };
-		3EAA8F5516D0B09500521AD5 /* UILayoutGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILayoutGraphViewController.m; path = iPad/UILayoutGraphViewController.m; sourceTree = "<group>"; };
+		3EAA8F5416D0B09500521AD5 /* LayoutGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayoutGraphViewController.h; path = iPad/LayoutGraphViewController.h; sourceTree = "<group>"; };
+		3EAA8F5516D0B09500521AD5 /* LayoutGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LayoutGraphViewController.m; path = iPad/LayoutGraphViewController.m; sourceTree = "<group>"; };
 		3EAA8F5716D0B17900521AD5 /* LayoutGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayoutGraphView.h; path = iPad/LayoutGraphView.h; sourceTree = "<group>"; };
 		3EAA8F5816D0B17900521AD5 /* LayoutGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LayoutGraphView.m; path = iPad/LayoutGraphView.m; sourceTree = "<group>"; };
 		3EAAA7091606C4BD00C3D7A8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -1205,8 +1205,8 @@
 				3E407D9B160693E30037134D /* TrainTableCell.m */,
 				3E407D9C160693E30037134D /* TrainTableViewController.h */,
 				3E407D9D160693E30037134D /* TrainTableViewController.m */,
-				3EAA8F5416D0B09500521AD5 /* UILayoutGraphViewController.h */,
-				3EAA8F5516D0B09500521AD5 /* UILayoutGraphViewController.m */,
+				3EAA8F5416D0B09500521AD5 /* LayoutGraphViewController.h */,
+				3EAA8F5516D0B09500521AD5 /* LayoutGraphViewController.m */,
 				3E407D9E160693E30037134D /* YardTableCell.h */,
 				3E407D9F160693E30037134D /* YardTableCell.m */,
 				3E407DA0160693E30037134D /* YardTableViewController.h */,
@@ -1967,7 +1967,7 @@
 				3E335E63160D6A050097360C /* FileCell.m in Sources */,
 				3EEE0A8516209488007BBE4E /* PlaceChooser.m in Sources */,
 				3E853CEF1699739700F8C59B /* CarTypeChooser.m in Sources */,
-				3EAA8F5616D0B09500521AD5 /* UILayoutGraphViewController.m in Sources */,
+				3EAA8F5616D0B09500521AD5 /* LayoutGraphViewController.m in Sources */,
 				3EAA8F5916D0B17900521AD5 /* LayoutGraphView.m in Sources */,
 				3EAA8F5A16D0B49700521AD5 /* LayoutGraph.m in Sources */,
 			);
