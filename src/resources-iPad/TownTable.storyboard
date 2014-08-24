@@ -35,25 +35,24 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="San Jose Yard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UEE-IL-Ig5">
+                                            <rect key="frame" x="92" y="10" width="419" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="city.png" id="e7o-cW-cBp">
                                             <rect key="frame" x="6" y="0.0" width="78" height="74"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="San Jose Yard" minimumFontSize="17" id="FCN-QX-D2d">
-                                            <rect key="frame" x="92" y="6" width="477" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="hFj-jx-bp4" id="cLV-oz-5nw"/>
-                                            </connections>
-                                        </textField>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="townDescription" destination="fff-95-991" id="cyw-2x-XGQ"/>
                                     <outlet property="townIcon" destination="e7o-cW-cBp" id="qTu-Gs-Hjf"/>
                                     <outlet property="townKind" destination="d1S-Od-auu" id="dDx-j5-Hn7"/>
+                                    <outlet property="townNameLabel" destination="UEE-IL-Ig5" id="GZY-ao-pIe"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="extendedTownCell" rowHeight="120" id="751-Qi-xzq" customClass="TownTableCell">
@@ -82,6 +81,9 @@
                                                 <segment title="Staging"/>
                                                 <segment title="Imaginary"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="doChangeStagingState:" destination="751-Qi-xzq" eventType="valueChanged" id="WNi-bx-OUr"/>
+                                            </connections>
                                         </segmentedControl>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location of Town:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r6C-1w-AZO">
                                             <rect key="frame" x="92" y="74" width="136" height="21"/>
@@ -95,6 +97,9 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="751-Qi-xzq" id="Cap-dU-u9c"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -102,6 +107,7 @@
                                     <outlet property="stagingControl" destination="YAY-lf-sQa" id="exr-4M-3oF"/>
                                     <outlet property="townDescription" destination="4lK-zL-2SY" id="mpI-iq-2db"/>
                                     <outlet property="townIcon" destination="s1n-3e-jdO" id="5cE-kw-ZQC"/>
+                                    <outlet property="townNameField" destination="qCe-52-77g" id="yaZ-jd-5nD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

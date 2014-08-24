@@ -119,6 +119,16 @@
 	return [self primitiveValueForKey: @"industries"];
 }
 
+- (NSSet*) industriesWithoutYards {
+    NSMutableSet *result = [NSMutableSet set];
+    for (InduYard* induYard in self.industries) {
+        if ([induYard isRegularIndustry]) {
+            [result addObject: induYard];
+        }
+    }
+    return result;
+}
+
 // Returns the list of industries and yards in this place sorted by name.
 // Used in templates for repeatable ordering.
 - (NSArray*) allIndustriesSortedOrder {

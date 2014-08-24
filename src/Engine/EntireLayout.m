@@ -925,6 +925,15 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
     return freightCar;
 }
 
+// Creates a freight car (and car type, if needed) in the database from cleaned reporting
+// marks and car type.
+- (Place*) createTownWithName: (NSString*) townName {
+	Place *town = [NSEntityDescription insertNewObjectForEntityForName:@"Place"
+														   inManagedObjectContext: moc_];
+    [town setName: townName];
+    return town;
+}
+
 /**
  * Converts a text file containing freight cars (reporting marks or reporting marks and car type) into
  * new freight cars in the database.  Return the number of cars imported, and any errors in outErrors.

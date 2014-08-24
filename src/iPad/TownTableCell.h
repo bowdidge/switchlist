@@ -33,17 +33,21 @@
 // View data for cells in Town table.
 @interface TownTableCell : UITableViewCell
 
+// Handle click on "On Layout/Staging/Offline" button.
+- (IBAction) doChangeStagingState: (id) sender;
+
 // Fill in cell based on cargo object.
 - (void) fillInAsTown: (Place*) place;
-// Fill in the cell as the "Add..." cell at the bottom of the table.
-- (void) fillInAsAddCell;
 
-@property (nonatomic, retain) IBOutlet UITextField *townName;
+@property (nonatomic, retain) Place *place;
+
+@property (nonatomic, retain) IBOutlet UILabel *townNameLabel;
 @property (nonatomic, retain) IBOutlet UILabel *townKind;
 @property (nonatomic, retain) IBOutlet UILabel *townDescription;
 @property (nonatomic, retain) IBOutlet UIImageView *townIcon;
 
 // Detail view only.
+@property (nonatomic, retain) IBOutlet UITextField *townNameField;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *stagingControl;
 
 - (IBAction) hideIcon: (BOOL) value;
