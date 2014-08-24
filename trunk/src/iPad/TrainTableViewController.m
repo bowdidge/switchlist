@@ -97,7 +97,7 @@
 {
     NSString *cellIdentifier;
     if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
-        cellIdentifier = @"trainExtendedCell";
+        cellIdentifier = @"extendedTrainCell";
     } else {
         cellIdentifier = @"trainCell";
     }

@@ -101,9 +101,9 @@
 {
     NSString *cellIdentifier;
     if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
-        cellIdentifier = @"cellExtendedIndustry";
+        cellIdentifier = @"extendedIndustryCell";
     } else {
-        cellIdentifier = @"cellIndustry";
+        cellIdentifier = @"industryCell";
     }
 
     IndustryTableCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
