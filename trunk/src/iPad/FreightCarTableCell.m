@@ -67,7 +67,7 @@
 
 - (NSString*) cargoDescriptionForFreightCar: (FreightCar*) fc {
     if (![fc cargo]) {
-        return @"empty";
+        return @"unassigned";
     }
     if ([fc isLoaded]) {
         return [NSString stringWithFormat: @"loaded with %@", [[fc cargo] cargoDescription]];
