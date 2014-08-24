@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UILayoutGraphViewController : UIViewController
+@interface LayoutGraphViewController : UIViewController
 
 @end

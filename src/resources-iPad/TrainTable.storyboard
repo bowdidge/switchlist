@@ -96,7 +96,7 @@
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="San Jose, Campbell, Los Gatos and return" minimumFontSize="17" id="dMC-7l-ofU">
-                                            <rect key="frame" x="232" y="30" width="516" height="30"/>
+                                            <rect key="frame" x="232" y="30" width="332" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -122,6 +122,16 @@
                                                 <outlet property="delegate" destination="vgw-s9-iMv" id="hpz-nn-SEx"/>
                                             </connections>
                                         </textField>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z6d-V5-cCZ">
+                                            <rect key="frame" x="580" y="30" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Set">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="XvW-em-7Hn" kind="push" id="Gyd-aP-7FA"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -146,6 +156,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ml4-DI-s7x" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1725" y="-1092"/>
+        </scene>
+        <!--Layout Graph View Controller-->
+        <scene sceneID="UJT-6i-BK2">
+            <objects>
+                <viewController id="XvW-em-7Hn" customClass="LayoutGraphViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yNe-Pt-DfQ" customClass="LayoutGraphView">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="VXl-P1-qY1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TTU-mV-FPQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-903" y="-1103"/>
         </scene>
     </scenes>
     <resources>
