@@ -60,6 +60,7 @@
 - (void) setKind: (NSString*) kind;
 
 - (NSSet*) industries;
+- (NSSet*) industriesWithoutYards;
 - (NSArray*) allIndustriesSortedOrder;
 - (NSSet*) yards;
 

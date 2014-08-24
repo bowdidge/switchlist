@@ -45,14 +45,41 @@
 
 @implementation TownTableViewController
 
-// Gathers freight car data from the entire layout again, reloading if necessary.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self regenerateTableData];
+    self.storyboardName = @"TownTable";
+    self.title = @"Towns";
+    
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target:self action:@selector(addTown:)];
+    
+    self.navigationItem.rightBarButtonItem = addButtonItem;
+}
+
+- (void) addTown: (id) sender {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *entireLayout = myAppDelegate.entireLayout;
+    
+    Place *town = [entireLayout createTownWithName: @"Atomic City"];
+    [town setIsOnLayout];
+    
+    // Fragile way to open object - should instead search list.
+    [self regenerateTableData];
+    [self.tableView reloadData];
+    NSInteger currentIndex = [self.townsOnLayout indexOfObject: town];
+    NSUInteger indexArr[] = {0, currentIndex};
+    self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: self.expandedCellPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+// Gathers town data from the entire layout again, reloading if necessary.
 - (void) regenerateTableData {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
     NSMutableArray *offlineTowns = [NSMutableArray array];
     NSMutableArray *stagingTowns = [NSMutableArray array];
     NSMutableArray *onLayoutTowns = [NSMutableArray array];
-     for (Place *p in [myLayout allStations]) {
+    for (Place *p in [myLayout allStations]) {
         if ([p isOffline]) {
             [offlineTowns addObject: p];
         } else if ([p isStaging]) {
@@ -66,13 +93,6 @@
     self.townsOnLayout = [onLayoutTowns sortedArrayUsingSelector: @selector(compareNames:)];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self regenerateTableData];
-    self.storyboardName = @"TownTable";
-    self.title = @"Towns";
-}
-
 - (void)didReceiveMemoryWarning
 {
     self.townsOnLayout = nil;
@@ -84,11 +104,15 @@
 
 #pragma mark - Table view data source
 
+const int TOWNS_ON_LAYOUT_SECTION = 0;
+const int TOWNS_IN_STAGING_SECTION = 1;
+const int TOWNS_OFF_LINE_SECTION = 2;
+
 // Returns section name for table.
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if(section == 0) {
+    if(section == TOWNS_ON_LAYOUT_SECTION) {
         return @"Towns on Layout";
-    } else if (section == 1) {
+    } else if (section == TOWNS_IN_STAGING_SECTION) {
         return @"Towns in Staging";
     } else {
         return @"Imaginary Towns";
@@ -106,22 +130,21 @@
     if (!self.townsOnLayout) {
         [self regenerateTableData];
     }
-    if (section == 0) {
+    if (section == TOWNS_ON_LAYOUT_SECTION) {
         return self.townsOnLayout.count;
-    } else if (section == 1) {
+    } else if (section == TOWNS_IN_STAGING_SECTION) {
         return self.townsInStaging.count;
     }
-    // Imaginary +1 for"add another"
-    return self.townsOffline.count + 1;
+    return self.townsOffline.count;
 }
 
 // Returns place object represented in table view at the given row and section.
 - (Place*) townAtIndexPath: (NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    if (section == 0) {
+    if (section == TOWNS_ON_LAYOUT_SECTION) {
         return [self.townsOnLayout objectAtIndex: row];
-    } else if (section == 1) {
+    } else if (section == TOWNS_IN_STAGING_SECTION) {
         return [self.townsInStaging objectAtIndex: row];
     } else {
         return [self.townsOffline objectAtIndex: row];
@@ -149,7 +172,7 @@
         [cell autorelease];
     }
     
-    if (indexPath.section == 2 && indexPath.row == self.townsOffline.count) {
+    if (indexPath.section == TOWNS_OFF_LINE_SECTION && indexPath.row == self.townsOffline.count) {
         [cell fillInAsAddCell];
     } else {
         [cell fillInAsTown: [self townAtIndexPath: indexPath]];

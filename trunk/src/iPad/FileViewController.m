@@ -78,7 +78,7 @@
 
 // Returns the number of rows in the specified towns section.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.allLayouts count];
+    return [self.allLayouts count] + 1;
 }
 
 // Returns contents of the cell for the specified row and section.
@@ -90,7 +90,12 @@
                                reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.label.text = [self.allLayouts objectAtIndex: [indexPath row]];
+    NSInteger row = [indexPath row];
+    if (row >= [self.allLayouts count]) {
+        cell.label.text = @"New Layout";
+    } else {
+        cell.label.text = [self.allLayouts objectAtIndex: [indexPath row]];
+    }
     return cell;
 }
 
@@ -117,8 +122,13 @@
     // Open.
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
 
-    NSString *filename = [self.allLayouts objectAtIndex: [indexPath row]];
-    [myAppDelegate openLayoutWithName: filename];
+    NSInteger row = [indexPath row];
+    if (row == [self.allLayouts count]) {
+        [myAppDelegate openLayoutWithName: @"my-new-layout"];
+    } else {
+        NSString *filename = [self.allLayouts objectAtIndex: [indexPath row]];
+        [myAppDelegate openLayoutWithName: filename];
+    }
     [self.myPopoverController dismissPopoverAnimated: YES];
 }
 

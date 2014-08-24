@@ -28,7 +28,9 @@
 
 #import "TownTableCell.h"
 
+#import "Industry.h"
 #import "Place.h"
+#import "Yard.h"
 
 @implementation TownTableCell
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -47,21 +49,25 @@
     // Configure the view for the selected state
 }
 
-- (NSString*) descriptionForTown: (Place*) p {
-    NSInteger industryCount = p.industries.count;
-    NSInteger yardCount = p.yards.count;
-    NSInteger freightCarCount= p.freightCarsAtStation.count;
+- (NSString*) descriptionForTown: (Place*) town {
+    NSInteger industryCount = [[town industriesWithoutYards] count];
+    NSInteger yardCount = town.yards.count;
+    NSInteger freightCarCount= town.freightCarsAtStation.count;
     
     if (industryCount == 0 && yardCount == 0 && freightCarCount == 0) {
         return @"Not much more than a wide spot in the road.";
     }
     
     NSMutableArray *response = [NSMutableArray array];
-    if (industryCount != 0) {
+    if (industryCount == 1) {
+        Industry *onlyIndustry = [[town industriesWithoutYards] anyObject];
+        [response addObject: [NSString stringWithFormat: @"has %@", onlyIndustry.name]];
+    } else if (industryCount > 1) {
         [response addObject: [NSString stringWithFormat: @"%d industries", (int) industryCount]];
     }
     if (yardCount == 1) {
-        [response addObject: @"has yard"];
+        Yard *onlyYard = [town.yards anyObject];
+        [response addObject: [NSString stringWithFormat: @"has the %@ yard", onlyYard.name]];
     } else if (yardCount > 1) {
         [response addObject: @"has multiple yards"];
     }
@@ -77,7 +83,9 @@
 
 // Fill in cell based on cargo object.
 - (void) fillInAsTown: (Place*) place {
-    self.townName.text = [place name];
+    self.place = place;
+    self.townNameLabel.text = [place name];
+    self.townNameField.text = [place name];
     if ([place isOffline]) {
         self.townKind.text = @"Offline";
     } else if ([place isStaging]) {
@@ -91,19 +99,61 @@
     self.townIcon.hidden = NO;
 }
 
-// Fill in the cell as the "Add..." cell at the bottom of the table.
-- (void) fillInAsAddCell {
-    self.townName.text = @"Add Town";
-    self.townKind.text = @"";
-    self.townDescription.text = @"";
-    self.townIcon.hidden = YES;
-}
-
 - (IBAction) hideIcon: (BOOL) value {
     [townIcon setHidden: value];
 }
 
-@synthesize townName;
+- (IBAction) doChangeStagingState: (id) sender {
+    NSInteger value =  self.stagingControl.selectedSegmentIndex;
+    switch (value) {
+        case 0:
+            [self.place setIsOnLayout];
+            break;
+        case 1:
+            [self.place setIsStaging: YES];
+            break;
+        case 2:
+            [self.place setIsOffline: YES];
+            break;
+        default:
+            NSLog(@"Unknown value for doChangeStagingState: %d.", (int) value);
+            break;
+    }
+    // Regenerate text.
+    [self fillInAsTown: self.place];
+}
+
+// Handle clicks on the text fields that are supporting immediate editing.  Either make the text
+// editable, or raise the correct popover to permit selection.
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
+    // Treat as text field.
+    textField.backgroundColor = [UIColor whiteColor];
+    textField.borderStyle = UITextBorderStyleRoundedRect;
+    
+    return YES;
+}
+
+// Note when editing is complete so that changes can be saved.  For now, only watch for changes to the
+// reporting marks so that we can resort the table.
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
+    textField.backgroundColor = [UIColor clearColor];
+    textField.borderStyle = UITextBorderStyleNone;
+    // TODO(bowdidge): Warn about changes to alphabetic order?
+    // [self.myController noteTableCell: self changedCarReportingMarks: textField.text];
+    
+    NSString *newValue = textField.text;
+    if (textField == self.townNameField) {
+        self.place.name = newValue;
+    }
+    
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField endEditing: YES];
+    return YES;
+}
+
 @synthesize townKind;
 @synthesize townDescription;
 @synthesize townIcon;

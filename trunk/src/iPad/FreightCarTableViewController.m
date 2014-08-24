@@ -68,7 +68,9 @@
  
     FreightCar *fc = [entireLayout createFreightCar: @"AA&A 84712" withCarType: @"XM" withLength: [NSNumber numberWithInt: 40]];
     [fc setCurrentLocation: [entireLayout workbenchIndustry]];
-    NSUInteger indexArr[] = {1, 0};
+    
+    NSInteger currentIndex = [self.allFreightCarsOnWorkbench indexOfObject: fc];
+    NSUInteger indexArr[] = {1, currentIndex};
     [self regenerateTableData];
     [self.tableView reloadData];
     self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
