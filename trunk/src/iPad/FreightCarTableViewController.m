@@ -69,12 +69,14 @@
     FreightCar *fc = [entireLayout createFreightCar: @"AA&A 84712" withCarType: @"XM" withLength: [NSNumber numberWithInt: 40]];
     [fc setCurrentLocation: [entireLayout workbenchIndustry]];
     
-    NSInteger currentIndex = [self.allFreightCarsOnWorkbench indexOfObject: fc];
-    NSUInteger indexArr[] = {1, currentIndex};
     [self regenerateTableData];
     [self.tableView reloadData];
+    NSInteger currentIndex = [self.allFreightCarsOnWorkbench indexOfObject: fc];
+    NSUInteger indexArr[] = {1, currentIndex};
     self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
     [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: self.expandedCellPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+
+    [self.tableView scrollToRowAtIndexPath: self.expandedCellPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 }
 
 // Gathers freight car data from the entire layout again, reloading if necessary.
@@ -128,7 +130,8 @@
 // to allow selecting a different location.
 - (IBAction) doLocationPressed: (id) sender {
     FreightCarTableCell *cell = sender;
-    CGRect popoverRect = [cell convertRect: cell.shortCarType.frame toView: self.view];
+    // TODO(bowdidge): Should be different depending on the cell - short or long.
+    CGRect popoverRect = [cell convertRect: cell.shortLocation.frame toView: self.view];
     IndustryChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"industryChooser" fromRect: popoverRect];
     chooser.keyObject = cell.freightCar;
     chooser.keyObjectSelection = cell.freightCar.currentLocation;
@@ -234,12 +237,7 @@ const int CARS_AT_WORKBENCH_SECTION = 1;
     }
     
     FreightCar *fc = [self freightCarAtIndexPath: indexPath];
-    if (!fc) {
-        // Add.
-        [cell fillInAsAddCell];
-    } else {
-        [cell fillInAsFreightCar: fc];
-    }
+    [cell fillInAsFreightCar: fc];
     return cell;
 }
 

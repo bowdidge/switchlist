@@ -30,7 +30,7 @@
 
 #import "AppDelegate.h"
 #import "FileCell.h"
-=
+
 @interface FileViewController ()
 // Array of filenames.
 @property (nonatomic, retain) NSMutableArray *allLayouts;

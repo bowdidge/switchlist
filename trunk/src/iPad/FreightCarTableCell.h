@@ -45,9 +45,6 @@
 // Fills in all values for the cell based on the freight car object.
 - (void) fillInAsFreightCar: (FreightCar*) freightCar;
 
-// Fills in cell for the Add item.
-- (void) fillInAsAddCell;
-
 - (IBAction) doChangeLoadedState: (id) sender;
 
 // Current freight car represented by this cell.
@@ -56,10 +53,11 @@
 // UITextField showing the freight car's reporting marks.
 // We use a UITextField so we can edit the label directly and get
 // events when selected.
-@property (nonatomic, retain) IBOutlet UITextField *freightCarReportingMarks;
+@property (nonatomic, retain) IBOutlet UILabel *freightCarReportingMarksLabel;
+@property (nonatomic, retain) IBOutlet UITextField *freightCarReportingMarksField;
 
 // UITextField showing the location of the freight car.
-@property (nonatomic, retain) IBOutlet UITextField *shortLocation;
+@property (nonatomic, retain) IBOutlet UILabel *shortLocation;
 
 // UITextField showing the kind of freight car.
 @property (nonatomic, retain) IBOutlet UITextField *shortCarType;

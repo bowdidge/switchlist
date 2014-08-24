@@ -133,13 +133,8 @@
     }
     
     // Configure the cell...
-    NSInteger row = [indexPath row];
-    if (row == [self.allIndustries count]) {
-        [cell fillInAsAddCell];
-    } else {
-        Industry *industry = [self industryAtIndexPath: indexPath];
-        [cell fillInAsIndustry: industry];
-    }
+    Industry *industry = [self industryAtIndexPath: indexPath];
+    [cell fillInAsIndustry: industry];
     return cell;
 }
 
