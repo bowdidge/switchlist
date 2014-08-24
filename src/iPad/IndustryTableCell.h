@@ -37,8 +37,6 @@
 
 // Fill in cell based on cargo object.
 - (void) fillInAsIndustry: (Industry*) industry;
-// Fill in the cell as the "Add..." cell at the bottom of the table.
-- (void) fillInAsAddCell;
 
 // Called when the "spot at specific doors" switch changes state.
 - (IBAction) doorSwitchChanged: (id) sender;

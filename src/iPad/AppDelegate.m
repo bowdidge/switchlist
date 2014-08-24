@@ -30,6 +30,7 @@
 #import "CarType.h"
 #import "CarTypes.h"
 #import "EntireLayout.h"
+#import "MainWindowViewController.h"
 
 #import <CoreData/CoreData.h>
 
@@ -175,7 +176,13 @@
     [self closeFile];
     // TODO(bowdidge): Need to keep separate map of layout name -> filename.
     NSURL *newFilePath = [[self applicationDocumentsDirectory] URLByAppendingPathComponent: filename];
-    return [self openNewFile:newFilePath];
+    if (![self openNewFile:newFilePath]) {
+        UIAlertView *badFileAlert = [[UIAlertView alloc] initWithTitle: @"Unable to load file" message: @"There was an unknown problem when loading the file" delegate: self cancelButtonTitle: @"OK" otherButtonTitles: nil];
+        [badFileAlert show];
+        return NO;
+    }
+    [self.mainWindowViewController noteRegenerateSwitchlists];
+    return YES;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
