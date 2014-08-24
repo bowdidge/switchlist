@@ -87,7 +87,6 @@
 		3E45403019A93359000755D9 /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402E19A93359000755D9 /* reveal-icon.png */; };
 		3E45403119A93359000755D9 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402F19A93359000755D9 /* reveal-icon@2x.png */; };
 		3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */; };
-		3E540BDD160CE77700D5B759 /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BDC160CE77700D5B759 /* TemplateCell.m */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3E5E628C160E42EE0074AE1E /* SwitchListEngine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
@@ -371,7 +370,6 @@
 		3EABC3AA16069C4400EBD6C5 /* SwitchListFilters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFEC531140851A200F9CF15 /* SwitchListFilters.m */; };
 		3EABC3C316069C5A00EBD6C5 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75BC16063FFD00891318 /* libicucore.dylib */; };
 		3EABC3C416069C5F00EBD6C5 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75BF1606400400891318 /* CoreData.framework */; };
-		3EABEAE6169B38150016D751 /* IndustryChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EABEAE5169B38150016D751 /* IndustryChooser.m */; };
 		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
 		3EB78AEB199337E800476758 /* layout.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EB78AEA199337E800476758 /* layout.icns */; };
 		3EB7BBD219A11DC7004C202F /* StyleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7BBD119A11DC7004C202F /* StyleTableViewCell.m */; };
@@ -427,6 +425,8 @@
 		3EE380BE133D284F0069C963 /* SwitchRouteDialogControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE380BD133D284F0069C963 /* SwitchRouteDialogControllerTest.m */; };
 		3EE5EDEB131A1E03009E2C83 /* SwitchList.help in Resources */ = {isa = PBXBuildFile; fileRef = 3EE5ED9D131A1E03009E2C83 /* SwitchList.help */; };
 		3EE6A58819A993A90057C2DC /* CargoChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6A58319A97E750057C2DC /* CargoChooser.m */; };
+		3EE6A58E19A9A9D40057C2DC /* IndustryChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6A58A19A9A9840057C2DC /* IndustryChooser.m */; };
+		3EE6A58F19A9A9E90057C2DC /* TemplateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE6A58C19A9A9CD0057C2DC /* TemplateCell.m */; };
 		3EEE0A8516209488007BBE4E /* PlaceChooser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EEE0A8416209487007BBE4E /* PlaceChooser.m */; };
 		3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF294D71312F40700D2C3F6 /* GlobalPreferences.m */; };
 		3EF7D011134C13EA00C76407 /* PICLReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF7D010134C13EA00C76407 /* PICLReport.m */; };
@@ -557,8 +557,8 @@
 		3E108C1614049FD900B77CFE /* libicucore.A.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.A.dylib; path = /usr/lib/libicucore.A.dylib; sourceTree = "<absolute>"; };
 		3E108C601404A31E00B77CFE /* ICUTemplateMatcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICUTemplateMatcher.h; sourceTree = "<group>"; };
 		3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICUTemplateMatcher.m; sourceTree = "<group>"; };
-		3E11BF80160CE279007605D6 /* LayoutDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutDetailsViewController.h; sourceTree = "<group>"; };
-		3E11BF81160CE279007605D6 /* LayoutDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutDetailsViewController.m; sourceTree = "<group>"; };
+		3E11BF80160CE279007605D6 /* LayoutDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayoutDetailsViewController.h; path = iPad/LayoutDetailsViewController.h; sourceTree = "<group>"; };
+		3E11BF81160CE279007605D6 /* LayoutDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LayoutDetailsViewController.m; path = iPad/LayoutDetailsViewController.m; sourceTree = "<group>"; };
 		3E1490CD128F07AB001700D0 /* NSMigrationManagerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMigrationManagerCategory.h; sourceTree = "<group>"; };
 		3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRouteDialogController.h; sourceTree = "<group>"; };
 		3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRouteDialogController.m; sourceTree = "<group>"; };
@@ -680,7 +680,7 @@
 		3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testAdvanceLayouts; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testAdvanceLayoutsMain.m; sourceTree = "<group>"; };
 		3E45401B19A925B1000755D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/FreightCarTable.storyboard; sourceTree = "<group>"; };
-		3E45401E19A927E1000755D9 /* IndustryTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IndustryTable.storyboard; sourceTree = "<group>"; };
+		3E45401E19A927E1000755D9 /* IndustryTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = IndustryTable.storyboard; path = "resources-iPad/IndustryTable.storyboard"; sourceTree = "<group>"; };
 		3E45402019A92928000755D9 /* TownTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TownTable.storyboard; path = "resources-iPad/TownTable.storyboard"; sourceTree = "<group>"; };
 		3E45402219A92C0C000755D9 /* TrainTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TrainTable.storyboard; path = "resources-iPad/TrainTable.storyboard"; sourceTree = "<group>"; };
 		3E45402419A92F36000755D9 /* CargoTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CargoTable.storyboard; path = "resources-iPad/CargoTable.storyboard"; sourceTree = "<group>"; };
@@ -696,8 +696,7 @@
 		3E4D49130D0F48640092D1A3 /* TrainAssigner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TrainAssigner.m; path = Engine/TrainAssigner.m; sourceTree = "<group>"; };
 		3E540BD8160CE68400D5B759 /* ChooseTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseTemplateViewController.h; sourceTree = "<group>"; };
 		3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseTemplateViewController.m; sourceTree = "<group>"; };
-		3E540BDB160CE77600D5B759 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCell.h; sourceTree = "<group>"; };
-		3E540BDC160CE77700D5B759 /* TemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCell.m; sourceTree = "<group>"; };
+		3E540BDB160CE77600D5B759 /* TemplateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TemplateCell.h; path = iPad/TemplateCell.h; sourceTree = "<group>"; };
 		3E57C59112FBD95E00E51008 /* SwitchListBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListBaseView.h; sourceTree = "<group>"; };
 		3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseView.m; sourceTree = "<group>"; };
 		3E57C5CB12FBDCC600E51008 /* KaufmanSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaufmanSwitchListView.h; sourceTree = "<group>"; };
@@ -792,17 +791,15 @@
 		3EA4891815D85C7C008A169F /* SuggestedCargoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedCargoController.m; sourceTree = "<group>"; };
 		3EA80AF90E426FDF009C223A /* PrintEverythingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintEverythingView.h; sourceTree = "<group>"; };
 		3EA80AFA0E426FDF009C223A /* PrintEverythingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintEverythingView.m; sourceTree = "<group>"; };
-		3EAA8F5416D0B09500521AD5 /* UILayoutGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILayoutGraphViewController.h; sourceTree = "<group>"; };
-		3EAA8F5516D0B09500521AD5 /* UILayoutGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UILayoutGraphViewController.m; sourceTree = "<group>"; };
-		3EAA8F5716D0B17900521AD5 /* LayoutGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutGraphView.h; sourceTree = "<group>"; };
-		3EAA8F5816D0B17900521AD5 /* LayoutGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutGraphView.m; sourceTree = "<group>"; };
+		3EAA8F5416D0B09500521AD5 /* UILayoutGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UILayoutGraphViewController.h; path = iPad/UILayoutGraphViewController.h; sourceTree = "<group>"; };
+		3EAA8F5516D0B09500521AD5 /* UILayoutGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UILayoutGraphViewController.m; path = iPad/UILayoutGraphViewController.m; sourceTree = "<group>"; };
+		3EAA8F5716D0B17900521AD5 /* LayoutGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayoutGraphView.h; path = iPad/LayoutGraphView.h; sourceTree = "<group>"; };
+		3EAA8F5816D0B17900521AD5 /* LayoutGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LayoutGraphView.m; path = iPad/LayoutGraphView.m; sourceTree = "<group>"; };
 		3EAAA7091606C4BD00C3D7A8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3EAAA7661606CC5400C3D7A8 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/usr/lib/libicucore.dylib; sourceTree = DEVELOPER_DIR; };
-		3EAAA77F1608226A00C3D7A8 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
-		3EAAA7811608235400C3D7A8 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		3EAAA77F1608226A00C3D7A8 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "resources-iPad/Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		3EAAA7811608235400C3D7A8 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "resources-iPad/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		3EABC36E1606991800EBD6C5 /* CarType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarType.m; path = Engine/CarType.m; sourceTree = "<group>"; };
-		3EABEAE4169B38150016D751 /* IndustryChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryChooser.h; sourceTree = "<group>"; };
-		3EABEAE5169B38150016D751 /* IndustryChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryChooser.m; sourceTree = "<group>"; };
 		3EB0AC0A127BB95000E27063 /* InduYard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InduYard.h; path = Engine/InduYard.h; sourceTree = "<group>"; };
 		3EB0AC0B127BB95000E27063 /* InduYard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InduYard.m; path = Engine/InduYard.m; sourceTree = "<group>"; };
 		3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMigrationManagerCategory.m; sourceTree = "<group>"; };
@@ -848,6 +845,9 @@
 		3EE5ED9D131A1E03009E2C83 /* SwitchList.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SwitchList.help; sourceTree = "<group>"; };
 		3EE6A58219A97E750057C2DC /* CargoChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CargoChooser.h; path = iPad/CargoChooser.h; sourceTree = "<group>"; };
 		3EE6A58319A97E750057C2DC /* CargoChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CargoChooser.m; path = iPad/CargoChooser.m; sourceTree = "<group>"; };
+		3EE6A58919A9A9840057C2DC /* IndustryChooser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndustryChooser.h; path = iPad/IndustryChooser.h; sourceTree = "<group>"; };
+		3EE6A58A19A9A9840057C2DC /* IndustryChooser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndustryChooser.m; path = iPad/IndustryChooser.m; sourceTree = "<group>"; };
+		3EE6A58C19A9A9CD0057C2DC /* TemplateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TemplateCell.m; path = iPad/TemplateCell.m; sourceTree = "<group>"; };
 		3EE711351285D4F2006059F4 /* CarTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarTypes.h; path = Engine/CarTypes.h; sourceTree = "<group>"; };
 		3EE711361285D4F2006059F4 /* CarTypes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CarTypes.m; path = Engine/CarTypes.m; sourceTree = "<group>"; };
 		3EE711661285D81E006059F4 /* CarTypesTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarTypesTest.h; path = Engine/CarTypesTest.h; sourceTree = "<group>"; };
@@ -1166,8 +1166,8 @@
 				3E407D82160693E30037134D /* FreightCarTableCell.m */,
 				3E407D83160693E30037134D /* FreightCarTableViewController.h */,
 				3E407D84160693E30037134D /* FreightCarTableViewController.m */,
-				3EABEAE4169B38150016D751 /* IndustryChooser.h */,
-				3EABEAE5169B38150016D751 /* IndustryChooser.m */,
+				3EE6A58919A9A9840057C2DC /* IndustryChooser.h */,
+				3EE6A58A19A9A9840057C2DC /* IndustryChooser.m */,
 				3E407D85160693E30037134D /* IndustryTableCell.h */,
 				3E407D86160693E30037134D /* IndustryTableCell.m */,
 				3E407D87160693E30037134D /* IndustryTableViewController.h */,
@@ -1195,7 +1195,7 @@
 				3E407D93160693E30037134D /* SwitchListTouchCatcherView.h */,
 				3E407D94160693E30037134D /* SwitchListTouchCatcherView.m */,
 				3E540BDB160CE77600D5B759 /* TemplateCell.h */,
-				3E540BDC160CE77700D5B759 /* TemplateCell.m */,
+				3EE6A58C19A9A9CD0057C2DC /* TemplateCell.m */,
 				3E407D95160693E30037134D /* TownTableCell.h */,
 				3E407D96160693E30037134D /* TownTableCell.m */,
 				3E407D97160693E30037134D /* TownTableView.h */,
@@ -1936,6 +1936,7 @@
 				3EAAA73B1606CB9500C3D7A8 /* StringHelpers.m in Sources */,
 				3EAAA73F1606CB9500C3D7A8 /* Yard.m in Sources */,
 				3EAAA7271606CA8E00C3D7A8 /* SwitchListDocument.xcdatamodeld in Sources */,
+				3EE6A58E19A9A9D40057C2DC /* IndustryChooser.m in Sources */,
 				3E407DA2160693E30037134D /* AbstractTableViewController.m in Sources */,
 				3E407DA3160693E30037134D /* AppDelegate.m in Sources */,
 				3E407DA4160693E30037134D /* AppNavigationController.m in Sources */,
@@ -1955,18 +1956,17 @@
 				3E407DB2160693E30037134D /* TownTableCell.m in Sources */,
 				3E407DB3160693E30037134D /* TownTableViewController.m in Sources */,
 				3E407DB4160693E30037134D /* TrainTableCell.m in Sources */,
+				3EE6A58F19A9A9E90057C2DC /* TemplateCell.m in Sources */,
 				3E407DB5160693E30037134D /* TrainTableViewController.m in Sources */,
 				3E407DB6160693E30037134D /* YardTableCell.m in Sources */,
 				3E407DB7160693E30037134D /* YardTableViewController.m in Sources */,
 				3E37741F160847000023C8B5 /* SwitchListColors.m in Sources */,
 				3E11BF82160CE279007605D6 /* LayoutDetailsViewController.m in Sources */,
 				3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */,
-				3E540BDD160CE77700D5B759 /* TemplateCell.m in Sources */,
 				3E335E60160D69760097360C /* FileViewController.m in Sources */,
 				3E335E63160D6A050097360C /* FileCell.m in Sources */,
 				3EEE0A8516209488007BBE4E /* PlaceChooser.m in Sources */,
 				3E853CEF1699739700F8C59B /* CarTypeChooser.m in Sources */,
-				3EABEAE6169B38150016D751 /* IndustryChooser.m in Sources */,
 				3EAA8F5616D0B09500521AD5 /* UILayoutGraphViewController.m in Sources */,
 				3EAA8F5916D0B17900521AD5 /* LayoutGraphView.m in Sources */,
 				3EAA8F5A16D0B49700521AD5 /* LayoutGraph.m in Sources */,
