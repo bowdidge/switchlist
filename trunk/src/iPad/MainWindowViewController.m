@@ -308,6 +308,13 @@ float BOX_HEADER = 25.0;
 // Trigger regeneration of all HTML for all trains, and create new trains.
 // To be done whenever something affecting switchlists change.
 - (IBAction) doRegenerateSwitchlists: (id) sender {
+    // Remove all trains.
+    for (UIView* catcher in [self.trainNameToCatcher allValues]) {
+        // TODO(bowdidge): Consider doing only when we change apps.
+        [catcher removeFromSuperview];
+    }
+    [self.view setNeedsDisplay];
+    self.trainNameToCatcher = [NSMutableDictionary dictionary];
     [self createViews];
     [CATransaction begin];
     [CATransaction setDisableActions: YES];
