@@ -96,6 +96,8 @@ NSString *NormalizeDivisionString(NSString *inString);
 
 //All cargos - for UI use.
 - (NSArray*) allCargos;
+- (NSArray*) allCargosForCarType: (CarType*) carType;
+
 // Calculates the average number of loads per day based on the cargos defined.
 - (int) loadsPerDay;
 

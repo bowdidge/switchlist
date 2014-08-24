@@ -32,6 +32,7 @@
 #import "AppDelegate.h"
 #import "Cargo.h"
 #import "EntireLayout.h"
+#import "FreightCar.h"
 #import "InduYard.h"
 #import "FreightCarTableViewController.h"
 
@@ -63,13 +64,31 @@
     EntireLayout *myLayout = myAppDelegate.entireLayout;
 
     // TODO(bowdidge): Limit to only cargos for that car type, and unset cargos, and the current cargo for the car.
-    self.allCargos = [myLayout allCargos];
+    self.cargosToShow = [myLayout allCargos];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void) setFreightCar: (FreightCar*) fc {
+    // TODO(bowdidge): Probably inefficient.  Try to do this during viewDidLoad.
+    self.keyObject = fc;
+    self.keyObjectSelection = [fc cargo];
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *myLayout = myAppDelegate.entireLayout;
+    NSArray* allCargosForType = [myLayout allCargosForCarType: [fc carTypeRel]];
+    if ([fc cargo] && [fc carType] && [fc carTypeRel] != [[fc cargo] carTypeRel]) {
+        // Currently loaded with inappropriate cargo.
+        NSMutableArray *arrayWithExtra = [NSMutableArray arrayWithArray: allCargosForType];
+        [arrayWithExtra addObject: [fc cargo]];
+        self.cargosToShow = arrayWithExtra;
+    } else {
+        self.cargosToShow = allCargosForType;
+    }
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,7 +106,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [self.allCargos count];
+    return [self.cargosToShow count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -95,7 +114,7 @@
     CargoChooserCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     NSInteger index = [indexPath row];
-    Cargo *cargo = [self.allCargos objectAtIndex: index];
+    Cargo *cargo = [self.cargosToShow objectAtIndex: index];
     cell.cargoName.text = cargo.name;
     cell.cargoPath.text = [NSString stringWithFormat: @"%@ to %@", cargo.source.name, cargo.destination.name];
     if (cargo == self.keyObjectSelection) {
@@ -150,10 +169,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // TODO(bowdidge): Save response.
-    self.selectedCargo = [self.allCargos objectAtIndex: [indexPath row]];
+    self.selectedCargo = [self.cargosToShow objectAtIndex: [indexPath row]];
     [self.myController doCloseChooser: self];
 }
 
 @synthesize selectedCargo;
-@synthesize allCargos;
 @end

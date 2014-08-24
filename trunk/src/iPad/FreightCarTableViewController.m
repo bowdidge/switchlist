@@ -100,8 +100,7 @@
     CGRect popoverRect = [cell convertRect: cell.cargoField.frame toView: self.view];
     // TODO(bowdidge): Limit choices to cargos for this car, or cargos without a car type, or the car's current contents.
     CargoChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"cargoChooser" fromRect: popoverRect];
-    chooser.keyObject = cell.freightCar;
-    chooser.keyObjectSelection = cell.freightCar.cargo;
+    [chooser setFreightCar: cell.freightCar];
     chooser.myController = self;
 }
 
@@ -136,6 +135,14 @@
         selectedFreightCar.currentLocation = chooser.selectedIndustry;
         [self.myPopoverController dismissPopoverAnimated: YES];
         [self.tableView reloadData];
+    } else if ([sender isKindOfClass: [CargoChooser class]]) {
+        CargoChooser *chooser = (CargoChooser*) sender;
+        FreightCar *selectedFreightCar = chooser.keyObject;
+        selectedFreightCar.cargo = chooser.selectedCargo;
+        [self.myPopoverController dismissPopoverAnimated: YES];
+        [self.tableView reloadData];
+    } else {
+        NSLog(@"Unknown chooser %@ used in doCloseChooser:", [sender class]);
     }
 }
 

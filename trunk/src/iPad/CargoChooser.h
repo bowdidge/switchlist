@@ -41,6 +41,8 @@
 
 // Popover for selecting a car type.
 @interface CargoChooser : UITableViewController
+// Set up chooser to choose a load for this freight car.
+- (void) setFreightCar: (FreightCar*) fc;
 
 // Reference back to the view controller listing all freight cars,
 // which is responsible for changing the freight car.
@@ -56,5 +58,5 @@
 @property (retain, nonatomic) Cargo *keyObjectSelection;
 
 // List of all cargos to display.
-@property (retain, nonatomic) NSArray *allCargos;
+@property (retain, nonatomic) NSArray *cargosToShow;
 @end

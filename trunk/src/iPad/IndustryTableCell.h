@@ -40,8 +40,11 @@
 // Fill in the cell as the "Add..." cell at the bottom of the table.
 - (void) fillInAsAddCell;
 
+// Called when the "spot at specific doors" switch changes state.
+- (IBAction) doorSwitchChanged: (id) sender;
+
 // Industry represented by this cell.
-@property (nonatomic, retain) InduYard *myIndustry;
+@property (nonatomic, retain) Industry  *myIndustry;
 
 // Information in all cells
 @property (nonatomic, retain) IBOutlet UITextField *industryName;
@@ -56,7 +59,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *townName;
 @property (nonatomic, retain) IBOutlet UITextField *divisionName;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *hasDoorsControl;
-@property (nonatomic, retain) IBOutlet UITextField *numberOfDoors;
+@property (nonatomic, retain) IBOutlet UITextField *numberOfDoorsField;
 @property (nonatomic, retain) IBOutlet UITextField *cargos;
 @property (nonatomic, retain) IBOutlet UITextField *sidingLength;
 @property (nonatomic, retain) IBOutlet UIButton *cargoHelpButton;

@@ -76,6 +76,8 @@
 
 // List of station names, suitable for human display.
 - (NSString*) listOfStationsString;
+// Human readable, with "... and return" added as appropriate.
+- (NSString*) niceListOfStationsString;
 
 - (NSNumber *)minCarsToRun;
 - (void)setMinCarsToRun:(NSNumber *)value;

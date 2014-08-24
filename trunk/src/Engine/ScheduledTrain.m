@@ -225,6 +225,33 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	return [stationNames componentsJoinedByString: @", "];
 }	
 
+- (BOOL) beginsAndEndsAtSameStation {
+	NSArray *allStops = [self stationsInOrder];
+	if ([allStops objectAtIndex: 0] == [allStops lastObject]) {
+		return YES;
+	}
+	return NO;
+}
+
+- (NSString*) niceListOfStationsString {
+    NSMutableArray *stationNames = [NSMutableArray array];
+    NSArray* stations = [self stationsInOrder];
+    if (![self beginsAndEndsAtSameStation]) {
+        for (Place *station in stations) {
+            [stationNames addObject: [station name]];
+        }
+        return [stationNames componentsJoinedByString: @", "];;
+    }
+    NSMutableSet* visitedStations = [NSMutableSet set];
+    for (Place *station in stations) {
+        if ([visitedStations containsObject: station]) break;
+        [visitedStations addObject: station];
+        [stationNames addObject: [station name]];
+    }
+    return [NSString stringWithFormat: @"%@ and return", [stationNames componentsJoinedByString: @", "]];
+}
+
+
 - (void) setStationsInOrder: (NSArray*) stationsInOrder {
 	NSMutableArray *stationStopNames = [NSMutableArray array];
 	for (id stationStopObject in stationsInOrder) {
@@ -234,15 +261,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 }
 
 
-- (BOOL) beginsAndEndsAtSameStation {
-	NSArray *allStops = [self stationsInOrder];
-	if ([allStops objectAtIndex: 0] == [allStops lastObject]) {
-		return YES;
-	}
-	return NO;
-}
-
-- (NSNumber *)minCarsToRun 
+- (NSNumber *)minCarsToRun
 {
     NSNumber * tmpValue;
     

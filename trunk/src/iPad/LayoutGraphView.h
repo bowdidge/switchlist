@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class LayoutGraph;
+@class ScheduledTrain;
 
 @interface LayoutGraphView : UIView {
     // True if a drag is currently being done to set a route.
@@ -16,9 +17,6 @@
     // Current point for finger.
     CGPoint current_drag_point_;
 
-    // List of stops indicated so far, in visit order.
-    NSMutableArray *current_selected_stops_;
-    
     LayoutGraph *layout_graph_;
     NSArray *all_stations_display_order_;
     BOOL graph_initialized_;
@@ -31,4 +29,9 @@
     // Timer waiting for interval to confirm user wants current station to be on list of stops.
     NSTimer *current_linger_timer_;
 }
+- (void) setCurrentTrain: (ScheduledTrain*) train;
+
+@property (nonatomic, retain) ScheduledTrain *train;
+// List of LayoutNode objects representing stations visited so far, in visit order.
+@property (nonatomic, retain) NSMutableArray *currentSelectedStops;
 @end

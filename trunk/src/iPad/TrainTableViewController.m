@@ -22,6 +22,7 @@
 #import "AppDelegate.h"
 #import "CarTypeChooser.h"
 #import "EntireLayout.h"
+#import "LayoutGraphViewController.h"
 #import "ScheduledTrain.h"
 #import "SwitchListColors.h"
 #import "TrainTableCell.h"
@@ -70,6 +71,15 @@
     // TODO(bowdidge): Should be all car types accepted by train.
     chooser.keyObjectSelection = nil;
     chooser.myController = self;
+}
+
+// Switch from this scene to another.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"graphSegue"]) {
+        LayoutGraphViewController *graphController = segue.destinationViewController;
+        // TODO(bowdidge): How to get train here?
+        [graphController setCurrentTrain: [[self allTrains] objectAtIndex: 0]];
+    }
 }
 
 #pragma mark - Table view data source
