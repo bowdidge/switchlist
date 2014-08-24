@@ -54,7 +54,7 @@
                                     <outlet property="trainName" destination="eR0-MK-mcO" id="7RA-EJ-S90"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="trainExtendedCell" rowHeight="140" id="vgw-s9-iMv" customClass="TrainTableCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="extendedTrainCell" rowHeight="140" id="vgw-s9-iMv" customClass="TrainTableCell">
                                 <rect key="frame" x="0.0" y="166" width="768" height="140"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vgw-s9-iMv" id="jzn-Qm-608">

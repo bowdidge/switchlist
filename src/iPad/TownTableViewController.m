@@ -137,7 +137,7 @@
     
     NSString *cellIdentifier;
     if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
-        cellIdentifier = @"townExtendedCell";
+        cellIdentifier = @"extendedTownCell";
     } else {
         cellIdentifier = @"townCell";
     }

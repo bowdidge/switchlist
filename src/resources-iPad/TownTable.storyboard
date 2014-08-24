@@ -56,7 +56,7 @@
                                     <outlet property="townKind" destination="d1S-Od-auu" id="dDx-j5-Hn7"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="townExtendedCell" rowHeight="120" id="751-Qi-xzq" customClass="TownTableCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="extendedTownCell" rowHeight="120" id="751-Qi-xzq" customClass="TownTableCell">
                                 <rect key="frame" x="0.0" y="161" width="768" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="751-Qi-xzq" id="F6N-cr-s5K">
