@@ -41,33 +41,29 @@
                                                 <outlet property="delegate" destination="acB-vG-fJO" id="97D-QC-dxp"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CMWX 1025" minimumFontSize="17" id="kaF-u7-psH">
-                                            <rect key="frame" x="79" y="8" width="162" height="30"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CMWX 1025" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A3b-cU-Uu9">
+                                            <rect key="frame" x="79" y="7" width="162" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="acB-vG-fJO" id="OMx-fj-vhK"/>
-                                            </connections>
-                                        </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="At the Drew Cannery" minimumFontSize="17" id="Snk-cx-OKG">
-                                            <rect key="frame" x="249" y="8" width="356" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <outlet property="delegate" destination="acB-vG-fJO" id="fTj-3R-mVh"/>
-                                            </connections>
-                                        </textField>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CMWX 1025" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Rc-Fh-1Jc">
+                                            <rect key="frame" x="249" y="7" width="316" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="descriptionSummary" destination="f8y-2O-taZ" id="0je-gL-7oE"/>
                                     <outlet property="freightCarIcon" destination="XTd-FJ-aHT" id="9P0-eh-XpA"/>
-                                    <outlet property="freightCarReportingMarks" destination="kaF-u7-psH" id="uci-TK-eZl"/>
+                                    <outlet property="freightCarReportingMarksLabel" destination="A3b-cU-Uu9" id="aKu-yW-JG3"/>
                                     <outlet property="myController" destination="gsD-yh-Hss" id="drp-dn-EMK"/>
                                     <outlet property="shortCarType" destination="3l1-zR-Qv0" id="yRw-ce-oFt"/>
-                                    <outlet property="shortLocation" destination="Snk-cx-OKG" id="aVT-dg-TQS"/>
+                                    <outlet property="shortLocation" destination="4Rc-Fh-1Jc" id="Cyp-0g-PP0"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="extendedFreightCarCell" rowHeight="180" id="5yz-zg-wez" customClass="FreightCarTableCell">
@@ -82,7 +78,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Boxcar / XM" minimumFontSize="17" id="3B8-CF-yNJ">
-                                            <rect key="frame" x="156" y="42" width="591.99999935562539" height="30"/>
+                                            <rect key="frame" x="156" y="42" width="592" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
@@ -90,13 +86,13 @@
                                                 <outlet property="delegate" destination="5yz-zg-wez" id="OOY-US-9Mj"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CMWX 1025" minimumFontSize="17" id="buE-fP-Pmt">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="CMWX 1025" borderStyle="roundedRect" minimumFontSize="17" id="buE-fP-Pmt">
                                             <rect key="frame" x="79" y="8" width="162" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
-                                                <outlet property="delegate" destination="5yz-zg-wez" id="8Rv-wh-hE3"/>
+                                                <outlet property="delegate" destination="5yz-zg-wez" id="gs5-lX-ITY"/>
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Car Type:" minimumFontSize="17" id="9aa-X7-mIi">
@@ -126,7 +122,7 @@
                                                 <outlet property="delegate" destination="5yz-zg-wez" id="ZH9-Td-aSu"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="No division set" minimumFontSize="17" id="1pH-43-cbw">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="No division set" borderStyle="roundedRect" minimumFontSize="17" id="1pH-43-cbw">
                                             <rect key="frame" x="166" y="133" width="582" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -135,10 +131,10 @@
                                                 <outlet property="delegate" destination="5yz-zg-wez" id="KX2-tS-B3A"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="At the Drew Cannery" minimumFontSize="17" id="7bM-UG-vuK">
-                                            <rect key="frame" x="249" y="8" width="499" height="30"/>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="At the Drew Cannery" textAlignment="center" minimumFontSize="17" id="7bM-UG-vuK">
+                                            <rect key="frame" x="249" y="8" width="346" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <outlet property="delegate" destination="5yz-zg-wez" id="z74-8t-qPP"/>
@@ -191,7 +187,7 @@
                                     <outlet property="cargoField" destination="qXv-4r-TQb" id="f8c-Tt-Or6"/>
                                     <outlet property="detailedCarType" destination="3B8-CF-yNJ" id="Exi-n6-hoZ"/>
                                     <outlet property="freightCarIcon" destination="eyG-2I-ccW" id="MWx-gN-Kqg"/>
-                                    <outlet property="freightCarReportingMarks" destination="buE-fP-Pmt" id="Khy-gI-L1n"/>
+                                    <outlet property="freightCarReportingMarksField" destination="buE-fP-Pmt" id="HWo-u8-8Yq"/>
                                     <outlet property="loadedToggle" destination="zJr-Gt-wVY" id="uXm-s8-lHT"/>
                                     <outlet property="longLocation" destination="7bM-UG-vuK" id="iJh-PJ-DBW"/>
                                     <outlet property="myController" destination="gsD-yh-Hss" id="jgj-q4-f05"/>

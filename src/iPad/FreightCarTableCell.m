@@ -36,7 +36,6 @@
 #import "Place.h"
 
 @implementation FreightCarTableCell
-@synthesize freightCarReportingMarks;
 
 @synthesize shortCarType;
 @synthesize descriptionSummary;
@@ -91,7 +90,8 @@
 // Fill in the current cell based on the details for the named freight car.
 - (void) fillInAsFreightCar: (FreightCar*) fc {
     self.freightCar = fc;
-    self.freightCarReportingMarks.text = [fc reportingMarks];
+    self.freightCarReportingMarksLabel.text = [fc reportingMarks];
+    self.freightCarReportingMarksField.text = [fc reportingMarks];
     self.shortLocation.text = [NSString stringWithFormat: @"At %@", [[fc currentLocation] name]];
     self.shortCarType.text = [[fc carTypeRel] carTypeName];
 
@@ -136,20 +136,10 @@
     [self fillInAsFreightCar: self.freightCar];
 }
 
-// Mark the cell as the "add" cell at the bottom of the list.
-- (void) fillInAsAddCell {
-    self.freightCarReportingMarks.text = @"Add Freight Car";
-    self.shortLocation.text = @"";
-    self.shortCarType.text = @"";
-    self.descriptionSummary.text = @"";
-    self.freightCarIcon.hidden = YES;
-}
-
-
 // Handle clicks on the text fields that are supporting immediate editing.  Either make the text
 // editable, or raise the correct popover to permit selection.
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == self.shortLocation || textField == self.longLocation) {
+    if (textField == self.longLocation) {
         // TODO(bowdidge): Put up list of potential locations here.
         [self.myController doLocationPressed: self];
         return NO;
@@ -172,8 +162,7 @@
 // Note when editing is complete so that changes can be saved.  For now, only watch for changes to the
 // reporting marks so that we can resort the table.
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    if (textField == self.shortLocation ||
-        textField == self.longLocation ||
+    if (textField == self.longLocation ||
         textField == self.shortCarType ||
         textField == self.detailedCarType ||
         textField == self.cargoField) {
@@ -187,7 +176,7 @@
     // [self.myController noteTableCell: self changedCarReportingMarks: textField.text];
     
     NSString *newValue = textField.text;
-    if (textField == self.freightCarReportingMarks) {
+    if (textField == self.freightCarReportingMarksField) {
         self.freightCar.reportingMarks = newValue;
     } else if (textField == self.carDivisionField) {
         self.freightCar.homeDivision = newValue;
