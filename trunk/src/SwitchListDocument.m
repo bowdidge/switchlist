@@ -1259,9 +1259,3 @@
 
 @synthesize theTemplateCache;
 @end
-
-NSString *LAYOUT_PREFS_SHOW_DOORS_UI = @"SpotToDoorsAtIndustries";
-NSString *LAYOUT_PREFS_DEFAULT_NUM_LOADS = @"DefaultNumberOfLoads";
-NSString *LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI = @"ShowSidingLength";
-NSString *LAYOUT_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE = @"SwitchListDefaultTemplate";
-NSString *LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS = @"OptionalTemplateParams";
