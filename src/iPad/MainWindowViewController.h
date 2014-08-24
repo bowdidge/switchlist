@@ -44,6 +44,10 @@
 // Warn that switchlists need regenerating on next load of main page.
 - (IBAction) noteRegenerateSwitchlists;
 
+// Write the layout out to disk.
+// TODO(bowdidge): Figure out best time to save.
+- (IBAction) doSave: (id) sender;
+
 - (IBAction) raiseFreightCarView: (id) sender;
 - (IBAction) raiseIndustryView: (id) sender;
 - (IBAction) raiseTownView: (id) sender;

@@ -185,6 +185,17 @@
     return YES;
 }
 
+// Saves out the CoreData file.
+// TODO(bowdidge): Consider saving every 5 seconds; watch for existing saves, etc.
+- (IBAction) doSave: (id) sender {
+    NSError *error = nil;
+    [[self managedObjectContext] save: &error];
+    if (error) {
+        UIAlertView *badFileAlert = [[UIAlertView alloc] initWithTitle: @"Unable to save layout" message: @"There was an unknown problem when saving the layout" delegate: self cancelButtonTitle: @"OK" otherButtonTitles: nil];
+        [badFileAlert show];
+    }
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Load vasona.sql first, copy if not available.
