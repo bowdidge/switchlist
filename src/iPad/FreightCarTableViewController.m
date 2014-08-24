@@ -37,6 +37,7 @@
 #import "EntireLayout.h"
 #import "FreightCar.h"
 #import "FreightCarTableCell.h"
+#import "Industry.h"
 #import "IndustryChooser.h"
 #import "SwitchListColors.h"
 
@@ -55,6 +56,23 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.storyboardName = @"FreightCarTable";
     self.title = @"Freight Cars";
+    
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target:self action:@selector(addFreightCar:)];
+
+    self.navigationItem.rightBarButtonItem = addButtonItem;
+}
+
+- (void) addFreightCar: (id) sender {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *entireLayout = myAppDelegate.entireLayout;
+ 
+    FreightCar *fc = [entireLayout createFreightCar: @"AA&A 84712" withCarType: @"XM" withLength: [NSNumber numberWithInt: 40]];
+    [fc setCurrentLocation: [entireLayout workbenchIndustry]];
+    NSUInteger indexArr[] = {1, 0};
+    [self regenerateTableData];
+    [self.tableView reloadData];
+    self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: self.expandedCellPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 // Gathers freight car data from the entire layout again, reloading if necessary.
@@ -150,17 +168,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Three sections: on layout, on workbench, and empty/add.
-    return 3;
+    return 2;
 }
 
-const int CARS_ON_LAYOUT_SECTION = 1;
-const int CARS_AT_WORKBENCH_SECTION = 2;
-const int NEW_CARS_SECTION = 0;
+const int CARS_ON_LAYOUT_SECTION = 0;
+const int CARS_AT_WORKBENCH_SECTION = 1;
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == CARS_ON_LAYOUT_SECTION) {
       return @"Freight cars on layout";
-    } else if (section == CARS_ON_LAYOUT_SECTION){
+    } else if (section == CARS_AT_WORKBENCH_SECTION){
         return @"Freight cars at workbench";
     } else {
         // Empty/add.  Won't show as title, but makes processing cells easier.
@@ -173,7 +190,7 @@ const int NEW_CARS_SECTION = 0;
     // Add one for "Add freight car".
     if (section == CARS_ON_LAYOUT_SECTION) {
         return [self.allFreightCars count];
-    } else if (section == CARS_ON_LAYOUT_SECTION) {
+    } else if (section == CARS_AT_WORKBENCH_SECTION) {
         return [self.allFreightCarsOnWorkbench count];
     } else {
         return 1;
@@ -182,13 +199,10 @@ const int NEW_CARS_SECTION = 0;
 
 - (FreightCar*) freightCarAtIndexPath: (NSIndexPath *) indexPath {
     NSInteger section = [indexPath section];
-    if (section == NEW_CARS_SECTION) {
-        return nil;
-    }
     NSInteger row = [indexPath row];
     if (section == CARS_ON_LAYOUT_SECTION) {
         return [allFreightCars objectAtIndex: row];
-    } else if (section == CARS_ON_LAYOUT_SECTION){
+    } else if (section == CARS_AT_WORKBENCH_SECTION){
         return [allFreightCarsOnWorkbench objectAtIndex: row];
     }
     
@@ -278,18 +292,6 @@ const int NEW_CARS_SECTION = 0;
         return;
     }
     
-    FreightCar *freightCar = [self freightCarAtIndexPath: indexPath];
-    if (!freightCar) {
-        // Create a new freight car.
-        AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-        EntireLayout *myLayout = myAppDelegate.entireLayout;
-        NSManagedObjectContext *moc = [[myLayout workbenchIndustry] managedObjectContext];
-        [NSEntityDescription entityForName: @"FreightCar" inManagedObjectContext: moc];
-        freightCar = [NSEntityDescription insertNewObjectForEntityForName:@"FreightCar"
-                                                   inManagedObjectContext: moc];
-        [freightCar setReportingMarks: @"SP 84712"];
-    }
-
     [self.tableView beginUpdates];
     NSIndexPath *oldPath = [self.expandedCellPath retain];
     self.expandedCellPath = indexPath;

@@ -288,6 +288,9 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	[req2 setEntity: ent];
 	[req2 setPredicate: [NSPredicate predicateWithFormat: @"currentLocation.name == 'Workbench'"]];
 	NSError *error;
+    NSSortDescriptor *ind1 = [[[NSSortDescriptor alloc] initWithKey: @"reportingMarks" ascending: YES] autorelease];
+	NSMutableArray *sortDescs = [NSMutableArray arrayWithObject: ind1];
+	[req2 setSortDescriptors: sortDescs];
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }
 

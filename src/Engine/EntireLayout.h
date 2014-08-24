@@ -142,6 +142,10 @@ NSString *NormalizeDivisionString(NSString *inString);
 // No order is guaranteed.
 - (NSArray*) allCarTypes;
 
+// Creates a freight car (and car type, if needed) in the database from cleaned reporting
+// marks and car type.
+- (FreightCar*) createFreightCar: (NSString *) reportingMarks withCarType: (NSString *) carTypeName  withLength: (NSNumber*) carLength ;
+
 // Dictionary holding layout-specific preferences.  We use this so that we don't need
 // to change the document model (and break on-disk compatibility) for every preference
 // we need to add.
