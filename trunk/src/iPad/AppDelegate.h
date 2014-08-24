@@ -44,6 +44,8 @@
 
 // Closes existing file.
 - (BOOL) openLayoutWithName: (NSString*) filename;
+// Explicitly save the layout.
+- (IBAction) doSave: (id) sender;
 
 @property (strong, nonatomic) UIWindow *window;
 

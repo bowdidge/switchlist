@@ -333,6 +333,13 @@ float BOX_HEADER = 25.0;
     [self doRegenerateSwitchlists: self];
 }
 
+// Saves out the CoreData file.
+// TODO(bowdidge): Consider saving every 5 seconds; watch for existing saves, etc.
+- (IBAction) doSave: (id) sender {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    [myAppDelegate doSave: sender];
+}
+
 - (IBAction) noteRegenerateSwitchlists {
     // TODO(bowdidge): Do this lazily.
     [self doRegenerateSwitchlists: self];
