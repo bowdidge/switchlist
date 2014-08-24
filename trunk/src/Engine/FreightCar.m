@@ -256,7 +256,7 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
 - (void)setCurrentLocation:(Industry *)value 
 {
     [self willChangeValueForKey: @"currentLocation"];
-	if ([[value location] isOffline] == YES) {
+	if ([[value location] isOffline] == YES && [[[value location] name] isEqualToString: @"Workbench"] == NO) {
 		printf("Trying to set current loc for %s to offline industry!\n",[[self reportingMarks] UTF8String]);
 	}
     [self setPrimitiveValue: value
