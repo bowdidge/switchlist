@@ -50,7 +50,7 @@
     
     self.source.text = cargo.source.name;
     self.destination.text = cargo.destination.name;
-    self.carType.text = [NSString stringWithFormat: @"%@ (%@)", cargo.carTypeRel.carTypeName, cargo.carTypeRel.carTypeDescription];
+    self.carType.text = [NSString stringWithFormat: @"%@: %@", cargo.carTypeRel.carTypeName, cargo.carTypeRel.carTypeDescription];
     [self.fixedRateControl setSelectedSegmentIndex: cargo.isPriority ? 0 : 1];
     self.carRate.text = [NSString stringWithFormat: @"%d", rate.rate];
     [self.carTimeUnit setSelectedSegmentIndex: rate.units];
