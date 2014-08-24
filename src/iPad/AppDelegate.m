@@ -240,6 +240,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+// Return list of all layouts on the local disk.
 - (NSArray*) allLayouts {
     // TODO: examples, too?
     NSError *error = nil;
@@ -247,10 +248,19 @@
     NSArray *files = [fileManager contentsOfDirectoryAtPath: [[self applicationDocumentsDirectory] path]
                                                       error: &error];
     if (error) {
-        NSLog(@"Error when reading application documents directory: %@", error);
+        UIAlertView *badFileAlert = [[UIAlertView alloc] initWithTitle: @"Unable to find layouts" message: @"Error when reading application documents directory." delegate: self cancelButtonTitle: @"OK" otherButtonTitles: nil];
+        [badFileAlert show];
         return [NSArray array];
     }
-    return files;
+    // Pick out only .sql files to avoid shm and wal files.  (Locking?)
+    NSMutableArray *goodFiles = [NSMutableArray array];
+    for (NSString *file in files) {
+        if ([file hasSuffix: @".sql"]) {
+            [goodFiles addObject: file];
+        }
+    }
+    
+    return goodFiles;
 }
 
 @synthesize managedObjectModel;

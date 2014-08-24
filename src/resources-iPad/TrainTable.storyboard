@@ -39,19 +39,20 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Campbell Cannery Turn" minimumFontSize="17" id="eR0-MK-mcO">
-                                            <rect key="frame" x="79" y="6" width="509" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Campbell Cannery Turn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AOF-Iu-dhv">
+                                            <rect key="frame" x="79" y="6" width="364" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="trainDescription" destination="gSz-rl-E8C" id="tvn-g3-kX8"/>
                                     <outlet property="trainIcon" destination="JEd-cJ-aKA" id="wpG-Dl-gis"/>
                                     <outlet property="trainKind" destination="MFH-a1-M8F" id="5cS-US-kNH"/>
-                                    <outlet property="trainName" destination="eR0-MK-mcO" id="7RA-EJ-S90"/>
+                                    <outlet property="trainNameLabel" destination="AOF-Iu-dhv" id="g2K-V9-FGf"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="extendedTrainCell" rowHeight="140" id="vgw-s9-iMv" customClass="TrainTableCell">
@@ -113,7 +114,7 @@
                                                 <outlet property="delegate" destination="vgw-s9-iMv" id="JEr-Kl-nGE"/>
                                             </connections>
                                         </textField>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Campbell Cannery Turn" minimumFontSize="17" id="LM5-yF-PTg">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Campbell Cannery Turn" borderStyle="roundedRect" minimumFontSize="17" id="LM5-yF-PTg">
                                             <rect key="frame" x="79" y="6" width="522" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -123,9 +124,9 @@
                                             </connections>
                                         </textField>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="z6d-V5-cCZ">
-                                            <rect key="frame" x="718" y="30" width="30" height="30"/>
+                                            <rect key="frame" x="635" y="30" width="113" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Set">
+                                            <state key="normal" title="Change stops">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
@@ -139,6 +140,7 @@
                                     <outlet property="maximumLength" destination="b1U-sg-kFA" id="S2B-bZ-fbz"/>
                                     <outlet property="stops" destination="dMC-7l-ofU" id="WUJ-Dj-TWG"/>
                                     <outlet property="trainIcon" destination="8lb-ev-0wy" id="Mvl-f5-UyK"/>
+                                    <outlet property="trainNameField" destination="LM5-yF-PTg" id="QAs-vj-tMq"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

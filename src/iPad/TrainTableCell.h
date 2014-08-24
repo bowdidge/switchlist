@@ -36,19 +36,18 @@
 
 // Fill in cell based on train object.
 - (void) fillInAsTrain: (ScheduledTrain*) place;
-// Fill in the cell as the "Add..." cell at the bottom of the table.
-- (void) fillInAsAddCell;
 
 @property (nonatomic, retain) ScheduledTrain *train;
 // In simple and extended cells.
-@property (nonatomic, retain) IBOutlet UITextField *trainName;
 @property (nonatomic, retain) IBOutlet UIImageView *trainIcon;
 
 // In simple cells only.
 @property (nonatomic, retain) IBOutlet UILabel *trainKind;
 @property (nonatomic, retain) IBOutlet UILabel *trainDescription;
+@property (nonatomic, retain) IBOutlet UILabel *trainNameLabel;
 
 // In extended cells only.
+@property (nonatomic, retain) IBOutlet UITextField *trainNameField;
 @property (nonatomic, retain) IBOutlet UITextField *stops;
 @property (nonatomic, retain) IBOutlet UITextField *maximumLength;
 @property (nonatomic, retain) IBOutlet UITextField *carsAccepted;

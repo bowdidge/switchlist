@@ -118,13 +118,25 @@
     }
 }
 
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    UITextField *filename_field =  [actionSheet textFieldAtIndex: 0];
+    NSString *filename = [NSString stringWithFormat: @"%@.sql", filename_field.text];
+    [myAppDelegate openLayoutWithName: filename];
+}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Open.
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
 
     NSInteger row = [indexPath row];
     if (row == [self.allLayouts count]) {
-        [myAppDelegate openLayoutWithName: @"my-new-layout"];
+        // Get name.
+        // TODO(bowdidge): Validate name is safe.
+        UIAlertView *newFileAlert = [[UIAlertView alloc] initWithTitle: @"Name for New Layout" message: @"Please name your new layout." delegate: self cancelButtonTitle: @"OK" otherButtonTitles: nil];
+        newFileAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        newFileAlert.delegate = self;
+        [newFileAlert show];
     } else {
         NSString *filename = [self.allLayouts objectAtIndex: [indexPath row]];
         [myAppDelegate openLayoutWithName: filename];

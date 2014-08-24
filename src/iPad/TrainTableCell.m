@@ -52,19 +52,12 @@
 // Fills in cell based on ScheduledTrain object.
 - (void) fillInAsTrain: (ScheduledTrain*) train {
     self.train = train;
-    self.trainName.text = [train name];
+    self.trainNameLabel.text = [train name];
+    self.trainNameField.text = [train name];
     self.trainDescription.text = [self.train niceListOfStationsString];
     self.trainKind.text = [CarTypes acceptedCarTypesString: [train acceptedCarTypesRel]];
     self.trainIcon.hidden = NO;
     self.stops.text = [self.train niceListOfStationsString];
-}
-
-// Fill in the cell as the "Add..." cell at the bottom of the table.
-- (void) fillInAsAddCell {
-    self.trainName.text = @"Add Train";
-    self.trainKind.text = @"";
-    self.trainDescription.text = @"";
-    self.trainIcon.hidden = YES;
 }
 
 // Handle clicks on the text fields that are supporting immediate editing.  Either make the text
@@ -100,7 +93,7 @@
     // [self.myController noteTableCell: self changedCarReportingMarks: textField.text];
     
     NSString *newValue = textField.text;
-    if (textField == self.trainName) {
+    if (textField == self.trainNameField) {
         self.train.name = newValue;
     } else if (textField == self.maximumLength) {
         NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
@@ -117,7 +110,6 @@
     return YES;
 }
 
-@synthesize trainName;
 @synthesize trainKind;
 @synthesize trainDescription;
 @synthesize trainIcon;
