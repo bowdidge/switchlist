@@ -310,6 +310,7 @@ NSInteger compareByCount(id this, id that, void *context) {
 	
 	for (ScheduledTrain *train in trains) {
 		NSArray *allStops = [train stationsInOrder];
+        if (allStops.count == 0) continue;
 		LayoutNode *start = [self layoutNodeForStation: [[allStops objectAtIndex: 0] name]];
 		if (![allStarts containsObject: start]) {
 			[allStarts addObject: start];

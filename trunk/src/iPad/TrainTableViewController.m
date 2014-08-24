@@ -40,11 +40,27 @@
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    EntireLayout *myLayout = myAppDelegate.entireLayout;
-    self.allTrains = [myLayout allTrains];
+    
+    [self regenerateTableData];
+
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target:self action:@selector(addTrain:)];
+    self.navigationItem.rightBarButtonItem = addButtonItem;
 }
+
+- (IBAction) addTrain: (id) sender {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *entireLayout = myAppDelegate.entireLayout;
+    
+    ScheduledTrain *train = [entireLayout createTrainWithName: @"A-Train"];
+    // Fragile way to open object - should instead search list.
+    [self regenerateTableData];
+    [self.tableView reloadData];
+    NSInteger trainIndex = [self.allTrains indexOfObject: train];
+    NSUInteger indexArr[] = {0, trainIndex};
+    self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: self.expandedCellPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -82,6 +98,12 @@
     }
 }
 
+- (void) regenerateTableData {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *myLayout = myAppDelegate.entireLayout;
+    self.allTrains = [myLayout allTrains];
+}
+
 #pragma mark - Table view data source
 
 // Returns number of sections to show in the train table.
@@ -99,8 +121,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Add one item for the "Add Train..." cell.
-    return [allTrains count] + 1;
+    return [allTrains count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -120,13 +141,8 @@
     }
     
     // Configure the cell...
-    NSInteger row = [indexPath row];
-    if (row == [allTrains count]) {
-        [cell fillInAsAddCell];
-    } else {
-        ScheduledTrain *train = [allTrains objectAtIndex: row];
-        [cell fillInAsTrain: train];
-    }
+    ScheduledTrain *train = [allTrains objectAtIndex: [indexPath row]];
+    [cell fillInAsTrain: train];
     
     return cell;
 }
@@ -137,45 +153,6 @@
         cell.backgroundColor = [SwitchListColors switchListLightBeige];
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 

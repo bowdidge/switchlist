@@ -227,6 +227,7 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 
 - (BOOL) beginsAndEndsAtSameStation {
 	NSArray *allStops = [self stationsInOrder];
+    if ([allStops count] < 2) return NO;
 	if ([allStops objectAtIndex: 0] == [allStops lastObject]) {
 		return YES;
 	}
@@ -236,6 +237,12 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 - (NSString*) niceListOfStationsString {
     NSMutableArray *stationNames = [NSMutableArray array];
     NSArray* stations = [self stationsInOrder];
+    if (stations.count == 0) {
+        return @"No stops";
+    } else if (stations.count == 1) {
+        return [NSString stringWithFormat:@"Stays in %@", [stations objectAtIndex: 0]];
+    }
+    
     if (![self beginsAndEndsAtSameStation]) {
         for (Place *station in stations) {
             [stationNames addObject: [station name]];

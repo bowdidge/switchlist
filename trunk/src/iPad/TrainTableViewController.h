@@ -32,4 +32,5 @@
 
 // Controls the train tab when editing a layout.
 @interface TrainTableViewController : AbstractTableViewController
+- (IBAction) addTrain: (id) sender;
 @end

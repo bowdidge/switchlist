@@ -957,6 +957,14 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
     return industry;
 }
 
+// Creates train with the given name in the database.
+- (ScheduledTrain*) createTrainWithName: (NSString*) trainName {
+    ScheduledTrain *train = [NSEntityDescription insertNewObjectForEntityForName:@"ScheduledTrain"
+                                                       inManagedObjectContext: moc_];
+    train.name = trainName;
+    return train;
+}
+
 /**
  * Converts a text file containing freight cars (reporting marks or reporting marks and car type) into
  * new freight cars in the database.  Return the number of cars imported, and any errors in outErrors.

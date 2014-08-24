@@ -57,7 +57,7 @@
     [self.myTableView reloadData];
 }
 
-// Regenerates the layout data needed by the table.  Overridden by subclasses.
+// Regenerates the layout data needed by the table.
 - (void) regenerateTableData {
 }
 

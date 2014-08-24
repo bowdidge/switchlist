@@ -153,6 +153,9 @@ NSString *NormalizeDivisionString(NSString *inString);
 // Creates a town with the given name in the database.
 - (Place*) createTownWithName: (NSString*) townName;
 
+// Creates a train with the given name in the database.
+- (ScheduledTrain*) createTrainWithName: (NSString*) trainName;
+
 // Creates an industry with the given name in the database.
 - (Industry*) createIndustryWithName: (NSString*) industryName;
 
