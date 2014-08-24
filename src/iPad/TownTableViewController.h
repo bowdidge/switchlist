@@ -30,6 +30,12 @@
 
 #import "AbstractTableViewController.h"
 
+@class Place;
+
 // Controller for towns tab.
 @interface TownTableViewController : AbstractTableViewController
+// Called by cell when an edit changes grouping.
+- (void) regenerateTableData;
+- (void) regenerateTableDataForChangeInPlace: (Place*) place;
+
 @end

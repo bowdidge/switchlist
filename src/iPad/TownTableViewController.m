@@ -93,6 +93,26 @@
     self.townsOnLayout = [onLayoutTowns sortedArrayUsingSelector: @selector(compareNames:)];
 }
 
+- (void) regenerateTableDataForChangeInPlace: (Place*) place {
+    [self regenerateTableData];
+    // Regenerate the selection.
+    if (self.expandedCellPath) {
+        NSInteger placeIndex;
+        if ((placeIndex =[self.townsOnLayout indexOfObject: place]) != NSNotFound) {
+            NSUInteger indexArr[] = {0, placeIndex};
+            self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
+        } else if ((placeIndex = [self.townsInStaging indexOfObject: place]) != NSNotFound) {
+            NSUInteger indexArr[] = {1, placeIndex};
+            self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
+        } else if ((placeIndex = [self.townsOffline indexOfObject: place]) != NSNotFound) {
+            NSUInteger indexArr[] = {2, placeIndex};
+            self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
+        } else {
+            NSLog(@"Can't find %@ in data in regenerateTableDataForChangeInPlace:", place.name);
+        }
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     self.townsOnLayout = nil;
@@ -172,11 +192,8 @@ const int TOWNS_OFF_LINE_SECTION = 2;
         [cell autorelease];
     }
     
-    if (indexPath.section == TOWNS_OFF_LINE_SECTION && indexPath.row == self.townsOffline.count) {
-        [cell fillInAsAddCell];
-    } else {
-        [cell fillInAsTown: [self townAtIndexPath: indexPath]];
-    }
+    [cell fillInAsTown: [self townAtIndexPath: indexPath]];
+    cell.myController = self;
     return cell;
 }
 
@@ -197,8 +214,7 @@ const int TOWNS_OFF_LINE_SECTION = 2;
     return 80.0;
 }
 
-// Handles presses on the table.  When a selection is made in the freight
-// car table, we show a popover for editing the freight car.
+// Handles presses on the table.  When a selection is made in the table, we show a popover for editing the object.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
         [self.tableView beginUpdates];

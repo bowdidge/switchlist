@@ -30,6 +30,7 @@
 
 #import "Industry.h"
 #import "Place.h"
+#import "TownTableViewController.h"
 #import "Yard.h"
 
 @implementation TownTableCell
@@ -121,6 +122,8 @@
     }
     // Regenerate text.
     [self fillInAsTown: self.place];
+    [self.myController regenerateTableDataForChangeInPlace: self.place];
+    [self.myController.tableView reloadData];
 }
 
 // Handle clicks on the text fields that are supporting immediate editing.  Either make the text

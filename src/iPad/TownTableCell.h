@@ -29,6 +29,7 @@
 #import <UIKit/UIKit.h>
 
 @class Place;
+@class TownTableViewController;
 
 // View data for cells in Town table.
 @interface TownTableCell : UITableViewCell
@@ -38,6 +39,8 @@
 
 // Fill in cell based on cargo object.
 - (void) fillInAsTown: (Place*) place;
+
+- (IBAction) hideIcon: (BOOL) value;
 
 @property (nonatomic, retain) Place *place;
 
@@ -50,5 +53,7 @@
 @property (nonatomic, retain) IBOutlet UITextField *townNameField;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *stagingControl;
 
-- (IBAction) hideIcon: (BOOL) value;
+
+// Reference back to the controller processing changes to the cells.
+@property (nonatomic, retain) IBOutlet TownTableViewController *myController;
 @end
