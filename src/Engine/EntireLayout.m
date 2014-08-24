@@ -981,4 +981,11 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 NSString *LAYOUT_INFO_LAYOUT_NAME = @"layoutName";
 NSString *LAYOUT_INFO_CURRENT_DATE = @"currentDate";
 NSString *LAYOUT_INFO_LAYOUT_PREFERENCES = @"layoutPreferences";
+
+
+NSString *LAYOUT_PREFS_SHOW_DOORS_UI = @"SpotToDoorsAtIndustries";
+NSString *LAYOUT_PREFS_DEFAULT_NUM_LOADS = @"DefaultNumberOfLoads";
+NSString *LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI = @"ShowSidingLength";
+NSString *LAYOUT_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE = @"SwitchListDefaultTemplate";
+NSString *LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS = @"OptionalTemplateParams";
 @end

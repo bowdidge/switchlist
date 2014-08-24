@@ -266,9 +266,3 @@
 - (NSDictionary*) nameToSwitchListClassMap;
 @end
 
-// Settings for the preferences dictionary.
-extern NSString *LAYOUT_PREFS_SHOW_DOORS_UI;
-extern NSString *LAYOUT_PREFS_DEFAULT_NUM_LOADS;
-extern NSString *LAYOUT_PREFS_SHOW_SIDING_LENGTH_UI;
-extern NSString *LAYOUT_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE;
-extern NSString *LAYOUT_PREFS_OPTIONAL_TEMPLATE_PARAMS;
