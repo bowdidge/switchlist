@@ -548,6 +548,21 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	return allIndustries;
 }
 
+// Returns an array of all industries that can receive cargo, sorted by industry name.
+- (NSArray*) allIndustriesSortedByName {
+	// Sort non-staging first, then sort by location, then sort alphabetically by name.
+	NSEntityDescription *indEnt = [NSEntityDescription entityForName: @"Industry" inManagedObjectContext: [self managedObjectContext]];
+	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
+	[req2 setEntity: indEnt];
+	NSMutableArray *sortDescs = [NSMutableArray array];
+	NSSortDescriptor *ind2 = [[[NSSortDescriptor alloc] initWithKey: @"name" ascending: YES] autorelease];
+	[sortDescs addObject: ind2];
+	[req2 setSortDescriptors: sortDescs];
+
+	NSError *error;
+	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
+}
+
 // Returns one industry or yard with the given name, or nil if none exists.
 - (InduYard*) industryOrYardWithName: (NSString*) name {
 	NSError *error;
@@ -932,6 +947,14 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 														   inManagedObjectContext: moc_];
     [town setName: townName];
     return town;
+}
+
+// Creates an industry with the given name in the database.
+- (Industry*) createIndustryWithName: (NSString*) industryName {
+    Industry *industry = [NSEntityDescription insertNewObjectForEntityForName:@"Industry"
+                                                       inManagedObjectContext: moc_];
+    industry.name = industryName;
+    return industry;
 }
 
 /**

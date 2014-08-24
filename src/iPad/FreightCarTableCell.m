@@ -177,7 +177,7 @@
         textField == self.shortCarType ||
         textField == self.detailedCarType ||
         textField == self.cargoField) {
-        // Handled in doX.
+        // Already handled in view controller's doCloseChooser.
         return YES;
     }
 

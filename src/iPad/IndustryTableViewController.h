@@ -34,6 +34,7 @@
 };
 
 - (IBAction) doStationPressed: (id) sender;
+- (IBAction) addIndustry: (id) sender;
 
 // Index of currently-expanded cell.
 @end

@@ -81,6 +81,10 @@ NSString *NormalizeDivisionString(NSString *inString);
 // Array of all Industry objects, excluding the workbench and any yards.
 // Generally any industries that can get cargos.
 - (NSArray*) allIndustries;
+
+// Returns an array of all industries that can receive cargo, sorted by industry name.
+- (NSArray*) allIndustriesSortedByName;
+
 - (NSArray*) allYards;
 
 // Returns one industry or yard with the given name, or nil if none exists.
@@ -146,9 +150,11 @@ NSString *NormalizeDivisionString(NSString *inString);
 // marks and car type.
 - (FreightCar*) createFreightCar: (NSString *) reportingMarks withCarType: (NSString *) carTypeName  withLength: (NSNumber*) carLength ;
 
-// Creates a freight car (and car type, if needed) in the database from cleaned reporting
-// marks and car type.
+// Creates a town with the given name in the database.
 - (Place*) createTownWithName: (NSString*) townName;
+
+// Creates an industry with the given name in the database.
+- (Industry*) createIndustryWithName: (NSString*) industryName;
 
 // Dictionary holding layout-specific preferences.  We use this so that we don't need
 // to change the document model (and break on-disk compatibility) for every preference
