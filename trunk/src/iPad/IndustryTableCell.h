@@ -46,7 +46,7 @@
 // Information in all cells
 @property (nonatomic, retain) IBOutlet UITextField *industryName;
 @property (nonatomic, retain) IBOutlet UITextField *industryLocation;
-@property (nonatomic, retain) IBOutlet UILabel *industrySidingLength;
+@property (nonatomic, retain) IBOutlet UILabel *sidingLengthLabel;
 @property (nonatomic, retain) IBOutlet UIImageView *industryIcon;
 
 // Information only in short row.
@@ -58,6 +58,7 @@
 @property (nonatomic, retain) IBOutlet UISegmentedControl *hasDoorsControl;
 @property (nonatomic, retain) IBOutlet UITextField *numberOfDoors;
 @property (nonatomic, retain) IBOutlet UITextField *cargos;
+@property (nonatomic, retain) IBOutlet UITextField *sidingLength;
 @property (nonatomic, retain) IBOutlet UIButton *cargoHelpButton;
 
 // Reference back to the controller processing changes to the cells.

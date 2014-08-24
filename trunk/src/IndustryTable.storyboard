@@ -23,7 +23,7 @@
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="140' siding" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FZD-ae-gte">
                                             <rect key="frame" x="594" y="15" width="141" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -39,15 +39,15 @@
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Receives cans, ships dried fruit.  Has specific doors for spotting." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0B2-7D-4eV">
-                                            <rect key="frame" x="102" y="40" width="646" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="101" y="38" width="634" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Auzerais St." minimumFontSize="17" id="Jua-DL-noh">
                                             <rect key="frame" x="331" y="11" width="294" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -58,8 +58,8 @@
                                     <outlet property="industryIcon" destination="DBq-vb-eqb" id="GCX-1S-3hR"/>
                                     <outlet property="industryLocation" destination="Jua-DL-noh" id="cot-j6-cdR"/>
                                     <outlet property="industryName" destination="Xvs-i8-xIY" id="7kk-WR-ghH"/>
-                                    <outlet property="industrySidingLength" destination="FZD-ae-gte" id="zVZ-0f-HVC"/>
                                     <outlet property="myController" destination="HiU-sQ-AIm" id="StB-mS-CsC"/>
+                                    <outlet property="sidingLengthLabel" destination="FZD-ae-gte" id="Hl5-wG-vyb"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellExtendedIndustry" rowHeight="180" id="MXg-Vo-AcQ" customClass="IndustryTableCell">
@@ -69,13 +69,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="179"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="140' siding" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="cX1-8v-Q94">
-                                            <rect key="frame" x="596" y="15" width="141" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="industry.png" id="daF-ZH-OWa">
                                             <rect key="frame" x="20" y="9" width="66" height="61"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -109,7 +102,7 @@
                                         </label>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Auzerais St." minimumFontSize="17" id="5If-mY-Kde">
                                             <rect key="frame" x="331" y="11" width="294" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
@@ -124,7 +117,7 @@
                                                 <segment title="No"/>
                                             </segments>
                                         </segmentedControl>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Number of doors:" borderStyle="roundedRect" minimumFontSize="17" id="GRL-Hx-ZAq">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" minimumFontSize="17" id="GRL-Hx-ZAq">
                                             <rect key="frame" x="485" y="87" width="119" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -133,15 +126,22 @@
                                                 <outlet property="delegate" destination="MXg-Vo-AcQ" id="1vn-yC-dl6"/>
                                             </connections>
                                         </textField>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="In Town:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Xx-A0-LBC">
-                                            <rect key="frame" x="101" y="43" width="130" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="In town:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7Xx-A0-LBC">
+                                            <rect key="frame" x="101" y="37" width="130" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Siding length:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iwI-9B-xeJ">
+                                            <rect key="frame" x="101" y="61" width="130" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Division:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IhV-bq-my3">
-                                            <rect key="frame" x="101" y="67" width="130" height="21"/>
+                                            <rect key="frame" x="340" y="37" width="130" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -155,8 +155,8 @@
                                             </state>
                                         </button>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="town" minimumFontSize="17" id="isz-aY-hV0">
-                                            <rect key="frame" x="244" y="39" width="97" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="239" y="33" width="157" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
@@ -164,17 +164,26 @@
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="division" minimumFontSize="17" id="ebp-76-GZB">
-                                            <rect key="frame" x="244" y="63" width="97" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <rect key="frame" x="485" y="33" width="303" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
                                                 <outlet property="delegate" destination="MXg-Vo-AcQ" id="Cnr-ej-ZoJ"/>
                                             </connections>
                                         </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="150" minimumFontSize="17" id="0Aw-mQ-wd2">
+                                            <rect key="frame" x="239" y="57" width="303" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="MXg-Vo-AcQ" id="Doc-2Z-5Iu"/>
+                                            </connections>
+                                        </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="cargos" minimumFontSize="17" id="fVV-ef-yyv">
                                             <rect key="frame" x="244" y="116" width="504" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
@@ -184,11 +193,13 @@
                                     <outlet property="cargoHelpButton" destination="WHZ-JC-FKV" id="Bky-Qx-121"/>
                                     <outlet property="cargos" destination="fVV-ef-yyv" id="3bh-sE-vrt"/>
                                     <outlet property="divisionName" destination="ebp-76-GZB" id="gx6-bP-D72"/>
+                                    <outlet property="hasDoorsControl" destination="dFe-Yh-SIm" id="mtQ-Nc-1jh"/>
                                     <outlet property="industryIcon" destination="daF-ZH-OWa" id="Ume-3G-cS0"/>
                                     <outlet property="industryLocation" destination="5If-mY-Kde" id="Do3-YO-4x6"/>
                                     <outlet property="industryName" destination="uAN-CO-PMe" id="e0w-ii-oQi"/>
-                                    <outlet property="industrySidingLength" destination="cX1-8v-Q94" id="lt3-he-7v9"/>
                                     <outlet property="myController" destination="HiU-sQ-AIm" id="MHm-4e-CBD"/>
+                                    <outlet property="numberOfDoors" destination="GRL-Hx-ZAq" id="EXl-YM-ilx"/>
+                                    <outlet property="sidingLength" destination="0Aw-mQ-wd2" id="mGa-1z-ls1"/>
                                     <outlet property="townName" destination="isz-aY-hV0" id="H4Q-dy-B2Z"/>
                                 </connections>
                             </tableViewCell>

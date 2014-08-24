@@ -73,20 +73,25 @@
 - (void) fillInAsIndustry: (Industry*) industry {
     self.myIndustry = industry;
     self.industryName.text = [industry name];
-    self.industrySidingLength.text = [NSString stringWithFormat: @"%d foot siding", [[industry sidingLength] intValue]];
+    self.sidingLengthLabel.text = [NSString stringWithFormat: @"%d foot siding", [[industry sidingLength] intValue]];
     self.industryDescription.text = [self descriptionForIndustry: industry];
 
     self.townName.text = [[industry location] name];
     self.divisionName.text = [industry division];
+    self.sidingLength.text = [NSString stringWithFormat: @"%d", [[industry sidingLength] intValue]];
     [self.hasDoorsControl setSelectedSegmentIndex: [industry hasDoors] ? 0 : 1];
-    self.numberOfDoors.text = [NSString stringWithFormat: @"%d", (int) [industry numberOfDoors]];
+    if (industry.hasDoors) {
+        self.numberOfDoors.text = [NSString stringWithFormat: @"%d", (int) [industry numberOfDoors]];
+    } else {
+        self.numberOfDoors.text = @"";
+    }
     self.cargos.text = @"Lots of cargos!";
 }
 
 // Fill in the cell as the "Add..." cell at the bottom of the table.
 - (void) fillInAsAddCell {
     self.industryName.text = @"Add Industry";
-    self.industrySidingLength.text = @"";
+    self.sidingLengthLabel.text = @"";
     self.industryDescription.text = @"";
     self.industryIcon.hidden = YES;
 }
@@ -108,7 +113,7 @@
 
 @synthesize myIndustry;
 @synthesize industryName;
-@synthesize industrySidingLength;
+@synthesize sidingLengthLabel;
 @synthesize industryDescription;
 @synthesize industryIcon;
 
