@@ -81,11 +81,13 @@
 // Fill in cell based on cargo object.
 - (void) fillInAsIndustry: (Industry*) industry {
     self.myIndustry = industry;
-    self.industryName.text = [industry name];
+    self.industryNameLabel.text = [industry name];
+    self.industryNameField.text = [industry name];
     self.sidingLengthLabel.text = [NSString stringWithFormat: @"%d foot siding", [[industry sidingLength] intValue]];
     self.industryDescription.text = [self descriptionForIndustry: industry];
 
-    self.townName.text = [[industry location] name];
+    self.townNameLabel.text = [[industry location] name];
+    self.townNameField.text = [[industry location] name];
     self.divisionName.text = [industry division];
     self.sidingLength.text = [NSString stringWithFormat: @"%d", [[industry sidingLength] intValue]];
     [self.hasDoorsControl setSelectedSegmentIndex: [industry hasDoors] ? 0 : 1];
@@ -95,14 +97,6 @@
         self.numberOfDoorsField.text = @"";
     }
     self.cargos.text = [self cargoDescriptionForIndustry: industry];;
-}
-
-// Fill in the cell as the "Add..." cell at the bottom of the table.
-- (void) fillInAsAddCell {
-    self.industryName.text = @"Add Industry";
-    self.sidingLengthLabel.text = @"";
-    self.industryDescription.text = @"";
-    self.industryIcon.hidden = YES;
 }
 
 // Called when the "spot at specific doors" switch changes state.
@@ -120,9 +114,12 @@
 // Handle clicks on the text fields that are supporting immediate editing.  Either make the text
 // editable, or raise the correct popover to permit selection.
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == self.townName) {
+    if (textField == self.townNameField) {
         // TODO(bowdidge): Put up list of potential locations here.
         [self.myController doStationPressed: self];
+        return NO;
+    } else if (textField == self.cargos) {
+        // What to do here?
         return NO;
     }
     
@@ -136,18 +133,16 @@
 // Note when editing is complete so that changes can be saved.  For now, only watch for changes to the
 // reporting marks so that we can resort the table.
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    if (textField == self.townName) {
-        // Handled in doX.
+    if (textField == self.townNameField) {
+        // Already handled in view controller's doCloseChooser.
         return YES;
     }
     
-    textField.backgroundColor = [UIColor clearColor];
-    textField.borderStyle = UITextBorderStyleNone;
     // TODO(bowdidge): Warn about changes to alphabetic order?
     // [self.myController noteTableCell: self changedCarReportingMarks: textField.text];
     
     NSString *newValue = textField.text;
-    if (textField == self.industryName) {
+    if (textField == self.industryNameField) {
         self.myIndustry.name = newValue;
     } else if (textField == self.divisionName) {
         self.myIndustry.division = newValue;
@@ -173,12 +168,10 @@
 
 
 @synthesize myIndustry;
-@synthesize industryName;
 @synthesize sidingLengthLabel;
 @synthesize industryDescription;
 @synthesize industryIcon;
 
-@synthesize townName;
 @synthesize divisionName;
 @synthesize hasDoorsControl;
 @synthesize numberOfDoorsField;

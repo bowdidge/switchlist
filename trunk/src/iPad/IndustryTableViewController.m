@@ -45,13 +45,31 @@
     [super viewDidLoad];
     self.storyboardName = @"IndustryTable";
     self.title = @"Industries";
+
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target:self action:@selector(addIndustry:)];
+    self.navigationItem.rightBarButtonItem = addButtonItem;
+}
+
+- (IBAction) addIndustry: (id) sender {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *entireLayout = myAppDelegate.entireLayout;
+    
+    Industry *industry = [entireLayout createIndustryWithName: @"Auto assembly plant"];
+    industry.location = [entireLayout workbench];
+    // Fragile way to open object - should instead search list.
+    [self regenerateTableData];
+    [self.tableView reloadData];
+    NSInteger industryIndex = [self.allIndustries indexOfObject: industry];
+    NSUInteger indexArr[] = {0, industryIndex};
+    self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: self.expandedCellPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 // Gathers freight car data from the entire layout again, reloading if necessary.
 - (void) regenerateTableData {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
-    self.allIndustries = [myLayout allIndustries];
+    self.allIndustries = [myLayout allIndustriesSortedByName];
 }
 
 - (void) viewWillAppear: (BOOL) animate {
@@ -209,16 +227,24 @@
 // station's name.
 - (IBAction) doStationPressed: (id) sender {
     IndustryTableCell *cell = sender;
-    CGRect popoverRect = [cell convertRect: cell.industryLocation.frame toView: self.view];
+    CGRect popoverRect = [cell convertRect: cell.townNameField.frame toView: self.view];
     PlaceChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"placeChooser" fromRect: popoverRect];
     chooser.keyObject = cell.myIndustry;
     chooser.keyObjectSelection = cell.myIndustry.location;
     chooser.controller = self;
 }
 
-// Requests edit view be closed.
-- (IBAction) doDismissEditPopover: (id) sender {
-    [self.myPopoverController dismissPopoverAnimated: YES];
+// Called on valid click on the freight car kind chooser.
+- (void) doCloseChooser: (id) sender {
+    if ([sender isKindOfClass: [PlaceChooser class]]) {
+        PlaceChooser *chooser = (PlaceChooser*) sender;
+        Industry *selectedIndustry = chooser.keyObject;
+        selectedIndustry.location = chooser.selectedPlace;
+        [self.myPopoverController dismissPopoverAnimated: YES];
+        [self.tableView reloadData];
+    } else {
+        NSLog(@"Unknown chooser %@ used in doCloseChooser:", [sender class]);
+    }
 }
 
 @synthesize allIndustries;
