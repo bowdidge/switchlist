@@ -346,6 +346,16 @@ NSInteger compareByCount(id this, id that, void *context) {
 			[result addObjectsFromArray: [node stationsInReasonableOrder]];
 		}
 	}
+    
+    if (result.count == 0) {
+        NSArray *allStations = [entireLayout allStationsSortedOrder];
+        for (Place *station in allStations) {
+            if (station.isOffline) continue;
+            LayoutNode *node = [[LayoutNode alloc] initWithPlace: station];
+            [result addObject: node];
+            [node release];
+        }
+    }
 	return result;
 }
 

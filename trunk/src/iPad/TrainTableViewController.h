@@ -29,8 +29,9 @@
 #import <UIKit/UIKit.h>
 
 #import "AbstractTableViewController.h"
+#import "LayoutGraphView.h"
 
 // Controls the train tab when editing a layout.
-@interface TrainTableViewController : AbstractTableViewController
+@interface TrainTableViewController : AbstractTableViewController<LayoutGraphViewDelegate>
 - (IBAction) addTrain: (id) sender;
 @end

@@ -34,4 +34,7 @@
 
 // List of all car types to display.
 @property (retain, nonatomic) NSArray *allIndustries;
+
+// Name of field being set.  For distinguishing between source and destination.
+@property (retain, nonatomic) NSString *fieldToSet;
 @end

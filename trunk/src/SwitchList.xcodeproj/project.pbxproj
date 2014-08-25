@@ -111,6 +111,8 @@
 		3E6BA912155267540030AE7D /* switchlist-iphone.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E6BA8F6155266880030AE7D /* switchlist-iphone.css */; };
 		3E6BA913155267540030AE7D /* switchlist-ipad.css in Resources */ = {isa = PBXBuildFile; fileRef = 3E6BA8F7155266880030AE7D /* switchlist-ipad.css */; };
 		3E6C6EC812F007E200C7A8D1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 3E6C6EC712F007E200C7A8D1 /* Credits.html */; };
+		3E6CC55919AAC9FD00C768ED /* Stockton with Divisions.switchlist in Resources */ = {isa = PBXBuildFile; fileRef = 3E6CC55819AAC9FD00C768ED /* Stockton with Divisions.switchlist */; };
+		3E6CC55B19AACA0900C768ED /* Waterside Yard.switchlist in Resources */ = {isa = PBXBuildFile; fileRef = 3E6CC55A19AACA0900C768ED /* Waterside Yard.switchlist */; };
 		3E6F1931198567D7007AA710 /* CarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EABC36E1606991800EBD6C5 /* CarType.m */; };
 		3E6F193219856F6F007AA710 /* HTMLSwitchListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E07D41E19843B7E00736EB0 /* HTMLSwitchListController.m */; };
 		3E6F193419856F9F007AA710 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F193319856F9F007AA710 /* Cocoa.framework */; };
@@ -716,6 +718,8 @@
 		3E6BA8F6155266880030AE7D /* switchlist-iphone.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "switchlist-iphone.css"; path = "templates/switchlist-iphone.css"; sourceTree = "<group>"; };
 		3E6BA8F7155266880030AE7D /* switchlist-ipad.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; name = "switchlist-ipad.css"; path = "templates/switchlist-ipad.css"; sourceTree = "<group>"; };
 		3E6C6EC712F007E200C7A8D1 /* Credits.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = Credits.html; path = resources/Credits.html; sourceTree = "<group>"; };
+		3E6CC55819AAC9FD00C768ED /* Stockton with Divisions.switchlist */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Stockton with Divisions.switchlist"; path = "resources-iPad/Stockton with Divisions.switchlist"; sourceTree = "<group>"; };
+		3E6CC55A19AACA0900C768ED /* Waterside Yard.switchlist */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Waterside Yard.switchlist"; path = "resources-iPad/Waterside Yard.switchlist"; sourceTree = "<group>"; };
 		3E6E2F5214660B210069D022 /* HTMLSwitchlistRendererTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLSwitchlistRendererTest.m; path = Engine/HTMLSwitchlistRendererTest.m; sourceTree = "<group>"; };
 		3E6E30A0146636040069D022 /* SwitchList_OCUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchList_OCUnit.h; sourceTree = "<group>"; };
 		3E6F193319856F9F007AA710 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -1006,6 +1010,8 @@
 		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3E6CC55A19AACA0900C768ED /* Waterside Yard.switchlist */,
+				3E6CC55819AAC9FD00C768ED /* Stockton with Divisions.switchlist */,
 				3EC1D47D160AEDB700765095 /* QuartzCore.framework */,
 				3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */,
 				3E917A130951659A004647C7 /* Reports */,
@@ -1763,6 +1769,7 @@
 				3E45402919A9319B000755D9 /* LayoutTable.storyboard in Resources */,
 				3E45401F19A927E1000755D9 /* IndustryTable.storyboard in Resources */,
 				3E45403019A93359000755D9 /* reveal-icon.png in Resources */,
+				3E6CC55B19AACA0900C768ED /* Waterside Yard.switchlist in Resources */,
 				3E407DD3160694070037134D /* T.jpg in Resources */,
 				3E407DD4160694070037134D /* train.png in Resources */,
 				3E407DD5160694070037134D /* XM.jpg in Resources */,
@@ -1773,6 +1780,7 @@
 				3EAAA7821608235400C3D7A8 /* Default-Landscape~ipad.png in Resources */,
 				3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */,
 				3E37741C160838D00023C8B5 /* vasona.sql in Resources */,
+				3E6CC55919AAC9FD00C768ED /* Stockton with Divisions.switchlist in Resources */,
 				3E45402319A92C0C000755D9 /* TrainTable.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1868,7 +1876,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n";
+			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/SAMPLES\"\ncp resources-iPad/*.sql \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/SAMPLES/VasonaBranch.sql\"\ncp resources-iPad/*.switchlist \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/SAMPLES\"\n";
 		};
 		3E6B59D9140CB21A006FFDD3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

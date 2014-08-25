@@ -33,7 +33,9 @@
 
 @interface FileViewController ()
 // Array of filenames.
-@property (nonatomic, retain) NSMutableArray *allLayouts;
+@property (nonatomic, retain) NSMutableArray *allSampleLayouts;
+@property (nonatomic, retain) NSMutableArray *allLocalLayouts;
+@property (nonatomic, retain) NSMutableArray *allICloudLayouts;
 @end
 
 @implementation FileViewController
@@ -51,8 +53,10 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    self.allLayouts = [NSMutableArray arrayWithArray: [myAppDelegate allLayouts]];
-    
+    self.allSampleLayouts = [NSMutableArray arrayWithArray: [myAppDelegate allSampleLayouts]];
+    self.allLocalLayouts = [NSMutableArray arrayWithArray: [myAppDelegate allLocalLayouts]];
+    self.allICloudLayouts = [NSMutableArray arrayWithArray: [myAppDelegate allICloudLayouts]];
+   
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,25 +64,45 @@
     // Dispose of any resources that can be recreated.
 }
 
-// Handles press of + button at bottom of window.
-- (IBAction) createNewLayout: (id) sender {
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    [myAppDelegate openLayoutWithName: @"Untitled.sql"];
-    // TODO(bowdidge): Redraw switchlists.
+#pragma mark - Table for list of files.
+const int FILE_SAMPLE_SECTION = 0;
+const int FILE_LOCAL_SECTION = 1;
+const int FILE_ICLOUD_SECTION = 2;
+const int FILE_NEW_SECTION = 3;
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    if (section == FILE_SAMPLE_SECTION) {
+        return @"Sample Layouts";
+    } else if (section == FILE_LOCAL_SECTION) {
+        return @"Your Layouts";
+    } else if (section == FILE_ICLOUD_SECTION) {
+        return @"Your iCloud Layouts";
+    } else if (section == FILE_NEW_SECTION) {
+        return @"Create a New Layout";
+    } else {
+        // Empty/add.  Won't show as title, but makes processing cells easier.
+        return @"";
+    }
 }
 
-
-#pragma mark - Table for list of files.
-
-// Returns the number of sections in the towns table.
+// Returns the number of sections in the file list.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Separate sections for online, staging, and offline towns.
-    return 1;
+    return 4;
 }
 
 // Returns the number of rows in the specified towns section.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.allLayouts count] + 1;
+    if (section == FILE_SAMPLE_SECTION) {
+        return [self.allSampleLayouts count];
+    } else if (section == FILE_LOCAL_SECTION) {
+        return [self.allLocalLayouts count];
+    } else if (section == FILE_ICLOUD_SECTION) {
+        return [self.allICloudLayouts count];
+    } else if (section == FILE_NEW_SECTION) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 // Returns contents of the cell for the specified row and section.
@@ -90,12 +114,27 @@
                                reuseIdentifier:CellIdentifier] autorelease];
     }
     
+    NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
-    if (row >= [self.allLayouts count]) {
-        cell.label.text = @"New Layout";
+    NSString *label;
+    NSURL *url;
+    if (section == FILE_SAMPLE_SECTION) {
+        label = [[[[self.allSampleLayouts objectAtIndex: row] path] lastPathComponent] stringByDeletingPathExtension];
+        url = [self.allSampleLayouts objectAtIndex: row];
+    } else if (section == FILE_LOCAL_SECTION) {
+        label = [[[[self.allLocalLayouts objectAtIndex: row] path] lastPathComponent] stringByDeletingPathExtension];
+        url = [self.allLocalLayouts objectAtIndex: row];
+    } else if (section == FILE_ICLOUD_SECTION) {
+        label = [[[[self.allICloudLayouts objectAtIndex: row] path] lastPathComponent] stringByDeletingPathExtension];
+        url = [self.allICloudLayouts objectAtIndex: row];
+    } else if (section == FILE_NEW_SECTION) {
+        label = @"Create New Layout";
+        url = nil;
     } else {
-        cell.label.text = [self.allLayouts objectAtIndex: [indexPath row]];
+        label = @"";
     }
+    cell.label.text = label;
+    cell.url = url;
     return cell;
 }
 
@@ -118,29 +157,38 @@
     }
 }
 
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    UITextField *filename_field =  [actionSheet textFieldAtIndex: 0];
-    NSString *filename = [NSString stringWithFormat: @"%@.sql", filename_field.text];
-    [myAppDelegate openLayoutWithName: filename];
-}
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     // Open.
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
 
-    NSInteger row = [indexPath row];
-    if (row == [self.allLayouts count]) {
+    NSInteger section = [indexPath section];
+    if (section == FILE_NEW_SECTION) {
         // Get name.
         // TODO(bowdidge): Validate name is safe.
         UIAlertView *newFileAlert = [[UIAlertView alloc] initWithTitle: @"Name for New Layout" message: @"Please name your new layout." delegate: self cancelButtonTitle: @"OK" otherButtonTitles: nil];
         newFileAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
         newFileAlert.delegate = self;
         [newFileAlert show];
-    } else {
-        NSString *filename = [self.allLayouts objectAtIndex: [indexPath row]];
-        [myAppDelegate openLayoutWithName: filename];
+        return;
     }
+
+    FileCell *cellAtPath =  (FileCell*) [tableView cellForRowAtIndexPath: indexPath];
+    NSURL *fileURL = cellAtPath.url;
+
+    if (fileURL) {
+        [myAppDelegate openLayoutWithName: fileURL];
+    }
+    [self.myPopoverController dismissPopoverAnimated: YES];
+}
+
+#pragma mark Alert handler callbacks.
+
+- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    UITextField *filename_field =  [actionSheet textFieldAtIndex: 0];
+    NSURL *fileURL = [[myAppDelegate applicationDocumentsDirectory] URLByAppendingPathComponent: [NSString stringWithFormat: @"%@.sql", filename_field.text]];
+    [myAppDelegate openLayoutWithName: fileURL];
     [self.myPopoverController dismissPopoverAnimated: YES];
 }
 

@@ -71,6 +71,7 @@ const float MAX_LINGER_INTERVAL = 0.6;
 }
 
 - (void) setCurrentTrain:(ScheduledTrain *)train {
+    self.train = train;
     NSArray* placeStops = [train stationsInOrder];
     [self initializeGraphIfNeeded];
     NSMutableArray *layoutNodeStops = [NSMutableArray array];
@@ -271,10 +272,14 @@ const float MAX_LINGER_INTERVAL = 0.6;
     current_drag_point_ = CGPointMake(0.0,0.0);
     
     [self setNeedsDisplay];
-    
-    
+    NSMutableArray *stationsInOrder = [NSMutableArray array];
+    for (LayoutNode *node in self.currentSelectedStops) {
+        [stationsInOrder addObject: node.station];
+    }
+    NSLog(@"Setting new route for %@ to %@", self.train.name, stationsInOrder);
+    [self.train setStationsInOrder: stationsInOrder];
+    [self.delegate trainDidChangeRoute: self.train];
     // Animation for locking down view?
 }
-
 
 @end

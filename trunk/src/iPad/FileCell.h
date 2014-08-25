@@ -30,6 +30,7 @@
 
 @interface FileCell : UITableViewCell
 @property (nonatomic, retain) IBOutlet UILabel *label;
+@property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) IBOutlet UIImageView *imageView;
 
 @end

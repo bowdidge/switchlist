@@ -10,6 +10,7 @@
 
 #import "LayoutGraphView.h"
 #import "ScheduledTrain.h"
+#import "TrainTableViewController.h"
 
 @interface LayoutGraphViewController : UIViewController
 // For initialization.
@@ -17,5 +18,5 @@
 
 @property(retain, nonatomic) IBOutlet LayoutGraphView *graphView;
 @property(retain, nonatomic) IBOutlet ScheduledTrain *train;
-
+@property(assign, nonatomic) IBOutlet TrainTableViewController* controller;
 @end

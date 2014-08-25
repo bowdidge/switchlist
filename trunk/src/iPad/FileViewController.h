@@ -30,8 +30,6 @@
 
 @interface FileViewController : UIViewController
 
-- (IBAction) createNewLayout: (id) sender;
-
 @property(nonatomic, retain) IBOutlet UITableView *fileTable;
 @property(nonatomic, retain) IBOutlet UIButton *addButton;
 

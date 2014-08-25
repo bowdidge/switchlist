@@ -33,6 +33,9 @@
 
 // View controller for Cargo tab, listing all available cargos.
 @interface CargoTableViewController : AbstractTableViewController
+- (IBAction) doSourcePressed: (id) sender;
+- (IBAction) doDestinationPressed: (id) sender;
+- (IBAction) doCarTypePressed: (id) sender;
 
 @property (retain, nonatomic) NSArray *allCargos;
 

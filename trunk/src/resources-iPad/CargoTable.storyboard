@@ -51,8 +51,9 @@
                                 <connections>
                                     <outlet property="cargoDescription" destination="UK7-pU-xq3" id="eY2-DD-JUa"/>
                                     <outlet property="cargoIcon" destination="TZ2-EI-21r" id="uzV-JG-8mj"/>
-                                    <outlet property="cargoName" destination="QHm-ly-aJd" id="Lc1-7r-gMj"/>
+                                    <outlet property="cargoNameLabel" destination="QHm-ly-aJd" id="kEQ-Sw-BN3"/>
                                     <outlet property="cargoRateLabel" destination="4Uc-Lr-wAr" id="7cb-BA-lrS"/>
+                                    <outlet property="myController" destination="Txo-ld-2Ko" id="ZOp-ie-l2B"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="extendedCargoCell" rowHeight="160" id="xWT-rQ-fc6" customClass="CargoTableCell">
@@ -62,7 +63,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="768" height="159"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Fresh fruit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T6u-Fe-jNa">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T6u-Fe-jNa">
                                             <rect key="frame" x="80" y="6" width="668" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -156,6 +157,9 @@
                                                 <segment title="Fixed rate"/>
                                                 <segment title="random"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="fixedRateControlChanged:" destination="xWT-rQ-fc6" eventType="valueChanged" id="9br-LS-TbF"/>
+                                            </connections>
                                         </segmentedControl>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="afi-Y6-YMz">
                                             <rect key="frame" x="555" y="87" width="161" height="29"/>
@@ -165,6 +169,9 @@
                                                 <segment title="Week"/>
                                                 <segment title="Month"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="carTimeUnitChanged:" destination="xWT-rQ-fc6" eventType="valueChanged" id="czv-au-jBD"/>
+                                            </connections>
                                         </segmentedControl>
                                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="8LZ-To-pWl">
                                             <rect key="frame" x="203" y="124" width="68" height="29"/>
@@ -174,6 +181,9 @@
                                                 <segment title="2"/>
                                                 <segment title="3"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="unloadingTimeControlChanged:" destination="xWT-rQ-fc6" eventType="valueChanged" id="Sgg-nv-NPG"/>
+                                            </connections>
                                         </segmentedControl>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="Ra5-R1-IKz">
                                             <rect key="frame" x="367" y="85" width="97" height="30"/>
@@ -184,6 +194,15 @@
                                                 <outlet property="delegate" destination="xWT-rQ-fc6" id="8QQ-n9-8QO"/>
                                             </connections>
                                         </textField>
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Fresh fruit" borderStyle="roundedRect" minimumFontSize="17" id="SPN-vN-agR">
+                                            <rect key="frame" x="80" y="3" width="449" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="xWT-rQ-fc6" id="GjY-SR-B6p"/>
+                                            </connections>
+                                        </textField>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -191,9 +210,10 @@
                                     <outlet property="carTimeUnit" destination="afi-Y6-YMz" id="RBi-KT-bBA"/>
                                     <outlet property="carType" destination="jGM-1I-Oe1" id="jzS-z7-Xhd"/>
                                     <outlet property="cargoIcon" destination="jnS-Qe-Bzd" id="CEP-6V-45D"/>
-                                    <outlet property="cargoName" destination="T6u-Fe-jNa" id="Wp1-Q5-rN1"/>
+                                    <outlet property="cargoNameField" destination="SPN-vN-agR" id="7uM-yb-KB1"/>
                                     <outlet property="destination" destination="QFr-80-k2v" id="EfZ-LV-WMU"/>
                                     <outlet property="fixedRateControl" destination="V1E-ih-NDa" id="291-PP-9up"/>
+                                    <outlet property="myController" destination="Txo-ld-2Ko" id="YXc-2n-TsA"/>
                                     <outlet property="source" destination="3cH-7n-mIG" id="aL6-Cg-sIC"/>
                                     <outlet property="unloadingTimeControl" destination="8LZ-To-pWl" id="PKA-mT-xSi"/>
                                 </connections>
