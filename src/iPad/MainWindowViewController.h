@@ -37,7 +37,9 @@
 
 // Handles press on advance layout button.
 - (IBAction) doAdvanceLayout: (id) sender;
-
+// Mark all running trains as complete.
+// TODO(bowdidge): Replace with train-by-train solution.
+- (IBAction) doMarkAllTrainsComplete: (id) sender;
 // Regenerates switchlists now.  May take on the order of a second.
 - (IBAction) doRegenerateSwitchlists: (id) sender;
 
