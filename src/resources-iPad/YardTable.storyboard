@@ -32,21 +32,17 @@
                                             <rect key="frame" x="12" y="7" width="63" height="65"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="San Jose Yard" minimumFontSize="17" id="dzJ-hf-Qk9">
-                                            <rect key="frame" x="83" y="5" width="311" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                            <connections>
-                                                <action selector="namePressed:" destination="yRs-a5-B25" eventType="touchDown" id="bbu-HE-ExI"/>
-                                                <outlet property="delegate" destination="yRs-a5-B25" id="Yig-pV-DDv"/>
-                                            </connections>
-                                        </textField>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pottersville" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ke7-1I-Jyk">
                                             <rect key="frame" x="440" y="9" width="295" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Jose Yard" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Zqy-UN-jwU">
+                                            <rect key="frame" x="83" y="9" width="349" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -55,7 +51,7 @@
                                     <outlet property="myController" destination="aDw-HL-fds" id="Xbb-Ss-Etj"/>
                                     <outlet property="yardDescription" destination="RT0-AD-lIQ" id="0Tp-tA-iKP"/>
                                     <outlet property="yardIcon" destination="jWx-AA-PLg" id="zRG-XG-znO"/>
-                                    <outlet property="yardName" destination="dzJ-hf-Qk9" id="hxb-8I-xBD"/>
+                                    <outlet property="yardNameLabel" destination="Zqy-UN-jwU" id="Gp0-im-UMn"/>
                                     <outlet property="yardStationLabel" destination="Ke7-1I-Jyk" id="Nxk-Ji-amE"/>
                                 </connections>
                             </tableViewCell>
@@ -77,14 +73,13 @@
                                             <rect key="frame" x="12" y="7" width="63" height="65"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="San Jose Yard" minimumFontSize="17" id="xsS-wb-RNb">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="San Jose Yard" borderStyle="roundedRect" minimumFontSize="17" id="xsS-wb-RNb">
                                             <rect key="frame" x="83" y="5" width="345" height="30"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>
-                                                <action selector="namePressed:" destination="ip3-ur-uUV" eventType="touchDown" id="eZM-gj-YW3"/>
-                                                <outlet property="delegate" destination="ip3-ur-uUV" id="QUQ-W8-LG1"/>
+                                                <outlet property="delegate" destination="ip3-ur-uUV" id="SeS-TV-tJW"/>
                                             </connections>
                                         </textField>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Pottersville" minimumFontSize="17" id="ux0-Zd-Y0q">
@@ -109,7 +104,7 @@
                                     <outlet property="myController" destination="aDw-HL-fds" id="TtU-ry-Gw0"/>
                                     <outlet property="yardDescription" destination="Ja9-bh-f4t" id="Sfh-md-tEi"/>
                                     <outlet property="yardIcon" destination="cru-2s-qUC" id="jX3-II-Gsp"/>
-                                    <outlet property="yardName" destination="xsS-wb-RNb" id="0dq-1K-xEU"/>
+                                    <outlet property="yardNameField" destination="xsS-wb-RNb" id="YSt-Kn-QZA"/>
                                     <outlet property="yardStation" destination="ux0-Zd-Y0q" id="TZQ-Hs-Vb8"/>
                                 </connections>
                             </tableViewCell>

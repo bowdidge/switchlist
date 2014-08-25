@@ -30,24 +30,35 @@
 
 #import "FreightCar.h"
 
+@class CargoTableViewController;
+
 // Cell contents for cargo UITableView.
 // Each cargo contains a name in the upper left, a short kind in the upper right, and a one line description
 // at the bottom.  A useful icon goes to the left.
 @interface CargoTableCell : UITableViewCell
 // Fill in cell based on cargo object.
 - (void) fillInAsCargo: (Cargo*) fc;
-// Fill in the cell as the "Add..." cell at the bottom of the table.
-- (void) fillInAsAddCell;
+
+- (IBAction) fixedRateControlChanged: (id) sender;
+// Called when the "random/fixed" switch changes..
+- (IBAction) carTimeUnitChanged: (id) sender;
+// Called when the "random/fixed" switch changes..
+- (IBAction) unloadingTimeControlChanged: (id) sender;
+
+// cargo displayed in this cell.
+@property (nonatomic, retain) IBOutlet Cargo *cargo;
+@property (nonatomic, retain) IBOutlet CargoTableViewController *myController;
 
 // In both kinds of cells
 @property (nonatomic, retain) IBOutlet UIImageView *cargoIcon;
-@property (nonatomic, retain) IBOutlet UILabel *cargoName;
 
 // In short cell only.
+@property (nonatomic, retain) IBOutlet UILabel *cargoNameLabel;
 @property (nonatomic, retain) IBOutlet UILabel *cargoDescription;
 @property (nonatomic, retain) IBOutlet UILabel *cargoRateLabel;
 
 // In extended cell only.
+@property (nonatomic, retain) IBOutlet UITextField *cargoNameField;
 @property (nonatomic, retain) IBOutlet UITextField *source;
 @property (nonatomic, retain) IBOutlet UITextField *destination;
 @property (nonatomic, retain) IBOutlet UITextField *carType;

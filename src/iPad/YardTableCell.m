@@ -49,9 +49,12 @@
 // Fill in cell based on Yard object.
 - (void) fillInAsYard: (Yard *) yard {
     self.yard = yard;
-    self.yardName.text = [yard name];
-    NSString *locationKind;
+    self.yardNameLabel.text = [yard name];
+    self.yardNameField.text = [yard name];
+    self.yardStationLabel.text = [NSString stringWithFormat: @"At %@", [[yard location] name]];
     self.yardStation.text = [NSString stringWithFormat: @"At %@", [[yard location] name]];
+    
+    NSString *locationKind;
     if ([[yard location] isOffline]) {
         locationKind = @"Offline";
     } else if ([[yard location] isStaging]) {
@@ -64,17 +67,8 @@
                                  (int) [[yard freightCars] count], 3];
 }
 
-// Fill in the cell as the "Add..." cell at the bottom of the table.
-- (void) fillInAsAddCell {
-    self.yardName.text = @"Add Yard";
-    // TODO(bowdidge): Should choose existing town.
-    self.yardStation.text = @"[No town]";
-    self.yardDescription.text = @"";
-    self.yardIcon.hidden = YES;
-}
-
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField {
-    if (textField == self.yardName) {
+    if (textField == self.yardNameField) {
         textField.backgroundColor = [UIColor whiteColor];
         textField.borderStyle = UITextBorderStyleRoundedRect;
         return YES;
@@ -86,9 +80,7 @@
 }
 
 - (BOOL)textFieldShouldEndEditing:(UITextField *)textField {
-    if (textField == self.yardName) {
-        textField.backgroundColor = [UIColor clearColor];
-        textField.borderStyle = UITextBorderStyleNone;
+    if (textField == self.yardNameField) {
         [self.myController noteYardTableCell: self changedName: textField.text];
     }
     return YES;
@@ -102,10 +94,10 @@
     return YES;
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField == self.yardName) {
-        textField.borderStyle = UITextBorderStyleNone;
+    if (textField == self.yardNameField) {
+      return YES;
     }
-    return YES;
+    return NO;
 }
 
 

@@ -16,6 +16,7 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     self.title = [NSString stringWithFormat: @"Set route for %@", self.train.name];
     [self.graphView setCurrentTrain: self.train];
+    self.graphView.delegate = self.controller;
 }
 
 // For initialization.

@@ -219,6 +219,21 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
 }
 
+// Returns all cargos, including those we won't show to the car routing algorithm because
+// they're invalid in interesting ways.
+// This method should generally be called either by code manipulating the database or
+// presenting stuff in the UI.
+- (NSArray*) allCargosSortedByDescription {
+	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Cargo" inManagedObjectContext: [self managedObjectContext]];
+	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
+	[req2 setEntity: ent];
+	NSError *error;
+    NSSortDescriptor *ind1 = [[[NSSortDescriptor alloc] initWithKey: @"cargoDescription" ascending: YES] autorelease];
+	NSMutableArray *sortDescs = [NSMutableArray arrayWithObject: ind1];
+	[req2 setSortDescriptors: sortDescs];
+	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
+}
+
 - (NSArray*) allCargosForCarType: (CarType*) carType {
     NSEntityDescription *ent = [NSEntityDescription entityForName: @"Cargo" inManagedObjectContext: [self managedObjectContext]];
 	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
@@ -964,6 +979,25 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
     train.name = trainName;
     return train;
 }
+
+// Creates a yard with the given name in the database.
+- (Yard*) createYardWithName: (NSString*) yardName {
+    Yard *yard = [NSEntityDescription insertNewObjectForEntityForName:@"Yard"
+                                                          inManagedObjectContext: moc_];
+    yard.name = yardName;
+    return yard;
+}
+
+// Creates a cargo with the given name in the database.
+- (Cargo*) createCargoWithName: (NSString*) cargoName {
+    Cargo *cargo = [NSEntityDescription insertNewObjectForEntityForName:@"Cargo"
+                                                 inManagedObjectContext: moc_];
+    cargo.cargoDescription = cargoName;
+    return cargo;
+
+}
+
+
 
 /**
  * Converts a text file containing freight cars (reporting marks or reporting marks and car type) into

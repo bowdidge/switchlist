@@ -183,26 +183,26 @@
 }
 
 - (NSString*) description {
-	NSString *carTypeLabel = [NSString stringWithFormat: @"%@ (%@)",
-							  [self carType], [[self carTypeRel] carTypeDescription]];
-	if (!carTypeLabel || [carTypeLabel length] == 0) {
-		carTypeLabel = [self carType];
-	}
-	NSString *destinationString;
+    NSString *carTypeLabel = @"";
+    if (self.carType) {
+        carTypeLabel = [NSString stringWithFormat: @"%@ (%@) ", [self carType], [[self carTypeRel] carTypeDescription]];
+    }
+
+    NSString *destinationString;
 	if ([self destination]) {
 		destinationString = [[self destination] name];
 	} else {
-		destinationString = @"No Value";
+		destinationString = @"unset";
 	}
 	
 	NSString *sourceString;
 	if ([self source]) {
 		sourceString = [[self source] name];
 	} else {
-		sourceString = @"No Value";
+		sourceString = @"unset";
 	}
-
-	return [NSString stringWithFormat: @"%@, sent from %@ to %@, %d %@ cars per week",
+    
+	return [NSString stringWithFormat: @"%@, sent from %@ to %@, %d %@cars per week",
 			[self cargoDescription],sourceString, destinationString,
 			[[self carsPerWeek] intValue], carTypeLabel];
 }

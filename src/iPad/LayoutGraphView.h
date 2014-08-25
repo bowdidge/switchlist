@@ -11,6 +11,10 @@
 @class LayoutGraph;
 @class ScheduledTrain;
 
+@protocol LayoutGraphViewDelegate
+- (void) trainDidChangeRoute: (ScheduledTrain*) train;
+@end
+
 @interface LayoutGraphView : UIView {
     // True if a drag is currently being done to set a route.
     BOOL performing_drag_;
@@ -34,4 +38,7 @@
 @property (nonatomic, retain) ScheduledTrain *train;
 // List of LayoutNode objects representing stations visited so far, in visit order.
 @property (nonatomic, retain) NSMutableArray *currentSelectedStops;
+
+@property (nonatomic, retain) id<LayoutGraphViewDelegate> delegate;
 @end
+

@@ -61,7 +61,6 @@
     [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: self.expandedCellPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -93,8 +92,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"graphSegue"]) {
         LayoutGraphViewController *graphController = segue.destinationViewController;
-        // TODO(bowdidge): How to get train here?
         [graphController setCurrentTrain: [[self allTrains] objectAtIndex: 0]];
+        graphController.controller = self;
     }
 }
 
@@ -174,11 +173,6 @@
         return;
     }
 
-    ScheduledTrain *myTrain = [self trainAtIndexPath: indexPath];
-    if (!myTrain) {
-        // Create a new industry.
-    }
-    
     [self.tableView beginUpdates];
     NSIndexPath *oldPath = [self.expandedCellPath retain];
     self.expandedCellPath = indexPath;
@@ -190,6 +184,10 @@
 // Requests edit view be closed.
 - (IBAction) doDismissEditPopover: (id) sender {
     [self.myPopoverController dismissPopoverAnimated: YES];
+}
+
+- (void) trainDidChangeRoute:(ScheduledTrain *)train {
+    [self.tableView reloadData];
 }
 
 @synthesize allTrains;

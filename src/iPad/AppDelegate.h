@@ -40,12 +40,18 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 // Returns list of accessible filenames containing layouts.
-- (NSArray*) allLayouts;
+- (NSArray*) allSampleLayouts;
+- (NSArray*) allLocalLayouts;
+- (NSArray*) allICloudLayouts;
 
 // Closes existing file.
-- (BOOL) openLayoutWithName: (NSString*) filename;
+- (BOOL) openLayoutWithName: (NSURL*) filename;
 // Explicitly save the layout.
 - (IBAction) doSave: (id) sender;
+
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory;
+- (NSURL*) sampleDocumentsDirectory;
 
 @property (strong, nonatomic) UIWindow *window;
 

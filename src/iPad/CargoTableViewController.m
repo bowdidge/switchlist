@@ -30,7 +30,10 @@
 
 #import "AppDelegate.h"
 #import "Cargo.h"
+#import "CargoChooser.h"
+#import "CarTypeChooser.h"
 #import "CargoTableCell.h"
+#import "IndustryChooser.h"
 #import "SwitchListColors.h"
 
 @interface CargoTableViewController ()
@@ -43,16 +46,97 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    EntireLayout *myLayout = myAppDelegate.entireLayout;
-    allCargos = [[myLayout allCargos] copy];
+    [self regenerateTableData];
     self.storyboardName = @"CargoTable";
     self.title = @"Cargos";
+
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target:self action:@selector(addCargo:)];
+    self.navigationItem.rightBarButtonItem = addButtonItem;
+}
+
+- (void) regenerateTableData {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *myLayout = myAppDelegate.entireLayout;
+    self.allCargos = [myLayout allCargosSortedByDescription];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) addCargo: (id) sender {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *entireLayout = myAppDelegate.entireLayout;
+    
+    Cargo *cargo = [entireLayout createCargoWithName: @"A Cargo"];
+    
+    [self regenerateTableData];
+    [self.tableView reloadData];
+    NSInteger currentIndex = [self.allCargos indexOfObject: cargo];
+    NSUInteger indexArr[] = {0, currentIndex};
+    self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: self.expandedCellPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    [self.tableView scrollToRowAtIndexPath: self.expandedCellPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+// Called on valid click on the cargo's source location.
+- (void) doCloseChooser: (id) sender {
+    if ([sender isKindOfClass: [CarTypeChooser class]]) {
+        CarTypeChooser *chooser = (CarTypeChooser*) sender;
+        Cargo* selectedCargo = chooser.keyObject;
+        selectedCargo.carTypeRel = chooser.selectedCarType;
+        [self.myPopoverController dismissPopoverAnimated: YES];
+        [self.tableView reloadData];
+    } else if ([sender isKindOfClass: [IndustryChooser class]]) {
+        IndustryChooser *chooser = (IndustryChooser*) sender;
+        Cargo* selectedCargo  = chooser.keyObject;
+        if ([chooser.fieldToSet isEqualToString: @"source"]) {
+            selectedCargo.source = chooser.selectedIndustry;
+        } else {
+            selectedCargo.destination = chooser.selectedIndustry;
+        }
+        [self.myPopoverController dismissPopoverAnimated: YES];
+        [self.tableView reloadData];
+    } else {
+        NSLog(@"Unknown chooser %@ used in doCloseChooser:", [sender class]);
+    }
+}
+
+// Handle a touch on a cell's freight car location.  Show a popover
+// to allow selecting a different location.
+- (IBAction) doSourcePressed: (id) sender {
+    CargoTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.source.frame toView: self.view];
+    IndustryChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"industryChooser" fromRect: popoverRect];
+    chooser.keyObject = cell.cargo;
+    chooser.keyObjectSelection = cell.cargo.source;
+    chooser.myController = self;
+    chooser.fieldToSet = @"source";
+}
+
+// Handle a touch on a cell's cargo destination.  Show a popover
+// to allow selecting a different location.
+- (IBAction) doDestinationPressed: (id) sender {
+    CargoTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.destination.frame toView: self.view];
+    IndustryChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"industryChooser" fromRect: popoverRect];
+    chooser.keyObject = cell.cargo;
+    chooser.keyObjectSelection = cell.cargo.destination;
+    chooser.myController = self;
+    chooser.fieldToSet = @"destination";
+}
+
+// Handle a touch on a cell's cargo destination.  Show a popover
+// to allow selecting a different location.
+- (IBAction) doCarTypePressed: (id) sender {
+    CargoTableCell *cell = sender;
+    CGRect popoverRect = [cell convertRect: cell.carType.frame toView: self.view];
+    CarTypeChooser *chooser = [self doRaisePopoverWithStoryboardIdentifier: @"carTypeChooser" fromRect: popoverRect];
+    chooser.keyObject = cell.cargo;
+    chooser.keyObjectSelection = cell.cargo.carTypeRel;
+    chooser.myController = self;
 }
 
 #pragma mark - Table view data source
@@ -74,8 +158,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Add one extra cargo for "Add new cargo" listing.
-    return [allCargos count] + 1;
+    return [allCargos count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -94,13 +177,8 @@
     }
     
 
-    NSInteger row = [indexPath row];
-    if (row == [self.allCargos count]) {
-        [cell fillInAsAddCell];
-    } else {
-        Cargo *cargo = [allCargos objectAtIndex: row];
-        [cell fillInAsCargo: cargo];
-    }
+    Cargo *cargo = [allCargos objectAtIndex: [indexPath row]];
+    [cell fillInAsCargo: cargo];
     return cell;
 }
 
@@ -110,45 +188,6 @@
         cell.backgroundColor = [SwitchListColors switchListLightBeige];
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 

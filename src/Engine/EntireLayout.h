@@ -32,6 +32,7 @@
 #import <CoreData/CoreData.h>
 
 @class CarType;
+@class Cargo;
 @class DoorAssignmentRecorder;
 @class FreightCar;
 @class InduYard;
@@ -97,6 +98,8 @@ NSString *NormalizeDivisionString(NSString *inString);
 - (NSArray*) allFixedRateCargos;
 // All non-guaranteed (random) cargos.
 - (NSArray*) allNonFixedRateCargos;
+// List of all cargos with start and end.  For algorithm use.
+- (NSArray*) allCargosSortedByDescription;
 
 //All cargos - for UI use.
 - (NSArray*) allCargos;
@@ -146,9 +149,15 @@ NSString *NormalizeDivisionString(NSString *inString);
 // No order is guaranteed.
 - (NSArray*) allCarTypes;
 
+// Creates a cargo with the given name in the database.
+- (Cargo*) createCargoWithName: (NSString*) cargoName;
+
 // Creates a freight car (and car type, if needed) in the database from cleaned reporting
 // marks and car type.
 - (FreightCar*) createFreightCar: (NSString *) reportingMarks withCarType: (NSString *) carTypeName  withLength: (NSNumber*) carLength ;
+
+// Creates an industry with the given name in the database.
+- (Industry*) createIndustryWithName: (NSString*) industryName;
 
 // Creates a town with the given name in the database.
 - (Place*) createTownWithName: (NSString*) townName;
@@ -156,8 +165,8 @@ NSString *NormalizeDivisionString(NSString *inString);
 // Creates a train with the given name in the database.
 - (ScheduledTrain*) createTrainWithName: (NSString*) trainName;
 
-// Creates an industry with the given name in the database.
-- (Industry*) createIndustryWithName: (NSString*) industryName;
+// Creates a yard with the given name in the database.
+- (Yard*) createYardWithName: (NSString*) yardName;
 
 // Dictionary holding layout-specific preferences.  We use this so that we don't need
 // to change the document model (and break on-disk compatibility) for every preference

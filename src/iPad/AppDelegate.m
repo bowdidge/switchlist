@@ -136,9 +136,12 @@
 }
 
 // Returns the URL to the application's Documents directory.
-- (NSURL *)applicationDocumentsDirectory
-{
+- (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+}
+
+- (NSURL*) sampleDocumentsDirectory {
+    return [[[NSBundle mainBundle] resourceURL] URLByAppendingPathComponent: @"Samples"];
 }
 
 // Closes the currently open file, saves file, and tears down CoreData objects.
@@ -172,10 +175,9 @@
 
 // Opens a new file with the given name in the application documents directory.
 // If the file does not exist, the store will be in memory, and written to disk on save.
-- (BOOL) openLayoutWithName: (NSString*) filename {
+- (BOOL) openLayoutWithName: (NSURL*) newFilePath {
     [self closeFile];
     // TODO(bowdidge): Need to keep separate map of layout name -> filename.
-    NSURL *newFilePath = [[self applicationDocumentsDirectory] URLByAppendingPathComponent: filename];
     if (![self openNewFile:newFilePath]) {
         UIAlertView *badFileAlert = [[UIAlertView alloc] initWithTitle: @"Unable to load file" message: @"There was an unknown problem when loading the file" delegate: self cancelButtonTitle: @"OK" otherButtonTitles: nil];
         [badFileAlert show];
@@ -241,10 +243,11 @@
 }
 
 // Return list of all layouts on the local disk.
-- (NSArray*) allLayouts {
+- (NSArray*) allLocalLayouts {
     // TODO: examples, too?
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSLog(@"User directory is %@", [[self applicationDocumentsDirectory] path]);
     NSArray *files = [fileManager contentsOfDirectoryAtPath: [[self applicationDocumentsDirectory] path]
                                                       error: &error];
     if (error) {
@@ -255,13 +258,41 @@
     // Pick out only .sql files to avoid shm and wal files.  (Locking?)
     NSMutableArray *goodFiles = [NSMutableArray array];
     for (NSString *file in files) {
-        if ([file hasSuffix: @".sql"]) {
-            [goodFiles addObject: file];
+        if ([file hasSuffix: @".sql"] || [file hasSuffix: @".switchlist"]) {
+            [goodFiles addObject:[[self applicationDocumentsDirectory] URLByAppendingPathComponent: file]];
         }
     }
     
     return goodFiles;
 }
+
+- (NSArray*) allSampleLayouts {
+    // TODO: examples, too?
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSLog(@"Samples directory is %@", [[self sampleDocumentsDirectory] path]);
+    NSArray *files = [fileManager contentsOfDirectoryAtPath: [[self sampleDocumentsDirectory] path]
+                                                      error: &error];
+    if (error) {
+        UIAlertView *badFileAlert = [[UIAlertView alloc] initWithTitle: @"Unable to find layouts" message: @"Error when reading application documents directory." delegate: self cancelButtonTitle: @"OK" otherButtonTitles: nil];
+        [badFileAlert show];
+        return [NSArray array];
+    }
+    // Pick out only .sql files to avoid shm and wal files.  (Locking?)
+    NSMutableArray *goodFiles = [NSMutableArray array];
+    for (NSString *file in files) {
+        if ([file hasSuffix: @".sql"] || [file hasSuffix: @".switchlist"]) {
+            [goodFiles addObject: [[self sampleDocumentsDirectory] URLByAppendingPathComponent: file]];
+        }
+    }
+    
+    return goodFiles;
+}
+
+- (NSArray*) allICloudLayouts {
+    return [NSArray array];
+}
+
 
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;

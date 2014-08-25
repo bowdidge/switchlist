@@ -50,9 +50,9 @@
     self.storyboardName = @"YardTable";
     self.title = @"Yards";
 
-    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
-    EntireLayout *myLayout = myAppDelegate.entireLayout;
-    allYards = [[myLayout allYards] copy];
+    [self regenerateTableData];
+    UIBarButtonItem *addButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target:self action:@selector(addYard:)];
+    self.navigationItem.rightBarButtonItem = addButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,6 +60,27 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void) regenerateTableData {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *myLayout = myAppDelegate.entireLayout;
+    self.allYards = [myLayout allYards];
+}
+
+- (IBAction) addYard: (id) sender {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *entireLayout = myAppDelegate.entireLayout;
+    
+    Yard *yard = [entireLayout createYardWithName: @"A-Yard"];
+
+    [self regenerateTableData];
+    [self.tableView reloadData];
+    NSInteger yardIndex = [self.allYards indexOfObject: yard];
+    NSUInteger indexArr[] = {0, yardIndex};
+    self.expandedCellPath = [NSIndexPath indexPathWithIndexes: indexArr length: 2];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: self.expandedCellPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
 
 #pragma mark - Table view data source
 
@@ -79,8 +100,7 @@
 // Returns the number of rows in each section.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Add one for "Add Yard..." cell.
-    return [allYards count] + 1;
+    return [allYards count];
 }
 
 // Returns the cell at the specified row and section.
@@ -101,14 +121,8 @@
     }
     
     // Configure the cell.
-    NSInteger row = [indexPath row];
-    
-    if (row == [self.allYards count]) {
-        [cell fillInAsAddCell];
-    } else {
-        Yard *yard = [allYards objectAtIndex: row];
-       [cell fillInAsYard: yard];
-     }
+    Yard *yard = [allYards objectAtIndex: [indexPath row]];
+   [cell fillInAsYard: yard];
     return cell;
 }
 
@@ -178,9 +192,29 @@
 
 #pragma mark - Table view delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        return 120.0;
+    }
+    return 80.0;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // TODO(bowdidge): What action on click on row when there's no other details?
+    if ([indexPath compare: self.expandedCellPath] == NSOrderedSame) {
+        [self.tableView beginUpdates];
+        self.expandedCellPath = nil;
+        [self.tableView endUpdates];
+        [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+        return;
+    }
+    
+    [self.tableView beginUpdates];
+    NSIndexPath *oldPath = [self.expandedCellPath retain];
+    self.expandedCellPath = indexPath;
+    [self.tableView endUpdates];
+    [self.tableView reloadRowsAtIndexPaths: [NSArray arrayWithObjects: indexPath, oldPath, nil] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [oldPath release];
 }
 
 // Handle changing the yard's containing town when a town is selected in the chooser.

@@ -36,23 +36,22 @@
 
 // Fill in cell based on Yard object.
 - (void) fillInAsYard: (Yard *) place;
-// Fill in the cell as the "Add..." cell at the bottom of the table.
-- (void) fillInAsAddCell;
 
 // Yard object represented by this cell.
 @property (nonatomic, retain) Yard *yard;
 
 // fields in both versions of cell.
-@property (nonatomic, retain) IBOutlet UITextField *yardName;
 @property (nonatomic, retain) IBOutlet UIImageView *yardIcon;
 // Description field at bottom of cell summarizing details about
 // the yard.
 @property (nonatomic, retain) IBOutlet UILabel *yardDescription;
 
 // Fields only in the short version.
+@property (nonatomic, retain) IBOutlet UILabel *yardNameLabel;
 @property (nonatomic, retain) IBOutlet UILabel *yardStationLabel;
 
 // Fields only in long version.
+@property (nonatomic, retain) IBOutlet UITextField *yardNameField;
 @property (nonatomic, retain) IBOutlet UITextField *yardStation;
 
 

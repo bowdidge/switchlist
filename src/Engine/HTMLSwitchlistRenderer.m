@@ -199,10 +199,17 @@
 
 - (NSString*) renderSwitchlistForTrain: (ScheduledTrain*) train layout: (EntireLayout*)layout iPhone: (BOOL) isIPhone
                            interactive: (BOOL) isInteractive {
+    Place *firstStation = nil;
+    Place *lastStation = nil;
+    NSArray *stationsInOrder = [train stationsInOrder];
+    if ([train stationsInOrder].count > 0) {
+        firstStation = [stationsInOrder objectAtIndex: 0];
+        lastStation = [stationsInOrder lastObject];
+    }
 	NSMutableDictionary *templateDict = [NSMutableDictionary dictionaryWithObjectsAndKeys:
 								  train, @"train", 
-								  [[train stationsInOrder] objectAtIndex: 0], @"firstStation",
-                                  [[train stationsInOrder] lastObject], @"lastStation",
+								  firstStation, @"firstStation",
+                                  lastStation, @"lastStation",
 								  layout, @"layout",
 								  nil];
     // Copy in custom settings as parameters for the template..
