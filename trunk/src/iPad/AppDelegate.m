@@ -160,6 +160,7 @@
     self.currentFilePath = filename;
     self.entireLayout = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
     self.layoutController = [[[LayoutController alloc] initWithEntireLayout: entireLayout] autorelease];
+    self.entireLayout.layoutName = [[[filename path] lastPathComponent] stringByDeletingPathExtension];
     
     if ([[self.entireLayout allCarTypes] count] == 0) {
 		NSDictionary* currentlyUsedCarTypes = [CarTypes populateCarTypesFromLayout: self.entireLayout];

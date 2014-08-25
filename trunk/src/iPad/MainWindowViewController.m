@@ -39,6 +39,7 @@
 #import "FreightCarTableViewController.h"
 #import "HTMLSwitchlistRenderer.h"
 #import "IndustryTableViewController.h"
+#import "LayoutController.h"
 #import "LayoutDetailsViewController.h"
 #import "ScheduledTrain.h"
 #import "SwitchListColors.h"
@@ -243,8 +244,10 @@ float BOX_HEADER = 25.0;
 	// Do any additional setup after loading the view.
     [super viewDidLoad];
 
-    self.title = @"Operate";
+    // TODO(bowdidge): Warn when new file is loaded so name can be changed.
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *entireLayout = myAppDelegate.entireLayout;
+    self.title = [NSString stringWithFormat: @"Operate the \"%@\" Layout", entireLayout.layoutName];
     myAppDelegate.mainWindowViewController = self;
     
     self.trainNameToCatcher = [NSMutableDictionary dictionary];
@@ -330,6 +333,15 @@ float BOX_HEADER = 25.0;
     [myAppDelegate.layoutController createAndAssignNewCargos: 40];
     [myAppDelegate.layoutController assignCarsToTrains: [entireLayout allTrains] respectSidingLengths:YES useDoors:YES];
  
+    [self doRegenerateSwitchlists: self];
+}
+
+- (IBAction) doMarkAllTrainsComplete: (id) sender {
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *entireLayout = myAppDelegate.entireLayout;
+    for (ScheduledTrain *train in [entireLayout allTrains]) {
+        [myAppDelegate.layoutController completeTrain: train];
+    }
     [self doRegenerateSwitchlists: self];
 }
 

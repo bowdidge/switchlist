@@ -38,7 +38,9 @@
 @implementation LayoutDetailsViewController
 
 - (void) viewDidLoad {
-    self.title = @"Layout Settings";
+    AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
+    EntireLayout *entireLayout = myAppDelegate.entireLayout;
+    self.title = [NSString stringWithFormat: @"Layout Settings for %@", entireLayout.layoutName];
 }
 
 - (void) viewWillAppear: (BOOL) animated {
