@@ -83,7 +83,7 @@
 	TypicalIndustryStore *store_;
 }
 // Updates the table to show sample cargos for the provided category number.
-- (void) setCargosToCategory: (NSNumber*) categoryNumber;
+- (void) setCargosToCategory: (NSString*) categoryLabel;
 // Action when the potential industry class is changed.
 - (IBAction) doChangeIndustryClass: (id) sender;
 // Action when the current industry is changed.

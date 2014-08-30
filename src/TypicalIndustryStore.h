@@ -30,23 +30,25 @@
 // SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
-#import <LatentSemanticMapping/LatentSemanticMapping.h>
+
+#import "BKClassifier.h"
 
 // Allows matching a new industry name to a class of industry, and provides information
 // on that typical industry - synonyms, likely cargos, etc.
 @interface TypicalIndustryStore: NSObject {
-	LSMMapRef industryMap_;
-	NSArray *typicalIndustries_;
-	// Map from category number to category's canonical name.
-	NSDictionary *categoryMap_;
 }
 
 // Initialize the TypicalIndustryStore with data from the named file.
 // Regenerates the LSM Map.
 - (id) initWithIndustryPlistFile: (NSString*) industryPlistFilename;
 
+// Initialize with the .bks training file from BKClassifier.
+- (id) initWithIndustryTrainingFile: (NSString*) trainingFilename withIndustryPlistFile: (NSString*) industryPlistFile ;
+
 // For testing only.
 - (id) initWithIndustryPlistArray: (NSArray*) industryPListArray;
+
+- (void) trainString: (NSString*) string asCategory: (NSString*) category;
 
 // All category canonical names.
 - (NSArray*) allCategoryNames;
@@ -55,18 +57,24 @@
 // of typical industries that may be the same.
 - (NSArray*) categoriesForIndustryName: (NSString*) name;
 
-// Returns the industry's canonical name for a given category.  Short and suitable for
-// presentation in a user interface.
-- (NSString*) industryNameForCategory: (NSNumber*) category;
+// Given an incoming industry name, finds a set of categories and scores
+// of typical industries that may be the same.
+- (NSDictionary*) categoriesAndScoresForIndustryName: (NSString*) name;
 
 // Returns the raw data on the typical industry.
-- (NSDictionary*) industryDictForCategory: (NSNumber*) category;
-
-// Given a canonical name for an industry (which should be unique), return the NSNumber
-// identifying that particular category which is an index to the industry dictionary.
-- (NSNumber*) categoryWithCanonicalName: (NSString*) canonicalName;	
+- (NSDictionary*) industryDictForCategory: (NSString*) category;
 
 // Human readable description of what advice we might give for the industry.
 - (void) helpUser: (NSString*) industryName;
+- (void) printCategoriesForIndustryName: (NSString*) industryName;
+
+// Break a name into tokens for each word, and skip some uninteresting words.
+NSArray* NameStringToTokens(NSString* industryName);
+
+@property (retain, nonatomic) BKClassifier *classifier;
+// Raw list of industry classes from XML file.
+@property (retain, nonatomic) NSArray *typicalIndustries;
+// Map from category number to category's canonical name.
+@property (retain, nonatomic) NSMutableDictionary *categoryMap;
 
 @end
