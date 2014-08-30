@@ -52,28 +52,28 @@
 	NSArray *categories = [store_ categoriesForIndustryName: @"cannery"];
 	XCTAssertTrue([categories count] > 0, @"Expected at least one match.");
 	NSNumber *firstCategory = [categories objectAtIndex: 0];
-	XCTAssertEqualObjects(@"cannery", [store_ industryNameForCategory: firstCategory], @"%d", [firstCategory intValue]);
+	XCTAssertEqualObjects(@"cannery", firstCategory);
 }
 
 - (void) testSimpleLumber {
 	NSArray *categories = [store_ categoriesForIndustryName: @"lumber yard"];
 	XCTAssertTrue([categories count] > 0, @"Expected at least one match.");
 	NSNumber *firstCategory = [categories objectAtIndex: 0];
-	XCTAssertEqualObjects(@"lumber yard", [store_ industryNameForCategory: firstCategory], @"%d", [firstCategory intValue]);
+	XCTAssertEqualObjects(@"lumber yard", firstCategory);
 }
 
 - (void) testInferLumber {
 	NSArray *categories = [store_ categoriesForIndustryName: @"San Bruno Lumber"];
 	XCTAssertTrue([categories count] > 0, @"Expected at least one match.");
 	NSNumber *firstCategory = [categories objectAtIndex: 0];
-	XCTAssertEqualObjects(@"lumber yard", [store_ industryNameForCategory: firstCategory], @"%d", [firstCategory intValue]);
+	XCTAssertEqualObjects(@"lumber yard", firstCategory);
 }
 
 - (void) testInferMixed {
 	NSArray *categories = [store_ categoriesForIndustryName: @"Packing Lumber"];
 	XCTAssertTrue([categories count] == 2, @"Expected two matches.");
 	NSNumber *firstCategory = [categories objectAtIndex: 0];
-	XCTAssertEqualObjects(@"lumber yard", [store_ industryNameForCategory: firstCategory], @"Expected lumber to be first.");
+	XCTAssertEqualObjects(@"lumber yard", firstCategory);
 }
 
 

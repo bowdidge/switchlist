@@ -75,7 +75,8 @@
 - (id) init {
 	self = [super init];
 	NSString *industryFile = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/typicalIndustry.plist"];
-	store_ = [[TypicalIndustryStore alloc] initWithIndustryPlistFile: industryFile];
+	NSString *trainingFile = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/industryNameTraining.bks"];
+	store_ = [[TypicalIndustryStore alloc] initWithIndustryTrainingFile: trainingFile withIndustryPlistFile: industryFile];
 	return self;
 }
 
@@ -201,7 +202,7 @@
 }
 
 // Reloads the table with data for the provided category.
-- (void) setCargosToCategory: (NSNumber*) category {
+- (void) setCargosToCategory: (NSString*) category {
 	NSDictionary *industryDict = [store_ industryDictForCategory: category];
 
 	NSMutableArray *newContents= [NSMutableArray array];
@@ -253,14 +254,12 @@
 }
 	
 - (IBAction) doChangeCarsPerWeek: (id) sender {
-	NSString *suggestedIndustry = [suggestedIndustriesButton_ titleOfSelectedItem];
-	NSNumber *category = [store_ categoryWithCanonicalName: suggestedIndustry];
+	NSString *category = [suggestedIndustriesButton_ titleOfSelectedItem];
 	[self setCargosToCategory: category];
 }
 	
 - (IBAction) doChangeIndustryClass: (id) sender {
-	NSString *industryName = [suggestedIndustriesButton_ titleOfSelectedItem];
-	NSNumber *category = [store_ categoryWithCanonicalName: industryName];
+	NSString *category = [suggestedIndustriesButton_ titleOfSelectedItem];
 	[self setCargosToCategory: category];
 }
 
@@ -279,7 +278,7 @@
 	
 	[suggestedIndustriesButton_ removeAllItems];
 	NSMutableDictionary *existingCategories = [NSMutableDictionary dictionary];
-	for (NSNumber *category in categories) {
+	for (NSString *category in categories) {
 		NSDictionary *industryDict = [store_ industryDictForCategory: category];
 		[existingCategories setObject: [NSNumber numberWithBool: YES] forKey: [industryDict objectForKey: @"IndustryClass"]];
 		[suggestedIndustriesButton_ addItemWithTitle: [industryDict objectForKey: @"IndustryClass"]];
@@ -301,8 +300,7 @@
 	} else {
 		[suggestedIndustriesButton_ setEnabled: YES];
 		[suggestedIndustriesButton_ selectItemAtIndex: 0];
-		NSNumber *category = [store_ categoryWithCanonicalName: [suggestedIndustriesButton_ titleOfSelectedItem]];
-		[self setCargosToCategory: category];
+		[self setCargosToCategory: [suggestedIndustriesButton_ titleOfSelectedItem]];
 	}
 }	
 

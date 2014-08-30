@@ -30,104 +30,133 @@
 // SUCH DAMAGE.
 
 #import <Foundation/Foundation.h>
-#import <LatentSemanticMapping/LatentSemanticMapping.h>
 
 #import "TypicalIndustryStore.h"
 
+#import "BKClassifier.h"
+
 @implementation TypicalIndustryStore
 
-// Read the LSM's map file from disk.
-// Currently not used - regenerated each time.
-- (void) readMapFromFile: (NSString*) industryMapFile {
-	NSURL *url = [NSURL fileURLWithPath: industryMapFile];
-	industryMap_ = LSMMapCreateFromURL(kCFAllocatorDefault, (CFURLRef) url, 0);
-	LSMMapCompile(industryMap_);
+- (id) init {
+    [super init];
+    self.classifier = [[[BKClassifier alloc] init] autorelease];
+    self.typicalIndustries = [NSMutableArray array];
+    self.categoryMap = [NSMutableDictionary dictionary];
+    return self;
 }
 
-// Creates an LSM map in memory from the typical industry database,
-// and prepares the map for lookups.
-- (void) makeMapFromIndustryDict {
-	// TODO(bowdidge): Include stop words.
-	industryMap_ = LSMMapCreate(kCFAllocatorDefault, 0);
-	LSMMapStartTraining(industryMap_);
-		
-	for (NSDictionary *industry in typicalIndustries_) {
-		NSString *industryName = [industry objectForKey: @"IndustryClass"];
-		NSArray *synonyms = [industry objectForKey: @"Synonyms"];
-		LSMCategory industryCategory = LSMMapAddCategory(industryMap_);
-		// TODO(bowdidge): FIXME.
-		[categoryMap_ setValue: industryName forKey: (NSString*) [NSNumber numberWithInt: industryCategory]];
-		
-		LSMTextRef textRef = LSMTextCreate(kCFAllocatorDefault,  industryMap_);
-		LSMTextAddWords(textRef, (CFStringRef) industryName, CFLocaleGetSystem(), 0);
-		LSMMapAddText(industryMap_, textRef, industryCategory);
-		for (NSString *synonym in synonyms) {
-			LSMTextRef synonymTextRef = LSMTextCreate(kCFAllocatorDefault,  industryMap_);
-			LSMTextAddWords(synonymTextRef, (CFStringRef) synonym, CFLocaleGetSystem(), 0);
-			LSMMapAddText(industryMap_, synonymTextRef, industryCategory);
-		}
-	}
-	LSMMapCompile(industryMap_);
-}
 
 // Reads the typical industry database file, and produces the array of objects
 // described in its plist format.
-- (NSArray *) readIndustryFile: (NSString*) typicalIndustriesFile {
+- (NSArray*) readTypicalIndustryFile: (NSString*) trainingFile {
 	NSString *errorDesc = nil;
 	NSPropertyListFormat format;
 	NSArray *result;
-	NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath: typicalIndustriesFile];
+	NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath: trainingFile];
 	result = (NSArray *)[NSPropertyListSerialization
-								propertyListFromData:plistXML
-								mutabilityOption:NSPropertyListMutableContainersAndLeaves
-								format:&format
-								errorDescription:&errorDesc];
-		
+                         propertyListFromData:plistXML
+                         mutabilityOption:NSPropertyListMutableContainersAndLeaves
+                         format:&format
+                         errorDescription:&errorDesc];
+    
 	if (!result) {
 		NSLog(@"Error reading plist: %@", errorDesc);
 		return nil;
 	}
+    for (NSDictionary *item in result) {
+        NSString *industryClass = [item objectForKey: @"IndustryClass"];
+		[self.categoryMap setObject: item forKey: industryClass];
+    }
 	return result;
+}
+
+NSArray* NameStringToTokens(NSString* name) {
+    NSString *cleanedString = [[[[[[[name lowercaseString]
+                               stringByReplacingOccurrencesOfString: @"(" withString:@""]
+                               stringByReplacingOccurrencesOfString: @")" withString:@""]
+                               stringByReplacingOccurrencesOfString: @"'" withString:@""]
+                               stringByReplacingOccurrencesOfString: @"&" withString:@""]
+                               stringByReplacingOccurrencesOfString: @"." withString: @""]
+                               stringByReplacingOccurrencesOfString: @"-" withString: @""];
+    
+    NSMutableArray *results = [NSMutableArray arrayWithArray: [cleanedString componentsSeparatedByString: @" "]];
+    // TODO(bowdidge): Replace city names and stations with PLACENAME?
+    // Remove words unlikely to provide hints.
+    [results removeObject: @"company"];
+    [results removeObject: @"co"];
+    [results removeObject: @"corporation"];
+    [results removeObject: @"inc"];
+    // Double weight of last word.
+    if ([results count] == 2) {
+        // Add last word on assumption it's usually kind of business, unless it's plant when we'll look at first.
+        if ([[results objectAtIndex: 1] isEqualToString: @"plant"]) {
+            [results addObject: [results objectAtIndex: 0]];
+        } else {
+            [results addObject: [results objectAtIndex: 1]];
+        }
+    }
+    return results;
+}
+
+- (void) trainString: (NSString*) string asCategory: (NSString*) category {
+    [self.classifier trainWithTokens: NameStringToTokens(string)
+                              inPool: [self.classifier poolNamed: category]];
+}
+
+// Creates an LSM map in memory from the typical industry database,
+// and prepares the map for lookups.
+// Only needed if no compiled training results are available.
+- (void) makeMapFromIndustryList: (NSArray*) industryList {
+	// TODO(bowdidge): Include stop words.
+    for (NSDictionary *item in industryList) {
+        NSString *industryClass = [item objectForKey: @"IndustryClass"];
+        //[self.classifier trainWithTokens: NameStringToTokens(industryClass) inPool: [self.classifier poolNamed: industryClass]];
+        NSArray *synonyms = [item objectForKey: @"Synonyms"];
+        for (id syn in synonyms) {
+            // TODO(bowdidge): Consider mixing in other tokens - other loads, etc?
+            // TODO(bowdidge): Consider cutting out known non-words - Co, &, etc.
+            // Treat some prefixes as stand-alone words - Chem*, *Star,
+            // Strip punctuation, parens, plurals, etc?
+            [self trainString: syn asCategory: industryClass];
+        }
+    }
 }
 
 // Creates a TypicalIndustryStore based on an in-memory version of
 // the plist contents.  For testing.
 - (id) initWithIndustryPlistArray: (NSArray*) industryFileContents {
-	self = [super init];
-	
-	categoryMap_ = [[NSMutableDictionary alloc] init];
-	typicalIndustries_ = [industryFileContents retain];
-	[self makeMapFromIndustryDict];
+	self = [self init];
+	[self makeMapFromIndustryList: industryFileContents];
 	return self;
 }	
 	
 // Creates a TypicalIndustryStore based on the on-disk version of the
 // typical industry database.
 - (id) initWithIndustryPlistFile: (NSString*) industryPlistFile {
-    NSArray *industryFileContents = [self readIndustryFile: industryPlistFile];
-	if (!industryFileContents) {
+    self = [self init];
+    self.typicalIndustries = [self readTypicalIndustryFile: industryPlistFile];
+	if (!self.typicalIndustries) {
 		return nil;
 	}
-	
-	self = [self initWithIndustryPlistArray: industryFileContents];
+	[self makeMapFromIndustryList: self.typicalIndustries];
 	return self;
 }
 
-- (void) dealloc {
-	CFRelease(industryMap_);
-	[typicalIndustries_ release];
-	[categoryMap_ release];
-	[super dealloc];
+
+// Initialize with the .bks training file from BKClassifier.
+- (id) initWithIndustryTrainingFile: (NSString*) trainingFilename withIndustryPlistFile: (NSString*) industryPlistFile {
+    self = [self init];
+    self.typicalIndustries = [self readTypicalIndustryFile: industryPlistFile];
+    self.classifier = [[BKClassifier alloc] initWithContentsOfFile: trainingFilename];
+    
+    return self;
 }
 
 - (NSArray*) allCategoryNames {
-	NSMutableArray *result = [NSMutableArray array];
-	for (NSString *categoryName in [categoryMap_ allValues]) {
-		[result addObject: categoryName];
-	}
-	return result;
+    return [self.classifier.pools allKeys];
 }
-// Returns a list of categories (as NSNumbers) describing the best fits for the
+
+// Returns a list of categories (as NSStrings) describing the best fits for the
 // industry named.  The threshold value sets a cutoff for (compared to the best
 // match.  By taking the best match's score and dividing by threshold, it sets a lower
 // bound on the quality of lesser matches that will be shown.  The first match will
@@ -140,71 +169,53 @@
         return [NSArray array];
     }
     
-	LSMTextRef textRef = LSMTextCreate(kCFAllocatorDefault,  industryMap_);
-	LSMTextAddWords(textRef, (CFStringRef) industryName, CFLocaleGetSystem(), 0);
-	LSMResultRef result = LSMResultCreate(kCFAllocatorDefault, industryMap_,
-										  textRef, 4, 0);
-	NSMutableArray *results = [NSMutableArray array];
-	int i;
-	float bestScore = LSMResultGetScore(result, 0);
-	// Always add first.
-	[results addObject: [NSNumber numberWithInt: LSMResultGetCategory(result, 0)]];
-	for (i=1;i<4;i++) {
-		float currentScore = LSMResultGetScore(result, i);
-		if (bestScore > currentScore * threshold) {
-			break;
-		}
-		[results addObject: [NSNumber numberWithInt: LSMResultGetCategory(result, i)]];
-	}
-	CFRelease(textRef);
-	CFRelease(result);
-	return results;
+    NSArray *tokens = NameStringToTokens(industryName);
+    NSDictionary *categoriesAndScores = [self.classifier guessWithTokens: tokens];
+    
+    // Consider scaling score by number of terms?
+    NSArray *categoryNames = [categoriesAndScores keysSortedByValueUsingSelector: @selector(compare:)];
+
+    NSMutableArray *result = [NSMutableArray array];
+    for (NSString *category in categoryNames) {
+        if ([[categoriesAndScores objectForKey: category] floatValue] < threshold) {
+            break;
+        }
+        [result addObject: category];
+    }
+    
+    return [[result reverseObjectEnumerator] allObjects];
 }
 
 // Human-readable.  Print the matching categories.
 - (void) printCategoriesForIndustryName: (NSString*) industryName {
-	NSArray *categories = [self categoriesForIndustryName: industryName threshold: 1.6];
+    NSArray *tokens = NameStringToTokens(industryName);
+    NSDictionary *categoriesAndScores = [self.classifier guessWithTokens: tokens];
+
 	NSLog(@"Classification for %@", industryName);
-	for (NSNumber *category in categories) {
-		NSString *categoryName = [categoryMap_ objectForKey: category];
-		NSLog(@"  Potential: %@", categoryName);
+	for (NSNumber *categoryName in [categoriesAndScores allKeys]) {
+		NSNumber *categoryScore = [categoriesAndScores objectForKey: categoryName];
+		NSLog(@"  Potential: %@: %f", categoryName, [categoryScore floatValue]);
 	}
-	NSLog(@"");
 }
 
-// Returns the list of categories (as NSNumber) that best match the
+// Returns the list of categories (as NSString) that best match the
 // named industries.  Use industryDictForCategory: to find details of the
 // match.
 - (NSArray*) categoriesForIndustryName: (NSString*) industryName {
-	return [self categoriesForIndustryName: industryName threshold: 1.5];
+	return [self categoriesForIndustryName: industryName threshold: 0.0];
 }
 
-// Give the canonical name for the category.
-- (NSString*) industryNameForCategory: (NSNumber*) category {
-	return [categoryMap_ objectForKey: category];
+// Given an incoming industry name, finds a set of categories and scores
+// of typical industries that may be the same.
+- (NSDictionary*) categoriesAndScoresForIndustryName: (NSString*) industryName {
+    NSArray *tokens = NameStringToTokens(industryName);
+    return [self.classifier guessWithTokens: tokens];
 }
 
 // Give full record on the canonical category, including generic name,
 // synonyms, and sample cargos.
-- (NSDictionary*) industryDictForCategory: (NSNumber*) category {
-	NSString *industryName = [categoryMap_ objectForKey: category];
-	for (NSDictionary *industry in typicalIndustries_) {
-		if ([[industry objectForKey: @"IndustryClass"] isEqualToString: industryName]) {
-			return industry;
-		}
-	}
-	return nil;
-}
-
-// Given a canonical name for an industry (which should be unique), return the NSNumber
-// identifying that particular category which is an index to the industry dictionary.
-- (NSNumber*) categoryWithCanonicalName: (NSString*) canonicalName {
-	for (NSNumber* category in [categoryMap_ allKeys]) {
-		if ([[categoryMap_ objectForKey: category] isEqualToString: canonicalName]) {
-			return category;
-		}
-	}
-	return nil;
+- (NSDictionary*) industryDictForCategory: (NSString*) category {
+    return [self.categoryMap objectForKey: category];
 }
 
 // Provides human-readable response of related typical industries.
@@ -217,10 +228,9 @@
 	
 	NSLog(@"%@ might be one of the following industries:", industryName);
 	for (NSNumber *category in categories) {
-		NSLog(@"    %@", [self industryNameForCategory: category]);
+		NSLog(@"    %@", category);
 	}
-	NSNumber* firstCategory = [categories objectAtIndex: 0];
-	NSDictionary *dict = [self industryDictForCategory: firstCategory];
+	NSDictionary *dict = [self industryDictForCategory: [categories objectAtIndex: 0]];
 	NSArray *cargoSuggestions = [dict objectForKey: @"Cargo"];
 	if (cargoSuggestions && [cargoSuggestions count] > 0) {
 		NSLog(@"  Potential cargos for most likely choice are:");
