@@ -77,7 +77,7 @@ NSArray* NameStringToTokens(NSString* name) {
                                stringByReplacingOccurrencesOfString: @"'" withString:@""]
                                stringByReplacingOccurrencesOfString: @"&" withString:@""]
                                stringByReplacingOccurrencesOfString: @"." withString: @""]
-                               stringByReplacingOccurrencesOfString: @"-" withString: @""];
+                               stringByReplacingOccurrencesOfString: @"-" withString: @" "];
     
     NSMutableArray *results = [NSMutableArray arrayWithArray: [cleanedString componentsSeparatedByString: @" "]];
     // TODO(bowdidge): Replace city names and stations with PLACENAME?
