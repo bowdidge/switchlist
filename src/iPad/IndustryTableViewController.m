@@ -31,6 +31,7 @@
 #import "AppDelegate.h"
 #import "AppNavigationController.h"
 #import "Cargo.h"
+#import "CargoSelectionViewController.h"
 #import "Industry.h"
 #import "IndustryTableCell.h"
 #import "PlaceChooser.h"
@@ -89,6 +90,15 @@
 
 - (Industry*) industryAtIndexPath: (NSIndexPath *) indexPath {
     return [self.allIndustries objectAtIndex: [indexPath row]];
+}
+
+// Switch from this scene to another.
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"suggestCargos"]) {
+        CargoSelectionViewController *cargoSelectionViewController = segue.destinationViewController;
+        cargoSelectionViewController.selectedIndustry = [self industryAtIndexPath: self.expandedCellPath];
+        [cargoSelectionViewController doChangeSelectedIndustry: self];
+    }
 }
 
 

@@ -31,6 +31,7 @@
 
 #import "EntireLayout.h"
 #import "LayoutController.h"
+#import "TypicalIndustryStore.h"
 
 @class MainWindowViewController;
 
@@ -70,4 +71,6 @@
 
 // Handle to main view controller for reloading data / reprocessing trains.
 @property (retain, nonatomic) MainWindowViewController *mainWindowViewController;
+
+@property(retain, nonatomic) TypicalIndustryStore *typicalIndustryStore;
 @end

@@ -46,6 +46,7 @@
 @end
 
 @implementation AppDelegate
+
 // Writes out the data store to disk.
 - (void)saveContext {
     NSError *error;
@@ -213,6 +214,11 @@
     }
  
     [self openNewFile: newFile];
+    // Should flag error if file does not exist.
+    NSString *industryFile = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/typicalIndustry.plist"];
+	NSString *trainingFile = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/industryNameTraining.bks"];
+    self.typicalIndustryStore = [[TypicalIndustryStore alloc] initWithIndustryTrainingFile: trainingFile withIndustryPlistFile: industryFile];
+
     return YES;
 }
 							
