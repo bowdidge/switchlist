@@ -55,11 +55,11 @@ NSString *containsvalue = (contains); \
 NSString *containervalue = (container); \
 if ([containervalue rangeOfString: containsvalue].location == NSNotFound ) { \
 /* TODO(bowdidge): What symbol here? */ \
-_XCTRegisterFailure(_XCTFailureDescription(_XCTAssertion_EqualObjects, 0, @#contains, @#container, containsvalue, containervalue), format); \
+_XCTRegisterFailure(self, _XCTFailureDescription(_XCTAssertion_EqualObjects, 0, @#contains, @#container, containsvalue, containervalue), format); \
 } \
 } \
 @catch (id anException) {\
-_XCTRegisterFailure(_XCTFailureDescription(_XCTAssertion_EqualObjects, 1, @#contains, @#container, [anException reason]), format); \
+_XCTRegisterFailure(self, _XCTFailureDescription(_XCTAssertion_EqualObjects, 1, @#contains, @#container, [anException reason]), format); \
 }\
 } while(0)
 
@@ -69,11 +69,11 @@ do { \
 NSString *containsvalue = (contains); \
 NSString *containervalue = (container); \
 if ([containervalue rangeOfString: containsvalue].location != NSNotFound ) { \
-_XCTRegisterFailure(_XCTFailureDescription(_XCTAssertion_NotEqualObjects, 0, @#contains, @#container, containsvalue, containervalue), format); \
+_XCTRegisterFailure(self, _XCTFailureDescription(_XCTAssertion_NotEqualObjects, 0, @#contains, @#container, containsvalue, containervalue), format); \
 } \
 } \
 @catch (id anException) {\
-_XCTRegisterFailure(_XCTFailureDescription(_XCTAssertion_NotEqualObjects, 1, @#contains, @#container, [anException reason]), format); \
+_XCTRegisterFailure(self, _XCTFailureDescription(_XCTAssertion_NotEqualObjects, 1, @#contains, @#container, [anException reason]), format); \
 }\
 } while(0)
 
