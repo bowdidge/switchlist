@@ -39,7 +39,7 @@
 	NSMutableArray *array = [NSMutableArray array];
 	NSMutableDictionary *cannery = [NSMutableDictionary dictionary];
 	[cannery setObject: @"cannery" forKey: @"IndustryClass"];
-	[cannery setObject: [NSArray arrayWithObjects: @"canneries", @"canning", @"packing", nil] forKey: @"Synonyms"];
+	[cannery setObject: [NSArray arrayWithObjects: @"cannery", @"canneries", @"canning", @"packing", nil] forKey: @"Synonyms"];
 	[array addObject: cannery];
 	NSMutableDictionary *lumber = [NSMutableDictionary dictionary];
 	[lumber setObject: @"lumber yard" forKey: @"IndustryClass"];
@@ -49,7 +49,7 @@
 }
 
 - (void) testSimpleCannery {
-	NSArray *categories = [store_ categoriesForIndustryName: @"cannery"];
+	NSArray *categories = [store_ categoriesForIndustryName: @"Foobar cannery"];
 	XCTAssertTrue([categories count] > 0, @"Expected at least one match.");
 	NSNumber *firstCategory = [categories objectAtIndex: 0];
 	XCTAssertEqualObjects(@"cannery", firstCategory);
