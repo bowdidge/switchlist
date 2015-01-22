@@ -28,6 +28,8 @@
 		3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741916082E200023C8B5 /* switchlistButton.png */; };
 		3E37741C160838D00023C8B5 /* vasona.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741B160838D00023C8B5 /* vasona.sql */; };
 		3E37741F160847000023C8B5 /* SwitchListColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E37741E160847000023C8B5 /* SwitchListColors.m */; };
+		3E386E8C19B2A3F50040A69B /* check-1-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E386E8B19B2A3F50040A69B /* check-1-icon.png */; };
+		3E386E8E19B2A4010040A69B /* uncheck-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E386E8D19B2A4010040A69B /* uncheck-icon.png */; };
 		3E3B3BA5140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BA6140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3B3BA4140E09D700F4F56C /* HTMLSwitchListWindowController.m */; };
 		3E3B3BBF140E0B4B00F4F56C /* HTMLSwitchListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3B3BBD140E0B4B00F4F56C /* HTMLSwitchListView.xib */; };
@@ -123,6 +125,7 @@
 		3E88AD57127A9E14003486E2 /* CargoReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E88AD56127A9E14003486E2 /* CargoReportTest.m */; };
 		3E88AED4127B2DD2003486E2 /* train.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E88AED3127B2DD2003486E2 /* train.jpg */; };
 		3E88AED5127B2DD2003486E2 /* train.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E88AED3127B2DD2003486E2 /* train.jpg */; };
+		3E8CCCD11A70BF7B007D7122 /* IndustryInferenceQualityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC5393519B1A67300F2351A /* IndustryInferenceQualityTest.m */; };
 		3E90BF3812792E3F0074F2FA /* NSManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E90BF3712792E3F0074F2FA /* NSManagedObjectContext.m */; };
 		3E90BFFA127937860074F2FA /* LayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E90BFF9127937860074F2FA /* LayoutTest.m */; };
 		3E95843A12986D7D00A10258 /* SimpleHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E95843712986D7D00A10258 /* SimpleHTTPConnection.m */; };
@@ -257,7 +260,6 @@
 		3E9D570116225C3D007F49EC /* LayoutGraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56F316225B41007F49EC /* LayoutGraphTest.m */; };
 		3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */; };
 		3EA4879015D83CE1008A169F /* SwitchListAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4878F15D83CE1008A169F /* SwitchListAppDelegateTest.m */; };
-		3EA4879915D83D73008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
 		3EA487AE15D83E31008A169F /* typical_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879C15D83D83008A169F /* typical_main.m */; };
 		3EA487B415D83E73008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
 		3EA487B515D83E73008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
@@ -265,7 +267,6 @@
 		3EA487DC15D8410E008A169F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7788DA0506752A1600599AAD /* CoreData.framework */; };
 		3EA487F515D8414C008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
 		3EA4883B15D846F7008A169F /* TypicalIndustryStoreTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4883A15D846F7008A169F /* TypicalIndustryStoreTest.m */; };
-		3EA4884615D84B00008A169F /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
 		3EA4884915D84B24008A169F /* LatentSemanticMapping.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */; };
 		3EA4891915D85C7C008A169F /* SuggestedCargoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4891815D85C7C008A169F /* SuggestedCargoController.m */; };
 		3EAA8F5616D0B09500521AD5 /* LayoutGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAA8F5516D0B09500521AD5 /* LayoutGraphViewController.m */; };
@@ -381,6 +382,17 @@
 		3EC5392819B1782200F2351A /* BKTokenData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC538EA19B16A2600F2351A /* BKTokenData.m */; };
 		3EC5392919B1782600F2351A /* BKTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC538EC19B16A2600F2351A /* BKTokenizer.m */; };
 		3EC5392A19B1782900F2351A /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
+		3EC5392B19B1905C00F2351A /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
+		3EC5392E19B190B800F2351A /* CargoSelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC5392D19B190B800F2351A /* CargoSelectionViewController.m */; };
+		3EC5392F19B193F800F2351A /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
+		3EC5393019B1940700F2351A /* BKClassifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC538E619B16A2600F2351A /* BKClassifier.m */; };
+		3EC5393119B1940B00F2351A /* BKDataPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC538E819B16A2600F2351A /* BKDataPool.m */; };
+		3EC5393219B1941000F2351A /* BKTokenData.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC538EA19B16A2600F2351A /* BKTokenData.m */; };
+		3EC5393319B1941300F2351A /* BKTokenizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC538EC19B16A2600F2351A /* BKTokenizer.m */; };
+		3EC5393419B1988D00F2351A /* typicalIndustry.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EA487BC15D83EA7008A169F /* typicalIndustry.plist */; };
+		3EC5393C19B1AB5300F2351A /* IndustryInferenceQualityTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC5393519B1A67300F2351A /* IndustryInferenceQualityTest.m */; };
+		3EC5393D19B1AB6A00F2351A /* TypicalIndustryStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879815D83D73008A169F /* TypicalIndustryStore.m */; };
+		3EC5393E19B1AB8E00F2351A /* typicalIndustry.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3EA487BC15D83EA7008A169F /* typicalIndustry.plist */; };
 		3ECAA7F4145D30EC00AB21A7 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
 		3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
 		3ED58A6F13A727F500F6E26E /* SouthernPacificSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED697D9130139C100DA9074 /* SouthernPacificSwitchListView.m */; };
@@ -560,6 +572,8 @@
 		3E37741B160838D00023C8B5 /* vasona.sql */ = {isa = PBXFileReference; lastKnownFileType = file; name = vasona.sql; path = "resources-iPad/vasona.sql"; sourceTree = "<group>"; };
 		3E37741D160847000023C8B5 /* SwitchListColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListColors.h; sourceTree = "<group>"; };
 		3E37741E160847000023C8B5 /* SwitchListColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListColors.m; sourceTree = "<group>"; };
+		3E386E8B19B2A3F50040A69B /* check-1-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "check-1-icon.png"; sourceTree = "<group>"; };
+		3E386E8D19B2A4010040A69B /* uncheck-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uncheck-icon.png"; sourceTree = "<group>"; };
 		3E3B3A32140DDEF900F4F56C /* HTMLSwitchlistRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTMLSwitchlistRenderer.h; path = Engine/HTMLSwitchlistRenderer.h; sourceTree = "<group>"; };
 		3E3B3A33140DDEF900F4F56C /* HTMLSwitchlistRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTMLSwitchlistRenderer.m; path = Engine/HTMLSwitchlistRenderer.m; sourceTree = "<group>"; };
 		3E3B3BA3140E09D700F4F56C /* HTMLSwitchListWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLSwitchListWindowController.h; sourceTree = "<group>"; };
@@ -814,6 +828,9 @@
 		3EC5391819B177F600F2351A /* edit_classifier_file */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = edit_classifier_file; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC5391B19B177F600F2351A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3EC5391E19B177F600F2351A /* edit_classifier_file-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "edit_classifier_file-Prefix.pch"; sourceTree = "<group>"; };
+		3EC5392C19B190B800F2351A /* CargoSelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CargoSelectionViewController.h; path = iPad/CargoSelectionViewController.h; sourceTree = SOURCE_ROOT; };
+		3EC5392D19B190B800F2351A /* CargoSelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CargoSelectionViewController.m; path = iPad/CargoSelectionViewController.m; sourceTree = SOURCE_ROOT; };
+		3EC5393519B1A67300F2351A /* IndustryInferenceQualityTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryInferenceQualityTest.m; sourceTree = "<group>"; };
 		3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "switchlist-carlist.html"; path = "templates/switchlist-carlist.html"; sourceTree = "<group>"; };
 		3ED2011815E5FDA800DFBA60 /* AddCargoRate.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = AddCargoRate.xcmappingmodel; sourceTree = "<group>"; };
 		3ED482320D715B3600C36741 /* SwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListView.h; sourceTree = "<group>"; };
@@ -1153,6 +1170,8 @@
 				3E407D7A160693E30037134D /* AppNavigationController.m */,
 				3EE6A58219A97E750057C2DC /* CargoChooser.h */,
 				3EE6A58319A97E750057C2DC /* CargoChooser.m */,
+				3EC5392C19B190B800F2351A /* CargoSelectionViewController.h */,
+				3EC5392D19B190B800F2351A /* CargoSelectionViewController.m */,
 				3E407D7B160693E30037134D /* CargoTableCell.h */,
 				3E407D7C160693E30037134D /* CargoTableCell.m */,
 				3E407D7D160693E30037134D /* CargoTableViewController.h */,
@@ -1243,11 +1262,13 @@
 				3E407DC0160694070037134D /* icon.png */,
 				3E407DC1160694070037134D /* industry.png */,
 				3E407DC2160694070037134D /* RS.jpg */,
+				3E386E8B19B2A3F50040A69B /* check-1-icon.png */,
 				3E407DD81606945E0037134D /* InfoPlist.strings */,
 				3E407DC3160694070037134D /* SwitchList for iPad-Info.plist */,
 				3E407DC4160694070037134D /* T.jpg */,
 				3E407DC5160694070037134D /* train.png */,
 				3E407DC6160694070037134D /* XM.jpg */,
+				3E386E8D19B2A4010040A69B /* uncheck-icon.png */,
 				3E37741B160838D00023C8B5 /* vasona.sql */,
 				3E407DC7160694070037134D /* yard.jpg */,
 				3E45402E19A93359000755D9 /* reveal-icon.png */,
@@ -1433,6 +1454,7 @@
 				3E6E2F5214660B210069D022 /* HTMLSwitchlistRendererTest.m */,
 				3EE333E5141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.h */,
 				3EE333E6141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m */,
+				3EC5393519B1A67300F2351A /* IndustryInferenceQualityTest.m */,
 				3E88AD43127A9CFD003486E2 /* IndustryTest.h */,
 				3E88AD44127A9CFD003486E2 /* IndustryTest.m */,
 				3E90BFF8127937860074F2FA /* LayoutTest.h */,
@@ -1664,7 +1686,7 @@
 			name = "Engine Unit Tests";
 			productName = "Unit tests";
 			productReference = 3E9B786A1606527600891318 /* Unit tests.xctest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3EA487A315D83E1A008A169F /* typical_main */ = {
 			isa = PBXNativeTarget;
@@ -1698,7 +1720,7 @@
 			name = "Unit tests";
 			productName = "Unit tests";
 			productReference = 3EC3B0881277DEFE00C00AD3 /* Unit tests.xctest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3EC538FE19B16EDA00F2351A /* generate_classifier_file */ = {
 			isa = PBXNativeTarget;
@@ -1811,12 +1833,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC0ACD9199FF60300ABD0E5 /* MainStoryboard.storyboard in Resources */,
+				3E386E8C19B2A3F50040A69B /* check-1-icon.png in Resources */,
 				3EAAA770160708BE00C3D7A8 /* layout.css in Resources */,
 				3EAAA771160708BF00C3D7A8 /* switchlist.css in Resources */,
 				3EAAA772160708BF00C3D7A8 /* cargo-report.html in Resources */,
 				3EAAA773160708BF00C3D7A8 /* switchlist-iphone.css in Resources */,
 				3EAAA774160708BF00C3D7A8 /* switchlist-ipad.css in Resources */,
 				3EAAA775160708BF00C3D7A8 /* car-report.html in Resources */,
+				3EC5393419B1988D00F2351A /* typicalIndustry.plist in Resources */,
 				3EAAA776160708BF00C3D7A8 /* industry-report.html in Resources */,
 				3EAAA777160708BF00C3D7A8 /* reserved-car-report.html in Resources */,
 				3EAAA778160708BF00C3D7A8 /* switchlist-iphone.html in Resources */,
@@ -1826,6 +1850,7 @@
 				3E45402719A93036000755D9 /* YardTable.storyboard in Resources */,
 				3EAAA77C160708BF00C3D7A8 /* switchlist-layout.html in Resources */,
 				3EAAA77D160708BF00C3D7A8 /* yard-report.html in Resources */,
+				3E386E8E19B2A4010040A69B /* uncheck-icon.png in Resources */,
 				3E407DC8160694070037134D /* camera.jpg in Resources */,
 				3E407DC9160694070037134D /* cargo.jpg in Resources */,
 				3E407DCA160694070037134D /* city.png in Resources */,
@@ -1871,6 +1896,7 @@
 				3E9B780A1606527600891318 /* switchlist-carlist.html in Resources */,
 				3E9B780B1606527600891318 /* switchlist-layout.html in Resources */,
 				3E9B780C1606527600891318 /* switchlist-home.html in Resources */,
+				3EC5393E19B1AB8E00F2351A /* typicalIndustry.plist in Resources */,
 				3E9B780D1606527600891318 /* train.jpg in Resources */,
 				3E9B780E1606527600891318 /* switchlist.html in Resources */,
 				3E9B780F1606527600891318 /* switchlist-iphone.html in Resources */,
@@ -1993,6 +2019,7 @@
 				3EAAA75D1606CC3500C3D7A8 /* MGTemplateStandardFilters.m in Sources */,
 				3EAAA75F1606CC3500C3D7A8 /* MGTemplateStandardMarkers.m in Sources */,
 				3EAAA7611606CC3500C3D7A8 /* NSArray_DeepMutableCopy.m in Sources */,
+				3EC5393319B1941300F2351A /* BKTokenizer.m in Sources */,
 				3EAAA7631606CC3500C3D7A8 /* NSDictionary_DeepMutableCopy.m in Sources */,
 				3EAAA7651606CC3500C3D7A8 /* RegexKitLite.m in Sources */,
 				3EAAA74F1606CBB700C3D7A8 /* HTMLSwitchlistRenderer.m in Sources */,
@@ -2001,11 +2028,14 @@
 				3EAAA7411606CBAD00C3D7A8 /* CarAssigner.m in Sources */,
 				3EAAA7431606CBAD00C3D7A8 /* CargoAssigner.m in Sources */,
 				3EE6A58819A993A90057C2DC /* CargoChooser.m in Sources */,
+				3EC5392E19B190B800F2351A /* CargoSelectionViewController.m in Sources */,
 				3EAAA7451606CBAD00C3D7A8 /* DoorAssignmentRecorder.m in Sources */,
+				3EC5393219B1941000F2351A /* BKTokenData.m in Sources */,
 				3EAAA7471606CBAD00C3D7A8 /* LayoutController.m in Sources */,
 				3EAAA7491606CBAD00C3D7A8 /* RandomNumberGenerator.m in Sources */,
 				3EAAA74B1606CBAD00C3D7A8 /* TrainAssigner.m in Sources */,
 				3EAAA74D1606CBAD00C3D7A8 /* TrainSizeVector.m in Sources */,
+				3EC5392B19B1905C00F2351A /* ICUTemplateMatcher.m in Sources */,
 				3EAAA72A1606CB9500C3D7A8 /* CarType.m in Sources */,
 				3EAAA72B1606CB9500C3D7A8 /* CarTypes.m in Sources */,
 				3EAAA72D1606CB9500C3D7A8 /* Cargo.m in Sources */,
@@ -2028,6 +2058,7 @@
 				3E407DA8160693E30037134D /* FreightCarTableCell.m in Sources */,
 				3E407DA9160693E30037134D /* FreightCarTableViewController.m in Sources */,
 				3EC0ACE419A042C500ABD0E5 /* TemplateCache.m in Sources */,
+				3EC5392F19B193F800F2351A /* TypicalIndustryStore.m in Sources */,
 				3E407DAA160693E30037134D /* IndustryTableCell.m in Sources */,
 				3E407DAB160693E30037134D /* IndustryTableViewController.m in Sources */,
 				3E407DAD160693E30037134D /* main.m in Sources */,
@@ -2035,6 +2066,7 @@
 				3EB7BBD219A11DC7004C202F /* StyleTableViewCell.m in Sources */,
 				3E407DAF160693E30037134D /* SelectionCell.m in Sources */,
 				3E407DB0160693E30037134D /* SwitchlistPresentationViewController.m in Sources */,
+				3EC5393119B1940B00F2351A /* BKDataPool.m in Sources */,
 				3E407DB1160693E30037134D /* SwitchListTouchCatcherView.m in Sources */,
 				3E407DB2160693E30037134D /* TownTableCell.m in Sources */,
 				3E407DB3160693E30037134D /* TownTableViewController.m in Sources */,
@@ -2047,6 +2079,7 @@
 				3E11BF82160CE279007605D6 /* LayoutDetailsViewController.m in Sources */,
 				3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */,
 				3E335E60160D69760097360C /* FileViewController.m in Sources */,
+				3EC5393019B1940700F2351A /* BKClassifier.m in Sources */,
 				3E335E63160D6A050097360C /* FileCell.m in Sources */,
 				3EEE0A8516209488007BBE4E /* PlaceChooser.m in Sources */,
 				3E853CEF1699739700F8C59B /* CarTypeChooser.m in Sources */,
@@ -2117,6 +2150,7 @@
 				3E9B75D41606402A00891318 /* LayoutController.m in Sources */,
 				3E9B76C41606448E00891318 /* MGTemplateEngine.m in Sources */,
 				3EC538F419B16A2600F2351A /* BKTokenData.m in Sources */,
+				3EC5393D19B1AB6A00F2351A /* TypicalIndustryStore.m in Sources */,
 				3E9B76C51606448E00891318 /* MGTemplateStandardFilters.m in Sources */,
 				3E9B76C61606448E00891318 /* MGTemplateStandardMarkers.m in Sources */,
 				3E9B75D91606402A00891318 /* NSArray_DeepMutableCopy.m in Sources */,
@@ -2162,6 +2196,7 @@
 				3E9B78591606527600891318 /* PlaceTest.m in Sources */,
 				3E9B785A1606527600891318 /* MGTemplateEngineTest.m in Sources */,
 				3E9B785F1606527600891318 /* RandomNumberGeneratorTest.m in Sources */,
+				3EC5393C19B1AB5300F2351A /* IndustryInferenceQualityTest.m in Sources */,
 				3E9D56FB16225C0D007F49EC /* LayoutGraph.m in Sources */,
 				3E9D56FC16225C17007F49EC /* LayoutGraphTest.m in Sources */,
 			);
@@ -2211,6 +2246,7 @@
 				3EFEC55E1408535600F9CF15 /* FakeSwitchListDocument.m in Sources */,
 				3E3B3BA5140E09D700F4F56C /* HTMLSwitchListWindowController.m in Sources */,
 				3EE333E7141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m in Sources */,
+				3E8CCCD11A70BF7B007D7122 /* IndustryInferenceQualityTest.m in Sources */,
 				3EC3B1501277E4E300C00AD3 /* IndustryReport.m in Sources */,
 				3ED58A6E13A727F500F6E26E /* KaufmanSwitchListView.m in Sources */,
 				3E90BFFA127937860074F2FA /* LayoutTest.m in Sources */,
@@ -2236,7 +2272,6 @@
 				3ED58A7113A7280D00F6E26E /* SwitchListView.m in Sources */,
 				3E60820413615B680054DBA1 /* TextSwitchListView.m in Sources */,
 				3E07D42019843DF200736EB0 /* HTMLSwitchListController.m in Sources */,
-				3EA4884615D84B00008A169F /* TypicalIndustryStore.m in Sources */,
 				3EA4883B15D846F7008A169F /* TypicalIndustryStoreTest.m in Sources */,
 				3EFEC5251408515500F9CF15 /* WebServerDelegate.m in Sources */,
 				3EFEC5261408515500F9CF15 /* WebServerDelegateTest.m in Sources */,
@@ -2303,7 +2338,6 @@
 				3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */,
 				3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */,
 				3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */,
-				3EA4879915D83D73008A169F /* TypicalIndustryStore.m in Sources */,
 				3EFEC5231408515500F9CF15 /* WebServerDelegate.m in Sources */,
 				3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */,
 				3EF294D81312F40700D2C3F6 /* GlobalPreferences.m in Sources */,
@@ -2750,8 +2784,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = "";
@@ -2787,8 +2819,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = "";
@@ -2820,8 +2850,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = "";
@@ -2851,8 +2879,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = "";
@@ -3097,8 +3123,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = macosx;
@@ -3138,8 +3162,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = macosx;
@@ -3173,8 +3195,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = macosx;
@@ -3575,8 +3595,6 @@
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
-					"-framework",
-					SenTestingKit,
 				);
 				PRODUCT_NAME = "Unit tests";
 				SDKROOT = macosx;
@@ -3711,6 +3729,7 @@
 				3EC5390C19B16EDA00F2351A /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3EC5392119B177F600F2351A /* Build configuration list for PBXNativeTarget "edit_classifier_file" */ = {
 			isa = XCConfigurationList;
@@ -3721,6 +3740,7 @@
 				3EC5392519B177F600F2351A /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

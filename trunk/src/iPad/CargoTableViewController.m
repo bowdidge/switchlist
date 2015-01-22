@@ -198,7 +198,6 @@
     return 80.0;
 }
 
-
 // Handles presses on the table.  When a selection is made in the cargo
 // table, we show a popover for editing the cargo.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
