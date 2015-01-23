@@ -53,4 +53,6 @@
 // Copy fields that are officially part of the HTML template to the dictionary
 // representing an industry.
 - (NSMutableDictionary*) templateDictionary;
+
+- (NSString*) descriptionForCopy;
 @end

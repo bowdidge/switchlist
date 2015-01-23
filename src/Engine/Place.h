@@ -73,6 +73,8 @@
 
 - (NSComparisonResult) compareNames: (Place*) p;
 
+- (NSString*) descriptionForCopy;
+
 // Create dictionary imitating all HTML accessible fields of object.
 - (NSMutableDictionary*) templateDictionary;
 @end

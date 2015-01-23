@@ -1,12 +1,12 @@
 //
-//  Yard.h
+//  PasteboardHelpers.h
 //  SwitchList
 //
-//  Created by Robert Bowdidge on 6/9/06.
+//  Created by bowdidge on 1/21/15.
 //
-// Copyright (c)2010 Robert Bowdidge,
+// Copyright (c)2015 Robert Bowdidge,
 // All rights reserved.
-// 
+//
 // Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions
 // are met:
@@ -15,7 +15,7 @@
 // 2. Redistributions in binary form must reproduce the above copyright
 //    notice, this list of conditions and the following disclaimer in the
 //    documentation and/or other materials provided with the distribution.
-// 
+//
 // THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
 // ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,27 +28,31 @@
 // OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 // SUCH DAMAGE.
 
-#import <CoreData/CoreData.h>
-#import "InduYard.h"
+#import <Cocoa/Cocoa.h>
 
-@class FreightCar;
+#import "Cargo.h"
+#import "FreightCar.h"
+#import "Industry.h"
+#import "Place.h"
+#import "ScheduledTrain.h"
+#import "Yard.h"
 
-@interface Yard :  InduYard  
-{
-}
+// Extensions to model classes to allow cut and paste on MacOS.
 
-// TODO(bowdidge):
-// acceptsDivision is wrong - it should instead have the idea of this being the "home" for a division,
-// and cars for that division count as unloaded if they get here.  Intermediate yards can still be used
-// for dropping off cars, and should figure into the routing code.
-// Comma-separated list of strings.
-- (NSString *)acceptsDivisions;
+@interface Cargo (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@end
 
-// Returns true if the freight car named would be accepted by this yard.
-- (BOOL) acceptsCar: (FreightCar*) fc;
+@interface FreightCar (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@end
 
-- (BOOL) acceptsDivision: (NSString*) requestedDivisionName;
-- (void)setAcceptsDivisions:(NSString *)value;
+@interface Industry (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@end
 
-- (NSString*) descriptionForCopy;
+@interface Place (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@end
+
+@interface ScheduledTrain (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@end
+
+@interface Yard (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
 @end

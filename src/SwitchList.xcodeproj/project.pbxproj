@@ -258,6 +258,7 @@
 		3E9D56FC16225C17007F49EC /* LayoutGraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56F316225B41007F49EC /* LayoutGraphTest.m */; };
 		3E9D56FE16225C21007F49EC /* LayoutGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56EE16225616007F49EC /* LayoutGraph.m */; };
 		3E9D570116225C3D007F49EC /* LayoutGraphTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D56F316225B41007F49EC /* LayoutGraphTest.m */; };
+		3EA046871A70D5590024391E /* PasteboardHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA046861A70D5590024391E /* PasteboardHelpers.m */; };
 		3EA1162313501BC500365DEB /* SwitchListReportWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */; };
 		3EA4879015D83CE1008A169F /* SwitchListAppDelegateTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4878F15D83CE1008A169F /* SwitchListAppDelegateTest.m */; };
 		3EA487AE15D83E31008A169F /* typical_main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA4879C15D83D83008A169F /* typical_main.m */; };
@@ -764,6 +765,8 @@
 		3E9D56F316225B41007F49EC /* LayoutGraphTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutGraphTest.m; sourceTree = "<group>"; };
 		3E9E1F780951605600C5E038 /* IndustryReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryReport.h; sourceTree = "<group>"; };
 		3E9E1F790951605600C5E038 /* IndustryReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndustryReport.m; sourceTree = "<group>"; };
+		3EA046861A70D5590024391E /* PasteboardHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasteboardHelpers.m; sourceTree = "<group>"; };
+		3EA046881A70D5B00024391E /* PasteboardHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PasteboardHelpers.h; sourceTree = "<group>"; };
 		3EA1162213501BC500365DEB /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/SwitchListReportWindow.xib; sourceTree = "<group>"; };
 		3EA4878E15D83CE1008A169F /* SwitchListAppDelegateTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchListAppDelegateTest.h; sourceTree = "<group>"; };
 		3EA4878F15D83CE1008A169F /* SwitchListAppDelegateTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListAppDelegateTest.m; sourceTree = "<group>"; };
@@ -1571,6 +1574,8 @@
 		E1B74B1A0667B4A90069E3BA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3EA046881A70D5B00024391E /* PasteboardHelpers.h */,
+				3EA046861A70D5590024391E /* PasteboardHelpers.m */,
 				3E258A6B1286657A00D233DB /* CarType.h */,
 				3EABC36E1606991800EBD6C5 /* CarType.m */,
 				3EE711351285D4F2006059F4 /* CarTypes.h */,
@@ -2337,6 +2342,7 @@
 				3EC3B17B1277E4F900C00AD3 /* SwitchRouteDialogController.m in Sources */,
 				3EC3B1801277E4F900C00AD3 /* SwitchListReportWindowController.m in Sources */,
 				3EC3B17F1277E4F900C00AD3 /* SwitchListView.m in Sources */,
+				3EA046871A70D5590024391E /* PasteboardHelpers.m in Sources */,
 				3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */,
 				3EFEC5231408515500F9CF15 /* WebServerDelegate.m in Sources */,
 				3EC3B1731277E4F900C00AD3 /* YardReport.m in Sources */,

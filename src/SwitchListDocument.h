@@ -86,6 +86,9 @@
 	IBOutlet NSTextField *minCarsToRunField_;
 	IBOutlet NSTextField *minCarsToRunLabel_;
 	
+    // Town tab
+    IBOutlet NSTableView *townTable_;
+    
 	// Freight car tab
 	IBOutlet NSTableView *freightCarTable_;
 	IBOutlet NSTableColumn *freightCarCargoColumn_;
@@ -95,6 +98,7 @@
 	IBOutlet NSTextField *doorsLabel_;
 	
 	// Industries tab
+    IBOutlet NSTableView *industryTable_;
 	IBOutlet NSButton *hasDoorsButton_;
 	IBOutlet NSTextField *doorCountField_;
 	IBOutlet NSTextField *doorCountLabel_;
@@ -104,8 +108,13 @@
 	IBOutlet NSTextField *sidingLengthField_;
     
     // Cargo tab.
+    IBOutlet NSTableView *cargoTable_;
     IBOutlet NSPopUpButton *cargoUnloadTimePopup_;
-    
+
+                             
+    // Yard tab.
+    IBOutlet NSTableView *yardTable_;
+                             
 	// Access to the various controllers of popups so we can sort their contents (and make it
 	// easier to find particular items.
 	IBOutlet NSPopUpButton *freightCarLocationPopup_;
@@ -161,7 +170,7 @@
 	IBOutlet NSTableColumn *carTypeDescriptionTableColumn_;
 	IBOutlet NSButton *addCarTypeButton_;
 	IBOutlet NSButton *removeCarTypeButton_;
-	
+    
     // Style tab
     IBOutlet SwitchListStyleTabController *switchListStyleTabController_;
     

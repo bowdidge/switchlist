@@ -114,4 +114,9 @@
 	NSMutableDictionary *dict = [super templateDictionary];
 	return dict;
 }
+
+- (NSString*) descriptionForCopy {
+    return [NSString stringWithFormat: @"%@\t%@", [self name], [[self location] name]];
+}
+
 @end

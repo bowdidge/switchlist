@@ -182,29 +182,33 @@
 			[[self carsPerWeek] intValue], carTypeLabel];
 }
 
+- (NSString*) destinationString {
+   	if ([self destination]) {
+        return [[self destination] name];
+    }
+    return @"unset";
+}
+
+- (NSString*) sourceString {
+   	if ([self source]) {
+        return [[self source] name];
+    }
+    return @"unset";
+}
+
 - (NSString*) description {
     NSString *carTypeLabel = @"";
     if (self.carType) {
         carTypeLabel = [NSString stringWithFormat: @"%@ (%@) ", [self carType], [[self carTypeRel] carTypeDescription]];
     }
-
-    NSString *destinationString;
-	if ([self destination]) {
-		destinationString = [[self destination] name];
-	} else {
-		destinationString = @"unset";
-	}
-	
-	NSString *sourceString;
-	if ([self source]) {
-		sourceString = [[self source] name];
-	} else {
-		sourceString = @"unset";
-	}
     
 	return [NSString stringWithFormat: @"%@, sent from %@ to %@, %d %@cars per week",
-			[self cargoDescription],sourceString, destinationString,
+			[self cargoDescription], [self sourceString], [self destinationString],
 			[[self carsPerWeek] intValue], carTypeLabel];
+}
+
+- (NSString*) descriptionForCopy {
+    return [NSString stringWithFormat: @"%@\t%@\t%@", [self name], [self sourceString], [self destinationString]];
 }
 
 @end
