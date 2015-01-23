@@ -180,6 +180,10 @@
  	[super dealloc];
 }
 
++ (SwitchListAppDelegate *)sharedAppDelegate {
+    return (SwitchListAppDelegate *)[[NSApplication sharedApplication] delegate];
+}
+
 // Either by user control or 
 - (void) startWebServer {
 	NSLog(@"Starting web server.");

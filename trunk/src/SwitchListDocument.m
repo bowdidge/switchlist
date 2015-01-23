@@ -174,7 +174,6 @@
 	return nameToSwitchListClassMap_;
 }
 
-
 // Converts the train stop string in all trains from the old comma-based separator to the
 // newer approach that will allow commas in place names.  If it looks like the stops has
 // been converted on one already, assume all are converted and do nothing.
@@ -1256,6 +1255,114 @@
 	// Show help on web server.
 	[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListLayoutHelp" inBook: locBookName];
 }
+
+// Copies the selected problems to the clipboard as strings, or all problems if
+// none are selected.
+
+- (IBAction) copy: (id) sender {
+    NSMutableArray *objects = [NSMutableArray array];
+    id widgetDoingCopy = [switchListWindow_ firstResponder];
+    bool success = NO;
+    if ([widgetDoingCopy isKindOfClass: [NSTableView class]]) {
+        NSTableView *tv = widgetDoingCopy;
+         NSIndexSet *selectedRows = [tv selectedRowIndexes];
+        if (tv == cargoTable_) {
+            for (NSInteger row = [selectedRows firstIndex]; row != NSNotFound; row = [selectedRows indexGreaterThanIndex: row]) {
+                Cargo *cargo = [[cargoArrayController_ arrangedObjects] objectAtIndex: row];
+                [objects addObject: cargo];
+            }
+        } else if (tv == freightCarTable_) {
+            for (NSInteger row = [selectedRows firstIndex]; row != NSNotFound; row = [selectedRows indexGreaterThanIndex: row]) {
+                FreightCar *fc = [[freightCarArrayController_ arrangedObjects] objectAtIndex: row];
+                [objects addObject: fc];
+            }
+        } else if (tv == industryTable_) {
+            for (NSInteger row = [selectedRows firstIndex]; row != NSNotFound; row = [selectedRows indexGreaterThanIndex: row]) {
+                Industry *industry = [[industryArrayController_ arrangedObjects] objectAtIndex: row];
+                [objects addObject: industry];
+            }
+        } else if (tv == townTable_) {
+            for (NSInteger row = [selectedRows firstIndex]; row != NSNotFound; row = [selectedRows indexGreaterThanIndex: row]) {
+                Place *town = [[townArrayController_ arrangedObjects] objectAtIndex: row];
+                [objects addObject: town];
+            }
+        } else if (tv == trainListTable_) {
+            for (NSInteger row = [selectedRows firstIndex]; row != NSNotFound; row = [selectedRows indexGreaterThanIndex: row]) {
+                ScheduledTrain *train = [[trainArrayController_ arrangedObjects] objectAtIndex: row];
+                [objects addObject: train];
+            }
+        } else if (tv == yardTable_) {
+            for (NSInteger row = [selectedRows firstIndex]; row != NSNotFound; row = [selectedRows indexGreaterThanIndex: row]) {
+                Yard *yard = [[yardArrayController_ arrangedObjects] objectAtIndex: row];
+                [objects addObject: yard];
+            }
+       }
+    }
+
+    if ([objects count] > 0) {
+        NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+        [pasteboard clearContents];
+        success = [pasteboard writeObjects: objects];
+    }
+   if (!success) {
+        NSBeep();
+    }
+}
+
+- (IBAction) paste: (id) sender {
+    NSArray *objects = [NSArray array];
+    id widgetDoingCopy = [switchListWindow_ firstResponder];
+    if ([widgetDoingCopy isKindOfClass: [NSTableView class]]) {
+        NSTableView *tv = widgetDoingCopy;
+        if (tv == cargoTable_) {
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            NSArray *classes = [NSArray arrayWithObject: [Cargo class]];
+            objects = [pasteboard readObjectsForClasses: classes options: [NSDictionary dictionary]];
+            NSLog(@"%@", objects);
+            [cargoArrayController_ addObjects: objects];
+            [cargoTable_ reloadData];
+            // TODO(bowdidge): Scroll to insertion.
+        } else if (tv == freightCarTable_) {
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            NSArray *classes = [NSArray arrayWithObject: [FreightCar class]];
+            objects = [pasteboard readObjectsForClasses: classes options: [NSDictionary dictionary]];
+            NSLog(@"%@", objects);
+            [freightCarArrayController_ addObjects: objects];
+            [freightCarTable_ reloadData];
+            // TODO(bowdidge): Scroll to insertion.
+        } else if (tv == industryTable_) {
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            NSArray *classes = [NSArray arrayWithObject: [Industry class]];
+            objects = [pasteboard readObjectsForClasses: classes options: [NSDictionary dictionary]];
+            NSLog(@"%@", objects);
+            [industryArrayController_ addObjects: objects];
+            [industryTable_ reloadData];
+            // TODO(bowdidge): Scroll to insertion.
+        } else if (tv == townTable_) {
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            NSArray *classes = [NSArray arrayWithObject: [Place class]];
+            objects = [pasteboard readObjectsForClasses: classes options: [NSDictionary dictionary]];
+            [townArrayController_ addObjects: objects];
+            [townTable_ reloadData];
+            // TODO(bowdidge): Scroll to insertion.
+        } else if (tv == trainListTable_) {
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            NSArray *classes = [NSArray arrayWithObject: [ScheduledTrain class]];
+            objects = [pasteboard readObjectsForClasses: classes options: [NSDictionary dictionary]];
+            NSLog(@"%@", objects);
+            [trainArrayController_ addObjects: objects];
+            [trainListTable_ reloadData];
+            // TODO(bowdidge): Scroll to insertion.
+        } else if (tv == yardTable_) {
+            NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
+            NSArray *classes = [NSArray arrayWithObject: [Yard class]];
+            objects = [pasteboard readObjectsForClasses: classes options: [NSDictionary dictionary]];
+            [yardArrayController_ addObjects: objects];
+            [yardTable_ reloadData];
+            // TODO(bowdidge): Scroll to insertion.
+        }
+    }
+ }
 
 @synthesize theTemplateCache;
 @end

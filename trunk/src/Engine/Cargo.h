@@ -87,4 +87,6 @@ struct CargoRate {
 // Returns the text that should appear when hovering over the cargo in a menu.
 - (NSString*) tooltip;
 
+- (NSString*) descriptionForCopy;
+
 @end

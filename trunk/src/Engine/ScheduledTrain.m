@@ -501,6 +501,10 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
 	
 	return result;
 }
+
+- (NSString*) descriptionForCopy {
+    return [NSString stringWithFormat: @"%@\t%@", [self name], [self listOfStationsString]];
+}
 		
 - (void)addFreightCarsObject:(FreightCar *)value 
 {    

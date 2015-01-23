@@ -199,6 +199,10 @@
 	return [NSString stringWithFormat: @"<Place: %@>", [self name]];
 }
 
+- (NSString*) descriptionForCopy {
+    return [NSString stringWithFormat: @"%@", [self name]];
+}
+
 - (NSComparisonResult) compareNames: (Place*) p {
 	return [[self name] compare: [p name]];
 }

@@ -145,4 +145,6 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1,FreightCar* s2, voi
 
 - (NSComparisonResult) compareNames: (FreightCar *) other;
 
+// String representation of freight car, suitable for copy.
+- (NSString*) descriptionForCopy;
 @end

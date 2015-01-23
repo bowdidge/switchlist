@@ -110,6 +110,9 @@
 - (void)addFreightCarsObject:(FreightCar *)value;
 - (void)removeFreightCarsObject:(FreightCar *)value;
 
+// Text description of train, optimized for copying to text.
+- (NSString*) descriptionForCopy;
+
 // TODO(bowdidge): Trains, stops, and freight cars can change at any point
 // via the UI.  Add a sanity check function that boots freight cars out of the
 // train if they're no longer appropriate, and check this when regenerating trains.

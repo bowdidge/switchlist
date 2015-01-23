@@ -97,5 +97,7 @@
 	return [NSString stringWithFormat: @"%@ at %@", [self name], [[self location] name]];
 }
 
-
+- (NSString*) descriptionForCopy {
+    return [NSString stringWithFormat: @"%@\t%@", [self name], [[self location] name]];
+}
 @end

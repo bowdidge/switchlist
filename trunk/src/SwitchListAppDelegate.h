@@ -102,6 +102,8 @@
 	MyOutlineDelegate *outlineDelegate_;
 }
 
++ (SwitchListAppDelegate *)sharedAppDelegate;
+
 - (NSWindow*) reportWindow;
 - (NSTextView*) reportTextView;
 - (IBAction) webServerPreferenceChanged: (id) sender;

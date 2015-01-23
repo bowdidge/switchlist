@@ -1,4 +1,4 @@
-// 
+//
 //  FreightCar.m
 //  SwitchList
 //
@@ -35,6 +35,7 @@
 #import "Industry.h"
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *context) {
 	NSArray *marksComponents1 = [[s1 reportingMarks] componentsSeparatedByString: @" "];
@@ -553,4 +554,13 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
 	return [[self reportingMarks] isEqualToString: [other reportingMarks]];
 }
 
+// String representation of freight car, suitable for copy.
+- (NSString*) descriptionForCopy {
+    NSMutableString *result = [NSMutableString string];
+    [result appendFormat: @"%@\t%@", [self reportingMarks], [self length]];
+    if ([self carTypeRel]) {
+        [result appendFormat: @"\t%@", [[self carTypeRel] carTypeName]];
+    }
+    return result;
+}
 @end
