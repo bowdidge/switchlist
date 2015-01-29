@@ -35,7 +35,6 @@
 #import "Industry.h"
 
 #import <Foundation/Foundation.h>
-#import <Cocoa/Cocoa.h>
 
 NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, void *context) {
 	NSArray *marksComponents1 = [[s1 reportingMarks] componentsSeparatedByString: @" "];
