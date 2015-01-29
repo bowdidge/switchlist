@@ -548,6 +548,7 @@
 		3E1490CD128F07AB001700D0 /* NSMigrationManagerCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMigrationManagerCategory.h; sourceTree = "<group>"; };
 		3E180A0D0C55D23F005C009A /* SwitchRouteDialogController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwitchRouteDialogController.h; sourceTree = "<group>"; };
 		3E180A0E0C55D23F005C009A /* SwitchRouteDialogController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchRouteDialogController.m; sourceTree = "<group>"; };
+		3E1F4C861A7A0787008A7048 /* HTMLSwitchlistRendererTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HTMLSwitchlistRendererTest.h; path = Engine/HTMLSwitchlistRendererTest.h; sourceTree = "<group>"; };
 		3E1FD9B415CCE78F00568E36 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = resources/icon.icns; sourceTree = "<group>"; };
 		3E1FD9B615CCEBC800568E36 /* SwitchList.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SwitchList.entitlements; sourceTree = "<group>"; };
 		3E258A351286618F00D233DB /* SwitchListDocument 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "SwitchListDocument 3.xcdatamodel"; sourceTree = "<group>"; };
@@ -1454,6 +1455,7 @@
 				3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */,
 				3EFEC55B1408535600F9CF15 /* FakeSwitchListDocument.h */,
 				3EFEC55C1408535600F9CF15 /* FakeSwitchListDocument.m */,
+				3E1F4C861A7A0787008A7048 /* HTMLSwitchlistRendererTest.h */,
 				3E6E2F5214660B210069D022 /* HTMLSwitchlistRendererTest.m */,
 				3EE333E5141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.h */,
 				3EE333E6141B2A810050A5A9 /* HTMLSwitchListWindowControllerTest.m */,
