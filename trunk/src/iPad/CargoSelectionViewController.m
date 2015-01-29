@@ -138,7 +138,7 @@
 - (Industry*) likelyDestination {
 	NSArray *allIndustries = [self.entireLayout allIndustries];
 	Industry *mostPopularStagingIndustry = nil;
-	int mostPopularCargoCount = 0;
+	NSInteger mostPopularCargoCount = 0;
 	for (Industry *i in allIndustries) {
 		if ([i isStaging] || [i isOffline]) {
 			NSInteger cargoCount = [[i originatingCargos] count] + [[i terminatingCargos] count];
