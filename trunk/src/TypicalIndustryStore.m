@@ -38,7 +38,7 @@
 @implementation TypicalIndustryStore
 
 - (id) init {
-    [super init];
+    self = [super init];
     self.classifier = [[[BKClassifier alloc] init] autorelease];
     self.typicalIndustries = [NSMutableArray array];
     self.categoryMap = [NSMutableDictionary dictionary];
