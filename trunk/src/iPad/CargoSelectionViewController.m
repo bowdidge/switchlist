@@ -141,7 +141,7 @@
 	int mostPopularCargoCount = 0;
 	for (Industry *i in allIndustries) {
 		if ([i isStaging] || [i isOffline]) {
-			int cargoCount = [[i originatingCargos] count] + [[i terminatingCargos] count];
+			NSInteger cargoCount = [[i originatingCargos] count] + [[i terminatingCargos] count];
 			if (!mostPopularStagingIndustry || cargoCount > mostPopularCargoCount) {
 				mostPopularStagingIndustry = i;
 				mostPopularCargoCount = cargoCount;
@@ -156,7 +156,7 @@
 	// Next, try most popular industry in general?
 	Industry *mostPopularIndustry = nil;
 	for (Industry *i in allIndustries) {
-		int cargoCount = [[i originatingCargos] count] + [[i terminatingCargos] count];
+		NSInteger cargoCount = [[i originatingCargos] count] + [[i terminatingCargos] count];
 		if (!mostPopularStagingIndustry || cargoCount > mostPopularCargoCount) {
 			mostPopularStagingIndustry = i;
 			mostPopularCargoCount = cargoCount;
