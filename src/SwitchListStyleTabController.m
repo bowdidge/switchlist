@@ -31,7 +31,7 @@
 
 #import "SwitchListStyleTabController.h"
 
-#import "ClickcAtchingView.h"
+#import "ClickCatchingView.h"
 #import "GlobalPreferences.h"
 #import "HTMLSwitchlistRenderer.h"
 #import "NSFileManager+DirectoryLocations.h"
