@@ -39,19 +39,12 @@
 
 }
 
-// Searches the named layout for all the car types, and produces a default
-// dictionary of car types.
-+ (NSDictionary*) populateCarTypesFromLayout: (EntireLayout*) layout;
+// Returns a dictionary of common car types for new layouts.
++ (NSDictionary*) defaultCarTypes;
 
 // Searches all cars to guess at likely car lengths, and sets car lengths based
 // on those values.
 + (void) populateCarTypeLengthsFromLayout: (EntireLayout*) layout;
-
-// Returns the dictionary of car types that we provide in all cases.
-+ (NSDictionary*) stockCarTypes;
-
-// Returns the car type names only.
-+ (NSArray*) stockCarTypeArray;
 
 // Returns human-readable string describing the cars accepted by a train.
 // Uses human terms: "no car types", "all car types", "all but x".

@@ -44,37 +44,10 @@
 	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"AAAA 1111"];
 	[fc1 setCarTypeRel: nil];
 	
-	NSDictionary *stockCars = [CarTypes stockCarTypes];
-	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
+	NSDictionary *stockCars = [CarTypes defaultCarTypes];
 
 	XCTAssertTrue([CarTypes isValidCarType: @"Any"], @"MyType not considered valid ");
-	XCTAssertNil([carTypes objectForKey: @"Any"], @"New car type not found");
-	XCTAssertEqual([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
-}
-
-- (void) testCarType_DoNotAddExistingType {
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"AAAA 1111"];
-	[fc1 setCarTypeRel: [entireLayout_ carTypeForName: @"XM"]];
-	
-	NSDictionary *stockCars = [CarTypes stockCarTypes];
-	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-	
-	XCTAssertTrue([CarTypes isValidCarType: @"XM"], @"XM not considered valid type");
-	XCTAssertNotNil([carTypes objectForKey: @"XM"], @"New car type not found");
-	XCTAssertEqual([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
-}
-
-- (void) testCarType_TestInvalid {
-	NSString *carTypeToTest = @"Bad Spaces";
-	FreightCar *fc1 = [self makeFreightCarWithReportingMarks: @"AAAA 1111"];
-	[fc1 setCarTypeRel: nil];
-	
-	NSDictionary *stockCars = [CarTypes stockCarTypes];
-	NSDictionary *carTypes = [CarTypes populateCarTypesFromLayout: entireLayout_];
-	
-	XCTAssertFalse([CarTypes isValidCarType: carTypeToTest], @"Not supposed to be valid");
-	XCTAssertNil([carTypes objectForKey: carTypeToTest], @"New car type not found");
-	XCTAssertEqual([[stockCars allKeys] count], [carTypes count], @"Car type count not correct");
+	XCTAssertNil([stockCars objectForKey: @"Any"], @"New car type not found");
 }
 
 - (void) testCargoTextNoCarType {

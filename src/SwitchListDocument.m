@@ -208,6 +208,18 @@
 			[entireLayout_ setLayoutName: filename];
 		}
 	}
+    
+    // New layouts have no car types.  Add in a default set.
+    if ([[entireLayout_ allCarTypes] count] == 0) {
+        // No car types - set up default.
+        NSDictionary* defaultCarTypes = [CarTypes defaultCarTypes];
+        for (NSString *carTypeName in defaultCarTypes) {
+            CarType *carType = [NSEntityDescription insertNewObjectForEntityForName:@"CarType"
+                                                             inManagedObjectContext: [self managedObjectContext]];
+            [carType setCarTypeName: carTypeName];
+            [carType setCarTypeDescription: [currentlyUsedCarTypes objectForKey: carTypeName]];
+        }
+    }
 	
 	NSMutableDictionary *layoutPrefs = [entireLayout_ getPreferencesDictionary];
 	NSNumber *defaultLoadsNumber = [layoutPrefs objectForKey: LAYOUT_PREFS_DEFAULT_NUM_LOADS];

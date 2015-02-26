@@ -41,7 +41,7 @@
 @implementation CarTypes
 // Populates a dictionary of car types by analyzing the current layout to see what's
 // defined, and including some common and popular car types from the AAR classification.
-+ (NSDictionary*) populateCarTypesFromLayout: (EntireLayout*) layout {
++ (NSDictionary*) defaultCarTypes {
 	NSMutableDictionary *carTypes = [NSMutableDictionary dictionary];
 	
 	// Insert defaults.
@@ -103,16 +103,6 @@
     }
     
     return [NSMutableString stringWithFormat: @"All car types but %@", [nonCarTypeStrings componentsJoinedByString: @", "]];
-}
-
-// Returns the list of car types that we provide in all cases.
-+ (NSDictionary*) stockCarTypes {
-	return [CarTypes populateCarTypesFromLayout: nil];
-}
-
-// Returns the list of car types that we provide in all cases.
-+ (NSArray*) stockCarTypeArray {
-	return [[CarTypes populateCarTypesFromLayout: nil] allKeys];
 }
 
 // Determines if the car type is valid - basically alphanumeric with no whitespace.
