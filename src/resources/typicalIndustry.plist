@@ -3,7 +3,7 @@
       <key>IndustryClass</key><string>aircraft</string>
       <key>Synonyms</key>
       <array>
-        <string>hughes aircraft co inc </string>
+        <string>hughes aircraft co inc</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -25,8 +25,8 @@
         <string>Boeing</string>
         <string>aircraft plant</string>
         <string>Babb Co.</string>
-        <string>douglas aircraft co inc </string>
-        <string>hughes aircraft co inc </string>
+        <string>douglas aircraft co inc</string>
+        <string>hughes aircraft co inc</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -42,9 +42,9 @@
       <key>Synonyms</key>
       <array>
         <string>Reynolds Aluminum</string>
-        <string>reynolds metals co </string>
-        <string>aluminum co of amer </string>
-        <string>coast aluminum co </string>
+        <string>reynolds metals co</string>
+        <string>aluminum co of amer</string>
+        <string>coast aluminum co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -80,15 +80,15 @@
       <key>IndustryClass</key><string>asphalt</string>
       <key>Synonyms</key>
       <array>
-        <string>chevron usa </string>
-        <string>neste oil services, inc. </string>
-        <string>koch materials </string>
-        <string>united contracting </string>
+        <string>chevron usa</string>
+        <string>neste oil services, inc.</string>
+        <string>koch materials</string>
+        <string>united contracting</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Asphalt</string>
+          <key>Name</key><string>asphalt</string>
           <key>Incoming</key><true/>
           <key>Rate</key><integer>100</integer>
         </dict>
@@ -98,12 +98,12 @@
       <key>IndustryClass</key><string>asphalt plant</string>
       <key>Synonyms</key>
       <array>
-        <string>columbia bitulithic co ltd </string>
+        <string>columbia bitulithic co ltd</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> paving materials</string>
+          <key>Name</key><string>paving materials</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>100</integer>
         </dict>
@@ -113,27 +113,27 @@
       <key>IndustryClass</key><string>auto dealer</string>
       <key>Synonyms</key>
       <array>
-        <string>rex buick co </string>
-        <string>general motors products ltd </string>
-        <string>povey chevrolet co </string>
-        <string>gootee chevrolet co </string>
-        <string>lewis river motors (chevrolet) </string>
-        <string>neil motor co (ford) </string>
-        <string>foley chevrolet </string>
-        <string>mccoy auto co (pontiac  cadillac) </string>
-        <string>o'donnell bob co (nash-rambler) </string>
-        <string>pederson motors (dodge-plymouth) </string>
-        <string>her-tac auto sales (pac storage whse #3) </string>
+        <string>rex buick co</string>
+        <string>general motors products ltd</string>
+        <string>povey chevrolet co</string>
+        <string>gootee chevrolet co</string>
+        <string>lewis river motors (chevrolet)</string>
+        <string>neil motor co (ford)</string>
+        <string>foley chevrolet</string>
+        <string>mccoy auto co (pontiac  cadillac)</string>
+        <string>o'donnell bob co (nash-rambler)</string>
+        <string>pederson motors (dodge-plymouth)</string>
+        <string>her-tac auto sales (pac storage whse #3)</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> autos </string>
+          <key>Name</key><string>autos</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>90</integer>
         </dict>
         <dict>
-          <key>Name</key><string> trucks </string>
+          <key>Name</key><string>trucks</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>10</integer>
         </dict>
@@ -144,11 +144,11 @@
       <key>Synonyms</key>
       <array>
         <string>parts</string>
-        <string>delco electronics </string>
-        <string>g m corp </string>
+        <string>delco electronics</string>
+        <string>g m corp</string>
         <string>American Motors</string>
-        <string>grandy motors inc (ford dealer) </string>
-        <string>wolf auto supply co </string>
+        <string>grandy motors inc (ford dealer)</string>
+        <string>wolf auto supply co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -176,22 +176,22 @@
         <string>GM</string>
         <string>Volkswagen</string>
         <string>Chevy</string>
-        <string>ford motor co of canada </string>
-        <string>international harvestor co ltd </string>
+        <string>ford motor co of canada</string>
+        <string>international harvestor co ltd</string>
         <string>racks</string>
         <string>auto racks</string>
         <string>parts</string>
-        <string>canadian kenworth ltd </string>
+        <string>canadian kenworth ltd</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> auto parts</string>
+          <key>Name</key><string>auto parts</string>
           <key>Incoming</key><true/>
           <key>Rate</key><integer>20</integer>
         </dict>
         <dict>
-          <key>Name</key><string> machinery  </string>
+          <key>Name</key><string>machinery</string>
           <key>Incoming</key><true/>
           <key>Rate</key><integer>5</integer>
         </dict>
@@ -206,7 +206,7 @@
           <key>Rate</key><integer>40</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Trucks</string>
+          <key>Name</key><string>Trucks</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>10</integer>
         </dict>
@@ -225,9 +225,9 @@
         <string>bakeries</string>
         <string>baking</string>
         <string>bread</string>
-        <string>christie-brown  co ltd </string>
-        <string>phoenix bakery inc </string>
-        <string>rainbo baking co </string>
+        <string>christie-brown  co ltd</string>
+        <string>phoenix bakery inc</string>
+        <string>rainbo baking co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -248,16 +248,16 @@
         <string>Western Beverage</string>
         <string>8th Ave Beer Warehouse</string>
         <string>Beverage</string>
-        <string>canadian schenley ltd </string>
-        <string>hensley co (budweiser) </string>
-        <string>shamrock distributors </string>
-        <string>taylor bob distributing </string>
-        <string>western beer distributing </string>
-        <string>cascade distributing co </string>
-        <string>crown distributing co </string>
-        <string>evergreen beverage co </string>
-        <string>mansfield distributing co </string>
-        <string>national distributors inc </string>
+        <string>canadian schenley ltd</string>
+        <string>hensley co (budweiser)</string>
+        <string>shamrock distributors</string>
+        <string>taylor bob distributing</string>
+        <string>western beer distributing</string>
+        <string>cascade distributing co</string>
+        <string>crown distributing co</string>
+        <string>evergreen beverage co</string>
+        <string>mansfield distributing co</string>
+        <string>national distributors inc</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -285,11 +285,11 @@
         <string>Budweiser</string>
         <string>Coors</string>
         <string>beverage</string>
-        <string>molson's canadian brewery </string>
+        <string>molson's canadian brewery</string>
         <string>bottling</string>
-        <string>miller brewing co </string>
-        <string>lucky lager brewery </string>
-        <string>carling brewing co </string>
+        <string>miller brewing co</string>
+        <string>lucky lager brewery</string>
+        <string>carling brewing co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -304,7 +304,7 @@
           <key>Rate</key><integer>60</integer>
         </dict>
         <dict>
-          <key>Name</key><string> brewery</string>
+          <key>Name</key><string>brewery</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -317,9 +317,9 @@
         <string>cement</string>
         <string>concrete</string>
         <string>bldg matl</string>
-        <string>georgia pacific </string>
+        <string>georgia pacific</string>
         <string>stone</string>
-        <string>anaheim builders </string>
+        <string>anaheim builders</string>
         <string>building materials</string>
         <string>building supply</string>
         <string>concrete pipe</string>
@@ -327,78 +327,78 @@
         <string>Western Concrete Materials</string>
         <string>South Bay Materials</string>
         <string>Goodman Building Supply</string>
-        <string>rew materials </string>
-        <string>superlite builders supply co. </string>
-        <string>louia devry  son </string>
-        <string>san zavier rock  sand co </string>
-        <string>georgia pacific inc. </string>
-        <string>jenny bros </string>
-        <string>ward, h. r.,  co </string>
-        <string>down river forest products </string>
-        <string>western lumber  mfg </string>
-        <string>blurock concrete products co </string>
-        <string>pacific building materials </string>
-        <string>pacific building materials co </string>
-        <string>totem building supply co </string>
-        <string>vancouver building materials </string>
-        <string>western home improvement co </string>
-        <string>white block co </string>
-        <string>bartells e j co </string>
-        <string>certainteed products </string>
-        <string>concrete technology corp </string>
-        <string>gray co </string>
-        <string>johns manville corp </string>
-        <string>johnson a j  co </string>
-        <string>lundgren dealers supply </string>
-        <string>macdonald building co </string>
-        <string>northwest pipe  salvage </string>
-        <string>pabco </string>
-        <string>pacific forest industries </string>
+        <string>rew materials</string>
+        <string>superlite builders supply co.</string>
+        <string>louia devry  son</string>
+        <string>san zavier rock  sand co</string>
+        <string>georgia pacific inc.</string>
+        <string>jenny bros</string>
+        <string>ward, h. r.,  co</string>
+        <string>down river forest products</string>
+        <string>western lumber  mfg</string>
+        <string>blurock concrete products co</string>
+        <string>pacific building materials</string>
+        <string>pacific building materials co</string>
+        <string>totem building supply co</string>
+        <string>vancouver building materials</string>
+        <string>western home improvement co</string>
+        <string>white block co</string>
+        <string>bartells e j co</string>
+        <string>certainteed products</string>
+        <string>concrete technology corp</string>
+        <string>gray co</string>
+        <string>johns manville corp</string>
+        <string>johnson a j  co</string>
+        <string>lundgren dealers supply</string>
+        <string>macdonald building co</string>
+        <string>northwest pipe  salvage</string>
+        <string>pabco</string>
+        <string>pacific forest industries</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Brick</string>
+          <key>Name</key><string>Brick</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>20</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Concrete blocks</string>
+          <key>Name</key><string>Concrete blocks</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>20</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Fiberboard</string>
+          <key>Name</key><string>Fiberboard</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>20</integer>
         </dict>
         <dict>
-          <key>Name</key><string> concrete pipe</string>
+          <key>Name</key><string>concrete pipe</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>20</integer>
         </dict>
         <dict>
-          <key>Name</key><string> bldg supplies</string>
+          <key>Name</key><string>bldg supplies</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>20</integer>
         </dict>
         <dict>
-          <key>Name</key><string> roofing/lumber</string>
+          <key>Name</key><string>roofing/lumber</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> bldg materials</string>
+          <key>Name</key><string>bldg materials</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Roofing materials</string>
+          <key>Name</key><string>Roofing materials</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> whlse plumbing supplies</string>
+          <key>Name</key><string>whlse plumbing supplies</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -433,7 +433,7 @@
       <key>IndustryClass</key><string>cannery</string>
       <key>Synonyms</key>
       <array>
-        <string>libby mcneill  libby ltd </string>
+        <string>libby mcneill  libby ltd</string>
         <string>Di Fiore Canning Corporation</string>
         <string>Cal. Canners and Growers</string>
         <string>Concentrated Tomatoes Co</string>
@@ -462,11 +462,11 @@
         <string>California Cooperative Canneries</string>
         <string>California Fruit Canners Association</string>
         <string>California Packing Corporation</string>
-        <string>california packing corp </string>
-        <string>n bank canning </string>
-        <string>washington canners co-op </string>
-        <string>spokane valley cannery </string>
-        <string>washington food products </string>
+        <string>california packing corp</string>
+        <string>n bank canning</string>
+        <string>washington canners co-op</string>
+        <string>spokane valley cannery</string>
+        <string>washington food products</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -500,15 +500,15 @@
       <key>IndustryClass</key><string>cement plant</string>
       <key>Synonyms</key>
       <array>
-        <string>arizona portland cement co </string>
+        <string>arizona portland cement co</string>
         <string>Lehigh Cement</string>
         <string>Kaiser Cement</string>
         <string>Redi-Mix</string>
         <string>Phoenix Cement</string>
         <string>Superlite Builders Supply Co.</string>
-        <string>lafarge cement </string>
-        <string>mountain cement </string>
-        <string>pacific lime co </string>
+        <string>lafarge cement</string>
+        <string>mountain cement</string>
+        <string>pacific lime co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -523,7 +523,7 @@
           <key>Rate</key><integer>50</integer>
         </dict>
         <dict>
-          <key>Name</key><string> lime plant</string>
+          <key>Name</key><string>lime plant</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -533,7 +533,7 @@
       <key>IndustryClass</key><string>chemical plant</string>
       <key>Synonyms</key>
       <array>
-        <string>monsanto canada ltd (vancouver) </string>
+        <string>monsanto canada ltd (vancouver)</string>
         <string>Yosemite Chemical</string>
         <string>Stauffer Chemical</string>
         <string>Kaolin</string>
@@ -549,23 +549,23 @@
         <string>Alberta  Orient Glycol</string>
         <string>Union Carbide</string>
         <string>Hills Brothers Chemicals</string>
-        <string>general chemical </string>
-        <string>elf atochem north america </string>
-        <string>solvay minerals </string>
-        <string>o c i wyoming  </string>
-        <string>rhone poulenc of wyoming  </string>
-        <string>stauffer chemical  </string>
-        <string>tenneco minerals  </string>
-        <string>texas gulf soda </string>
-        <string>fmc chemicals </string>
-        <string>vulcan chemicals </string>
-        <string>coastal chemical </string>
-        <string>general chemical co div allied chem  dye </string>
-        <string>chemical process co </string>
-        <string>general chemical co </string>
-        <string>occidental chemical </string>
-        <string>philadelphia quartz </string>
-        <string>reichold chemical co </string>
+        <string>general chemical</string>
+        <string>elf atochem north america</string>
+        <string>solvay minerals</string>
+        <string>o c i wyoming</string>
+        <string>rhone poulenc of wyoming</string>
+        <string>stauffer chemical</string>
+        <string>tenneco minerals</string>
+        <string>texas gulf soda</string>
+        <string>fmc chemicals</string>
+        <string>vulcan chemicals</string>
+        <string>coastal chemical</string>
+        <string>general chemical co div allied chem  dye</string>
+        <string>chemical process co</string>
+        <string>general chemical co</string>
+        <string>occidental chemical</string>
+        <string>philadelphia quartz</string>
+        <string>reichold chemical co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -575,47 +575,47 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Sodium hydroxide</string>
+          <key>Name</key><string>Sodium hydroxide</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Sodium hydroxide, soda ash</string>
+          <key>Name</key><string>Sodium hydroxide, soda ash</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Soda ash</string>
+          <key>Name</key><string>Soda ash</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> sodium hydroxide, soda ash</string>
+          <key>Name</key><string>sodium hydroxide, soda ash</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Soda ash, phosphoric acid</string>
+          <key>Name</key><string>Soda ash, phosphoric acid</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Methyl-tertiary-butyl ether</string>
+          <key>Name</key><string>Methyl-tertiary-butyl ether</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Peroxide</string>
+          <key>Name</key><string>Peroxide</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> chemical mfg</string>
+          <key>Name</key><string>chemical mfg</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> chemicals</string>
+          <key>Name</key><string>chemicals</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -625,20 +625,20 @@
       <key>IndustryClass</key><string>chemical warehouse</string>
       <key>Synonyms</key>
       <array>
-        <string>borden chemical </string>
+        <string>borden chemical</string>
         <string>Carmona Chemical</string>
-        <string>hill brothers chemical </string>
-        <string>national magnesia chem </string>
-        <string>buffalo electro chemical co </string>
-        <string>dow chem </string>
-        <string>balfour guthrie co chem div </string>
-        <string>barthel chemical co </string>
-        <string>hooker chemical co </string>
+        <string>hill brothers chemical</string>
+        <string>national magnesia chem</string>
+        <string>buffalo electro chemical co</string>
+        <string>dow chem</string>
+        <string>balfour guthrie co chem div</string>
+        <string>barthel chemical co</string>
+        <string>hooker chemical co</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Urea, weed killer</string>
+          <key>Name</key><string>Urea, weed killer</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -648,7 +648,7 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Magnesium chloride</string>
+          <key>Name</key><string>Magnesium chloride</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -664,10 +664,16 @@
         <string>Rogers W H</string>
         <string>city lumber and supply</string>
         <string>western oil burner company</string>
-        <string>pacific coast coal co </string>
+        <string>pacific coast coal co</string>
+        <string>coal yard</string>
       </array>
       <key>Cargo</key>
       <array>
+        <dict>
+          <key>Name</key><string>coal</string>
+          <key>Incoming</key><true/>
+          <key>Rate</key><integer>100</integer>
+        </dict>
       </array>
     </dict>
     <dict>
@@ -680,13 +686,18 @@
         <string>coal tipple</string>
         <string>Audobon Fuel Co.</string>
         <string>coal</string>
-        <string>arch minerals seminoe ii mine </string>
-        <string>hanna mining co rag shoshone mine </string>
-        <string>rosebud coal co </string>
-        <string>fording coal </string>
+        <string>arch minerals seminoe ii mine</string>
+        <string>hanna mining co rag shoshone mine</string>
+        <string>rosebud coal co</string>
+        <string>fording coal</string>
       </array>
       <key>Cargo</key>
       <array>
+        <dict>
+          <key>Name</key><string>coal</string>
+          <key>Incoming</key><false/>
+          <key>Rate</key><integer>100</integer>
+        </dict>
       </array>
     </dict>
     <dict>
@@ -730,12 +741,12 @@
         <string>Americold</string>
         <string>Artic Cold Storage</string>
         <string>Union Cold Storage Co.</string>
-        <string>b c ice  cold storage ltd </string>
-        <string>vancouver ice  cold storage </string>
-        <string>wingard co </string>
-        <string>vancouver ice  cold storage </string>
-        <string>vancouver port lumber dock </string>
-        <string>pacific refrigeration co </string>
+        <string>b c ice  cold storage ltd</string>
+        <string>vancouver ice  cold storage</string>
+        <string>wingard co</string>
+        <string>vancouver ice  cold storage</string>
+        <string>vancouver port lumber dock</string>
+        <string>pacific refrigeration co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -750,12 +761,12 @@
           <key>Rate</key><integer>50</integer>
         </dict>
         <dict>
-          <key>Name</key><string> storage</string>
+          <key>Name</key><string>storage</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> storage plant</string>
+          <key>Name</key><string>storage plant</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -770,12 +781,12 @@
           <key>Rate</key><integer>50</integer>
         </dict>
         <dict>
-          <key>Name</key><string> refrigeration  </string>
+          <key>Name</key><string>refrigeration</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> ice  cold storage</string>
+          <key>Name</key><string>ice  cold storage</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -786,16 +797,16 @@
       <key>Synonyms</key>
       <array>
         <string>cement plant</string>
-        <string>sunbelt cement </string>
+        <string>sunbelt cement</string>
         <string>cement</string>
         <string>graniterock</string>
         <string>batch plant</string>
-        <string>ideal cement co </string>
+        <string>ideal cement co</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Cement</string>
+          <key>Name</key><string>Cement</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -805,10 +816,20 @@
       <key>IndustryClass</key><string>cotton</string>
       <key>Synonyms</key>
       <array>
-        <string>western cotton prods co </string>
+        <string>western cotton prods co</string>
       </array>
       <key>Cargo</key>
       <array>
+        <dict>
+          <key>Name</key><string>cotton</string>
+          <key>Incoming</key><true/>
+          <key>Rate</key><integer>30</integer>
+        </dict>
+        <dict>
+          <key>Name</key><string>fabric</string>
+          <key>Incoming</key><false/>
+          <key>Rate</key><integer>70</integer>
+        </dict>
       </array>
     </dict>
     <dict>
@@ -817,14 +838,14 @@
       <array>
         <string>J. G. Boswell</string>
         <string>Producers Cottonseed Oil</string>
-        <string>producers cotton oil co of arizona </string>
-        <string>western cotton prods co </string>
-        <string>producers gin co </string>
-        <string>western chef products co </string>
-        <string>consolidated dairy products </string>
-        <string>griffin-galbraith fuel oil service </string>
-        <string>industrial lumber products co </string>
-        <string>national oil co/national sales </string>
+        <string>producers cotton oil co of arizona</string>
+        <string>western cotton prods co</string>
+        <string>producers gin co</string>
+        <string>western chef products co</string>
+        <string>consolidated dairy products</string>
+        <string>griffin-galbraith fuel oil service</string>
+        <string>industrial lumber products co</string>
+        <string>national oil co/national sales</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -843,14 +864,14 @@
         <string>los banos dairy</string>
         <string>borden dairy</string>
         <string>carnation</string>
-        <string>delaval co ltd </string>
-        <string>early dawn dairy </string>
-        <string>flett dairy (lakeview team tr) </string>
+        <string>delaval co ltd</string>
+        <string>early dawn dairy</string>
+        <string>flett dairy (lakeview team tr)</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> dairy supplies</string>
+          <key>Name</key><string>dairy supplies</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -865,28 +886,28 @@
         <string>dock</string>
         <string>port</string>
         <string>quay</string>
-        <string>port of camas, washougal </string>
-        <string>port dock whse. nos. 1 and 2 </string>
-        <string>port lumber dock </string>
-        <string>port of vancouver </string>
-        <string>vancouver port dock whse. nos 1  2 </string>
-        <string>matson navigation co </string>
-        <string>port of tacoma </string>
+        <string>port of camas, washougal</string>
+        <string>port dock whse. nos. 1 and 2</string>
+        <string>port lumber dock</string>
+        <string>port of vancouver</string>
+        <string>vancouver port dock whse. nos 1  2</string>
+        <string>matson navigation co</string>
+        <string>port of tacoma</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Warehouse  dock</string>
+          <key>Name</key><string>Warehouse  dock</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> steamship line</string>
+          <key>Name</key><string>steamship line</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> public docks</string>
+          <key>Name</key><string>public docks</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -912,7 +933,7 @@
         <string>Castle Brothers Packing</string>
         <string>J. W. Chilton Fruit Packing</string>
         <string>Cupertino Fruit Co.</string>
-        <string>washington nut growers ass'n </string>
+        <string>washington nut growers ass'n</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -960,77 +981,82 @@
       </array>
       <key>Cargo</key>
       <array>
+        <dict>
+          <key>Name</key><string>Fuel oil</string>
+          <key>Incoming</key><true/>
+          <key>Rate</key><integer>100</integer>
+        </dict>
       </array>
     </dict>
     <dict>
       <key>IndustryClass</key><string>equipment dealer</string>
       <key>Synonyms</key>
       <array>
-        <string>geisler implement co </string>
+        <string>geisler implement co</string>
         <string>tractor</string>
         <string>tractors</string>
-        <string>b c equipment co ltd </string>
-        <string>b c tractor  equipment ltd </string>
-        <string>bingham equipment co </string>
-        <string>commonwealth construction co </string>
-        <string>finning tractor  equipment co </string>
-        <string>gordon russell ltd </string>
-        <string>massey-harris co ltd </string>
-        <string>mine  equipment </string>
-        <string>national machinery co ltd </string>
-        <string>railway  power engineering co ltd </string>
-        <string>vancouver equipment corp ltd </string>
-        <string>williams a r machinery ltd </string>
-        <string>davidson, seth, sales  service </string>
-        <string>bergreen equipment co </string>
-        <string>bower truck service </string>
-        <string>elsener farm tool </string>
-        <string>western equipment co </string>
-        <string>yardley equipment co  </string>
-        <string>agricultural dealers supply </string>
-        <string>bens truck parts </string>
-        <string>gerrish machinery co </string>
-        <string>hudson machinery co </string>
-        <string>king construction co </string>
-        <string>lamken machinery </string>
-        <string>mcpherson furnace  equipment co </string>
-        <string>myers sales co </string>
-        <string>sabre craft boat </string>
+        <string>b c equipment co ltd</string>
+        <string>b c tractor  equipment ltd</string>
+        <string>bingham equipment co</string>
+        <string>commonwealth construction co</string>
+        <string>finning tractor  equipment co</string>
+        <string>gordon russell ltd</string>
+        <string>massey-harris co ltd</string>
+        <string>mine  equipment</string>
+        <string>national machinery co ltd</string>
+        <string>railway  power engineering co ltd</string>
+        <string>vancouver equipment corp ltd</string>
+        <string>williams a r machinery ltd</string>
+        <string>davidson, seth, sales  service</string>
+        <string>bergreen equipment co</string>
+        <string>bower truck service</string>
+        <string>elsener farm tool</string>
+        <string>western equipment co</string>
+        <string>yardley equipment co</string>
+        <string>agricultural dealers supply</string>
+        <string>bens truck parts</string>
+        <string>gerrish machinery co</string>
+        <string>hudson machinery co</string>
+        <string>king construction co</string>
+        <string>lamken machinery</string>
+        <string>mcpherson furnace  equipment co</string>
+        <string>myers sales co</string>
+        <string>sabre craft boat</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> farm implements</string>
+          <key>Name</key><string>farm implements</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> machinery/tractors</string>
+          <key>Name</key><string>machinery/tractors</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> machinery</string>
+          <key>Name</key><string>machinery</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Farm equipment</string>
+          <key>Name</key><string>Farm equipment</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> farm machinery </string>
+          <key>Name</key><string>farm machinery</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> garden supplies</string>
+          <key>Name</key><string>garden supplies</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> boats</string>
+          <key>Name</key><string>boats</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1045,30 +1071,40 @@
       </array>
       <key>Cargo</key>
       <array>
+        <dict>
+          <key>Name</key><string>steel</string>
+          <key>Incoming</key><true/>
+          <key>Rate</key><integer>30</integer>
+        </dict>
+        <dict>
+          <key>Name</key><string>farm machinery</string>
+          <key>Incoming</key><false/>
+          <key>Rate</key><integer>70</integer>
+        </dict>
       </array>
     </dict>
     <dict>
       <key>IndustryClass</key><string>farm</string>
       <key>Synonyms</key>
       <array>
-        <string>palomar ranch </string>
-        <string>blue mtn grain growers </string>
-        <string>karr orchards </string>
+        <string>palomar ranch</string>
+        <string>blue mtn grain growers</string>
+        <string>karr orchards</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Wheat</string>
+          <key>Name</key><string>Wheat</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> grain</string>
+          <key>Name</key><string>grain</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Apples</string>
+          <key>Name</key><string>Apples</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1082,35 +1118,35 @@
         <string>Ralston Purina</string>
         <string>Southwest Flour and Feed Co</string>
         <string>feed</string>
-        <string>vera feed  seed </string>
-        <string>lewis feed  seed </string>
-        <string>lewis pacific dairy men's assn </string>
-        <string>winlock farms </string>
-        <string>ralston purina </string>
-        <string>western farmers assn </string>
-        <string>washington co-op </string>
-        <string>x-cell feed inc </string>
-        <string>white river feed </string>
-        <string>clark county feed co </string>
-        <string>columbia farmers supply assn </string>
-        <string>columbia feed  fuel co </string>
-        <string>vera feed  seed </string>
-        <string>ferndale grain </string>
+        <string>vera feed  seed</string>
+        <string>lewis feed  seed</string>
+        <string>lewis pacific dairy men's assn</string>
+        <string>winlock farms</string>
+        <string>ralston purina</string>
+        <string>western farmers assn</string>
+        <string>washington co-op</string>
+        <string>x-cell feed inc</string>
+        <string>white river feed</string>
+        <string>clark county feed co</string>
+        <string>columbia farmers supply assn</string>
+        <string>columbia feed  fuel co</string>
+        <string>vera feed  seed</string>
+        <string>ferndale grain</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> feed  </string>
+          <key>Name</key><string>feed</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> feed/grain</string>
+          <key>Name</key><string>feed/grain</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Barley, corn, soybeans</string>
+          <key>Name</key><string>Barley, corn, soybeans</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1123,12 +1159,12 @@
         <string>Conagra Fertilizer</string>
         <string>Sherridan Fertilizer</string>
         <string>Arizona Fertilizers</string>
-        <string>fertilizer company of arizona </string>
-        <string>northwest chem co </string>
-        <string>northwest chemical co </string>
-        <string>rutter r l co </string>
-        <string>simplot j r </string>
-        <string>nulife fertilizer </string>
+        <string>fertilizer company of arizona</string>
+        <string>northwest chem co</string>
+        <string>northwest chemical co</string>
+        <string>rutter r l co</string>
+        <string>simplot j r</string>
+        <string>nulife fertilizer</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -1138,12 +1174,12 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Anhydrous ammonia</string>
+          <key>Name</key><string>Anhydrous ammonia</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Anhydrous Ammonia</string>
+          <key>Name</key><string>Anhydrous Ammonia</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1153,13 +1189,13 @@
       <key>IndustryClass</key><string>fertilizer distributor</string>
       <key>Synonyms</key>
       <array>
-        <string>western growers chemical </string>
-        <string>blue mtn grain growers </string>
+        <string>western growers chemical</string>
+        <string>blue mtn grain growers</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Nitrogen fertilizer solution</string>
+          <key>Name</key><string>Nitrogen fertilizer solution</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1169,18 +1205,18 @@
       <key>IndustryClass</key><string>fertilizer plant</string>
       <key>Synonyms</key>
       <array>
-        <string>chevron usa </string>
-        <string>s f phosphates </string>
+        <string>chevron usa</string>
+        <string>s f phosphates</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Fertilizer</string>
+          <key>Name</key><string>Fertilizer</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Sulfuric acid</string>
+          <key>Name</key><string>Sulfuric acid</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1190,13 +1226,13 @@
       <key>IndustryClass</key><string>fish cannery</string>
       <key>Synonyms</key>
       <array>
-        <string>fishermans coop federation </string>
-        <string>sea foods ltd </string>
+        <string>fishermans coop federation</string>
+        <string>sea foods ltd</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> fish </string>
+          <key>Name</key><string>fish</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1214,14 +1250,14 @@
         <string>Pepsi</string>
         <string>Coca Cola</string>
         <string>Kellogg's</string>
-        <string>dr ballards animal food products </string>
-        <string>m c p foods </string>
-        <string>washington mountain cheese co </string>
-        <string>canada dry corp </string>
-        <string>hamilton candy co </string>
-        <string>hygrade food products </string>
-        <string>nalleys inc   </string>
-        <string>roman meal co </string>
+        <string>dr ballards animal food products</string>
+        <string>m c p foods</string>
+        <string>washington mountain cheese co</string>
+        <string>canada dry corp</string>
+        <string>hamilton candy co</string>
+        <string>hygrade food products</string>
+        <string>nalleys inc</string>
+        <string>roman meal co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -1231,22 +1267,17 @@
           <key>Rate</key><integer>20</integer>
         </dict>
         <dict>
-          <key>Name</key><string>foodstuffs</string>
+          <key>Name</key><string>frozen food</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>80</integer>
         </dict>
-        <dict>
-          <key>Name</key><string> Cheese factory</string>
+	<dict>
+          <key>Name</key><string>breakfast cereal</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
-        <dict>
-          <key>Name</key><string> food mfrs</string>
-          <key>Incoming</key><false/>
-          <key>Rate</key><integer>0</integer>
-        </dict>
-        <dict>
-          <key>Name</key><string> cereal mfg</string>
+	<dict>
+          <key>Name</key><string>potatoes</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1258,21 +1289,21 @@
       <array>
         <string>foundry</string>
         <string>Capitol Foundry</string>
-        <string>anaheim fdy </string>
-        <string>vancouver iron  steel foundry </string>
-        <string>acme foundry co </string>
-        <string>atlas foundry  machine co </string>
-        <string>griffin wheel co </string>
+        <string>anaheim fdy</string>
+        <string>vancouver iron  steel foundry</string>
+        <string>acme foundry co</string>
+        <string>atlas foundry  machine co</string>
+        <string>griffin wheel co</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Petr coke</string>
+          <key>Name</key><string>Petr coke</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> foundry</string>
+          <key>Name</key><string>foundry</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1286,20 +1317,20 @@
         <string>Star Forwarder</string>
         <string>REA</string>
         <string>LCL</string>
-        <string>interline forwarders ltd </string>
-        <string>transcontinental storage  distributing </string>
+        <string>interline forwarders ltd</string>
+        <string>transcontinental storage  distributing</string>
         <string>transload</string>
-        <string>washington-oregon shippers co-op </string>
-        <string>vancouver fast freight </string>
-        <string>acme fast freight </string>
-        <string>clipper carloading </string>
-        <string>coast carloading co </string>
-        <string>international forwarding </string>
-        <string>mccormack distributing co </string>
-        <string>pacific  atlantic shippers </string>
-        <string>pacific storage  distributing </string>
-        <string>panda terminals </string>
-        <string>republic carloading co </string>
+        <string>washington-oregon shippers co-op</string>
+        <string>vancouver fast freight</string>
+        <string>acme fast freight</string>
+        <string>clipper carloading</string>
+        <string>coast carloading co</string>
+        <string>international forwarding</string>
+        <string>mccormack distributing co</string>
+        <string>pacific  atlantic shippers</string>
+        <string>pacific storage  distributing</string>
+        <string>panda terminals</string>
+        <string>republic carloading co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -1314,12 +1345,12 @@
           <key>Rate</key><integer>50</integer>
         </dict>
         <dict>
-          <key>Name</key><string> freight forwarder</string>
+          <key>Name</key><string>freight forwarder</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> storage/transfer/distributing</string>
+          <key>Name</key><string>storage/transfer/distributing</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1330,7 +1361,7 @@
       <key>Synonyms</key>
       <array>
         <string>freighthouse</string>
-        <string> goods depot</string>
+        <string>goods depot</string>
         <string>freight depot</string>
         <string>railway express</string>
         <string>parcels</string>
@@ -1358,23 +1389,23 @@
         <string>Sunkist Packing</string>
         <string>Sunkist</string>
         <string>Citrus</string>
-        <string>william bolthouse farms </string>
-        <string>anaheim orange  lemon growers' assn </string>
+        <string>william bolthouse farms</string>
+        <string>anaheim orange  lemon growers' assn</string>
         <string>Santa Clara Produce Co.</string>
-        <string>pacific fruit </string>
-        <string>valley fruit </string>
-        <string>columbia fruit distributors </string>
-        <string>skookum packers association </string>
-        <string>perham fruit corp </string>
-        <string>pyramid orchards </string>
-        <string>grand forks co-op growers exchange </string>
-        <string>grand forks potato growers assn </string>
-        <string>underwood fruit  warehouse co </string>
-        <string>western fruit distributors </string>
-        <string>p s vegetable growers </string>
-        <string>sumner rhubarb </string>
-        <string>balfour guthrie co </string>
-        <string>gro-pac inc </string>
+        <string>pacific fruit</string>
+        <string>valley fruit</string>
+        <string>columbia fruit distributors</string>
+        <string>skookum packers association</string>
+        <string>perham fruit corp</string>
+        <string>pyramid orchards</string>
+        <string>grand forks co-op growers exchange</string>
+        <string>grand forks potato growers assn</string>
+        <string>underwood fruit  warehouse co</string>
+        <string>western fruit distributors</string>
+        <string>p s vegetable growers</string>
+        <string>sumner rhubarb</string>
+        <string>balfour guthrie co</string>
+        <string>gro-pac inc</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -1384,32 +1415,32 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> fresh fruit, veg</string>
+          <key>Name</key><string>fresh fruit, veg</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Apples</string>
+          <key>Name</key><string>Apples</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Produce</string>
+          <key>Name</key><string>Produce</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> vegetables</string>
+          <key>Name</key><string>vegetables</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> rhubarb</string>
+          <key>Name</key><string>rhubarb</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> glue plant</string>
+          <key>Name</key><string>glue plant</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1419,16 +1450,16 @@
       <key>IndustryClass</key><string>frozen food plant</string>
       <key>Synonyms</key>
       <array>
-        <string>kelley farquhar </string>
-        <string>empress foods </string>
+        <string>kelley farquhar</string>
+        <string>empress foods</string>
         <string>Alpine Frozen Foods</string>
         <string>Birdseye</string>
-        <string>twin cities foods </string>
+        <string>twin cities foods</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Pies, fz</string>
+          <key>Name</key><string>Pies, fz</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1454,12 +1485,12 @@
       <key>IndustryClass</key><string>fruit warehouse</string>
       <key>Synonyms</key>
       <array>
-        <string>united fruit ltd </string>
+        <string>united fruit ltd</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> produce</string>
+          <key>Name</key><string>produce</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1469,30 +1500,30 @@
       <key>IndustryClass</key><string>furniture maker</string>
       <key>Synonyms</key>
       <array>
-        <string>flynn furniture </string>
-        <string>vancouver furniture co </string>
-        <string>nachman spring co </string>
-        <string>velte home furnishing co </string>
-        <string>northwest chair co </string>
-        <string>northwest door co </string>
+        <string>flynn furniture</string>
+        <string>vancouver furniture co</string>
+        <string>nachman spring co</string>
+        <string>velte home furnishing co</string>
+        <string>northwest chair co</string>
+        <string>northwest door co</string>
         <string>simmons furn couch mattress</string>
-        <string>riback furniture co </string>
+        <string>riback furniture co</string>
         <string>church interior</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> chair mfrs</string>
+          <key>Name</key><string>chair mfrs</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> doors/plywood</string>
+          <key>Name</key><string>doors/plywood</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> mattress mfrs</string>
+          <key>Name</key><string>mattress mfrs</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1514,45 +1545,45 @@
         <string>DePue Warehouse Co</string>
         <string>Haslett Warehouse Co</string>
         <string>Terminal</string>
-        <string>western ag-chem </string>
-        <string>builders emporium </string>
-        <string>city freight lines </string>
-        <string>design dispatch </string>
-        <string>general electric </string>
-        <string>hitachi sales </string>
-        <string>homestead house </string>
-        <string>montgomery ward  co </string>
+        <string>western ag-chem</string>
+        <string>builders emporium</string>
+        <string>city freight lines</string>
+        <string>design dispatch</string>
+        <string>general electric</string>
+        <string>hitachi sales</string>
+        <string>homestead house</string>
+        <string>montgomery ward  co</string>
         <string>warehouse</string>
-        <string>washtucna grange supply co </string>
-        <string>western farmers assn </string>
-        <string>ben a thomas inc </string>
-        <string>warren soule fairhurst co </string>
-        <string>west chas d co </string>
-        <string>western management corp </string>
-        <string>wolf f c  son </string>
-        <string>bureau of public roads </string>
-        <string>carborundum co </string>
-        <string>fendrick's home furn  appl </string>
-        <string>montgomery ward  co </string>
-        <string>portco </string>
-        <string>scott  son, j. t </string>
-        <string>washington coop farmers ass'n </string>
-        <string>inland empire dist systems </string>
-        <string>rena ware distributors </string>
-        <string>westinghouse electric supply co </string>
-        <string>wm volker  co </string>
-        <string>young, l. a., spring  wire co </string>
-        <string>adams rex f co </string>
-        <string>architectural woods inc </string>
-        <string>bunker j e co </string>
-        <string>general insulation co </string>
-        <string>gravell co </string>
-        <string>hull e l co (lakeview team trk) </string>
-        <string>northwestern drug co tacoma division </string>
-        <string>patrick co </string>
-        <string>sears roebuck  co </string>
-        <string>service tobacco co </string>
-        <string>shaub elison co </string>
+        <string>washtucna grange supply co</string>
+        <string>western farmers assn</string>
+        <string>ben a thomas inc</string>
+        <string>warren soule fairhurst co</string>
+        <string>west chas d co</string>
+        <string>western management corp</string>
+        <string>wolf f c  son</string>
+        <string>bureau of public roads</string>
+        <string>carborundum co</string>
+        <string>fendrick's home furn  appl</string>
+        <string>montgomery ward  co</string>
+        <string>portco</string>
+        <string>scott  son, j. t</string>
+        <string>washington coop farmers ass'n</string>
+        <string>inland empire dist systems</string>
+        <string>rena ware distributors</string>
+        <string>westinghouse electric supply co</string>
+        <string>wm volker  co</string>
+        <string>young, l. a., spring  wire co</string>
+        <string>adams rex f co</string>
+        <string>architectural woods inc</string>
+        <string>bunker j e co</string>
+        <string>general insulation co</string>
+        <string>gravell co</string>
+        <string>hull e l co (lakeview team trk)</string>
+        <string>northwestern drug co tacoma division</string>
+        <string>patrick co</string>
+        <string>sears roebuck  co</string>
+        <string>service tobacco co</string>
+        <string>shaub elison co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -1562,122 +1593,107 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> livestock/logging/poles</string>
+          <key>Name</key><string>livestock/logging/poles</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> whlse dry goods</string>
+          <key>Name</key><string>whlse dry goods</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> insulation  paint jobbers</string>
+          <key>Name</key><string>insulation  paint jobbers</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> storage</string>
+          <key>Name</key><string>storage</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> jobbers</string>
+          <key>Name</key><string>jobbers</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Govt. equipment</string>
+          <key>Name</key><string>govt. equipment</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Abrasives</string>
+          <key>Name</key><string>abrasives</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> furniture/appliances</string>
+          <key>Name</key><string>furniture/appliances</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> furnishings</string>
+          <key>Name</key><string>furnishings</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> paper/bags/twine</string>
+          <key>Name</key><string>paper/bags/twine</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> furniture  </string>
+          <key>Name</key><string>furniture</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Warehouse</string>
+          <key>Name</key><string>rugs</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Salt</string>
+          <key>Name</key><string>wire</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> rugs</string>
+          <key>Name</key><string>hardwood</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Wire</string>
+          <key>Name</key><string>plywood sales</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> hardwood  </string>
+          <key>Name</key><string>whlse drugs</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> bicycle jobbers</string>
+          <key>Name</key><string>restaurant supplies</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> plywood sales</string>
+          <key>Name</key><string>transportation</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> whlse drugs</string>
+          <key>Name</key><string>merchandise</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> restraurant supplies</string>
+          <key>Name</key><string>tobacco</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> transportation</string>
-          <key>Incoming</key><false/>
-          <key>Rate</key><integer>0</integer>
-        </dict>
-        <dict>
-          <key>Name</key><string> merchandise</string>
-          <key>Incoming</key><false/>
-          <key>Rate</key><integer>0</integer>
-        </dict>
-        <dict>
-          <key>Name</key><string> whlse tobacco</string>
-          <key>Incoming</key><false/>
-          <key>Rate</key><integer>0</integer>
-        </dict>
-        <dict>
-          <key>Name</key><string> tires </string>
+          <key>Name</key><string>tires</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1687,12 +1703,12 @@
       <key>IndustryClass</key><string>glass plant</string>
       <key>Synonyms</key>
       <array>
-        <string>pilkington glass co ltd </string>
+        <string>pilkington glass co ltd</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> glass</string>
+          <key>Name</key><string>glass</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1710,14 +1726,14 @@
         <string>arthur daniels midland</string>
         <string>Feed and Grain</string>
         <string>Milling</string>
-        <string>washtucna grain growers inc </string>
-        <string>ferndale grain </string>
-        <string>baker-langdon grain </string>
-        <string>colfax grain growers </string>
-        <string>archer-daniels-midland co </string>
-        <string>sanders john </string>
-        <string>archer-daniels-midland </string>
-        <string>continental grain (export elevator) </string>
+        <string>washtucna grain growers inc</string>
+        <string>ferndale grain</string>
+        <string>baker-langdon grain</string>
+        <string>colfax grain growers</string>
+        <string>archer-daniels-midland co</string>
+        <string>sanders john</string>
+        <string>archer-daniels-midland</string>
+        <string>continental grain (export elevator)</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -1727,12 +1743,7 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Grain elevator</string>
-          <key>Incoming</key><false/>
-          <key>Rate</key><integer>0</integer>
-        </dict>
-        <dict>
-          <key>Name</key><string> Whse., grain, sacked</string>
+          <key>Name</key><string>sacked grain</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1745,45 +1756,45 @@
         <string>flour mill</string>
         <string>malt</string>
         <string>malting</string>
-        <string>quaker oats co ltd </string>
-        <string>united milling  grain co ltd </string>
-        <string>bay state milling </string>
-        <string>parris hunt  behrens </string>
-        <string>united harvest </string>
-        <string>albers milling co </string>
-        <string>fisher flour mills </string>
-        <string>gee h d </string>
-        <string>general mills sperry division </string>
+        <string>quaker oats co ltd</string>
+        <string>united milling  grain co ltd</string>
+        <string>bay state milling</string>
+        <string>parris hunt  behrens</string>
+        <string>united harvest</string>
+        <string>albers milling co</string>
+        <string>fisher flour mills</string>
+        <string>gee h d</string>
+        <string>general mills sperry division</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> cereals</string>
+          <key>Name</key><string>cereals</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> grain products</string>
+          <key>Name</key><string>grain products</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Oats</string>
+          <key>Name</key><string>Oats</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Malt</string>
+          <key>Name</key><string>malt</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> grain storage</string>
+          <key>Name</key><string>grain storage</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> flour mill</string>
+          <key>Name</key><string>flour mill</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1799,15 +1810,15 @@
         <string>Piggly Wiggly</string>
         <string>M.J.B. Coffee</string>
         <string>Julliard Fancy Foods</string>
-        <string>north american distributors </string>
-        <string>paulin chambers </string>
-        <string>swartz brothers </string>
-        <string>del monte corp </string>
-        <string>general foods </string>
-        <string>williams brothers </string>
-        <string>food sales co </string>
-        <string>jones pratt co </string>
-        <string>pacific sales co </string>
+        <string>north american distributors</string>
+        <string>paulin chambers</string>
+        <string>swartz brothers</string>
+        <string>del monte corp</string>
+        <string>general foods</string>
+        <string>williams brothers</string>
+        <string>food sales co</string>
+        <string>jones pratt co</string>
+        <string>pacific sales co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -1817,27 +1828,17 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Cereal, cd food, desserts pkgd, dog food</string>
+          <key>Name</key><string>cereal</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> FEED GRAIN, FOOD PROD, PAPER PROD</string>
+          <key>Name</key><string>dog food</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> grocers</string>
-          <key>Incoming</key><false/>
-          <key>Rate</key><integer>0</integer>
-        </dict>
-        <dict>
-          <key>Name</key><string> food distributor</string>
-          <key>Incoming</key><false/>
-          <key>Rate</key><integer>0</integer>
-        </dict>
-        <dict>
-          <key>Name</key><string> whlse grocery</string>
+          <key>Name</key><string>canned fruit</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1851,11 +1852,11 @@
         <string>State Battery Inc.</string>
         <string>Baker  Hamilton</string>
         <string>Philco Distributors</string>
-        <string>washington hardware co </string>
-        <string>sparks hardware co </string>
-        <string>american plumbing  steam supply </string>
-        <string>architectural hardware </string>
-        <string>mueller brass co </string>
+        <string>washington hardware co</string>
+        <string>sparks hardware co</string>
+        <string>american plumbing  steam supply</string>
+        <string>architectural hardware</string>
+        <string>mueller brass co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -1865,17 +1866,17 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> plumbing supplies</string>
+          <key>Name</key><string>plumbing supplies</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> whlse fittings</string>
+          <key>Name</key><string>whlse fittings</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> whlse plumbing supplies</string>
+          <key>Name</key><string>whlse plumbing supplies</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1895,7 +1896,7 @@
       <key>Synonyms</key>
       <array>
         <string>Liquid Carbonic</string>
-        <string>dominion oxygen co </string>
+        <string>dominion oxygen co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -1905,7 +1906,7 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Carbon dioxide</string>
+          <key>Name</key><string>Carbon dioxide</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -1940,7 +1941,7 @@
         <string>logging</string>
         <string>logs</string>
         <string>catheys valley lumber mill</string>
-        <string>louisiana pacific </string>
+        <string>louisiana pacific</string>
         <string>Santa Clara Mill and Lumber</string>
         <string>Boise Cascade</string>
         <string>sawmill</string>
@@ -1954,50 +1955,50 @@
         <string>Continental Forest Prod</string>
         <string>Forest Plywood</string>
         <string>Cooley Forest Products</string>
-        <string>nagel lumber  timber co </string>
-        <string>winslow timber co </string>
-        <string>crestbrook forest industries </string>
-        <string>continental forest prod </string>
-        <string>riverside forest products </string>
-        <string>evans forest products ltd. </string>
-        <string>dunkley lbr co </string>
-        <string>pacific forest </string>
-        <string>boise cascade </string>
-        <string>shakertown corp </string>
-        <string>weldwood canada </string>
-        <string>canadian western lumber co ltd </string>
-        <string>ymir valley forest prod </string>
-        <string>grand forks sawmills ltd </string>
-        <string>tomlin lumber co </string>
-        <string>western forest products  </string>
-        <string>northwood mills </string>
-        <string>clark county lumber co </string>
-        <string>dreifus e h lumber co </string>
-        <string>dubois-matlack lumber co </string>
-        <string>evans prod co </string>
-        <string>fir specialties </string>
-        <string>mercer lumber co </string>
-        <string>stebco, inc </string>
-        <string>potlatch corp </string>
-        <string>rainy river forest prod </string>
-        <string>western cedar pole preservers inc </string>
-        <string>western pine mfg. co </string>
-        <string>hegewald lumber co </string>
-        <string>stevenson lumber co </string>
-        <string>stevenson plywood co </string>
-        <string>pacific lumber agency </string>
-        <string>cascade pole co </string>
-        <string>dickman lumber co </string>
-        <string>export pacific co </string>
-        <string>hammerschmith lumber co </string>
-        <string>hansen mill co </string>
-        <string>leybold smith shingle co </string>
-        <string>lianga pacific inc </string>
-        <string>lyle d w co </string>
-        <string>milwaukee boom co </string>
-        <string>mutual fir column co </string>
-        <string>pacific highway transport </string>
-        <string>st paul  tacoma lumber co </string>
+        <string>nagel lumber  timber co</string>
+        <string>winslow timber co</string>
+        <string>crestbrook forest industries</string>
+        <string>continental forest prod</string>
+        <string>riverside forest products</string>
+        <string>evans forest products ltd.</string>
+        <string>dunkley lbr co</string>
+        <string>pacific forest</string>
+        <string>boise cascade</string>
+        <string>shakertown corp</string>
+        <string>weldwood canada</string>
+        <string>canadian western lumber co ltd</string>
+        <string>ymir valley forest prod</string>
+        <string>grand forks sawmills ltd</string>
+        <string>tomlin lumber co</string>
+        <string>western forest products</string>
+        <string>northwood mills</string>
+        <string>clark county lumber co</string>
+        <string>dreifus e h lumber co</string>
+        <string>dubois-matlack lumber co</string>
+        <string>evans prod co</string>
+        <string>fir specialties</string>
+        <string>mercer lumber co</string>
+        <string>stebco, inc</string>
+        <string>potlatch corp</string>
+        <string>rainy river forest prod</string>
+        <string>western cedar pole preservers inc</string>
+        <string>western pine mfg. co</string>
+        <string>hegewald lumber co</string>
+        <string>stevenson lumber co</string>
+        <string>stevenson plywood co</string>
+        <string>pacific lumber agency</string>
+        <string>cascade pole co</string>
+        <string>dickman lumber co</string>
+        <string>export pacific co</string>
+        <string>hammerschmith lumber co</string>
+        <string>hansen mill co</string>
+        <string>leybold smith shingle co</string>
+        <string>lianga pacific inc</string>
+        <string>lyle d w co</string>
+        <string>milwaukee boom co</string>
+        <string>mutual fir column co</string>
+        <string>pacific highway transport</string>
+        <string>st paul  tacoma lumber co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2017,12 +2018,12 @@
           <key>Rate</key><integer>3</integer>
         </dict>
         <dict>
-          <key>Name</key><string> shingles/shakes</string>
+          <key>Name</key><string>shingles/shakes</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> logs</string>
+          <key>Name</key><string>logs</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>2</integer>
         </dict>
@@ -2064,31 +2065,31 @@
         <string>Miller Wholesale Lumber</string>
         <string>Terry Lumber</string>
         <string>McCalla Lumber</string>
-        <string>foxworth mccalla lumber </string>
-        <string>mallco lumber </string>
-        <string>thorn wood </string>
-        <string>weyerhaeuser </string>
-        <string>cooley wholesale lumber </string>
-        <string>furman lumber </string>
-        <string>the pas lumber </string>
-        <string>western plywoods </string>
-        <string>foxworth - mccalla lumber </string>
-        <string>liberty lumber </string>
-        <string>hemphill o'neill lumber co </string>
-        <string>washougal lumber co </string>
-        <string>boise cascade </string>
-        <string>woodland tie co </string>
-        <string>acker lumber co </string>
-        <string>ballmill lumber sales co </string>
-        <string>copeland lumber co </string>
-        <string>foster-linscott lumber co </string>
-        <string>webster lumber co </string>
-        <string>bare fuel co </string>
-        <string>beck lumber co (tacoma team track) </string>
-        <string>cavanaugh lumber co </string>
-        <string>cheney lumber co inc </string>
-        <string>general hardwood co </string>
-        <string>georgia-pacific plywood co </string>
+        <string>foxworth mccalla lumber</string>
+        <string>mallco lumber</string>
+        <string>thorn wood</string>
+        <string>weyerhaeuser</string>
+        <string>cooley wholesale lumber</string>
+        <string>furman lumber</string>
+        <string>the pas lumber</string>
+        <string>western plywoods</string>
+        <string>foxworth - mccalla lumber</string>
+        <string>liberty lumber</string>
+        <string>hemphill o'neill lumber co</string>
+        <string>washougal lumber co</string>
+        <string>boise cascade</string>
+        <string>woodland tie co</string>
+        <string>acker lumber co</string>
+        <string>ballmill lumber sales co</string>
+        <string>copeland lumber co</string>
+        <string>foster-linscott lumber co</string>
+        <string>webster lumber co</string>
+        <string>bare fuel co</string>
+        <string>beck lumber co (tacoma team track)</string>
+        <string>cavanaugh lumber co</string>
+        <string>cheney lumber co inc</string>
+        <string>general hardwood co</string>
+        <string>georgia-pacific plywood co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2098,27 +2099,27 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Lumber</string>
+          <key>Name</key><string>Lumber</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Forest products</string>
+          <key>Name</key><string>Forest products</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> lumber/ties</string>
+          <key>Name</key><string>lumber/ties</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> lumber/bldg supplies</string>
+          <key>Name</key><string>lumber/bldg supplies</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> millwork</string>
+          <key>Name</key><string>millwork</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2145,56 +2146,56 @@
         <string>American Woodworks</string>
         <string>Dana Corp.</string>
         <string>Palmer Manufacturing</string>
-        <string>essex group </string>
-        <string>international metal products co </string>
-        <string>palmer manufacturing co </string>
-        <string>southwestern sash  door </string>
-        <string>wright mfg co </string>
-        <string>structures group southwest </string>
-        <string>royal mfg co </string>
-        <string>harborlite corp. </string>
-        <string>trus joist macmillan </string>
-        <string>willis mfg co </string>
-        <string>jeld wen inc </string>
-        <string>amoco foam products </string>
-        <string>dresser ind inc </string>
-        <string>western star corp </string>
-        <string>washington wood parts inc </string>
-        <string>western boatbuilding (plant #1) </string>
-        <string>woodlam inc </string>
-        <string>alcoa  </string>
-        <string>carlson planing mill </string>
-        <string>columbia machine works </string>
-        <string>columbia oil  burner </string>
-        <string>general laminating  mfg </string>
-        <string>jantzen knitting mills </string>
-        <string>treeco co </string>
-        <string>vancouver millwork co </string>
-        <string>rainway mfg co </string>
-        <string>washington millwork co </string>
-        <string>western soap co </string>
-        <string>white pine  sash co </string>
-        <string>pasquir panel </string>
-        <string>anderson fir finish </string>
-        <string>arrow industries </string>
-        <string>berg  kalapas moulding co </string>
-        <string>berg  sons products </string>
-        <string>birchfield boiler inc </string>
-        <string>briggs mfg co </string>
-        <string>brown  haley co </string>
-        <string>buffelen woodworking co </string>
-        <string>builders lumber  millwork </string>
-        <string>carman mfg co (spring air of the nw) </string>
-        <string>chuch interiors </string>
-        <string>coast iron  machine co </string>
-        <string>coast sash  door co </string>
-        <string>educators mfg co </string>
-        <string>general plastics mfg co </string>
-        <string>globe machine mfg co </string>
-        <string>harmon cabinets inc </string>
-        <string>johnson millwork </string>
-        <string>justis co inc </string>
-        <string>monarch door  plywood sales </string>
+        <string>essex group</string>
+        <string>international metal products co</string>
+        <string>palmer manufacturing co</string>
+        <string>southwestern sash  door</string>
+        <string>wright mfg co</string>
+        <string>structures group southwest</string>
+        <string>royal mfg co</string>
+        <string>harborlite corp.</string>
+        <string>trus joist macmillan</string>
+        <string>willis mfg co</string>
+        <string>jeld wen inc</string>
+        <string>amoco foam products</string>
+        <string>dresser ind inc</string>
+        <string>western star corp</string>
+        <string>washington wood parts inc</string>
+        <string>western boatbuilding (plant #1)</string>
+        <string>woodlam inc</string>
+        <string>alcoa</string>
+        <string>carlson planing mill</string>
+        <string>columbia machine works</string>
+        <string>columbia oil  burner</string>
+        <string>general laminating  mfg</string>
+        <string>jantzen knitting mills</string>
+        <string>treeco co</string>
+        <string>vancouver millwork co</string>
+        <string>rainway mfg co</string>
+        <string>washington millwork co</string>
+        <string>western soap co</string>
+        <string>white pine  sash co</string>
+        <string>pasquir panel</string>
+        <string>anderson fir finish</string>
+        <string>arrow industries</string>
+        <string>berg  kalapas moulding co</string>
+        <string>berg  sons products</string>
+        <string>birchfield boiler inc</string>
+        <string>briggs mfg co</string>
+        <string>brown  haley co</string>
+        <string>buffelen woodworking co</string>
+        <string>builders lumber  millwork</string>
+        <string>carman mfg co (spring air of the nw)</string>
+        <string>chuch interiors</string>
+        <string>coast iron  machine co</string>
+        <string>coast sash  door co</string>
+        <string>educators mfg co</string>
+        <string>general plastics mfg co</string>
+        <string>globe machine mfg co</string>
+        <string>harmon cabinets inc</string>
+        <string>johnson millwork</string>
+        <string>justis co inc</string>
+        <string>monarch door  plywood sales</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2204,132 +2205,132 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Lumber</string>
+          <key>Name</key><string>Lumber</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Wood strand</string>
+          <key>Name</key><string>Wood strand</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Wood products</string>
+          <key>Name</key><string>Wood products</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Plastic pellets</string>
+          <key>Name</key><string>Plastic pellets</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Bentonite</string>
+          <key>Name</key><string>Bentonite</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Trucks</string>
+          <key>Name</key><string>Trucks</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> custom milling</string>
+          <key>Name</key><string>custom milling</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> boat builders</string>
+          <key>Name</key><string>boat builders</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> lumber fabricators</string>
+          <key>Name</key><string>lumber fabricators</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Aluminum ingots, bar, forms, cable</string>
+          <key>Name</key><string>Aluminum ingots, bar, forms, cable</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Lumber planer</string>
+          <key>Name</key><string>Lumber planer</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> furnaces</string>
+          <key>Name</key><string>furnaces</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> knitwear mfg</string>
+          <key>Name</key><string>knitwear mfg</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> veneer</string>
+          <key>Name</key><string>veneer</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> plywood</string>
+          <key>Name</key><string>plywood</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> lumber/millwork</string>
+          <key>Name</key><string>lumber/millwork</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> millwork supply</string>
+          <key>Name</key><string>millwork supply</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> crockery</string>
+          <key>Name</key><string>crockery</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> boiler/tank mfrs</string>
+          <key>Name</key><string>boiler/tank mfrs</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> candy mfr</string>
+          <key>Name</key><string>candy mfr</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> plywood/door mfrs</string>
+          <key>Name</key><string>plywood/door mfrs</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> sash/doors</string>
+          <key>Name</key><string>sash/doors</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> church furniture</string>
+          <key>Name</key><string>church furniture</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> furniture mfg</string>
+          <key>Name</key><string>furniture mfg</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> pre-fab homes</string>
+          <key>Name</key><string>pre-fab homes</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> door plant</string>
+          <key>Name</key><string>door plant</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2347,12 +2348,12 @@
         <string>Denver Meat</string>
         <string>Lakeside Farm Industries</string>
         <string>Cudahy Packing Co.</string>
-        <string>sunland beef </string>
-        <string>coaspac meat ltd </string>
-        <string>swift canadian co ltd </string>
-        <string>woodward stores ltd </string>
-        <string>western packing co (later needham) </string>
-        <string>federal meat co </string>
+        <string>sunland beef</string>
+        <string>coaspac meat ltd</string>
+        <string>swift canadian co ltd</string>
+        <string>woodward stores ltd</string>
+        <string>western packing co (later needham)</string>
+        <string>federal meat co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2362,7 +2363,7 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> meat prod</string>
+          <key>Name</key><string>meat prod</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2390,7 +2391,7 @@
       <key>Synonyms</key>
       <array>
         <string>ore</string>
-        <string>vancouver salt co ltd </string>
+        <string>vancouver salt co ltd</string>
         <string>Real Good Mining Co.</string>
         <string>Afterthought Mine</string>
         <string>Mount Galena Mine</string>
@@ -2399,13 +2400,13 @@
         <string>Mineral Research and Recovery</string>
         <string>Paul Lime</string>
         <string>Chemstar Lime</string>
-        <string>kennecott copper ray mine </string>
-        <string>asarco </string>
-        <string>cyprus minerals </string>
-        <string>glencore </string>
-        <string>domtar inc. </string>
-        <string>american colloid </string>
-        <string>colorado fuel  iron </string>
+        <string>kennecott copper ray mine</string>
+        <string>asarco</string>
+        <string>cyprus minerals</string>
+        <string>glencore</string>
+        <string>domtar inc.</string>
+        <string>american colloid</string>
+        <string>colorado fuel  iron</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2415,27 +2416,27 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Copper concentrate</string>
+          <key>Name</key><string>Copper concentrate</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Copper bars</string>
+          <key>Name</key><string>Copper bars</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Gypsum</string>
+          <key>Name</key><string>Gypsum</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Bentonite</string>
+          <key>Name</key><string>Bentonite</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Iron ore</string>
+          <key>Name</key><string>Iron ore</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2456,13 +2457,13 @@
       <key>IndustryClass</key><string>newspaper printing plant</string>
       <key>Synonyms</key>
       <array>
-        <string>tuscon newspaper </string>
-        <string>hobbs trucking </string>
+        <string>tuscon newspaper</string>
+        <string>hobbs trucking</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Newsprint</string>
+          <key>Name</key><string>newsprint</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2498,31 +2499,31 @@
         <string>Dome Petroleum</string>
         <string>United Oil Products</string>
         <string>Petro Canada</string>
-        <string>vinoco petroleum </string>
-        <string>pennzoil products </string>
-        <string>lassen conoco </string>
-        <string>union oil co </string>
-        <string>shell oil co </string>
-        <string>standard oil co of california </string>
-        <string>wishram heating oil service </string>
-        <string>standard oil co of b c </string>
-        <string>associated oil co </string>
-        <string>fletcher oil co </string>
-        <string>fuel service co </string>
-        <string>knight fuel company </string>
-        <string>richfield oil corp. (scott bros. oil co.) </string>
-        <string>scott brothers oil co. (richfield) </string>
-        <string>tidewater associated oil co (vancouver oil co.) </string>
-        <string>vancouver oil co (tidewater associated) </string>
-        <string>true's oil co </string>
-        <string>wilson fuel co </string>
-        <string>standard oil co  </string>
-        <string>anderson fuel co </string>
-        <string>bell fuel co </string>
-        <string>general petroleum co </string>
-        <string>harris petroleum  </string>
-        <string>hunter fuel co </string>
-        <string>pacific terminals </string>
+        <string>vinoco petroleum</string>
+        <string>pennzoil products</string>
+        <string>lassen conoco</string>
+        <string>union oil co</string>
+        <string>shell oil co</string>
+        <string>standard oil co of california</string>
+        <string>wishram heating oil service</string>
+        <string>standard oil co of b c</string>
+        <string>associated oil co</string>
+        <string>fletcher oil co</string>
+        <string>fuel service co</string>
+        <string>knight fuel company</string>
+        <string>richfield oil corp. (scott bros. oil co.)</string>
+        <string>scott brothers oil co. (richfield)</string>
+        <string>tidewater associated oil co (vancouver oil co.)</string>
+        <string>vancouver oil co (tidewater associated)</string>
+        <string>true's oil co</string>
+        <string>wilson fuel co</string>
+        <string>standard oil co</string>
+        <string>anderson fuel co</string>
+        <string>bell fuel co</string>
+        <string>general petroleum co</string>
+        <string>harris petroleum</string>
+        <string>hunter fuel co</string>
+        <string>pacific terminals</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2532,47 +2533,47 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> bulk oil, petr prod</string>
+          <key>Name</key><string>bulk oil, petr prod</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Petroleum products</string>
+          <key>Name</key><string>petroleum products</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> petroleum products</string>
+          <key>Name</key><string>petroleum products</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Fuel  </string>
+          <key>Name</key><string>Fuel</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Fuel oil</string>
+          <key>Name</key><string>Fuel oil</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> fuel </string>
+          <key>Name</key><string>fuel</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> petroleum storage</string>
+          <key>Name</key><string>petroleum storage</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> gas  oil distributor</string>
+          <key>Name</key><string>gas  oil distributor</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> distributor petroleum products</string>
+          <key>Name</key><string>distributor petroleum products</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2585,7 +2586,7 @@
         <string>Oil</string>
         <string>Suncor</string>
         <string>shale oil</string>
-        <string>neste oil services, inc. </string>
+        <string>neste oil services, inc.</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2600,18 +2601,18 @@
       <key>IndustryClass</key><string>oil refinery</string>
       <key>Synonyms</key>
       <array>
-        <string>shell oil co of b c ltd </string>
-        <string>chevron canada </string>
+        <string>shell oil co of b c ltd</string>
+        <string>chevron canada</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> refining</string>
+          <key>Name</key><string>refining</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Asphalt, av gas, diesel, gasoline, lube, wax</string>
+          <key>Name</key><string>Asphalt, av gas, diesel, gasoline, lube, wax</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2632,26 +2633,26 @@
         <string>Domtar Packaging</string>
         <string>Greif Containers Inc</string>
         <string>Arizona Box Co</string>
-        <string>northwest sack co ltd </string>
-        <string>innopak </string>
+        <string>northwest sack co ltd</string>
+        <string>innopak</string>
         <string>packaging</string>
-        <string>packaging corp of amer </string>
-        <string>stone container </string>
-        <string>bemis paper bag co </string>
-        <string>bennett paper  supply co </string>
-        <string>kieckhefer container co </string>
-        <string>zellerbach paper co         </string>
-        <string>container corp of amer </string>
+        <string>packaging corp of amer</string>
+        <string>stone container</string>
+        <string>bemis paper bag co</string>
+        <string>bennett paper  supply co</string>
+        <string>kieckhefer container co</string>
+        <string>zellerbach paper co</string>
+        <string>container corp of amer</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> bags</string>
+          <key>Name</key><string>bags</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> PLASTIC PELLETS</string>
+          <key>Name</key><string>PLASTIC PELLETS</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2666,7 +2667,7 @@
           <key>Rate</key><integer>50</integer>
         </dict>
         <dict>
-          <key>Name</key><string> plywood packaging</string>
+          <key>Name</key><string>plywood packaging</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2676,26 +2677,26 @@
       <key>IndustryClass</key><string>paint maker</string>
       <key>Synonyms</key>
       <array>
-        <string>universal paint </string>
-        <string>standard brands inc </string>
-        <string>fuller w p co </string>
-        <string>johnson paint </string>
-        <string>parker paint co </string>
+        <string>universal paint</string>
+        <string>standard brands inc</string>
+        <string>fuller w p co</string>
+        <string>johnson paint</string>
+        <string>parker paint co</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Paints</string>
+          <key>Name</key><string>Paints</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> yeast</string>
+          <key>Name</key><string>yeast</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> paint  </string>
+          <key>Name</key><string>paint</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2705,13 +2706,13 @@
       <key>IndustryClass</key><string>paint manufacturer</string>
       <key>Synonyms</key>
       <array>
-        <string>brandham  henderson </string>
-        <string>national paint co </string>
+        <string>brandham  henderson</string>
+        <string>national paint co</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> paint mfr</string>
+          <key>Name</key><string>paint mfr</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2724,17 +2725,17 @@
         <string>paper</string>
         <string>paper mill</string>
         <string>kraft</string>
-        <string>crestbrook forest industries </string>
-        <string>weyerhaeuser </string>
+        <string>crestbrook forest industries</string>
+        <string>weyerhaeuser</string>
         <string>Sterling Pulp Chemicals</string>
         <string>Northwestern Pulp</string>
         <string>Hoechst Celanese</string>
         <string>Celanese Canada</string>
-        <string>rainy river forest prod </string>
-        <string>p n p inc </string>
-        <string>columbia river paper mills </string>
-        <string>simpson paper </string>
-        <string>st regis paper </string>
+        <string>rainy river forest prod</string>
+        <string>p n p inc</string>
+        <string>columbia river paper mills</string>
+        <string>simpson paper</string>
+        <string>st regis paper</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2754,7 +2755,7 @@
           <key>Rate</key><integer>50</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Newsprint</string>
+          <key>Name</key><string>Newsprint</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2768,6 +2769,16 @@
       </array>
       <key>Cargo</key>
       <array>
+        <dict>
+          <key>Name</key><string>asphalt</string>
+          <key>Incoming</key><true/>
+          <key>Rate</key><integer>40</integer>
+        </dict>
+        <dict>
+          <key>Name</key><string>gravel</string>
+          <key>Incoming</key><true/>
+          <key>Rate</key><integer>60</integer>
+        </dict>
       </array>
     </dict>
     <dict>
@@ -2789,18 +2800,18 @@
       <key>IndustryClass</key><string>plywood maker</string>
       <key>Synonyms</key>
       <array>
-        <string>us plywood </string>
-        <string>farwest plywood co </string>
+        <string>us plywood</string>
+        <string>farwest plywood co</string>
         <string>Boise Cascade</string>
-        <string>fibreboard products co </string>
-        <string>ft vancouver plywood </string>
-        <string>vancouver plywood  veneer co </string>
+        <string>fibreboard products co</string>
+        <string>ft vancouver plywood</string>
+        <string>vancouver plywood  veneer co</string>
         <string>Aberdeen Plywood</string>
-        <string>n pacific plywood inc </string>
-        <string>plywood tacoma inc </string>
-        <string>puget sound mfg co </string>
-        <string>puget sound plywood </string>
-        <string>rainier plywood co </string>
+        <string>n pacific plywood inc</string>
+        <string>plywood tacoma inc</string>
+        <string>puget sound mfg co</string>
+        <string>puget sound plywood</string>
+        <string>rainier plywood co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2825,7 +2836,7 @@
           <key>Rate</key><integer>10</integer>
         </dict>
         <dict>
-          <key>Name</key><string> plywood/door mfrs</string>
+          <key>Name</key><string>plywood/door mfrs</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2842,12 +2853,12 @@
         <string>PGE</string>
         <string>Electric</string>
         <string>Power plant</string>
-        <string>bonneville power administration </string>
-        <string>clark county pud </string>
-        <string>u. s. veterans administration </string>
-        <string>washington water power </string>
-        <string>bonneville power admin </string>
-        <string>consumers central heating </string>
+        <string>bonneville power administration</string>
+        <string>clark county pud</string>
+        <string>u. s. veterans administration</string>
+        <string>washington water power</string>
+        <string>bonneville power admin</string>
+        <string>consumers central heating</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2867,12 +2878,12 @@
           <key>Rate</key><integer>90</integer>
         </dict>
         <dict>
-          <key>Name</key><string> power  </string>
+          <key>Name</key><string>power</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> commerical heating plant</string>
+          <key>Name</key><string>commerical heating plant</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2889,13 +2900,13 @@
         <string>Allied Paper Co.</string>
         <string>Avery-Dennison</string>
         <string>H.S. Crocker</string>
-        <string>smith davidson  lecky ltd </string>
-        <string>avery dennison products </string>
-        <string>krueger w a co. </string>
-        <string>blake moffitt  towne </string>
-        <string>globe ticket co </string>
-        <string>independent paper stock </string>
-        <string>miller label co </string>
+        <string>smith davidson  lecky ltd</string>
+        <string>avery dennison products</string>
+        <string>krueger w a co.</string>
+        <string>blake moffitt  towne</string>
+        <string>globe ticket co</string>
+        <string>independent paper stock</string>
+        <string>miller label co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2915,22 +2926,22 @@
           <key>Rate</key><integer>40</integer>
         </dict>
         <dict>
-          <key>Name</key><string> PRINTING PAPER</string>
+          <key>Name</key><string>PRINTING PAPER</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> stationery jobbers</string>
+          <key>Name</key><string>stationery jobbers</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> printers</string>
+          <key>Name</key><string>printers</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> paper labels</string>
+          <key>Name</key><string>paper labels</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -2951,7 +2962,7 @@
         <string>Celanese Canada</string>
         <string>Hoechst Celanese Canada</string>
         <string>Orchid Paper Products</string>
-        <string>allied paper co (center st team tr) </string>
+        <string>allied paper co (center st team tr)</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -2972,8 +2983,8 @@
       <key>Synonyms</key>
       <array>
         <string>Ballantine Produce</string>
-        <string>terminal fruit  produce </string>
-        <string>interstate fruit  produce </string>
+        <string>terminal fruit  produce</string>
+        <string>interstate fruit  produce</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -3002,11 +3013,11 @@
         <string>Ferrell Gas</string>
         <string>Amerigas Propane</string>
         <string>Calgas</string>
-        <string>bottled gas ltd </string>
-        <string>washington natural gas co </string>
-        <string>portland gas  coke co </string>
-        <string>rural gas, inc </string>
-        <string>suburban gas heat </string>
+        <string>bottled gas ltd</string>
+        <string>washington natural gas co</string>
+        <string>portland gas  coke co</string>
+        <string>rural gas, inc</string>
+        <string>suburban gas heat</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -3016,7 +3027,7 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Propane gas</string>
+          <key>Name</key><string>Propane gas</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3026,12 +3037,12 @@
       <key>IndustryClass</key><string>propane plant</string>
       <key>Synonyms</key>
       <array>
-        <string>amoco canada petroleum </string>
+        <string>amoco canada petroleum</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> LPG</string>
+          <key>Name</key><string>LPG</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3041,12 +3052,12 @@
       <key>IndustryClass</key><string>recycling plant</string>
       <key>Synonyms</key>
       <array>
-        <string>weyerhaeuser </string>
+        <string>weyerhaeuser</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Waste paper</string>
+          <key>Name</key><string>Waste paper</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3056,11 +3067,11 @@
       <key>IndustryClass</key><string>sand and gravel</string>
       <key>Synonyms</key>
       <array>
-        <string>mountain minerals company ltd. </string>
+        <string>mountain minerals company ltd.</string>
         <string>San Francisco Gravel</string>
         <string>Kaiser Sand and Gravel</string>
         <string>Rock</string>
-        <string>graystone of tacoma inc </string>
+        <string>graystone of tacoma inc</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -3070,7 +3081,7 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> sand/gravel/cement</string>
+          <key>Name</key><string>sand/gravel/cement</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3080,7 +3091,7 @@
       <key>IndustryClass</key><string>scrapyard</string>
       <key>Synonyms</key>
       <array>
-        <string>atlas iron  metals co </string>
+        <string>atlas iron  metals co</string>
         <string>tie</string>
         <string>recycling</string>
         <string>scrap metal</string>
@@ -3091,14 +3102,14 @@
         <string>North Star Recycling</string>
         <string>National Metals</string>
         <string>Smith Metals</string>
-        <string>national metals </string>
-        <string>amcep </string>
-        <string>baer  sons scrap metal </string>
-        <string>casper iron  metal (1989) </string>
-        <string>baer  sons scrap metal </string>
-        <string>barrons metal </string>
-        <string>general metals co </string>
-        <string>simon junk co </string>
+        <string>national metals</string>
+        <string>amcep</string>
+        <string>baer  sons scrap metal</string>
+        <string>casper iron  metal (1989)</string>
+        <string>baer  sons scrap metal</string>
+        <string>barrons metal</string>
+        <string>general metals co</string>
+        <string>simon junk co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -3108,12 +3119,12 @@
           <key>Rate</key><integer>100</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Scrap iron</string>
+          <key>Name</key><string>Scrap iron</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> junk dealers</string>
+          <key>Name</key><string>junk dealers</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3123,12 +3134,12 @@
       <key>IndustryClass</key><string>shipyard</string>
       <key>Synonyms</key>
       <array>
-        <string>u. s. maritime commission </string>
+        <string>u. s. maritime commission</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Shipyard</string>
+          <key>Name</key><string>Shipyard</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3138,44 +3149,44 @@
       <key>IndustryClass</key><string>smelter</string>
       <key>Synonyms</key>
       <array>
-        <string>cominco </string>
+        <string>cominco</string>
         <string>Kennecott Copper</string>
         <string>lead smelter</string>
         <string>American Smelting and Refining</string>
         <string>ASARCO</string>
         <string>IMS Americas Arizona</string>
-        <string>bhp copper  </string>
-        <string>magma copper </string>
-        <string>phelps-dodge </string>
-        <string>mineral mining chemicals </string>
-        <string>american smelting  refining co </string>
-        <string>kaiser aluminum  chemical sales </string>
-        <string>ohio ferro alloys co </string>
+        <string>bhp copper</string>
+        <string>magma copper</string>
+        <string>phelps-dodge</string>
+        <string>mineral mining chemicals</string>
+        <string>american smelting  refining co</string>
+        <string>kaiser aluminum  chemical sales</string>
+        <string>ohio ferro alloys co</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Copper concentrate</string>
+          <key>Name</key><string>Copper concentrate</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Cupric chloride, caustic waste liq</string>
+          <key>Name</key><string>Cupric chloride, caustic waste liq</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Coal</string>
+          <key>Name</key><string>Coal</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Aluminum ingots</string>
+          <key>Name</key><string>Aluminum ingots</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> smelter  </string>
+          <key>Name</key><string>smelter</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3197,7 +3208,7 @@
       <key>IndustryClass</key><string>steel fabricator</string>
       <key>Synonyms</key>
       <array>
-        <string>united states steel products division </string>
+        <string>united states steel products division</string>
         <string>crane</string>
         <string>Circosta Iron and Metal</string>
         <string>Soule Steel</string>
@@ -3211,16 +3222,16 @@
         <string>Pacific Metals Co.</string>
         <string>Acme Steel Co.</string>
         <string>Allison Steel</string>
-        <string>welk bros metal products </string>
-        <string>ace furnace  steel co </string>
-        <string>alaska iron  steel co </string>
-        <string>armco drainage  metal co </string>
-        <string>english j d steel co </string>
-        <string>marine iron works </string>
-        <string>marvin g r co </string>
-        <string>marvin marine repair co </string>
-        <string>petrich shipbuilding co </string>
-        <string>puget sound boatbuilding </string>
+        <string>welk bros metal products</string>
+        <string>ace furnace  steel co</string>
+        <string>alaska iron  steel co</string>
+        <string>armco drainage  metal co</string>
+        <string>english j d steel co</string>
+        <string>marine iron works</string>
+        <string>marvin g r co</string>
+        <string>marvin marine repair co</string>
+        <string>petrich shipbuilding co</string>
+        <string>puget sound boatbuilding</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -3235,27 +3246,27 @@
           <key>Rate</key><integer>50</integer>
         </dict>
         <dict>
-          <key>Name</key><string> bridge beams</string>
+          <key>Name</key><string>bridge beams</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> tank mfg</string>
+          <key>Name</key><string>tank mfg</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> ship repair</string>
+          <key>Name</key><string>ship repair</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> ship building</string>
+          <key>Name</key><string>ship building</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> boat builders</string>
+          <key>Name</key><string>boat builders</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3265,7 +3276,7 @@
       <key>IndustryClass</key><string>steel mill</string>
       <key>Synonyms</key>
       <array>
-        <string>vancouver rolling mills </string>
+        <string>vancouver rolling mills</string>
         <string>furnace</string>
         <string>steel mill</string>
         <string>Bethlehem Steel</string>
@@ -3318,12 +3329,12 @@
       <key>IndustryClass</key><string>stone</string>
       <key>Synonyms</key>
       <array>
-        <string>washington monumental  cut stone co </string>
+        <string>washington monumental  cut stone co</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> Stone, marble            </string>
+          <key>Name</key><string>marble</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3336,10 +3347,10 @@
         <string>Alberta Sugar</string>
         <string>CH</string>
         <string>sugar mill</string>
-        <string>great western sugar plant </string>
-        <string>imperial holly sugar </string>
-        <string>holly sugar </string>
-        <string>pacific molasses </string>
+        <string>great western sugar plant</string>
+        <string>imperial holly sugar</string>
+        <string>holly sugar</string>
+        <string>pacific molasses</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -3354,17 +3365,17 @@
           <key>Rate</key><integer>50</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Coal, coke, sugar beets</string>
+          <key>Name</key><string>Coal, coke, sugar beets</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> Diatomaceous earth, limestone</string>
+          <key>Name</key><string>Diatomaceous earth, limestone</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
         <dict>
-          <key>Name</key><string> molasses</string>
+          <key>Name</key><string>molasses</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3414,8 +3425,8 @@
       <key>Synonyms</key>
       <array>
         <string>Goodyear Tire and Rubber</string>
-        <string>gillette tire </string>
-        <string>goodyear tire  rubber co </string>
+        <string>gillette tire</string>
+        <string>goodyear tire  rubber co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -3440,17 +3451,17 @@
       <key>IndustryClass</key><string>transfer</string>
       <key>Synonyms</key>
       <array>
-        <string>bluebird transfer co </string>
-        <string>weeks transfer  storage co </string>
-        <string>commerical moving  storage </string>
-        <string>gilbo moving  storage co </string>
-        <string>holman transfer co </string>
-        <string>smyth moving  storage </string>
+        <string>bluebird transfer co</string>
+        <string>weeks transfer  storage co</string>
+        <string>commerical moving  storage</string>
+        <string>gilbo moving  storage co</string>
+        <string>holman transfer co</string>
+        <string>smyth moving  storage</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> transfer  storage</string>
+          <key>Name</key><string>transfer  storage</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3472,12 +3483,12 @@
         <string>Triangle Trucking</string>
         <string>Lynch Van and Storage</string>
         <string>Matlach Trucking</string>
-        <string>knepper gerald trucking </string>
-        <string>tri-mac trucking </string>
-        <string>desticon transportation </string>
-        <string>consolidated freightways </string>
-        <string>delivery service co </string>
-        <string>nichols trucking co </string>
+        <string>knepper gerald trucking</string>
+        <string>tri-mac trucking</string>
+        <string>desticon transportation</string>
+        <string>consolidated freightways</string>
+        <string>delivery service co</string>
+        <string>nichols trucking co</string>
       </array>
       <key>Cargo</key>
       <array>
@@ -3492,7 +3503,7 @@
           <key>Rate</key><integer>50</integer>
         </dict>
         <dict>
-          <key>Name</key><string> transfer/storage</string>
+          <key>Name</key><string>transfer/storage</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
@@ -3525,13 +3536,13 @@
         <string>villa clos chateau</string>
         <string>wine</string>
         <string>Almaden Vineyards</string>
-        <string>i s c wines </string>
-        <string>cammarano bros </string>
+        <string>i s c wines</string>
+        <string>cammarano bros</string>
       </array>
       <key>Cargo</key>
       <array>
         <dict>
-          <key>Name</key><string> bottlers  distributors</string>
+          <key>Name</key><string>bottlers  distributors</string>
           <key>Incoming</key><false/>
           <key>Rate</key><integer>0</integer>
         </dict>
