@@ -7,20 +7,22 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeName</key>
-			<string>SwitchList layout file</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>swl</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>layout</string>
+                        <key>CFBundleTypeName</key>
+                        <string>SwitchList layout file</string>
 			<key>CFBundleTypeOSTypes</key>
 			<array>
 				<string>swl</string>
 			</array>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
+			<string>Viewer</string>
+                        <key>LSHandlerRank</key>
+                        <string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
 				<string>com.vasonabranch.switchlist.Layout</string>
@@ -31,8 +33,32 @@
 			<string>SwitchListDocument</string>
 			<key>NSPersistentStoreTypeKey</key>
 			<string>XML</string>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
+		</dict>
+                <dict>
+                        <key>CFBundleTypeExtensions</key>
+                        <array>
+                                <string>layoutdb</string>
+                        </array>
+                        <key>CFBundleTypeIconFile</key>
+                        <string>layout</string>
+                        <key>CFBundleTypeName</key>
+                        <string>Switchlist layout database</string>
+                        <key>CFBundleTypeOSTypes</key>
+                        <array>
+                                <string>swlayout</string>
+                        </array>
+                        <key>CFBundleTypeRole</key>
+                        <string>Editor</string>
+                        <key>LSItemContentTypes</key>
+                        <array>
+                                <string>com.blogspot.vasonabranch.switchlist.LayoutDB</string>
+                        </array>
+                        <key>LSTypeIsPackage</key>
+                        <integer>1</integer>
+                        <key>NSDocumentClass</key>
+                        <string>SwitchListDocument</string>
+                        <key>NSPersistentStoreTypeKey</key>
+                        <string>Binary</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -88,6 +114,31 @@
 				</array>
 			</dict>
 		</dict>
+                <dict>
+                        <key>UTTypeConformsTo</key>
+                        <array>
+                                <string>public.data</string>
+                        </array>
+                        <key>UTTypeDescription</key>
+                        <string>SwitchList Layout document</string>
+                        <key>UTTypeIconFile</key>
+                        <string>layout</string>
+                        <key>UTTypeIdentifier</key>
+                        <string>com.blogspot.vasonabranch.switchlist.LayoutDB</string>
+                        <key>UTTypeReferenceURL</key>
+                        <string>http://www.vasonabranch.com/switchlist</string>
+                        <key>UTTypeTagSpecification</key>
+                        <dict>
+                                <key>com.apple.ostype</key>
+                                <array>
+                                        <string>swlayout</string>
+                                </array>
+                                <key>public.filename-extension</key>
+                                <array>
+                                        <string>layoutdb</string>
+                                </array>
+                        </dict>
+                </dict>
 	</array>
 </dict>
 </plist>

@@ -187,7 +187,7 @@ const int FILE_NEW_SECTION = 3;
 {
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     UITextField *filename_field =  [actionSheet textFieldAtIndex: 0];
-    NSURL *fileURL = [[myAppDelegate applicationDocumentsDirectory] URLByAppendingPathComponent: [NSString stringWithFormat: @"%@.sql", filename_field.text]];
+    NSURL *fileURL = [[myAppDelegate applicationDocumentsDirectory] URLByAppendingPathComponent: [NSString stringWithFormat: @"%@.layoutdb", filename_field.text]];
     [myAppDelegate openLayoutWithName: fileURL];
     [self.myPopoverController dismissPopoverAnimated: YES];
 }

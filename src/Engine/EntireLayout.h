@@ -83,6 +83,9 @@ NSString *NormalizeDivisionString(NSString *inString);
 // Generally any industries that can get cargos.
 - (NSArray*) allIndustries;
 
+// All industries and yards that are on the layout or in staging.
+- (NSArray*) allLocationsForFreightCars;
+
 // Returns an array of all industries that can receive cargo, sorted by industry name.
 - (NSArray*) allIndustriesSortedByName;
 

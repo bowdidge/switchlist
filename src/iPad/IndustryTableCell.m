@@ -53,13 +53,13 @@
     NSMutableString *description = [NSMutableString string];
     NSSet *outCargos = [i originatingCargos];
     NSSet *inCargos = [i terminatingCargos];
-    if ([outCargos count] != 0) {
-        [description appendFormat: @"Receives %@. ", [[outCargos anyObject] cargoDescription]];
-    }
     if ([inCargos count] != 0) {
-        [description appendFormat: @"Ships %@. ", [[inCargos anyObject] cargoDescription]];
+        [description appendFormat: @"Receives %@. ", [[inCargos anyObject] cargoDescription]];
     }
-    if ([outCargos count] == 0 && [inCargos count] == 0) {
+    if ([outCargos count] != 0) {
+        [description appendFormat: @"Ships %@. ", [[outCargos anyObject] cargoDescription]];
+    }
+     if ([outCargos count] == 0 && [inCargos count] == 0) {
         [description appendFormat: @"No cargos arriving or leaving. "];
     }
     return description;
@@ -83,7 +83,12 @@
     self.myIndustry = industry;
     self.industryNameLabel.text = [industry name];
     self.industryNameField.text = [industry name];
-    self.sidingLengthLabel.text = [NSString stringWithFormat: @"%d foot siding", [[industry sidingLength] intValue]];
+    NSInteger sidingLength = [[industry sidingLength] intValue];
+    if (sidingLength > 0) {
+            self.sidingLengthLabel.text = [NSString stringWithFormat: @"%d foot siding", [[industry sidingLength] intValue]];
+    } else {
+            self.sidingLengthLabel.text = @"";
+    }
     self.industryDescription.text = [self descriptionForIndustry: industry];
 
     self.townNameLabel.text = [[industry location] name];

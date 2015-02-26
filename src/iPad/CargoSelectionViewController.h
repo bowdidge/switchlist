@@ -38,6 +38,9 @@
 // Done upon change of industry being examined.
 - (IBAction) doChangeSelectedIndustry:(id) sender;
 
+// Create the selected cargos.
+- (IBAction) doCreateCargos: (id) sender;
+
 @property(retain, nonatomic) EntireLayout *entireLayout;
 @property(retain,nonatomic) IBOutlet UILabel *industryName;
 @property(retain,nonatomic) IBOutlet UIPickerView *categoryPicker;
@@ -46,6 +49,8 @@
 @property(retain, nonatomic) NSArray *suggestedCategories;
 @property(retain, nonatomic) NSArray *allCategories;
 @property(retain, nonatomic) NSDictionary *categoryMap;
+@property(retain, nonatomic) IBOutlet UIButton *createCargosButton;
+@property(retain, nonatomic) IBOutlet UITextField *proposedCargoCountMsg;
 
 @property(retain, nonatomic) NSArray *proposedCargos;
 

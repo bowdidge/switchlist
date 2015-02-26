@@ -63,6 +63,17 @@
     }
 }
 
+- (void)initializeiCloudAccess {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        if ([[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil] != nil) {
+          NSLog(@"iCloud is available\n");
+          [self dumpiCloudFiles];
+        } else {
+          NSLog(@"This application requires iCloud, but it is not available.\n");
+        }
+    });
+}
+
 // Returns the managed object context for the application.
 // If the context doesn't already exist, it is created and bound
 // to the persistent store coordinator for the application.
@@ -101,7 +112,7 @@
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
     
     NSError *error;
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+    if (![persistentStoreCoordinator addPersistentStoreWithType:NSBinaryStoreType
                                                   configuration:nil
                                                             URL:self.currentFilePath
                                                         options:options
@@ -164,12 +175,12 @@
     self.entireLayout.layoutName = [[[filename path] lastPathComponent] stringByDeletingPathExtension];
     
     if ([[self.entireLayout allCarTypes] count] == 0) {
-		NSDictionary* currentlyUsedCarTypes = [CarTypes populateCarTypesFromLayout: self.entireLayout];
-		for (NSString *carTypeName in currentlyUsedCarTypes) {
+		NSDictionary* defaultCarTypes = [CarTypes defaultCarTypes];
+		for (NSString *carTypeName in defaultCarTypes) {
 			CarType *carType = [NSEntityDescription insertNewObjectForEntityForName:@"CarType"
 															 inManagedObjectContext: self.managedObjectContext];
 			[carType setCarTypeName: carTypeName];
-			[carType setCarTypeDescription: [currentlyUsedCarTypes objectForKey: carTypeName]];
+			[carType setCarTypeDescription: [defaultCarTypes objectForKey: carTypeName]];
 		}
     }
     return YES;
@@ -189,6 +200,18 @@
     return YES;
 }
 
+- (void) dumpiCloudFiles {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // Create the new URL object on a background queue.
+        NSFileManager *fm = [NSFileManager defaultManager];
+        NSURL *newDocumentURL = [fm URLForUbiquityContainerIdentifier:nil];
+        NSURL *documentsDirectory = [newDocumentURL URLByAppendingPathComponent: @"Documents"];
+        NSError *error;
+        NSArray *files = [fm contentsOfDirectoryAtURL: documentsDirectory includingPropertiesForKeys: [NSArray arrayWithObject: NSURLNameKey] options:0 error:&error];
+        NSLog(@"%@", files);
+    });
+}
+                   
 // Saves out the CoreData file.
 // TODO(bowdidge): Consider saving every 5 seconds; watch for existing saves, etc.
 - (IBAction) doSave: (id) sender {
@@ -202,17 +225,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Load vasona.sql first, copy if not available.
+    // Load vasona.layoutdb first, and copy it into place if not available.
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *newFile = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"vasona.sql"];
+    NSURL *newFile = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"vasona.layoutdb"];
 
     if (![fileManager fileExistsAtPath:[self.currentFilePath path]]) {
-        NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"vasona" withExtension:@"sql"];
-        if (defaultStoreURL) {
-            [fileManager copyItemAtURL:defaultStoreURL toURL:newFile error:NULL];
+        NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:@"vasona" withExtension:@"layoutdb"];
+        if (YES || defaultStoreURL) {
+             [fileManager copyItemAtURL:defaultStoreURL toURL:newFile error:NULL];
         }
     }
- 
+    [self initializeiCloudAccess];
+    
     [self openNewFile: newFile];
     // Should flag error if file does not exist.
     NSString *industryFile = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/typicalIndustry.plist"];
@@ -255,6 +279,8 @@
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSLog(@"User directory is %@", [[self applicationDocumentsDirectory] path]);
+
+    
     NSArray *files = [fileManager contentsOfDirectoryAtPath: [[self applicationDocumentsDirectory] path]
                                                       error: &error];
     if (error) {
@@ -262,10 +288,10 @@
         [badFileAlert show];
         return [NSArray array];
     }
-    // Pick out only .sql files to avoid shm and wal files.  (Locking?)
+    // Pick out only .layoutdb files.  (Locking?)
     NSMutableArray *goodFiles = [NSMutableArray array];
     for (NSString *file in files) {
-        if ([file hasSuffix: @".sql"] || [file hasSuffix: @".switchlist"]) {
+        if ([file hasSuffix: @".layoutdb"]) {
             [goodFiles addObject:[[self applicationDocumentsDirectory] URLByAppendingPathComponent: file]];
         }
     }
@@ -277,9 +303,9 @@
     // TODO: examples, too?
     NSError *error = nil;
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSLog(@"Samples directory is %@", [[self sampleDocumentsDirectory] path]);
     NSArray *files = [fileManager contentsOfDirectoryAtPath: [[self sampleDocumentsDirectory] path]
                                                       error: &error];
+
     if (error) {
         UIAlertView *badFileAlert = [[UIAlertView alloc] initWithTitle: @"Unable to find layouts" message: @"Error when reading application documents directory." delegate: self cancelButtonTitle: @"OK" otherButtonTitles: nil];
         [badFileAlert show];
@@ -288,7 +314,7 @@
     // Pick out only .sql files to avoid shm and wal files.  (Locking?)
     NSMutableArray *goodFiles = [NSMutableArray array];
     for (NSString *file in files) {
-        if ([file hasSuffix: @".sql"] || [file hasSuffix: @".switchlist"]) {
+        if ([file hasSuffix: @".layoutdb"]) {
             [goodFiles addObject: [[self sampleDocumentsDirectory] URLByAppendingPathComponent: file]];
         }
     }

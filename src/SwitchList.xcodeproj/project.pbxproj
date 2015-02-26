@@ -26,7 +26,6 @@
 		3E335E63160D6A050097360C /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E62160D6A050097360C /* FileCell.m */; };
 		3E3620FA1539341700A57574 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
 		3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741916082E200023C8B5 /* switchlistButton.png */; };
-		3E37741C160838D00023C8B5 /* vasona.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741B160838D00023C8B5 /* vasona.sql */; };
 		3E37741F160847000023C8B5 /* SwitchListColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E37741E160847000023C8B5 /* SwitchListColors.m */; };
 		3E386E8C19B2A3F50040A69B /* check-1-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E386E8B19B2A3F50040A69B /* check-1-icon.png */; };
 		3E386E8E19B2A4010040A69B /* uncheck-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E386E8D19B2A4010040A69B /* uncheck-icon.png */; };
@@ -76,18 +75,15 @@
 		3E407DD6160694070037134D /* yard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DC7160694070037134D /* yard.jpg */; };
 		3E407DDA1606945E0037134D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E407DD81606945E0037134D /* InfoPlist.strings */; };
 		3E43B4DC150741B400AAA92B /* testAdvanceLayoutsMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */; };
-		3E45401D19A92671000755D9 /* FreightCarTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E45401C19A925B1000755D9 /* FreightCarTable.storyboard */; };
-		3E45401F19A927E1000755D9 /* IndustryTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E45401E19A927E1000755D9 /* IndustryTable.storyboard */; };
-		3E45402119A92928000755D9 /* TownTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402019A92928000755D9 /* TownTable.storyboard */; };
-		3E45402319A92C0C000755D9 /* TrainTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402219A92C0C000755D9 /* TrainTable.storyboard */; };
-		3E45402519A92F36000755D9 /* CargoTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402419A92F36000755D9 /* CargoTable.storyboard */; };
-		3E45402719A93036000755D9 /* YardTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402619A93036000755D9 /* YardTable.storyboard */; };
-		3E45402919A9319B000755D9 /* LayoutTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402819A9319B000755D9 /* LayoutTable.storyboard */; };
 		3E45403019A93359000755D9 /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402E19A93359000755D9 /* reveal-icon.png */; };
 		3E45403119A93359000755D9 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402F19A93359000755D9 /* reveal-icon@2x.png */; };
 		3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
+		3E5BEDA91A7B4DCC00D14294 /* SwitchList-iPad.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 3E5BEDA81A7B4DCC00D14294 /* SwitchList-iPad.entitlements */; };
+		3E5BEDAC1A7B62C400D14294 /* vasona.layoutdb in Resources */ = {isa = PBXBuildFile; fileRef = 3E5BEDAB1A7B62C400D14294 /* vasona.layoutdb */; };
+		3E5BEDB01A7DA85600D14294 /* ProposedCargo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5BEDAE1A7DA85600D14294 /* ProposedCargo.m */; };
+		3E5BEDB11A7DA97F00D14294 /* ProposedCargo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5BEDAE1A7DA85600D14294 /* ProposedCargo.m */; };
 		3E5E628C160E42EE0074AE1E /* SwitchListEngine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
 		3E5E629C160E45EA0074AE1E /* SwitchListEngine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
 		3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
@@ -322,10 +318,17 @@
 		3EAAA7821608235400C3D7A8 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EAAA7811608235400C3D7A8 /* Default-Landscape~ipad.png */; };
 		3EABC36F1606991800EBD6C5 /* CarType.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EABC36E1606991800EBD6C5 /* CarType.m */; };
 		3EB18EE7128A70F200184A88 /* NSMigrationManagerCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */; };
+		3EB4A1C71A9EEAF100F2C2B5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4A1C51A9EEAF100F2C2B5 /* MainStoryboard.storyboard */; };
+		3EB4A1C81A9EEBA300F2C2B5 /* LayoutTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4A1CA1A9EEBA300F2C2B5 /* LayoutTable.storyboard */; };
+		3EB4A1CB1A9EEBB700F2C2B5 /* CargoTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4A1CD1A9EEBB700F2C2B5 /* CargoTable.storyboard */; };
+		3EB4A1CE1A9EEBBF00F2C2B5 /* IndustryTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4A1D01A9EEBBF00F2C2B5 /* IndustryTable.storyboard */; };
+		3EB4A1D11A9EEBCB00F2C2B5 /* TownTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4A1D31A9EEBCB00F2C2B5 /* TownTable.storyboard */; };
+		3EB4A1D41A9EEBD000F2C2B5 /* TrainTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4A1D61A9EEBD000F2C2B5 /* TrainTable.storyboard */; };
+		3EB4A1D71A9EEBD300F2C2B5 /* YardTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4A1D91A9EEBD300F2C2B5 /* YardTable.storyboard */; };
+		3EB4A1DC1A9EEC0900F2C2B5 /* FreightCarTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4A1DA1A9EEC0900F2C2B5 /* FreightCarTable.storyboard */; };
 		3EB78AEB199337E800476758 /* layout.icns in Resources */ = {isa = PBXBuildFile; fileRef = 3EB78AEA199337E800476758 /* layout.icns */; };
 		3EB7BBD219A11DC7004C202F /* StyleTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB7BBD119A11DC7004C202F /* StyleTableViewCell.m */; };
 		3EBCC29A16063C8500B298AF /* NoSidingToLatest.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */; };
-		3EC0ACD9199FF60300ABD0E5 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EC0ACDC199FF60300ABD0E5 /* MainStoryboard.storyboard */; };
 		3EC0ACDF199FFA9F00ABD0E5 /* StyleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0ACDE199FFA9F00ABD0E5 /* StyleViewController.m */; };
 		3EC0ACE219A042C500ABD0E5 /* TemplateCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 3EC0ACE019A042C500ABD0E5 /* TemplateCache.h */; };
 		3EC0ACE319A042C500ABD0E5 /* TemplateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0ACE119A042C500ABD0E5 /* TemplateCache.m */; };
@@ -667,13 +670,6 @@
 		3E43B49F15073F2300AAA92B /* LayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LayoutController.h; path = Engine/LayoutController.h; sourceTree = "<group>"; };
 		3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testAdvanceLayouts; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testAdvanceLayoutsMain.m; sourceTree = "<group>"; };
-		3E45401B19A925B1000755D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/FreightCarTable.storyboard; sourceTree = "<group>"; };
-		3E45401E19A927E1000755D9 /* IndustryTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = IndustryTable.storyboard; path = "resources-iPad/IndustryTable.storyboard"; sourceTree = "<group>"; };
-		3E45402019A92928000755D9 /* TownTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TownTable.storyboard; path = "resources-iPad/TownTable.storyboard"; sourceTree = "<group>"; };
-		3E45402219A92C0C000755D9 /* TrainTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TrainTable.storyboard; path = "resources-iPad/TrainTable.storyboard"; sourceTree = "<group>"; };
-		3E45402419A92F36000755D9 /* CargoTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CargoTable.storyboard; path = "resources-iPad/CargoTable.storyboard"; sourceTree = "<group>"; };
-		3E45402619A93036000755D9 /* YardTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = YardTable.storyboard; path = "resources-iPad/YardTable.storyboard"; sourceTree = "<group>"; };
-		3E45402819A9319B000755D9 /* LayoutTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LayoutTable.storyboard; path = "resources-iPad/LayoutTable.storyboard"; sourceTree = "<group>"; };
 		3E45402E19A93359000755D9 /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reveal-icon.png"; path = "resources-iPad/reveal-icon.png"; sourceTree = "<group>"; };
 		3E45402F19A93359000755D9 /* reveal-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reveal-icon@2x.png"; path = "resources-iPad/reveal-icon@2x.png"; sourceTree = "<group>"; };
 		3E4D49050D0F47E40092D1A3 /* CarAssigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarAssigner.h; path = Engine/CarAssigner.h; sourceTree = "<group>"; };
@@ -689,13 +685,18 @@
 		3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseView.m; sourceTree = "<group>"; };
 		3E57C5CB12FBDCC600E51008 /* KaufmanSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaufmanSwitchListView.h; sourceTree = "<group>"; };
 		3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaufmanSwitchListView.m; sourceTree = "<group>"; };
+		3E5BEDA81A7B4DCC00D14294 /* SwitchList-iPad.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "SwitchList-iPad.entitlements"; sourceTree = "<group>"; };
+		3E5BEDAA1A7B4E0B00D14294 /* Switchlist-iPad.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "Switchlist-iPad.entitlements"; path = "Switchlist-iPad/Switchlist-iPad.entitlements"; sourceTree = "<group>"; };
+		3E5BEDAB1A7B62C400D14294 /* vasona.layoutdb */ = {isa = PBXFileReference; lastKnownFileType = file; name = vasona.layoutdb; path = "resources-iPad/vasona.layoutdb"; sourceTree = "<group>"; };
+		3E5BEDAD1A7DA85600D14294 /* ProposedCargo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProposedCargo.h; path = Engine/ProposedCargo.h; sourceTree = "<group>"; };
+		3E5BEDAE1A7DA85600D14294 /* ProposedCargo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProposedCargo.m; path = Engine/ProposedCargo.m; sourceTree = "<group>"; };
 		3E60814013614EA30054DBA1 /* TextSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSwitchListView.h; sourceTree = "<group>"; };
 		3E60814113614EA30054DBA1 /* TextSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSwitchListView.m; sourceTree = "<group>"; };
 		3E60B66D1318B49C007C094D /* ReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTest.h; sourceTree = "<group>"; };
 		3E60B66E1318B49C007C094D /* ReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTest.m; sourceTree = "<group>"; };
 		3E62C0F8128E610E00520752 /* YardTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YardTest.h; path = Engine/YardTest.h; sourceTree = "<group>"; };
 		3E62C0F9128E610E00520752 /* YardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YardTest.m; path = Engine/YardTest.m; sourceTree = "<group>"; };
-		3E651ED91996F91B000AD418 /* layout.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = layout.iconset; path = resources/layout.iconset; sourceTree = "<group>"; };
+		3E651ED91996F91B000AD418 /* layout.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = layout.iconset; path = resources/layout.iconset; sourceTree = "<group>"; };
 		3E6B58A4140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Engine/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		3E6B58A5140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Engine/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		3E6B59B4140CB1CD006FFDD3 /* builtin-templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "builtin-templates"; sourceTree = "<group>"; };
@@ -760,8 +761,8 @@
 		3E9B786A1606527600891318 /* Unit tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E9B786B1606527600891318 /* Engine unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Engine unit tests-Info.plist"; sourceTree = "<group>"; };
 		3E9B794716065BA600891318 /* WebKit */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = WebKit; path = /System/Library/Frameworks/WebKit.framework/WebKit; sourceTree = "<absolute>"; };
-		3E9D56ED16225616007F49EC /* LayoutGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutGraph.h; sourceTree = "<group>"; };
-		3E9D56EE16225616007F49EC /* LayoutGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutGraph.m; sourceTree = "<group>"; };
+		3E9D56ED16225616007F49EC /* LayoutGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LayoutGraph.h; path = Engine/LayoutGraph.h; sourceTree = "<group>"; };
+		3E9D56EE16225616007F49EC /* LayoutGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LayoutGraph.m; path = Engine/LayoutGraph.m; sourceTree = "<group>"; };
 		3E9D56F216225B41007F49EC /* LayoutGraphTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutGraphTest.h; sourceTree = "<group>"; };
 		3E9D56F316225B41007F49EC /* LayoutGraphTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutGraphTest.m; sourceTree = "<group>"; };
 		3E9E1F780951605600C5E038 /* IndustryReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndustryReport.h; sourceTree = "<group>"; };
@@ -795,6 +796,14 @@
 		3EB0AC0A127BB95000E27063 /* InduYard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InduYard.h; path = Engine/InduYard.h; sourceTree = "<group>"; };
 		3EB0AC0B127BB95000E27063 /* InduYard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InduYard.m; path = Engine/InduYard.m; sourceTree = "<group>"; };
 		3EB18EE6128A70F200184A88 /* NSMigrationManagerCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMigrationManagerCategory.m; sourceTree = "<group>"; };
+		3EB4A1C61A9EEAF100F2C2B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "resources-iPad/en.lproj/MainStoryboard.storyboard"; sourceTree = "<group>"; };
+		3EB4A1C91A9EEBA300F2C2B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LayoutTable.storyboard; sourceTree = "<group>"; };
+		3EB4A1CC1A9EEBB700F2C2B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/CargoTable.storyboard; sourceTree = "<group>"; };
+		3EB4A1CF1A9EEBBF00F2C2B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/IndustryTable.storyboard; sourceTree = "<group>"; };
+		3EB4A1D21A9EEBCB00F2C2B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/TownTable.storyboard; sourceTree = "<group>"; };
+		3EB4A1D51A9EEBD000F2C2B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/TrainTable.storyboard; sourceTree = "<group>"; };
+		3EB4A1D81A9EEBD300F2C2B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/YardTable.storyboard; sourceTree = "<group>"; };
+		3EB4A1DB1A9EEC0900F2C2B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = "resources-iPad/en.lproj/FreightCarTable.storyboard"; sourceTree = "<group>"; };
 		3EB507BB13243F2600D85B59 /* StringHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringHelpers.h; path = Engine/StringHelpers.h; sourceTree = "<group>"; };
 		3EB507BC13243F2600D85B59 /* StringHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringHelpers.m; path = Engine/StringHelpers.m; sourceTree = "<group>"; };
 		3EB677B6130E4B460012DE1D /* CargoAssignerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CargoAssignerTest.h; path = Engine/CargoAssignerTest.h; sourceTree = "<group>"; };
@@ -803,7 +812,6 @@
 		3EB7BBD019A11DC7004C202F /* StyleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleTableViewCell.h; path = iPad/StyleTableViewCell.h; sourceTree = "<group>"; };
 		3EB7BBD119A11DC7004C202F /* StyleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleTableViewCell.m; path = iPad/StyleTableViewCell.m; sourceTree = "<group>"; };
 		3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = NoSidingToLatest.xcmappingmodel; sourceTree = "<group>"; };
-		3EC0ACDB199FF60300ABD0E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3EC0ACDD199FFA9F00ABD0E5 /* StyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleViewController.h; path = iPad/StyleViewController.h; sourceTree = "<group>"; };
 		3EC0ACDE199FFA9F00ABD0E5 /* StyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleViewController.m; path = iPad/StyleViewController.m; sourceTree = "<group>"; };
 		3EC0ACE019A042C500ABD0E5 /* TemplateCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TemplateCache.h; path = Engine/TemplateCache.h; sourceTree = "<group>"; };
@@ -1024,6 +1032,9 @@
 		2A37F4AAFDCFA73011CA2CEA /* SwitchList.CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				3EB4A1C51A9EEAF100F2C2B5 /* MainStoryboard.storyboard */,
+				3E5BEDAB1A7B62C400D14294 /* vasona.layoutdb */,
+				3E5BEDAA1A7B4E0B00D14294 /* Switchlist-iPad.entitlements */,
 				3E6CC55A19AACA0900C768ED /* Waterside Yard.switchlist */,
 				3E6CC55819AAC9FD00C768ED /* Stockton with Divisions.switchlist */,
 				3EC1D47D160AEDB700765095 /* QuartzCore.framework */,
@@ -1088,6 +1099,7 @@
 				3E6C6EC712F007E200C7A8D1 /* Credits.html */,
 				3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */,
 				3E1FD9B615CCEBC800568E36 /* SwitchList.entitlements */,
+				3E5BEDA81A7B4DCC00D14294 /* SwitchList-iPad.entitlements */,
 				3E1FD9B415CCE78F00568E36 /* icon.icns */,
 			);
 			name = Resources;
@@ -1244,14 +1256,13 @@
 		3E407DB8160693F10037134D /* resources-Ipad */ = {
 			isa = PBXGroup;
 			children = (
-				3E45402419A92F36000755D9 /* CargoTable.storyboard */,
-				3E45401C19A925B1000755D9 /* FreightCarTable.storyboard */,
-				3E45401E19A927E1000755D9 /* IndustryTable.storyboard */,
-				3E45402819A9319B000755D9 /* LayoutTable.storyboard */,
-				3EC0ACDC199FF60300ABD0E5 /* MainStoryboard.storyboard */,
-				3E45402019A92928000755D9 /* TownTable.storyboard */,
-				3E45402219A92C0C000755D9 /* TrainTable.storyboard */,
-				3E45402619A93036000755D9 /* YardTable.storyboard */,
+				3EB4A1CD1A9EEBB700F2C2B5 /* CargoTable.storyboard */,
+				3EB4A1D01A9EEBBF00F2C2B5 /* IndustryTable.storyboard */,
+				3EB4A1CA1A9EEBA300F2C2B5 /* LayoutTable.storyboard */,
+				3EB4A1DA1A9EEC0900F2C2B5 /* FreightCarTable.storyboard */,
+				3EB4A1D31A9EEBCB00F2C2B5 /* TownTable.storyboard */,
+				3EB4A1D61A9EEBD000F2C2B5 /* TrainTable.storyboard */,
+				3EB4A1D91A9EEBD300F2C2B5 /* YardTable.storyboard */,
 				3E37741916082E200023C8B5 /* switchlistButton.png */,
 				3EAAA7091606C4BD00C3D7A8 /* icon.png */,
 				3EAAA7811608235400C3D7A8 /* Default-Landscape~ipad.png */,
@@ -1368,6 +1379,8 @@
 		3EAAA77E1607093400C3D7A8 /* Cargo Suggestions */ = {
 			isa = PBXGroup;
 			children = (
+				3E5BEDAD1A7DA85600D14294 /* ProposedCargo.h */,
+				3E5BEDAE1A7DA85600D14294 /* ProposedCargo.m */,
 				3EA4891715D85C7C008A169F /* SuggestedCargoController.h */,
 				3EA4891815D85C7C008A169F /* SuggestedCargoController.m */,
 				3EA4879715D83D73008A169F /* TypicalIndustryStore.h */,
@@ -1796,6 +1809,11 @@
 				TargetAttributes = {
 					3E407D55160693170037134D = {
 						DevelopmentTeam = PRKJWD6X23;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					3E9B75B616063FE600891318 = {
 						DevelopmentTeam = PRKJWD6X23;
@@ -1839,7 +1857,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EC0ACD9199FF60300ABD0E5 /* MainStoryboard.storyboard in Resources */,
 				3E386E8C19B2A3F50040A69B /* check-1-icon.png in Resources */,
 				3EAAA770160708BE00C3D7A8 /* layout.css in Resources */,
 				3EAAA771160708BF00C3D7A8 /* switchlist.css in Resources */,
@@ -1854,7 +1871,8 @@
 				3EAAA779160708BF00C3D7A8 /* switchlist.html in Resources */,
 				3EAAA77A160708BF00C3D7A8 /* switchlist-carlist.html in Resources */,
 				3EAAA77B160708BF00C3D7A8 /* switchlist-home.html in Resources */,
-				3E45402719A93036000755D9 /* YardTable.storyboard in Resources */,
+				3EB4A1D71A9EEBD300F2C2B5 /* YardTable.storyboard in Resources */,
+				3E5BEDAC1A7B62C400D14294 /* vasona.layoutdb in Resources */,
 				3EAAA77C160708BF00C3D7A8 /* switchlist-layout.html in Resources */,
 				3EAAA77D160708BF00C3D7A8 /* yard-report.html in Resources */,
 				3E386E8E19B2A4010040A69B /* uncheck-icon.png in Resources */,
@@ -1867,28 +1885,29 @@
 				3E407DCE160694070037134D /* GS.jpg in Resources */,
 				3E407DCF160694070037134D /* icon.png in Resources */,
 				3E45403119A93359000755D9 /* reveal-icon@2x.png in Resources */,
-				3E45402119A92928000755D9 /* TownTable.storyboard in Resources */,
+				3EB4A1D11A9EEBCB00F2C2B5 /* TownTable.storyboard in Resources */,
 				3E407DD0160694070037134D /* industry.png in Resources */,
-				3E45401D19A92671000755D9 /* FreightCarTable.storyboard in Resources */,
+				3EB4A1C71A9EEAF100F2C2B5 /* MainStoryboard.storyboard in Resources */,
 				3E407DD1160694070037134D /* RS.jpg in Resources */,
 				3E407DD2160694070037134D /* SwitchList for iPad-Info.plist in Resources */,
 				3EC538FA19B16AED00F2351A /* industryNameTraining.bks in Resources */,
-				3E45402919A9319B000755D9 /* LayoutTable.storyboard in Resources */,
-				3E45401F19A927E1000755D9 /* IndustryTable.storyboard in Resources */,
+				3EB4A1C81A9EEBA300F2C2B5 /* LayoutTable.storyboard in Resources */,
+				3EB4A1CE1A9EEBBF00F2C2B5 /* IndustryTable.storyboard in Resources */,
+				3E5BEDA91A7B4DCC00D14294 /* SwitchList-iPad.entitlements in Resources */,
 				3E45403019A93359000755D9 /* reveal-icon.png in Resources */,
 				3E6CC55B19AACA0900C768ED /* Waterside Yard.switchlist in Resources */,
+				3EB4A1DC1A9EEC0900F2C2B5 /* FreightCarTable.storyboard in Resources */,
 				3E407DD3160694070037134D /* T.jpg in Resources */,
 				3E407DD4160694070037134D /* train.png in Resources */,
 				3E407DD5160694070037134D /* XM.jpg in Resources */,
-				3E45402519A92F36000755D9 /* CargoTable.storyboard in Resources */,
+				3EB4A1CB1A9EEBB700F2C2B5 /* CargoTable.storyboard in Resources */,
 				3E407DD6160694070037134D /* yard.jpg in Resources */,
 				3E407DDA1606945E0037134D /* InfoPlist.strings in Resources */,
 				3EAAA7801608226B00C3D7A8 /* Default-Portrait~ipad.png in Resources */,
 				3EAAA7821608235400C3D7A8 /* Default-Landscape~ipad.png in Resources */,
 				3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */,
-				3E37741C160838D00023C8B5 /* vasona.sql in Resources */,
 				3E6CC55919AAC9FD00C768ED /* Stockton with Divisions.switchlist in Resources */,
-				3E45402319A92C0C000755D9 /* TrainTable.storyboard in Resources */,
+				3EB4A1D41A9EEBD000F2C2B5 /* TrainTable.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1985,7 +2004,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/SAMPLES\"\ncp resources-iPad/*.sql \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/SAMPLES/VasonaBranch.sql\"\ncp resources-iPad/*.switchlist \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/SAMPLES\"\n";
+			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\nmkdir -p \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/Samples\"\npwd\nls ../examples\nls ../examples/*\ncp -f ../examples/*/*.layoutdb \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/Samples\n";
 		};
 		3E6B59D9140CB21A006FFDD3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1998,7 +2017,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\ncp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n                  \necho \"Compiling industry name training file\"                  \n$TARGET_BUILD_DIR/generate_classifier_file \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/typicalIndustries.plist\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/industryNameTraining.bks\"\n";
+			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\nmkdir -p \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/Samples\"\ncp -f \"../examples/*/*.layoutdb\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/Samples\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/Samples/*.layoutdb\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\ncp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n                  \necho \"Compiling industry name training file\"                  \n$TARGET_BUILD_DIR/generate_classifier_file \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/typicalIndustries.plist\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/industryNameTraining.bks\"\n";
 		};
 		3E6F193C1985AF28007AA710 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2042,6 +2061,7 @@
 				3EAAA7491606CBAD00C3D7A8 /* RandomNumberGenerator.m in Sources */,
 				3EAAA74B1606CBAD00C3D7A8 /* TrainAssigner.m in Sources */,
 				3EAAA74D1606CBAD00C3D7A8 /* TrainSizeVector.m in Sources */,
+				3E5BEDB11A7DA97F00D14294 /* ProposedCargo.m in Sources */,
 				3EC5392B19B1905C00F2351A /* ICUTemplateMatcher.m in Sources */,
 				3EAAA72A1606CB9500C3D7A8 /* CarType.m in Sources */,
 				3EAAA72B1606CB9500C3D7A8 /* CarTypes.m in Sources */,
@@ -2165,6 +2185,7 @@
 				3EC538F019B16A2600F2351A /* BKClassifier.m in Sources */,
 				3E9B75DB1606402A00891318 /* NSFileManager+DirectoryLocations.m in Sources */,
 				3E9B75DC1606402A00891318 /* NSMigrationManagerCategory.m in Sources */,
+				3E5BEDB01A7DA85600D14294 /* ProposedCargo.m in Sources */,
 				3E9B75DE1606402A00891318 /* Place.m in Sources */,
 				3E9B75E01606402A00891318 /* RandomNumberGenerator.m in Sources */,
 				3EC0ACE319A042C500ABD0E5 /* TemplateCache.m in Sources */,
@@ -2418,15 +2439,6 @@
 			name = HTMLSwitchListView.xib;
 			sourceTree = "<group>";
 		};
-		3E45401C19A925B1000755D9 /* FreightCarTable.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E45401B19A925B1000755D9 /* en */,
-			);
-			name = FreightCarTable.storyboard;
-			path = "resources-iPad";
-			sourceTree = "<group>";
-		};
 		3EA1162113501BC500365DEB /* SwitchListReportWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2435,13 +2447,74 @@
 			name = SwitchListReportWindow.xib;
 			sourceTree = "<group>";
 		};
-		3EC0ACDC199FF60300ABD0E5 /* MainStoryboard.storyboard */ = {
+		3EB4A1C51A9EEAF100F2C2B5 /* MainStoryboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3EC0ACDB199FF60300ABD0E5 /* en */,
+				3EB4A1C61A9EEAF100F2C2B5 /* en */,
 			);
 			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		3EB4A1CA1A9EEBA300F2C2B5 /* LayoutTable.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EB4A1C91A9EEBA300F2C2B5 /* en */,
+			);
+			name = LayoutTable.storyboard;
 			path = "resources-iPad";
+			sourceTree = "<group>";
+		};
+		3EB4A1CD1A9EEBB700F2C2B5 /* CargoTable.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EB4A1CC1A9EEBB700F2C2B5 /* en */,
+			);
+			name = CargoTable.storyboard;
+			path = "resources-iPad";
+			sourceTree = "<group>";
+		};
+		3EB4A1D01A9EEBBF00F2C2B5 /* IndustryTable.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EB4A1CF1A9EEBBF00F2C2B5 /* en */,
+			);
+			name = IndustryTable.storyboard;
+			path = "resources-iPad";
+			sourceTree = "<group>";
+		};
+		3EB4A1D31A9EEBCB00F2C2B5 /* TownTable.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EB4A1D21A9EEBCB00F2C2B5 /* en */,
+			);
+			name = TownTable.storyboard;
+			path = "resources-iPad";
+			sourceTree = "<group>";
+		};
+		3EB4A1D61A9EEBD000F2C2B5 /* TrainTable.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EB4A1D51A9EEBD000F2C2B5 /* en */,
+			);
+			name = TrainTable.storyboard;
+			path = "resources-iPad";
+			sourceTree = "<group>";
+		};
+		3EB4A1D91A9EEBD300F2C2B5 /* YardTable.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EB4A1D81A9EEBD300F2C2B5 /* en */,
+			);
+			name = YardTable.storyboard;
+			path = "resources-iPad";
+			sourceTree = "<group>";
+		};
+		3EB4A1DA1A9EEC0900F2C2B5 /* FreightCarTable.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EB4A1DB1A9EEC0900F2C2B5 /* en */,
+			);
+			name = FreightCarTable.storyboard;
 			sourceTree = "<group>";
 		};
 		3EFA164309515C1500654CC9 /* Report.nib */ = {
@@ -2462,6 +2535,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Switchlist-iPad/Switchlist-iPad.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -2486,6 +2560,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -2499,6 +2574,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Switchlist-iPad/Switchlist-iPad.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -2517,6 +2593,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -2531,6 +2608,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Switchlist-iPad/Switchlist-iPad.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -2549,6 +2627,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -2563,6 +2642,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = "Switchlist-iPad/Switchlist-iPad.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
@@ -2581,6 +2661,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;

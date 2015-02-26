@@ -262,16 +262,21 @@ NSInteger compareByCount(id this, id that, void *context) {
 	NSArray *trains = [self.entireLayout allTrains];
 	
 	self.stationToNodeMap = [NSMutableDictionary dictionary];
+    // Set of stations that are the starting point for trains.
 	NSMutableSet *allStarts = [NSMutableSet set];
 	AdjacencyTable *table = [[[AdjacencyTable alloc] init] autorelease];
 	
 	NSArray *allStations = [layout allStations];
-	NSInteger stationCount = [allStations count];
-	int i, j;
-	for (i=0; i < stationCount; i++) {
-		for (j=i; j < stationCount; j++) {
-			Place *from = [allStations objectAtIndex: i];
-			Place *to = [allStations objectAtIndex: j];
+
+    // Create nodes for all physical stations.
+    for (Place *p in allStations) {
+        if ([p isOffline]) continue;
+        // Create layout node.
+        [self layoutNodeForPlace: p];
+    }
+
+    for (Place *from in allStations) {
+        for (Place *to in allStations) {
 			if (from == to) continue;
 			int adjacent = 0;
 			int onSameRoute = 0;
@@ -310,7 +315,7 @@ NSInteger compareByCount(id this, id that, void *context) {
 	
 	for (ScheduledTrain *train in trains) {
 		NSArray *allStops = [train stationsInOrder];
-        if (allStops.count == 0) continue;
+        if (allStops.count < 1) continue;
 		LayoutNode *start = [self layoutNodeForStation: [[allStops objectAtIndex: 0] name]];
 		if (![allStarts containsObject: start]) {
 			[allStarts addObject: start];
@@ -340,20 +345,19 @@ NSInteger compareByCount(id this, id that, void *context) {
 	for (LayoutNode *node in [self.stationToNodeMap allValues]) {
 		node.visited = NO;
 	}
+    
+    // Display in order that existing trains visit.
 	NSMutableArray *result = [NSMutableArray array];
 	for (LayoutNode *node in [[self.starts allObjects] sortedArrayUsingSelector: @selector(compareByOccurrences:)]) {
 		if (node.visited == NO) {
 			[result addObjectsFromArray: [node stationsInReasonableOrder]];
 		}
 	}
-    
-    if (result.count == 0) {
-        NSArray *allStations = [entireLayout allStationsSortedOrder];
-        for (Place *station in allStations) {
-            if (station.isOffline) continue;
-            LayoutNode *node = [[LayoutNode alloc] initWithPlace: station];
+
+    // Add any remaining stations not on a train.
+    for (LayoutNode *node in [self.stationToNodeMap allValues]) {
+        if (![result containsObject: node]) {
             [result addObject: node];
-            [node release];
         }
     }
 	return result;
@@ -391,7 +395,6 @@ NSInteger compareByCount(id this, id that, void *context) {
 	return [self edgeFromStation: [self layoutNodeForStation: previousName]
 					   toStation: [self layoutNodeForStation: stationName]] != nil;
 }
-	
 - (LayoutNode*) layoutNodeForPlace: (Place*)  station {
 	LayoutNode *stationNode = [self.stationToNodeMap objectForKey: [station objectID]];
 	if (!stationNode) {

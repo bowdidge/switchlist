@@ -130,5 +130,8 @@
 - (void) startWebServer;
 - (void) stopWebServer;
 
+
+@property (retain, atomic) id currentICloudToken;
+
 @end
 

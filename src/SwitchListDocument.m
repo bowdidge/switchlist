@@ -174,6 +174,7 @@
 	return nameToSwitchListClassMap_;
 }
 
+
 // Converts the train stop string in all trains from the old comma-based separator to the
 // newer approach that will allow commas in place names.  If it looks like the stops has
 // been converted on one already, assume all are converted and do nothing.
@@ -208,18 +209,20 @@
 			[entireLayout_ setLayoutName: filename];
 		}
 	}
-    
-    // New layouts have no car types.  Add in a default set.
-    if ([[entireLayout_ allCarTypes] count] == 0) {
-        // No car types - set up default.
-        NSDictionary* defaultCarTypes = [CarTypes defaultCarTypes];
-        for (NSString *carTypeName in defaultCarTypes) {
-            CarType *carType = [NSEntityDescription insertNewObjectForEntityForName:@"CarType"
-                                                             inManagedObjectContext: [self managedObjectContext]];
-            [carType setCarTypeName: carTypeName];
-            [carType setCarTypeDescription: [defaultCarTypes objectForKey: carTypeName]];
+
+   
+        // New layouts have no car types.  Add in a default set.
+        if ([[entireLayout_ allCarTypes] count] == 0) {
+            // No car types - set up default.
+            NSDictionary* defaultCarTypes = [CarTypes defaultCarTypes];
+            for (NSString *carTypeName in defaultCarTypes) {
+                CarType *carType = [NSEntityDescription insertNewObjectForEntityForName:@"CarType"
+                                                                 inManagedObjectContext: [self managedObjectContext]];
+                [carType setCarTypeName: carTypeName];
+                [carType setCarTypeDescription: [defaultCarTypes objectForKey: carTypeName]];
+            }
         }
-    }
+
 	
 	NSMutableDictionary *layoutPrefs = [entireLayout_ getPreferencesDictionary];
 	NSNumber *defaultLoadsNumber = [layoutPrefs objectForKey: LAYOUT_PREFS_DEFAULT_NUM_LOADS];
@@ -617,7 +620,44 @@
 		NSLog(@"%@",[localException description]);
 	}
 
-	return ret;
+    NSString *storeType = [self persistentStoreTypeForFileType: [self fileType]];
+    if ([storeType isEqualToString: @"XML"] && [[NSFileManager defaultManager] isWritableFileAtPath: [[self fileURL] path]]) {
+        // TODO(bowdidge): Also check if read-only, and don't prompt then.
+        shouldPromptForUpgrade_ = YES;
+    }
+    return ret;
+}
+
+- (void) windowDidBecomeKey: (id) sender {
+    if (shouldPromptForUpgrade_ == YES) {
+        // Clear flag so we don't keep checking.
+        shouldPromptForUpgrade_ = NO;
+        NSString *filename = [[[self fileURL] lastPathComponent] stringByDeletingPathExtension];
+        NSString *errorString =[NSString stringWithFormat: @"The layout file '%@' needs upgrading.", filename];
+        NSDictionary *dict = @{NSLocalizedDescriptionKey: errorString,
+                               NSLocalizedRecoverySuggestionErrorKey:   @"Your layout file uses an older file format which SwitchList no longer uses.  Would you like to save an upgraded version of the layout file?",
+                               NSRecoveryAttempterErrorKey : self,
+                               NSLocalizedRecoveryOptionsErrorKey: @[@"Upgrade", @"Not now"]};
+        NSError *upgradeError = [NSError errorWithDomain: @"com.blogspot.vasonabranch.Switchlist" code: -100 userInfo: dict];
+        
+        [self presentError: upgradeError modalForWindow: switchListWindow_ delegate: self didPresentSelector: @selector(didPresentErrorWithRecovery:contextInfo:) contextInfo:nil];
+    }
+}
+
+- (void)attemptRecoveryFromError:(NSError *)error
+                     optionIndex:(NSUInteger)recoveryOptionIndex
+                        delegate:(id)delegate
+              didRecoverSelector:(SEL)didRecoverSelector
+                     contextInfo:(void *)contextInfo {
+    if (recoveryOptionIndex == 0) {
+        [self saveDocumentAs: nil];
+
+    }
+}
+
+
+- (void)didPresentErrorWithRecovery:(BOOL)didRecover  contextInfo:(void *)contextInfo {
+    NSLog(@"Presented");
 }
 
 - (EntireLayout*) entireLayout {
@@ -752,6 +792,10 @@
 		NSBeep(); return;
 	}
 	NSInteger selRow = [selection firstIndex];
+    if (selRow >= [trains_ count]) {
+        // Ignore clicks on empty lines.
+        return;
+    }
 	ScheduledTrain *train = [trains_ objectAtIndex: selRow];
     [self doGenerateSwitchListForTrain: train];
 }

@@ -30,9 +30,8 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void)viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
     
     // Keep a list of all freight car types on hand for generating the
     // list of possible values.

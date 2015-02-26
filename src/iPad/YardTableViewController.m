@@ -72,6 +72,7 @@
     EntireLayout *entireLayout = myAppDelegate.entireLayout;
     
     Yard *yard = [entireLayout createYardWithName: @"A-Yard"];
+    [yard setLocation: [entireLayout workbench]];
 
     [self regenerateTableData];
     [self.tableView reloadData];
@@ -142,19 +143,18 @@
 }
 */
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+// Handles editing actions on table - delete or insert.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
+        Yard *yardToDelete = [self yardAtIndexPath: indexPath];
+        [[yardToDelete managedObjectContext] deleteObject: yardToDelete];
+        [self regenerateTableData];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    }
 }
-*/
 
 /*
 // Override to support rearranging the table view.

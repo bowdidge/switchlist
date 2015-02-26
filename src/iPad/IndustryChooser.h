@@ -37,4 +37,8 @@
 
 // Name of field being set.  For distinguishing between source and destination.
 @property (retain, nonatomic) NSString *fieldToSet;
+
+// Show yards as well as industries.
+@property (nonatomic) BOOL showYards;
+
 @end

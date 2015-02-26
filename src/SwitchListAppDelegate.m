@@ -180,11 +180,23 @@
  	[super dealloc];
 }
 
+- (void) applicationDidFinishLaunching: (NSNotification*) notification {
+    self.currentICloudToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
+    if (self.currentICloudToken) {
+        NSData *newTokenData = [NSKeyedArchiver archivedDataWithRootObject: currentICloudToken];
+        [[NSUserDefaults standardUserDefaults]
+         setObject: newTokenData forKey: @"com.blogspot.vasonabranch.SwitchListApp.UbiquityIdentityToken"];
+    } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey: @"com.blogspot.vasonabranch.SwitchListApp.UbiquityIdentityToken"];
+    }
+
+}
+
+// Either by user control or
 + (SwitchListAppDelegate *)sharedAppDelegate {
     return (SwitchListAppDelegate *)[[NSApplication sharedApplication] delegate];
 }
 
-// Either by user control or 
 - (void) startWebServer {
 	NSLog(@"Starting web server.");
 	webController_ = [[WebServerDelegate alloc] init];
@@ -595,5 +607,7 @@ error:
 	NSString *locBookName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleHelpBookName"];
 	[[NSHelpManager sharedHelpManager] openHelpAnchor: @"SwitchListPreferencesHelp" inBook: locBookName];
 }
+
+@synthesize currentICloudToken;
 
 @end

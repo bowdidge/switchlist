@@ -186,6 +186,9 @@
 	NSMutableDictionary *nameToSwitchListClassMap_;
     // Cached value.
 	NSString *preferredSwitchListStyle_;
+    
+    // Should we offer to upgrade?
+    BOOL shouldPromptForUpgrade_;
 }
 
 // Cache for looking up what templates exist.

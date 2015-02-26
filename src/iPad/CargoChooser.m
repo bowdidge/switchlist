@@ -54,9 +54,9 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear: (BOOL) animated;
 {
-    [super viewDidLoad];
+    [super viewWillAppear: animated];
     
     // Keep a list of all freight car types on hand for generating the
     // list of possible values.
@@ -74,7 +74,7 @@
 }
 
 - (void) setFreightCar: (FreightCar*) fc {
-    // TODO(bowdidge): Probably inefficient.  Try to do this during viewDidLoad.
+    // TODO(bowdidge): Probably inefficient.  Try to do this during viewWillAppear.
     self.keyObject = fc;
     self.keyObjectSelection = [fc cargo];
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;

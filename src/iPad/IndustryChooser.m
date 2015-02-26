@@ -33,15 +33,19 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (void)viewWillAppear: (BOOL) animated {
+    [super viewWillAppear: animated];
     
     // Keep a list of all freight car types on hand for generating the
     // list of possible values.
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
-    self.allIndustries = [myLayout allIndustries];
+
+    if (self.showYards) {
+        self.allIndustries = [myLayout allLocationsForFreightCars];
+    } else {
+        self.allIndustries = [myLayout allIndustries];
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

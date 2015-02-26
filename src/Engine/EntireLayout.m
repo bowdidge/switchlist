@@ -521,7 +521,6 @@ NSString *NormalizeDivisionString(NSString *inString) {
     return [[potentialLengthsToShow allObjects] sortedArrayUsingSelector: @selector(compare:)];
 }
 
-
 // Returns an array of all industries that can receive cargo.
 - (NSArray*) allIndustries {
 	// Sort non-staging first, then sort by location, then sort alphabetically by name.
@@ -595,9 +594,20 @@ NSString *NormalizeDivisionString(NSString *inString) {
 
 
 // Returns the list of all stations (Places) on the layout in no particular order.
+- (NSArray*) allLocationsForFreightCars {
+    NSEntityDescription *ent = [NSEntityDescription entityForName: @"InduYard" inManagedObjectContext: [self managedObjectContext]];
+    NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
+    [req2 setPredicate: [NSPredicate predicateWithFormat: @"location.isOffline != YES"]];
+    [req2 setEntity: ent];
+    NSError *error;
+    return [[self managedObjectContext] executeFetchRequest: req2 error:&error];
+}
+
+// Returns the list of all stations (Places) on the layout in no particular order.
 - (NSArray*) allStations {
 	NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [self managedObjectContext]];
 	NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
+    [req2 setPredicate: [NSPredicate predicateWithFormat: @"isOffline != YES"]];
 	[req2 setEntity: ent];
 	NSError *error;
 	return [[self managedObjectContext] executeFetchRequest: req2 error:&error];

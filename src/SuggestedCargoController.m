@@ -45,31 +45,6 @@
 #import "SwitchListDocument.h"
 #import "TypicalIndustryStore.h"
 
-@implementation ProposedCargo 
-@synthesize isKeep;
-@synthesize isReceive;
-@synthesize name;
-@synthesize carsPerWeek;
-@synthesize industry;
-@synthesize isExistingCargo;
-
-// Creates a proposed cargo based on an existing Cargo object.
-- (id) initWithExistingCargo: (Cargo*) cargo isReceive: (BOOL) shouldReceive {
-	self = [self init];
-	self.name = [cargo cargoDescription];
-	self.isKeep = [NSNumber numberWithBool: NO];
-	self.isExistingCargo = YES;
-	self.isReceive = shouldReceive;
-	self.industry = (shouldReceive ? [cargo source] : [cargo destination]);
-	self.carsPerWeek = [[cargo carsPerWeek] stringValue];
-	return self;
-}
-	
-- (NSString*) receiveString {
-	return (self.isReceive ? @"Receive" : @"Ship");
-}
-@end
-
 @implementation SuggestedCargoController
 
 - (id) init {
@@ -308,20 +283,7 @@
 	NSArray *cargos = [proposedCargoArrayController_ content];
 	for (ProposedCargo *cargo in cargos) {
 		if ([[cargo isKeep] intValue]) {
-			NSManagedObjectContext *context = [currentIndustry_ managedObjectContext];
-			[NSEntityDescription entityForName: @"Cargo" inManagedObjectContext: context];
-			Cargo *c1 = [NSEntityDescription insertNewObjectForEntityForName:@"Cargo"
-														 inManagedObjectContext: context];
-			c1.cargoDescription = [cargo name];
-			c1.priority = [NSNumber numberWithBool: NO];
-			c1.carsPerWeek = [NSNumber numberWithInt: [[cargo carsPerWeek] intValue]];
-			if ([cargo isReceive]) {
-				c1.source = [cargo industry];
-				c1.destination = currentIndustry_;
-			} else {
-				c1.source = currentIndustry_;
-				c1.destination = [cargo industry];
-			}
+            Cargo *c1 = [cargo createRealCargoWithIndustry: currentIndustry_];
 		}
 	}
 	// Keep window open so user can do other industries.

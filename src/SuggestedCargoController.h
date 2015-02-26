@@ -31,35 +31,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+#import "ProposedCargo.h"
+
 @class Industry;
 @class SwitchListDocument;
 @class TypicalIndustryStore;
-
-// Represents a potential cargo for the current industry.
-@interface ProposedCargo : NSObject {
-    NSNumber *isKeep;
-    BOOL isReceive;
-    NSString *name;
-    NSString *carsPerWeek;
-    InduYard *industry;
-    BOOL isExistingCargo;
-}
-// Value of checkbox whether to create this cargo.  NSNumber required
-// for checkbox.
-@property (nonatomic, retain) NSNumber *isKeep;
-// Is incoming cargo.
-@property (nonatomic) BOOL isReceive;
-// String value for receive column: either "Receive" or "Ship".
-@property (nonatomic, readonly) NSString *receiveString;
-// Cargo description.
-@property (nonatomic, retain) NSString *name;
-// Rate of cars arriving or departing.
-@property (nonatomic, retain) NSString *carsPerWeek;
-// Preferred industry as source/dest of cargo.
-@property (nonatomic, retain) InduYard *industry;
-// Existing cargo just being shown for context?
-@property (nonatomic) BOOL isExistingCargo;
-@end
 
 // Controller for the Cargo Assistant dialog box.
 @interface SuggestedCargoController : NSObject<NSTableViewDelegate> {
@@ -92,7 +68,7 @@
 - (IBAction) doChangeCarsPerWeek: (id) sender;
 // Create button is pressed.
 - (IBAction) doCreate: (id) sender;
-	
+
 - (NSWindow*) window;
 
 @end

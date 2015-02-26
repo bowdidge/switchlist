@@ -33,6 +33,7 @@
 #import "CargoChooser.h"
 #import "CarTypeChooser.h"
 #import "CargoTableCell.h"
+#import "Industry.h"
 #import "IndustryChooser.h"
 #import "SwitchListColors.h"
 
@@ -69,8 +70,9 @@
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *entireLayout = myAppDelegate.entireLayout;
     
-    Cargo *cargo = [entireLayout createCargoWithName: @"A Cargo"];
-    
+    Cargo *cargo = [entireLayout createCargoWithName: @"A cargo"];
+    [cargo setSource: [entireLayout workbenchIndustry]];
+    [cargo setDestination: [entireLayout workbenchIndustry]];
     [self regenerateTableData];
     [self.tableView reloadData];
     NSInteger currentIndex = [self.allCargos indexOfObject: cargo];
@@ -229,5 +231,17 @@
     [oldPath release];
 }
 
+// Handles editing actions on table - delete or insert.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Cargo *cargoToDelete = [self cargoAtIndexPath: indexPath];
+        [[cargoToDelete managedObjectContext] deleteObject: cargoToDelete];
+        [self regenerateTableData];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    }
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
 
 @end

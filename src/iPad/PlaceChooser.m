@@ -33,9 +33,9 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewWillAppear: (BOOL) animated
 {
-    [super viewDidLoad];
+    [super viewWillAppear: animated];
 
     AppDelegate *myAppDelegate = (AppDelegate*) [UIApplication sharedApplication].delegate;
     EntireLayout *myLayout = myAppDelegate.entireLayout;
