@@ -217,7 +217,7 @@
             CarType *carType = [NSEntityDescription insertNewObjectForEntityForName:@"CarType"
                                                              inManagedObjectContext: [self managedObjectContext]];
             [carType setCarTypeName: carTypeName];
-            [carType setCarTypeDescription: [currentlyUsedCarTypes objectForKey: carTypeName]];
+            [carType setCarTypeDescription: [defaultCarTypes objectForKey: carTypeName]];
         }
     }
 	
