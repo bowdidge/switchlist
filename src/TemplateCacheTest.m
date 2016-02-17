@@ -97,7 +97,9 @@
     
     // Create an empty directory. It shouldn't show up.
     NSString* switchlistDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent: @"NoSwitchList"];
-    XCTAssertTrue([[NSFileManager defaultManager] createDirectoryAtPath: switchlistDirectory withIntermediateDirectories: NO attributes: [NSDictionary dictionary]  error: &err], @"Problems creating test directory");
+    BOOL createSucceed = [[NSFileManager defaultManager] createDirectoryAtPath: switchlistDirectory withIntermediateDirectories: NO attributes: [NSDictionary dictionary]  error: &err];
+    //Check either that directory was created or already existed.
+    XCTAssertTrue((createSucceed || err.code == NSFileWriteFileExistsError), @"Problems creating test directory: %@", err);
     XCTAssertFalse([[myCache validTemplateNames] containsObject: @"NotASwitchList"], @"Shouldn't have found 'NotASwitchList' in %@", [myCache validTemplateNames]);
 }
 
@@ -107,11 +109,12 @@
     TemplateCache *myCache = [[TemplateCache alloc] initWithFileManager: fakeFileManager];
     
     // Create an empty directory. It shouldn't show up.
-    NSString* switchlistDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent: @"MySwitchList"];
+    NSString* switchlistDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent: @"TemplateDirectory"];
     NSString* switchlistFile = [switchlistDirectory stringByAppendingPathComponent: @"switchlist.html"];
-    XCTAssertTrue([[NSFileManager defaultManager] createDirectoryAtPath: switchlistDirectory withIntermediateDirectories: NO attributes: [NSDictionary dictionary]  error: &err], @"Problems creating test directory");
+    BOOL createSucceed = [[NSFileManager defaultManager] createDirectoryAtPath: switchlistDirectory withIntermediateDirectories: NO attributes: [NSDictionary dictionary]  error: &err];
+    XCTAssertTrue((createSucceed || err.code == NSFileWriteFileExistsError), @"Problems creating test directory: %@", err);
     XCTAssertTrue([[NSFileManager defaultManager] createFileAtPath: switchlistFile contents: [NSData data] attributes: [NSDictionary dictionary]], @"Problems creating file");
-    XCTAssertTrue([[myCache validTemplateNames] containsObject: @"MySwitchList"], @"Shouldn't have found 'NotASwitchList' in %@", [myCache validTemplateNames]);
+    XCTAssertTrue([[myCache validTemplateNames] containsObject: @"MySwitchList"], @"Should have found 'TemplateDirectory' in %@", [myCache validTemplateNames]);
 }
 
 @end

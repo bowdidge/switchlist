@@ -186,10 +186,10 @@
 	NSMutableDictionary *nameToSwitchListClassMap_;
     // Cached value.
 	NSString *preferredSwitchListStyle_;
+    
+    // Cache for looking up what templates exist.
+    TemplateCache* theTemplateCache;
 }
-
-// Cache for looking up what templates exist.
-@property(retain, nonatomic) TemplateCache* theTemplateCache;
 
 // Returns LayoutController object which actually does the advancing actions.
 - (LayoutController*) layoutController;
@@ -273,5 +273,9 @@
 // Map from SwitchList template name to appropriate SwitchListView class.
 // Template names without native drawing support are unmapped.
 - (NSDictionary*) nameToSwitchListClassMap;
+
+// Returns the cache of all known templates.
+- (TemplateCache*) templateCache;
+
 @end
 

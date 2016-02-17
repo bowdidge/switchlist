@@ -24,6 +24,7 @@
 		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
 		3E335E60160D69760097360C /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E5F160D69760097360C /* FileViewController.m */; };
 		3E335E63160D6A050097360C /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E62160D6A050097360C /* FileCell.m */; };
+		3E360AD31C738FBF00CA2A67 /* Vasona Branch.swl in Resources */ = {isa = PBXBuildFile; fileRef = 3E360AD11C738FB500CA2A67 /* Vasona Branch.swl */; };
 		3E3620FA1539341700A57574 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
 		3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741916082E200023C8B5 /* switchlistButton.png */; };
 		3E37741C160838D00023C8B5 /* vasona.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741B160838D00023C8B5 /* vasona.sql */; };
@@ -88,9 +89,7 @@
 		3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
-		3E5CE21C1C6CFCE700310C5A /* UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CE21B1C6CFCE700310C5A /* UITests.m */; };
 		3E5CE2261C6CFD0000310C5A /* UITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CE2131C6CFB0B00310C5A /* UITest.m */; };
-		3E5CE2281C6D992100310C5A /* UITests in Resources */ = {isa = PBXBuildFile; fileRef = 3E5CE2271C6D992100310C5A /* UITests */; };
 		3E5E628C160E42EE0074AE1E /* SwitchListEngine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
 		3E5E629C160E45EA0074AE1E /* SwitchListEngine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
 		3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
@@ -578,6 +577,7 @@
 		3E335E5F160D69760097360C /* FileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileViewController.m; path = iPad/FileViewController.m; sourceTree = "<group>"; };
 		3E335E61160D6A050097360C /* FileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileCell.h; path = iPad/FileCell.h; sourceTree = "<group>"; };
 		3E335E62160D6A050097360C /* FileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileCell.m; path = iPad/FileCell.m; sourceTree = "<group>"; };
+		3E360AD11C738FB500CA2A67 /* Vasona Branch.swl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vasona Branch.swl"; sourceTree = "<group>"; };
 		3E362361153A899300A57574 /* PlaceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceTest.h; path = Engine/PlaceTest.h; sourceTree = "<group>"; };
 		3E362362153A899300A57574 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceTest.m; path = Engine/PlaceTest.m; sourceTree = "<group>"; };
 		3E37741916082E200023C8B5 /* switchlistButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchlistButton.png; sourceTree = "<group>"; };
@@ -701,9 +701,7 @@
 		3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaufmanSwitchListView.m; sourceTree = "<group>"; };
 		3E5CE2131C6CFB0B00310C5A /* UITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITest.m; sourceTree = "<group>"; };
 		3E5CE2191C6CFCE700310C5A /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E5CE21B1C6CFCE700310C5A /* UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UITests.m; sourceTree = "<group>"; };
 		3E5CE21D1C6CFCE700310C5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3E5CE2271C6D992100310C5A /* UITests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = UITests; sourceTree = "<group>"; };
 		3E60814013614EA30054DBA1 /* TextSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSwitchListView.h; sourceTree = "<group>"; };
 		3E60814113614EA30054DBA1 /* TextSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSwitchListView.m; sourceTree = "<group>"; };
 		3E60B66D1318B49C007C094D /* ReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTest.h; sourceTree = "<group>"; };
@@ -1349,8 +1347,6 @@
 		3E5CE21A1C6CFCE700310C5A /* UITests */ = {
 			isa = PBXGroup;
 			children = (
-				3E5CE21B1C6CFCE700310C5A /* UITests.m */,
-				3E5CE2271C6D992100310C5A /* UITests */,
 				3E5CE21D1C6CFCE700310C5A /* Info.plist */,
 			);
 			path = UITests;
@@ -1360,6 +1356,7 @@
 			isa = PBXGroup;
 			children = (
 				3E5CE2131C6CFB0B00310C5A /* UITest.m */,
+				3E360AD11C738FB500CA2A67 /* Vasona Branch.swl */,
 			);
 			name = "UI Tests";
 			sourceTree = "<group>";
@@ -1962,7 +1959,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E5CE2281C6D992100310C5A /* UITests in Resources */,
+				3E360AD31C738FBF00CA2A67 /* Vasona Branch.swl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2072,7 +2069,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\ncp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n                  \necho \"Compiling industry name training file\"                  \n$TARGET_BUILD_DIR/generate_classifier_file \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/typicalIndustries.plist\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/industryNameTraining.bks\"\n";
+			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\ncp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n                  \necho \"Compiling industry name training file\"                  \n# $TARGET_BUILD_DIR/generate_classifier_file \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/typicalIndustries.plist\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/industryNameTraining.bks\"\n";
 		};
 		3E6F193C1985AF28007AA710 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2213,7 +2210,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E5CE21C1C6CFCE700310C5A /* UITests.m in Sources */,
 				3E5CE2261C6CFD0000310C5A /* UITest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

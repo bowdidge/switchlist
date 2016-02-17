@@ -39,14 +39,14 @@
 
 - (id) init {
     self = [super init];
-    self.theFileManager = [NSFileManager defaultManager];
+    theFileManager = [NSFileManager defaultManager];
     return self;
 }
 
 // For testing.
 - (id) initWithFileManager: (NSFileManager*) fileManager {
     self = [super init];
-    self.theFileManager = fileManager;
+    theFileManager = fileManager;
     return self;
 }
 
@@ -55,12 +55,12 @@
 // and if "name" contains a switchlist.html file suggesting it's a real template.
 - (BOOL) isSwitchlistTemplate: (NSString*) name inDirectory: (NSString*) directory {
 	BOOL isDirectory = NO;
-	if (![self.theFileManager fileExistsAtPath: [directory stringByAppendingPathComponent: name]
+	if (![theFileManager fileExistsAtPath: [directory stringByAppendingPathComponent: name]
                                               isDirectory: &isDirectory] || isDirectory == NO) {
 		return NO;
 	}
 	// Does a switchlist.html directory exist there?
-	if ([self.theFileManager fileExistsAtPath: [[directory stringByAppendingPathComponent: name]
+	if ([theFileManager fileExistsAtPath: [[directory stringByAppendingPathComponent: name]
                                                            stringByAppendingPathComponent: @"switchlist.html"]]) {
 		return YES;
 	}
@@ -78,8 +78,8 @@
     
 	NSError *error;
 	// First find templates in application support directory.
-	NSString *applicationSupportDirectory = [self.theFileManager applicationSupportDirectory];
-	NSArray *filesInApplicationSupportDirectory = [self.theFileManager contentsOfDirectoryAtPath: applicationSupportDirectory
+	NSString *applicationSupportDirectory = [theFileManager applicationSupportDirectory];
+	NSArray *filesInApplicationSupportDirectory = [theFileManager contentsOfDirectoryAtPath: applicationSupportDirectory
                                                                                                       error: &error];
 	for (NSString *file in filesInApplicationSupportDirectory) {
 		if ([self isSwitchlistTemplate: file inDirectory: applicationSupportDirectory]) {
@@ -89,7 +89,7 @@
 	
 	// Next, find templates in the bundle directory.  User templates with the same name win.
 	NSString *resourcesDirectory = [[NSBundle mainBundle] resourcePath];
-	NSArray *filesInResourcesDirectory = [self.theFileManager contentsOfDirectoryAtPath: resourcesDirectory
+	NSArray *filesInResourcesDirectory = [theFileManager contentsOfDirectoryAtPath: resourcesDirectory
                                                                                              error: &error];
 	for (NSString *file in filesInResourcesDirectory) {
 		if ([self isSwitchlistTemplate: file inDirectory: resourcesDirectory]) {
@@ -101,6 +101,4 @@
 	return [result sortedArrayUsingSelector: @selector(compare:)];
 }
 
-
-@synthesize theFileManager;
 @end
