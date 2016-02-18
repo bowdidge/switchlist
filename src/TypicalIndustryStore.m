@@ -1,6 +1,6 @@
 //
 //
-//  TypicalIndustryStoreTest.m
+//  TypicalIndustryStore.m
 //  SwitchList
 //
 //  Created by bowdidge on 8/12/12.
@@ -66,6 +66,10 @@
     for (NSDictionary *item in result) {
         NSString *industryClass = [item objectForKey: @"IndustryClass"];
 		[self.categoryMap setObject: item forKey: industryClass];
+        NSArray *synonyms = [item objectForKey: @"Synonyms"];
+        for (id synonym in synonyms) {
+            NSLog(@"%@ : %@", industryClass, synonym);;
+        }
     }
 	return result;
 }
