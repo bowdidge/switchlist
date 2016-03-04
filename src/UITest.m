@@ -52,7 +52,7 @@
     XCTAssertEqual(2, [switchlistWindow.tables.tableRows count]);
 }
 
-// TODO(bowdidge): Load file from disk.
+// Test that changing and reverting a file does not cause SwitchList to crash.
 - (void)  testRevert {
     XCUIApplication *app = [[XCUIApplication alloc] init];
     NSMutableArray *args = [NSMutableArray arrayWithArray: app.launchArguments];
