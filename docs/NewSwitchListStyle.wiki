@@ -1,9 +1,6 @@
-#summary Learn how to create your own SwitchList printed forms.  (More complex, but more flexibility.)
-
-
 = Creating New SwitchList Styles =
 
-(This documents how to add new switchlist styles by writing code in Objective-C.  See [http://code.google.com/p/switchlist/wiki/SwitchListTemplatesInHTML] for an easier way to create your own switch lists using HTML only.)
+(This documents how to add new switchlist styles by writing code in Objective-C.  See [https://github.com/bowdidge/switchlist/blob/master/docs/SwitchListTemplatesInHTML.wiki Switch List Templates in HTML] for an easier way to create your own switch lists using HTML only.)
 
 One of SwitchList's neat features is the ability to print the crew's work orders in a form that matches what the real crews would use on your railroad.  Although SwitchList supports a range of switchlist templates (including a Southern Pacific-style narrow switchless, the Large Type version better suited for garage layouts, or the San Francisco Belt Railroad's B-7 form), you may want to duplicate a particular railroad's format.  Luckily, it's possible with a bit of programming to contribute your favorite switchlist format to SwitchList.
 

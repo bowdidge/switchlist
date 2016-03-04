@@ -1,5 +1,3 @@
-#summary Public versions of SwitchList
-
 = Introduction =
 
 Master list of public releases of SwitchList.

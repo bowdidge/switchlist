@@ -1,5 +1,3 @@
-#summary Index to current in-app SwitchList documentation.
-
 = Introduction =
 
 This is the current layout for the HTML-based AppleHelp for SwitchList.  It's useful both for identifying the file containing a particular topic, and understanding where to add new pages.

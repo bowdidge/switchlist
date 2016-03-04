@@ -1,5 +1,3 @@
-#summary Examining Switchlist Database Files
-
 = Introduction =
 
 SwitchList has two ways to store its data: .swl files (used up through version 1.3) and .switchlist files (used after 1.3).  .swl files are XML - text and mostly-human readable.  Using XML has limitations - iOS apps can't read them, so we could never write an iPad version of SwitchList with the old file format. 

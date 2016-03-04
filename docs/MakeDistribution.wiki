@@ -1,5 +1,3 @@
-#summary Build process for new release
-
 = Introduction =
 
 Steps for building a new release.

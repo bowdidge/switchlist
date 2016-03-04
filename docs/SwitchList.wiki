@@ -1,5 +1,3 @@
-#summary SwitchList: Summary
-
 = Introduction =
 
 SwitchList is a Macintosh program for automatically making lists of freight cars to switch on a model railroad. If you have a small model railroad or a shelf layout and want a switch list program that’s easy to set up and easy to use, try it out! 

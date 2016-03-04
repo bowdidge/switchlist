@@ -1,5 +1,3 @@
-#summary Create your own SwitchList form styles in HTML.
-
 = Creating New SwitchList Styles Using HTML Templates =
 
 SwitchList now allows you to create your own custom, fancy switchlists so you can match handwritten or computer generated switch lists from your favorite railroad.  You describe your switchlist using an HTML "template" - a web page with placeholders at the location of details to fill in later - and the SwitchList program will use your template to present your switchlist on the web interface and normal SwitchList interface.
@@ -17,7 +15,7 @@ The Thomas switchlist template uses large text written in the Comic Sans handwri
 
 Here is an example of the Thomas switchlist style in action: [http://www.vasonabranch.com/railroad/Thomas.html]
 
-Here is the HTML template that creates it: [http://code.google.com/p/switchlist/source/browse/trunk/template_examples/Thomas/switchlist.html]
+Here is the HTML template that creates it: [https://github.com/bowdidge/switchlist/blob/master/template_examples/Thomas/switchlist.html template_examples/Thomas/switchlist.html]
 
 If you look at the HTML template, you'll see exactly what you'd need to create for your own switchlist.  Now, let's back up and understand what goes into that template.
 
@@ -159,10 +157,10 @@ Although all the standard switchlist styles are handled
 by the SwitchList program,
 the HTML versions of these switchlist styles (as seen in the Web interface)
 use HTML templates, just like you'd use for your custom template.
-Check out those examples in the [http://code.google.com/p/switchlist/source/browse/#svn%2Ftrunk%2Fsrc%2Fbuiltin-templates src/builtin-templates directory] in the SwitchList sources.
+Check out those examples in the [https://github.com/bowdidge/switchlist/tree/master/src/builtin-templates src/builtin-templates directory] in the SwitchList sources.
 The template for the stock "Handwritten" template
-is in the [http://code.google.com/p/switchlist/source/browse/#svn%2Ftrunk%2Fsrc%2Ftemplates%253Fstate%253Dclosed src/templates directory] in the 
-SwitchList source.  You can examine these files from code.google.com's
+is in the [https://github.com/bowdidge/switchlist/tree/master/src/templates src/templates directory] in the 
+SwitchList source.  You can examine these files from GitHub's
 code browser.
 
 == Template Variables ==

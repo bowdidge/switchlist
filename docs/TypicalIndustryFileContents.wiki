@@ -1,13 +1,10 @@
-#summary How to define new industries and cargos for the Suggested Cargos assistant.
-#labels Phase-Implementation
-
 = Introduction =
 
 SwitchList 1.1.1 includes a new "Suggested Cargos" feature where SwitchList can guess at your likely industry from its name and suggest several cargos that might be appropriate for the industry.   All SwitchList's advice comes from knowledge of industries stored in the typicalIndustry.plist file.
 
 You can modify this file to add new potential industry classes and cargos.
 
-[http://code.google.com/p/switchlist/source/browse/trunk/src/resources/typicalIndustry.plist Here] is the current version of the file.
+[https://github.com/bowdidge/switchlist/blob/master/src/resources/typicalIndustry.plist Here] is the current version of the file.
 
 = Details =
 
