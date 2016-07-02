@@ -19,18 +19,20 @@ TAG="trunk"
 DMG_NAME="SwitchList"
 
 if [ $# -eq 1 ]; then
-  TAG="tags/$1"
+  TAG=$1
   DMG_NAME=$1
 elif [ $# -ge 2 ]; then
-  echo "Usage: makeDistribution [SwitchList.x.y.z]"
+  echo "Usage: makeDistribution [v1.1.1]"
   echo "If tag is omitted, project will be built from trunk."
   exit 1
 fi
 
 # Check that all changes have been checked in.
-svn status | grep '^[AMCDG]'
-if [ $? -eq 0 ]; then
+if ! git diff-files --quiet --ignore-submodules
+then
   echo Outstanding changes exist.  Please check in all changes before building.
+  git status --porcelain -uno
+  exit 1
 fi
 
 echo Disk Image name will be $DMG_NAME
