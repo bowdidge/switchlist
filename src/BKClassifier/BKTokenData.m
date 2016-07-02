@@ -77,6 +77,10 @@
 
 #pragma mark -
 #pragma mark Custom Setters
+- (float) probability {
+    return probability;
+}
+
 - (void)setProbability:(float)aProbability
 {
     probability = MIN(0.9999f, aProbability);

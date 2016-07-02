@@ -131,28 +131,6 @@
  * Controller object for the main document. 
  */
 @implementation SwitchListDocument
-- (id)init 
-{
-    self = [super init];
-	entireLayout_ = nil;
-	layoutController_ = nil;
-	locationIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.location.isOffline == 0 OR self.location.name LIKE \"Workbench\""] retain];
-	placeIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.isOffline == 0"] retain];
-	trains_ = nil;
-	annulledTrains_ = [[NSMutableArray alloc] init];
-    printingHtmlViewController_  = nil;
-    preferredSwitchListStyle_ = nil;
-    self.theTemplateCache = [[[TemplateCache alloc] init] autorelease];
-    
-    // Gather the names of the switchlist templates with native support.
-	nameToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
-	[nameToSwitchListClassMap_ setObject: [SwitchListView class] forKey: DEFAULT_SWITCHLIST_TEMPLATE];
-	[nameToSwitchListClassMap_ setObject: [KaufmanSwitchListView class] forKey: @"San Francisco Belt Line B-7"];
-	[nameToSwitchListClassMap_ setObject: [SouthernPacificSwitchListView class] forKey: @"Southern Pacific Narrow"];
-	[nameToSwitchListClassMap_ setObject: [PICLReport class] forKey: @"PICL Report"];
-    
-    return self;
-}
 
 - (void) dealloc {
 	[placeIsNotOfflineFilter_ release];
@@ -163,6 +141,7 @@
 	[trains_ release];
     [printingHtmlViewController_ release];
     [preferredSwitchListStyle_ release];
+    [theTemplateCache release];
 	[super dealloc];
 }
 
@@ -197,7 +176,24 @@
 // For each train, find any cases where acceptedCarTypesRel == nil, and replace with all.
 
 - (void) awakeFromNib {
-	entireLayout_ = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
+    entireLayout_ = nil;
+    layoutController_ = nil;
+    locationIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.location.isOffline == 0 OR self.location.name LIKE \"Workbench\""] retain];
+    placeIsNotOfflineFilter_ = [[NSPredicate predicateWithFormat: @"self.isOffline == 0"] retain];
+    trains_ = nil;
+    annulledTrains_ = [[NSMutableArray alloc] init];
+    printingHtmlViewController_  = nil;
+    preferredSwitchListStyle_ = nil;
+    theTemplateCache = [[TemplateCache alloc] init];
+    
+    // Gather the names of the switchlist templates with native support.
+    nameToSwitchListClassMap_ = [[NSMutableDictionary alloc] init];
+    [nameToSwitchListClassMap_ setObject: [SwitchListView class] forKey: DEFAULT_SWITCHLIST_TEMPLATE];
+    [nameToSwitchListClassMap_ setObject: [KaufmanSwitchListView class] forKey: @"San Francisco Belt Line B-7"];
+    [nameToSwitchListClassMap_ setObject: [SouthernPacificSwitchListView class] forKey: @"Southern Pacific Narrow"];
+    [nameToSwitchListClassMap_ setObject: [PICLReport class] forKey: @"PICL Report"];
+    
+    entireLayout_ = [[EntireLayout alloc] initWithMOC: [self managedObjectContext]];
 	layoutController_ = [[LayoutController alloc] initWithEntireLayout: entireLayout_];
 	
 	// Make sure every layout has a name.
@@ -315,7 +311,7 @@
         preferredSwitchListStyle = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_SWITCH_LIST_DEFAULT_TEMPLATE];
     }
 
-    if (![[self.theTemplateCache validTemplateNames] containsObject: preferredSwitchListStyle]) {
+    if (![[theTemplateCache validTemplateNames] containsObject: preferredSwitchListStyle]) {
         preferredSwitchListStyle = DEFAULT_SWITCHLIST_TEMPLATE;
     }
     
@@ -457,7 +453,7 @@
 - (void)windowControllerDidLoadNib:(NSWindowController *)windowController
 {
     [super windowControllerDidLoadNib:windowController];
-	
+    
 	// Always raise the main tab first.
 	[tabContainer_ selectTabViewItem: overviewTab_];
 	
@@ -1376,5 +1372,8 @@
     }
  }
 
-@synthesize theTemplateCache;
+- (TemplateCache*) templateCache {
+    return theTemplateCache;
+}
+
 @end

@@ -24,6 +24,7 @@
 		3E30DBE012B44C2900FF224E /* SwitchListReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E30DBDF12B44C2900FF224E /* SwitchListReportTest.m */; };
 		3E335E60160D69760097360C /* FileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E5F160D69760097360C /* FileViewController.m */; };
 		3E335E63160D6A050097360C /* FileCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E335E62160D6A050097360C /* FileCell.m */; };
+		3E360AD31C738FBF00CA2A67 /* Vasona Branch.swl in Resources */ = {isa = PBXBuildFile; fileRef = 3E360AD11C738FB500CA2A67 /* Vasona Branch.swl */; };
 		3E3620FA1539341700A57574 /* switchlist-carlist.html in Resources */ = {isa = PBXBuildFile; fileRef = 3ECAA7F3145D30EC00AB21A7 /* switchlist-carlist.html */; };
 		3E37741A16082E200023C8B5 /* switchlistButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741916082E200023C8B5 /* switchlistButton.png */; };
 		3E37741C160838D00023C8B5 /* vasona.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E37741B160838D00023C8B5 /* vasona.sql */; };
@@ -89,6 +90,7 @@
 		3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
+		3E5CE2261C6CFD0000310C5A /* UITest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5CE2131C6CFB0B00310C5A /* UITest.m */; };
 		3E5E628C160E42EE0074AE1E /* SwitchListEngine.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
 		3E5E629C160E45EA0074AE1E /* SwitchListEngine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B75B716063FE600891318 /* SwitchListEngine.dylib */; };
 		3E60814213614EA30054DBA1 /* TextSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E60814113614EA30054DBA1 /* TextSwitchListView.m */; };
@@ -440,6 +442,13 @@
 			remoteGlobalIDString = 3EC3B0871277DEFE00C00AD3;
 			remoteInfo = "Unit tests";
 		};
+		3E5CE21E1C6CFCE700310C5A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D15AC270486D014006FF6A4;
+			remoteInfo = SwitchList;
+		};
 		3E9B762D160640BE00891318 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
@@ -569,6 +578,7 @@
 		3E335E5F160D69760097360C /* FileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileViewController.m; path = iPad/FileViewController.m; sourceTree = "<group>"; };
 		3E335E61160D6A050097360C /* FileCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileCell.h; path = iPad/FileCell.h; sourceTree = "<group>"; };
 		3E335E62160D6A050097360C /* FileCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileCell.m; path = iPad/FileCell.m; sourceTree = "<group>"; };
+		3E360AD11C738FB500CA2A67 /* Vasona Branch.swl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Vasona Branch.swl"; sourceTree = "<group>"; };
 		3E362361153A899300A57574 /* PlaceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceTest.h; path = Engine/PlaceTest.h; sourceTree = "<group>"; };
 		3E362362153A899300A57574 /* PlaceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceTest.m; path = Engine/PlaceTest.m; sourceTree = "<group>"; };
 		3E37741916082E200023C8B5 /* switchlistButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = switchlistButton.png; sourceTree = "<group>"; };
@@ -690,6 +700,9 @@
 		3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwitchListBaseView.m; sourceTree = "<group>"; };
 		3E57C5CB12FBDCC600E51008 /* KaufmanSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KaufmanSwitchListView.h; sourceTree = "<group>"; };
 		3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KaufmanSwitchListView.m; sourceTree = "<group>"; };
+		3E5CE2131C6CFB0B00310C5A /* UITest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITest.m; sourceTree = "<group>"; };
+		3E5CE2191C6CFCE700310C5A /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E5CE21D1C6CFCE700310C5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E60814013614EA30054DBA1 /* TextSwitchListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextSwitchListView.h; sourceTree = "<group>"; };
 		3E60814113614EA30054DBA1 /* TextSwitchListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextSwitchListView.m; sourceTree = "<group>"; };
 		3E60B66D1318B49C007C094D /* ReportTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportTest.h; sourceTree = "<group>"; };
@@ -922,6 +935,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3E5CE2161C6CFCE700310C5A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3E9B75B516063FE600891318 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1042,6 +1062,7 @@
 				E1B74B1A0667B4A90069E3BA /* Models */,
 				3E407D74160693BD0037134D /* iPad */,
 				3E407DB8160693F10037134D /* resources-Ipad */,
+				3E5CE2251C6CFCF400310C5A /* UI Tests */,
 				3EC3B1D31277E7BB00C00AD3 /* Unit tests */,
 				2A37F4AFFDCFA73011CA2CEA /* Other Sources */,
 				3E01BE98140768CA008954B1 /* Default Template and Web interface */,
@@ -1049,6 +1070,7 @@
 				3E407DE2160694EF0037134D /* SwitchListEngine-iPad */,
 				3EC5390119B16EDA00F2351A /* generate_classifier_file */,
 				3EC5391A19B177F600F2351A /* edit_classifier_file */,
+				3E5CE21A1C6CFCE700310C5A /* UITests */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				3EA487A515D83E1A008A169F /* Products */,
 				3E9B75BC16063FFD00891318 /* libicucore.dylib */,
@@ -1323,6 +1345,23 @@
 			name = "Switchlist styles";
 			sourceTree = "<group>";
 		};
+		3E5CE21A1C6CFCE700310C5A /* UITests */ = {
+			isa = PBXGroup;
+			children = (
+				3E5CE21D1C6CFCE700310C5A /* Info.plist */,
+			);
+			path = UITests;
+			sourceTree = "<group>";
+		};
+		3E5CE2251C6CFCF400310C5A /* UI Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3E5CE2131C6CFB0B00310C5A /* UITest.m */,
+				3E360AD11C738FB500CA2A67 /* Vasona Branch.swl */,
+			);
+			name = "UI Tests";
+			sourceTree = "<group>";
+		};
 		3E917A130951659A004647C7 /* Reports */ = {
 			isa = PBXGroup;
 			children = (
@@ -1362,6 +1401,7 @@
 				3E407D56160693170037134D /* Switchlist-iPad.app */,
 				3EC538FF19B16EDA00F2351A /* generate_classifier_file */,
 				3EC5391819B177F600F2351A /* edit_classifier_file */,
+				3E5CE2191C6CFCE700310C5A /* UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1660,6 +1700,24 @@
 			productReference = 3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */;
 			productType = "com.apple.product-type.tool";
 		};
+		3E5CE2181C6CFCE700310C5A /* UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E5CE2201C6CFCE700310C5A /* Build configuration list for PBXNativeTarget "UITests" */;
+			buildPhases = (
+				3E5CE2151C6CFCE700310C5A /* Sources */,
+				3E5CE2161C6CFCE700310C5A /* Frameworks */,
+				3E5CE2171C6CFCE700310C5A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E5CE21F1C6CFCE700310C5A /* PBXTargetDependency */,
+			);
+			name = UITests;
+			productName = UITests;
+			productReference = 3E5CE2191C6CFCE700310C5A /* UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		3E9B75B616063FE600891318 /* SwitchListEngine */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3E9B75BE16063FFE00891318 /* Build configuration list for PBXNativeTarget "SwitchListEngine" */;
@@ -1798,6 +1856,10 @@
 					3E407D55160693170037134D = {
 						DevelopmentTeam = PRKJWD6X23;
 					};
+					3E5CE2181C6CFCE700310C5A = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 8D15AC270486D014006FF6A4;
+					};
 					3E9B75B616063FE600891318 = {
 						DevelopmentTeam = PRKJWD6X23;
 					};
@@ -1831,6 +1893,7 @@
 				3E407D55160693170037134D /* Switchlist-iPad */,
 				3EC538FE19B16EDA00F2351A /* generate_classifier_file */,
 				3EC5391719B177F600F2351A /* edit_classifier_file */,
+				3E5CE2181C6CFCE700310C5A /* UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -1890,6 +1953,14 @@
 				3E37741C160838D00023C8B5 /* vasona.sql in Resources */,
 				3E6CC55919AAC9FD00C768ED /* Stockton with Divisions.switchlist in Resources */,
 				3E45402319A92C0C000755D9 /* TrainTable.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5CE2171C6CFCE700310C5A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E360AD31C738FBF00CA2A67 /* Vasona Branch.swl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1999,7 +2070,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\ncp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n                  \necho \"Compiling industry name training file\"                  \n$TARGET_BUILD_DIR/generate_classifier_file \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/typicalIndustries.plist\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/industryNameTraining.bks\"\n";
+			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/*.swl\n\n# Copy fonts.\n# Better way to delete old?\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\nmkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\ncp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n\nchmod 444 $TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/*.ttf\n\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\nrm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n                  \necho \"Compiling industry name training file\"                  \n# $TARGET_BUILD_DIR/generate_classifier_file \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/typicalIndustries.plist\" \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/industryNameTraining.bks\"\n";
 		};
 		3E6F193C1985AF28007AA710 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2133,6 +2204,14 @@
 				3E9B769A1606440700891318 /* TrainSizeVector.m in Sources */,
 				3E9B769B1606440700891318 /* Yard.m in Sources */,
 				3E6F193219856F6F007AA710 /* HTMLSwitchListController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E5CE2151C6CFCE700310C5A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E5CE2261C6CFD0000310C5A /* UITest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2364,6 +2443,11 @@
 			isa = PBXTargetDependency;
 			target = 3EC3B0871277DEFE00C00AD3 /* Unit tests */;
 			targetProxy = 3E25F51512B4CD780051EFC0 /* PBXContainerItemProxy */;
+		};
+		3E5CE21F1C6CFCE700310C5A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D15AC270486D014006FF6A4 /* SwitchList */;
+			targetProxy = 3E5CE21E1C6CFCE700310C5A /* PBXContainerItemProxy */;
 		};
 		3E9B762E160640BE00891318 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2656,6 +2740,185 @@
 				PRODUCT_NAME = testAdvanceLayouts;
 				SDKROOT = "";
 				SKIP_INSTALL = YES;
+			};
+			name = Default;
+		};
+		3E5CE2211C6CFCE700310C5A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blogspot.vasonabranch.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = SwitchList;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		3E5CE2221C6CFCE700310C5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blogspot.vasonabranch.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = SwitchList;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+		3E5CE2231C6CFCE700310C5A /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blogspot.vasonabranch.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = SwitchList;
+				USES_XCTRUNNER = YES;
+			};
+			name = "App Store";
+		};
+		3E5CE2241C6CFCE700310C5A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blogspot.vasonabranch.UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				TEST_TARGET_NAME = SwitchList;
+				USES_XCTRUNNER = YES;
 			};
 			name = Default;
 		};
@@ -3660,6 +3923,17 @@
 				3E43B4C01507411B00AAA92B /* Release */,
 				3ECA381F15D4C46E0084413B /* App Store */,
 				3E43B4C11507411B00AAA92B /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E5CE2201C6CFCE700310C5A /* Build configuration list for PBXNativeTarget "UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E5CE2211C6CFCE700310C5A /* Debug */,
+				3E5CE2221C6CFCE700310C5A /* Release */,
+				3E5CE2231C6CFCE700310C5A /* App Store */,
+				3E5CE2241C6CFCE700310C5A /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

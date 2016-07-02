@@ -82,6 +82,8 @@
 
 - (void) dealloc {
 	[store_ release];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [industryColumnArrayController_ removeObserver: self forKeyPath: @"content"];
 	[super dealloc];
 }
 

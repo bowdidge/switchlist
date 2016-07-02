@@ -1,6 +1,6 @@
 //
 //
-//  TypicalIndustryStoreTest.m
+//  TypicalIndustryStore.m
 //  SwitchList
 //
 //  Created by bowdidge on 8/12/12.

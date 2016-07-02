@@ -30,7 +30,10 @@
 
 #import <Foundation/Foundation.h>
 
+// TemplateCache caches the list of current template files available on the computer,
+// avoiding the need to do directory scans each time the list is needed.
 @interface TemplateCache : NSObject {
+    NSFileManager* theFileManager;
 };
 
 - (id) init;
@@ -39,7 +42,5 @@
 
 // Return the list of valid template names that exist.  List should be updated as efficiently as possible, so this should be cheap to call.
 - (NSArray*) validTemplateNames;
-
-@property(retain,nonatomic) NSFileManager* theFileManager;
 
 @end
