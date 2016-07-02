@@ -200,7 +200,7 @@
 }
 
 - (NSString*) descriptionForCopy {
-    return [NSString stringWithFormat: @"%@", [self name]];
+    return [NSString stringWithFormat: @"%@\n", [self name]];
 }
 
 - (NSComparisonResult) compareNames: (Place*) p {

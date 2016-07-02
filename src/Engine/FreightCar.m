@@ -558,7 +558,7 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
     NSMutableString *result = [NSMutableString string];
     [result appendFormat: @"%@\t%@", [self reportingMarks], [self length]];
     if ([self carTypeRel]) {
-        [result appendFormat: @"\t%@", [[self carTypeRel] carTypeName]];
+        [result appendFormat: @"\t%@\n", [[self carTypeRel] carTypeName]];
     }
     return result;
 }

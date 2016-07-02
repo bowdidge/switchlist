@@ -98,6 +98,6 @@
 }
 
 - (NSString*) descriptionForCopy {
-    return [NSString stringWithFormat: @"%@\t%@", [self name], [[self location] name]];
+    return [NSString stringWithFormat: @"%@\t%@\n", [self name], [[self location] name]];
 }
 @end
