@@ -187,7 +187,11 @@ function OnLoad() {
               **EMPTY**
             {% /if %}
           </td>
-          <td>to {{car.nextStop.location.name}} vs {{lastStation.name}}</td>
+          {% if car.nextIndustry.location.name equalsstring lastStation.name %}
+            <td>to {{car.nextIndustry.name}}
+          {% else %}
+            <td>to {{car.nextIndustry.location.name}} via {{lastStation.name}}</td>
+          {% /if %}
           <td>
             {% if car.nextDoor %} door {{car.nextDoor}} {% /if %}
           </td>

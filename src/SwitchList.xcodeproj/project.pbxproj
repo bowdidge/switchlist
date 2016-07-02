@@ -85,6 +85,7 @@
 		3E45402919A9319B000755D9 /* LayoutTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402819A9319B000755D9 /* LayoutTable.storyboard */; };
 		3E45403019A93359000755D9 /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402E19A93359000755D9 /* reveal-icon.png */; };
 		3E45403119A93359000755D9 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402F19A93359000755D9 /* reveal-icon@2x.png */; };
+		3E4E16B21D28660B00C0FCC2 /* YardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E62C0F9128E610E00520752 /* YardTest.m */; };
 		3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
@@ -667,13 +668,13 @@
 		3E43B49F15073F2300AAA92B /* LayoutController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LayoutController.h; path = Engine/LayoutController.h; sourceTree = "<group>"; };
 		3E43B4BD1507411A00AAA92B /* testAdvanceLayouts */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = testAdvanceLayouts; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E43B4DB150741B400AAA92B /* testAdvanceLayoutsMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testAdvanceLayoutsMain.m; sourceTree = "<group>"; };
-		3E45401B19A925B1000755D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/FreightCarTable.storyboard; sourceTree = "<group>"; };
-		3E45401E19A927E1000755D9 /* IndustryTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = IndustryTable.storyboard; path = "resources-iPad/IndustryTable.storyboard"; sourceTree = "<group>"; };
-		3E45402019A92928000755D9 /* TownTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TownTable.storyboard; path = "resources-iPad/TownTable.storyboard"; sourceTree = "<group>"; };
-		3E45402219A92C0C000755D9 /* TrainTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = TrainTable.storyboard; path = "resources-iPad/TrainTable.storyboard"; sourceTree = "<group>"; };
-		3E45402419A92F36000755D9 /* CargoTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = CargoTable.storyboard; path = "resources-iPad/CargoTable.storyboard"; sourceTree = "<group>"; };
-		3E45402619A93036000755D9 /* YardTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = YardTable.storyboard; path = "resources-iPad/YardTable.storyboard"; sourceTree = "<group>"; };
-		3E45402819A9319B000755D9 /* LayoutTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LayoutTable.storyboard; path = "resources-iPad/LayoutTable.storyboard"; sourceTree = "<group>"; };
+		3E45401B19A925B1000755D9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = en.lproj/FreightCarTable.storyboard; sourceTree = "<group>"; };
+		3E45401E19A927E1000755D9 /* IndustryTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = IndustryTable.storyboard; path = "resources-iPad/IndustryTable.storyboard"; sourceTree = "<group>"; };
+		3E45402019A92928000755D9 /* TownTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = TownTable.storyboard; path = "resources-iPad/TownTable.storyboard"; sourceTree = "<group>"; };
+		3E45402219A92C0C000755D9 /* TrainTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = TrainTable.storyboard; path = "resources-iPad/TrainTable.storyboard"; sourceTree = "<group>"; };
+		3E45402419A92F36000755D9 /* CargoTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = CargoTable.storyboard; path = "resources-iPad/CargoTable.storyboard"; sourceTree = "<group>"; };
+		3E45402619A93036000755D9 /* YardTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = YardTable.storyboard; path = "resources-iPad/YardTable.storyboard"; sourceTree = "<group>"; };
+		3E45402819A9319B000755D9 /* LayoutTable.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LayoutTable.storyboard; path = "resources-iPad/LayoutTable.storyboard"; sourceTree = "<group>"; };
 		3E45402E19A93359000755D9 /* reveal-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reveal-icon.png"; path = "resources-iPad/reveal-icon.png"; sourceTree = "<group>"; };
 		3E45402F19A93359000755D9 /* reveal-icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reveal-icon@2x.png"; path = "resources-iPad/reveal-icon@2x.png"; sourceTree = "<group>"; };
 		3E4D49050D0F47E40092D1A3 /* CarAssigner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CarAssigner.h; path = Engine/CarAssigner.h; sourceTree = "<group>"; };
@@ -695,7 +696,7 @@
 		3E60B66E1318B49C007C094D /* ReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTest.m; sourceTree = "<group>"; };
 		3E62C0F8128E610E00520752 /* YardTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YardTest.h; path = Engine/YardTest.h; sourceTree = "<group>"; };
 		3E62C0F9128E610E00520752 /* YardTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YardTest.m; path = Engine/YardTest.m; sourceTree = "<group>"; };
-		3E651ED91996F91B000AD418 /* layout.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = layout.iconset; path = resources/layout.iconset; sourceTree = "<group>"; };
+		3E651ED91996F91B000AD418 /* layout.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder; name = layout.iconset; path = resources/layout.iconset; sourceTree = "<group>"; };
 		3E6B58A4140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Engine/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		3E6B58A5140CA20B006FFDD3 /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Engine/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		3E6B59B4140CB1CD006FFDD3 /* builtin-templates */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "builtin-templates"; sourceTree = "<group>"; };
@@ -803,7 +804,7 @@
 		3EB7BBD019A11DC7004C202F /* StyleTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleTableViewCell.h; path = iPad/StyleTableViewCell.h; sourceTree = "<group>"; };
 		3EB7BBD119A11DC7004C202F /* StyleTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleTableViewCell.m; path = iPad/StyleTableViewCell.m; sourceTree = "<group>"; };
 		3EBCC29916063C8500B298AF /* NoSidingToLatest.xcmappingmodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcmappingmodel; path = NoSidingToLatest.xcmappingmodel; sourceTree = "<group>"; };
-		3EC0ACDB199FF60300ABD0E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		3EC0ACDB199FF60300ABD0E5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		3EC0ACDD199FFA9F00ABD0E5 /* StyleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StyleViewController.h; path = iPad/StyleViewController.h; sourceTree = "<group>"; };
 		3EC0ACDE199FFA9F00ABD0E5 /* StyleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StyleViewController.m; path = iPad/StyleViewController.m; sourceTree = "<group>"; };
 		3EC0ACE019A042C500ABD0E5 /* TemplateCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TemplateCache.h; path = Engine/TemplateCache.h; sourceTree = "<group>"; };
@@ -2011,7 +2012,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/*.swl\n                  \n                  # Copy fonts.\n                  # Better way to delete old?\n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n                  mkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n                  cp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n                  \n         chmod 444 \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/\"*.ttf\n                  \n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n";
+			shellScript = "# Copy all the builtin_templates into the resource directory.\npushd builtin-templates\nfind . -type d -not -name .svn -exec cp -rf \\{\\} \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\" \\;\npopd\n\n# Make sure the examples aren't writable.\ncp -f ../examples/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\ncp -f ../test_layouts/*/*.swl \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"\nchmod 444 \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH\"/*.swl\n                  \n                  # Copy fonts.\n                  # Better way to delete old?\n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n                  mkdir \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n                  cp resources/RockSalt.ttf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts\"\n                  \n         chmod 444 \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/fonts/\"*.ttf\n                  \n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/prop-base\"\n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/props\"\n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/text-base\"\n                  rm -rf \"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/tmp\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2267,6 +2268,7 @@
 				3E95845B1298707D00A10258 /* SimpleHTTPConnection.m in Sources */,
 				3E95845D1298707D00A10258 /* SimpleHTTPServer.m in Sources */,
 				3ED58A6F13A727F500F6E26E /* SouthernPacificSwitchListView.m in Sources */,
+				3E4E16B21D28660B00C0FCC2 /* YardTest.m in Sources */,
 				3EA4879015D83CE1008A169F /* SwitchListAppDelegateTest.m in Sources */,
 				3E60820913615B940054DBA1 /* SwitchListBaseView.m in Sources */,
 				3E71871913B1B30B00ED3840 /* SwitchListBaseViewTest.m in Sources */,

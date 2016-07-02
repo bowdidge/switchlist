@@ -46,6 +46,7 @@
     layoutFileName_ = @"Bogus";
 }
 - (void) setUp {
+    XCTAssertNotNil(layoutFileName_);
     NSURL* layoutUrl = [[NSBundle bundleForClass: [self class]] URLForResource: layoutFileName_ withExtension: @"swl"];
 	context_ = [[NSManagedObjectContext inMemoryMOCFromBundle: [NSBundle bundleForClass: [self class]] withFile: layoutUrl] retain];
 	entireLayout_ = [[EntireLayout alloc] initWithMOC: context_];
@@ -159,5 +160,43 @@
 - (void) testLayout {
     [self doTestLayout];
 }
+@end
+
+@interface LetterheadViaTest : EndToEndTest {
+};
+@end
+
+// Test that Railroad Letterhead correctly renders destinations for
+// cars ending at the staging yard.
+
+@implementation LetterheadViaTest
+- (id) init {
+    layoutFileName_ = @"Shelf Layout";
+    [super init];
+}
+- (void) setUp {
+    layoutFileName_ = @"Shelf Layout";
+    [super setUp];
+}
+
+- (void) testViaStringAppearsWhenCarGoesBeyondYard {
+    NSBundle *bundleForUnitTests = [NSBundle bundleForClass: [self class]];
+    int carCount = [[entireLayout_ allFreightCars] count];
+    NSArray *allTrains = [entireLayout_ allTrains];
+    XCTAssertTrue([allTrains count] > 0, @"No trains found - problems loading.");
+    XCTAssertTrue([[entireLayout_ allFreightCars] count] > 0, @"No freight cars found - problems loading.");
+    
+    LayoutController *controller = [[LayoutController alloc] initWithEntireLayout: entireLayout_];
+
+    HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
+    [renderer setTemplate: @"Railroad Letterhead"];
+    NSString *result = [renderer renderSwitchlistForTrain: [entireLayout_ trainWithName: @"Only Train"] layout: entireLayout_ iPhone: false interactive: false];
+   
+    XCTAssertContains(@"to Chicago via Staging", result, "Expected car to Chicago to show up as 'to Chicago via Staging'");
+    XCTAssertContains(@"to Staging", result, "Expected car to staging showed up as 'to Staging'");
+
+}
+
+    
 @end
 
