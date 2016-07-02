@@ -46,7 +46,6 @@
     layoutFileName_ = @"Bogus";
 }
 - (void) setUp {
-    XCTAssertNotNil(layoutFileName_);
     NSURL* layoutUrl = [[NSBundle bundleForClass: [self class]] URLForResource: layoutFileName_ withExtension: @"swl"];
 	context_ = [[NSManagedObjectContext inMemoryMOCFromBundle: [NSBundle bundleForClass: [self class]] withFile: layoutUrl] retain];
 	entireLayout_ = [[EntireLayout alloc] initWithMOC: context_];
@@ -127,9 +126,9 @@
 };
 @end
 @implementation VasonaBranchTest
-- (id) init {
-    [super init];
+- (void) setUp {
     layoutFileName_ = @"Vasona Branch";
+    [super setUp];
 }
 - (void) testLayout {
     [self doTestLayout];
@@ -140,9 +139,9 @@
 };
 @end
 @implementation StocktonWithDivisionsTest
-- (id) init {
-    [super init];
+- (void) setUp {
     layoutFileName_ = @"Stockton with Divisions";
+    [super setUp];
 }
 - (void) testLayout {
     [self doTestLayout];
@@ -153,9 +152,9 @@
 };
 @end
 @implementation StocktonTest
-- (id) init {
-    [super init];
-    layoutFileName_ = @"Stockton";
+- (void) setUp {
+    layoutFileName_ = @"Stockton Example";
+    [super setUp];
 }
 - (void) testLayout {
     [self doTestLayout];
@@ -170,10 +169,6 @@
 // cars ending at the staging yard.
 
 @implementation LetterheadViaTest
-- (id) init {
-    layoutFileName_ = @"Shelf Layout";
-    [super init];
-}
 - (void) setUp {
     layoutFileName_ = @"Shelf Layout";
     [super setUp];
