@@ -15,11 +15,11 @@ function TestBinaryForFatness {
 }
 
 # Default values.
-TAG="trunk"
+TAG=""
 DMG_NAME="SwitchList"
 
 if [ $# -eq 1 ]; then
-  TAG=$1
+  TAG="/$1"
   DMG_NAME=$1
 elif [ $# -ge 2 ]; then
   echo "Usage: makeDistribution [v1.1.1]"
@@ -32,7 +32,7 @@ if ! git diff-files --quiet --ignore-submodules
 then
   echo Outstanding changes exist.  Please check in all changes before building.
   git status --porcelain -uno
-  exit 1
+  # exit 1
 fi
 
 echo Disk Image name will be $DMG_NAME
@@ -46,9 +46,13 @@ rm -rf /tmp/switchlist-read-only
 mkdir /tmp/SwitchList
 
 # /tmp/switchlist-read-only contains the checked-out version of the sources.
-svn checkout http://switchlist.googlecode.com/svn/$TAG /tmp/switchlist-read-only
+git clone http://github.com/bowdidge/switchlist /tmp/switchlist-read-only
+if [ -n "$tag" ]; then
+  git checkout tags/$TAG
+fi
+
 if [ $? -ne 0 ]; then
-  echo "Problems checking out svn sources - non-existent tag $TAG?"
+  echo "Problems checking out git sources - non-existent tag?"
   exit 1
 fi
 
