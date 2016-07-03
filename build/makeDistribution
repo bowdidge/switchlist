@@ -62,8 +62,8 @@ pushd /tmp/switchlist-read-only/src
 hiutil -C -a SwitchList.help -f SwitchList.help/SwitchList.help.helpindex
 
 xcodebuild -target SwitchList -configuration Release  clean
-# Build only for i386, not x86_64 - 64 bit binary works badly on 10.5.
-xcodebuild ARCHS="i386" ONLY_ACTIVE_ARCH=NO  \
+# Build only for x86-64.
+xcodebuild ARCHS="x86_64" ONLY_ACTIVE_ARCH=NO  \
            SYMROOT=/tmp/XcodeBuildProducts \
            OBJROOT=/tmp/XcodeBuildIntermediates \
            DSTROOT=/tmp/SwitchList.dst \
@@ -99,7 +99,7 @@ else
 fi
 
 # Make sure x86 binary exists.
-TestBinaryForFatness /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList "i386"
+TestBinaryForFatness /tmp/Switchlist/SwitchList.app/Contents/MacOS/SwitchList "x86_64"
 
 # Test that layouts correctly advance without error.
 /tmp/XcodeBuildProducts/App\ Store/testAdvanceLayouts -m /tmp/XcodeBuildProducts/App\ Store/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument\ 7.mom examples/*/*.swl
