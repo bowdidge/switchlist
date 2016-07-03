@@ -2682,6 +2682,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = NO;
+				DEPLOYMENT_LOCATION = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2696,7 +2697,7 @@
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
 				SDKROOT = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -2707,6 +2708,7 @@
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -2719,7 +2721,7 @@
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
 				SDKROOT = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2729,6 +2731,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "";
+				DEPLOYMENT_LOCATION = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -2741,7 +2744,7 @@
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
 				SDKROOT = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Default;
 		};
@@ -3352,6 +3355,8 @@
 		3EA5978108DC051800D5A852 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEPLOYMENT_LOCATION = YES;
+				INSTALL_PATH = /usr/local/bin;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = "";
 			};
@@ -3361,6 +3366,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
+				DEPLOYMENT_LOCATION = YES;
+				INSTALL_PATH = /usr/local/bin;
 				SDKROOT = "";
 			};
 			name = Release;
@@ -3368,6 +3375,8 @@
 		3EA5978308DC051800D5A852 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEPLOYMENT_LOCATION = YES;
+				INSTALL_PATH = /usr/local/bin;
 				SDKROOT = "";
 			};
 			name = Default;
@@ -3807,6 +3816,8 @@
 		3ECA381C15D4C46E0084413B /* App Store */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEPLOYMENT_LOCATION = YES;
+				INSTALL_PATH = /usr/local/bin;
 				SDKROOT = "";
 			};
 			name = "App Store";
@@ -3887,6 +3898,7 @@
 				CODE_SIGN_IDENTITY = "";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEPLOYMENT_LOCATION = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -3899,7 +3911,7 @@
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
 				SDKROOT = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 				ZERO_LINK = NO;
 			};
 			name = "App Store";
