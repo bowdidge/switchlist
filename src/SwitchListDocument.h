@@ -30,6 +30,7 @@
 
 #import <Cocoa/Cocoa.h>
 #import <AppKit/NSPersistentDocument.h>
+#import <WebKit/WebKit.h>
 #import <WebKit/WebView.h>
 
 #import "EntireLayout.h"
@@ -45,7 +46,7 @@
 @class HTMLSwitchListController;
 @class SwitchListStyleTabController;
 
-@interface SwitchListDocument : NSPersistentDocument<SwitchListDocumentInterface> {
+@interface SwitchListDocument : NSPersistentDocument<SwitchListDocumentInterface, WebFrameLoadDelegate> {
 	IBOutlet NSTextField *freightCarCountField_;
 	IBOutlet NSWindow *switchListWindow_;
 
