@@ -84,14 +84,21 @@ BOOL TestLayout(NSString *layoutName, BOOL verbose) {
 		return NO;
 	}
 
-	// TODO(bowdidge): Infer or allow as parameter.
-	NSString *pathToMom =  @"/XcodeCache/SharedProducts/Debug/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
-	if ([[NSFileManager defaultManager] fileExistsAtPath: pathToMom] == NO) {
+	NSString *pathToMomDebug =  @"/XcodeCache/SharedProducts/Debug/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
+    NSString *pathToMomRelease =  @"/XcodeCache/SharedProducts/Debug/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
+    NSArray *moms = [NSArray arrayWithObjects: pathToMomDebug, pathToMomRelease, nil];
+    NSString *pathToMom = nil;
+    for (NSString *path in moms) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath: path] == YES) {
+            pathToMom = path;
+            break;
+        }
+	}
+    if (pathToMom == nil) {
 		NSLog(@"FAIL: %@: Configuration error: expected schema file at %@, but not found", layoutName, pathToMom);
 		return NO;
-	}
-
-	NSManagedObjectContext *context = managedObjectContext(pathToMom, layoutName);
+    }
+    NSManagedObjectContext *context = managedObjectContext(pathToMom, layoutName);
 	if (!context) {
 		NSLog(@"FAIL: %@: Setup error: problems loading file.  (Incompatible version?)", layoutName);
 		return NO;
