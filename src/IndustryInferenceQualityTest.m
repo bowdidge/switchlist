@@ -221,9 +221,4 @@
     XCTAssertTrue(self.tries * nearMatchSuccessThreshold < self.matches + self.nearMatches, @"Expected 80%% accuracy for near misses, got %0.2f.", (self.matches + self.nearMatches / (float) self.tries));
 }
 
-@synthesize store;
-@synthesize matches;
-@synthesize nearMatches;
-@synthesize tries;
-
 @end
