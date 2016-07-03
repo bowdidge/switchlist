@@ -34,7 +34,7 @@
 @class HTMLSwitchListController;
 
 // Handles setup and actions on the window used to display HTML switchlists.
-@interface HTMLSwitchListWindowController : NSWindowController<NSWindowDelegate> {
+@interface HTMLSwitchListWindowController : NSWindowController<NSWindowDelegate, WebResourceLoadDelegate> {
     // Web view displaying the switchlist.
     IBOutlet WebView *htmlView_;
     HTMLSwitchListController *htmlController_;
