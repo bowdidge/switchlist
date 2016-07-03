@@ -85,7 +85,7 @@ BOOL TestLayout(NSString *layoutName, BOOL verbose) {
 	}
 
 	NSString *pathToMomDebug =  @"/XcodeCache/SharedProducts/Debug/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
-    NSString *pathToMomRelease =  @"/XcodeCache/SharedProducts/Debug/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
+    NSString *pathToMomRelease =  @"/XcodeCache/SharedProducts/Release/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
     NSArray *moms = [NSArray arrayWithObjects: pathToMomDebug, pathToMomRelease, nil];
     NSString *pathToMom = nil;
     for (NSString *path in moms) {
