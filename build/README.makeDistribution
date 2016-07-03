@@ -16,10 +16,8 @@ To make a distribution:
 
 6) Test that basic functionality works.
 
-7) Copy to public web site /tmp/SwitchList-version.dmg to /Volumes/rbowdidge/Sites/railroad/SwitchList-version.dmg
+7) Copy to public web site, both replacing SwitchList.dmg and SwitchList-x.y.z.dmg.
 
-8) Copy /tmp/SwitchList-version.dmg to /Volumes/rbowdidge/Sites/railroad/SwitchList.dmg
+8) Update web page to show new version.
 
-9) Update web page to show new version.
-
-10) Announce on SwitchList-discuss
+9) Announce on SwitchList-discuss
