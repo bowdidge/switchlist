@@ -87,6 +87,7 @@
 		3E45403019A93359000755D9 /* reveal-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402E19A93359000755D9 /* reveal-icon.png */; };
 		3E45403119A93359000755D9 /* reveal-icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E45402F19A93359000755D9 /* reveal-icon@2x.png */; };
 		3E4E16B21D28660B00C0FCC2 /* YardTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E62C0F9128E610E00520752 /* YardTest.m */; };
+		3E4E16B51D288DF600C0FCC2 /* ICUTemplateMatcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E108C611404A31E00B77CFE /* ICUTemplateMatcher.m */; };
 		3E540BDA160CE68400D5B759 /* ChooseTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E540BD9160CE68400D5B759 /* ChooseTemplateViewController.m */; };
 		3E57C59412FBD95E00E51008 /* SwitchListBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C59212FBD95E00E51008 /* SwitchListBaseView.m */; };
 		3E57C5CD12FBDCC600E51008 /* KaufmanSwitchListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E57C5CC12FBDCC600E51008 /* KaufmanSwitchListView.m */; };
@@ -2184,6 +2185,7 @@
 				3E9B76881606440700891318 /* Industry.m in Sources */,
 				3E9B76891606440700891318 /* InduYard.m in Sources */,
 				3E9B768A1606440700891318 /* LayoutController.m in Sources */,
+				3E4E16B51D288DF600C0FCC2 /* ICUTemplateMatcher.m in Sources */,
 				3E9B768B1606440700891318 /* MGTemplateEngine.m in Sources */,
 				3E9B768C1606440700891318 /* MGTemplateStandardFilters.m in Sources */,
 				3E6F1931198567D7007AA710 /* CarType.m in Sources */,
