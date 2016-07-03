@@ -78,27 +78,22 @@ int CargosNotFilled(NSDictionary* unfilledDict) {
 // Runs the layout through several cycles of assigning cars, running trains, and advancing cars.
 // Prints informative error and returns NO if anything appears wrong, else returns YES.
 // If verboseOutput is true, then partial results for individual layouts are shown.
-BOOL TestLayout(NSString *layoutName, BOOL verbose) {
+BOOL TestLayout(NSString *layoutName, BOOL verbose, NSString *pathToSchema) {
 	if ([[NSFileManager defaultManager] fileExistsAtPath: layoutName] == NO) {
 		NSLog(@"ERROR: No such file %@\n", layoutName);
 		return NO;
 	}
 
-	NSString *pathToMomDebug =  @"/XcodeCache/SharedProducts/Debug/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
-    NSString *pathToMomRelease =  @"/XcodeCache/SharedProducts/Release/SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
-    NSArray *moms = [NSArray arrayWithObjects: pathToMomDebug, pathToMomRelease, nil];
-    NSString *pathToMom = nil;
-    for (NSString *path in moms) {
-        if ([[NSFileManager defaultManager] fileExistsAtPath: path] == YES) {
-            pathToMom = path;
-            break;
-        }
-	}
-    if (pathToMom == nil) {
-		NSLog(@"FAIL: %@: Configuration error: expected schema file at %@, but not found", layoutName, pathToMom);
-		return NO;
+    if (pathToSchema == nil) {
+        // Try default.
+        pathToSchema =  @"../SwitchList.app/Contents/Resources/SwitchListDocument.momd/SwitchListDocument 5.mom";
     }
-    NSManagedObjectContext *context = managedObjectContext(pathToMom, layoutName);
+
+    if ([[NSFileManager defaultManager] fileExistsAtPath: pathToSchema] == NO) {
+        NSLog(@"FAIL: %@: Configuration error: expected schema file at %@, but not found", layoutName, pathToSchema);
+        return NO;
+    }
+    NSManagedObjectContext *context = managedObjectContext(pathToSchema, layoutName);
 	if (!context) {
 		NSLog(@"FAIL: %@: Setup error: problems loading file.  (Incompatible version?)", layoutName);
 		return NO;
@@ -136,8 +131,9 @@ BOOL TestLayout(NSString *layoutName, BOOL verbose) {
 }
 
 void usage() {
-	fprintf(stderr, "Usage: testAdvanceLayoutsMain [-v] [layout files]+\n");
+	fprintf(stderr, "Usage: testAdvanceLayoutsMain [-v] [-m schema] [layout files]+\n");
 	fprintf(stderr, "  -v: show progress verbosely.\n");
+    fprintf(stderr, "  -m scheme.mom file: state location of CoreData schema file to use.\n");
 	exit(1);
 }
 
@@ -152,18 +148,22 @@ int main(int argc, char *argv[]) {
 	[NSMigrationManager addRelationshipMigrationMethodIfMissing];
 
 	char ch;
-	while ((ch = getopt(argc, argv, "v")) != -1) {
+    NSString *pathToSchema = nil;
+	while ((ch = getopt(argc, argv, "vm:")) != -1) {
 		switch (ch) {
 		case 'v':
 			verbose = YES;
 			break;
+        case 'm':
+            pathToSchema = [NSString stringWithUTF8String: optarg];
+            break;
 		default:
 			usage();
 		}
 	}
 	argc -= optind;
 	argv += optind;
-	if (argc < 2) {
+	if (argc < 1) {
 		usage();
 	}
 				
@@ -173,7 +173,7 @@ int main(int argc, char *argv[]) {
 	int i;
 	for (i=0; i<argc; i++) {
 		BOOL result = NO;
-		result = TestLayout([NSString stringWithUTF8String: argv[i]], verbose);
+		result = TestLayout([NSString stringWithUTF8String: argv[i]], verbose, pathToSchema);
 		testsRun++;
 		if (result) {
 			testsPassed++;
