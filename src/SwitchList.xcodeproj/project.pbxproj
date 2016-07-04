@@ -3362,7 +3362,7 @@
 				INSTALL_PATH = /usr/local/bin;
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -3373,7 +3373,7 @@
 				DEPLOYMENT_LOCATION = YES;
 				INSTALL_PATH = /usr/local/bin;
 				SDKROOT = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};
@@ -3383,7 +3383,7 @@
 				DEPLOYMENT_LOCATION = YES;
 				INSTALL_PATH = /usr/local/bin;
 				SDKROOT = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = Default;
 		};
@@ -3825,7 +3825,7 @@
 				DEPLOYMENT_LOCATION = YES;
 				INSTALL_PATH = /usr/local/bin;
 				SDKROOT = "";
-				SKIP_INSTALL = YES;
+				SKIP_INSTALL = NO;
 			};
 			name = "App Store";
 		};
