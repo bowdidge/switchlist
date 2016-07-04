@@ -34,6 +34,34 @@
                ReferencedContainer = "container:SwitchList.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3E9B78041606527600891318"
+               BuildableName = "Unit tests.xctest"
+               BlueprintName = "Engine Unit Tests"
+               ReferencedContainer = "container:SwitchList.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3EC3B0871277DEFE00C00AD3"
+               BuildableName = "Unit tests.xctest"
+               BlueprintName = "Unit tests"
+               ReferencedContainer = "container:SwitchList.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -59,16 +87,6 @@
                BlueprintIdentifier = "3EC3B0871277DEFE00C00AD3"
                BuildableName = "Unit tests.xctest"
                BlueprintName = "Unit tests"
-               ReferencedContainer = "container:SwitchList.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3E5CE2181C6CFCE700310C5A"
-               BuildableName = "UITests.xctest"
-               BlueprintName = "UITests"
                ReferencedContainer = "container:SwitchList.xcodeproj">
             </BuildableReference>
          </TestableReference>
