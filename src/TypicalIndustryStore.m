@@ -53,11 +53,8 @@
 	NSPropertyListFormat format;
 	NSArray *result;
 	NSData *plistXML = [[NSFileManager defaultManager] contentsAtPath: trainingFile];
-	result = (NSArray *)[NSPropertyListSerialization
-                         propertyListFromData:plistXML
-                         mutabilityOption:NSPropertyListMutableContainersAndLeaves
-                         format:&format
-                         errorDescription:&errorDesc];
+   NSError *error;
+    result = [NSPropertyListSerialization propertyListWithData: plistXML options: NSPropertyListMutableContainersAndLeaves format: &format error: &error];
     
 	if (!result) {
 		NSLog(@"Error reading plist: %@", errorDesc);
@@ -241,6 +238,5 @@ NSArray* NameStringToTokens(NSString* name) {
 		NSLog(@"  No suggestions for cargo.");
 	}
 }
-	
 	
 @end

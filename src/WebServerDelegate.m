@@ -55,7 +55,6 @@
 #include <regex.h> // For pattern matching on IP address.
 
 static const int HTTP_OK = 200;
-static const int HTTP_FORBIDDEN = 403;
 static const int HTTP_NOT_FOUND = 404;
 
 const int DEFAULT_SWITCHLIST_PORT = 20000;
