@@ -2697,7 +2697,7 @@
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
 				SDKROOT = "";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -2721,7 +2721,7 @@
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
 				SDKROOT = "";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -2744,7 +2744,7 @@
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
 				SDKROOT = "";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 			};
 			name = Default;
 		};
@@ -3359,7 +3359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEPLOYMENT_LOCATION = YES;
-				INSTALL_PATH = /usr/local/bin;
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				SDKROOT = "";
 				SKIP_INSTALL = NO;
@@ -3371,7 +3371,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEPLOYMENT_LOCATION = YES;
-				INSTALL_PATH = /usr/local/bin;
+				INSTALL_PATH = "";
 				SDKROOT = "";
 				SKIP_INSTALL = NO;
 			};
@@ -3381,7 +3381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEPLOYMENT_LOCATION = YES;
-				INSTALL_PATH = /usr/local/bin;
+				INSTALL_PATH = "";
 				SDKROOT = "";
 				SKIP_INSTALL = NO;
 			};
@@ -3533,6 +3533,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3573,6 +3574,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -3612,6 +3614,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -3651,6 +3654,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -3823,7 +3827,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEPLOYMENT_LOCATION = YES;
-				INSTALL_PATH = /usr/local/bin;
+				INSTALL_PATH = "";
 				SDKROOT = "";
 				SKIP_INSTALL = NO;
 			};
@@ -3918,7 +3922,7 @@
 				);
 				PRODUCT_NAME = testAdvanceLayouts;
 				SDKROOT = "";
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				ZERO_LINK = NO;
 			};
 			name = "App Store";

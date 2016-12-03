@@ -54,7 +54,7 @@
 	<key>CFBundleSignature</key>
 	<string>swl9</string>
 	<key>CFBundleVersion</key>
-	<string>24</string>
+	<string>25</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.entertainment</string>
 	<key>NSMainNibFile</key>
