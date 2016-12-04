@@ -1,0 +1,173 @@
+<html>
+<head>
+<link rel="stylesheet" href="santafe.css">
+<link href="https://fonts.googleapis.com/css?family=Special+Elite" rel="stylesheet"></style>
+</head>
+<body>
+{% set lineNumber 1 %}
+<div class="all">
+  <div class="heading">
+    <div>
+      <div class="logo" style="display:inline-block; float: left;">
+        {{OPTIONAL_Railroad_Name | default: Santa Fe}}
+      </div>
+      <div class="title" style="display: inline-block; float: right;">
+        SWITCH LIST
+      </div>
+    </div>
+    <div class="inform">
+      <center>
+        SWITCH CARS CAREFULLY AND SAFELY
+      </center>
+      <br>
+      <center>
+        AVOID ROUGH HANDLING
+      </center>
+    </div>
+    <br>
+    <div class="to">
+      <span class="typed field">  YARD  </span><span class="field">At</span>
+      <span class="typed field">  {{firstStation.name}}  </span><span class="field"> Station,</span>
+      <span class="typed field">{{ layout.currentDate | date_format: "MM/dd/yyyy" }}</span> , 19__
+    </div>
+    <table border="1">
+      <tr class="caption">
+       <th>
+         <small>Train No</small>
+       </th>
+       <th>
+         <small>Engine No.</small>
+       </th>
+       <th>
+         <small>Time</small> 
+       </th>
+      </tr>
+      <tr>
+        <td colspan="3">
+        <pan class="typed">{{train.name}}</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <br>
+  <table class="switchlist" border="1">
+    <tr class="caption">
+      <th>
+      </th>
+      <th>
+      Initials
+      </th>
+      <th>
+        No.
+      </th>
+      <th>
+        Contents
+      </th>
+      <th>
+        Destination
+      </th>
+      <th>
+        Tons
+      </th>
+      <th>
+        Remarks
+      </th>
+    </tr> 
+    {% for station in train.stationsWithWork %}
+      {% for industry in station.industries %}
+        {% if industry.carsToPickUp.@count > 0 || industry.carsToDropOff.@count > 0 %}
+          <tr>
+            <td>
+              <span class="caption">{{lineNumber}}</span>
+              {% set lineNumber lineNumber+1 %}
+            </td>
+            <td colspan="6">
+              <center>
+                {{industry.name}} / {{industry.location.name}}
+              </center>
+            </td>
+          </tr>
+          {% for car in industry.carsToDropOff %}
+          {% if car.toYard == 0 %}
+            <tr>
+              <td>
+                <span class="caption">{{lineNumber}}</span>
+                {% set lineNumber lineNumber+1 %}
+              </td>
+              <td>{{car.initials}}</td>
+              <td> 
+                {{car.number}}
+              </td>
+              <td>
+                  {% if car.isLoaded == 1 %}
+                  {{car.cargo.name}}
+                  {% else %}
+                  MTY
+                  {% /if %}
+              </td>
+              <td></td>
+              <td></td>
+              <td>
+                  {% if car.fromYard == 0 %}
+                  From {{car.currentLocation.name}}
+                  {% /if %}
+                {% if car.nextDoor %} Door {{car.nextDoor}} {% /if %}
+              </td>
+            </tr>
+            {% /if %}
+          {% /for %}
+          {% for car in industry.carsToPickUp %}
+          {% if car.fromYard == 0 %}
+            <tr>
+              <td>
+                <span class="caption">{{lineNumber}}</span>
+                {% set lineNumber lineNumber+1 %}
+              </td>
+              <td>{{car.initials}}</td>
+              <td> 
+                {{car.number}}
+              </td>
+              <td>
+                  {% if car.isLoaded == 1 %}
+                {{car.cargo.name}}
+                {% else %}
+                MTY
+                {% /if %}
+              </td>
+              <td>
+                  {% if car.toYard == 0 %}
+                   {{car.nextStop.name}}
+                  {% else %}
+                  YARD
+                  {% /if %}
+              </td>
+              <td></td>
+              <td></td>
+            </tr>
+            {% /if %}
+          {% /for %}
+          <tr>
+            <td>
+            <span class="caption">{{lineNumber}}</span>
+            {% set lineNumber lineNumber + 1 %}
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+          <td>
+          </td>
+        </tr>
+      {% /if %}
+     {% /for %}
+   {% /for %}
+  </table>
+</div>
+</body>
+</html>

@@ -76,6 +76,7 @@
 	[styleNameToDescriptionMap_ setObject: @"Borrowed from actual railroad switchlists, this form explicitly lists the contents of each car, and places the origin to the right of the To field, just like on the prototype." forKey: @"Southern Pacific Narrow"];
 	[styleNameToDescriptionMap_ setObject: @"Specially designed for the Brio set." forKey: @"Thomas"];
 	[styleNameToDescriptionMap_ setObject: @"Generate realistic waybills, just like real conductors would have carried.  Print and cut out for best effect." forKey: @"Waybill"];
+    [styleNameToDescriptionMap_ setObject: @"Typed switchlist on a pre-printed form, with some fields not quite matching the form.  This switchlist was inspired by a 1960's Santa Fe switchlist used in southern California." forKey: @"Santa Fe"];
    
     demoSwitchListController_ = [[HTMLSwitchListController alloc] init];
     [demoSwitchListController_ setWebView: demoSwitchListView_];

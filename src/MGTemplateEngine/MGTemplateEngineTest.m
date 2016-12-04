@@ -128,6 +128,29 @@
 	XCTAssertNil([delegate_ lastError], @"");
 }
 
+// MGTemplateEngine doesn't support multiple logical comparisons.
+- (void) disableTestAndMultipleTerms {
+    NSString *result = [engine_ processTemplate: @"Is 1<2 and 3<4? {% if 1 < 2 and 3 < 4 %} Yes! {% else %} No? {% /if %}"
+                                  withVariables: [NSDictionary dictionary]];
+    XCTAssertEqualObjects(@"Is 1<2 and 3<4?  Yes! ", result, @"");
+    XCTAssertNil([delegate_ lastError], @"");
+
+    result = [engine_ processTemplate: @"Is 1>2 and 3<4? {% if 1 > 2 and 3 < 4 %} Yes! {% else %} No! {% /if %}"
+                                  withVariables: [NSDictionary dictionary]];
+    XCTAssertEqualObjects(@"Is 1>2 and 3<4?  No! ", result, @"");
+    XCTAssertNil([delegate_ lastError], @"");
+
+    result = [engine_ processTemplate: @"Is 1<2 and 3>4? {% if 1 < 2 and 3 > 4 %} Yes! {% else %} No! {% /if %}"
+                        withVariables: [NSDictionary dictionary]];
+    XCTAssertEqualObjects(@"Is 1<2 and 3>4?  No! ", result, @"");
+    XCTAssertNil([delegate_ lastError], @"");
+    
+    result = [engine_ processTemplate: @"Is 1>2 and 3>4? {% if 1 > 2 and 3 > 4 %} Yes! {% else %} No! {% /if %}"
+                        withVariables: [NSDictionary dictionary]];
+    XCTAssertEqualObjects(@"Is 1<2 and 3>4?  No! ", result, @"");
+    XCTAssertNil([delegate_ lastError], @"");
+}
+
 - (void) testCompareMatchingStrings {
 	NSString *result = [engine_ processTemplate: @"Is x equalsstring y? {% if x equalsstring y %} Yes? {% else %} No! {% /if %}"
 								  withVariables: [NSDictionary dictionaryWithObjectsAndKeys: @"x", @"x", @"y", @"y", nil]];

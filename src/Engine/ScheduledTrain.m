@@ -532,4 +532,12 @@ NSString *OLD_SEPARATOR_FOR_STOPS = @",";
     [changedObjects release];
 }
 
+- (Place*) firstStation {
+    return [self.stationsInOrder objectAtIndex: 0];
+}
+
+- (Place*) lastStation {
+    return [self.stationsInOrder lastObject];
+}
+
 @end

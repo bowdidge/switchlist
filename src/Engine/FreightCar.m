@@ -562,4 +562,25 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
     }
     return result;
 }
+
+// True if car coming from the yard where the current train started.
+// Behavior is undefined if car is not in a train.
+- (BOOL) fromYard {
+    if (!self.currentTrain) {
+        return NO;
+    }
+    
+    return self.currentLocation.location == [self.currentTrain firstStation];
+}
+
+// True if car going to the yard where the current train started.
+// Behavior is undefined if car is not in a train.
+- (BOOL) toYard {
+    if (!self.currentTrain) {
+        return NO;
+    }
+    
+    return self.nextStop.location == [self.currentTrain lastStation];
+}
+
 @end

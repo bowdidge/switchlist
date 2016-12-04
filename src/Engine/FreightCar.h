@@ -122,6 +122,13 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1,FreightCar* s2, voi
 
 - (BOOL) hasCargo;
 
+// True if car coming from the yard where the current train started.
+// Behavior is undefined if car is not in a train.
+- (BOOL) fromYard;
+// True if car going to the yard where the current train started.
+// Behavior is undefined if car is not in a train.
+- (BOOL) toYard;
+
 // Clear the marking of which train this is assigned to.
 - (void) removeFromTrain;
 

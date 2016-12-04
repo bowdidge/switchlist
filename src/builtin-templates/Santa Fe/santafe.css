@@ -1,0 +1,55 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border:solid 1px;
+}
+.all {
+  width: 600px;
+  border:solid 1px;
+}
+.logo {
+  width: 45%;
+  font-size: 20pt;
+  font-family: "Times Roman";
+  font-weight: bold; 
+  width:45%;
+}
+.title {
+  width: 45%;
+  font-size: 20pt;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+.inform {
+  width: 600px;
+  font-size: 14pt;
+  font-family: sans-serif; 
+}
+.to {
+  width: 600px;
+  font-size: small;
+}
+.caption {
+  font-size: small;
+  font-family: sans-serif;
+}
+.typed {
+  font-size: large;
+  font-family: 'Special Elite', 'Courier New';
+  text-transform: uppercase;
+}
+.field {
+  width: 100px;
+  float: left;
+  text-align: center;
+  white-space: pre;
+}
+.switchlist td {
+  font-size: large;
+  font-family: 'Special Elite', 'Courier New';
+  text-transform: uppercase;
+}
+.switchlist th {
+  font-size: small;
+  font-family: sans-serif;
+}
