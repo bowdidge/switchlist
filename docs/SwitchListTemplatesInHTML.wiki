@@ -42,13 +42,19 @@ Each placeholder can access parts of an object.  freightCar is a freight car obj
 Templates can also loop using {% %} tags to group commands in the template language.  Templates can loop over several objects ((% for %}).  The following template would produce a numbered list (the ol tag does an "ordered list") of instructions on where to move each car in the train:
 
 <code>
-<verbatim>
+
 <ul>
+
 {% for myFreightCar in train.allFreightCarsInVisitOrder %}
-    <li> Please move {{myFreightCar.reportingMarks}} from {{myFreightCar.currentLocation.name}} to {{myFreightCar.nextStop.name}}.
+
+    <li> Please move {{myFreightCar.reportingMarks}} from {{myFreightCar.currentLocation.name}} to 
+    
+    {{myFreightCar.nextStop.name}}.
+    
 {% /for %}
+
 </ul>
-<verbatim>
+
 </code>
 
 Templates can also use conditions.  This snippet either prints "LOADED" if the freight car has a cargo and the cargo is currently loaded in the car, and "EMPTY" otherwise:
