@@ -206,14 +206,14 @@ The key to defining templates is knowing what values you can print in a switchli
 == Variables Accessible to Switch List Template == 
 The following variables are accessible from templates:
 
-| train | current train. (Train object) |
-| ----- | ----------------------------- |
-| firstStation | Station where the train starts. |
-| lastStation | Station where the train ends. |
-| freightCars | list of freight cars being carried in visiting order (contains FreightCar objects) |
-| layout | current layout. (Layout object) |
-| randomValue | integer value between 0 and 9, used for putting fingerprints, dogear or other bits of realism on switchlists. |
-| interactive | defined and set to 1 if switchlist is used in web interface.  Undefined if template is being used to print a switchlist.  This allows you to hide controls when printing.|
+train | current train. (Train object)
+----- | -----------------------------
+firstStation | Station where the train starts.
+lastStation | Station where the train ends.
+freightCars | list of freight cars being carried in visiting order (contains FreightCar objects)
+layout | current layout. (Layout object)
+randomValue | integer value between 0 and 9, used for putting fingerprints, dogear or other bits of realism on switchlists. 
+interactive | defined and set to 1 if switchlist is used in web interface.  Undefined if template is being used to print a switchlist.  This allows you to hide controls when printing.
 
 Some of these variables are plain string or number values (such as firstStation or randomValue), while others are objects containing their own values.  Here is a list of the kinds of objects visible in a template, and the values attached to each.
 
