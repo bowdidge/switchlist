@@ -144,10 +144,10 @@ Custom template settings can be used in the middle of the template and can inclu
 == Creating Your Own Reports ==
 
 SwitchList also allows you to create the standard reports in a style to match your switch lists.  Custom reports can be used for the Car Report, Industry Report, Reserved Car Report, and Yard Report.
-  * Car Report: defined in a file called car-report.html
-  * Industry Report: industry-report.html
-  * Reserved Car Report: reserved-car-report.html
-  * Yard Report: yard-report.html
+- Car Report: defined in a file called car-report.html
+- Industry Report: industry-report.html
+- Reserved Car Report: reserved-car-report.html
+- Yard Report: yard-report.html
 
 The custom reports go in the same folder as the corresponding custom switchlist.
 
@@ -205,45 +205,50 @@ The key to defining templates is knowing what values you can print in a switchli
 
 == Variables Accessible to Switch List Template == 
 The following variables are accessible from templates:
-|| train || current train. (Train object) ||
-|| firstStation || Station where the train starts. ||
-|| lastStation || Station where the train ends. ||
-|| freightCars || list of freight cars being carried in visiting order (contains FreightCar objects) ||
-|| layout || current layout. (Layout object) ||
-|| randomValue || integer value between 0 and 9, used for putting fingerprints, dogear or other bits of realism on switchlists. ||
-|| interactive || defined and set to 1 if switchlist is used in web interface.  Undefined if template is being used to print a switchlist.  This allows you to hide controls when printing.||
+
+| train | current train. (Train object) |
+| ----- | ----------------------------- |
+| firstStation | Station where the train starts. |
+| lastStation | Station where the train ends. |
+| freightCars | list of freight cars being carried in visiting order (contains FreightCar objects) |
+| layout | current layout. (Layout object) |
+| randomValue | integer value between 0 and 9, used for putting fingerprints, dogear or other bits of realism on switchlists. |
+| interactive | defined and set to 1 if switchlist is used in web interface.  Undefined if template is being used to print a switchlist.  This allows you to hide controls when printing.|
 
 Some of these variables are plain string or number values (such as firstStation or randomValue), while others are objects containing their own values.  Here is a list of the kinds of objects visible in a template, and the values attached to each.
 
-|| *Layout* || ||
-|| currentDate ||  Usually formatted with a template filter to draw the date in a sane manner.  ||
-|| layoutName ||  The layout description as entered into the Layout tab of SwitchList. ||
-|| allStationsSortedOrder ||   List of all stations / places on the layout, sorted alphabetically. ||
-|| allIndustries || List of all industries.  Unsorted. ||
-|| stationsWithWork || List of all the stations where the train has cars to pick up or drop off.  Each station is just a collection of industries with cars to pick up and drop off.  Used for drawing the PICL report. ||
-|| *Train* || ||
-|| name   ||string name for train. ||
-|| freightCars ||   list of freight cars in the train in no order. ||
-|| freightCarsInVisitOrder: || list of freight cars in the train, sorted by the order that towns will be visited. ||
-|| stationsInOrder || list of the stations visited by this train in the order visited.  Contains duplicates if the same town is visited twice. ||
-||
-|| *Freight Car* || ||
-|| reportingMarks || String containing owning railroad and car number ("SP 27310") ||
-|| initials || String containing railroad initials only. (Car "SP 27310" would return "SP") ||
-|| number || String containing car number only.  (Car "SP 27310" would return "27310") ||
-|| cargo || Current cargo being carried or assigned to freight car. ||
-|| isLoaded || True if car is carrying cargo.  If false, car may not have a cargo assigned, or may be travelling to the location where the cargo is picked up. ||
-|| carType || Abbreviation for the freight car's type of car (T for tank car, XM for short boxcar, etc.) ||
-|| currentLocation || industry or yard where car is currently located. (Industry object.) ||
-|| nextStop || Destination this session.  (Industry object.) ||
-|| nextDoor || Specific door where car should be placed at next industry. (Version 1.3 and after) ||
-|| *Cargo* || ||
-|| name || short description of cargo. ||
-|| description ||  long description of cargo, including what kind of car and how many cars per week.  ||
-|| *Industry* || ||
-|| location || Town where industry is located. ||
-|| name || Name of industry. ||
-|| *Station* (Also called place or town) || ||
-|| name || Name of station. ||
-|| allIndustriesSortedOrder ||
+| *Layout* |   |
+| -------- | -- |
+| currentDate |  Usually formatted with a template filter to draw the date in a sane manner.  |
+| layoutName |  The layout description as entered into the Layout tab of SwitchList. |
+| allStationsSortedOrder |   List of all stations / places on the layout, sorted alphabetically. |
+| allIndustries | List of all industries.  Unsorted. |
+| stationsWithWork | List of all the stations where the train has cars to pick up or drop off.  Each station is just a collection of industries with cars to pick up and drop off.  Used for drawing the PICL report. |
+| *Train* | |
+| name   |string name for train. |
+| freightCars |   list of freight cars in the train in no order. |
+| freightCarsInVisitOrder: | list of freight cars in the train, sorted by the order that towns will be visited. |
+| stationsInOrder | list of the stations visited by this train in the order visited.  Contains duplicates if the same town is visited twice. |
+| --------- | ------|
+| *Freight Car* | |
+| reportingMarks | String containing owning railroad and car number ("SP 27310") |
+| initials | String containing railroad initials only. (Car "SP 27310" would return "SP") |
+| number | String containing car number only.  (Car "SP 27310" would return "27310") |
+| cargo | Current cargo being carried or assigned to freight car. |
+| isLoaded | True if car is carrying cargo.  If false, car may not have a cargo assigned, or may be travelling to the location where the cargo is picked up. |
+| carType | Abbreviation for the freight car's type of car (T for tank car, XM for short boxcar, etc.) |
+| currentLocation | industry or yard where car is currently located. (Industry object.) |
+| nextStop | Destination this session.  (Industry object.) |
+| nextDoor | Specific door where car should be placed at next industry. (Version 1.3 and after) |
+| --------- | ------|
+| *Cargo* | |
+| name | short description of cargo. |
+| description |  long description of cargo, including what kind of car and how many cars per week.  |
+| --------- | ------|
+| *Industry* | |
+| location | Town where industry is located. |
+| name | Name of industry. |
+| *Station* (Also called place or town) | |
+| name | Name of station. |
+| allIndustriesSortedOrder | |
   
