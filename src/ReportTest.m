@@ -34,7 +34,7 @@
 
 #import "EntireLayout.h"
 #import "Report.h"
-#import "SwitchlistDocumentInterface.h"
+#import "SwitchListDocumentInterface.h"
 
 // Fake the NSTextView to test line lengths.
 @interface MockTextView : NSObject {
