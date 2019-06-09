@@ -203,10 +203,10 @@ NSInteger sortCarsByCurrentIndustry(FreightCar *a, FreightCar *b, void *context)
 NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *context);
 
 // Keys declared in model for LayoutInfo.
-NSString *LAYOUT_INFO_LAYOUT_NAME;
-NSString *LAYOUT_INFO_CURRENT_DATE;
+extern NSString *LAYOUT_INFO_LAYOUT_NAME;
+extern NSString *LAYOUT_INFO_CURRENT_DATE;
 // Dictionary, NSKeyedArchiver-encoded.
-NSString *LAYOUT_INFO_LAYOUT_PREFERENCES;
+extern NSString *LAYOUT_INFO_LAYOUT_PREFERENCES;
 
 // Settings for the preferences dictionary.
 extern NSString *LAYOUT_PREFS_SHOW_DOORS_UI;
