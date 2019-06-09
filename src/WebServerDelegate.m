@@ -48,8 +48,8 @@
 #import "SwitchListAppDelegate.h"
 #import "SwitchListDocument.h"
 #import "SwitchListFilters.h"
-#import "SimpleHTTPServer/SimpleHTTPServer.h"
-#import "SimpleHTTPServer/SimpleHTTPConnection.h"
+#import "SimpleHttpServer/SimpleHTTPServer.h"
+#import "SimpleHttpServer/SimpleHTTPConnection.h"
 #import "Yard.h"
 
 #include <regex.h> // For pattern matching on IP address.
