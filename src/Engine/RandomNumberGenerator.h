@@ -59,5 +59,5 @@
 @end
 
 // Call before use to ensure more random numbers.
-extern int GenerateSeed();
+extern int GenerateSeed(void);
 
