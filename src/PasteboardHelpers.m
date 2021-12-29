@@ -66,10 +66,14 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
 
 - (void)encodeWithCoder:(NSCoder*)coder {
     [coder encodeObject: [self cargoDescription] forKey: @"cargoDescription"];
-    [coder encodeInt:[self priority] forKey:@"priority"];
-    [coder encodeInt:[self rate] forKey:@"rate"];
-    [coder encodeInt:[self rateUnits] forKey:@"rateUnits"];
-    [coder encodeInt:[self unloadingDays] forKey:@"unloadingDays"];
+    [coder encodeInt:[self priority].intValue forKey:@"priority"];
+    [coder encodeInt:[self rate].intValue forKey:@"rate"];
+    [coder encodeInt:[self rateUnits].intValue forKey:@"rateUnits"];
+    [coder encodeInt:[self unloadingDays].intValue forKey:@"unloadingDays"];
+}
+
++ (BOOL) supportsSecureCoding {
+    return YES;
 }
 
 - (id) initWithCoder: (NSCoder*) decoder {
@@ -79,11 +83,11 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
     
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName: @"Cargo" inManagedObjectContext: context];
     if (self = [super initWithEntity:entityDescription insertIntoManagedObjectContext:context] ) {
-        self.cargoDescription = [decoder decodeObjectForKey: @"cargoDescription"];
-        self.priority = [decoder decodeIntForKey: @"priority"];
-        self.rate = [decoder decodeIntForKey: @"rate"];
-        self.rateUnits = [decoder decodeIntForKey: @"rateUnits"];
-        self.unloadingDays = [decoder decodeIntForKey: @"unloadingDays"];
+        self.cargoDescription = [decoder decodeObjectOfClass: [NSString class] forKey: @"cargoDescription"];
+        self.priority = [NSNumber numberWithInt: [decoder decodeIntForKey: @"priority"]];
+        self.rate = [NSNumber numberWithInt: [decoder decodeIntForKey: @"rate"]];
+        self.rateUnits = [NSNumber numberWithInt: [decoder decodeIntForKey: @"rateUnits"]];
+        self.unloadingDays = [NSNumber numberWithInt: [decoder decodeIntForKey: @"unloadingDays"]];
     }
     return self;
 }
@@ -132,8 +136,12 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
 
 - (void)encodeWithCoder:(NSCoder*)coder {
     [coder encodeObject: [self reportingMarks] forKey:@"reportingMarks"];
-    [coder encodeInt:[self length] forKey:@"length"];
+    [coder encodeInt:[self length].intValue forKey:@"length"];
     [coder encodeObject: [self homeDivision] forKey: @"homeDivision"];
+}
+
++ (BOOL) supportsSecureCoding {
+    return YES;
 }
 
 - (id) initWithCoder: (NSCoder*) decoder {
@@ -143,9 +151,9 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
     
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName: @"FreightCar" inManagedObjectContext: context];
     if (self = [super initWithEntity:entityDescription insertIntoManagedObjectContext:context] ) {
-        self.reportingMarks = [decoder decodeObjectForKey: @"reportingMarks"];
-        self.length = [decoder decodeIntForKey: @"length"];
-        self.homeDivision = [decoder decodeObjectForKey: @"homeDivision"];
+        self.reportingMarks = [decoder decodeObjectOfClass: [NSString class] forKey: @"reportingMarks"];
+        self.length = [NSNumber numberWithInt: [decoder decodeIntForKey: @"length"]];
+        self.homeDivision = [decoder decodeObjectOfClass: [NSString class] forKey: @"homeDivision"];
     }
     return self;
 }
@@ -194,9 +202,12 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
     [coder encodeObject: [self name] forKey:@"name"];
     [coder encodeObject: [self division] forKey: @"division"];
     [coder encodeInt:[self hasDoors] forKey:@"hasDoors"];
-    [coder encodeInt:[self numberOfDoors] forKey:@"numberOfDoors"];
-    [coder encodeInt:[self isYard] forKey:@"isYard"];
-    [coder encodeInt:[self sidingLength] forKey:@"sidingLength"];
+    [coder encodeInt:[self numberOfDoors].intValue forKey:@"numberOfDoors"];
+    [coder encodeInt:[self sidingLength].intValue forKey:@"sidingLength"];
+}
+
++ (BOOL) supportsSecureCoding {
+    return YES;
 }
 
 - (id) initWithCoder: (NSCoder*) decoder {
@@ -206,12 +217,12 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
     
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName: @"Industry" inManagedObjectContext: context];
     if (self = [super initWithEntity:entityDescription insertIntoManagedObjectContext:context] ) {
-        self.name = [decoder decodeObjectForKey: @"name"];
-        self.division = [decoder decodeObjectForKey: @"division"];
+        
+        self.name = [decoder decodeObjectOfClass: [NSString class] forKey: @"name"];
+        self.division = [decoder decodeObjectOfClass: [NSString class] forKey: @"division"];
         self.hasDoors = [decoder decodeIntForKey: @"hasDoors"];
-        self.numberOfDoors = [decoder decodeIntForKey: @"numberOfDoors"];
-        self.isYard = [decoder decodeIntForKey: @"isYard"];
-        self.sidingLength = [decoder decodeIntForKey: @"sidingLength"];
+        self.numberOfDoors = [NSNumber numberWithInt: [decoder decodeIntForKey: @"numberOfDoors"]];
+        self.sidingLength = [NSNumber numberWithInt: [decoder decodeIntForKey: @"sidingLength"]];
     }
     return self;
 }
@@ -262,6 +273,10 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
     [coder encodeInt:[self isStaging] forKey:@"isStaging"];
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (id) initWithCoder: (NSCoder*) decoder {
     SwitchListAppDelegate *appDelegate = [SwitchListAppDelegate sharedAppDelegate];
     EntireLayout *layout = [[appDelegate currentDocument] entireLayout];
@@ -269,7 +284,7 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
     
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: context];
     if (self = [super initWithEntity:entityDescription insertIntoManagedObjectContext:context] ) {
-        self.name = [decoder decodeObjectForKey: @"name"];
+        self.name = [decoder decodeObjectOfClass: [NSString class] forKey: @"name"];
         self.isOffline = [decoder decodeIntForKey: @"isOffline"];
         self.isStaging = [decoder decodeIntForKey: @"isStaging"];
     }
@@ -318,8 +333,12 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
 
 - (void)encodeWithCoder:(NSCoder*)coder {
     [coder encodeObject: [self name] forKey:@"name"];
-    [coder encodeInt:[self minCarsToRun] forKey:@"minCarsToRun"];
+    [coder encodeInt: [self minCarsToRun].intValue forKey:@"minCarsToRun"];
     //[coder encodeObject: [self stationsInOrder] forKey: @"stationsInOrder"];
+}
+
++ (BOOL) supportsSecureCoding {
+    return YES;
 }
 
 - (id) initWithCoder: (NSCoder*) decoder {
@@ -329,8 +348,8 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
     
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName: @"ScheduledTrain" inManagedObjectContext: context];
     if (self = [super initWithEntity:entityDescription insertIntoManagedObjectContext:context] ) {
-        self.name = [decoder decodeObjectForKey: @"name"];
-        self.minCarsToRun = [decoder decodeIntForKey: @"minCarsToRun"];
+        self.name = [decoder decodeObjectOfClass: [NSString class] forKey: @"name"];
+        self.minCarsToRun = [NSNumber numberWithInt: [decoder decodeIntForKey: @"minCarsToRun"]];
         //self.stationsInOrder = [decoder decodeObjectForKey: @"stationsInOrder"];
     }
     return self;
@@ -380,6 +399,10 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
     [coder encodeObject: [self name] forKey: @"name"];
 }
 
++ (BOOL) supportsSecureCoding {
+    return YES;
+}
+
 - (id) initWithCoder: (NSCoder*) decoder {
     SwitchListAppDelegate *appDelegate = [SwitchListAppDelegate sharedAppDelegate];
     EntireLayout *layout = [[appDelegate currentDocument] entireLayout];
@@ -387,7 +410,7 @@ NSString * const YARD_UTI = @"com.vasonabranch.Yard";
     
     NSEntityDescription *entityDescription = [NSEntityDescription entityForName: @"Yard" inManagedObjectContext: context];
     if (self = [super initWithEntity:entityDescription insertIntoManagedObjectContext:context] ) {
-        self.name = [decoder decodeObjectForKey: @"name"];
+        self.name = [decoder decodeObjectOfClass: [NSString class] forKey: @"name"];
     }
     return self;
 }

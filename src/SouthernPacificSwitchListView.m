@@ -211,9 +211,9 @@
 	[[NSColor whiteColor] setFill];
 	NSRectFill([self bounds]);
 
-	int totalCars = [carsInTrain_ count];
-	int firstCar = 0;
-	int start = 0;
+    NSUInteger totalCars = [carsInTrain_ count];
+    NSUInteger firstCar = 0;
+    NSUInteger start = 0;
 	if (totalCars == 0) {
 		// Draw something.
 		[self drawOneFormWithCars: [NSArray array] withStart: 0];

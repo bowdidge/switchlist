@@ -279,25 +279,26 @@
                    storeOptions:(NSDictionary*)storeOptions
                       error:(NSError**)error
 {
-  NSMutableDictionary *options = nil;
-  if (storeOptions != nil) {
-    options = [storeOptions mutableCopy];
-  } else {
-    options = [[NSMutableDictionary alloc] init];
-  }
-
-  [options setObject:[NSNumber numberWithBool:YES] 
-        forKey:NSMigratePersistentStoresAutomaticallyOption];
+    NSMutableDictionary *options = nil;
+    if (storeOptions != nil) {
+        options = [storeOptions mutableCopy];
+    } else {
+        options = [[NSMutableDictionary alloc] init];
+    }
+    
+    [options setObject:[NSNumber numberWithBool:YES] 
+                forKey:NSMigratePersistentStoresAutomaticallyOption];
     [options setObject:[NSNumber numberWithBool:YES]
                 forKey:NSInferMappingModelAutomaticallyOption];
-
-  BOOL result = [super configurePersistentStoreCoordinatorForURL:url
-                              ofType:fileType
-                        modelConfiguration:configuration
-                           storeOptions:options
-                               error:error];
-  [options release], options = nil;
-  return result;
+    
+    BOOL result = [super configurePersistentStoreCoordinatorForURL:url
+                                                            ofType:fileType
+                                                modelConfiguration:configuration
+                                                      storeOptions:options
+                                                             error:error];
+    [options release];
+    options = nil;
+    return result;
 }
 
 - (NSString*) preferredSwitchListStyle {
@@ -574,7 +575,7 @@
 		return inError;
 	}
 
-	int errorCode = [inError code];
+	NSInteger errorCode = [inError code];
 	if ((errorCode < NSValidationErrorMinimum) ||
 		(errorCode > NSValidationErrorMaximum)) {
 			return inError;
@@ -638,7 +639,7 @@
 	// Finally, advance the day.
 	NSDate *currentDate = [entireLayout_ currentDate];
 	// Add one day.
-	currentDate = [currentDate addTimeInterval: (60 * 60 * 24)];
+	currentDate = [currentDate dateByAddingTimeInterval: (60 * 60 * 24)];
 	[datePicker_ setDateValue: currentDate];
 	[entireLayout_ setCurrentDate: currentDate];
 	
@@ -706,8 +707,8 @@
 		 informativeTextWithFormat: @"Clearing cargos can help if you have changed cargos and car types significantly.  Otherwise, it just adds a bit of chaos til loads get sorted out."];
 		 
 	// returns 1 for OK, 0 for cancel.
-	int ret = [alert runModal];
-	if (ret != 1) {
+	NSModalResponse ret = [alert runModal];
+	if (ret != NSModalResponseOK) {
 		return;
 	}
 
@@ -1070,15 +1071,15 @@
  */
 - (void) updateSummaryInfo: (id) sender {
 	// how many freight cars?
-	int numberOfFreightCars = [[entireLayout_ allFreightCars] count];
+	NSUInteger numberOfFreightCars = [[entireLayout_ allFreightCars] count];
 	
-	int numberOfAssignedFreightCars = [[entireLayout_ allReservedFreightCars] count];
-	int numberOfCarsOnWorkbench = [[entireLayout_ allFreightCarsOnWorkbench] count];
+    NSUInteger numberOfAssignedFreightCars = [[entireLayout_ allReservedFreightCars] count];
+    NSUInteger numberOfCarsOnWorkbench = [[entireLayout_ allFreightCarsOnWorkbench] count];
 	
 	NSMutableString *freightCarStatus = [NSMutableString stringWithFormat: @"%d freight cars, %d assigned",
-										 numberOfFreightCars, numberOfAssignedFreightCars];
+										 (int) numberOfFreightCars, (int) numberOfAssignedFreightCars];
 	if (numberOfCarsOnWorkbench > 0) {
-		[freightCarStatus appendFormat: @", %d at workbench", numberOfCarsOnWorkbench];
+		[freightCarStatus appendFormat: @", %d at workbench", (int) numberOfCarsOnWorkbench];
 	}
 	[freightCarCountField_ setStringValue: freightCarStatus];
 
@@ -1089,7 +1090,7 @@
 
 // Table count for train table in Overview tab.  We'll display
 // all trains in the database.
-- (int) numberOfRowsInTrainTableView {
+- (NSUInteger) numberOfRowsInTrainTableView {
 	if (trains_ == nil) {
 		[self updateAndCacheListOfTrains];
 	}
@@ -1097,7 +1098,7 @@
 }
 
 // Populates train table in Overview tab.
-- (id)trainTableObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (id) trainTableObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSUInteger)row {
 	if (trains_ == nil) {
 		[self updateAndCacheListOfTrains];
 	}
@@ -1112,8 +1113,7 @@
 			return @"annulled";
 		}
 		if (cars != nil) {
-			int carCt = [cars count];
-			return [NSString stringWithFormat: @"%d",carCt];
+			return [NSString stringWithFormat: @"%d", (int) [cars count]];
 		} else {
 			return @"---";
 		}
@@ -1148,7 +1148,7 @@
 	return YES;
 }
 
-- (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
+- (id) tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 	if (tableView == overviewTrainTable_) {
 		return [self trainTableObjectValueForTableColumn: tableColumn row: row];
 	} else {
@@ -1164,7 +1164,7 @@
 	NSNumber *useDoors = [layoutPrefs objectForKey: LAYOUT_PREFS_SHOW_DOORS_UI];
 	BOOL shouldShowDoors = (useDoors && [useDoors boolValue] == YES);
 
-		int selectedRow = [freightCarTable_ selectedRow];
+		NSInteger selectedRow = [freightCarTable_ selectedRow];
 	
 	// Have the location overlap the door selector when the location does not have a door.
 	if (selectedRow >= [[freightCarArrayController_ arrangedObjects] count]) return;

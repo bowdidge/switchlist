@@ -247,11 +247,10 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 // Returns a string, split up into dash and non-dash components.
 - (NSArray*) splitStringByDashes: (NSString*) input {
 	NSMutableArray *result = [NSMutableArray array];
-	int len = [input length];
-	int i;
+	NSUInteger len = [input length];
 	BOOL inDashes = [input characterAtIndex: 0] == '_';
 	int startOfCurrentEntry = 0;
-	for (i=0; i<len; i++) {
+	for (int i=0; i<len; i++) {
 		if (([input characterAtIndex: i] == '_') ^ inDashes) {
 			// Switching.
 			NSString *nextEntry = [input substringWithRange: NSMakeRange(startOfCurrentEntry, i - startOfCurrentEntry)];
@@ -304,7 +303,7 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 - (void) drawFormLine: (NSString*) formLine centerX: (long) centerX centerY: (long) centerY strings: (NSArray*) strings
 		 printedAttrs: (NSDictionary*) printedAttrs  {
 	[self drawCenteredString: formLine centerY: centerY centerX: centerX attributes: printedAttrs];
-	int fieldCount = [strings count];
+	NSUInteger fieldCount = [strings count];
 	int i;
 	// Ignore blanks.
 	for (i=0; i< fieldCount; i++) {
@@ -320,14 +319,14 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	char *MONTH_NAMES[13] = {"","January","February","March","April","May","June","July","August","September","October",
 		"November","December"};
 	NSCalendar *cal = [NSCalendar currentCalendar];
-	NSDateComponents *components = [cal components:NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit
+    NSDateComponents *components = [cal components:NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay
 										  fromDate: [[owningDocument_ entireLayout] currentDate]];
-	int month = [components month];
-	int day = [components day];
-	int year = [components year];
-	NSString *dateString = [NSString stringWithFormat: @"%s %d", MONTH_NAMES[month], day];
-	NSString *yearString = [NSString stringWithFormat: @"%d", year % 100];
-	NSString *centuryString = [NSString stringWithFormat: @"%d", year/100];
+	NSInteger month = [components month];
+    NSInteger day = [components day];
+    NSInteger year = [components year];
+	NSString *dateString = [NSString stringWithFormat: @"%s %d", MONTH_NAMES[month], (int) day];
+	NSString *yearString = [NSString stringWithFormat: @"%d", (int) year % 100];
+	NSString *centuryString = [NSString stringWithFormat: @"%d", (int) year/100];
 	return [NSArray arrayWithObjects: dateString, yearString, centuryString, nil];
 }
 
@@ -406,7 +405,7 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	}
 	
 	// Now, fill out the contents of the table.	
-	int rows = [carsToDisplay count];
+	NSUInteger rows = [carsToDisplay count];
 	for (row = 0; row < rows; row++) {
 		int column;
 		int columnCount = [source columnCount];
@@ -529,7 +528,7 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 					  @"L.d'A",
 					  @"R. Souza",
 					  nil];
-	int rnd = (randomValue_ + seed) % [names count];
+	long rnd = (randomValue_ + seed) % [names count];
 	return [names objectAtIndex: rnd];
 }
 

@@ -131,6 +131,11 @@ NSString *NormalizeDivisionString(NSString *inString) {
 	
 - (Place*) stationWithName: (NSString *)stationName {
 	NSError *error;
+    
+    if (stationName == nil) {
+        return nil;
+    }
+    
     NSEntityDescription *ent = [NSEntityDescription entityForName: @"Place" inManagedObjectContext: [self managedObjectContext]];
     NSFetchRequest * req2  = [[[NSFetchRequest alloc] init] autorelease];
     [req2 setEntity: ent];
@@ -783,7 +788,7 @@ NSInteger sortCarsByCurrentIndustry(FreightCar *a, FreightCar *b, void *context)
 		return [[a reportingMarks] compare: [b reportingMarks]];
 	}
 
-	int currentResult = [[[currentA location] name] compare: [[currentB location] name]];
+    NSComparisonResult currentResult = [[[currentA location] name] compare: [[currentB location] name]];
 	if (currentResult != NSOrderedSame) return currentResult;
 
 	currentResult = ([[[a currentLocation] name] compare: [[b currentLocation] name]]);
@@ -802,7 +807,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
 		return [[a reportingMarks] compare: [b reportingMarks]];
 	}
 	
-	int compareResult = [[[destA location] name] compare: [[destB location] name]];
+    NSComparisonResult compareResult = [[[destA location] name] compare: [[destB location] name]];
 	if (compareResult != NSOrderedSame) {
 		return compareResult;
 	}
@@ -1032,7 +1037,7 @@ NSInteger sortCarsByDestinationIndustry(FreightCar *a, FreightCar *b, void *cont
         }
 		if ([freightCarNameCleaned length] == 0) {
 			// Ignore blank lines.
-		} else if (false) {
+		} else if ((false)) {
 			// Error detection goes here.
 			warningCount++;
 			if (warningCount == 4) {

@@ -115,9 +115,6 @@
 - (void) awakeFromNib {
 	[suggestedIndustriesButton_ removeAllItems];
 	
-	[cancelButton_ setTarget: self];
-	[cancelButton_ setAction: @selector(doCancel:)];
-
 	[createButton_ setTarget: self];
 	[createButton_ setAction: @selector(doCreate:)];
 
@@ -170,10 +167,10 @@
 - (Industry*) likelyDestination {
 	NSArray *allIndustries = [[document_ entireLayout] allIndustries];
 	Industry *mostPopularStagingIndustry = nil;
-	int mostPopularCargoCount = 0;
+	NSUInteger mostPopularCargoCount = 0;
 	for (Industry *i in allIndustries) {
 		if ([i isStaging] || [i isOffline]) {
-			int cargoCount = [[i originatingCargos] count] + [[i terminatingCargos] count];
+			NSUInteger cargoCount = [[i originatingCargos] count] + [[i terminatingCargos] count];
 			if (!mostPopularStagingIndustry || cargoCount > mostPopularCargoCount) {
 				mostPopularStagingIndustry = i;
 				mostPopularCargoCount = cargoCount;
@@ -188,7 +185,7 @@
 	// Next, try most popular industry in general?
 	Industry *mostPopularIndustry = nil;
 	for (Industry *i in allIndustries) {
-		int cargoCount = [[i originatingCargos] count] + [[i terminatingCargos] count];
+		NSUInteger cargoCount = [[i originatingCargos] count] + [[i terminatingCargos] count];
 		if (!mostPopularStagingIndustry || cargoCount > mostPopularCargoCount) {
 			mostPopularStagingIndustry = i;
 			mostPopularCargoCount = cargoCount;
@@ -271,7 +268,7 @@
 		[item setState: 0];
 	}
 
-	int i = [currentIndustryButton_ indexOfSelectedItem];
+	NSInteger i = [currentIndustryButton_ indexOfSelectedItem];
 	// TODO(bowdidge): Why doesn't this set checkbox, and set center point of menu when opened?
 	currentIndustry_ = [[currentIndustryArrayController_ arrangedObjects] objectAtIndex: i];
 	[[currentIndustryButton_ itemAtIndex: i] setState: NSOnState];

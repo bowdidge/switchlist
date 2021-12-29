@@ -43,7 +43,7 @@
 /* TCP port where SwitchList web server will listen. */
 extern const int DEFAULT_SWITCHLIST_PORT;
 // Returns an IP address for current host.
-extern NSString *CurrentHostname();
+extern NSString *CurrentHostname(void);
 
 @interface WebServerDelegate : NSObject {
 	SimpleHTTPServer *server_;

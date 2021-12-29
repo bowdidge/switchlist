@@ -47,7 +47,7 @@
 	[super dealloc];
 }
 
-- (NSArray *) cargosForToday: (int) count {
+- (NSArray *) cargosForToday: (NSUInteger) count {
 	// Pick a random set of cargos for numberOfCar loads.  
 	//result array may contain dup pointers to cargo objects.
 	NSMutableArray *resultCargos = [NSMutableArray array];

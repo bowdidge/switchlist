@@ -211,7 +211,7 @@
 	[webServerAttrString beginEditing];
 	[webServerAttrString addAttribute: NSFontAttributeName value: [NSFont systemFontOfSize:13.0] range: range];
 	NSMutableParagraphStyle *mutParaStyle=[[[NSMutableParagraphStyle alloc] init] autorelease];
-	[mutParaStyle setAlignment:NSCenterTextAlignment];
+	[mutParaStyle setAlignment:NSTextAlignmentCenter];
 	[webServerAttrString addAttributes:[NSDictionary dictionaryWithObject:mutParaStyle forKey:NSParagraphStyleAttributeName] range: range];
 	
 	if (hasLink) {
@@ -219,7 +219,7 @@
 		[webServerAttrString addAttribute: NSLinkAttributeName value: label range: range];
 		[webServerAttrString addAttribute:NSForegroundColorAttributeName value:[NSColor blueColor] range:range];
 		// make the text appear with an underline
-		[webServerAttrString addAttribute: NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSSingleUnderlineStyle] range:range];
+		[webServerAttrString addAttribute: NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:range];
 	} else {
 		[webServerAttrString addAttribute:NSForegroundColorAttributeName value:[NSColor grayColor] range:range];
 	}
@@ -432,8 +432,8 @@ error:
 		alert = [NSAlert alertWithMessageText: overwriteWarning
 								defaultButton: @"OK" alternateButton: @"Cancel" otherButton: nil
 					informativeTextWithFormat: @""];
-		int overwriteWarningResult = [alert runModal];
-		if (overwriteWarningResult != NSOKButton) {
+		NSModalResponse overwriteWarningResult = [alert runModal];
+		if (overwriteWarningResult != NSModalResponseOK) {
 			// User doesn't want to overwrite. Cancel.
 			return false;
 		}
@@ -488,13 +488,14 @@ error:
 	[panel setAllowsMultipleSelection: NO];
 	[panel setMessage: @"Select directory containing the new switchlist style template files."];
 	 
-	int result = [panel runModal];
-	if (result != NSOKButton) {
+	NSModalResponse result = [panel runModal];
+	if (result != NSModalResponseOK) {
 		// User cancelled.
 		return;
 	}
 
-	NSString *selectedDirectory = [panel filename];
+    // TODO(bowdidge): Test if works.
+	NSString *selectedDirectory = [panel URL].path;
 	NSString *templateName = [selectedDirectory lastPathComponent];
 
 	if (![self doInstallTemplate:templateName fromDirectory:selectedDirectory]) {

@@ -73,7 +73,6 @@
 	// Handwritten is always valid - uses defaults.
     static int i = 0;
     i++;
-    NSLog(@"%d times through validTemplateNames.", i);
 	NSMutableArray *result = [NSMutableArray arrayWithObject: DEFAULT_SWITCHLIST_TEMPLATE];
     
 	NSError *error;

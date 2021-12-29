@@ -102,6 +102,7 @@
 		return;
 	}
 	
+    NSLog(@"Template %@ not found", templateName);
 	[templateDirectory_ release];
 	templateDirectory_ = nil;
 	return;

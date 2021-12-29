@@ -269,8 +269,6 @@
 - (NSArray*) optionalFieldKeyValues;
 - (void) setOptionalFieldKeyValues: (NSArray*) options;
 
-- (void) doGenerateSwitchListForTrain: (ScheduledTrain*) train;
-
 // Map from SwitchList template name to appropriate SwitchListView class.
 // Template names without native drawing support are unmapped.
 - (NSDictionary*) nameToSwitchListClassMap;

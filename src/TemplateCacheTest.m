@@ -108,13 +108,15 @@
     FakeFileManager* fakeFileManager = [[[FakeFileManager alloc] init] autorelease];
     TemplateCache *myCache = [[TemplateCache alloc] initWithFileManager: fakeFileManager];
     
-    // Create an empty directory. It shouldn't show up.
+    // Create a directory with a switchlist.html.  It should show up.
     NSString* switchlistDirectory = [NSTemporaryDirectory() stringByAppendingPathComponent: @"TemplateDirectory"];
     NSString* switchlistFile = [switchlistDirectory stringByAppendingPathComponent: @"switchlist.html"];
     BOOL createSucceed = [[NSFileManager defaultManager] createDirectoryAtPath: switchlistDirectory withIntermediateDirectories: NO attributes: [NSDictionary dictionary]  error: &err];
     XCTAssertTrue((createSucceed || err.code == NSFileWriteFileExistsError), @"Problems creating test directory: %@", err);
     XCTAssertTrue([[NSFileManager defaultManager] createFileAtPath: switchlistFile contents: [NSData data] attributes: [NSDictionary dictionary]], @"Problems creating file");
-    XCTAssertTrue([[myCache validTemplateNames] containsObject: @"MySwitchList"], @"Should have found 'TemplateDirectory' in %@", [myCache validTemplateNames]);
+    
+    // See if present.
+    XCTAssertTrue([[myCache validTemplateNames] containsObject: @"TemplateDirectory"], @"Should have found 'TemplateDirectory' in %@", [myCache validTemplateNames]);
 }
 
 @end

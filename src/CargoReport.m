@@ -46,14 +46,20 @@
 - (id) initWithDocument: (NSDocument<SwitchListDocumentInterface>*) document 
 		 withIndustries: (NSArray*) industryObjects {
 	self = [super initWithDocument: document];
-	industryObjects_  = [industryObjects retain];
+    if (!self) {
+        return nil;
+    }
+        
+    industryObjects_  = [industryObjects retain];
 	uniqueStrings_ = nil;
 	unspecifiedString_ = @"???";
 	return self;
 }
 - (void) dealloc {
 	[industryObjects_ release];
-	NSFreeHashTable(uniqueStrings_);
+    if (uniqueStrings_) {
+        NSFreeHashTable(uniqueStrings_);
+    }
 	[unspecifiedString_ release];
   [super dealloc];
 }

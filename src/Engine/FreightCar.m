@@ -42,7 +42,7 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
 	if (([marksComponents1 count] != 2) || ([marksComponents2 count] != 2)) {
 		return [[s1 reportingMarks] compare: [s2 reportingMarks]];
 	}
-	int nameComp = [[marksComponents1 objectAtIndex: 0] compare: [marksComponents2 objectAtIndex: 0]];
+	NSComparisonResult nameComp = [[marksComponents1 objectAtIndex: 0] compare: [marksComponents2 objectAtIndex: 0]];
 	if (nameComp != NSOrderedSame) {
 		return nameComp;
 	}
@@ -487,7 +487,7 @@ NSInteger compareReportingMarksAlphabetically(FreightCar* s1, FreightCar* s2, vo
 // Move the car to its next destination, and remove it from its current train.
 // Returns false if any problems noted.
 - (BOOL) moveOneStep {
-	InduYard *nextIndustry=NULL;
+	InduYard *nextIndustry = nil;
 	
 	// Make sure we have some idea where this car ended up.  Either it was an
 	// empty car and the intermediateDestination was used for routing, or it

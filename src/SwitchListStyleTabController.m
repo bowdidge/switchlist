@@ -116,7 +116,7 @@
     [self updateSwitchListOptions];
 }
 - (IBAction) switchListFormatPreferenceChanged: (id) sender {
-	int selection = [sender indexOfSelectedItem];
+	NSInteger selection = [sender indexOfSelectedItem];
 	NSString *preferredReportName = [sender itemTitleAtIndex: selection];
 	[document_ setPreferredSwitchListStyle: preferredReportName];
     [self updateSwitchListOptions];
@@ -175,7 +175,7 @@
     [switchListStyleOptions_ reloadData];
 }
 
-- (id)switchListStyleObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(int)row {
+- (id)switchListStyleObjectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSUInteger)row {
     if ([[[tableColumn headerCell] title] isEqualToString: @"Custom setting" ]) {
         return [[[optionalFieldKeyValues_ objectAtIndex: row] objectAtIndex: 0] stringByReplacingOccurrencesOfString: @"_" withString: @" "];
     } else if ([[[tableColumn headerCell] title] isEqualToString: @"Value"]) {

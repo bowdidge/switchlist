@@ -69,7 +69,6 @@
 	IBOutlet NSTextField *desiredCarsPerWeek_;
 	IBOutlet NSTableView *cargosTable_;
 	IBOutlet NSButton *createButton_;
-	IBOutlet NSButton *cancelButton_;
 	IBOutlet SwitchListDocument *document_;
 	IBOutlet NSArrayController *proposedCargoArrayController_;
 	IBOutlet NSArrayController *currentIndustryArrayController_;

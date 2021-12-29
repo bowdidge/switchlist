@@ -184,7 +184,7 @@ int ROWS_PER_TABLE = 8;
 
 - (void) recalculateFrame {
 	// Frame should be multiple of imageableHeight.
-	int formCount = [[self stopsForForm] count];
+	NSUInteger formCount = [[self stopsForForm] count];
 	NSRect currentFrame = [self frame];
 	[self setFrame: NSMakeRect(currentFrame.origin.x, currentFrame.origin.y,
 							   currentFrame.size.width, formCount * [self imageableHeight])];
@@ -286,8 +286,8 @@ NSInteger sortFreightCarByDestinationIndustry(const FreightCar *fc1, const Freig
 	[[NSColor blackColor] setStroke];
 	NSFrameRect(NSMakeRect(0, startHeight+10, [self imageableWidth], 3));
 
-	int outCount = [dropOffCars count];
-	int inCount = [pickUpCars count];
+	NSUInteger outCount = [dropOffCars count];
+    NSUInteger inCount = [pickUpCars count];
 	
 	// TODO(bowdidge): Should gracefully handle more cars than rows.
 	// TODO(bowdidge): Should gracefully handle more cars than space on page.
@@ -314,7 +314,7 @@ NSInteger sortFreightCarByDestinationIndustry(const FreightCar *fc1, const Freig
 	NSFrameRect(NSMakeRect(0, startHeight, [self imageableWidth], 3));
 	
 	// Entertainment.
-	int pickUpCarsCount = [pickUpCars count];
+    NSUInteger pickUpCarsCount = [pickUpCars count];
 	if (pickUpCarsCount < 5 && pickUpCarsCount != 0) {
 		[self drawHandwrittenString: @"(Ready at 11 a.m.)"
 							centerX: [self imageableWidth]/2
@@ -340,7 +340,7 @@ NSInteger sortFreightCarByDestinationIndustry(const FreightCar *fc1, const Freig
 	NSFrameRect(NSMakeRect(0, startHeight, [self imageableWidth], 3));
 
 	// Entertainment.
-	int dropOffCarsCount = [dropOffCars count];
+    NSUInteger dropOffCarsCount = [dropOffCars count];
 	if (dropOffCarsCount < 5 && dropOffCarsCount != 0) {
 		[self drawHandwrittenString: @"(Spot by 1 p.m.)"
 							centerX: [self imageableWidth] / 2

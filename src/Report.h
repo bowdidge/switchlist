@@ -47,6 +47,7 @@
 	IBOutlet NSTextView *reportTextView_;
 	IBOutlet NSScrollView *scrollView_;
 	NSArray *objectsToDisplay_;
+    NSArray *topLevelObjects_;
 	NSDocument<SwitchListDocumentInterface> *owningDocument_;
 	NSFont *typedFont_;
 }

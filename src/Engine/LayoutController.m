@@ -96,7 +96,7 @@
 // Creates the requested number of cargos and assigns them to unassigned cars.
 // Returns dictionary mapping car type name (as string) to NSNumber showing number of cars
 // that could not be loaded.
-- (NSMutableDictionary *) createAndAssignNewCargos: (int) loadsToAdd  {
+- (NSMutableDictionary *) createAndAssignNewCargos: (NSUInteger) loadsToAdd  {
 	NSArray *allFreightCars = [self.entireLayout allAvailableFreightCars];
 	
 	// Sanity check - if no freight cars, just return.

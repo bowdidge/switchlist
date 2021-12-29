@@ -75,7 +75,7 @@
 	float imageableHeight_;
 
 	// Each document gets a random number exactly once so values don't change per redraw.
-	int randomValue_;
+	long randomValue_;
     NSArray *optionalSettings_;
 }
 

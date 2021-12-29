@@ -143,7 +143,7 @@
 				seq++;
 			}
 			[piclString appendFormat: @"_______________________________________________________________________________\n"];
-			int carsAtLocation = [carsAtIndustry count];
+            NSUInteger carsAtLocation = [carsAtIndustry count];
 			int carsAtLocationLength = 0;
 			int carsAtLocationLoaded = 0;
 			for (FreightCar *car in carsAtIndustry) {
@@ -153,12 +153,12 @@
 				}
 			}
 			
-			int carsAtLocationEmpty = carsAtLocation  - carsAtLocationLoaded;
+            NSUInteger carsAtLocationEmpty = carsAtLocation  - carsAtLocationLoaded;
 			[piclString appendFormat: @"-------------------------------------------------------------------------------\n"];
-			[piclString appendFormat: @"LOADS:%4d     EMPTY:%4d     CARS:%4d                           LENGTH: %4d\n",
+			[piclString appendFormat: @"LOADS:%4d     EMPTY:%4u     CARS:%4u                           LENGTH: %4d\n",
 			 carsAtLocationLoaded,
-			 carsAtLocationEmpty,
-			 carsAtLocation,
+			 (unsigned) carsAtLocationEmpty,
+			 (unsigned) carsAtLocation,
 			 carsAtLocationLength];
 		}
 	}

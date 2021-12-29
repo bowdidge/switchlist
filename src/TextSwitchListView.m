@@ -151,7 +151,7 @@
 - (void) recalculateFrame {
 	// Frame should be multiple of imageableHeight.
 	NSString *contents = [self cachedContents];
-	int lineCount = [[contents componentsSeparatedByString: @"\n"] count];
+    NSUInteger lineCount = [[contents componentsSeparatedByString: @"\n"] count];
 	int pages = ceil((float) lineCount / [self linesPerPage]);
 	NSRect currentFrame = [self frame];
 	float fullDocumentHeight = pages * [self imageableHeight];
@@ -163,8 +163,8 @@
 // Returns a string with the provided string, padded with leading spaces to be centered in the current window.
 - (NSString*) centeredString: (NSString*) str {
 	float lineLength = [self lineLength];
-	int strLen = [str length];
-	int leadingSpaces = (lineLength - strLen) / 2;
+	NSInteger strLen = [str length];
+	NSInteger leadingSpaces = (lineLength - strLen) / 2;
 	if (leadingSpaces < 0) return str;
 	// Awkward, but it works.
 	return [[@"" stringByPaddingToLength: leadingSpaces withString:@" " startingAtIndex: 0] stringByAppendingString: str];
@@ -193,7 +193,7 @@
 	NSString *contents = [self cachedContents];
 	NSMutableString *entireReport = [NSMutableString stringWithFormat: @"%@\n%@", [self headerString] ,contents];
 	float lineHeight = [self lineHeight];
-	int lineCount = [[entireReport componentsSeparatedByString: @"\n"] count];
+    NSUInteger lineCount = [[entireReport componentsSeparatedByString: @"\n"] count];
 	
 	int linesPerPage = [self linesPerPage];
 	int linesOnLastPage =  (lineCount % linesPerPage);
@@ -227,7 +227,7 @@
 	}
 
 	[textView_ setString: entireReport];
-	[textView_ setAlignment:NSLeftTextAlignment range: NSMakeRange(0,[entireReport length])];
+	[textView_ setAlignment:NSTextAlignmentLeft range: NSMakeRange(0,[entireReport length])];
     [textView_ setFont: [self typedFont] range: NSMakeRange(0,[entireReport length])];
 	[textView_ setTextContainerInset: NSMakeSize(0.25,0.25)];
 }	

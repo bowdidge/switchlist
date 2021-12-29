@@ -39,7 +39,7 @@
 	NSObject<RandomNumberGeneratorInterface> *generator_;
 }
 - (id) initWithEntireLayout: (EntireLayout*) layout;
-- (NSArray *) cargosForToday: (int) count;
+- (NSArray *) cargosForToday: (NSUInteger) count;
 
 // For testing only.
 - (void) setRandomNumberGenerator: (NSObject<RandomNumberGeneratorInterface>*) generator;

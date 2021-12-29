@@ -41,10 +41,16 @@
 @implementation Report
 - (id) initWithDocument: (NSDocument<SwitchListDocumentInterface>*) document {
 	self = [super init];
-    if ([NSBundle loadNibNamed:@"Report.nib" owner: self] != YES) {
+    NSBundle *mainBundle = [NSBundle bundleForClass: [self class]];
+    if ([mainBundle loadNibNamed:@"Report" owner: self topLevelObjects: &topLevelObjects_] != YES) {
 		NSLog(@"Problems loading report nib!\n");
+        typedFont_ = nil;
+        owningDocument_ = nil;
+        topLevelObjects_ = nil;
+        objectsToDisplay_ = nil;
+        return nil;
 	}
-	typedFont_ = [self defaultTypedFont];
+    typedFont_ = [[self defaultTypedFont] retain];
 	objectsToDisplay_ = nil;
 	owningDocument_ = [document retain];
 	return self;
@@ -125,19 +131,18 @@
 // TODO(bowdidge): Correctly handle header.
 // TODO(bowdidge): Figure out how to not break elements in column.
 - (NSString*) convertToTwoColumn: (NSString*) contents {
-	int i;
 	NSMutableString *result = [NSMutableString string];
 	NSMutableArray *rawLines = [NSMutableArray arrayWithArray: [contents componentsSeparatedByString: @"\n"]];
-	int linesPerPage = [self lineCount];
-	int columnWidth = ([self lineLength] / 2) - 1;
+    NSUInteger linesPerPage = [self lineCount];
+    NSUInteger columnWidth = ([self lineLength] / 2) - 1;
 	
 	// Fill out array to an even set of lines.
-	int linesToPrint;
-	int extraLines = [rawLines count] % (linesPerPage * 2);
-	int linesToAdd = linesPerPage * 2 - extraLines;
+	NSUInteger linesToPrint;
+    NSUInteger extraLines = [rawLines count] % (linesPerPage * 2);
+    NSUInteger linesToAdd = linesPerPage * 2 - extraLines;
 
 	if (linesToAdd != 0) {
-		for (i = 0 ; i < linesToAdd; i++) {
+		for (int i = 0 ; i < linesToAdd; i++) {
 			[rawLines addObject: @""];
 		}
 	}
@@ -166,9 +171,11 @@
 
 // Returns a string with the provided string, padded with leading spaces to be centered in the current window.
 - (NSString*) centeredString: (NSString*) str {
-	int strLen = [str length];
-	int leadingSpaces = ([self lineLength] - strLen) / 2;
-	if (leadingSpaces < 0) return str;
+	NSInteger strLen = [str length];
+	NSInteger leadingSpaces = ([self lineLength] - strLen) / 2;
+    if (leadingSpaces < 0) {
+        return str;
+    }
 	// Awkward, but it works.
 	return [[@"" stringByPaddingToLength: leadingSpaces withString:@" " startingAtIndex: 0] stringByAppendingString: str];
 }
@@ -191,7 +198,7 @@
 
 	[reportTextView_ setString: entireReport];
     [reportTextView_ setEditable: NO];
-	[reportTextView_ setAlignment:NSLeftTextAlignment range: NSMakeRange(0,[entireReport length])];
+	[reportTextView_ setAlignment:NSTextAlignmentLeft range: NSMakeRange(0,[entireReport length])];
     [reportTextView_ setFont: [self typedFont] range: NSMakeRange(0,[entireReport length])];
 	
 	[reportTextView_ setTextContainerInset: NSMakeSize(0.25,0.25)];

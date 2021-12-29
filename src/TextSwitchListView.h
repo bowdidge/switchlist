@@ -20,7 +20,6 @@
 }
 
 - (NSFont*) typedFont;
-- (NSString*) contents;
 // Subclasses override with number of characters per line.
 - (int) expectedColumns;
 

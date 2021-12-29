@@ -46,7 +46,25 @@
 @implementation LayoutTest
 - (void)setUp
 {
-	context_ = [[NSManagedObjectContext inMemoryMOCFromBundle: [NSBundle bundleForClass: [self class]] withFile: nil] retain];
+    // Test bundle isn't same as class's bundle.
+    NSBundle *mainBundle = [NSBundle bundleForClass: [self class]];
+    NSURL *modelURL = [NSURL fileURLWithPath: @"SwitchListDocument.momd" relativeToURL: mainBundle.resourceURL];
+ 
+    NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL: modelURL];
+    NSPersistentContainer *container = [[NSPersistentContainer alloc] initWithName: @"SwitchListDocument" managedObjectModel: model];
+    if (container == nil) {
+        NSLog(@"No valid container!");
+        //exit(1);
+    }
+     NSPersistentStoreDescription *description = [[NSPersistentStoreDescription alloc] init];
+    [description setURL: [NSURL fileURLWithPath: @"/dev/null"]];
+    description.shouldAddStoreAsynchronously = YES;
+    container.persistentStoreDescriptions = [NSArray arrayWithObject: description];
+    [container loadPersistentStoresWithCompletionHandler: ^(NSPersistentStoreDescription* description, NSError* error) {
+        NSLog(@"Loading persistent stores: %@ %@", description, error);
+    }];
+    
+    context_ = [container viewContext];
 	entireLayout_ = [[EntireLayout alloc] initWithMOC: context_];
 	[self makeCarType: @"XA"];
 	[self makeCarType: @"XM"];

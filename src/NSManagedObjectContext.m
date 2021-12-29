@@ -35,7 +35,8 @@
 	}
 	
 	// Now we can set up the managed object context and assign it to persistent store coordinator.
-	NSManagedObjectContext *context = [[[NSManagedObjectContext alloc] init] autorelease];
+    NSManagedObjectContext *context = [[[NSManagedObjectContext alloc] initWithConcurrencyType: NSMainQueueConcurrencyType
+] autorelease];
 	[context setPersistentStoreCoordinator: coordinator];
 	NSAssert( context != nil, @"Can't set up managed object context for unit test.");
 	

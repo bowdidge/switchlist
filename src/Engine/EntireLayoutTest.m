@@ -545,10 +545,7 @@
 	[fc2 setIsLoaded: YES];
     [fc2 setHomeDivision: @"B"];
     [fc2 setDaysUntilUnloaded: [NSNumber numberWithInt: 2]];
-	
-	ScheduledTrain *myTrain1 = [[entireLayout_ allTrains] lastObject];
-	NSArray *allStations = [myTrain1 stationsWithWork];
-	
+		
     LayoutController *controller = [[LayoutController alloc] initWithEntireLayout: [self entireLayout]];
    
     // Cars start at A.

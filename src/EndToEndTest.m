@@ -44,11 +44,47 @@
 - (id) init {
     // layoutFileName should be set by subclasses.
     layoutFileName_ = @"Bogus";
+    return self;
 }
+
 - (void) setUp {
-    NSURL* layoutUrl = [[NSBundle bundleForClass: [self class]] URLForResource: layoutFileName_ withExtension: @"swl"];
-	context_ = [[NSManagedObjectContext inMemoryMOCFromBundle: [NSBundle bundleForClass: [self class]] withFile: layoutUrl] retain];
+    NSURL* layoutUrl = [[NSBundle bundleForClass: [self class]] URLForResource:layoutFileName_ withExtension: @"swl"];
+
+    NSLog(@"%@", layoutUrl);
+    XCTAssertNotNil(layoutUrl);
+    if (!layoutUrl) {
+        return;
+    }
+
+    // Test bundle isn't same as class's bundle.
+    NSBundle *mainBundle = [NSBundle bundleForClass: [EndToEndTest class]];
+    NSURL *modelURL = [NSURL fileURLWithPath: @"SwitchListDocument.momd" relativeToURL: mainBundle.resourceURL];
+ 
+    NSLog(@"%@", modelURL);
+    XCTAssertNotNil(modelURL);
+    
+    NSManagedObjectModel *model = [[NSManagedObjectModel alloc] initWithContentsOfURL: modelURL];
+    NSPersistentContainer *container = [[NSPersistentContainer alloc] initWithName: @"SwitchListDocument" managedObjectModel: model];
+    if (container == nil) {
+        NSLog(@"No valid container!");
+        XCTAssertTrue(NO, @"problems loading persistent store");
+        return;
+    }
+     NSPersistentStoreDescription *description = [[NSPersistentStoreDescription alloc] init];
+    [description setURL: layoutUrl];
+    description.type = NSXMLStoreType;
+    description.shouldAddStoreAsynchronously = YES;
+    description.shouldMigrateStoreAutomatically = YES;
+    container.persistentStoreDescriptions = [NSArray arrayWithObject: description];
+    [container loadPersistentStoresWithCompletionHandler: ^(NSPersistentStoreDescription* description, NSError* error) {
+        NSLog(@"Loading persistent stores: %@ %@", description, error);
+    }];
+    sleep(5);
+    context_ = [container viewContext];
 	entireLayout_ = [[EntireLayout alloc] initWithMOC: context_];
+    NSLog(@"Places: %d", (int) entireLayout_.allStations.count);
+    NSLog(@"Industries: %d", (int) entireLayout_.allIndustries.count);
+    NSLog(@"Cars: %d", (int) entireLayout_.allFreightCars.count);
 }
 
 // Calculates total number of cargos that were created but couldn't be filled
@@ -67,6 +103,7 @@
     [renderer setTemplate: switchlistStyle];
     HTMLSwitchListController *printingHtmlViewController = [[[HTMLSwitchListController alloc] init] autorelease];
     
+    XCTAssertTrue([entireLayout_ allTrains].count > 0, @"Expected at least one train, but got zero");
     for (ScheduledTrain* train in [entireLayout_ allTrains]) {
         NSString *all_html = [renderer renderSwitchlistForTrain:train layout: entireLayout_ iPhone: NO interactive: NO];
         
@@ -88,7 +125,7 @@
 
 // Tests that the layout can be put through ten cycles, and cars continue to move at a reasonable rate.
 - (void) doTestLayout {
-    int carCount = [[entireLayout_ allFreightCars] count];
+    NSUInteger carCount = [[entireLayout_ allFreightCars] count];
     NSArray *allTrains = [entireLayout_ allTrains];
     XCTAssertTrue([allTrains count] > 0, @"No trains found - problems loading.");
     XCTAssertTrue([[entireLayout_ allFreightCars] count] > 0, @"No freight cars found - problems loading.");
@@ -96,9 +133,7 @@
     LayoutController *controller = [[LayoutController alloc] initWithEntireLayout: entireLayout_];
     for (int i=0;i<10;i++) {
         [controller advanceLoads];
-        NSDictionary *unfilledCargosDict = [controller createAndAssignNewCargos: (carCount / 4)];
-        int cargosNotFilled = [self cargosNotFilled: unfilledCargosDict];
-        
+        [controller createAndAssignNewCargos: entireLayout_.allFreightCars.count  * 0.2];
         NSArray *errs = [controller assignCarsToTrains: allTrains respectSidingLengths: YES useDoors: YES];
         
 
@@ -113,11 +148,10 @@
             carsMoved += [train.freightCars count];
             [controller completeTrain: train];
         }
-        XCTAssertTrue(carsMoved > 0.2 * carCount, @"Insufficient cars moved: expected 0.2 * carCount (%d), got %d", carCount/5 , carsMoved);
+        XCTAssertTrue(carsMoved > 0.2 * carCount, @"Insufficient cars moved on iter %d: expected 0.2 * carCount (%d), got %d", (int) i, (int) carCount/5 , (int) carsMoved);
     }
     
     [controller release];
-    return YES;
 }
 
 @end
@@ -176,13 +210,11 @@
 
 - (void) testViaStringAppearsWhenCarGoesBeyondYard {
     NSBundle *bundleForUnitTests = [NSBundle bundleForClass: [self class]];
-    int carCount = [[entireLayout_ allFreightCars] count];
     NSArray *allTrains = [entireLayout_ allTrains];
+
     XCTAssertTrue([allTrains count] > 0, @"No trains found - problems loading.");
     XCTAssertTrue([[entireLayout_ allFreightCars] count] > 0, @"No freight cars found - problems loading.");
     
-    LayoutController *controller = [[LayoutController alloc] initWithEntireLayout: entireLayout_];
-
     HTMLSwitchlistRenderer *renderer = [[HTMLSwitchlistRenderer alloc] initWithBundle: bundleForUnitTests];
     [renderer setTemplate: @"Railroad Letterhead"];
     NSString *result = [renderer renderSwitchlistForTrain: [entireLayout_ trainWithName: @"Only Train"] layout: entireLayout_ iPhone: false interactive: false];

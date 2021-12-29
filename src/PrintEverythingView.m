@@ -79,7 +79,7 @@
 		// All the switchlists are printing in the same view, so document bounds should match.
 		NSRange r;
 		[v knowsPageRange: &r];
-		int pageCount = r.length;
+		NSUInteger pageCount = r.length;
 		if (r.length == 0) {
 			continue;
 		}

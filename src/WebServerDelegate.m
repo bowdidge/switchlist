@@ -232,7 +232,7 @@ NSString *CurrentHostname() {
 
 // Given parameters to changeCarLocation, updates database.
 - (void) processChangeLocationForLayout: (NSDocument<SwitchListDocumentInterface>*) document car: (NSString*) carName location: (NSString*) locationName {
-	carName = [carName stringByReplacingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+	carName = [carName stringByRemovingPercentEncoding];
 	EntireLayout *entireLayout = [document entireLayout];
 	FreightCar *fc = [entireLayout freightCarWithName: carName];
 	InduYard *location = [entireLayout industryOrYardWithName: locationName];

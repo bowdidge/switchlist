@@ -39,20 +39,26 @@
 
 // Extensions to model classes to allow cut and paste on MacOS.
 
-@interface Cargo (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@interface Cargo (Pasteboard)<NSPasteboardWriting,NSPasteboardReading,NSSecureCoding>
+@property(class, readonly) BOOL supportsSecureCoding;
 @end
 
-@interface FreightCar (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@interface FreightCar (Pasteboard)<NSPasteboardWriting,NSPasteboardReading,NSSecureCoding>
+@property(class, readonly) BOOL supportsSecureCoding;
 @end
 
-@interface Industry (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@interface Industry (Pasteboard)<NSPasteboardWriting,NSPasteboardReading,NSSecureCoding>
+@property(class, readonly) BOOL supportsSecureCoding;
 @end
 
-@interface Place (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@interface Place (Pasteboard)<NSPasteboardWriting,NSPasteboardReading,NSSecureCoding>
+@property(class, readonly) BOOL supportsSecureCoding;
 @end
 
-@interface ScheduledTrain (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@interface ScheduledTrain (Pasteboard)<NSPasteboardWriting,NSPasteboardReading,NSSecureCoding>
+@property(class, readonly) BOOL supportsSecureCoding;
 @end
 
-@interface Yard (Pasteboard)<NSPasteboardWriting,NSPasteboardReading>
+@interface Yard (Pasteboard)<NSPasteboardWriting,NSPasteboardReading,NSSecureCoding>
+@property(class, readonly) BOOL supportsSecureCoding;
 @end
