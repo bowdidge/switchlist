@@ -347,7 +347,6 @@
 		3EC0ACE319A042C500ABD0E5 /* TemplateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0ACE119A042C500ABD0E5 /* TemplateCache.m */; };
 		3EC0ACE419A042C500ABD0E5 /* TemplateCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0ACE119A042C500ABD0E5 /* TemplateCache.m */; };
 		3EC0ACE719A045B600ABD0E5 /* TemplateCacheTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0ACE619A045B600ABD0E5 /* TemplateCacheTest.m */; };
-		3EC1D47E160AEDB700765095 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC1D47D160AEDB700765095 /* QuartzCore.framework */; };
 		3EC3B0931277DF6600C00AD3 /* EntireLayoutTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC3B0921277DF6600C00AD3 /* EntireLayoutTest.m */; };
 		3EC3B1441277E4E300C00AD3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; };
 		3EC3B14C1277E4E300C00AD3 /* SwitchListAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E048E5408DCAE4000383A67 /* SwitchListAppDelegate.m */; };
@@ -839,7 +838,6 @@
 		3EC0ACE119A042C500ABD0E5 /* TemplateCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TemplateCache.m; path = Engine/TemplateCache.m; sourceTree = "<group>"; };
 		3EC0ACE519A045B600ABD0E5 /* TemplateCacheTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateCacheTest.h; sourceTree = "<group>"; };
 		3EC0ACE619A045B600ABD0E5 /* TemplateCacheTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateCacheTest.m; sourceTree = "<group>"; };
-		3EC1D47D160AEDB700765095 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS6.0.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		3EC3B0881277DEFE00C00AD3 /* Unit tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC3B0891277DEFE00C00AD3 /* Unit tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit tests-Info.plist"; sourceTree = "<group>"; };
 		3EC3B0911277DF6600C00AD3 /* EntireLayoutTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntireLayoutTest.h; path = Engine/EntireLayoutTest.h; sourceTree = "<group>"; };
@@ -928,7 +926,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EC1D47E160AEDB700765095 /* QuartzCore.framework in Frameworks */,
 				3EAAA7671606CC5400C3D7A8 /* libicucore.dylib in Frameworks */,
 				3E407D59160693170037134D /* UIKit.framework in Frameworks */,
 				3E407D5B160693170037134D /* Foundation.framework in Frameworks */,
@@ -1069,7 +1066,6 @@
 				3E5851CB277BF79600FD60AC /* Stockton with Divisions.swl */,
 				3E6CC55A19AACA0900C768ED /* Waterside Yard.switchlist */,
 				3E6CC55819AAC9FD00C768ED /* Stockton with Divisions.switchlist */,
-				3EC1D47D160AEDB700765095 /* QuartzCore.framework */,
 				3EA487B315D83E73008A169F /* LatentSemanticMapping.framework */,
 				3E917A130951659A004647C7 /* Reports */,
 				3E57C5CE12FBDCF100E51008 /* Switchlist styles */,
