@@ -255,61 +255,6 @@
 	}
 }
 
-// Load all fonts from the Application bundle.  Generate an error if the fonts in the array fontnames
-// are not present.
-- (BOOL)loadLocalFonts:(NSError **)err requiredFonts:(NSArray *)fontnames {
-	NSString *resourcePath, *fontsFolder,*errorMessage;    
-	NSURL *fontsURL;
-	resourcePath = [[NSBundle mainBundle] resourcePath];
-	if (!resourcePath) {
-		errorMessage = @"Failed to load fonts! no resource path...";
-		goto error;
-	}
-
-	fontsFolder = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"/fonts"];
-	NSFileManager *fm = [NSFileManager defaultManager];
-	if (![fm fileExistsAtPath:fontsFolder])	{
-		errorMessage = @"Failed to load fonts! Font folder not found...";
-		goto error;
-	}
-	
-    fontsURL = [NSURL fileURLWithPath:fontsFolder];
-	if (fontsURL != nil) {
-        FSRef fsRef;
-        CFURLGetFSRef((CFURLRef)fontsURL, &fsRef);
-        OSStatus status;
-        // TODO(bowdidge): Prepare to switch to CoreText Font Manager - ATSFontActivate* is deprecated.
-        // Alternative (CTFontManagerRegisterFontsForURL) is only in 10.6 and greater.
-        status = ATSFontActivateFromFileReference(&fsRef, kATSFontContextLocal, kATSFontFormatUnspecified,
-                                                  NULL, kATSOptionFlagsDefault, NULL);
-        if (status != noErr) {
-            errorMessage = @"Failed to activate fonts!";
-            goto error;
-        }
-	}
-	if (fontnames != nil) {
-		NSFontManager *fontManager = [NSFontManager sharedFontManager];
-		for (NSString *fontname in fontnames) {
-			BOOL fontFound = [[fontManager availableFonts] containsObject:fontname]; 
-			if (!fontFound) {
-				errorMessage = [NSString stringWithFormat:@"Required font not found:%@",fontname];
-				goto error;
-			}
-		}
-	}
-	return YES;
-
-error:
-	if (err != NULL) {
-		NSString *localizedMessage = NSLocalizedString(errorMessage, @"");
-		NSDictionary *userInfo = [NSDictionary dictionaryWithObject:localizedMessage forKey:NSLocalizedDescriptionKey];
-		*err = [[[NSError alloc] initWithDomain:NSCocoaErrorDomain code:0 userInfo:userInfo] autorelease];
-	}
-	
-	return NO;
-	
-}
-
 - (void) awakeFromNib {
 	[problems_ addObject: @"No problems."];
 	MyOutlineDelegate *myOutlineDelegate = [[[MyOutlineDelegate alloc] initWithAppDelegate: self
@@ -350,8 +295,6 @@ error:
 															action: @selector(doOpenExample:)
 													 keyEquivalent: @""] autorelease]];
 	}
-	NSError *err = nil;
-	[self loadLocalFonts: &err requiredFonts: [NSArray array]];
 }
 
 - (BOOL)alertShowHelp:(NSAlert *)alert {

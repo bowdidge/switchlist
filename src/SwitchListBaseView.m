@@ -445,11 +445,16 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 - (NSString*) handwritingFontName {
 	// Dakota's really nice, but only available if you installed a special version of iLife.
 	// Rock Salt takes too much space, but is nice.
-	// Fonts loaded in SwitchListAppDelegate.m's - (BOOL)loadLocalFonts:requiredFonts:
+	// Fonts loaded in Info.plist.
 
 	NSMutableArray *fontChoices = [NSMutableArray arrayWithObjects: 
-								   @"Handwriting - Dakota", 
-								   @"Rock Salt", 
+								   @"Handwriting - Dakota",
+                                   // In app bundle.
+								   @"Rock Salt",
+                                   // Installed on Macs.
+                                   @"Chalkboard",
+                                   // Installed on Macs.
+                                   @"Bradley Hand",
 								   nil];
 	
 	NSString *preferredFont = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_HANDWRITTEN_FONT];
@@ -462,10 +467,8 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 			return fontName;
 		}
 	}
-	
-	// Still not there?  Choose chalkboard.
-	// Chalkboard is a standard font on the Mac.
-	return @"Chalkboard";
+    // Default, likely installed on Macs.
+    return @"Chalkboard";
 }
 
 - (NSDictionary*) handwritingFontAttr {
