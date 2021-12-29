@@ -69,7 +69,7 @@ hiutil -C -a SwitchList.help -f SwitchList.help/SwitchList.help.helpindex
 #   exit 1
 # fi
 
-xcodebuild -scheme SwitchList-release -target SwitchList -target testAdvanceLayouts -archivePath /tmp/SwitchList.dst archive
+xcodebuild -configuration Release -scheme SwitchList-release -target SwitchList -target testAdvanceLayouts -archivePath /tmp/SwitchList.dst archive
 
 if [ $? -ne 0 ]; then
   echo Problems building SwitchList - problems during xcodebuild.

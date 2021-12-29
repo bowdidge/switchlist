@@ -2987,7 +2987,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
 				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3017,7 +3017,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
 				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3046,7 +3046,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
 				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3074,7 +3074,7 @@
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Foundation.framework/Headers/Foundation.h";
 				INSTALL_PATH = "";
 				LD_DYLIB_INSTALL_NAME = "@executable_path/../Frameworks/$(EXECUTABLE_PATH)";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -3358,7 +3358,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_ENTITLEMENTS = SwitchList.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Distribution: Robert Bowdidge (PRKJWD6X23)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -3563,7 +3563,7 @@
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/WebKit.framework\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
@@ -3602,7 +3602,7 @@
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/WebKit.framework\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
@@ -3639,7 +3639,7 @@
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/WebKit.framework\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
@@ -4103,7 +4103,7 @@
 					"$(inherited)",
 					"\"$(SYSTEM_LIBRARY_DIR)/Frameworks/WebKit.framework\"",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_LDFLAGS = (
 					"-framework",
 					Cocoa,
