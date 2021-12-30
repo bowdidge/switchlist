@@ -77,6 +77,9 @@
 	// Each document gets a random number exactly once so values don't change per redraw.
 	long randomValue_;
     NSArray *optionalSettings_;
+
+    // Font to use for handwritten parts of forms.
+    NSString *handwritingFontName_;
 }
 
 // Initial frame size indicates the initial page size.

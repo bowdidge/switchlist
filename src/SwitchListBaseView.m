@@ -132,6 +132,9 @@
 	
 	randomValue_ = random();
     optionalSettings_ = nil;
+
+    [self findFonts];
+
 	return self;
 }
 
@@ -446,16 +449,28 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	// Dakota's really nice, but only available if you installed a special version of iLife.
 	// Rock Salt takes too much space, but is nice.
 	// Fonts loaded in Info.plist.
+    return handwritingFontName_;
+}
 
-	NSMutableArray *fontChoices = [NSMutableArray arrayWithObjects: 
-								   @"Handwriting - Dakota",
+/* Searches for good handwriting fonts, and picks one to use for
+ * all handwritten text in forms.  Call once.
+ *
+ * Override with GLOBAL_PREFS_HANDWRITTEN_FONT.
+ */
+- (void) findFonts {
+    NSFontManager *fontManager = [NSFontManager sharedFontManager];
+
+    // Font families to try to use for handwritten text.
+	NSMutableArray *fontChoices = [NSMutableArray arrayWithObjects:
+								   //@"Handwriting - Dakota",
                                    // In app bundle.
 								   @"Rock Salt",
                                    // Installed on Macs.
-                                   @"Chalkboard",
-                                   // Installed on Macs.
                                    @"Bradley Hand",
-								   nil];
+                                   @"Chalkduster",
+                                   @"Noteworthy",
+                                   @"Chalkboard",
+                                   nil];
 	
 	NSString *preferredFont = [[NSUserDefaults standardUserDefaults] stringForKey: GLOBAL_PREFS_HANDWRITTEN_FONT];
 	if (preferredFont) {
@@ -463,12 +478,22 @@ float randomYOffset[32] = {0, 0.2, 0.4, 0.6, -0.8, -2.0, 3.0, -1.0,
 	}
 	
 	for (NSString *fontName in fontChoices) {
-		if (fontName && [NSFont fontWithName: fontName size: 12.0]) {
-			return fontName;
+		if ([NSFont fontWithName: fontName size: 12.0]) {
+			handwritingFontName_ = fontName;
+            return;
 		}
 	}
+
+    NSLog(@"Did not find any reasonable font family, considered %@", fontChoices);
+
     // Default, likely installed on Macs.
-    return @"Chalkboard";
+    NSLog(@"Font families installed were:");
+    for (NSString* fontFamily in fontManager.availableFontFamilies) {
+        NSLog(@"Family %@:", fontFamily);
+    }
+
+    // Default to the most annoying for obviousness.
+    handwritingFontName_ = @"Comic Sans MS";
 }
 
 - (NSDictionary*) handwritingFontAttr {
