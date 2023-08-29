@@ -10,5 +10,7 @@
 	<true/>
 	<key>com.apple.security.print</key>
 	<true/>
+	<key>com.apple.application-identifier</key>
+	<string>PRKJWD6X23.com.blogspot.vasonabranch.SwitchListApp</string>
 </dict>
 </plist>
