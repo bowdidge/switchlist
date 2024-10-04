@@ -10,7 +10,7 @@
 
 #import <XCTest/XCTest.h>
 
-#import "BKClassifier.h"
+#import "BKClassifier/BKClassifier.h"
 #import "TypicalIndustryStore.h"
 
 @interface IndustryInferenceQualityTest : XCTestCase

@@ -34,7 +34,7 @@
 
 // Preps the random number generator for particularly
 // random values.
-int GenerateSeed() {
+int GenerateSeed(void) {
 	struct timeval tp;
 	struct timezone tz;
 	gettimeofday(&tp, &tz);

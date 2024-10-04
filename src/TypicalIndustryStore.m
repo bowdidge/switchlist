@@ -33,7 +33,7 @@
 
 #import "TypicalIndustryStore.h"
 
-#import "BKClassifier.h"
+#import "BKClassifier/BKClassifier.h"
 
 @implementation TypicalIndustryStore
 

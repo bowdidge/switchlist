@@ -31,7 +31,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "BKClassifier.h"
+#import "BKClassifier/BKClassifier.h"
 
 // Allows matching a new industry name to a class of industry, and provides information
 // on that typical industry - synonyms, likely cargos, etc.
